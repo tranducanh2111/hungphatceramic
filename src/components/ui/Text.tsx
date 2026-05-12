@@ -1,3 +1,4 @@
+import { createElement } from "react";
 import type { ElementType, HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
@@ -63,6 +64,7 @@ interface TextProps extends HTMLAttributes<HTMLElement> {
  * Text — Unified typography component.
  *
  * Renders the correct HTML tag with design-system font sizing.
+ * Uses createElement instead of JSX to avoid polymorphic tag type errors.
  * Pass `as` to override the default tag (e.g., render an h2 visually as h3).
  *
  * @example
@@ -79,20 +81,19 @@ export function Text({
   ...rest
 }: TextProps) {
   const Tag = as ?? DEFAULT_TAG_MAP[variant];
-
   const isHeading = variant.startsWith("display") || variant.startsWith("h");
 
-  return (
-    <Tag
-      className={cn(
+  return createElement(
+    Tag,
+    {
+      className: cn(
         `text-${variant}`,
         isHeading ? "font-serif" : "font-sans",
         uppercase && "uppercase",
         className,
-      )}
-      {...rest}
-    >
-      {children}
-    </Tag>
+      ),
+      ...rest,
+    },
+    children,
   );
 }

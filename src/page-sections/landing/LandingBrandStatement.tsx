@@ -110,7 +110,7 @@ export function LandingBrandStatement() {
             className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
           >
             <Image
-              src="/images/brand-statement.jpg"
+              src="/images/brand-statement.png"
               alt="Artisan craftsman placing a large-format polished ceramic tile"
               fill
               className="object-cover"

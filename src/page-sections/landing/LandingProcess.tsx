@@ -31,7 +31,7 @@ export function LandingProcess() {
 
   return (
     /* Tall section — 400vh gives 100vh per step */
-    <div ref={sectionRef} className="relative bg-[#0E2A42]" style={{ height: "400vh" }}>
+    <div ref={sectionRef} className="relative bg-[#0E2A42]" style={{ position: "relative", height: "400vh" }}>
       {/* Sticky viewport */}
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-12">
@@ -47,40 +47,95 @@ export function LandingProcess() {
 
           <div className="grid items-start gap-12 lg:grid-cols-2">
             {/* ── Left: Step list ─────────────────────────────────────── */}
-            <div className="flex flex-col gap-0">
-              {/* Vertical progress line */}
-              <div className="relative mb-2 ml-6 h-px w-px">
-                <div className="absolute left-0 top-0 h-full w-px bg-[#1A3D5C]" />
+            {/* ── Left: Step list with SVG Path ───────────────────────── */}
+            <div className="relative flex h-[400px] flex-col justify-between py-6 lg:h-[500px]">
+              {/* The SVG S-Curve */}
+              <div className="absolute inset-0 z-0">
+                <svg
+                  className="h-full w-full"
+                  viewBox="0 0 100 400"
+                  preserveAspectRatio="none"
+                  fill="none"
+                >
+                  <defs>
+                    <linearGradient id="champagneGlow" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#D4B886" stopOpacity="0.2" />
+                      <stop offset="50%" stopColor="#D4B886" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#D4B886" stopOpacity="0.2" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Background path */}
+                  <path
+                    d="M 20 20 C 20 120, 80 140, 80 200 C 80 260, 20 280, 20 380"
+                    stroke="#1A3D5C"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="4 8"
+                  />
+
+                  {/* Animated foreground path */}
+                  <motion.path
+                    d="M 20 20 C 20 120, 80 140, 80 200 C 80 260, 20 280, 20 380"
+                    stroke="url(#champagneGlow)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    style={{ pathLength: scrollYProgress }}
+                  />
+                </svg>
               </div>
 
-              {PROCESS_STEPS.map((step, index) => {
+              {/* Step Nodes (Manually aligned to the S-curve) */}
+              {[
+                { top: "5%", left: "20px" },
+                { top: "35%", left: "68px" },
+                { top: "65%", left: "68px" },
+                { top: "95%", left: "20px" },
+              ].map((pos, index) => {
                 const isActive = index === activeStepIndex;
                 const isPast = index < activeStepIndex;
+                const step = PROCESS_STEPS[index];
 
                 return (
-                  <div key={step.id} className="relative flex items-start gap-5 py-5">
-                    {/* Connector line */}
-                    <div className="absolute left-5 top-0 h-full w-px bg-[#1A3D5C]" />
-
-                    {/* Step number circle */}
-                    <div
-                      className={cn(
-                        "relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-sans text-body-sm font-medium transition-all duration-500",
-                        isActive
-                          ? "border-[#D4B886] bg-[#D4B886] text-[#071A2B]"
-                          : isPast
-                            ? "border-[#D4B886]/40 bg-[#D4B886]/10 text-[#D4B886]"
-                            : "border-[#1A3D5C] bg-transparent text-[#F4F4F6]/30",
+                  <div
+                    key={step.id}
+                    className="absolute z-10 flex items-center gap-4"
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  >
+                    {/* Node circle */}
+                    <div className="relative flex items-center justify-center">
+                      {/* Pulse effect */}
+                      {isActive && (
+                        <motion.div
+                          initial={{ scale: 0.8, opacity: 0.8 }}
+                          animate={{ scale: 2, opacity: 0 }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                          className="absolute h-full w-full rounded-full bg-[#D4B886]"
+                        />
                       )}
-                    >
-                      {step.number}
+                      <div
+                        className={cn(
+                          "relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 bg-[#0E2A42] font-sans text-body-sm font-medium transition-colors duration-500",
+                          isActive
+                            ? "border-[#D4B886] text-[#D4B886] shadow-[0_0_15px_rgba(212,184,134,0.3)]"
+                            : isPast
+                              ? "border-[#D4B886]/40 text-[#D4B886]/60"
+                              : "border-[#1A3D5C] text-[#F4F4F6]/30",
+                        )}
+                      >
+                        {step.number}
+                      </div>
                     </div>
 
-                    {/* Step title */}
+                    {/* Step Title next to node */}
                     <Text
                       variant="h5"
                       className={cn(
-                        "mt-2 transition-colors duration-500",
+                        "whitespace-nowrap transition-colors duration-500 absolute left-14",
                         isActive ? "text-[#F4F4F6]" : "text-[#F4F4F6]/35",
                       )}
                     >
