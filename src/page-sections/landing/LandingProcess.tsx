@@ -31,7 +31,7 @@ export function LandingProcess() {
 
   return (
     /* Tall section — 400vh gives 100vh per step */
-    <div ref={sectionRef} className="relative bg-[#0E2A42]" style={{ height: "400vh" }}>
+    <div ref={sectionRef} className="relative bg-[#0E2A42]" style={{ position: "relative", height: "400vh" }}>
       {/* Sticky viewport */}
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="mx-auto w-full max-w-7xl px-6 lg:px-12">

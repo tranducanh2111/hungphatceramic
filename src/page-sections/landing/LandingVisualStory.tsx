@@ -32,6 +32,7 @@ export function LandingVisualStory() {
       ref={sectionRef}
       className="relative h-screen bg-[#071A2B] overflow-hidden"
       aria-label="3D Interior walkthrough"
+      style={{ position: "relative" }}
     >
       {/* 3D Room Background */}
       <div className="absolute inset-0">

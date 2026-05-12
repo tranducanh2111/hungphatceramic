@@ -72,7 +72,7 @@ export function LandingHero() {
   const textY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden" style={{ position: "relative" }}>
       {/* ── Gradient background (always shown) ───────────────────────── */}
       <div className="absolute inset-0 bg-[#071A2B]" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,#1A3D5C_0%,#071A2B_65%)]" />
@@ -80,16 +80,19 @@ export function LandingHero() {
       </div>
 
       {/* ── Video (when provided) ─────────────────────────────────────── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-30"
-        poster="/images/hero-poster.jpg"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      {/* 
+        TODO: Uncomment and replace with the real video when provided by the client.
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+          poster="/images/hero-poster.jpg"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+      */}
 
       {/* ── Cinematic overlay ─────────────────────────────────────────── */}
       <div

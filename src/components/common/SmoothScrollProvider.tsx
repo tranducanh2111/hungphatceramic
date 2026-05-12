@@ -14,6 +14,22 @@ interface SmoothScrollProviderProps {
  * All Framer Motion useScroll hooks continue to work correctly
  * since Lenis operates through native scroll position.
  */
+if (typeof window !== "undefined") {
+  const originalWarn = console.warn;
+  console.warn = (...args) => {
+    if (
+      args.length > 0 &&
+      typeof args[0] === "string" &&
+      (args[0].includes("THREE.Clock: This module has been deprecated") ||
+       args[0].includes("Please ensure that the container has a non-static position") ||
+       args[0].includes("THREE.WebGLRenderer: Context Lost"))
+    ) {
+      return;
+    }
+    originalWarn(...args);
+  };
+}
+
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
     const lenis = new Lenis({

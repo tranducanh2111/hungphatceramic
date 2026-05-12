@@ -34,8 +34,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
+      style={{ position: "relative" }}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="relative min-h-full flex flex-col" style={{ position: "relative" }} suppressHydrationWarning>
         <SmoothScrollProvider>
           {children}
           <ScrollProgressBar />

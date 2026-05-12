@@ -1,53 +1,42 @@
 "use client";
 
-import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
-import * as THREE from "three";
+import { motion } from "framer-motion";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  inspire: "#2A4B6C",        // Muted blue
-  travertine: "#8B7355",     // Travertine brown
-  "orient-star": "#1E1810",  // Dark rich
-  sunshine: "#4A5D23",       // Earthy green/gold
-  architectural: "#2A2A35",  // Slate
+  inspire: "from-[#2A4B6C] to-[#1A3D5C]",        
+  travertine: "from-[#8B7355] to-[#6b5840]",     
+  "orient-star": "from-[#1E1810] to-[#0a0805]",  
+  sunshine: "from-[#4A5D23] to-[#3a4a1c]",       
+  architectural: "from-[#2A2A35] to-[#1a1a22]",  
 };
 
-function SpinningTile({ categoryId }: { categoryId: string }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const color = CATEGORY_COLORS[categoryId] ?? "#8B7355";
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const time = state.clock.getElapsedTime();
-    // Gentle continuous rotation
-    meshRef.current.rotation.y = time * 0.4;
-    meshRef.current.rotation.x = Math.sin(time * 0.5) * 0.2;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[2, 2, 0.1]} />
-      <meshPhysicalMaterial
-        color={color}
-        roughness={0.2}
-        metalness={0.1}
-        clearcoat={0.8}
-        clearcoatRoughness={0.2}
-      />
-    </mesh>
-  );
-}
-
 export function MaterialTilePreview({ categoryId }: { categoryId: string }) {
+  const gradient = CATEGORY_COLORS[categoryId] ?? "from-[#8B7355] to-[#6b5840]";
+
   return (
-    <div className="absolute -right-12 -top-12 h-64 w-64 opacity-40 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 4], fov: 45 }} gl={{ alpha: true }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[2, 5, 2]} intensity={1} />
-        <Environment preset="city" />
-        <SpinningTile categoryId={categoryId} />
-      </Canvas>
+    <div className="absolute -right-12 -top-12 h-64 w-64 opacity-40 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none [perspective:800px]">
+      <motion.div
+        animate={{
+          rotateX: [20, 40, 20],
+          rotateZ: [0, 360],
+        }}
+        transition={{
+          rotateX: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+          rotateZ: { duration: 15, repeat: Infinity, ease: "linear" },
+        }}
+        className="absolute inset-0 m-auto h-32 w-32 [transform-style:preserve-3d]"
+      >
+        {/* Front Face */}
+        <div className={`absolute inset-0 rounded-sm bg-gradient-to-br ${gradient} shadow-2xl`} style={{ transform: "translateZ(2px)" }}>
+          <div className="absolute inset-0 bg-white/10" style={{ mixBlendMode: 'overlay' }} />
+        </div>
+        
+        {/* Back Face */}
+        <div className={`absolute inset-0 rounded-sm bg-gradient-to-tr ${gradient} brightness-50`} style={{ transform: "translateZ(-2px)" }} />
+        
+        {/* Fake 3D depth using multiple layers */}
+        <div className="absolute inset-0 rounded-sm bg-[#071A2B]" style={{ transform: "translateZ(0px)" }} />
+      </motion.div>
     </div>
   );
 }
