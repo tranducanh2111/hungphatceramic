@@ -21,7 +21,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Vinhomes Metropolis, Hà Nội",
     year: 2023,
     area: "Full-floor ceramic installation, 680m²",
-    imageUrl: "/images/projects/project-1.jpg",
+    imageUrl: "/images/project-1.jpg",
   },
   {
     id: "grand-hotel-lobby",
@@ -29,7 +29,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Aria Boutique Hotel, Hải Phòng",
     year: 2023,
     area: "Lobby & corridor installation, 320m²",
-    imageUrl: "/images/projects/project-2.jpg",
+    imageUrl: "/images/project-2.jpg",
   },
   {
     id: "villa-thao-dien",
@@ -37,7 +37,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Thảo Điền, Hồ Chí Minh",
     year: 2022,
     area: "Full-villa interior surfaces, 450m²",
-    imageUrl: "/images/projects/project-3.jpg",
+    imageUrl: "/images/project-3.jpg",
   },
   {
     id: "tu-liem-residence",
@@ -45,7 +45,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Từ Liêm, Hà Nội",
     year: 2022,
     area: "Master suite & bathrooms, 180m²",
-    imageUrl: "/images/projects/project-4.jpg",
+    imageUrl: "/images/project-4.jpg",
   },
 ];
 

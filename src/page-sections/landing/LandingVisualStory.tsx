@@ -1,62 +1,71 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Text } from "@/components/ui";
-import { VisualStoryRoomScene } from "@/components/3d/VisualStoryRoomScene";
+
+const VISUAL_STORY_PANORAMA = {
+  src: "/images/panorama/Orient%20Star%20GP12W05J.png",
+  alt: "Orient Star G12W05J ceramic panorama used as a luxury interior surface",
+} as const;
 
 /**
  * LandingVisualStory — Emotional peak section.
- * 3D Room Walkthrough driven by scroll.
+ * Scroll-linked panorama reveal with centered story copy.
  */
 export function LandingVisualStory() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setScrollProgress(latest);
-  });
+  const panoramaX = useTransform(scrollYProgress, [0, 1], ["0vw", "-220vw"]);
 
-  // Text fades in when section is centered, fades out at end
-  const textOpacity = useTransform(scrollYProgress, [0.3, 0.5, 0.8, 1], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.3, 0.5], [24, 0]);
+  // Text fades in when section is centered, fades out at end.
+  const textOpacity = useTransform(scrollYProgress, [0.08, 0.2, 0.78, 0.92], [0, 1, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0.08, 0.2], [24, 0]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen bg-[#071A2B] overflow-hidden"
-      aria-label="3D Interior walkthrough"
-      style={{ position: "relative" }}
+      className="relative bg-sapphire-deep"
+      aria-label="Orient Star ceramic panorama story"
     >
-      {/* 3D Room Background */}
-      <div className="absolute inset-0">
-        <VisualStoryRoomScene scrollProgress={scrollProgress} />
-      </div>
-
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-[#071A2B]/40 pointer-events-none" />
-
-      {/* Centered text reveal */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div
-          style={{ opacity: textOpacity, y: textY }}
-          className="max-w-2xl px-6 text-center"
-        >
-          <div className="mx-auto mb-6 h-px w-12 bg-[#D4B886]" />
-          <Text variant="display-lg" className="font-serif font-light italic text-[#F4F4F6]">
-            Details others overlook.
-          </Text>
-          <Text variant="h3" className="mt-3 font-serif font-light text-[#D4B886]">
-            Craftsmanship that defines the whole.
-          </Text>
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <motion.div className="absolute left-0 top-0 h-full w-[320vw]" style={{ x: panoramaX }}>
+          <Image
+            src={VISUAL_STORY_PANORAMA.src}
+            alt={VISUAL_STORY_PANORAMA.alt}
+            fill
+            sizes="320vw"
+            className="object-cover object-center"
+          />
         </motion.div>
+
+        {/* Dark overlay for text readability */}
+        <div className="pointer-events-none absolute inset-0 bg-sapphire-deep/55" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-sapphire-deep/45 via-transparent to-sapphire-deep/70" />
+
+        {/* Centered text reveal */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <motion.div
+            style={{ opacity: textOpacity, y: textY }}
+            className="max-w-2xl px-6 text-center"
+          >
+            <div className="mx-auto mb-6 h-px w-12 bg-champagne" />
+            <Text variant="display-lg" className="font-serif font-light italic text-linen">
+              Details others overlook.
+            </Text>
+            <Text variant="h3" className="mt-3 font-serif font-light text-champagne">
+              Craftsmanship that defines the whole.
+            </Text>
+          </motion.div>
+        </div>
       </div>
+      <div className="h-[300vh]" aria-hidden="true" />
     </section>
   );
 }
