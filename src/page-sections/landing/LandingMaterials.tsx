@@ -7,6 +7,8 @@ import { Text, Button } from "@/components/ui";
 import { MATERIAL_CATEGORIES, type MaterialCategory } from "@/constants/landing";
 import { cn } from "@/lib/cn";
 
+import { MaterialTilePreview } from "@/components/3d/MaterialTilePreview";
+
 /** Subtle gradient per category to differentiate before real product images arrive */
 const CATEGORY_GRADIENTS: Record<string, string> = {
   inspire: "from-[#1A3D5C] to-[#071A2B]",
@@ -29,6 +31,9 @@ function MaterialCard({ category, index }: { category: MaterialCategory; index: 
     >
       {/* Background gradient (replaced by product images later) */}
       <div className={cn("absolute inset-0 bg-gradient-to-br", gradient)} />
+
+      {/* 3D Tile Preview Component */}
+      <MaterialTilePreview categoryId={category.id} />
 
       {/* Champagne shimmer on hover */}
       <div className="absolute inset-0 bg-[#D4B886]/0 transition-colors duration-500 group-hover:bg-[#D4B886]/5" />

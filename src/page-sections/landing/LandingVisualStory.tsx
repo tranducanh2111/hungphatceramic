@@ -1,25 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Text } from "@/components/ui";
+import { VisualStoryRoomScene } from "@/components/3d/VisualStoryRoomScene";
 
 /**
  * LandingVisualStory — Emotional peak section.
- * Full-screen image with parallax scroll and text fading in at mid-scroll.
- * Inspired by pieterkoopt.nl: the scroll moves through the image.
+ * 3D Room Walkthrough driven by scroll.
  */
 export function LandingVisualStory() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  // Parallax: image moves slower than the viewport
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setScrollProgress(latest);
+  });
 
   // Text fades in when section is centered, fades out at end
   const textOpacity = useTransform(scrollYProgress, [0.3, 0.5, 0.8, 1], [0, 1, 1, 0]);
@@ -28,26 +30,19 @@ export function LandingVisualStory() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen overflow-hidden"
-      aria-label="Craftsmanship close-up"
+      className="relative h-screen bg-[#071A2B] overflow-hidden"
+      aria-label="3D Interior walkthrough"
     >
-      {/* Parallax image */}
-      <motion.div className="absolute inset-0" style={{ y: imageY }}>
-        <Image
-          src="/images/visual-story.jpg"
-          alt="Close-up of polished porcelain tile surface with golden light"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority={false}
-        />
-      </motion.div>
+      {/* 3D Room Background */}
+      <div className="absolute inset-0">
+        <VisualStoryRoomScene scrollProgress={scrollProgress} />
+      </div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#071A2B]/55" />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-[#071A2B]/40 pointer-events-none" />
 
       {/* Centered text reveal */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <motion.div
           style={{ opacity: textOpacity, y: textY }}
           className="max-w-2xl px-6 text-center"

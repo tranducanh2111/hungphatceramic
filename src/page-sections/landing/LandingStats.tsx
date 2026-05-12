@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Text } from "@/components/ui";
 import { STATS, type StatItem } from "@/constants/landing";
+import { OrbitalRingScene } from "@/components/3d/OrbitalRingScene";
 
 function useCountUp(target: number, isActive: boolean, duration = 1800) {
   const [displayValue, setDisplayValue] = useState(0);
@@ -57,8 +58,9 @@ function StatCounter({ stat }: { stat: StatItem }) {
  */
 export function LandingStats() {
   return (
-    <section className="bg-[#071A2B] py-28 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+    <section className="relative overflow-hidden bg-[#071A2B] py-28 lg:py-32">
+      <OrbitalRingScene />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         {/* Decorative line */}
         <div className="mb-16 flex items-center gap-6">
           <div className="h-px flex-1 bg-[#1A3D5C]" />

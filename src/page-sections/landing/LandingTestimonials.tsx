@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Text } from "@/components/ui";
 import { TESTIMONIALS } from "@/constants/landing";
+import { cn } from "@/lib/cn";
 
 /**
  * LandingTestimonials — Animated carousel of client quotes.
@@ -45,31 +46,52 @@ export function LandingTestimonials() {
           <Quote className="h-12 w-12 text-[#D4B886]/25" />
         </motion.div>
 
-        {/* Quote carousel */}
-        <div className="relative mt-6 min-h-[180px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTestimonial.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <Text variant="h4" className="font-serif font-light italic text-[#F4F4F6]/80">
-                &ldquo;{activeTestimonial.quote}&rdquo;
-              </Text>
+        {/* Quote carousel 3D Stack */}
+        <div className="relative mt-12 mx-auto h-[260px] w-full max-w-2xl [perspective:1200px]">
+          {TESTIMONIALS.map((testimonial, i) => {
+            const isActive = i === activeIndex;
+            
+            // Calculate wrapping distance
+            let distance = i - activeIndex;
+            if (distance < -1) distance += TESTIMONIALS.length;
+            if (distance > 2) distance -= TESTIMONIALS.length;
 
-              <div className="mt-8 flex flex-col items-center gap-1">
-                <div className="h-px w-8 bg-[#D4B886]" />
-                <Text variant="body" className="mt-4 font-medium text-[#F4F4F6]">
-                  {activeTestimonial.authorName}
+            const isVisible = distance >= 0 && distance <= 2;
+            const isPast = distance < 0;
+
+            return (
+              <motion.div
+                key={testimonial.id}
+                animate={{
+                  opacity: isActive ? 1 : isVisible ? 1 - distance * 0.4 : 0,
+                  y: isActive ? 0 : isPast ? -60 : distance * 25,
+                  z: isActive ? 0 : isPast ? 100 : distance * -100,
+                  rotateX: isActive ? 0 : isPast ? 5 : distance * -2,
+                  scale: isActive ? 1 : isPast ? 1.05 : 1 - distance * 0.05,
+                }}
+                transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+                className={cn(
+                  "absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-[#1A3D5C]/40 bg-[#0E2A42] p-8 shadow-2xl backdrop-blur-md",
+                  !isActive && "pointer-events-none"
+                )}
+                style={{ zIndex: 10 - Math.max(0, distance), transformStyle: "preserve-3d" }}
+              >
+                <Text variant="h4" className="font-serif font-light italic text-[#F4F4F6]/90">
+                  &ldquo;{testimonial.quote}&rdquo;
                 </Text>
-                <Text variant="body-sm" className="text-[#F4F4F6]/50">
-                  {activeTestimonial.authorTitle} — {activeTestimonial.authorCompany}
-                </Text>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+
+                <div className="mt-8 flex flex-col items-center gap-1">
+                  <div className="h-px w-8 bg-[#D4B886]" />
+                  <Text variant="body" className="mt-4 font-medium text-[#F4F4F6]">
+                    {testimonial.authorName}
+                  </Text>
+                  <Text variant="body-sm" className="text-[#F4F4F6]/50">
+                    {testimonial.authorTitle} — {testimonial.authorCompany}
+                  </Text>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Controls */}
