@@ -104,6 +104,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isTicking = useRef(false);
+  // Prevents scroll threshold from re-triggering while the spring is still settling
+  const isAnimating = useRef(false);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -115,7 +117,9 @@ export function Navbar() {
     const handleScroll = () => {
       if (!isTicking.current) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 40);
+          if (!isAnimating.current) {
+            setIsScrolled(window.scrollY > 40);
+          }
           isTicking.current = false;
         });
         isTicking.current = true;
@@ -126,11 +130,11 @@ export function Navbar() {
   }, []);
 
   const pillBaseClasses = cn(
-    "flex items-center justify-between gap-8",
+    "flex min-w-0 items-center justify-between gap-8 overflow-hidden",
     "rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl",
     "shadow-[0_8px_32px_rgba(7,26,43,0.5)]",
-    "pointer-events-auto mx-auto overflow-hidden",
-    // No CSS transition here — Framer animate drives all dimension changes
+    // max-w-[60rem] is ALWAYS on — never toggled, so there is no class-swap flash
+    "py-3 px-3 max-w-[60rem] pointer-events-auto mx-auto",
   );
 
   return (
@@ -139,14 +143,21 @@ export function Navbar() {
       <div className="fixed top-5 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
         <motion.nav
           aria-label="Main navigation"
-          style={{ maxWidth: isScrolled ? "calc(100vw - 2rem)" : "1400px" }}
           className={pillBaseClasses}
-          animate={
-            isScrolled
-              ? { width: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 10, paddingBottom: 10 }
-              : { width: "100%", paddingLeft: 24, paddingRight: 24, paddingTop: 14, paddingBottom: 14 }
-          }
-          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+          // initial={false}: skip the mount animation — nav appears immediately at its target
+          // width, no spring on first render. Only subsequent isScrolled changes animate.
+          initial={false}
+          animate={{ width: isScrolled ? "auto" : "100%" }}
+          transition={{
+            // Critically-damped spring: frame-rate independent, no bounce.
+            // damping = 2√(stiffness × mass) = 2√380 ≈ 39, rounded up to 40.
+            type: "spring",
+            stiffness: 380,
+            damping: 40,
+            mass: 1,
+          }}
+          onAnimationStart={() => { isAnimating.current = true; }}
+          onAnimationComplete={() => { isAnimating.current = false; }}
         >
           <LogoMark isScrolled={isScrolled} />
 
@@ -188,9 +199,8 @@ export function Navbar() {
                 "hidden lg:inline-flex items-center justify-center",
                 "rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
                 "font-sans text-body-sm font-light tracking-[0.12em] uppercase text-[#D4B886]",
-                "px-5 transition-all duration-300 ease-in-out",
+                "px-5 py-1.5 transition-all duration-300 ease-in-out",
                 "hover:bg-[#D4B886] hover:text-[#071A2B] hover:border-[#D4B886]",
-                isScrolled ? "py-1.5" : "py-2",
               )}
             >
               Book Consultation
@@ -206,8 +216,7 @@ export function Navbar() {
                 "lg:hidden flex items-center justify-center",
                 "rounded-full border border-[#D4B886]/20 text-[#F4F4F6]/70",
                 "transition-all duration-300 hover:border-[#D4B886]/50 hover:text-[#D4B886]",
-                "pointer-events-auto",
-                isScrolled ? "h-8 w-8" : "h-9 w-9",
+                "pointer-events-auto h-8 w-8",
               )}
             >
               {isMobileMenuOpen ? (
