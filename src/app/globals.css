@@ -3,83 +3,88 @@
 
 /* ─── Brand CSS Custom Properties ──────────────────────────────────────────── */
 :root {
-  /* Surfaces */
-  --color-bg:        #071A2B;
-  --color-surface:   #0E2A42;
-  --color-border:    #1A3D5C;
+	/* Surfaces */
+	--color-bg: #071a2b;
+	--color-surface: #0e2a42;
+	--color-border: #1a3d5c;
 
-  /* Accent */
-  --color-accent:       #D4B886;
-  --color-accent-hover: #A88E60;
-  --color-accent-light: #E8D5B0;
+	/* Accent */
+	--color-accent: #d4b886;
+	--color-accent-hover: #a88e60;
+	--color-accent-light: #e8d5b0;
 
-  /* Text */
-  --color-text-primary:   #F4F4F6;
-  --color-text-secondary: #D4B886;
-  --color-text-muted:     #8FA3B8;
-  --color-text-inverse:   #071A2B;
+	/* Text */
+	--color-text-primary: #f4f4f6;
+	--color-text-secondary: #d4b886;
+	--color-text-muted: #8fa3b8;
+	--color-text-inverse: #071a2b;
 
-  /* Linen (light mode surfaces) */
-  --color-linen:      #F4F4F6;
-  --color-linen-warm: #EEEAE4;
+	/* Linen (light mode surfaces) */
+	--color-linen: #f4f4f6;
+	--color-linen-warm: #eeeae4;
 
-  /* Transitions */
-  --ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
+	/* Transitions */
+	--ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ─── Base Styles ───────────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  font-family: var(--font-jost), system-ui, sans-serif;
-  line-height: 1.625;
+	background-color: var(--color-bg);
+	color: var(--color-text-primary);
+	font-family: var(--font-jost), system-ui, sans-serif;
+	line-height: 1.625;
 }
 
 /* ─── Heading Defaults (serif for luxury feel) ──────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cormorant), Georgia, serif;
-  color: var(--color-text-primary);
-  font-weight: 500;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-cormorant), Georgia, serif;
+	color: var(--color-text-primary);
+	font-weight: 500;
 }
 
 /* ─── Selection ──────────────────────────────────────────────────────────────── */
 ::selection {
-  background-color: #D4B886;
-  color: #071A2B;
+	background-color: #d4b886;
+	color: #071a2b;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+	width: 6px;
+	height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0E2A42;
+	background: #0e2a42;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4B886;
-  border-radius: 9999px;
+	background: #d4b886;
+	border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A88E60;
+	background: #a88e60;
 }
 
 /* ─── Focus Ring ─────────────────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #D4B886;
-  outline-offset: 3px;
-  border-radius: 4px;
+	outline: 2px solid #d4b886;
+	outline-offset: 3px;
+	border-radius: 4px;
 }
