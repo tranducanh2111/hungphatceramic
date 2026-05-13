@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/common/SmoothScrollProvider";
 import { ScrollProgressBar } from "@/components/common/ScrollProgressBar";
+import { Navbar } from "@/components/common/Navbar";
+import { Footer } from "@/components/common/Footer";
 import "./globals.css";
+
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -39,7 +42,9 @@ export default function RootLayout({
     >
       <body className="relative min-h-full flex flex-col" style={{ position: "relative" }} suppressHydrationWarning>
         <SmoothScrollProvider>
+          <Navbar />
           {children}
+          <Footer />
           <ScrollProgressBar />
         </SmoothScrollProvider>
       </body>

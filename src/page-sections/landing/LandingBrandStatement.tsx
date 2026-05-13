@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
+import { MEDIA_PATHS } from "@/constants/media";
 
 const BRAND_STATS = [
   { value: "12+", label: "Years of Craftsmanship" },
@@ -110,7 +111,7 @@ export function LandingBrandStatement() {
             className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
           >
             <Image
-              src="/images/brand-statement.png"
+              src={MEDIA_PATHS.images.landing.brandStatement}
               alt="Artisan craftsman placing a large-format polished ceramic tile"
               fill
               className="object-cover"

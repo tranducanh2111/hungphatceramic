@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/landing";
+import { ROUTES, projectDetailPath } from "@/constants/routes";
 
 import { useRef } from "react";
 import { useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -96,7 +97,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
           </Text>
 
           <Link
-            href={`/projects/${project.id}`}
+            href={projectDetailPath(project.id)}
             className="mt-4 inline-flex items-center gap-2 font-sans text-body-sm text-[#D4B886] transition-gap duration-300 hover:gap-3"
           >
             View Project <ArrowRight className="h-4 w-4" />
@@ -144,7 +145,7 @@ export function LandingProjects() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Button href="/projects" variant="outline" size="md">
+            <Button href={ROUTES.projects} variant="outline" size="md">
               View All Projects
             </Button>
           </motion.div>

@@ -3,6 +3,9 @@
  * All section content lives here — never hardcoded inside components.
  */
 
+import { productsWithCollection } from "@/constants/routes";
+import { MEDIA_PATHS } from "@/constants/media";
+
 // ─── Featured Projects ────────────────────────────────────────────────────────
 
 export interface FeaturedProject {
@@ -21,7 +24,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Vinhomes Metropolis, Hà Nội",
     year: 2023,
     area: "Full-floor ceramic installation, 680m²",
-    imageUrl: "/images/project-1.jpg",
+    imageUrl: MEDIA_PATHS.images.featuredProjects.project1,
   },
   {
     id: "grand-hotel-lobby",
@@ -29,7 +32,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Aria Boutique Hotel, Hải Phòng",
     year: 2023,
     area: "Lobby & corridor installation, 320m²",
-    imageUrl: "/images/project-2.jpg",
+    imageUrl: MEDIA_PATHS.images.featuredProjects.project2,
   },
   {
     id: "villa-thao-dien",
@@ -37,7 +40,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Thảo Điền, Hồ Chí Minh",
     year: 2022,
     area: "Full-villa interior surfaces, 450m²",
-    imageUrl: "/images/project-3.jpg",
+    imageUrl: MEDIA_PATHS.images.featuredProjects.project3,
   },
   {
     id: "tu-liem-residence",
@@ -45,7 +48,7 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
     location: "Từ Liêm, Hà Nội",
     year: 2022,
     area: "Master suite & bathrooms, 180m²",
-    imageUrl: "/images/project-4.jpg",
+    imageUrl: MEDIA_PATHS.images.featuredProjects.project4,
   },
 ];
 
@@ -59,43 +62,45 @@ export interface MaterialCategory {
   href: string;
 }
 
-export const MATERIAL_CATEGORIES: MaterialCategory[] = [
+type MaterialCategoryDef = Omit<MaterialCategory, "href">;
+
+const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
   {
     id: "inspire",
     name: "Inspire Series",
     tagline: "Bold patterns. Enduring character.",
     sizes: ["60×120cm"],
-    href: "/products?collection=inspire",
   },
   {
     id: "travertine",
     name: "Travertine Series",
     tagline: "The warmth of natural stone, refined.",
     sizes: ["60×120cm", "80×80cm"],
-    href: "/products?collection=travertine",
   },
   {
     id: "orient-star",
     name: "Orient Star Series",
     tagline: "Ivory luminance. Timeless interiors.",
     sizes: ["60×120cm"],
-    href: "/products?collection=orient-star",
   },
   {
     id: "sunshine",
     name: "Sunshine Series",
     tagline: "Open, airy, luminous surfaces.",
     sizes: ["60×120cm", "80×80cm"],
-    href: "/products?collection=sunshine",
   },
   {
     id: "architectural",
     name: "20mm Architectural",
     tagline: "Engineered for demanding spaces.",
     sizes: ["60×120cm"],
-    href: "/products?collection=architectural",
   },
 ];
+
+export const MATERIAL_CATEGORIES: MaterialCategory[] = MATERIAL_CATEGORY_DEFS.map((entry) => ({
+  ...entry,
+  href: productsWithCollection(entry.id),
+}));
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
 

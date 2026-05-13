@@ -1,0 +1,51 @@
+/**
+ * Paths for static files under `public/`.
+ *
+ * Layout:
+ * - `public/icons/contact|social` — UI SVGs
+ * - `public/media/images/{landing,featured-projects,panorama,misc}` — raster art
+ * - `public/media/video/landing` — hero and similar clips
+ * - `public/assets/**` — large product photo library (unchanged)
+ */
+
+export const ICON_PATHS = {
+  contact: {
+    mapPin: "/icons/contact/map-pin.svg",
+    phone: "/icons/contact/phone.svg",
+    mail: "/icons/contact/mail.svg",
+  },
+  social: {
+    instagram: "/icons/social/instagram.svg",
+    facebook: "/icons/social/facebook.svg",
+    youtube: "/icons/social/youtube.svg",
+  },
+} as const;
+
+export const MEDIA_PATHS = {
+  images: {
+    landing: {
+      heroPoster: "/media/images/landing/hero-poster.png",
+      brandStatement: "/media/images/landing/brand-statement.png",
+    },
+    featuredProjects: {
+      project1: "/media/images/featured-projects/project-1.jpg",
+      project2: "/media/images/featured-projects/project-2.jpg",
+      project3: "/media/images/featured-projects/project-3.jpg",
+      project4: "/media/images/featured-projects/project-4.jpg",
+    },
+    /** Panorama filenames may include spaces — use with `encodeURI` when building URLs. */
+    panorama: {
+      orientStarGp12w05j: "/media/images/panorama/Orient Star GP12W05J.png",
+    },
+  },
+  video: {
+    hero: "/media/video/landing/hero-section.mp4",
+  },
+  /** Raster extras (textures, alternate art) — not wired in components yet. */
+  misc: {
+    visualStory: "/media/images/misc/visual-story.jpg",
+    tileTexturePng: "/media/images/misc/tile-texture.png",
+    tileTextureJpg: "/media/images/misc/tile-texture.jpg",
+    brandStatementJpg: "/media/images/misc/brand-statement.jpg",
+  },
+} as const;
