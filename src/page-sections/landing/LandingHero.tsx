@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
 import { Button } from "@/components/ui";
+import { MEDIA_PATHS } from "@/constants/media";
+import { ROUTES } from "@/constants/routes";
 
 const contentVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -72,9 +74,9 @@ export function LandingHero() {
             playsInline
             className="absolute inset-0 h-full w-full object-cover"
             style={{ opacity: videoOpacity }}
-            poster="/images/hero-poster.png"
+            poster={MEDIA_PATHS.images.landing.heroPoster}
           >
-            <source src="/videos/herosectionvideo.mp4" type="video/mp4" />
+            <source src={MEDIA_PATHS.video.hero} type="video/mp4" />
           </motion.video>
           {/* Subtle overlay on video to keep text readable */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/80 via-transparent to-[#071A2B]/30" aria-hidden="true" />
@@ -126,10 +128,10 @@ export function LandingHero() {
             animate="visible"
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
-            <Button href="/projects" size="lg">
+            <Button href={ROUTES.projects} size="lg">
               Explore Our Work
             </Button>
-            <Button href="/products" variant="secondary" size="lg">
+            <Button href={ROUTES.products} variant="secondary" size="lg">
               View Collection
             </Button>
           </motion.div>

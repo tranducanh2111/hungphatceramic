@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
 import { Text, Button } from "@/components/ui";
+import { ROUTES } from "@/constants/routes";
 
 const OFFICE_ADDRESS = "Số 583 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, Hà Nội";
 const GOOGLE_MAPS_URL =
@@ -67,10 +68,10 @@ export function LandingCta() {
           viewport={{ once: true }}
           className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center"
         >
-          <Button href="/contact" size="lg">
+          <Button href={ROUTES.contact} size="lg">
             Book a Consultation
           </Button>
-          <Button href="/products" variant="secondary" size="lg">
+          <Button href={ROUTES.products} variant="secondary" size="lg">
             Browse the Collection
           </Button>
         </motion.div>

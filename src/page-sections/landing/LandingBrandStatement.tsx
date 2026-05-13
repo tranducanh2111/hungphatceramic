@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
+import { MEDIA_PATHS } from "@/constants/media";
 
 const BRAND_STATS = [
   { value: "12+", label: "Years of Craftsmanship" },
@@ -72,7 +73,7 @@ export function LandingBrandStatement() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <Text variant="body-lg" className="text-[#F4F4F6]/65">
-                For over a decade, Hưng Phát Ceramic has transformed empty spaces into living
+                For over a decade, Hùng Phát Ceramic has transformed empty spaces into living
                 narratives. We source, design, and install premium ceramic surfaces — not as a
                 finish, but as a foundation for how a space{" "}
                 <em className="text-[#F4F4F6]/90 not-italic">feels</em>.
@@ -110,7 +111,7 @@ export function LandingBrandStatement() {
             className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
           >
             <Image
-              src="/images/brand-statement.png"
+              src={MEDIA_PATHS.images.landing.brandStatement}
               alt="Artisan craftsman placing a large-format polished ceramic tile"
               fill
               className="object-cover"

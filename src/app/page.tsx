@@ -10,15 +10,15 @@ import { LandingVisualStory } from "@/page-sections/landing/LandingVisualStory";
 import { LandingCta } from "@/page-sections/landing/LandingCta";
 
 export const metadata: Metadata = {
-  title: "Hưng Phát Ceramic | Luxury Ceramic Interior Design",
+  title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
   description:
-    "Premium bespoke ceramic surfaces for discerning interiors. Hưng Phát Ceramic — where artistry meets architectural precision. Serving luxury residential and commercial projects across Vietnam.",
+    "Premium bespoke ceramic surfaces for discerning interiors. Hùng Phát Ceramic — where artistry meets architectural precision. Serving luxury residential and commercial projects across Vietnam.",
   openGraph: {
-    title: "Hưng Phát Ceramic | Luxury Ceramic Interior Design",
+    title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
     description:
       "Bespoke ceramic surfaces for high-end interiors. 12+ years of craftsmanship, 200+ projects completed.",
     url: "https://hungphatceramic.vn",
-    siteName: "Hưng Phát Ceramic",
+    siteName: "Hùng Phát Ceramic",
     locale: "vi_VN",
     type: "website",
   },
