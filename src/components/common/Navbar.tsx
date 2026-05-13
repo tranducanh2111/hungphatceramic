@@ -7,48 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { PRIMARY_NAV_ITEMS, COMPANY_NAME } from "@/constants/navigation";
 import { ROUTES } from "@/constants/routes";
-
-// ─── Icon Components ──────────────────────────────────────────────────────────
-
-function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <line x1="4" x2="20" y1="8" y2="8" />
-      <line x1="4" x2="20" y1="16" y2="16" />
-    </svg>
-  );
-}
-
-function CloseIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
-}
+import { IconSvg } from "@/components/icons";
+import { ICON_PATHS } from "@/constants/media";
 
 // ─── Logo Mark ────────────────────────────────────────────────────────────────
 
@@ -219,11 +179,11 @@ export function Navbar() {
                 "pointer-events-auto h-8 w-8",
               )}
             >
-              {isMobileMenuOpen ? (
-                <CloseIcon className="h-4 w-4" />
-              ) : (
-                <MenuIcon className="h-4 w-4" />
-              )}
+              <IconSvg
+                src={isMobileMenuOpen ? ICON_PATHS.ui.close : ICON_PATHS.ui.menu}
+                alt=""
+                size={16}
+              />
             </button>
           </div>
         </motion.nav>

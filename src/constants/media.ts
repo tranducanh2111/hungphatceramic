@@ -9,6 +9,10 @@
  */
 
 export const ICON_PATHS = {
+  ui: {
+    menu: "/icons/ui/menu.svg",
+    close: "/icons/ui/close.svg",
+  },
   contact: {
     mapPin: "/icons/contact/map-pin.svg",
     phone: "/icons/contact/phone.svg",
