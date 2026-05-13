@@ -4,9 +4,10 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Text } from "@/components/ui";
+import { MEDIA_PATHS } from "@/constants/media";
 
 const VISUAL_STORY_PANORAMA = {
-  src: "/images/panorama/Orient%20Star%20GP12W05J.png",
+  src: encodeURI(MEDIA_PATHS.images.panorama.orientStarGp12w05j),
   alt: "Orient Star G12W05J ceramic panorama used as a luxury interior surface",
 } as const;
 

@@ -74,7 +74,7 @@ export type ButtonProps = NativeButtonProps | LinkButtonProps;
  *
  * @example
  * <Button variant="primary" size="lg">Get Started</Button>
- * <Button href="/products" variant="secondary">Browse Products</Button>
+ * <Button href={ROUTES.products} variant="secondary">Browse Products</Button> (import ROUTES from `@/constants/routes`)
  * <Button href="https://maps.google.com" external>Find Us</Button>
  */
 export function Button(props: ButtonProps) {

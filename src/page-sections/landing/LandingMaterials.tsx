@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { MATERIAL_CATEGORIES, type MaterialCategory } from "@/constants/landing";
+import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/cn";
 
 import { MaterialTilePreview } from "@/components/3d/MaterialTilePreview";
@@ -126,7 +127,7 @@ export function LandingMaterials() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <Button href="/products" variant="secondary" size="lg">
+          <Button href={ROUTES.products} variant="secondary" size="lg">
             Explore Full Collection
           </Button>
         </motion.div>
