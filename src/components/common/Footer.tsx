@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
 import { COMPANY_NAME } from "@/constants/navigation";
-import { ICON_PATHS } from "@/constants/media";
+import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -110,23 +111,20 @@ export function Footer() {
 				<div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
 					{/* ── Brand block ── */}
 					<div>
-						{/* Monogram + wordmark */}
-						<div className="flex items-center gap-3">
-							<div className="relative flex h-9 w-9 shrink-0 items-center justify-center">
-								<div className="absolute inset-0 rotate-45 border border-[#D4B886]/60" />
-								<span className="relative font-serif text-sm font-light text-[#D4B886]">
-									HP
-								</span>
-							</div>
-							<div className="flex flex-col leading-none">
-								<span className="font-serif text-sm font-light tracking-[0.12em] text-[#F4F4F6]">
-									Hùng Phát
-								</span>
-								<span className="font-sans text-[8px] font-light tracking-[0.25em] text-[#D4B886] uppercase">
-									Ceramic
-								</span>
-							</div>
-						</div>
+						<Link
+							href={ROUTES.home}
+							className="inline-flex max-w-[min(100%,14rem)]"
+							aria-label={`${COMPANY_NAME} — Return to homepage`}
+						>
+							<Image
+								src={LOGO_PATHS.small}
+								alt=""
+								width={220}
+								height={62}
+								sizes="(max-width: 1024px) 200px, 224px"
+								className="h-auto max-h-11 w-auto object-contain object-left opacity-95 transition-opacity duration-300 hover:opacity-100"
+							/>
+						</Link>
 
 						{/* Tagline */}
 						<Text

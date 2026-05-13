@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +9,7 @@ import { cn } from "@/lib/cn";
 import { PRIMARY_NAV_ITEMS, COMPANY_NAME } from "@/constants/navigation";
 import { ROUTES } from "@/constants/routes";
 import { IconSvg } from "@/components/icons";
-import { ICON_PATHS } from "@/constants/media";
+import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 
 // ─── Logo Mark ────────────────────────────────────────────────────────────────
 
@@ -17,37 +18,20 @@ function LogoMark({ isScrolled }: { isScrolled: boolean }) {
 		<Link
 			href={ROUTES.home}
 			aria-label={`${COMPANY_NAME} — Return to homepage`}
-			className="group flex shrink-0 items-center gap-3"
+			className="group flex shrink-0 items-center"
 		>
-			{/* Monogram diamond */}
-			<div
+			<Image
+				src={LOGO_PATHS.small}
+				alt={`${COMPANY_NAME} logo`}
+				width={240}
+				height={67}
+				priority
+				sizes="(max-width: 768px) 180px, 220px"
 				className={cn(
-					"relative flex items-center justify-center transition-all duration-500",
-					isScrolled ? "h-7 w-7" : "h-8 w-8",
+					"h-auto w-auto object-contain object-left transition-all duration-500 group-hover:opacity-90",
+					isScrolled ? "max-h-10" : "max-h-12",
 				)}
-			>
-				<div className="absolute inset-0 rotate-45 border border-[#D4B886]/60 transition-all duration-500 group-hover:border-[#D4B886]" />
-				<span className="relative font-serif text-xs font-light text-[#D4B886]">HP</span>
-			</div>
-			{/* Wordmark */}
-			<div className="flex flex-col leading-none">
-				<span
-					className={cn(
-						"font-serif font-light tracking-[0.12em] text-[#F4F4F6] transition-all duration-500",
-						isScrolled ? "text-[13px]" : "text-sm",
-					)}
-				>
-					Hùng Phát
-				</span>
-				<span
-					className={cn(
-						"font-sans font-light tracking-[0.25em] text-[#D4B886] uppercase transition-all duration-500",
-						isScrolled ? "text-[8px]" : "text-[9px]",
-					)}
-				>
-					Ceramic
-				</span>
-			</div>
+			/>
 		</Link>
 	);
 }

@@ -2,6 +2,7 @@
  * Paths for static files under `public/`.
  *
  * Layout:
+ * - `public/logo/**` — brand marks (use `LOGO_PATHS.small` in chrome)
  * - `public/icons/contact|social` — UI SVGs
  * - `public/media/images/{landing,featured-projects,panorama,misc}` — raster art
  * - `public/media/video/landing` — hero and similar clips
@@ -23,6 +24,12 @@ export const ICON_PATHS = {
 		facebook: "/icons/social/facebook.svg",
 		youtube: "/icons/social/youtube.svg",
 	},
+} as const;
+
+/** Brand raster logos under `public/logo/`. */
+export const LOGO_PATHS = {
+	small: "/logo/hungphat_ceramic_logo_small.png",
+	big: "/logo/hungphat_ceramic_logo_big.png",
 } as const;
 
 export const MEDIA_PATHS = {
