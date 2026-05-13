@@ -23,7 +23,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Hưng Phát Ceramic | Luxury Interior Ceramics",
+  title: "Hùng Phát Ceramic | Luxury Interior Ceramics",
   description:
     "Premium ceramic solutions for discerning interior designers and high-end residential projects. Discover timeless craftsmanship.",
 };

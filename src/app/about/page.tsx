@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | Hưng Phát Ceramic",
+  title: "About Us | Hùng Phát Ceramic",
   description:
-    "Learn about Hưng Phát Ceramic — our heritage, craftsmanship philosophy, and commitment to luxury ceramic solutions for distinguished interiors.",
+    "Learn about Hùng Phát Ceramic — our heritage, craftsmanship philosophy, and commitment to luxury ceramic solutions for distinguished interiors.",
 };
 
 export default function AboutPage() {

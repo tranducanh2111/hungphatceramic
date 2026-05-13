@@ -77,7 +77,7 @@ function LogoMark({ isScrolled }: { isScrolled: boolean }) {
             isScrolled ? "text-[13px]" : "text-sm",
           )}
         >
-          Hưng Phát
+          Hùng Phát
         </span>
         <span
           className={cn(
@@ -126,25 +126,27 @@ export function Navbar() {
   }, []);
 
   const pillBaseClasses = cn(
-    "flex items-center justify-between",
+    "flex items-center justify-between gap-8",
     "rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl",
     "shadow-[0_8px_32px_rgba(7,26,43,0.5)]",
-    "transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]",
     "pointer-events-auto mx-auto overflow-hidden",
+    // No CSS transition here — Framer animate drives all dimension changes
   );
 
   return (
     <>
       {/* ── Fixed pill container ─────────────────────────────────────────── */}
       <div className="fixed top-5 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
-        <nav
+        <motion.nav
           aria-label="Main navigation"
-          className={cn(
-            pillBaseClasses,
+          style={{ maxWidth: isScrolled ? "calc(100vw - 2rem)" : "1400px" }}
+          className={pillBaseClasses}
+          animate={
             isScrolled
-              ? "w-full max-w-2xl px-5 py-2.5"
-              : "w-full max-w-[1400px] px-6 py-3.5",
-          )}
+              ? { width: "auto", paddingLeft: 20, paddingRight: 20, paddingTop: 10, paddingBottom: 10 }
+              : { width: "100%", paddingLeft: 24, paddingRight: 24, paddingTop: 14, paddingBottom: 14 }
+          }
+          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
         >
           <LogoMark isScrolled={isScrolled} />
 
@@ -215,7 +217,7 @@ export function Navbar() {
               )}
             </button>
           </div>
-        </nav>
+        </motion.nav>
       </div>
 
       {/* ── Mobile dropdown ──────────────────────────────────────────────── */}

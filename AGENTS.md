@@ -1,4 +1,4 @@
-# AGENTS.md — Hưng Phát Ceramic Project Rules
+# AGENTS.md — Hùng Phát Ceramic Project Rules
 
 > **Read this file first before writing any code.** It defines every convention, pattern, and constraint for this codebase.
 
@@ -8,7 +8,7 @@
 
 | Field             | Value                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| **Product**       | Hưng Phát Ceramic — luxury ceramic interior design website   |
+| **Product**       | Hùng Phát Ceramic — luxury ceramic interior design website   |
 | **Target Audience** | High-class customers seeking premium interior design solutions |
 | **Framework**     | Next.js 16 (App Router)                                       |
 | **Language**      | TypeScript (strict — no `any`, no implicit types)             |
@@ -219,7 +219,7 @@ The website must be designed with a strong emphasis on **storytelling**, guiding
 
 Every page **must** implement the following:
 
-- **Title tag**: Unique per page, 50–60 characters, format: `Page Name | Hưng Phát Ceramic`
+- **Title tag**: Unique per page, 50–60 characters, format: `Page Name | Hùng Phát Ceramic`
 - **Meta description**: Unique per page, 150–160 characters, includes primary keyword
 - **Single `<h1>` per page**: Matches the page's primary topic
 - **Heading hierarchy**: `H1 > H2 > H3` — never skip levels (no H1 → H3)

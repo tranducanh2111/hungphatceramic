@@ -122,7 +122,7 @@ export function Footer() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-serif text-sm font-light tracking-[0.12em] text-[#F4F4F6]">
-                  Hưng Phát
+                  Hùng Phát
                 </span>
                 <span className="font-sans text-[8px] font-light tracking-[0.25em] uppercase text-[#D4B886]">
                   Ceramic

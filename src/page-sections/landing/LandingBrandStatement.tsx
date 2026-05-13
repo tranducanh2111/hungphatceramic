@@ -73,7 +73,7 @@ export function LandingBrandStatement() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <Text variant="body-lg" className="text-[#F4F4F6]/65">
-                For over a decade, Hưng Phát Ceramic has transformed empty spaces into living
+                For over a decade, Hùng Phát Ceramic has transformed empty spaces into living
                 narratives. We source, design, and install premium ceramic surfaces — not as a
                 finish, but as a foundation for how a space{" "}
                 <em className="text-[#F4F4F6]/90 not-italic">feels</em>.

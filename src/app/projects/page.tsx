@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects | Hưng Phát Ceramic",
+  title: "Projects | Hùng Phát Ceramic",
   description:
-    "Explore completed interior design projects by Hưng Phát Ceramic. See how our luxury ceramics elevate residential and commercial spaces.",
+    "Explore completed interior design projects by Hùng Phát Ceramic. See how our luxury ceramics elevate residential and commercial spaces.",
 };
 
 export default function ProjectsPage() {

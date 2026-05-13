@@ -171,7 +171,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "minh-chau",
     quote:
-      "Hưng Phát Ceramic transformed our penthouse from a construction site into a sanctuary. Every tile, every joint — executed with a precision I've rarely seen. They don't just install ceramics, they sculpt spaces.",
+      "Hùng Phát Ceramic transformed our penthouse from a construction site into a sanctuary. Every tile, every joint — executed with a precision I've rarely seen. They don't just install ceramics, they sculpt spaces.",
     authorName: "Bà Minh Châu",
     authorTitle: "Villa Owner",
     authorCompany: "Vinhomes Riverside, Hà Nội",
@@ -179,7 +179,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "tran-quoc-hung",
     quote:
-      "We engaged Hưng Phát for our boutique hotel lobby — a space that needed to feel both imposing and welcoming. The Travertine collection they curated was perfect. Our guests comment on it daily.",
+      "We engaged Hùng Phát for our boutique hotel lobby — a space that needed to feel both imposing and welcoming. The Travertine collection they curated was perfect. Our guests comment on it daily.",
     authorName: "Ông Trần Quốc Hùng",
     authorTitle: "Director",
     authorCompany: "Aria Boutique Hotel, Hải Phòng",
@@ -187,7 +187,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "nguyen-lan-anh",
     quote:
-      "Working with a ceramics supplier who truly understands interior design intent is rare. Hưng Phát understood our architect's vision and sourced materials that exceeded the specification. Exceptional.",
+      "Working with a ceramics supplier who truly understands interior design intent is rare. Hùng Phát understood our architect's vision and sourced materials that exceeded the specification. Exceptional.",
     authorName: "KTS. Nguyễn Lan Anh",
     authorTitle: "Principal Architect",
     authorCompany: "Studio Lân, Hà Nội",
