@@ -10,32 +10,32 @@ import { LandingVisualStory } from "@/page-sections/landing/LandingVisualStory";
 import { LandingCta } from "@/page-sections/landing/LandingCta";
 
 export const metadata: Metadata = {
-  title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
-  description:
-    "Premium bespoke ceramic surfaces for discerning interiors. Hùng Phát Ceramic — where artistry meets architectural precision. Serving luxury residential and commercial projects across Vietnam.",
-  openGraph: {
-    title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
-    description:
-      "Bespoke ceramic surfaces for high-end interiors. 12+ years of craftsmanship, 200+ projects completed.",
-    url: "https://hungphatceramic.vn",
-    siteName: "Hùng Phát Ceramic",
-    locale: "vi_VN",
-    type: "website",
-  },
+	title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
+	description:
+		"Premium bespoke ceramic surfaces for discerning interiors. Hùng Phát Ceramic — where artistry meets architectural precision. Serving luxury residential and commercial projects across Vietnam.",
+	openGraph: {
+		title: "Hùng Phát Ceramic | Luxury Ceramic Interior Design",
+		description:
+			"Bespoke ceramic surfaces for high-end interiors. 12+ years of craftsmanship, 200+ projects completed.",
+		url: "https://hungphatceramic.vn",
+		siteName: "Hùng Phát Ceramic",
+		locale: "vi_VN",
+		type: "website",
+	},
 };
 
 export default function HomePage() {
-  return (
-    <main className="relative" style={{ position: "relative" }}>
-      <LandingHero />
-      <LandingBrandStatement />
-      <LandingProjects />
-      <LandingMaterials />
-      <LandingStats />
-      <LandingProcess />
-      <LandingTestimonials />
-      <LandingVisualStory />
-      <LandingCta />
-    </main>
-  );
+	return (
+		<main className="relative" style={{ position: "relative" }}>
+			<LandingHero />
+			<LandingBrandStatement />
+			<LandingProjects />
+			<LandingMaterials />
+			<LandingStats />
+			<LandingProcess />
+			<LandingTestimonials />
+			<LandingVisualStory />
+			<LandingCta />
+		</main>
+	);
 }
