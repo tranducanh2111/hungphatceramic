@@ -26,7 +26,7 @@ const scrollIndicator: Variants = {
 /**
  * LandingHero — Cinematic Expansion.
  *
- * The video starts as a letterbox in the center and smoothly expands
+ * The video starts as a slightly larger letterbox in the center and smoothly expands
  * to fill the entire screen as the user scrolls, pulling them into the experience.
  */
 export function LandingHero() {
@@ -42,16 +42,17 @@ export function LandingHero() {
 	const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 	const textY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
 
-	// Cinematic Expansion: video container animates from a cropped letterbox to full screen
-	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [30, 0]);
-	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [15, 0]);
+	// Cinematic expansion: starts a touch more open + slightly zoomed; ends full-bleed
+	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
+	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
 	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
 
 	// Create a dynamic clip-path CSS string
 	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
 
-	// Video becomes brighter as it expands
+	// Video becomes brighter as it expands; slight zoom-in at rest reads larger on first paint
 	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.6, 1]);
+	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
 
 	return (
 		<section
@@ -75,8 +76,8 @@ export function LandingHero() {
 						muted
 						loop
 						playsInline
-						className="absolute inset-0 h-full w-full object-cover"
-						style={{ opacity: videoOpacity }}
+						className="absolute inset-0 h-full w-full origin-center object-cover"
+						style={{ opacity: videoOpacity, scale: videoScale }}
 						poster={MEDIA_PATHS.images.landing.heroPoster}
 					>
 						<source src={MEDIA_PATHS.video.hero} type="video/mp4" />
