@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 		.join(" ");
 
 	return {
-		title: `${productName} | Hùng Phát Ceramic`,
-		description: `Discover the ${productName} — a premium ceramic solution from Hùng Phát Ceramic for luxury interior projects.`,
+		title: `${productName} | Perla powered by Hung Phat`,
+		description: `Discover the ${productName} — a premium ceramic solution from Perla powered by Hung Phat for luxury interior projects.`,
 	};
 }
 

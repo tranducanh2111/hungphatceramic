@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Products | Hùng Phát Ceramic",
+	title: "Products | Perla powered by Hung Phat",
 	description:
 		"Browse our curated collection of premium ceramic tiles, surfaces, and custom interior solutions for luxury residential and commercial spaces.",
 };

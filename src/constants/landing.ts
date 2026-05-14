@@ -54,12 +54,21 @@ export const FEATURED_PROJECTS: FeaturedProject[] = [
 
 // ─── Material Categories ──────────────────────────────────────────────────────
 
+/** One spinning tile shown per available size on the landing card. */
+export interface SizePreview {
+	/** Must match a key in TILE_DIMS inside MaterialTilePreview. */
+	size: string;
+	/** Path under `public/` — spaces are encoded by the image component. */
+	image: string;
+}
+
 export interface MaterialCategory {
 	id: string;
 	name: string;
 	tagline: string;
 	sizes: string[];
 	href: string;
+	previews: SizePreview[];
 }
 
 type MaterialCategoryDef = Omit<MaterialCategory, "href">;
@@ -70,30 +79,47 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 		name: "Inspire Series",
 		tagline: "Bold patterns. Enduring character.",
 		sizes: ["60×120cm"],
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" },
+		],
 	},
 	{
 		id: "travertine",
 		name: "Travertine Series",
 		tagline: "The warmth of natural stone, refined.",
 		sizes: ["60×120cm", "80×80cm"],
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Travertine T01 T06/G12T01.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/G88T01J/G88T01J (1).jpg" },
+		],
 	},
 	{
 		id: "orient-star",
 		name: "Orient Star Series",
 		tagline: "Ivory luminance. Timeless interiors.",
 		sizes: ["60×120cm"],
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg" },
+		],
 	},
 	{
 		id: "sunshine",
 		name: "Sunshine Series",
 		tagline: "Open, airy, luminous surfaces.",
 		sizes: ["60×120cm", "80×80cm"],
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/G88032J/G88032 (1).jpg" },
+		],
 	},
 	{
 		id: "architectural",
 		name: "20mm Architectural",
 		tagline: "Engineered for demanding spaces.",
 		sizes: ["60×120cm"],
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg" },
+		],
 	},
 ];
 
@@ -170,7 +196,7 @@ export interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
 	{
 		id: "minh-chau",
-		quote: "Hùng Phát Ceramic transformed our penthouse from a construction site into a sanctuary. Every tile, every joint — executed with a precision I've rarely seen. They don't just install ceramics, they sculpt spaces.",
+		quote: "Perla powered by Hung Phat transformed our penthouse from a construction site into a sanctuary. Every tile, every joint — executed with a precision I've rarely seen. They don't just install ceramics, they sculpt spaces.",
 		authorName: "Bà Minh Châu",
 		authorTitle: "Villa Owner",
 		authorCompany: "Vinhomes Riverside, Hà Nội",

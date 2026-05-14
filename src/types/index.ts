@@ -1,5 +1,5 @@
 /**
- * Shared type definitions for the Hùng Phát Ceramic project.
+ * Shared type definitions for the Perla powered by Hung Phat project.
  */
 
 /** Allow consumers to pass additional className for style overrides. */
