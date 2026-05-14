@@ -19,38 +19,54 @@ export interface FeaturedProject {
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
 	{
-		id: "aria-penthouse",
-		title: "Aria Penthouse",
-		location: "Vinhomes Metropolis, Hà Nội",
-		year: 2023,
-		area: "Full-floor ceramic installation, 680m²",
-		imageUrl: MEDIA_PATHS.images.featuredProjects.project1,
-	},
+		id: "ramada-ha-long-bay",
+		title: "Ramada Hạ Long Bay",
+		location: "Tô Hiến Thành, Hồng Gai, Quảng Ninh",
+		year: 2026,
+		area: "Hotel lobby & public areas",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
+	},	
 	{
-		id: "grand-hotel-lobby",
-		title: "The Grand Hotel Lobby",
-		location: "Aria Boutique Hotel, Hải Phòng",
-		year: 2023,
-		area: "Lobby & corridor installation, 320m²",
-		imageUrl: MEDIA_PATHS.images.featuredProjects.project2,
-	},
-	{
-		id: "villa-thao-dien",
-		title: "Villa Thảo Điền",
-		location: "Thảo Điền, Hồ Chí Minh",
+		id: "hinode-city",
+		title: "Hinode City",
+		location: "201 Phố Minh Khai, Bạch Mai, Hà Nội",
 		year: 2022,
 		area: "Full-villa interior surfaces, 450m²",
-		imageUrl: MEDIA_PATHS.images.featuredProjects.project3,
+		imageUrl: MEDIA_PATHS.images.featuredProjects.hinode,
 	},
 	{
-		id: "tu-liem-residence",
-		title: "Từ Liêm Private Residence",
-		location: "Từ Liêm, Hà Nội",
-		year: 2022,
-		area: "Master suite & bathrooms, 180m²",
-		imageUrl: MEDIA_PATHS.images.featuredProjects.project4,
+		id: "vinhomes-symphony",
+		title: "Vinhomes Symphony",
+		location: "Khu đô thị Vinhomes Riverside, Phúc Lợi, Hà Nội",
+		year: 2026,
+		area: "Hotel lobby & public areas",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.vinhomesSymphony,
 	},
-];
+	{
+		id: "grand-world-phu-quocquoc",
+		title: "Grand World Phú Quốc",
+		location: "Bãi Dài, Phú Quốc, An Giang",
+		year: 2026,
+		area: "Hotel lobby & public areas",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.grandPhuQuoc,
+	},
+	{
+		id: "saigon-intela",
+		title: "Dự án Saigon Intela",
+		location: "13E, Đô thị mới Nam Thành Phố, Bình Hưng, Hồ Chí Minh",
+		year: 2026,
+		area: "Residential apartment",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.saigonIntela,
+	},
+	{
+		id: "empire-city",
+		title: "Dự án Empire City",
+		location: "2B Mai Chí Thọ, An Khánh, Hồ Chí Minh",
+		year: 2026,
+		area: "Residential apartment",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.empireCity,
+	},
+];	
 
 // ─── Material Categories ──────────────────────────────────────────────────────
 
@@ -168,9 +184,9 @@ export const PROCESS_STEPS: ProcessStep[] = [
 			"From our collections of 35+ series, we handpick surfaces that align with your aesthetic and structural requirements. Every recommendation is considered, never arbitrary.",
 	},
 	{
-		id: "installation",
+		id: "fulfillment",
 		number: "03",
-		title: "Installation",
+		title: "Fulfillment",
 		description:
 			"Expert craftsmen. Precise execution. Every joint, every edge placed with deliberate care. We treat your space with the same reverence as a master artisan treats their medium.",
 	},

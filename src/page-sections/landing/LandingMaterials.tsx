@@ -19,6 +19,9 @@ const SIZE_OPTIONS: { label: string; value: TileSize }[] = [
 	{ label: "80 × 80", value: "80×80cm" },
 ];
 
+const CARD_HOVER_TRANSITION_CLASS =
+	"duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]";
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 /**
@@ -168,10 +171,20 @@ function MaterialCard({
 			<MaterialTilePreview previews={tilePreview} />
 
 			{/* Hover shimmer */}
-			<div className="absolute inset-0 bg-[#D4B886]/0 transition-colors duration-500 group-hover:bg-[#D4B886]/5" />
+			<div
+				className={cn(
+					"absolute inset-0 bg-[#D4B886]/0 transition-colors group-hover:bg-[#D4B886]/5",
+					CARD_HOVER_TRANSITION_CLASS,
+				)}
+			/>
 
 			{/* Border ring */}
-			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 transition-all duration-500 group-hover:ring-[#D4B886]/30" />
+			<div
+				className={cn(
+					"absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 transition-[box-shadow,ring-color] group-hover:ring-[#D4B886]/30",
+					CARD_HOVER_TRANSITION_CLASS,
+				)}
+			/>
 
 			{/* Content */}
 			<div className="relative z-10 flex min-h-56 flex-col justify-between p-7">
@@ -189,7 +202,10 @@ function MaterialCard({
 
 				<Link
 					href={category.href}
-					className="text-body-sm inline-flex items-center gap-2 font-sans text-[#D4B886] opacity-0 transition-all duration-300 group-hover:opacity-100"
+					className={cn(
+						"text-body-sm inline-flex items-center gap-2 font-sans text-[#D4B886] opacity-0 transition-opacity group-hover:opacity-100",
+						CARD_HOVER_TRANSITION_CLASS,
+					)}
 				>
 					Discover <ArrowRight className="h-4 w-4" />
 				</Link>

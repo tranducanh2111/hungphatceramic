@@ -39,10 +39,12 @@ export const MEDIA_PATHS = {
 			brandStatement: "/media/images/landing/brand-statement.jpg",
 		},
 		featuredProjects: {
-			project1: "/media/images/featured-projects/project-1.jpg",
-			project2: "/media/images/featured-projects/project-2.jpg",
-			project3: "/media/images/featured-projects/project-3.jpg",
-			project4: "/media/images/featured-projects/project-4.jpg",
+			ramadaHaLongBay: "/media/images/featured-projects/ramada-halong.png",
+			hinode: "/media/images/featured-projects/hinode.jpg",
+			vinhomesSymphony: "/media/images/featured-projects/vinhomes-symphony.jpg",
+			grandPhuQuoc: "/media/images/featured-projects/grand-phuquoc.webp",
+			saigonIntela: "/media/images/featured-projects/saigon-intela.jpg",
+			empireCity: "/media/images/featured-projects/empire-city.jpg",
 		},
 		/** Panorama filenames may include spaces — use with `encodeURI` when building URLs. */
 		panorama: {
