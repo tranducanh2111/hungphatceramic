@@ -76,7 +76,7 @@ function TileSizeSegmentedControl({
 
 	return (
 		<div
-			className="relative mx-auto grid min-w-[17.5rem] max-w-sm grid-cols-2 rounded-full border border-[#1A3D5C] bg-[#071A2B]/75 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm"
+			className="relative mx-auto grid min-w-[17.5rem] max-w-sm grid-cols-2 rounded-full border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
 			role="tablist"
 			aria-label="Tile format"
 			onPointerDown={(event) => {
@@ -94,19 +94,12 @@ function TileSizeSegmentedControl({
 				swipeStartX.current = null;
 			}}
 		>
-			<motion.div
-				className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)]"
-				initial={false}
+			<div
+				className={cn(
+					"pointer-events-none absolute top-1 bottom-1 rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left] duration-300 ease-out",
+					activeIndex === 0 ? "left-1" : "left-[calc(50%_+_2px)]",
+				)}
 				style={{ width: "calc(50% - 6px)" }}
-				animate={{
-					left: activeIndex === 0 ? "4px" : "calc(50% + 2px)",
-				}}
-				transition={{
-					type: "spring",
-					stiffness: 520,
-					damping: 40,
-					mass: 0.82,
-				}}
 			/>
 			{SIZE_OPTIONS.map(({ label, value }) => {
 				const selected = activeSize === value;
@@ -137,11 +130,9 @@ function TileSizeSegmentedControl({
 
 function MaterialCard({
 	category,
-	index,
 	activeSize,
 }: {
 	category: MaterialCategory;
-	index: number;
 	activeSize: TileSize;
 }) {
 	// Show only the tile that matches the active size filter.
@@ -150,13 +141,7 @@ function MaterialCard({
 	const backdrop = getMaterialBackdrop(category.id, activeSize);
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, y: 32 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
-			viewport={{ once: true, amount: 0.2 }}
-			className="group relative min-h-56 overflow-hidden rounded-2xl"
-		>
+		<div className="group relative min-h-56 overflow-hidden rounded-2xl">
 			<div
 				className="absolute inset-0 z-0 transition-[background] duration-700 ease-out"
 				style={{ background: backdrop }}
@@ -178,13 +163,8 @@ function MaterialCard({
 				)}
 			/>
 
-			{/* Border ring */}
-			<div
-				className={cn(
-					"absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 transition-[box-shadow,ring-color] group-hover:ring-[#D4B886]/30",
-					CARD_HOVER_TRANSITION_CLASS,
-				)}
-			/>
+			{/* Border ring — no transition (ring = box-shadow; animating it is expensive). */}
+			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 group-hover:ring-[#D4B886]/30" />
 
 			{/* Content */}
 			<div className="relative z-10 flex min-h-56 flex-col justify-between p-7">
@@ -210,7 +190,7 @@ function MaterialCard({
 					Discover <ArrowRight className="h-4 w-4" />
 				</Link>
 			</div>
-		</motion.div>
+		</div>
 	);
 }
 
@@ -236,38 +216,23 @@ export function LandingMaterials() {
 		<section className="bg-[#0E2A42] py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				{/* ── Header ── */}
-				<div className="mb-10 text-center">
-					<motion.span
-						initial={{ opacity: 0, y: 16 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6 }}
-						viewport={{ once: true }}
-						className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-					>
+				<motion.div
+					initial={{ opacity: 0, y: 16 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.55, ease: "easeOut" }}
+					viewport={{ once: true, amount: 0.12, margin: "0px 0px -8% 0px" }}
+					className="mb-10 text-center"
+				>
+					<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
 						The Collection
-					</motion.span>
-					<motion.div
-						initial={{ opacity: 0, y: 16 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.1 }}
-						viewport={{ once: true }}
-					>
-						<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
-							Surfaces That Define a Space
-						</Text>
-					</motion.div>
-					<motion.div
-						initial={{ opacity: 0, y: 16 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						viewport={{ once: true }}
-					>
-						<Text variant="body-lg" className="mx-auto mt-5 max-w-xl text-[#F4F4F6]/55">
-							Five distinct collections. Each one curated for a different vision of
-							luxury.
-						</Text>
-					</motion.div>
-				</div>
+					</span>
+					<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
+						Surfaces That Define a Space
+					</Text>
+					<Text variant="body-lg" className="mx-auto mt-5 max-w-xl text-[#F4F4F6]/55">
+						Five distinct collections. Each one curated for a different vision of luxury.
+					</Text>
+				</motion.div>
 
 				{/* ── Size toggle ── */}
 				<motion.div
@@ -293,24 +258,22 @@ export function LandingMaterials() {
 						transition={{ duration: 0.35, ease: "easeInOut" }}
 					>
 						<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-							{topRow.map((cat, i) => (
-								<MaterialCard
-									key={cat.id}
-									category={cat}
-									index={i}
-									activeSize={activeSize}
-								/>
+							{topRow.map((cat) => (
+							<MaterialCard
+								key={cat.id}
+								category={cat}
+								activeSize={activeSize}
+							/>
 							))}
 						</div>
 						{bottomRow.length > 0 && (
 							<div className="mt-4 grid gap-4 sm:grid-cols-2">
-								{bottomRow.map((cat, i) => (
-									<MaterialCard
-										key={cat.id}
-										category={cat}
-										index={i + topRow.length}
-										activeSize={activeSize}
-									/>
+								{bottomRow.map((cat) => (
+								<MaterialCard
+									key={cat.id}
+									category={cat}
+									activeSize={activeSize}
+								/>
 								))}
 							</div>
 						)}
