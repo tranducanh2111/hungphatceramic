@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Text } from "@/components/ui";
 import { TESTIMONIALS } from "@/constants/landing";
@@ -12,13 +13,12 @@ import { cn } from "@/lib/cn";
  * ⚠️ Placeholder content — replace with real client quotes when received.
  */
 export function LandingTestimonials() {
+	const t = useTranslations("landing.testimonials");
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	const goToPrev = () =>
 		setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 	const goToNext = () => setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-
-	const activeTestimonial = TESTIMONIALS[activeIndex];
 
 	return (
 		<section className="bg-[#071A2B] py-28 lg:py-36">
@@ -31,7 +31,7 @@ export function LandingTestimonials() {
 					viewport={{ once: true }}
 					className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 				>
-					Client Voices
+					{t("label")}
 				</motion.span>
 
 				{/* Large quote icon */}
@@ -49,6 +49,7 @@ export function LandingTestimonials() {
 				<div className="relative mx-auto mt-12 h-[260px] w-full max-w-2xl [perspective:1200px]">
 					{TESTIMONIALS.map((testimonial, i) => {
 						const isActive = i === activeIndex;
+						const itemNamespace = `items.${testimonial.id}`;
 
 						// Calculate wrapping distance
 						let distance = i - activeIndex;
@@ -82,7 +83,7 @@ export function LandingTestimonials() {
 									variant="h4"
 									className="font-serif font-light text-[#F4F4F6]/90 italic"
 								>
-									&ldquo;{testimonial.quote}&rdquo;
+									&ldquo;{t(`${itemNamespace}.quote`)}&rdquo;
 								</Text>
 
 								<div className="mt-8 flex flex-col items-center gap-1">
@@ -91,10 +92,11 @@ export function LandingTestimonials() {
 										variant="body"
 										className="mt-4 font-medium text-[#F4F4F6]"
 									>
-										{testimonial.authorName}
+										{t(`${itemNamespace}.authorName`)}
 									</Text>
 									<Text variant="body-sm" className="text-[#F4F4F6]/50">
-										{testimonial.authorTitle} — {testimonial.authorCompany}
+										{t(`${itemNamespace}.authorTitle`)} —{" "}
+										{t(`${itemNamespace}.authorCompany`)}
 									</Text>
 								</div>
 							</motion.div>
@@ -106,7 +108,7 @@ export function LandingTestimonials() {
 				<div className="mt-10 flex items-center justify-center gap-6">
 					<button
 						onClick={goToPrev}
-						aria-label="Previous testimonial"
+						aria-label={t("aria.previous")}
 						className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1A3D5C] text-[#F4F4F6]/50 transition-all duration-300 hover:border-[#D4B886] hover:text-[#D4B886]"
 					>
 						<ChevronLeft className="h-5 w-5" />
@@ -118,7 +120,7 @@ export function LandingTestimonials() {
 							<button
 								key={i}
 								onClick={() => setActiveIndex(i)}
-								aria-label={`Go to testimonial ${i + 1}`}
+								aria-label={t("aria.goTo", {index: i + 1})}
 								className={`h-1.5 rounded-full transition-all duration-300 ${
 									i === activeIndex ? "w-6 bg-[#D4B886]" : "w-1.5 bg-[#1A3D5C]"
 								}`}
@@ -128,7 +130,7 @@ export function LandingTestimonials() {
 
 					<button
 						onClick={goToNext}
-						aria-label="Next testimonial"
+						aria-label={t("aria.next")}
 						className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1A3D5C] text-[#F4F4F6]/50 transition-all duration-300 hover:border-[#D4B886] hover:text-[#D4B886]"
 					>
 						<ChevronRight className="h-5 w-5" />

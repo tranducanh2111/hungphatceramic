@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Text } from "@/components/ui";
 import { PROCESS_STEPS } from "@/constants/landing";
@@ -11,6 +12,7 @@ import { cn } from "@/lib/cn";
  * Inspired by kaatdm.com: the section is pinned while scroll drives the active step.
  */
 export function LandingProcess() {
+	const t = useTranslations("landing.process");
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
@@ -39,10 +41,10 @@ export function LandingProcess() {
 					{/* Header */}
 					<div className="mb-12 text-center">
 						<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
-							Our Process
+							{t("label")}
 						</span>
 						<Text variant="h2" className="mt-3 text-[#F4F4F6]">
-							How We Work
+							{t("heading")}
 						</Text>
 					</div>
 
@@ -162,7 +164,7 @@ export function LandingProcess() {
 												isActive ? "text-[#F4F4F6]" : "text-[#F4F4F6]/35",
 											)}
 										>
-											{step.title}
+											{t(`steps.${step.id}.title`)}
 										</Text>
 									</div>
 								);
@@ -184,11 +186,11 @@ export function LandingProcess() {
 								{activeStep.number}
 							</Text>
 							<Text variant="h3" className="mt-2 text-[#F4F4F6]">
-								{activeStep.title}
+								{t(`steps.${activeStep.id}.title`)}
 							</Text>
 							<div className="my-5 h-px w-12 bg-[#D4B886]" />
 							<Text variant="body-lg" className="leading-relaxed text-[#F4F4F6]/65">
-								{activeStep.description}
+								{t(`steps.${activeStep.id}.description`)}
 							</Text>
 
 							{/* Progress dots */}

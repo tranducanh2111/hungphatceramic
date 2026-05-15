@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 
 const BRAND_STATS = [
-	{ value: "12+", label: "Years of Craftsmanship" },
-	{ value: "200+", label: "Projects Completed" },
-	{ value: "35+", label: "Material Collections" },
+	{ id: "craftsmanshipYears", value: "12+" },
+	{ id: "projectsCompleted", value: "200+" },
+	{ id: "materialCollections", value: "35+" },
 ];
 
 const fadeUp: Variants = {
@@ -24,6 +25,8 @@ const fadeUp: Variants = {
  * LandingBrandStatement — Identity declaration with manifesto copy and key stats.
  */
 export function LandingBrandStatement() {
+	const t = useTranslations("landing.brandStatement");
+
 	return (
 		<section className="relative overflow-hidden bg-[#071A2B] py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -38,7 +41,7 @@ export function LandingBrandStatement() {
 							viewport={{ once: true, amount: 0.3 }}
 							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 						>
-							Our Philosophy
+							{t("label")}
 						</motion.span>
 
 						<motion.div
@@ -49,10 +52,10 @@ export function LandingBrandStatement() {
 							viewport={{ once: true, amount: 0.3 }}
 						>
 							<Text variant="display-lg" className="mt-4 text-[#F4F4F6]">
-								Craftsmanship
+								{t("titleLine1")}
 								<br />
 								<em className="font-light text-[#D4B886] italic">
-									Over Everything
+									{t("titleLine2")}
 								</em>
 							</Text>
 						</motion.div>
@@ -75,10 +78,12 @@ export function LandingBrandStatement() {
 							viewport={{ once: true, amount: 0.3 }}
 						>
 							<Text variant="body-lg" className="text-[#F4F4F6]/65">
-								For over a decade, Perla powered by Hung Phat has transformed empty spaces
-								into living narratives. We source, design, and install premium
-								ceramic surfaces — not as a finish, but as a foundation for how a
-								space <em className="text-[#F4F4F6]/90 not-italic">feels</em>.
+								{t("descriptionPrefix")}
+								<em className="text-[#F4F4F6]/90 not-italic">
+									{" "}
+									{t("descriptionEmphasis")}
+								</em>
+								{t("descriptionSuffix")}
 							</Text>
 						</motion.div>
 
@@ -91,8 +96,8 @@ export function LandingBrandStatement() {
 							viewport={{ once: true, amount: 0.3 }}
 							className="mt-12 grid grid-cols-3 gap-6 border-t border-[#1A3D5C] pt-10"
 						>
-							{BRAND_STATS.map(({ value, label }) => (
-								<div key={label}>
+							{BRAND_STATS.map(({ id, value }) => (
+								<div key={id}>
 									<Text
 										variant="display-lg"
 										className="font-serif text-[#D4B886]"
@@ -100,7 +105,7 @@ export function LandingBrandStatement() {
 										{value}
 									</Text>
 									<Text variant="body-sm" className="mt-1 text-[#F4F4F6]/50">
-										{label}
+										{t(`stats.${id}`)}
 									</Text>
 								</div>
 							))}
@@ -117,7 +122,7 @@ export function LandingBrandStatement() {
 					>
 						<Image
 							src={MEDIA_PATHS.images.landing.brandStatement}
-							alt="Artisan craftsman placing a large-format polished ceramic tile"
+							alt={t("imageAlt")}
 							fill
 							className="object-cover"
 							sizes="(max-width: 1024px) 100vw, 50vw"

@@ -2,27 +2,29 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/cn";
-import { PRIMARY_NAV_ITEMS, COMPANY_NAME } from "@/constants/navigation";
 import { ROUTES } from "@/constants/routes";
 import { IconSvg } from "@/components/icons";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
+import { Link, usePathname } from "@/i18n/navigation";
+import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 
 // ─── Logo Mark ────────────────────────────────────────────────────────────────
 
 function LogoMark() {
+	const t = useTranslations("common");
+
 	return (
 		<Link
 			href={ROUTES.home}
-			aria-label={`${COMPANY_NAME} — Return to homepage`}
+			aria-label={t("logoAriaLabel")}
 			className="group flex shrink-0 items-center"
 		>
 			<Image
 				src={LOGO_PATHS.small}
-				alt={`${COMPANY_NAME} logo`}
+				alt={t("logoAlt")}
 				width={240}
 				height={67}
 				priority
@@ -41,12 +43,19 @@ function LogoMark() {
  * Auto-closes mobile menu on route change.
  */
 export function Navbar() {
+	const t = useTranslations("navbar");
 	const pathname = usePathname();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const navContentRef = useRef<HTMLDivElement>(null);
 	const [expandedWidthPx, setExpandedWidthPx] = useState(1024);
 	const [shrinkWidthPx, setShrinkWidthPx] = useState(760);
+	const navItems = [
+		{ href: ROUTES.home, label: t("links.home") },
+		{ href: ROUTES.about, label: t("links.about") },
+		{ href: ROUTES.products, label: t("links.products") },
+		{ href: ROUTES.projects, label: t("links.projects") },
+	];
 
 	const NAV_MAX_EXPANDED_PX = 1024; // 64rem
 	const NAV_OUTER_SIDE_GAP_PX = 32; // fixed wrapper has px-4 on both sides
@@ -142,7 +151,8 @@ export function Navbar() {
 	}, []);
 
 	const pillBaseClasses = cn(
-		"overflow-hidden",
+		/* Allow locale dropdown to extend below the pill (was clipped by overflow-hidden). */
+		"overflow-visible",
 		"rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl",
 		"shadow-[0_8px_32px_rgba(7,26,43,0.5)]",
 		"px-3 py-3 pointer-events-auto mx-auto",
@@ -153,7 +163,7 @@ export function Navbar() {
 			{/* ── Fixed pill container ─────────────────────────────────────────── */}
 			<div className="pointer-events-none fixed top-5 right-0 left-0 z-50 flex justify-center px-4">
 				<motion.nav
-					aria-label="Main navigation"
+					aria-label={t("aria.mainNavigation")}
 					className={pillBaseClasses}
 					initial={false}
 					animate={{ width: isScrolled ? shrinkWidthPx : expandedWidthPx }}
@@ -171,7 +181,7 @@ export function Navbar() {
 
 						{/* ── Desktop links ──────────────────────────────────────────── */}
 						<ul className="hidden items-center gap-8 lg:flex" role="list">
-							{PRIMARY_NAV_ITEMS.map(({ label, href }) => {
+							{navItems.map(({ label, href }) => {
 								const isActive =
 									href === "/" ? pathname === "/" : pathname.startsWith(href);
 								return (
@@ -213,14 +223,17 @@ export function Navbar() {
 									"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
 								)}
 							>
-								Book Consultation
+								{t("cta.bookConsultation")}
 							</Link>
+							<LocaleSwitcher className="hidden lg:block" />
 
 							{/* Mobile menu toggle */}
 							<button
 								type="button"
 								onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-								aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+								aria-label={
+									isMobileMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")
+								}
 								aria-expanded={isMobileMenuOpen}
 								className={cn(
 									"flex items-center justify-center lg:hidden",
@@ -257,7 +270,7 @@ export function Navbar() {
 						)}
 					>
 						<ul className="flex flex-col gap-1" role="list">
-							{PRIMARY_NAV_ITEMS.map(({ label, href }) => {
+							{navItems.map(({ label, href }) => {
 								const isActive =
 									href === "/" ? pathname === "/" : pathname.startsWith(href);
 								return (
@@ -279,6 +292,9 @@ export function Navbar() {
 								);
 							})}
 						</ul>
+						<div className="mt-3">
+							<LocaleSwitcher />
+						</div>
 
 						{/* Mobile CTA */}
 						<div className="mt-4 border-t border-[#1A3D5C] pt-4">
@@ -292,7 +308,7 @@ export function Navbar() {
 									"transition-all duration-300 hover:bg-[#D4B886] hover:text-[#071A2B]",
 								)}
 							>
-								Book a Consultation
+								{t("cta.bookConsultation")}
 							</Link>
 						</div>
 					</motion.div>

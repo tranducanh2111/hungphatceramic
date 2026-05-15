@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
@@ -30,6 +31,7 @@ const scrollIndicator: Variants = {
  * to fill the entire screen as the user scrolls, pulling them into the experience.
  */
 export function LandingHero() {
+	const t = useTranslations("landing.hero");
 	const sectionRef = useRef<HTMLElement>(null);
 
 	// Scroll progress within the 150vh hero section
@@ -101,7 +103,7 @@ export function LandingHero() {
 						animate="visible"
 						className="text-label-sm inline-block rounded-full border border-[#D4B886]/25 bg-[#D4B886]/6 px-5 py-2 font-sans tracking-widest text-[#D4B886] uppercase backdrop-blur-sm"
 					>
-						Luxury Ceramic Interior
+						{t("label")}
 					</motion.span>
 
 					<motion.h1
@@ -111,9 +113,9 @@ export function LandingHero() {
 						animate="visible"
 						className="text-display-xl mt-6 max-w-3xl font-serif leading-[1.1] font-light text-[#F4F4F6]"
 					>
-						Where Stone
+						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">Tells a Story</em>
+						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
 					</motion.h1>
 
 					<motion.p
@@ -123,9 +125,9 @@ export function LandingHero() {
 						animate="visible"
 						className="text-body-lg mt-6 max-w-md font-sans text-[#F4F4F6]/70"
 					>
-						Bespoke ceramic interiors for discerning spaces.
+						{t("descriptionLine1")}
 						<br />
-						Crafted with precision, designed to endure.
+						{t("descriptionLine2")}
 					</motion.p>
 
 					<motion.div
@@ -136,10 +138,10 @@ export function LandingHero() {
 						className="mt-10 flex flex-col gap-4 sm:flex-row"
 					>
 						<Button href={ROUTES.projects} size="lg">
-							Explore Our Work
+							{t("primaryCta")}
 						</Button>
 						<Button href={ROUTES.products} variant="secondary" size="lg">
-							View Collection
+							{t("secondaryCta")}
 						</Button>
 					</motion.div>
 				</motion.div>
@@ -153,7 +155,7 @@ export function LandingHero() {
 					aria-hidden="true"
 				>
 					<span className="text-footnote font-sans tracking-widest text-[#D4B886]/45 uppercase">
-						Scroll
+						{t("scroll")}
 					</span>
 					<div className="h-12 w-px bg-gradient-to-b from-[#D4B886]/50 to-transparent" />
 				</motion.div>

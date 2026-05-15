@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
@@ -9,14 +9,15 @@ import { MATERIAL_CATEGORIES, type MaterialCategory } from "@/constants/landing"
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/cn";
 import { MaterialTilePreview } from "@/components/3d/MaterialTilePreview";
+import { Link } from "@/i18n/navigation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type TileSize = "60×120cm" | "80×80cm";
 
-const SIZE_OPTIONS: { label: string; value: TileSize }[] = [
-	{ label: "60 × 120", value: "60×120cm" },
-	{ label: "80 × 80", value: "80×80cm" },
+const SIZE_OPTIONS: { labelKey: "size60x120" | "size80x80"; value: TileSize }[] = [
+	{ labelKey: "size60x120", value: "60×120cm" },
+	{ labelKey: "size80x80", value: "80×80cm" },
 ];
 
 const CARD_HOVER_TRANSITION_CLASS =
@@ -71,6 +72,7 @@ function TileSizeSegmentedControl({
 	activeSize: TileSize;
 	onSizeChange: (value: TileSize) => void;
 }) {
+	const t = useTranslations("landing.materials");
 	const swipeStartX = useRef<number | null>(null);
 	const activeIndex = activeSize === "60×120cm" ? 0 : 1;
 
@@ -78,7 +80,7 @@ function TileSizeSegmentedControl({
 		<div
 			className="relative mx-auto grid min-w-[17.5rem] max-w-sm grid-cols-2 rounded-full border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
 			role="tablist"
-			aria-label="Tile format"
+			aria-label={t("tileFormat")}
 			onPointerDown={(event) => {
 				if (event.pointerType === "mouse" && event.button !== 0) return;
 				swipeStartX.current = event.clientX;
@@ -101,7 +103,7 @@ function TileSizeSegmentedControl({
 				)}
 				style={{ width: "calc(50% - 6px)" }}
 			/>
-			{SIZE_OPTIONS.map(({ label, value }) => {
+			{SIZE_OPTIONS.map(({ labelKey, value }) => {
 				const selected = activeSize === value;
 				return (
 					<button
@@ -118,7 +120,7 @@ function TileSizeSegmentedControl({
 								: "text-[#F4F4F6]/45 hover:text-[#F4F4F6]/78",
 						)}
 					>
-						{label}
+						{t(labelKey)}
 					</button>
 				);
 			})}
@@ -135,6 +137,7 @@ function MaterialCard({
 	category: MaterialCategory;
 	activeSize: TileSize;
 }) {
+	const t = useTranslations("landing.materials");
 	// Show only the tile that matches the active size filter.
 	const matchedPreview = category.previews.find((p) => p.size === activeSize);
 	const tilePreview = matchedPreview ? [matchedPreview] : [category.previews[0]];
@@ -173,10 +176,10 @@ function MaterialCard({
 						{category.sizes.join(" · ")}
 					</Text>
 					<Text variant="h4" className="mt-3 text-[#F4F4F6]">
-						{category.name}
+						{t(`categories.${category.id}.name`)}
 					</Text>
 					<Text variant="body-sm" className="mt-2 text-[#F4F4F6]/55">
-						{category.tagline}
+						{t(`categories.${category.id}.tagline`)}
 					</Text>
 				</div>
 
@@ -187,7 +190,7 @@ function MaterialCard({
 						CARD_HOVER_TRANSITION_CLASS,
 					)}
 				>
-					Discover <ArrowRight className="h-4 w-4" />
+					{t("discover")} <ArrowRight className="h-4 w-4" />
 				</Link>
 			</div>
 		</div>
@@ -202,6 +205,7 @@ function MaterialCard({
  * and the spinning tile shard reflects the correct tile proportions.
  */
 export function LandingMaterials() {
+	const t = useTranslations("landing.materials");
 	const [activeSize, setActiveSize] = useState<TileSize>("60×120cm");
 
 	const visibleCategories = MATERIAL_CATEGORIES.filter((c) =>
@@ -224,13 +228,13 @@ export function LandingMaterials() {
 					className="mb-10 text-center"
 				>
 					<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
-						The Collection
+						{t("label")}
 					</span>
 					<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
-						Surfaces That Define a Space
+						{t("heading")}
 					</Text>
 					<Text variant="body-lg" className="mx-auto mt-5 max-w-xl text-[#F4F4F6]/55">
-						Five distinct collections. Each one curated for a different vision of luxury.
+						{t("description")}
 					</Text>
 				</motion.div>
 
@@ -289,7 +293,7 @@ export function LandingMaterials() {
 					className="mt-12 text-center"
 				>
 					<Button href={ROUTES.products} variant="secondary" size="lg">
-						Explore Full Collection
+						{t("exploreFullCollection")}
 					</Button>
 				</motion.div>
 			</div>

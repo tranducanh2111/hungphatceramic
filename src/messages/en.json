@@ -1,0 +1,283 @@
+{
+	"common": {
+		"companyName": "Perla powered by Hung Phat",
+		"logoAriaLabel": "Perla powered by Hung Phat — Return to homepage",
+		"logoAlt": "Perla powered by Hung Phat logo"
+	},
+	"navbar": {
+		"aria": {
+			"mainNavigation": "Main navigation",
+			"openMenu": "Open menu",
+			"closeMenu": "Close menu"
+		},
+		"links": {
+			"home": "Home",
+			"about": "About Us",
+			"products": "Products",
+			"projects": "Projects"
+		},
+		"cta": {
+			"bookConsultation": "Book Consultation"
+		},
+		"locale": {
+			"label": "Select language",
+			"options": {
+				"en": "EN",
+				"vi": "VN"
+			}
+		}
+	},
+	"footer": {
+		"tagline": "Luxury ceramic surfaces for discerning spaces. Crafted with precision, installed with care, designed to endure.",
+		"sections": {
+			"navigate": "Navigate",
+			"collections": "Collections",
+			"contact": "Contact"
+		},
+		"links": {
+			"about": "About Us",
+			"projects": "Our Projects",
+			"process": "Our Process",
+			"bookConsultation": "Book a Consultation"
+		},
+		"collections": {
+			"inspire": "Inspire Series",
+			"travertine": "Travertine Series",
+			"orientStar": "Orient Star Series",
+			"sunshine": "Sunshine Series",
+			"architectural": "20mm Architectural"
+		},
+		"legal": {
+			"privacy": "Privacy Policy",
+			"terms": "Terms of Service"
+		},
+		"social": {
+			"instagram": "Instagram",
+			"facebook": "Facebook",
+			"youtube": "YouTube"
+		},
+		"contact": {
+			"address": "583 Giai Phong, Giap Bat, Hoang Mai, Hanoi",
+			"phone": "+84 (0) 24 1234 5678",
+			"email": "contact@hungphatceramic.vn"
+		},
+		"rights": "© {year} {companyName}. All rights reserved."
+	},
+	"landing": {
+		"hero": {
+			"label": "Luxury Ceramic Interior",
+			"titleLine1": "Where Stone",
+			"titleLine2": "Tells a Story",
+			"descriptionLine1": "Bespoke ceramic interiors for discerning spaces.",
+			"descriptionLine2": "Crafted with precision, designed to endure.",
+			"primaryCta": "Explore Our Work",
+			"secondaryCta": "View Collection",
+			"scroll": "Scroll"
+		},
+		"brandStatement": {
+			"label": "Our Philosophy",
+			"titleLine1": "Craftsmanship",
+			"titleLine2": "Over Everything",
+			"descriptionPrefix": "For over a decade, Perla powered by Hung Phat has transformed empty spaces into living narratives. We source, design, and install premium ceramic surfaces — not as a finish, but as a foundation for how a space",
+			"descriptionEmphasis": "feels",
+			"descriptionSuffix": ".",
+			"stats": {
+				"craftsmanshipYears": "Years of Craftsmanship",
+				"projectsCompleted": "Projects Completed",
+				"materialCollections": "Material Collections"
+			},
+			"imageAlt": "Artisan craftsman placing a large-format polished ceramic tile"
+		},
+		"projects": {
+			"label": "Selected Projects",
+			"heading": "Our Finest Work",
+			"viewAll": "View All Projects",
+			"viewProject": "View Project",
+			"items": {
+				"ramada-ha-long-bay": {
+					"title": "Ramada Ha Long Bay",
+					"location": "To Hien Thanh, Hong Gai, Quang Ninh",
+					"area": "Hotel lobby & public areas",
+					"imageAlt": "Ramada Ha Long Bay luxury ceramic interior project"
+				},
+				"hinode-city": {
+					"title": "Hinode City",
+					"location": "201 Pho Minh Khai, Bach Mai, Hanoi",
+					"area": "Full-villa interior surfaces, 450m²",
+					"imageAlt": "Hinode City luxury ceramic interior project"
+				},
+				"vinhomes-symphony": {
+					"title": "Vinhomes Symphony",
+					"location": "Vinhomes Riverside Urban Area, Phuc Loi, Hanoi",
+					"area": "Hotel lobby & public areas",
+					"imageAlt": "Vinhomes Symphony luxury ceramic interior project"
+				},
+				"grand-world-phu-quocquoc": {
+					"title": "Grand World Phu Quoc",
+					"location": "Bai Dai, Phu Quoc, An Giang",
+					"area": "Hotel lobby & public areas",
+					"imageAlt": "Grand World Phu Quoc luxury ceramic interior project"
+				},
+				"saigon-intela": {
+					"title": "Saigon Intela",
+					"location": "13E Nam Thanh Pho New Urban Area, Binh Hung, Ho Chi Minh City",
+					"area": "Residential apartment",
+					"imageAlt": "Saigon Intela luxury ceramic interior project"
+				},
+				"empire-city": {
+					"title": "Empire City",
+					"location": "2B Mai Chi Tho, An Khanh, Ho Chi Minh City",
+					"area": "Residential apartment",
+					"imageAlt": "Empire City luxury ceramic interior project"
+				}
+			}
+		},
+		"materials": {
+			"label": "The Collection",
+			"heading": "Surfaces That Define a Space",
+			"description": "Five distinct collections. Each one curated for a different vision of luxury.",
+			"tileFormat": "Tile format",
+			"size60x120": "60 × 120",
+			"size80x80": "80 × 80",
+			"discover": "Discover",
+			"exploreFullCollection": "Explore Full Collection",
+			"categories": {
+				"inspire": {
+					"name": "Inspire Series",
+					"tagline": "Bold patterns. Enduring character."
+				},
+				"travertine": {
+					"name": "Travertine Series",
+					"tagline": "The warmth of natural stone, refined."
+				},
+				"orient-star": {
+					"name": "Orient Star Series",
+					"tagline": "Ivory luminance. Timeless interiors."
+				},
+				"sunshine": {
+					"name": "Sunshine Series",
+					"tagline": "Open, airy, luminous surfaces."
+				},
+				"architectural": {
+					"name": "20mm Architectural",
+					"tagline": "Engineered for demanding spaces."
+				}
+			}
+		},
+		"stats": {
+			"label": "By the Numbers",
+			"quote": "\"Every number is a space transformed, a client trusted, a detail perfected.\"",
+			"items": {
+				"12": "Years of Craftsmanship",
+				"200": "Projects Completed",
+				"50000": "m² Installed",
+				"35": "Material Collections"
+			}
+		},
+		"process": {
+			"label": "Our Process",
+			"heading": "How We Work",
+			"steps": {
+				"consultation": {
+					"title": "Consultation",
+					"description": "We listen before we design. In a dedicated session, we explore your vision, lifestyle, and the architectural intent of your space to ensure every material choice is deliberate."
+				},
+				"curation": {
+					"title": "Curation",
+					"description": "From our collections of 35+ series, we handpick surfaces that align with your aesthetic and structural requirements. Every recommendation is considered, never arbitrary."
+				},
+				"fulfillment": {
+					"title": "Fulfillment",
+					"description": "Expert craftsmen. Precise execution. Every joint and edge is placed with deliberate care. We treat your space with the same reverence as a master artisan treats their medium."
+				},
+				"aftercare": {
+					"title": "Aftercare",
+					"description": "Our relationship does not end at handover. We provide documentation, care guidance, and a guarantee on every installed surface so your investment remains protected."
+				}
+			}
+		},
+		"testimonials": {
+			"label": "Client Voices",
+			"aria": {
+				"previous": "Previous testimonial",
+				"next": "Next testimonial",
+				"goTo": "Go to testimonial {index}"
+			},
+			"items": {
+				"minh-chau": {
+					"quote": "Perla powered by Hung Phat transformed our penthouse from a construction site into a sanctuary. Every tile, every joint was executed with precision.",
+					"authorName": "Ms. Minh Chau",
+					"authorTitle": "Villa Owner",
+					"authorCompany": "Vinhomes Riverside, Hanoi"
+				},
+				"tran-quoc-hung": {
+					"quote": "We engaged Hung Phat for our boutique hotel lobby. The Travertine collection they curated was perfect, and guests comment on it daily.",
+					"authorName": "Mr. Tran Quoc Hung",
+					"authorTitle": "Director",
+					"authorCompany": "Aria Boutique Hotel, Hai Phong"
+				},
+				"nguyen-lan-anh": {
+					"quote": "Working with a ceramics partner who truly understands interior intent is rare. Hung Phat exceeded our architectural specification.",
+					"authorName": "Arch. Nguyen Lan Anh",
+					"authorTitle": "Principal Architect",
+					"authorCompany": "Studio Lan, Hanoi"
+				}
+			}
+		},
+		"visualStory": {
+			"ariaLabel": "Orient Star ceramic panorama story",
+			"imageAlt": "Orient Star G12W05J ceramic panorama used as a luxury interior surface",
+			"title": "Details others overlook.",
+			"subtitle": "Craftsmanship that defines the whole."
+		},
+		"cta": {
+			"label": "Begin Your Project",
+			"titleLine1": "Ready to Define",
+			"titleLine2": "Your Space?",
+			"description": "Our team works with a limited number of projects each season to ensure every detail is perfect. Private showroom available by appointment.",
+			"primaryCta": "Book a Consultation",
+			"secondaryCta": "Browse the Collection",
+			"officeAddress": "583 Giai Phong, Giap Bat Ward, Hoang Mai District, Hanoi"
+		}
+	},
+	"meta": {
+		"home": {
+			"title": "Perla powered by Hung Phat | Luxury Ceramic Interior Design",
+			"description": "Premium bespoke ceramic surfaces for discerning interiors. Perla powered by Hung Phat where artistry meets architectural precision.",
+			"ogTitle": "Perla powered by Hung Phat | Luxury Ceramic Interior Design",
+			"ogDescription": "Bespoke ceramic surfaces for high-end interiors. 12+ years of craftsmanship and 200+ projects completed.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "en_US"
+		},
+		"about": {
+			"title": "About Us | Perla powered by Hung Phat",
+			"description": "Learn about Perla powered by Hung Phat, our heritage, craftsmanship philosophy, and commitment to luxury ceramic interiors."
+		},
+		"projects": {
+			"title": "Projects | Perla powered by Hung Phat",
+			"description": "Explore completed interior projects by Perla powered by Hung Phat and see how premium ceramics elevate each space."
+		},
+		"products": {
+			"title": "Products | Perla powered by Hung Phat",
+			"description": "Browse our curated collection of premium ceramic tiles and interior surface solutions for luxury projects."
+		},
+		"productDetail": {
+			"title": "{productName} | Perla powered by Hung Phat",
+			"description": "Discover {productName}, a premium ceramic solution from Perla powered by Hung Phat for luxury interiors."
+		}
+	},
+	"pages": {
+		"about": {
+			"heading": "About Us"
+		},
+		"projects": {
+			"heading": "Our Projects"
+		},
+		"products": {
+			"heading": "Our Products"
+		},
+		"productDetail": {
+			"heading": "Product: {slug}"
+		}
+	}
+}

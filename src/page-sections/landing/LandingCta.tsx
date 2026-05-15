@@ -1,17 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { MapPin } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { ROUTES } from "@/constants/routes";
 
-const OFFICE_ADDRESS = "Số 583 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, Hà Nội";
 const GOOGLE_MAPS_URL = "https://maps.google.com/?q=583+Giải+Phóng,+Giáp+Bát,+Hoàng+Mai,+Hà+Nội";
 
 /**
  * LandingCta — Final conversion section with exclusive framing.
  */
 export function LandingCta() {
+	const t = useTranslations("landing.cta");
+
 	return (
 		<section className="relative overflow-hidden bg-[#0E2A42] py-28 lg:py-36">
 			{/* Background glow */}
@@ -31,7 +33,7 @@ export function LandingCta() {
 					viewport={{ once: true }}
 					className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 				>
-					Begin Your Project
+					{t("label")}
 				</motion.span>
 
 				<motion.div
@@ -41,9 +43,9 @@ export function LandingCta() {
 					viewport={{ once: true }}
 				>
 					<Text variant="display-lg" className="mt-4 text-[#F4F4F6]">
-						Ready to Define
+						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">Your Space?</em>
+						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
 					</Text>
 				</motion.div>
 
@@ -54,8 +56,7 @@ export function LandingCta() {
 					viewport={{ once: true }}
 				>
 					<Text variant="body-lg" className="mx-auto mt-6 max-w-xl text-[#F4F4F6]/60">
-						Our team works with a limited number of projects each season to ensure every
-						detail is perfect. Private showroom available by appointment.
+						{t("description")}
 					</Text>
 				</motion.div>
 
@@ -68,10 +69,10 @@ export function LandingCta() {
 					className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center"
 				>
 					<Button href={ROUTES.contact} size="lg">
-						Book a Consultation
+						{t("primaryCta")}
 					</Button>
 					<Button href={ROUTES.products} variant="secondary" size="lg">
-						Browse the Collection
+						{t("secondaryCta")}
 					</Button>
 				</motion.div>
 
@@ -90,7 +91,7 @@ export function LandingCta() {
 						className="inline-flex items-center gap-2 text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
 					>
 						<MapPin className="h-4 w-4 shrink-0 text-[#D4B886]" />
-						<Text variant="body-sm">{OFFICE_ADDRESS}</Text>
+						<Text variant="body-sm">{t("officeAddress")}</Text>
 					</a>
 				</motion.div>
 			</div>

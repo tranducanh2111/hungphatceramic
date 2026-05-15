@@ -1,14 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/landing";
 import { ROUTES, projectDetailPath } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 
-function ProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
+function ProjectCard({
+	project,
+	index,
+	translationNamespace,
+}: {
+	project: FeaturedProject;
+	index: number;
+	translationNamespace: string;
+}) {
+	const t = useTranslations("landing.projects");
+
 	return (
 		<motion.article
 			initial={{ opacity: 0, y: 40 }}
@@ -21,7 +32,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 				<div className="relative aspect-[4/3] overflow-hidden">
 					<Image
 						src={project.imageUrl}
-						alt={`${project.title} — luxury ceramic interior project`}
+						alt={t(`${translationNamespace}.imageAlt`)}
 						fill
 						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
 						sizes="(max-width: 768px) 100vw, 50vw"
@@ -37,7 +48,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 							variant="h4"
 							className="line-clamp-2 text-[#F4F4F6] [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_24px_rgba(7,26,43,0.7)]"
 						>
-							{project.title}
+							{t(`${translationNamespace}.title`)}
 						</Text>
 					</div>
 					<span className="text-footnote shrink-0 rounded-full border border-[#D4B886]/28 bg-[#071A2B]/45 px-3 py-1.5 font-sans tracking-[0.14em] text-[#D4B886] uppercase backdrop-blur-md backdrop-saturate-150">
@@ -51,7 +62,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 							variant="body-sm"
 							className="text-[#F4F4F6]/78 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_20px_rgba(7,26,43,0.65)]"
 						>
-							{project.area}
+							{t(`${translationNamespace}.area`)}
 						</Text>
 						<div className="mt-4 h-px bg-gradient-to-r from-white/22 via-white/10 to-transparent" />
 						<div className="mt-4 flex items-center justify-between gap-4">
@@ -59,13 +70,13 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
 								variant="body-sm"
 								className="min-w-0 flex-1 truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]"
 							>
-								{project.location}
+								{t(`${translationNamespace}.location`)}
 							</Text>
 							<Link
 								href={projectDetailPath(project.id)}
 								className="text-body-sm inline-flex shrink-0 items-center gap-2 font-sans tracking-[0.08em] text-[#E8D5B0] transition-all duration-300 [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_18px_rgba(7,26,43,0.7)] group-hover:gap-3"
 							>
-								View Project <ArrowRight className="h-4 w-4" />
+								{t("viewProject")} <ArrowRight className="h-4 w-4" />
 							</Link>
 						</div>
 					</div>
@@ -79,6 +90,8 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
  * LandingProjects — Portfolio preview showcasing 4 featured projects.
  */
 export function LandingProjects() {
+	const t = useTranslations("landing.projects");
+
 	return (
 		<section className="bg-[#071A2B] py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -92,7 +105,7 @@ export function LandingProjects() {
 							viewport={{ once: true }}
 							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 						>
-							Selected Projects
+							{t("label")}
 						</motion.span>
 						<motion.div
 							initial={{ opacity: 0, y: 16 }}
@@ -101,7 +114,7 @@ export function LandingProjects() {
 							viewport={{ once: true }}
 						>
 							<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
-								Our Finest Work
+								{t("heading")}
 							</Text>
 						</motion.div>
 					</div>
@@ -113,7 +126,7 @@ export function LandingProjects() {
 						viewport={{ once: true }}
 					>
 						<Button href={ROUTES.projects} variant="outline" size="md">
-							View All Projects
+							{t("viewAll")}
 						</Button>
 					</motion.div>
 				</div>
@@ -121,7 +134,12 @@ export function LandingProjects() {
 				{/* Project grid */}
 				<div className="grid gap-6 md:grid-cols-2">
 					{FEATURED_PROJECTS.map((project, index) => (
-						<ProjectCard key={project.id} project={project} index={index} />
+						<ProjectCard
+							key={project.id}
+							project={project}
+							index={index}
+							translationNamespace={`items.${project.id}`}
+						/>
 					))}
 				</div>
 			</div>

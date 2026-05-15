@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { motion, useInView } from "framer-motion";
 import { Text } from "@/components/ui";
 import { STATS, type StatItem } from "@/constants/landing";
@@ -30,7 +31,7 @@ function useCountUp(target: number, isActive: boolean, duration = 1800) {
 	return displayValue;
 }
 
-function StatCounter({ stat }: { stat: StatItem }) {
+function StatCounter({ stat, label }: { stat: StatItem; label: string }) {
 	const ref = useRef<HTMLDivElement>(null);
 	const isInView = useInView(ref, { once: true, amount: 0.5 });
 	const count = useCountUp(stat.numericValue, isInView);
@@ -45,7 +46,7 @@ function StatCounter({ stat }: { stat: StatItem }) {
 				{stat.suffix}
 			</Text>
 			<Text variant="body-sm" className="mt-2 text-[#F4F4F6]/50">
-				{stat.label}
+				{label}
 			</Text>
 		</div>
 	);
@@ -55,6 +56,8 @@ function StatCounter({ stat }: { stat: StatItem }) {
  * LandingStats — Credibility through scale. Numbers animate on scroll entry.
  */
 export function LandingStats() {
+	const t = useTranslations("landing.stats");
+
 	return (
 		<section className="relative overflow-hidden bg-[#071A2B] py-28 lg:py-32">
 			<RoomSilhouette />
@@ -69,7 +72,7 @@ export function LandingStats() {
 						viewport={{ once: true }}
 						className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 					>
-						By the Numbers
+						{t("label")}
 					</motion.span>
 					<div className="h-px flex-1 bg-[#1A3D5C]" />
 				</div>
@@ -77,7 +80,7 @@ export function LandingStats() {
 				{/* Stats grid */}
 				<div className="grid grid-cols-2 gap-12 lg:grid-cols-4">
 					{STATS.map((stat) => (
-						<StatCounter key={stat.label} stat={stat} />
+						<StatCounter key={stat.numericValue} stat={stat} label={t(`items.${stat.numericValue}`)} />
 					))}
 				</div>
 
@@ -90,7 +93,7 @@ export function LandingStats() {
 					className="mt-16 text-center"
 				>
 					<Text variant="body-lg" className="text-[#F4F4F6]/40 italic">
-						"Every number is a space transformed, a client trusted, a detail perfected."
+						{t("quote")}
 					</Text>
 				</motion.div>
 			</div>

@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 
 const VISUAL_STORY_PANORAMA = {
 	src: encodeURI(MEDIA_PATHS.images.panorama.orientStarGp12w05j),
-	alt: "Orient Star G12W05J ceramic panorama used as a luxury interior surface",
 } as const;
 
 /**
@@ -16,6 +16,7 @@ const VISUAL_STORY_PANORAMA = {
  * Scroll-linked panorama reveal with centered story copy.
  */
 export function LandingVisualStory() {
+	const t = useTranslations("landing.visualStory");
 	const sectionRef = useRef<HTMLDivElement>(null);
 
 	const { scrollYProgress } = useScroll({
@@ -33,7 +34,7 @@ export function LandingVisualStory() {
 		<section
 			ref={sectionRef}
 			className="bg-sapphire-deep relative"
-			aria-label="Orient Star ceramic panorama story"
+			aria-label={t("ariaLabel")}
 		>
 			<div className="sticky top-0 h-screen overflow-hidden">
 				<motion.div
@@ -42,7 +43,7 @@ export function LandingVisualStory() {
 				>
 					<Image
 						src={VISUAL_STORY_PANORAMA.src}
-						alt={VISUAL_STORY_PANORAMA.alt}
+						alt={t("imageAlt")}
 						fill
 						sizes="320vw"
 						className="object-cover object-center"
@@ -64,10 +65,10 @@ export function LandingVisualStory() {
 							variant="display-lg"
 							className="text-linen font-serif font-light italic"
 						>
-							Details others overlook.
+							{t("title")}
 						</Text>
 						<Text variant="h3" className="text-champagne mt-3 font-serif font-light">
-							Craftsmanship that defines the whole.
+							{t("subtitle")}
 						</Text>
 					</motion.div>
 				</div>

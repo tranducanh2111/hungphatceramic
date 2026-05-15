@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
-import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { Link } from "@/i18n/navigation";
 
 /* ─── Variant Styles ─────────────────────────────────────────────────────────── */
 

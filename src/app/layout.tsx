@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
-import { SmoothScrollProvider } from "@/components/common/SmoothScrollProvider";
-import { ScrollProgressBar } from "@/components/common/ScrollProgressBar";
-import { Navbar } from "@/components/common/Navbar";
-import { Footer } from "@/components/common/Footer";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -22,9 +18,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-	title: "Perla powered by Hung Phat | Luxury Interior Ceramics",
+	title: "Perla powered by Hung Phat",
 	description:
-		"Premium ceramic solutions for discerning interior designers and high-end residential projects. Discover timeless craftsmanship.",
+		"Luxury ceramic interior design and installation.",
 };
 
 export default function RootLayout({
@@ -34,7 +30,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html
-			lang="en"
+			lang="vi"
+			data-scroll-behavior="smooth"
 			className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
 			style={{ position: "relative" }}
 			suppressHydrationWarning
@@ -44,12 +41,7 @@ export default function RootLayout({
 				style={{ position: "relative" }}
 				suppressHydrationWarning
 			>
-				<SmoothScrollProvider>
-					<Navbar />
-					{children}
-					<Footer />
-					<ScrollProgressBar />
-				</SmoothScrollProvider>
+				{children}
 			</body>
 		</html>
 	);
