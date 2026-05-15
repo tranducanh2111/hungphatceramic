@@ -3,12 +3,28 @@
 import {useEffect, useId, useRef, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {useLocale, useTranslations} from "next-intl";
+import {LocaleFlagIcon} from "@/components/icons/LocaleFlagIcon";
 import {routing, type AppLocale} from "@/i18n/routing";
 import {Link, usePathname} from "@/i18n/navigation";
 import {cn} from "@/lib/cn";
 
 interface LocaleSwitcherProps {
 	className?: string;
+}
+
+function LocaleOptionLabel({
+	localeCode,
+	label,
+}: {
+	localeCode: AppLocale;
+	label: string;
+}) {
+	return (
+		<span className="inline-flex items-center gap-2">
+			<LocaleFlagIcon locale={localeCode} />
+			<span className="tracking-[0.1em] uppercase">{label}</span>
+		</span>
+	);
 }
 
 export function LocaleSwitcher({className}: LocaleSwitcherProps) {
@@ -52,12 +68,17 @@ export function LocaleSwitcher({className}: LocaleSwitcherProps) {
 					}
 				}}
 			>
-				{t(`options.${activeLocale}`)}
-				{isMenuOpen ? (
-					<ChevronUp className="h-4 w-4 shrink-0" aria-hidden />
-				) : (
-					<ChevronDown className="h-4 w-4 shrink-0" aria-hidden />
-				)}
+				<span className="inline-flex items-center gap-1.5">
+					<LocaleOptionLabel
+						localeCode={activeLocale}
+						label={t(`options.${activeLocale}`)}
+					/>
+					{isMenuOpen ? (
+						<ChevronUp className="h-4 w-4 shrink-0" aria-hidden />
+					) : (
+						<ChevronDown className="h-4 w-4 shrink-0" aria-hidden />
+					)}
+				</span>
 			</button>
 
 			{isMenuOpen && (
@@ -65,10 +86,11 @@ export function LocaleSwitcher({className}: LocaleSwitcherProps) {
 					id={listboxId}
 					role="listbox"
 					aria-label={t("label")}
-					className="absolute top-full right-0 z-[70] mt-2 w-40 rounded-xl border border-[#1A3D5C] bg-[#071A2B] p-1 shadow-lg"
+					className="absolute top-full right-0 z-[70] mt-2 w-fit rounded-xl border border-[#1A3D5C] bg-[#071A2B] p-1 px-3 shadow-lg"
 				>
 					{routing.locales.map((localeCode) => {
-						const isActiveLocale = localeCode === activeLocale;
+						const locale = localeCode as AppLocale;
+						const isActiveLocale = locale === activeLocale;
 						return (
 							<li key={localeCode} role="option" aria-selected={isActiveLocale}>
 								<Link
@@ -82,7 +104,10 @@ export function LocaleSwitcher({className}: LocaleSwitcherProps) {
 									)}
 									onClick={() => setIsMenuOpen(false)}
 								>
-									{t(`options.${localeCode}`)}
+									<LocaleOptionLabel
+										localeCode={locale}
+										label={t(`options.${localeCode}`)}
+									/>
 								</Link>
 							</li>
 						);

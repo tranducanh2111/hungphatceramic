@@ -27,6 +27,13 @@ This project uses `next-intl` with locale JSON files.
   - `navbar.locale.options.vi`
   - `navbar.locale.options.en`
 
+## Language dropdown flags
+
+- Flag artwork lives under **`public/icons/flags/`** (`vi.svg`, `en.svg`).
+- Paths are referenced from `ICON_PATHS.flags` in `src/constants/media.ts`.
+- The **`LocaleFlagIcon`** component loads them via `next/image` (same pattern as `PublicIcon`).
+- When you add a locale in `src/i18n/routing.ts`, add a matching SVG file and a `flags` entry in `ICON_PATHS`.
+
 ## After editing
 
 Run:

@@ -1,8 +1,8 @@
 {
 	"common": {
 		"companyName": "Perla powered by Hung Phat",
-		"logoAriaLabel": "Perla powered by Hung Phat — Quay về trang chủ",
-		"logoAlt": "Logo Perla powered by Hung Phat"
+		"logoAriaLabel": "Perla — Quay về trang chủ",
+		"logoAlt": "Logo Perla"
 	},
 	"navbar": {
 		"aria": {
@@ -78,7 +78,7 @@
 			"label": "Triết lý của chúng tôi",
 			"titleLine1": "Tinh xảo thủ công",
 			"titleLine2": "Trên hết",
-			"descriptionPrefix": "Hơn một thập kỷ qua, Perla powered by Hung Phat đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt gốm sứ cao cấp như nền tảng cảm xúc cho một không gian",
+			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt gốm sứ cao cấp như nền tảng cảm xúc cho một không gian",
 			"descriptionEmphasis": "đúng nghĩa",
 			"descriptionSuffix": ".",
 			"stats": {
@@ -205,7 +205,7 @@
 			},
 			"items": {
 				"minh-chau": {
-					"quote": "Perla powered by Hung Phat đã biến căn penthouse của chúng tôi từ công trình thô thành không gian sống tinh tế. Mỗi viên gạch, mỗi mạch nối đều rất chuẩn xác.",
+					"quote": "Perla đã biến căn penthouse của chúng tôi từ công trình thô thành không gian sống tinh tế. Mỗi viên gạch, mỗi mạch nối đều rất chuẩn xác.",
 					"authorName": "Bà Minh Châu",
 					"authorTitle": "Chủ Villa",
 					"authorCompany": "Vinhomes Riverside, Hà Nội"
@@ -242,28 +242,28 @@
 	},
 	"meta": {
 		"home": {
-			"title": "Perla powered by Hung Phat | Thiết kế nội thất gốm sứ cao cấp",
-			"description": "Giải pháp bề mặt gốm sứ cao cấp cho nội thất sang trọng. Perla powered by Hung Phat, nơi nghệ thuật gặp độ chính xác kiến trúc.",
-			"ogTitle": "Perla powered by Hung Phat | Thiết kế nội thất gốm sứ cao cấp",
+			"title": "Perla | Thiết kế nội thất gốm sứ cao cấp",
+			"description": "Giải pháp bề mặt gốm sứ cao cấp cho nội thất sang trọng. Perla, nơi nghệ thuật gặp độ chính xác kiến trúc.",
+			"ogTitle": "Perla | Thiết kế nội thất gốm sứ cao cấp",
 			"ogDescription": "Bề mặt gốm sứ thiết kế riêng cho không gian cao cấp. Hơn 12 năm kinh nghiệm và hơn 200 dự án hoàn thiện.",
 			"siteName": "Perla powered by Hung Phat",
 			"ogLocale": "vi_VN"
 		},
 		"about": {
-			"title": "Về chúng tôi | Perla powered by Hung Phat",
-			"description": "Tìm hiểu Perla powered by Hung Phat, hành trình phát triển, triết lý thủ công và cam kết với nội thất gốm sứ cao cấp."
+			"title": "Về chúng tôi | Perla",
+			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất gốm sứ cao cấp."
 		},
 		"projects": {
-			"title": "Dự án | Perla powered by Hung Phat",
-			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla powered by Hung Phat với vật liệu gốm sứ cao cấp."
+			"title": "Dự án | Perla",
+			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu gốm sứ cao cấp."
 		},
 		"products": {
-			"title": "Sản phẩm | Perla powered by Hung Phat",
+			"title": "Sản phẩm | Perla",
 			"description": "Khám phá bộ sưu tập gạch và bề mặt gốm sứ cao cấp cho các dự án nội thất sang trọng."
 		},
 		"productDetail": {
-			"title": "{productName} | Perla powered by Hung Phat",
-			"description": "Khám phá {productName}, giải pháp gốm sứ cao cấp từ Perla powered by Hung Phat dành cho nội thất sang trọng."
+			"title": "{productName} | Perla",
+			"description": "Khám phá {productName}, giải pháp gốm sứ cao cấp từ Perla dành cho nội thất sang trọng."
 		}
 	},
 	"pages": {

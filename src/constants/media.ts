@@ -4,6 +4,7 @@
  * Layout:
  * - `public/logo/**` — brand marks (use `LOGO_PATHS.small` in chrome)
  * - `public/icons/contact|social` — UI SVGs
+ * - `public/icons/flags` — locale flag SVGs for the language switcher
  * - `public/media/images/{landing,featured-projects,panorama,misc}` — raster art
  * - `public/media/video/landing` — hero and similar clips
  * - `public/assets/**` — large product photo library (unchanged)
@@ -23,6 +24,10 @@ export const ICON_PATHS = {
 		instagram: "/icons/social/instagram.svg",
 		facebook: "/icons/social/facebook.svg",
 		youtube: "/icons/social/youtube.svg",
+	},
+	flags: {
+		vi: "/icons/flags/vi.svg",
+		en: "/icons/flags/en.svg",
 	},
 } as const;
 

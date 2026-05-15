@@ -1,8 +1,8 @@
 {
 	"common": {
 		"companyName": "Perla powered by Hung Phat",
-		"logoAriaLabel": "Perla powered by Hung Phat — Return to homepage",
-		"logoAlt": "Perla powered by Hung Phat logo"
+		"logoAriaLabel": "Perla — Return to homepage",
+		"logoAlt": "Perla logo"
 	},
 	"navbar": {
 		"aria": {
@@ -78,7 +78,7 @@
 			"label": "Our Philosophy",
 			"titleLine1": "Craftsmanship",
 			"titleLine2": "Over Everything",
-			"descriptionPrefix": "For over a decade, Perla powered by Hung Phat has transformed empty spaces into living narratives. We source, design, and install premium ceramic surfaces — not as a finish, but as a foundation for how a space",
+			"descriptionPrefix": "For over a decade, Perla has transformed empty spaces into living narratives. We source, design, and install premium ceramic surfaces — not as a finish, but as a foundation for how a space",
 			"descriptionEmphasis": "feels",
 			"descriptionSuffix": ".",
 			"stats": {
@@ -205,7 +205,7 @@
 			},
 			"items": {
 				"minh-chau": {
-					"quote": "Perla powered by Hung Phat transformed our penthouse from a construction site into a sanctuary. Every tile, every joint was executed with precision.",
+					"quote": "Perla transformed our penthouse from a construction site into a sanctuary. Every tile, every joint was executed with precision.",
 					"authorName": "Ms. Minh Chau",
 					"authorTitle": "Villa Owner",
 					"authorCompany": "Vinhomes Riverside, Hanoi"
@@ -242,28 +242,28 @@
 	},
 	"meta": {
 		"home": {
-			"title": "Perla powered by Hung Phat | Luxury Ceramic Interior Design",
-			"description": "Premium bespoke ceramic surfaces for discerning interiors. Perla powered by Hung Phat where artistry meets architectural precision.",
-			"ogTitle": "Perla powered by Hung Phat | Luxury Ceramic Interior Design",
+			"title": "Perla | Luxury Ceramic Interior Design",
+			"description": "Premium bespoke ceramic surfaces for discerning interiors. Perla where artistry meets architectural precision.",
+			"ogTitle": "Perla | Luxury Ceramic Interior Design",
 			"ogDescription": "Bespoke ceramic surfaces for high-end interiors. 12+ years of craftsmanship and 200+ projects completed.",
 			"siteName": "Perla powered by Hung Phat",
 			"ogLocale": "en_US"
 		},
 		"about": {
-			"title": "About Us | Perla powered by Hung Phat",
-			"description": "Learn about Perla powered by Hung Phat, our heritage, craftsmanship philosophy, and commitment to luxury ceramic interiors."
+			"title": "About Us | Perla",
+			"description": "Learn about Perla, our heritage, craftsmanship philosophy, and commitment to luxury ceramic interiors."
 		},
 		"projects": {
-			"title": "Projects | Perla powered by Hung Phat",
-			"description": "Explore completed interior projects by Perla powered by Hung Phat and see how premium ceramics elevate each space."
+			"title": "Projects | Perla",
+			"description": "Explore completed interior projects by Perla and see how premium ceramics elevate each space."
 		},
 		"products": {
-			"title": "Products | Perla powered by Hung Phat",
+			"title": "Products | Perla",
 			"description": "Browse our curated collection of premium ceramic tiles and interior surface solutions for luxury projects."
 		},
 		"productDetail": {
-			"title": "{productName} | Perla powered by Hung Phat",
-			"description": "Discover {productName}, a premium ceramic solution from Perla powered by Hung Phat for luxury interiors."
+			"title": "{productName} | Perla",
+			"description": "Discover {productName}, a premium ceramic solution from Perla for luxury interiors."
 		}
 	},
 	"pages": {
