@@ -1,0 +1,283 @@
+{
+	"common": {
+		"companyName": "Perla powered by Hung Phat",
+		"logoAriaLabel": "Perla — Quay về trang chủ",
+		"logoAlt": "Logo Perla"
+	},
+	"navbar": {
+		"aria": {
+			"mainNavigation": "Điều hướng chính",
+			"openMenu": "Mở menu",
+			"closeMenu": "Đóng menu"
+		},
+		"links": {
+			"home": "Trang chủ",
+			"about": "Về chúng tôi",
+			"products": "Sản phẩm",
+			"projects": "Dự án"
+		},
+		"cta": {
+			"bookConsultation": "Đặt lịch tư vấn"
+		},
+		"locale": {
+			"label": "Chọn ngôn ngữ",
+			"options": {
+				"en": "EN",
+				"vi": "VN"
+			}
+		}
+	},
+	"footer": {
+		"tagline": "Bề mặt gốm sứ cao cấp cho không gian đẳng cấp. Tinh xảo trong từng chi tiết, bền vững theo thời gian.",
+		"sections": {
+			"navigate": "Điều hướng",
+			"collections": "Bộ sưu tập",
+			"contact": "Liên hệ"
+		},
+		"links": {
+			"about": "Về chúng tôi",
+			"projects": "Dự án",
+			"process": "Quy trình",
+			"bookConsultation": "Đặt lịch tư vấn"
+		},
+		"collections": {
+			"inspire": "Dòng Inspire",
+			"travertine": "Dòng Travertine",
+			"orientStar": "Dòng Orient Star",
+			"sunshine": "Dòng Sunshine",
+			"architectural": "Dòng kiến trúc 20mm"
+		},
+		"legal": {
+			"privacy": "Chính sách bảo mật",
+			"terms": "Điều khoản dịch vụ"
+		},
+		"social": {
+			"instagram": "Instagram",
+			"facebook": "Facebook",
+			"youtube": "YouTube"
+		},
+		"contact": {
+			"address": "Số 583 Giải Phóng, Giáp Bát, Hoàng Mai, Hà Nội",
+			"phone": "+84 (0) 24 1234 5678",
+			"email": "contact@hungphatceramic.vn"
+		},
+		"rights": "© {year} {companyName}. Bảo lưu mọi quyền."
+	},
+	"landing": {
+		"hero": {
+			"label": "Nội thất gốm sứ cao cấp",
+			"titleLine1": "Nơi từng phiến đá",
+			"titleLine2": "Kể nên câu chuyện",
+			"descriptionLine1": "Không gian gốm sứ thiết kế riêng cho gu thẩm mỹ tinh tế.",
+			"descriptionLine2": "Chuẩn xác trong thi công, bền vững theo thời gian.",
+			"primaryCta": "Khám phá dự án",
+			"secondaryCta": "Xem bộ sưu tập",
+			"scroll": "Cuộn xuống"
+		},
+		"brandStatement": {
+			"label": "Triết lý của chúng tôi",
+			"titleLine1": "Tinh xảo thủ công",
+			"titleLine2": "Trên hết",
+			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt gốm sứ cao cấp như nền tảng cảm xúc cho một không gian",
+			"descriptionEmphasis": "đúng nghĩa",
+			"descriptionSuffix": ".",
+			"stats": {
+				"craftsmanshipYears": "Năm kinh nghiệm",
+				"projectsCompleted": "Dự án hoàn thiện",
+				"materialCollections": "Bộ sưu tập vật liệu"
+			},
+			"imageAlt": "Nghệ nhân đang thi công tấm gạch khổ lớn"
+		},
+		"projects": {
+			"label": "Dự án tiêu biểu",
+			"heading": "Những công trình nổi bật",
+			"viewAll": "Xem tất cả dự án",
+			"viewProject": "Xem dự án",
+			"items": {
+				"ramada-ha-long-bay": {
+					"title": "Ramada Hạ Long Bay",
+					"location": "Tô Hiến Thành, Hồng Gai, Quảng Ninh",
+					"area": "Sảnh khách sạn và khu vực công cộng",
+					"imageAlt": "Dự án nội thất gốm sứ Ramada Hạ Long Bay"
+				},
+				"hinode-city": {
+					"title": "Hinode City",
+					"location": "201 Phố Minh Khai, Bạch Mai, Hà Nội",
+					"area": "Hoàn thiện bề mặt nội thất villa, 450m²",
+					"imageAlt": "Dự án nội thất gốm sứ Hinode City"
+				},
+				"vinhomes-symphony": {
+					"title": "Vinhomes Symphony",
+					"location": "Khu đô thị Vinhomes Riverside, Phúc Lợi, Hà Nội",
+					"area": "Sảnh khách sạn và khu vực công cộng",
+					"imageAlt": "Dự án nội thất gốm sứ Vinhomes Symphony"
+				},
+				"grand-world-phu-quocquoc": {
+					"title": "Grand World Phú Quốc",
+					"location": "Bãi Dài, Phú Quốc, An Giang",
+					"area": "Sảnh khách sạn và khu vực công cộng",
+					"imageAlt": "Dự án nội thất gốm sứ Grand World Phú Quốc"
+				},
+				"saigon-intela": {
+					"title": "Dự án Saigon Intela",
+					"location": "13E, Khu đô thị mới Nam Thành Phố, Bình Hưng, Hồ Chí Minh",
+					"area": "Căn hộ cao cấp",
+					"imageAlt": "Dự án nội thất gốm sứ Saigon Intela"
+				},
+				"empire-city": {
+					"title": "Dự án Empire City",
+					"location": "2B Mai Chí Thọ, An Khánh, Hồ Chí Minh",
+					"area": "Căn hộ cao cấp",
+					"imageAlt": "Dự án nội thất gốm sứ Empire City"
+				}
+			}
+		},
+		"materials": {
+			"label": "Bộ sưu tập",
+			"heading": "Bề mặt định hình không gian",
+			"description": "Năm bộ sưu tập riêng biệt, mỗi bộ dành cho một tầm nhìn sang trọng khác nhau.",
+			"tileFormat": "Kích thước gạch",
+			"size60x120": "60 × 120",
+			"size80x80": "80 × 80",
+			"discover": "Khám phá",
+			"exploreFullCollection": "Khám phá toàn bộ bộ sưu tập",
+			"categories": {
+				"inspire": {
+					"name": "Dòng Inspire",
+					"tagline": "Hoa văn nổi bật. Cá tính bền vững."
+				},
+				"travertine": {
+					"name": "Dòng Travertine",
+					"tagline": "Vẻ ấm tự nhiên của đá, tinh chỉnh cho nội thất hiện đại."
+				},
+				"orient-star": {
+					"name": "Dòng Orient Star",
+					"tagline": "Sắc ngà thanh lịch, hợp mọi phong cách vượt thời gian."
+				},
+				"sunshine": {
+					"name": "Dòng Sunshine",
+					"tagline": "Không gian thoáng sáng với bề mặt nhẹ nhàng."
+				},
+				"architectural": {
+					"name": "Dòng kiến trúc 20mm",
+					"tagline": "Thiết kế cho những không gian đòi hỏi độ bền cao."
+				}
+			}
+		},
+		"stats": {
+			"label": "Những con số nổi bật",
+			"quote": "\"Mỗi con số là một không gian được nâng tầm, một khách hàng đặt niềm tin, một chi tiết được hoàn thiện.\"",
+			"items": {
+				"12": "Năm kinh nghiệm",
+				"200": "Dự án hoàn thành",
+				"50000": "m² đã thi công",
+				"35": "Bộ sưu tập vật liệu"
+			}
+		},
+		"process": {
+			"label": "Quy trình của chúng tôi",
+			"heading": "Cách chúng tôi triển khai",
+			"steps": {
+				"consultation": {
+					"title": "Tư vấn",
+					"description": "Chúng tôi lắng nghe trước khi đề xuất. Qua buổi tư vấn chuyên sâu, đội ngũ sẽ làm rõ định hướng thẩm mỹ, nhu cầu sử dụng và ý đồ kiến trúc để mỗi lựa chọn vật liệu đều chính xác."
+				},
+				"curation": {
+					"title": "Tuyển chọn",
+					"description": "Từ hơn 35 dòng sản phẩm, chúng tôi tuyển chọn các bề mặt phù hợp cả thẩm mỹ lẫn kỹ thuật. Mỗi đề xuất đều có chủ đích và căn cứ rõ ràng."
+				},
+				"fulfillment": {
+					"title": "Thi công",
+					"description": "Đội ngũ tay nghề cao thi công chuẩn xác ở từng mạch ghép, từng cạnh cắt. Chúng tôi xử lý không gian với sự tỉ mỉ của một nghệ nhân."
+				},
+				"aftercare": {
+					"title": "Hậu mãi",
+					"description": "Chúng tôi đồng hành sau bàn giao với tài liệu hướng dẫn bảo dưỡng và chính sách bảo hành rõ ràng, giúp khoản đầu tư của bạn luôn được bảo toàn giá trị."
+				}
+			}
+		},
+		"testimonials": {
+			"label": "Khách hàng nói gì",
+			"aria": {
+				"previous": "Lời chứng thực trước",
+				"next": "Lời chứng thực tiếp theo",
+				"goTo": "Đi đến lời chứng thực {index}"
+			},
+			"items": {
+				"minh-chau": {
+					"quote": "Perla đã biến căn penthouse của chúng tôi từ công trình thô thành không gian sống tinh tế. Mỗi viên gạch, mỗi mạch nối đều rất chuẩn xác.",
+					"authorName": "Bà Minh Châu",
+					"authorTitle": "Chủ Villa",
+					"authorCompany": "Vinhomes Riverside, Hà Nội"
+				},
+				"tran-quoc-hung": {
+					"quote": "Chúng tôi hợp tác với Hùng Phát cho sảnh khách sạn boutique. Bộ Travertine mà đội ngũ tư vấn thực sự hoàn hảo và được khách hàng đánh giá cao mỗi ngày.",
+					"authorName": "Ông Trần Quốc Hùng",
+					"authorTitle": "Giám đốc",
+					"authorCompany": "Aria Boutique Hotel, Hải Phòng"
+				},
+				"nguyen-lan-anh": {
+					"quote": "Hiếm có đơn vị gốm sứ nào hiểu ý đồ thiết kế nội thất sâu như Hùng Phát. Vật liệu được cung cấp vượt kỳ vọng kỹ thuật và thẩm mỹ của chúng tôi.",
+					"authorName": "KTS. Nguyễn Lan Anh",
+					"authorTitle": "Kiến trúc sư trưởng",
+					"authorCompany": "Studio Lân, Hà Nội"
+				}
+			}
+		},
+		"visualStory": {
+			"ariaLabel": "Câu chuyện toàn cảnh gốm sứ Orient Star",
+			"imageAlt": "Toàn cảnh gốm sứ Orient Star G12W05J trong không gian nội thất cao cấp",
+			"title": "Chi tiết mà số đông bỏ qua.",
+			"subtitle": "Tinh xảo tạo nên tổng thể."
+		},
+		"cta": {
+			"label": "Bắt đầu dự án của bạn",
+			"titleLine1": "Sẵn sàng định hình",
+			"titleLine2": "không gian riêng?",
+			"description": "Đội ngũ của chúng tôi chỉ nhận số lượng dự án giới hạn theo từng mùa để đảm bảo chất lượng hoàn hảo trong mọi chi tiết. Showroom riêng đón tiếp theo lịch hẹn.",
+			"primaryCta": "Đặt lịch tư vấn",
+			"secondaryCta": "Xem bộ sưu tập",
+			"officeAddress": "Số 583 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, Hà Nội"
+		}
+	},
+	"meta": {
+		"home": {
+			"title": "Perla | Thiết kế nội thất gốm sứ cao cấp",
+			"description": "Giải pháp bề mặt gốm sứ cao cấp cho nội thất sang trọng. Perla, nơi nghệ thuật gặp độ chính xác kiến trúc.",
+			"ogTitle": "Perla | Thiết kế nội thất gốm sứ cao cấp",
+			"ogDescription": "Bề mặt gốm sứ thiết kế riêng cho không gian cao cấp. Hơn 12 năm kinh nghiệm và hơn 200 dự án hoàn thiện.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "vi_VN"
+		},
+		"about": {
+			"title": "Về chúng tôi | Perla",
+			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất gốm sứ cao cấp."
+		},
+		"projects": {
+			"title": "Dự án | Perla",
+			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu gốm sứ cao cấp."
+		},
+		"products": {
+			"title": "Sản phẩm | Perla",
+			"description": "Khám phá bộ sưu tập gạch và bề mặt gốm sứ cao cấp cho các dự án nội thất sang trọng."
+		},
+		"productDetail": {
+			"title": "{productName} | Perla",
+			"description": "Khám phá {productName}, giải pháp gốm sứ cao cấp từ Perla dành cho nội thất sang trọng."
+		}
+	},
+	"pages": {
+		"about": {
+			"heading": "Về chúng tôi"
+		},
+		"projects": {
+			"heading": "Dự án của chúng tôi"
+		},
+		"products": {
+			"heading": "Sản phẩm của chúng tôi"
+		},
+		"productDetail": {
+			"heading": "Sản phẩm: {slug}"
+		}
+	}
+}

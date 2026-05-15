@@ -1,163 +1,148 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/landing";
 import { ROUTES, projectDetailPath } from "@/constants/routes";
+import { Link } from "@/i18n/navigation";
 
-import { useRef } from "react";
-import { useMotionValue, useSpring, useTransform } from "framer-motion";
+function ProjectCard({
+	project,
+	index,
+	translationNamespace,
+}: {
+	project: FeaturedProject;
+	index: number;
+	translationNamespace: string;
+}) {
+	const t = useTranslations("landing.projects");
 
-function ProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
-  const cardRef = useRef<HTMLElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+	return (
+		<motion.article
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
+			viewport={{ once: true, amount: 0.2 }}
+			className="group relative overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)]"
+		>
+			<div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.01]">
+				<div className="relative aspect-[4/3] overflow-hidden">
+					<Image
+						src={project.imageUrl}
+						alt={t(`${translationNamespace}.imageAlt`)}
+						fill
+						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+						sizes="(max-width: 768px) 100vw, 50vw"
+					/>
+					<div className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/72 via-[#071A2B]/28 to-[#071A2B]/08" />
+					<div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(212,184,134,0.12),transparent_40%)]" />
+					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[42%] bg-gradient-to-t from-[#071A2B]/55 via-[#071A2B]/18 to-transparent" />
+				</div>
 
-  // Smooth out the mouse values
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 25 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 25 });
+				<div className="pointer-events-none absolute top-5 right-5 left-5 z-10 flex items-start justify-between gap-4">
+					<div className="max-w-[min(100%,calc(100%-5.5rem))] rounded-xl border border-white/10 bg-[#071A2B]/28 px-4 py-3 backdrop-blur-md backdrop-saturate-150">
+						<Text
+							variant="h4"
+							className="line-clamp-2 text-[#F4F4F6] [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_24px_rgba(7,26,43,0.7)]"
+						>
+							{t(`${translationNamespace}.title`)}
+						</Text>
+					</div>
+					<span className="text-footnote shrink-0 rounded-full border border-[#D4B886]/28 bg-[#071A2B]/45 px-3 py-1.5 font-sans tracking-[0.14em] text-[#D4B886] uppercase backdrop-blur-md backdrop-saturate-150">
+						{project.year}
+					</span>
+				</div>
 
-  // Map mouse position to rotation degrees (max ±8 degrees)
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    // Normalized coordinates (-0.5 to 0.5)
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.article
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative overflow-hidden rounded-2xl bg-[#0E2A42] [perspective:1000px]"
-    >
-      {/* Container for parallax interior elements */}
-      <div 
-        className="relative h-full w-full transition-all duration-300 group-hover:shadow-2xl"
-        style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}
-      >
-        {/* Image */}
-        <div className="relative h-72 overflow-hidden lg:h-80" style={{ transform: "translateZ(-20px)" }}>
-          <Image
-            src={project.imageUrl}
-            alt={`${project.title} — luxury ceramic interior project`}
-            fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/90 via-[#071A2B]/20 to-transparent" />
-
-          {/* Year badge */}
-          <span 
-            className="absolute right-4 top-4 rounded-full border border-[#D4B886]/30 bg-[#071A2B]/60 px-3 py-1 font-sans text-footnote text-[#D4B886] backdrop-blur-sm"
-            style={{ transform: "translateZ(40px)" }}
-          >
-            {project.year}
-          </span>
-        </div>
-
-        {/* Content */}
-        <div className="p-6 relative z-10" style={{ transform: "translateZ(40px)" }}>
-          <Text variant="body-sm" className="font-sans uppercase tracking-widest text-[#D4B886]">
-            {project.location}
-          </Text>
-          <Text variant="h4" className="mt-2 text-[#F4F4F6]">
-            {project.title}
-          </Text>
-          <Text variant="body-sm" className="mt-2 text-[#F4F4F6]/50">
-            {project.area}
-          </Text>
-
-          <Link
-            href={projectDetailPath(project.id)}
-            className="mt-4 inline-flex items-center gap-2 font-sans text-body-sm text-[#D4B886] transition-gap duration-300 hover:gap-3"
-          >
-            View Project <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-    </motion.article>
-  );
+				<div className="absolute right-5 bottom-5 left-5 z-10">
+					<div className="rounded-2xl border border-white/12 bg-[#071A2B]/22 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500 group-hover:border-white/18 group-hover:bg-[#071A2B]/30">
+						<Text
+							variant="body-sm"
+							className="text-[#F4F4F6]/78 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_20px_rgba(7,26,43,0.65)]"
+						>
+							{t(`${translationNamespace}.area`)}
+						</Text>
+						<div className="mt-4 h-px bg-gradient-to-r from-white/22 via-white/10 to-transparent" />
+						<div className="mt-4 flex items-center justify-between gap-4">
+							<Text
+								variant="body-sm"
+								className="min-w-0 flex-1 truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]"
+							>
+								{t(`${translationNamespace}.location`)}
+							</Text>
+							<Link
+								href={projectDetailPath(project.id)}
+								className="text-body-sm inline-flex shrink-0 items-center gap-2 font-sans tracking-[0.08em] text-[#E8D5B0] transition-all duration-300 [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_18px_rgba(7,26,43,0.7)] group-hover:gap-3"
+							>
+								{t("viewProject")} <ArrowRight className="h-4 w-4" />
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
+		</motion.article>
+	);
 }
 
 /**
  * LandingProjects — Portfolio preview showcasing 4 featured projects.
  */
 export function LandingProjects() {
-  return (
-    <section className="bg-[#071A2B] py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Header */}
-        <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="font-sans text-label uppercase tracking-widest text-[#D4B886]"
-            >
-              Selected Projects
-            </motion.span>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
-                Our Finest Work
-              </Text>
-            </motion.div>
-          </div>
+	const t = useTranslations("landing.projects");
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Button href={ROUTES.projects} variant="outline" size="md">
-              View All Projects
-            </Button>
-          </motion.div>
-        </div>
+	return (
+		<section className="bg-[#071A2B] py-28 lg:py-36">
+			<div className="mx-auto max-w-7xl px-6 lg:px-12">
+				{/* Header */}
+				<div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+					<div>
+						<motion.span
+							initial={{ opacity: 0, y: 16 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6 }}
+							viewport={{ once: true }}
+							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
+						>
+							{t("label")}
+						</motion.span>
+						<motion.div
+							initial={{ opacity: 0, y: 16 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.6, delay: 0.1 }}
+							viewport={{ once: true }}
+						>
+							<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
+								{t("heading")}
+							</Text>
+						</motion.div>
+					</div>
 
-        {/* Project grid */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {FEATURED_PROJECTS.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.6, delay: 0.2 }}
+						viewport={{ once: true }}
+					>
+						<Button href={ROUTES.projects} variant="outline" size="md">
+							{t("viewAll")}
+						</Button>
+					</motion.div>
+				</div>
+
+				{/* Project grid */}
+				<div className="grid gap-6 md:grid-cols-2">
+					{FEATURED_PROJECTS.map((project, index) => (
+						<ProjectCard
+							key={project.id}
+							project={project}
+							index={index}
+							translationNamespace={`items.${project.id}`}
+						/>
+					))}
+				</div>
+			</div>
+		</section>
+	);
 }

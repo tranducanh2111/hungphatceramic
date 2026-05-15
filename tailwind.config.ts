@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Hùng Phát Ceramic — Tailwind Design System
+ * Perla powered by Hung Phat — Tailwind Design System
  *
  * Palette: Imperial Sapphire & Champagne
  * Target Audience: High-class interior design customers
