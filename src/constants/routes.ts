@@ -8,8 +8,6 @@ export const ROUTES = {
 	products: "/products",
 	projects: "/projects",
 	contact: "/contact",
-	privacyPolicy: "/privacy-policy",
-	termsOfService: "/terms-of-service",
 } as const;
 
 /** Portfolio / project detail segment under `src/app/projects/`. */

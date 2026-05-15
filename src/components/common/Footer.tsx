@@ -100,10 +100,6 @@ export function Footer() {
 		label,
 		href: productsWithCollection(collectionId),
 	}));
-	const legalLinks = [
-		{ label: t("legal.privacy"), href: ROUTES.privacyPolicy },
-		{ label: t("legal.terms"), href: ROUTES.termsOfService },
-	];
 
 	return (
 		<footer className="relative bg-[#040F1A] text-[#F4F4F6]" aria-label="Site footer">
@@ -214,17 +210,6 @@ export function Footer() {
 					<Text variant="footnote" className="text-[#F4F4F6]/25">
 						{t("rights", {year: currentYear, companyName: commonT("companyName")})}
 					</Text>
-					<div className="flex gap-6">
-						{legalLinks.map(({ label, href }) => (
-							<Link
-								key={href}
-								href={href}
-								className="text-footnote font-sans text-[#F4F4F6]/25 transition-colors duration-300 hover:text-[#D4B886]/60"
-							>
-								{label}
-							</Link>
-						))}
-					</div>
 				</div>
 			</div>
 		</footer>
