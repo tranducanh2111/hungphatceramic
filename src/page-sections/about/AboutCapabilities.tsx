@@ -2,14 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
-import { ClipboardList, Layers, Truck, ShieldCheck, type LucideProps } from "lucide-react";
+import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
 import { CAPABILITY_IDS, type CapabilityId } from "@/constants/about";
 
-type IconComponent = (props: LucideProps) => JSX.Element;
-
 /** Maps each capability ID to its Lucide icon — kept local to avoid coupling constants to React. */
-const CAPABILITY_ICONS: Record<CapabilityId, IconComponent> = {
+const CAPABILITY_ICONS: Record<CapabilityId, LucideIcon> = {
 	specification: ClipboardList,
 	production: Layers,
 	logistics: Truck,
