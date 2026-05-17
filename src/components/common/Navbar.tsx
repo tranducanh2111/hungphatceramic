@@ -48,7 +48,7 @@ export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const navContentRef = useRef<HTMLDivElement>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(1024);
+	const [expandedWidthPx, setExpandedWidthPx] = useState(1440);
 	const [shrinkWidthPx, setShrinkWidthPx] = useState(760);
 	const navItems = [
 		{ href: ROUTES.home, label: t("links.home") },
@@ -57,7 +57,7 @@ export function Navbar() {
 		{ href: ROUTES.projects, label: t("links.projects") },
 	];
 
-	const NAV_MAX_EXPANDED_PX = 1024; // 64rem
+	const NAV_MAX_EXPANDED_PX = 1440; // 64rem
 	const NAV_OUTER_SIDE_GAP_PX = 32; // fixed wrapper has px-4 on both sides
 	const NAV_HORIZONTAL_PADDING_PX = 24; // nav has px-3 => 12px each side
 	const NAV_SHRINK_BUFFER_PX = 12; // safety buffer to prevent text wrapping at fit width
