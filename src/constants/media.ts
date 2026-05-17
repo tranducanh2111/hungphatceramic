@@ -43,6 +43,31 @@ export const MEDIA_PATHS = {
 			heroPoster: "/media/images/landing/hero-poster.png",
 			brandStatement: "/media/images/landing/brand-statement.jpg",
 		},
+		about: {
+			/** Founding moment / origin section — replace with archival workshop photo. */
+			origin: "/media/images/misc/brand-statement.jpg",
+			/** Heritage timeline milestone images — swap with project-specific shots. */
+			milestones: {
+				founding: "/media/images/misc/visual-story.jpg",
+				firstHotel: "/media/images/featured-projects/ramada-halong.png",
+				hospitalityExpansion: "/media/images/featured-projects/hinode.jpg",
+				residentialGrowth: "/media/images/featured-projects/vinhomes-symphony.jpg",
+				brandsAsPartner: "/media/images/featured-projects/empire-city.jpg",
+				present: "/media/images/featured-projects/grand-phuquoc.webp",
+			},
+			/** Craft story section — three sequential craft process images. */
+			craft: {
+				kiln: "/media/images/misc/tile-texture.jpg",
+				polishing: "/media/images/misc/brand-statement.jpg",
+				installation: "/media/images/misc/visual-story.jpg",
+			},
+			/** Leadership portraits — replace with editorial head-shots. */
+			leadership: {
+				creativeDirector: "/media/images/featured-projects/hinode.jpg",
+				technicalLead: "/media/images/featured-projects/empire-city.jpg",
+				projectDirector: "/media/images/featured-projects/saigon-intela.jpg",
+			},
+		},
 		featuredProjects: {
 			ramadaHaLongBay: "/media/images/featured-projects/ramada-halong.png",
 			hinode: "/media/images/featured-projects/hinode.jpg",
@@ -58,6 +83,7 @@ export const MEDIA_PATHS = {
 	},
 	video: {
 		hero: "/media/video/landing/hero-section.mp4",
+		aboutHero: "/media/video/landing/hero-section.mp4",
 	},
 	/** Raster extras (textures, alternate art) — not wired in components yet. */
 	misc: {

@@ -250,8 +250,12 @@
 			"ogLocale": "vi_VN"
 		},
 		"about": {
-			"title": "Về chúng tôi | Perla",
-			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất porcelain cao cấp."
+			"title": "Về chúng tôi | Perla powered by Hung Phat",
+			"description": "Khám phá hành trình, tiêu chuẩn thi công và mô hình hợp tác B2B của Perla cho các dự án nội thất cao cấp.",
+			"ogTitle": "Về Perla | Đối tác gốm sứ nội thất cao cấp",
+			"ogDescription": "Tìm hiểu cách Perla đồng hành cùng kiến trúc sư, chủ đầu tư và thương hiệu khách sạn để hiện thực hóa không gian sang trọng.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "vi_VN"
 		},
 		"projects": {
 			"title": "Dự án | Perla",
@@ -268,7 +272,152 @@
 	},
 	"pages": {
 		"about": {
-			"heading": "Về chúng tôi"
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"foundingDate": "2012",
+				"address": {
+					"streetAddress": "583 Giải Phóng, Phường Giáp Bát",
+					"addressLocality": "Quận Hoàng Mai, Hà Nội",
+					"addressCountry": "VN"
+				},
+				"contact": {
+					"telephone": "+84-24-1234-5678",
+					"email": "contact@hungphatceramic.vn",
+					"contactType": "hỗ trợ khách hàng"
+				}
+			},
+			"hero": {
+				"label": "Câu chuyện của chúng tôi",
+				"titleLine1": "Chúng tôi không bán gạch.",
+				"titleLine2": "Chúng tôi kiến tạo bề mặt.",
+				"description": "Nội thất porcelain cao cấp cho những không gian đòi hỏi nhất tại Việt Nam.",
+				"scroll": "Cuộn xuống"
+			},
+			"origin": {
+				"label": "Khởi đầu",
+				"pullQuote": "Đá là xa xỉ nguyên bản nhất.",
+				"body": "Năm 2012, tại làng nghề Bát Tràng, Hùng Phát được thành lập với một ám ảnh duy nhất — tuyển chọn và thi công bề mặt gốm sứ với sự cẩn trọng của người thợ điêu khắc đá. Từ một xưởng thủ công nhỏ, chúng tôi đã trở thành đối tác gốm sứ B2B đáng tin cậy nhất Việt Nam.",
+				"imageAlt": "Ảnh tư liệu xưởng gốm Hùng Phát tại Bát Tràng, Hà Nội"
+			},
+			"heritage": {
+				"label": "Hành trình",
+				"heading": "Một thập kỷ định hình không gian",
+				"ariaLabel": "Lịch sử phát triển công ty",
+				"milestones": {
+					"founding": {
+						"title": "Thành lập tại Bát Tràng",
+						"description": "Hùng Phát mở xưởng tuyển chọn và thi công gốm sứ đầu tiên tại làng nghề gốm truyền thống của Việt Nam.",
+						"imageAlt": "Xưởng gốm Hùng Phát ban đầu tại làng Bát Tràng"
+					},
+					"firstHotel": {
+						"title": "Dự án khách sạn đầu tiên",
+						"description": "Dự án boutique hotel tiêu biểu đầu tiên chứng minh rằng thi công gốm sứ chính xác có thể bảo toàn ý đồ thiết kế ở quy mô thương mại thực tế.",
+						"imageAlt": "Dự án nội thất khách sạn đầu tiên của Perla tại Hạ Long"
+					},
+					"hospitalityExpansion": {
+						"title": "Mở rộng đa địa điểm",
+						"description": "Mở rộng sang các chương trình khách sạn đa cơ sở với quy trình kiểm soát chất lượng được chuẩn hóa cho các nhà thầu.",
+						"imageAlt": "Dự án nội thất khách sạn đa địa điểm của Perla"
+					},
+					"residentialGrowth": {
+						"title": "Cột mốc nhà ở cao cấp",
+						"description": "Hợp đồng nhà ở quy mô lớn đầu tiên — hơn 200 căn hộ cao cấp với hệ thống gốm sứ toàn diện.",
+						"imageAlt": "Dự án nhà ở cao cấp với hệ thống gốm sứ của Perla"
+					},
+					"brandsAsPartner": {
+						"title": "Đối tác B2B được công nhận",
+						"description": "Thương hiệu Perla ra đời — chính thức hóa mô hình đối tác với kiến trúc sư, chủ đầu tư và đơn vị vận hành.",
+						"imageAlt": "Dự án hợp tác B2B của Perla"
+					},
+					"present": {
+						"title": "Hiện tại",
+						"description": "Hơn 200 dự án hoàn thiện. Được tin tưởng trong các chương trình khách sạn, nhà ở và tổ hợp đa chức năng trên toàn Việt Nam.",
+						"imageAlt": "Các dự án hiện tại của Perla trên thị trường nội thất cao cấp Việt Nam"
+					}
+				}
+			},
+			"craft": {
+				"ariaLabel": "Câu chuyện tay nghề gốm sứ",
+				"beats": {
+					"kiln": {
+						"label": "Khởi nguồn",
+						"title": "Sinh ra trong lửa",
+						"body": "Mỗi viên gạch bắt đầu từ đất sét và khoáng chất, được nung ở 1.200°C. Lò nung quyết định tất cả — độ cứng, màu sắc, vân bề mặt.",
+						"imageAlt": "Gạch gốm sứ được nung trong lò công nghiệp nhiệt độ cao"
+					},
+					"polishing": {
+						"label": "Tinh chỉnh",
+						"title": "Hoàn thiện đến từng chi tiết",
+						"body": "Sau khi nung, bề mặt được hiệu chỉnh, đánh bóng và kiểm tra thủ công. Sự đồng nhất trên 10.000 m² không phải tự động hóa — đó là kết quả của tay nghề.",
+						"imageAlt": "Thợ thủ công đánh bóng và kiểm tra bề mặt gốm sứ khổ lớn"
+					},
+					"installation": {
+						"label": "Trách nhiệm",
+						"title": "Thi công có chủ đích",
+						"body": "Chúng tôi lập kế hoạch cắt ghép để giảm thiểu hao phí. Tay nghề tốt không thể tách rời sự trân trọng với không gian chúng tôi xây dựng.",
+						"imageAlt": "Kỹ thuật viên lát gạch gốm sứ khổ lớn với độ chính xác cao"
+					}
+				}
+			},
+			"capabilities": {
+				"label": "Chúng tôi cung cấp",
+				"heading": "Mô hình hoàn chỉnh cho dự án gốm sứ B2B",
+				"cards": {
+					"specification": {
+						"title": "Specification dự án",
+						"body": "Tuyển chọn vật liệu, lập hồ sơ kỹ thuật và quản lý mockup phù hợp với ý đồ thiết kế của bạn."
+					},
+					"production": {
+						"title": "Sản xuất theo yêu cầu",
+						"body": "Bộ sưu tập được sản xuất đúng dung sai kích thước, màu sắc và bề mặt theo từng dự án cụ thể."
+					},
+					"logistics": {
+						"title": "Hỗ trợ kỹ thuật & logistics",
+						"body": "Giao hàng theo tiến độ, phối hợp nền thi công và quản lý lắp đặt tại công trường đa bộ môn."
+					},
+					"aftercare": {
+						"title": "Chăm sóc sau thi công",
+						"body": "Tiêu chuẩn bảo trì được lập thành tài liệu, kế hoạch thay thế và hỗ trợ hiệu suất bề mặt dài hạn."
+					}
+				}
+			},
+			"leadership": {
+				"label": "Con người",
+				"heading": "Kinh nghiệm đằng sau mỗi kết quả",
+				"members": {
+					"creativeDirector": {
+						"name": "Linh Trần",
+						"role": "Giám đốc sáng tạo",
+						"credit": "15 năm trong lĩnh vực specification vật liệu nội thất cao cấp",
+						"imageAlt": "Linh Trần, Giám đốc sáng tạo tại Perla"
+					},
+					"technicalLead": {
+						"name": "Minh Nguyễn",
+						"role": "Trưởng bộ phận kỹ thuật",
+						"credit": "20 năm thi công gốm sứ chính xác cao",
+						"imageAlt": "Minh Nguyễn, Trưởng bộ phận kỹ thuật tại Perla"
+					},
+					"projectDirector": {
+						"name": "An Bùi",
+						"role": "Giám đốc dự án",
+						"credit": "Quản lý hơn 80 chương trình gốm sứ B2B trên toàn Việt Nam",
+						"imageAlt": "An Bùi, Giám đốc dự án tại Perla"
+					}
+				}
+			},
+			"clients": {
+				"label": "Được tin tưởng bởi",
+				"heading": "Được chỉ định bởi những không gian định hình skyline Việt Nam.",
+				"ariaLabel": "Danh sách khách hàng và dự án"
+			},
+			"cta": {
+				"label": "Bước tiếp theo",
+				"titleLine1": "Lên kế hoạch cho",
+				"titleLine2": "Dự án cao cấp tiếp theo cùng Perla.",
+				"description": "Đặt lịch tư vấn để trao đổi brief dự án, định hướng thiết kế và yêu cầu triển khai cùng đội ngũ chuyên gia của chúng tôi.",
+				"primaryCta": "Đặt lịch tư vấn",
+				"secondaryCta": "Xem hồ sơ dự án"
+			}
 		},
 		"projects": {
 			"heading": "Dự án của chúng tôi"

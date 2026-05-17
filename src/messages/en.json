@@ -250,8 +250,12 @@
 			"ogLocale": "en_US"
 		},
 		"about": {
-			"title": "About Us | Perla",
-			"description": "Learn about Perla, our heritage, craftsmanship philosophy, and commitment to luxury ceramic interiors."
+			"title": "About Us | Perla powered by Hung Phat",
+			"description": "Explore Perla's heritage, craftsmanship standards, and B2B delivery model for luxury interior ceramic projects.",
+			"ogTitle": "About Perla | Luxury Interior Ceramic Partner",
+			"ogDescription": "Discover how Perla helps architects, developers, and hospitality brands deliver premium interior spaces with precision ceramic craftsmanship.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "en_US"
 		},
 		"projects": {
 			"title": "Projects | Perla",
@@ -268,7 +272,152 @@
 	},
 	"pages": {
 		"about": {
-			"heading": "About Us"
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"foundingDate": "2012",
+				"address": {
+					"streetAddress": "583 Giai Phong, Giap Bat Ward",
+					"addressLocality": "Hoang Mai District, Hanoi",
+					"addressCountry": "VN"
+				},
+				"contact": {
+					"telephone": "+84-24-1234-5678",
+					"email": "contact@hungphatceramic.vn",
+					"contactType": "customer support"
+				}
+			},
+			"hero": {
+				"label": "Our Story",
+				"titleLine1": "We don't sell tiles.",
+				"titleLine2": "We compose surfaces.",
+				"description": "Premium porcelain interiors for Vietnam's most demanding spaces.",
+				"scroll": "Scroll"
+			},
+			"origin": {
+				"label": "The Beginning",
+				"pullQuote": "Stone is the original luxury.",
+				"body": "In 2012, in the craft heartland of Bat Trang, Hung Phat was founded with a single obsession — to source and install ceramic surfaces with the same rigor a master sculptor gives to stone. A workshop born of craft grew into Vietnam's most trusted B2B ceramic partner.",
+				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
+			},
+			"heritage": {
+				"label": "Heritage",
+				"heading": "A Decade of Defining Spaces",
+				"ariaLabel": "Company heritage timeline",
+				"milestones": {
+					"founding": {
+						"title": "Founded in Bat Trang",
+						"description": "Hung Phat opens its first ceramic sourcing and installation practice in the craft heartland of Vietnam.",
+						"imageAlt": "The original Hung Phat workshop in Bat Trang craft village"
+					},
+					"firstHotel": {
+						"title": "First Hospitality Commission",
+						"description": "A landmark boutique hotel project proves that precision ceramic installation can protect design intent at full commercial scale.",
+						"imageAlt": "First major hotel interior project by Perla in Ha Long Bay"
+					},
+					"hospitalityExpansion": {
+						"title": "Multi-Site Expansion",
+						"description": "Expanded into multi-property hospitality programs with standardised quality controls across contractor teams.",
+						"imageAlt": "Multi-site hospitality project interior by Perla"
+					},
+					"residentialGrowth": {
+						"title": "Premium Residential Milestone",
+						"description": "First large-format residential specification — 200+ luxury apartments with full-scope ceramic systems.",
+						"imageAlt": "Luxury residential project interior with Perla ceramic systems"
+					},
+					"brandsAsPartner": {
+						"title": "Recognised B2B Partner",
+						"description": "Perla brand launched — formalising the partnership model with architects, developers, and hospitality operators.",
+						"imageAlt": "Perla B2B partner project collaboration"
+					},
+					"present": {
+						"title": "Present Day",
+						"description": "200+ projects completed. Trusted across hospitality, residential, and mixed-use programs throughout Vietnam.",
+						"imageAlt": "Current Perla projects across Vietnam's premium interior market"
+					}
+				}
+			},
+			"craft": {
+				"ariaLabel": "Ceramic craft story",
+				"beats": {
+					"kiln": {
+						"label": "Origin",
+						"title": "Born in Fire",
+						"body": "Each tile begins as raw clay and mineral pigment, formed under 1,200°C. The kiln determines everything — density, tone, surface character.",
+						"imageAlt": "Ceramic tiles being fired in a high-temperature industrial kiln"
+					},
+					"polishing": {
+						"label": "Refinement",
+						"title": "Worked to Perfection",
+						"body": "After firing, surfaces are calibrated, honed, and inspected by hand. Consistency across 10,000 m² is not automated — it is earned.",
+						"imageAlt": "Artisan polishing and inspecting large-format ceramic surfaces"
+					},
+					"installation": {
+						"label": "Responsibility",
+						"title": "Installed With Intent",
+						"body": "We plan cutting waste to minimise environmental footprint. Good craftsmanship is inseparable from care for the spaces we build.",
+						"imageAlt": "Specialist installer laying large-format ceramic tiles with precision"
+					}
+				}
+			},
+			"capabilities": {
+				"label": "What We Deliver",
+				"heading": "A Complete Model for B2B Ceramic Projects",
+				"cards": {
+					"specification": {
+						"title": "Project Specification",
+						"body": "Material selection, technical detailing, and mockup management aligned to your design intent."
+					},
+					"production": {
+						"title": "Custom Production",
+						"body": "Curated collections produced to exact dimensional, tonal, and finish tolerances for each project."
+					},
+					"logistics": {
+						"title": "Technical & Logistics Support",
+						"body": "Sequenced delivery, substrate coordination, and on-site installation management across complex multi-trade environments."
+					},
+					"aftercare": {
+						"title": "Post-Installation Care",
+						"body": "Documented maintenance standards, replacement planning, and long-term surface performance support."
+					}
+				}
+			},
+			"leadership": {
+				"label": "The People",
+				"heading": "Experience Behind Every Outcome",
+				"members": {
+					"creativeDirector": {
+						"name": "Linh Tran",
+						"role": "Creative Director",
+						"credit": "15 years in luxury interior material specification",
+						"imageAlt": "Linh Tran, Creative Director at Perla"
+					},
+					"technicalLead": {
+						"name": "Minh Nguyen",
+						"role": "Technical Delivery Lead",
+						"credit": "20 years in high-precision ceramic installation",
+						"imageAlt": "Minh Nguyen, Technical Delivery Lead at Perla"
+					},
+					"projectDirector": {
+						"name": "An Bui",
+						"role": "Project Director",
+						"credit": "Managed 80+ B2B ceramic programs across Vietnam",
+						"imageAlt": "An Bui, Project Director at Perla"
+					}
+				}
+			},
+			"clients": {
+				"label": "Trusted By",
+				"heading": "Specified by the spaces that shape Vietnam's skyline.",
+				"ariaLabel": "Client and project roster"
+			},
+			"cta": {
+				"label": "Next Step",
+				"titleLine1": "Plan Your Next",
+				"titleLine2": "Premium Project.",
+				"description": "Book a consultation to discuss your project brief, design direction, and delivery requirements with our senior team.",
+				"primaryCta": "Book a Consultation",
+				"secondaryCta": "Browse Project Portfolio"
+			}
 		},
 		"projects": {
 			"heading": "Our Projects"
