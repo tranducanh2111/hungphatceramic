@@ -65,10 +65,10 @@
 	},
 	"landing": {
 		"hero": {
-			"label": "Luxury Ceramic Interior",
+			"label": "Luxury Porcelain Interior",
 			"titleLine1": "Where Stone",
 			"titleLine2": "Tells a Story",
-			"descriptionLine1": "Bespoke ceramic interiors for discerning spaces.",
+			"descriptionLine1": "Bespoke porcelain interiors for discerning spaces.",
 			"descriptionLine2": "Crafted with precision, designed to endure.",
 			"primaryCta": "Explore Our Work",
 			"secondaryCta": "View Collection",
@@ -78,7 +78,7 @@
 			"label": "Our Philosophy",
 			"titleLine1": "Craftsmanship",
 			"titleLine2": "Over Everything",
-			"descriptionPrefix": "For over a decade, Perla has transformed empty spaces into living narratives. We source, design, and install premium ceramic surfaces — not as a finish, but as a foundation for how a space",
+			"descriptionPrefix": "For over a decade, Perla has transformed empty spaces into living narratives. We source, design, and install premium porcelain surfaces not as a finish, but as a foundation for how a space",
 			"descriptionEmphasis": "feels",
 			"descriptionSuffix": ".",
 			"stats": {
@@ -259,11 +259,11 @@
 		},
 		"products": {
 			"title": "Products | Perla",
-			"description": "Browse our curated collection of premium ceramic tiles and interior surface solutions for luxury projects."
+			"description": "Browse our curated collection of premium porcelain tiles and interior surface solutions for luxury projects."
 		},
 		"productDetail": {
 			"title": "{productName} | Perla",
-			"description": "Discover {productName}, a premium ceramic solution from Perla for luxury interiors."
+			"description": "Discover {productName}, a premium porcelain solution from Perla for luxury interiors."
 		}
 	},
 	"pages": {

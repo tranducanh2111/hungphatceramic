@@ -65,10 +65,10 @@
 	},
 	"landing": {
 		"hero": {
-			"label": "Nội thất gốm sứ cao cấp",
+			"label": "Nội thất porcelain cao cấp",
 			"titleLine1": "Nơi từng phiến đá",
 			"titleLine2": "Kể nên câu chuyện",
-			"descriptionLine1": "Không gian gốm sứ thiết kế riêng cho gu thẩm mỹ tinh tế.",
+			"descriptionLine1": "Không gian porcelain thiết kế riêng cho gu thẩm mỹ tinh tế.",
 			"descriptionLine2": "Chuẩn xác trong thi công, bền vững theo thời gian.",
 			"primaryCta": "Khám phá dự án",
 			"secondaryCta": "Xem bộ sưu tập",
@@ -78,7 +78,7 @@
 			"label": "Triết lý của chúng tôi",
 			"titleLine1": "Tinh xảo thủ công",
 			"titleLine2": "Trên hết",
-			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt gốm sứ cao cấp như nền tảng cảm xúc cho một không gian",
+			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt porcelain cao cấp như nền tảng cảm xúc cho một không gian",
 			"descriptionEmphasis": "đúng nghĩa",
 			"descriptionSuffix": ".",
 			"stats": {
@@ -251,19 +251,19 @@
 		},
 		"about": {
 			"title": "Về chúng tôi | Perla",
-			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất gốm sứ cao cấp."
+			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất porcelain cao cấp."
 		},
 		"projects": {
 			"title": "Dự án | Perla",
-			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu gốm sứ cao cấp."
+			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu porcelain cao cấp."
 		},
 		"products": {
 			"title": "Sản phẩm | Perla",
-			"description": "Khám phá bộ sưu tập gạch và bề mặt gốm sứ cao cấp cho các dự án nội thất sang trọng."
+			"description": "Khám phá bộ sưu tập gạch và bề mặt porcelain cao cấp cho các dự án nội thất sang trọng."
 		},
 		"productDetail": {
 			"title": "{productName} | Perla",
-			"description": "Khám phá {productName}, giải pháp gốm sứ cao cấp từ Perla dành cho nội thất sang trọng."
+			"description": "Khám phá {productName}, giải pháp porcelain cao cấp từ Perla dành cho nội thất sang trọng."
 		}
 	},
 	"pages": {
