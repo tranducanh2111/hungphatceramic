@@ -187,8 +187,8 @@
 					"description": "From our collections of 35+ series, we handpick surfaces that align with your aesthetic and structural requirements. Every recommendation is considered, never arbitrary."
 				},
 				"fulfillment": {
-					"title": "Fulfillment",
-					"description": "Expert craftsmen. Precise execution. Every joint and edge is placed with deliberate care. We treat your space with the same reverence as a master artisan treats their medium."
+					"title": "Project Fulfillment",
+					"description": "We coordinate every detail with precision, from material allocation and quality checks to delivery scheduling and on-site readiness. Ensuring your selected surfaces arrive exactly as envisioned, seamlessly aligned with your project timeline."
 				},
 				"aftercare": {
 					"title": "Aftercare",
@@ -287,14 +287,14 @@
 				}
 			},
 			"hero": {
-				"label": "Our Story",
 				"titleLine1": "We don't sell tiles.",
 				"titleLine2": "We compose surfaces.",
 				"description": "Premium porcelain interiors for Vietnam's most demanding spaces.",
+				"cta": "Discover Our Story",
 				"scroll": "Scroll"
 			},
 			"origin": {
-				"label": "The Beginning",
+				"heading": "Craft born from conviction.",
 				"pullQuote": "Stone is the original luxury.",
 				"body": "In 2012, in the craft heartland of Bat Trang, Hung Phat was founded with a single obsession — to source and install ceramic surfaces with the same rigor a master sculptor gives to stone. A workshop born of craft grew into Vietnam's most trusted B2B ceramic partner.",
 				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
@@ -382,26 +382,39 @@
 				}
 			},
 			"leadership": {
-				"label": "The People",
-				"heading": "Experience Behind Every Outcome",
+				"heading": "Leadership Team",
+				"subheading": "The driving force behind Perla's craft excellence.",
+				"principal": {
+					"name": "Hung Nguyen",
+					"role": "Founder & Principal",
+					"imageAlt": "Hung Nguyen, Founder and Principal of Perla powered by Hung Phat",
+					"environmentalImageAlt": "Hung Nguyen in a finished luxury ceramic interior space"
+				},
 				"members": {
 					"creativeDirector": {
 						"name": "Linh Tran",
 						"role": "Creative Director",
-						"credit": "15 years in luxury interior material specification",
 						"imageAlt": "Linh Tran, Creative Director at Perla"
 					},
 					"technicalLead": {
 						"name": "Minh Nguyen",
-						"role": "Technical Delivery Lead",
-						"credit": "20 years in high-precision ceramic installation",
-						"imageAlt": "Minh Nguyen, Technical Delivery Lead at Perla"
+						"role": "Technical Lead",
+						"imageAlt": "Minh Nguyen, Technical Lead at Perla"
 					},
 					"projectDirector": {
 						"name": "An Bui",
 						"role": "Project Director",
-						"credit": "Managed 80+ B2B ceramic programs across Vietnam",
 						"imageAlt": "An Bui, Project Director at Perla"
+					},
+					"operationsDirector": {
+						"name": "Lan Pham",
+						"role": "Head of Operations",
+						"imageAlt": "Lan Pham, Head of Operations at Perla"
+					},
+					"salesDirector": {
+						"name": "Duc Tran",
+						"role": "Head of Sales",
+						"imageAlt": "Duc Tran, Head of Sales at Perla"
 					}
 				}
 			},
@@ -411,12 +424,10 @@
 				"ariaLabel": "Client and project roster"
 			},
 			"cta": {
-				"label": "Next Step",
-				"titleLine1": "Plan Your Next",
-				"titleLine2": "Premium Project.",
+				"titleLine1": "Your next landmark",
+				"titleLine2": "begins here.",
 				"description": "Book a consultation to discuss your project brief, design direction, and delivery requirements with our senior team.",
-				"primaryCta": "Book a Consultation",
-				"secondaryCta": "Browse Project Portfolio"
+				"primaryCta": "Book a Consultation"
 			}
 		},
 		"projects": {
