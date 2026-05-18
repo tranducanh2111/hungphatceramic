@@ -172,8 +172,13 @@ The website must be designed with a strong emphasis on **storytelling**, guiding
     - [Ayocin](https://ayocin.com/) — for immersive media use and dynamic layouts.
   - **Simple Landing Page**:
     - [Warwick Acoustics](https://warwickacoustics.com/) — for clean, elegant scroll-based transitions and premium feel.
+    - [Flyward](https://www.flyward.com/about).
+    - [Flyward](https://www.flyward.com/).
   - **Timeline Components**:
     - [Kaatdm](https://kaatdm.com/) — for scroll-linked timeline narrative design.
+  - **Spiral Effect**:
+    - [Pacomepertant](https://pacomepertant.com/).
+    - [Active Theory](https://activetheory.net/work).
 
 ---
 
