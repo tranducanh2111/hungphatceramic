@@ -34,10 +34,10 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 		<div
 			className={cn(
 				"relative shrink-0 overflow-hidden rounded-sm shadow-[0_14px_40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(212,184,134,0.22)]",
-				// Stronger shadow on hover without interpolating shadow (cheap snap).
-				"group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)]",
-				"-rotate-6 transform-gpu transition-transform group-hover:-rotate-3 group-hover:scale-[1.05]",
-				"motion-reduce:rotate-0 motion-reduce:group-hover:scale-100",
+				// Stronger shadow on hover/active without interpolating shadow (cheap snap).
+				"group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)] group-active:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)]",
+				"-rotate-6 transform-gpu transition-transform group-hover:-rotate-3 group-hover:scale-[1.05] group-active:-rotate-3 group-active:scale-[1.05]",
+				"motion-reduce:rotate-0 motion-reduce:group-hover:scale-100 motion-reduce:group-active:scale-100",
 				TILE_HOVER_TRANSITION_CLASS,
 			)}
 			style={{ width, height }}
@@ -63,7 +63,7 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
  */
 export function MaterialTilePreview({ previews }: MaterialTilePreviewProps) {
 	return (
-		<div className="pointer-events-none absolute top-4 right-6 z-20 flex items-start gap-4 opacity-[0.48] transition-opacity duration-500 group-hover:opacity-95">
+		<div className="pointer-events-none absolute top-4 right-6 z-20 flex items-start gap-4 opacity-[0.48] transition-opacity duration-500 group-hover:opacity-95 group-active:opacity-95">
 			{previews.map(({ size, image }) => {
 				const { w, h } = TILE_DIMS[size] ?? FALLBACK_DIMS;
 

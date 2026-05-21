@@ -144,7 +144,10 @@ function MaterialCard({
 	const backdrop = getMaterialBackdrop(category.id, activeSize);
 
 	return (
-		<div className="group relative min-h-56 overflow-hidden rounded-2xl">
+		<Link
+			href={category.href}
+			className="group relative block min-h-56 overflow-hidden rounded-2xl"
+		>
 			<div
 				className="absolute inset-0 z-0 transition-[background] duration-700 ease-out"
 				style={{ background: backdrop }}
@@ -161,13 +164,13 @@ function MaterialCard({
 			{/* Hover shimmer */}
 			<div
 				className={cn(
-					"absolute inset-0 bg-[#D4B886]/0 transition-colors group-hover:bg-[#D4B886]/5",
+					"absolute inset-0 bg-[#D4B886]/0 transition-colors group-hover:bg-[#D4B886]/5 group-active:bg-[#D4B886]/8",
 					CARD_HOVER_TRANSITION_CLASS,
 				)}
 			/>
 
 			{/* Border ring — no transition (ring = box-shadow; animating it is expensive). */}
-			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 group-hover:ring-[#D4B886]/30" />
+			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 group-hover:ring-[#D4B886]/30 group-active:ring-[#D4B886]/45" />
 
 			{/* Content */}
 			<div className="relative z-10 flex min-h-56 flex-col justify-between p-7">
@@ -183,17 +186,16 @@ function MaterialCard({
 					</Text>
 				</div>
 
-				<Link
-					href={category.href}
+				<span
 					className={cn(
-						"text-body-sm inline-flex items-center gap-2 font-sans text-[#D4B886] opacity-0 transition-opacity group-hover:opacity-100",
+						"text-body-sm inline-flex items-center gap-2 font-sans text-[#D4B886] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100",
 						CARD_HOVER_TRANSITION_CLASS,
 					)}
 				>
 					{t("discover")} <ArrowRight className="h-4 w-4" />
-				</Link>
+				</span>
 			</div>
-		</div>
+		</Link>
 	);
 }
 
