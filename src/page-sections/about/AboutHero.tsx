@@ -9,6 +9,8 @@ import {
 	useMotionTemplate,
 	type Variants,
 } from "framer-motion";
+import { Button } from "@/components/ui";
+import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
 
 const contentVariants: Variants = {
@@ -29,11 +31,14 @@ const scrollIndicatorVariants: Variants = {
 };
 
 /**
- * AboutHero — Manifesto opener.
+ * AboutHero — Cinematic manifesto opener.
  *
- * Reuses the cinematic clip-path expansion pattern from LandingHero with a
- * stronger editorial tone: no CTA buttons, manifesto headline, minimal copy.
- * The `<h1>` lives here — all other About sections use h2 and below.
+ * Changes from v1:
+ *   - Headline bumped to `display-2xl` on `lg` (dominant typography signal).
+ *   - Eyebrow label removed (flyward never uses eyebrows on hero).
+ *   - Outline pill CTA "Discover Our Story" added below the manifesto,
+ *     smooth-scrolling to the `#our-story` section anchor.
+ *   - Scroll indicator retained.
  */
 export function AboutHero() {
 	const t = useTranslations("pages.about.hero");
@@ -89,30 +94,20 @@ export function AboutHero() {
 					style={{ opacity: textOpacity, y: textY }}
 					className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
 				>
-					<motion.span
-						custom={0}
-						variants={contentVariants}
-						initial="hidden"
-						animate="visible"
-						className="text-label inline-block rounded-full border border-[#D4B886]/25 bg-[#D4B886]/6 px-5 py-2 font-sans tracking-widest text-[#D4B886] uppercase backdrop-blur-sm"
-					>
-						{t("label")}
-					</motion.span>
-
 					<motion.h1
-						custom={0.3}
+						custom={0.2}
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-display-xl mt-6 max-w-3xl font-serif leading-[1.1] font-light text-[#F4F4F6]"
+						className="text-display-xl font-serif font-light leading-[1.05] text-[#F4F4F6] lg:text-display-2xl"
 					>
 						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
+						<em className="italic text-[#D4B886]">{t("titleLine2")}</em>
 					</motion.h1>
 
 					<motion.p
-						custom={0.6}
+						custom={0.45}
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
@@ -120,7 +115,32 @@ export function AboutHero() {
 					>
 						{t("description")}
 					</motion.p>
+
+					{/* Outline pill CTA — smooth-scrolls to origin section */}
+					<motion.div
+						custom={0.65}
+						variants={contentVariants}
+						initial="hidden"
+						animate="visible"
+						className="mt-9"
+					>
+						<Button
+							href="#our-story"
+							variant="outline"
+							size="lg"
+							className="rounded-full"
+						>
+							{t("cta")}
+						</Button>
+					</motion.div>
 				</motion.div>
+
+				{/* Survey blueprint line — site-selection motif near bottom edge */}
+				<BlueprintLine
+					variant="survey"
+					className="absolute inset-x-0 bottom-20 z-10 h-10 opacity-[0.22]"
+					scrollRange={[0, 0.3]}
+				/>
 
 				{/* Scroll indicator */}
 				<motion.div

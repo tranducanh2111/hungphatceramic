@@ -77,8 +77,38 @@ export const CRAFT_BEATS: CraftBeat[] = [
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 
-export const CAPABILITY_IDS = ["specification", "production", "logistics", "aftercare"] as const;
+export interface CapabilityCard {
+	id: string;
+	/** Numeral displayed as the visual anchor (e.g. "01"). */
+	numeral: string;
+	imageUrl: string;
+}
 
+export const CAPABILITY_CARDS: CapabilityCard[] = [
+	{
+		id: "specification",
+		numeral: "01",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.specification,
+	},
+	{
+		id: "production",
+		numeral: "02",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.production,
+	},
+	{
+		id: "logistics",
+		numeral: "03",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.logistics,
+	},
+	{
+		id: "aftercare",
+		numeral: "04",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.aftercare,
+	},
+];
+
+// Keep the raw ID tuple for any code that still references it
+export const CAPABILITY_IDS = ["specification", "production", "logistics", "aftercare"] as const;
 export type CapabilityId = (typeof CAPABILITY_IDS)[number];
 
 // ─── Leadership ───────────────────────────────────────────────────────────────
@@ -88,10 +118,23 @@ export interface LeadershipMember {
 	imageUrl: string;
 }
 
+export interface LeadershipPrincipal extends LeadershipMember {
+	/** Full-bleed environmental portrait used as section background. */
+	environmentalImageUrl: string;
+}
+
+export const LEADERSHIP_PRINCIPAL: LeadershipPrincipal = {
+	id: "founder",
+	imageUrl: MEDIA_PATHS.images.about.leadership.founder,
+	environmentalImageUrl: MEDIA_PATHS.images.about.leadership.founderEnvironmental,
+};
+
 export const LEADERSHIP_MEMBERS: LeadershipMember[] = [
 	{ id: "creativeDirector", imageUrl: MEDIA_PATHS.images.about.leadership.creativeDirector },
 	{ id: "technicalLead", imageUrl: MEDIA_PATHS.images.about.leadership.technicalLead },
 	{ id: "projectDirector", imageUrl: MEDIA_PATHS.images.about.leadership.projectDirector },
+	{ id: "operationsDirector", imageUrl: MEDIA_PATHS.images.about.leadership.operationsDirector },
+	{ id: "salesDirector", imageUrl: MEDIA_PATHS.images.about.leadership.salesDirector },
 ];
 
 // ─── Client Roster ────────────────────────────────────────────────────────────

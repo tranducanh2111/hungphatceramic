@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { Text, Button } from "@/components/ui";
+import { BlueprintLine } from "@/components/common";
 import { ROUTES } from "@/constants/routes";
 
 const fadeUp: Variants = {
@@ -17,35 +18,36 @@ const fadeUp: Variants = {
 /**
  * AboutCta — Project inquiry closer.
  *
- * Full-bleed sapphire-deep band with a centered serif headline and two CTAs.
- * No form — keeps the About page focused on story. Conversion happens on
- * the contact page.
+ * Changes from v1:
+ *   - Secondary CTA removed (single, focused action).
+ *   - Headline bumped to `display-2xl`.
+ *   - Single outline pill CTA "Book a Consultation".
+ *   - Eyebrow label removed.
+ *   - Decorative vein curve drawn behind the headline.
  */
 export function AboutCta() {
 	const t = useTranslations("pages.about.cta");
 
 	return (
-		<section className="relative overflow-hidden bg-[#071A2B] py-28 lg:py-36">
-			{/* Subtle radial glow behind the text */}
+		<section className="relative min-h-[85vh] overflow-hidden bg-sapphire-deep py-32 lg:min-h-[90vh] lg:py-44">
+			{/* Radial background glow */}
 			<div
 				className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_65%)] opacity-60"
 				aria-hidden="true"
 			/>
 
-			<div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
-				<motion.span
-					custom={0}
-					variants={fadeUp}
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, amount: 0.4 }}
-					className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-				>
-					{t("label")}
-				</motion.span>
+			{/* Signature — completes while section is in view (footer-safe scroll window) */}
+			<BlueprintLine
+				variant="signature"
+				className="pointer-events-none absolute inset-x-0 top-1/2 mx-auto h-28 w-full max-w-4xl -translate-y-1/2 sm:h-32"
+				scrollRange={[0, 0.55]}
+				scrollOffset={["start 0.92", "end 0.35"]}
+				opacity={1}
+			/>
 
+			<div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
 				<motion.div
-					custom={0.15}
+					custom={0.1}
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
@@ -54,39 +56,36 @@ export function AboutCta() {
 					<Text
 						variant="display-lg"
 						as="h2"
-						className="mt-5 font-serif font-light text-[#F4F4F6]"
+						className="font-serif font-light text-[#F4F4F6] lg:text-display-2xl"
 					>
 						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
+						<em className="italic text-[#D4B886]">{t("titleLine2")}</em>
 					</Text>
 				</motion.div>
 
 				<motion.div
-					custom={0.25}
+					custom={0.2}
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true, amount: 0.4 }}
 				>
-					<Text variant="body-lg" className="mt-6 text-[#F4F4F6]/60">
+					<Text variant="body-lg" className="mt-7 text-[#F4F4F6]/55">
 						{t("description")}
 					</Text>
 				</motion.div>
 
 				<motion.div
-					custom={0.35}
+					custom={0.3}
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true, amount: 0.4 }}
-					className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+					className="mt-10"
 				>
-					<Button href={ROUTES.contact} size="lg">
+					<Button href={ROUTES.contact} variant="outline" size="lg">
 						{t("primaryCta")}
-					</Button>
-					<Button href={ROUTES.projects} variant="secondary" size="lg">
-						{t("secondaryCta")}
 					</Button>
 				</motion.div>
 			</div>

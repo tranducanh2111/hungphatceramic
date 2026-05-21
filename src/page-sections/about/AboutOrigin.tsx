@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
+import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
 
 const fadeUp: Variants = {
@@ -16,87 +17,114 @@ const fadeUp: Variants = {
 };
 
 /**
- * AboutOrigin — Founding moment.
+ * AboutOrigin — Founding moment (flyward mission pattern, balanced layout).
  *
- * Two-column: left has a champagne pull-quote + founding body copy;
- * right has an archival-toned origin photograph.
- * Layout reuses the LandingBrandStatement pattern.
+ * Full-width heading, then equal columns: visual anchor left, narrative right.
+ * Bottom gradient bridges into Heritage (sapphire-ocean → sapphire-deep).
  */
 export function AboutOrigin() {
 	const t = useTranslations("pages.about.origin");
 
 	return (
-		<section className="relative overflow-hidden bg-[#0E2A42] py-28 lg:py-36">
-			<div className="mx-auto max-w-7xl px-6 lg:px-12">
-				<div className="grid items-center gap-16 lg:grid-cols-2">
-					{/* Left: Label, pull-quote, body */}
-					<div>
+		<section
+			id="our-story"
+			className="relative overflow-hidden bg-sapphire-ocean py-20 sm:py-28 lg:py-36"
+		>
+			{/* Transition into Heritage */}
+			<div
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent to-sapphire-deep sm:h-36"
+				aria-hidden="true"
+			/>
+
+			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
+				{/* Full-width heading — anchors the section */}
+				<motion.div
+					custom={0.05}
+					variants={fadeUp}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.25 }}
+					className="max-w-4xl"
+				>
+					<Text
+						variant="display-xl"
+						as="h2"
+						className="font-serif font-light leading-[1.08] text-linen"
+					>
+						{t("heading")}
+					</Text>
+				</motion.div>
+
+				{/* Balanced two-column body */}
+				<div className="mt-12 grid items-start gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+					{/* Left — visual column (below body on mobile) */}
+					<div className="order-2 flex flex-col lg:order-1">
 						<motion.span
-							custom={0}
+							custom={0.12}
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
+							viewport={{ once: true, amount: 0.2 }}
+							className="select-none font-serif text-[72px] font-light leading-none text-transparent sm:text-[88px] lg:text-[110px]"
+							style={{ WebkitTextStroke: "1px rgba(212,184,134,0.2)" }}
+							aria-hidden="true"
 						>
-							{t("label")}
+							01
 						</motion.span>
 
+						<motion.div
+							initial={{ opacity: 0, scale: 0.97 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+							viewport={{ once: true, amount: 0.2 }}
+							className="relative mt-4 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] lg:mt-6"
+						>
+							<Image
+								src={MEDIA_PATHS.images.about.origin}
+								alt={t("imageAlt")}
+								fill
+								className="object-cover object-center grayscale"
+								sizes="(max-width: 1024px) 100vw, 50vw"
+							/>
+							<div className="absolute inset-0 ring-1 ring-champagne/10" />
+						</motion.div>
+
 						<motion.blockquote
-							custom={0.15}
+							custom={0.22}
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="mt-6 border-l-2 border-[#D4B886] pl-6"
+							viewport={{ once: true, amount: 0.2 }}
+							className="mt-6 border-l-2 border-champagne pl-5 lg:mt-8"
 						>
 							<Text
-								variant="display-lg"
+								variant="body-lg"
 								as="p"
-								className="font-serif font-light italic text-[#D4B886]"
+								className="font-serif font-light italic text-champagne"
 							>
 								&ldquo;{t("pullQuote")}&rdquo;
 							</Text>
 						</motion.blockquote>
-
-						<motion.div
-							custom={0.25}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="my-8 h-px w-16 bg-[#D4B886]"
-						/>
-
-						<motion.div
-							custom={0.35}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-						>
-							<Text variant="body-lg" className="leading-relaxed text-[#F4F4F6]/65">
-								{t("body")}
-							</Text>
-						</motion.div>
 					</div>
 
-					{/* Right: Archival origin image */}
+					{/* Right — narrative column (fills vertical space) */}
 					<motion.div
-						initial={{ opacity: 0, scale: 0.97 }}
-						whileInView={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-						viewport={{ once: true, amount: 0.3 }}
-						className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
+						custom={0.18}
+						variants={fadeUp}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true, amount: 0.25 }}
+						className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2"
 					>
-						<Image
-							src={MEDIA_PATHS.images.about.origin}
-							alt={t("imageAlt")}
-							fill
-							className="object-cover object-center grayscale"
-							sizes="(max-width: 1024px) 100vw, 50vw"
+						<Text variant="body-lg" className="leading-relaxed text-linen/65 lg:max-w-md lg:ml-auto lg:text-right">
+							{t("body")}
+						</Text>
+
+						<BlueprintLine
+							variant="foundation"
+							className="mt-10 h-40 w-40 self-end opacity-90 lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:h-48 lg:w-48"
+							scrollRange={[0.15, 0.75]}
 						/>
-						<div className="absolute inset-0 rounded-2xl ring-1 ring-[#D4B886]/10" />
 					</motion.div>
 				</div>
 			</div>

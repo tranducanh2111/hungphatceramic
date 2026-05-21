@@ -61,11 +61,29 @@ export const MEDIA_PATHS = {
 				polishing: "/media/images/misc/brand-statement.jpg",
 				installation: "/media/images/misc/visual-story.jpg",
 			},
-			/** Leadership portraits — replace with editorial head-shots. */
+			/**
+			 * Capability card images (numbered 01-04).
+			 * Replace placeholders with real per-service photography.
+			 */
+			capabilities: {
+				specification: "/media/images/featured-projects/ramada-halong.png",
+				production: "/media/images/featured-projects/hinode.jpg",
+				logistics: "/media/images/featured-projects/vinhomes-symphony.jpg",
+				aftercare: "/media/images/featured-projects/saigon-intela.jpg",
+			},
+			/**
+			 * Leadership portraits — replace with editorial head-shots.
+			 * `founderEnvironmental` is the full-bleed environmental shot used
+			 * as the section background (the founder in a finished interior space).
+			 */
 			leadership: {
+				founderEnvironmental: "/media/images/misc/visual-story.jpg",
+				founder: "/media/images/featured-projects/empire-city.jpg",
 				creativeDirector: "/media/images/featured-projects/hinode.jpg",
 				technicalLead: "/media/images/featured-projects/empire-city.jpg",
 				projectDirector: "/media/images/featured-projects/saigon-intela.jpg",
+				operationsDirector: "/media/images/featured-projects/vinhomes-symphony.jpg",
+				salesDirector: "/media/images/featured-projects/grand-phuquoc.webp",
 			},
 		},
 		featuredProjects: {

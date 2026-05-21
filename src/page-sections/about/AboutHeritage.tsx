@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Text } from "@/components/ui";
+import { BlueprintLine } from "@/components/common";
 import { HERITAGE_MILESTONES } from "@/constants/about";
 import { cn } from "@/lib/cn";
 
@@ -23,31 +24,33 @@ interface MilestoneConnectorProps {
 }
 
 /**
- * Organic SVG connector between two milestones.
+ * Organic SVG connector between two milestones — restyled as an architectural
+ * elevation drawing: a dashed dimension line with blueprint-style tick caps at
+ * both endpoints. The tick caps (perpendicular lines) mimic the annotation
+ * marks on an architectural elevation drawing.
  *
- * Scroll-linked reveal: `pathLength` is driven by `scrollYProgress` on this
- * element (not `whileInView`), so the champagne stroke completes only after
- * the user has scrolled through the full gap.
- *
- * Horizontal alignment: the SVG sits in a 50%-wide band starting at 25% of the
- * row, so path endpoints land at the horizontal centre of each text column
- * (left column ≈ 25%, right column ≈ 75% on the lg two-column grid).
+ * Scroll-linked reveal:
+ *   - The main path draws from `pathLength` 0→1 as the connector scrolls.
+ *   - Tick caps fade in during the last 20% of the reveal range, so they
+ *     "land" after the path has nearly completed — matching how a drafter
+ *     adds the endpoint marks last.
  */
 function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 	const connectorRef = useRef<HTMLDivElement>(null);
 	const isRtl = connectorIndex % 2 === 0;
 	const pathData = isRtl ? CONNECTOR_PATH_RTL : CONNECTOR_PATH_LTR;
 	const viewBox = isRtl ? "0 0 623 400" : "0 0 769 320";
-	const maskId = `heritage-connector-mask-${connectorIndex}`;
-	const glowFilterId = `heritage-connector-glow-${connectorIndex}`;
+	const maskId = `hc-mask-${connectorIndex}`;
 
 	const { scrollYProgress } = useScroll({
 		target: connectorRef,
-		// 0 when connector enters viewport bottom → 1 when it exits viewport top
 		offset: ["start end", "end start"],
 	});
 
-	const revealProgress = scrollYProgress;
+	// Main path draws from 0→1
+	const drawProgress = scrollYProgress;
+	// Tick caps appear in the last 20% of the reveal
+	const tickOpacity = useTransform(scrollYProgress, [0.78, 1.0], [0, 1]);
 
 	return (
 		<div
@@ -55,10 +58,7 @@ function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 			className="relative col-span-2 hidden py-6 lg:block lg:py-10"
 			aria-hidden="true"
 		>
-			{/*
-			 * 50% width band offset to 25% — matches horizontal centre of left/right
-			 * text columns in the milestone grid above and below.
-			 */}
+			{/* 50% band offset to 25% — centres path endpoints over text columns */}
 			<div className="relative ml-[25%] h-40 w-1/2 lg:h-48">
 				<svg
 					viewBox={viewBox}
@@ -67,14 +67,7 @@ function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 					fill="none"
 				>
 					<defs>
-						<filter id={glowFilterId} x="-20%" y="-20%" width="140%" height="140%">
-							<feGaussianBlur stdDeviation="2" result="blur" />
-							<feMerge>
-								<feMergeNode in="blur" />
-								<feMergeNode in="SourceGraphic" />
-							</feMerge>
-						</filter>
-
+						{/* Mask controls where the champagne stroke is visible */}
 						<mask id={maskId}>
 							<motion.path
 								d={pathData}
@@ -85,34 +78,71 @@ function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 								strokeLinejoin="round"
 								vectorEffect="non-scaling-stroke"
 								pathLength={1}
-								style={{ pathLength: revealProgress }}
+								style={{ pathLength: drawProgress }}
 							/>
 						</mask>
 					</defs>
 
-					{/* Static track */}
+					{/* Static ghost track — sapphire-mist, dimension-line dash */}
 					<path
 						d={pathData}
 						stroke="#1A3D5C"
-						strokeWidth="1"
-						strokeDasharray="5 5"
+						strokeWidth="0.8"
+						strokeDasharray="5 10"
 						strokeLinecap="round"
+						strokeOpacity={0.6}
 						vectorEffect="non-scaling-stroke"
 					/>
 
-					{/* Champagne reveal — scroll-driven mask */}
+					{/* Champagne reveal — blueprint dimension-line style */}
 					<g mask={`url(#${maskId})`}>
 						<path
 							d={pathData}
 							stroke="#D4B886"
-							strokeWidth="1.5"
-							strokeOpacity={0.7}
-							strokeDasharray="5 5"
+							strokeWidth="1"
+							strokeOpacity={0.55}
+							strokeDasharray="5 10"
 							strokeLinecap="round"
 							vectorEffect="non-scaling-stroke"
-							filter={`url(#${glowFilterId})`}
 						/>
 					</g>
+
+					{/*
+					 * Dimension tick caps — two short perpendicular lines at each endpoint.
+					 * LTR: start near (1,1), end near (768,320).
+					 * RTL: start near (622,1), end near (46,399).
+					 * These are approximated; exact positions depend on viewBox.
+					 */}
+					{!isRtl && (
+						<motion.g
+							stroke="#D4B886"
+							strokeWidth="1"
+							strokeLinecap="round"
+							strokeOpacity={0.7}
+							vectorEffect="non-scaling-stroke"
+							style={{ opacity: tickOpacity }}
+						>
+							{/* Start tick (top-left area of LTR path) */}
+							<line x1="-6" y1="1" x2="8" y2="1" />
+							{/* End tick (bottom-right area of LTR path) */}
+							<line x1="762" y1="320" x2="776" y2="320" />
+						</motion.g>
+					)}
+					{isRtl && (
+						<motion.g
+							stroke="#D4B886"
+							strokeWidth="1"
+							strokeLinecap="round"
+							strokeOpacity={0.7}
+							vectorEffect="non-scaling-stroke"
+							style={{ opacity: tickOpacity }}
+						>
+							{/* Start tick (top-right of RTL path) */}
+							<line x1="616" y1="1" x2="630" y2="1" />
+							{/* End tick (bottom-left of RTL path) */}
+							<line x1="40" y1="399" x2="54" y2="399" />
+						</motion.g>
+					)}
 				</svg>
 			</div>
 		</div>
@@ -127,10 +157,16 @@ export function AboutHeritage() {
 
 	return (
 		<section
-			className="relative bg-[#071A2B] py-28 lg:py-36"
+			className="relative bg-sapphire-deep py-28 lg:py-36"
 			aria-label={t("ariaLabel")}
 		>
-			<div className="mx-auto max-w-6xl px-6 lg:px-12">
+			{/* Blend from Origin (sapphire-ocean) */}
+			<div
+				className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-sapphire-ocean to-transparent sm:h-32"
+				aria-hidden="true"
+			/>
+
+			<div className="relative mx-auto max-w-6xl px-6 lg:px-12">
 				<div className="mb-24 lg:mb-32">
 					<motion.span
 						initial={{ opacity: 0, y: 14 }}
@@ -219,6 +255,13 @@ export function AboutHeritage() {
 					})}
 				</div>
 			</div>
+
+			{/* Datum — phase boundary: Heritage complete, Craft begins */}
+			<BlueprintLine
+				variant="datum"
+				className="mt-20 h-5 w-full lg:mt-28"
+				scrollRange={[0.6, 0.95]}
+			/>
 		</section>
 	);
 }
