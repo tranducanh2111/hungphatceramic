@@ -71,9 +71,7 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	{
 		id: "inspire",
 		sizes: ["60×120cm"],
-		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" },
-		],
+		previews: [{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" }],
 	},
 	{
 		id: "travertine",

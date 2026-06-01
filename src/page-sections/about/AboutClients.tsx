@@ -60,7 +60,7 @@ export function AboutClients() {
 						<Text
 							variant="h2"
 							as="h2"
-							className="mx-auto mt-3 max-w-2xl font-serif font-light italic text-[#F4F4F6]"
+							className="mx-auto mt-3 max-w-2xl font-serif font-light text-[#F4F4F6] italic"
 						>
 							{t("heading")}
 						</Text>

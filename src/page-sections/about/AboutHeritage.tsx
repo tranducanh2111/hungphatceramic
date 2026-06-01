@@ -156,13 +156,10 @@ export function AboutHeritage() {
 	const milestoneCount = HERITAGE_MILESTONES.length;
 
 	return (
-		<section
-			className="relative bg-sapphire-deep py-28 lg:py-36"
-			aria-label={t("ariaLabel")}
-		>
+		<section className="bg-sapphire-deep relative py-28 lg:py-36" aria-label={t("ariaLabel")}>
 			{/* Blend from Origin (sapphire-ocean) */}
 			<div
-				className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-sapphire-ocean to-transparent sm:h-32"
+				className="from-sapphire-ocean pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent sm:h-32"
 				aria-hidden="true"
 			/>
 
@@ -225,7 +222,7 @@ export function AboutHeritage() {
 											isEven ? "lg:order-2" : "lg:order-1",
 										)}
 									>
-										<p className="text-h2 font-sans font-light leading-tight tracking-wide text-[#D4B886]/55">
+										<p className="text-h2 font-sans leading-tight font-light tracking-wide text-[#D4B886]/55">
 											{milestone.coordinates}
 										</p>
 										<p className="text-body-sm mt-2 font-sans text-[#F4F4F6]/40">
@@ -265,4 +262,3 @@ export function AboutHeritage() {
 		</section>
 	);
 }
- 

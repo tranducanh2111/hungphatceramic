@@ -80,7 +80,11 @@ export function LandingStats() {
 				{/* Stats grid */}
 				<div className="grid grid-cols-2 gap-12 lg:grid-cols-4">
 					{STATS.map((stat) => (
-						<StatCounter key={stat.numericValue} stat={stat} label={t(`items.${stat.numericValue}`)} />
+						<StatCounter
+							key={stat.numericValue}
+							stat={stat}
+							label={t(`items.${stat.numericValue}`)}
+						/>
 					))}
 				</div>
 

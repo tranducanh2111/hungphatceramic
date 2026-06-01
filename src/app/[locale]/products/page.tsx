@@ -1,13 +1,13 @@
-import type {Metadata} from "next";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface ProductsPageProps {
-	params: Promise<{locale: string}>;
+	params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({params}: ProductsPageProps): Promise<Metadata> {
-	const {locale} = await params;
-	const t = await getTranslations({locale, namespace: "meta.products"});
+export async function generateMetadata({ params }: ProductsPageProps): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "meta.products" });
 
 	return {
 		title: t("title"),
@@ -15,10 +15,10 @@ export async function generateMetadata({params}: ProductsPageProps): Promise<Met
 	};
 }
 
-export default async function ProductsPage({params}: ProductsPageProps) {
-	const {locale} = await params;
+export default async function ProductsPage({ params }: ProductsPageProps) {
+	const { locale } = await params;
 	setRequestLocale(locale);
-	const t = await getTranslations({locale, namespace: "pages.products"});
+	const t = await getTranslations({ locale, namespace: "pages.products" });
 
 	return (
 		<main>

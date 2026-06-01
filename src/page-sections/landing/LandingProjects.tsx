@@ -37,7 +37,7 @@ function ProjectCard({
 						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
 						sizes="(max-width: 768px) 100vw, 50vw"
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/72 via-[#071A2B]/28 to-[#071A2B]/08" />
+					<div className="to-[#071A2B]/08 absolute inset-0 bg-gradient-to-t from-[#071A2B]/72 via-[#071A2B]/28" />
 					<div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(212,184,134,0.12),transparent_40%)]" />
 					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[42%] bg-gradient-to-t from-[#071A2B]/55 via-[#071A2B]/18 to-transparent" />
 				</div>

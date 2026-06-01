@@ -57,9 +57,9 @@
 			"youtube": "YouTube"
 		},
 		"contact": {
-			"address": "583 Giai Phong, Giap Bat, Hoang Mai, Hanoi",
-			"phone": "+84 (0) 24 1234 5678",
-			"email": "contact@hungphatceramic.vn"
+			"address": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi",
+			"phone": "0965976599",
+			"email": "congtyhungphat583@gmail.com"
 		},
 		"rights": "© {year} {companyName}. All rights reserved."
 	},
@@ -296,7 +296,7 @@
 			"origin": {
 				"heading": "Craft born from conviction.",
 				"pullQuote": "Stone is the original luxury.",
-				"body": "In 2012, in the craft heartland of Bat Trang, Hung Phat was founded with a single obsession — to source and install ceramic surfaces with the same rigor a master sculptor gives to stone. A workshop born of craft grew into Vietnam's most trusted B2B ceramic partner.",
+				"body": "Perla, established in 2020 and backed by Hung Phat, a company with over two decades of industry experience since 2004, was founded with a clear vision: to deliver premium ceramic and porcelain surfaces with exceptional craftsmanship, quality, and attention to detail.\n\nWhat began as a passion for sourcing and supplying outstanding ceramic products has evolved into one of Vietnam's trusted B2B partners, serving architects, developers, contractors, and distributors with innovative surface solutions for modern spaces",
 				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
 			},
 			"heritage": {
@@ -381,40 +381,32 @@
 					}
 				}
 			},
-			"leadership": {
-				"heading": "Leadership Team",
-				"subheading": "The driving force behind Perla's craft excellence.",
-				"principal": {
-					"name": "Hung Nguyen",
-					"role": "Founder & Principal",
-					"imageAlt": "Hung Nguyen, Founder and Principal of Perla powered by Hung Phat",
-					"environmentalImageAlt": "Hung Nguyen in a finished luxury ceramic interior space"
+			"values": {
+				"label": "Our Foundations",
+				"heading": "The Principles of Our Craft",
+				"network": {
+					"title": "Scale & Footprint",
+					"subtitle": "Northern Region & Nationwide",
+					"stats": "200+",
+					"statsLabel": "Active Locations",
+					"description": "Connecting over 200 partner showrooms and clients across Northern Vietnam, backed by a robust supply chain executing premium projects nationwide. From initial consultation to final inspection, our distribution power ensures prompt delivery and matching specifications for every contract."
 				},
-				"members": {
-					"creativeDirector": {
-						"name": "Linh Tran",
-						"role": "Creative Director",
-						"imageAlt": "Linh Tran, Creative Director at Perla"
+				"list": {
+					"craftsmanship": {
+						"title": "Craftsmanship",
+						"description": "We treat ceramic surfaces with the same rigor a master sculptor gives to stone. From meticulous cutting and calibration to microscopic alignment audits on-site, every joint is a testament to our decade-long commitment to flawless surface integration."
 					},
-					"technicalLead": {
-						"name": "Minh Nguyen",
-						"role": "Technical Lead",
-						"imageAlt": "Minh Nguyen, Technical Lead at Perla"
+					"reliability": {
+						"title": "Reliability",
+						"description": "Premium projects require absolute predictability. Our supply chain features strict quality-control audits, structured timelines, and transparent coordination. We deliver exactly what we promise, on schedule, every single time."
 					},
-					"projectDirector": {
-						"name": "An Bui",
-						"role": "Project Director",
-						"imageAlt": "An Bui, Project Director at Perla"
+					"customerCentricity": {
+						"title": "Customer-Centricity",
+						"description": "We put your project requirements first. From custom mockups to bespoke technical specifications, we adapt our services to meet the specific demands of developers and architects, backed by a dedicated aftercare support program."
 					},
-					"operationsDirector": {
-						"name": "Lan Pham",
-						"role": "Head of Operations",
-						"imageAlt": "Lan Pham, Head of Operations at Perla"
-					},
-					"salesDirector": {
-						"name": "Duc Tran",
-						"role": "Head of Sales",
-						"imageAlt": "Duc Tran, Head of Sales at Perla"
+					"sustainableGrowth": {
+						"title": "Sustainable Growth",
+						"description": "We design and install with the future in mind. By optimizing material waste allocation, practicing environmental responsibility, and selecting highly durable materials, we create architectural structures that endure for generations."
 					}
 				}
 			},

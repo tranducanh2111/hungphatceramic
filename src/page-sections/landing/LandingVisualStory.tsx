@@ -31,11 +31,7 @@ export function LandingVisualStory() {
 	const textY = useTransform(scrollYProgress, [0.08, 0.2], [24, 0]);
 
 	return (
-		<section
-			ref={sectionRef}
-			className="bg-sapphire-deep relative"
-			aria-label={t("ariaLabel")}
-		>
+		<section ref={sectionRef} className="bg-sapphire-deep relative" aria-label={t("ariaLabel")}>
 			<div className="sticky top-0 h-screen overflow-hidden">
 				<motion.div
 					className="absolute top-0 left-0 h-full w-[320vw]"

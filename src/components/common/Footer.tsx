@@ -96,7 +96,7 @@ export function Footer() {
 		{ label: t("collections.orientStar"), collectionId: "orient-star" },
 		{ label: t("collections.sunshine"), collectionId: "sunshine" },
 		{ label: t("collections.architectural"), collectionId: "architectural" },
-	].map(({label, collectionId}) => ({
+	].map(({ label, collectionId }) => ({
 		label,
 		href: productsWithCollection(collectionId),
 	}));
@@ -207,8 +207,8 @@ export function Footer() {
 
 				{/* ── Bottom bar ── */}
 				<div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-					<Text variant="footnote" className="text-[#F4F4F6]/25">
-						{t("rights", {year: currentYear, companyName: commonT("companyName")})}
+					<Text variant="footnote" className="text-[#F4F4F6]/25" suppressHydrationWarning>
+						{t("rights", { year: currentYear, companyName: commonT("companyName") })}
 					</Text>
 				</div>
 			</div>

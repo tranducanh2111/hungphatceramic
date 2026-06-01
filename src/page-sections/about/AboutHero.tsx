@@ -2,13 +2,7 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import {
-	motion,
-	useScroll,
-	useTransform,
-	useMotionTemplate,
-	type Variants,
-} from "framer-motion";
+import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
 import { Button } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
@@ -99,11 +93,11 @@ export function AboutHero() {
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-display-xl font-serif font-light leading-[1.05] text-[#F4F4F6] lg:text-display-2xl"
+						className="text-display-xl lg:text-display-2xl font-serif leading-[1.05] font-light text-[#F4F4F6]"
 					>
 						{t("titleLine1")}
 						<br />
-						<em className="italic text-[#D4B886]">{t("titleLine2")}</em>
+						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
 					</motion.h1>
 
 					<motion.p

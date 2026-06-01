@@ -203,7 +203,14 @@ function GridSvg({ opacity }: { opacity: MotionValue<number> }) {
 	return (
 		<motion.g style={{ opacity }}>
 			<defs>
-				<pattern id="blueprint-grid-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+				<pattern
+					id="blueprint-grid-pattern"
+					x="0"
+					y="0"
+					width="40"
+					height="40"
+					patternUnits="userSpaceOnUse"
+				>
 					<path
 						d="M 40 0 L 0 0 0 40"
 						fill="none"
@@ -338,11 +345,7 @@ export function BlueprintLine({
 	// pathLength: 0 → 1 as section scrolls into view
 	const drawProgress = useTransform(scrollYProgress, scrollRange, [0, 1]);
 	// opacity: 0 → opacityMultiplier for fade-in variants
-	const fadeProgress = useTransform(
-		scrollYProgress,
-		scrollRange,
-		[0, opacityMultiplier],
-	);
+	const fadeProgress = useTransform(scrollYProgress, scrollRange, [0, opacityMultiplier]);
 
 	const isPathLength = animation === "pathLength";
 
@@ -354,14 +357,14 @@ export function BlueprintLine({
 				viewBox={viewBox}
 				fill="none"
 				preserveAspectRatio={
-					variant === "grid" ? "xMidYMid slice"
-					: isDatum ? "none"
-					: "xMidYMid meet"
+					variant === "grid" ? "xMidYMid slice" : isDatum ? "none" : "xMidYMid meet"
 				}
 				className="h-full w-full overflow-visible"
 			>
 				{variant === "survey" && <SurveySvg draw={drawProgress} />}
-				{variant === "foundation" && <FoundationSvg opacity={isPathLength ? drawProgress : fadeProgress} />}
+				{variant === "foundation" && (
+					<FoundationSvg opacity={isPathLength ? drawProgress : fadeProgress} />
+				)}
 				{variant === "joint" && <JointSvg opacity={fadeProgress} />}
 				{variant === "keystone" && <KeystoneSvg draw={drawProgress} />}
 				{variant === "grid" && <GridSvg opacity={fadeProgress} />}

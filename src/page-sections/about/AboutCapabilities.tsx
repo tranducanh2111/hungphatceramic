@@ -25,7 +25,6 @@ const fadeUp: Variants = {
 	}),
 };
 
-
 /**
  * AboutCapabilities — 4 numbered image cards (flyward value-card pattern).
  *
@@ -84,12 +83,12 @@ export function AboutCapabilities() {
 					})}
 				</div>
 
-			{/* Section-cut datum — marks the boundary between capability rows */}
-			<BlueprintLine
-				variant="datum"
-				className="my-8 h-5 w-full"
-				scrollRange={[0.1, 0.6]}
-			/>
+				{/* Section-cut datum — marks the boundary between capability rows */}
+				<BlueprintLine
+					variant="datum"
+					className="my-8 h-5 w-full"
+					scrollRange={[0.1, 0.6]}
+				/>
 
 				{/* Bottom row */}
 				<div className="grid gap-6 sm:grid-cols-2">
@@ -154,7 +153,7 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 				/>
 
 				{/* Numbered badge — upper right */}
-				<div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center border border-[#D4B886]/40 bg-[#071A2B]/70 backdrop-blur-sm">
+				<div className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center border border-[#D4B886]/40 bg-[#071A2B]/70 backdrop-blur-sm">
 					<span className="text-footnote font-serif font-light text-[#D4B886]">
 						{card.numeral}
 					</span>
@@ -166,7 +165,7 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 				<Text
 					variant="h4"
 					as="h3"
-					className="font-serif uppercase tracking-wide text-[#F4F4F6]"
+					className="font-serif tracking-wide text-[#F4F4F6] uppercase"
 				>
 					{t(`cards.${card.id}.title`)}
 				</Text>
@@ -175,7 +174,7 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 				</Text>
 
 				{/* Icon footer */}
-				<div className="mt-auto pt-4 border-t border-[#D4B886]/10">
+				<div className="mt-auto border-t border-[#D4B886]/10 pt-4">
 					<Icon className="h-4 w-4 text-[#D4B886]/50" />
 				</div>
 			</div>

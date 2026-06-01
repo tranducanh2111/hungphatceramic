@@ -36,12 +36,12 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 				"relative shrink-0 overflow-hidden rounded-sm shadow-[0_14px_40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(212,184,134,0.22)]",
 				// Stronger shadow on hover/active without interpolating shadow (cheap snap).
 				"group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)] group-active:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)]",
-				"-rotate-6 transform-gpu transition-transform group-hover:-rotate-3 group-hover:scale-[1.05] group-active:-rotate-3 group-active:scale-[1.05]",
+				"-rotate-6 transform-gpu transition-transform group-hover:scale-[1.05] group-hover:-rotate-3 group-active:scale-[1.05] group-active:-rotate-3",
 				"motion-reduce:rotate-0 motion-reduce:group-hover:scale-100 motion-reduce:group-active:scale-100",
 				TILE_HOVER_TRANSITION_CLASS,
 			)}
 			style={{ width, height }}
-			aria-hidden
+			aria-hidden="true"
 		>
 			<Image
 				src={encodedSrc}
@@ -53,7 +53,7 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 				draggable={false}
 			/>
 			<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-black/22" />
-			<div className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-champagne/28 ring-inset" />
+			<div className="ring-champagne/28 pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset" />
 		</div>
 	);
 }

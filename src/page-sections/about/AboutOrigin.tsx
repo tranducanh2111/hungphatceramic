@@ -28,11 +28,11 @@ export function AboutOrigin() {
 	return (
 		<section
 			id="our-story"
-			className="relative overflow-hidden bg-sapphire-ocean py-20 sm:py-28 lg:py-36"
+			className="bg-sapphire-ocean relative overflow-hidden py-20 sm:py-28 lg:py-36"
 		>
 			{/* Transition into Heritage */}
 			<div
-				className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent to-sapphire-deep sm:h-36"
+				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent sm:h-36"
 				aria-hidden="true"
 			/>
 
@@ -49,7 +49,7 @@ export function AboutOrigin() {
 					<Text
 						variant="display-xl"
 						as="h2"
-						className="font-serif font-light leading-[1.08] text-linen"
+						className="text-linen font-serif leading-[1.08] font-light"
 					>
 						{t("heading")}
 					</Text>
@@ -65,7 +65,7 @@ export function AboutOrigin() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.2 }}
-							className="select-none font-serif text-[72px] font-light leading-none text-transparent sm:text-[88px] lg:text-[110px]"
+							className="font-serif text-[72px] leading-none font-light text-transparent select-none sm:text-[88px] lg:text-[110px]"
 							style={{ WebkitTextStroke: "1px rgba(212,184,134,0.2)" }}
 							aria-hidden="true"
 						>
@@ -86,7 +86,7 @@ export function AboutOrigin() {
 								className="object-cover object-center grayscale"
 								sizes="(max-width: 1024px) 100vw, 50vw"
 							/>
-							<div className="absolute inset-0 ring-1 ring-champagne/10" />
+							<div className="ring-champagne/10 absolute inset-0 ring-1" />
 						</motion.div>
 
 						<motion.blockquote
@@ -95,12 +95,12 @@ export function AboutOrigin() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.2 }}
-							className="mt-6 border-l-2 border-champagne pl-5 lg:mt-8"
+							className="border-champagne mt-6 border-l-2 pl-5 lg:mt-8"
 						>
 							<Text
 								variant="body-lg"
 								as="p"
-								className="font-serif font-light italic text-champagne"
+								className="text-champagne font-serif font-light italic"
 							>
 								&ldquo;{t("pullQuote")}&rdquo;
 							</Text>
@@ -116,7 +116,10 @@ export function AboutOrigin() {
 						viewport={{ once: true, amount: 0.25 }}
 						className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2"
 					>
-						<Text variant="body-lg" className="leading-relaxed text-linen/65 lg:max-w-md lg:ml-auto lg:text-right">
+						<Text
+							variant="body-lg"
+							className="text-linen/65 leading-relaxed whitespace-pre-line lg:ml-auto lg:max-w-md lg:text-right"
+						>
 							{t("body")}
 						</Text>
 

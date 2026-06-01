@@ -20,8 +20,7 @@ const SIZE_OPTIONS: { labelKey: "size60x120" | "size80x80"; value: TileSize }[] 
 	{ labelKey: "size80x80", value: "80×80cm" },
 ];
 
-const CARD_HOVER_TRANSITION_CLASS =
-	"duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]";
+const CARD_HOVER_TRANSITION_CLASS = "duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -29,37 +28,34 @@ const CARD_HOVER_TRANSITION_CLASS =
  * Precomputed backdrops (no runtime color sampling) to avoid scroll jank.
  * Tones stay close to each tile palette while keeping the slab as the hero.
  */
-const MATERIAL_BACKDROPS: Record<
-	string,
-	Partial<Record<TileSize, string>> & { default: string }
-> = {
-	inspire: {
-		default: "linear-gradient(146deg, #102b45 0%, #0b2237 45%, #071a2b 100%)",
-		"60×120cm": "linear-gradient(146deg, #15385a 0%, #0e2b46 46%, #071a2b 100%)",
-	},
-	travertine: {
-		default: "linear-gradient(146deg, #2f2418 0%, #231a11 44%, #0f0b07 100%)",
-		"60×120cm": "linear-gradient(146deg, #443222 0%, #2e2318 44%, #161008 100%)",
-		"80×80cm": "linear-gradient(146deg, #3a2c1e 0%, #2a2117 44%, #130f0a 100%)",
-	},
-	"orient-star": {
-		default: "linear-gradient(146deg, #2d2619 0%, #1f1a12 42%, #0c0906 100%)",
-		"60×120cm": "linear-gradient(146deg, #383022 0%, #262015 44%, #0d0b07 100%)",
-	},
-	sunshine: {
-		default: "linear-gradient(146deg, #183245 0%, #10293a 45%, #071a2b 100%)",
-		"60×120cm": "linear-gradient(146deg, #214261 0%, #17344d 48%, #091f34 100%)",
-		"80×80cm": "linear-gradient(146deg, #1b3b55 0%, #123049 46%, #081f35 100%)",
-	},
-	architectural: {
-		default: "linear-gradient(146deg, #1a1f31 0%, #101526 44%, #080b15 100%)",
-		"60×120cm": "linear-gradient(146deg, #262d43 0%, #1a2238 44%, #0c1323 100%)",
-	},
-};
+const MATERIAL_BACKDROPS: Record<string, Partial<Record<TileSize, string>> & { default: string }> =
+	{
+		inspire: {
+			default: "linear-gradient(146deg, #102b45 0%, #0b2237 45%, #071a2b 100%)",
+			"60×120cm": "linear-gradient(146deg, #15385a 0%, #0e2b46 46%, #071a2b 100%)",
+		},
+		travertine: {
+			default: "linear-gradient(146deg, #2f2418 0%, #231a11 44%, #0f0b07 100%)",
+			"60×120cm": "linear-gradient(146deg, #443222 0%, #2e2318 44%, #161008 100%)",
+			"80×80cm": "linear-gradient(146deg, #3a2c1e 0%, #2a2117 44%, #130f0a 100%)",
+		},
+		"orient-star": {
+			default: "linear-gradient(146deg, #2d2619 0%, #1f1a12 42%, #0c0906 100%)",
+			"60×120cm": "linear-gradient(146deg, #383022 0%, #262015 44%, #0d0b07 100%)",
+		},
+		sunshine: {
+			default: "linear-gradient(146deg, #183245 0%, #10293a 45%, #071a2b 100%)",
+			"60×120cm": "linear-gradient(146deg, #214261 0%, #17344d 48%, #091f34 100%)",
+			"80×80cm": "linear-gradient(146deg, #1b3b55 0%, #123049 46%, #081f35 100%)",
+		},
+		architectural: {
+			default: "linear-gradient(146deg, #1a1f31 0%, #101526 44%, #080b15 100%)",
+			"60×120cm": "linear-gradient(146deg, #262d43 0%, #1a2238 44%, #0c1323 100%)",
+		},
+	};
 
 function getMaterialBackdrop(categoryId: string, tileSize: TileSize): string {
-	const config =
-		MATERIAL_BACKDROPS[categoryId] ?? MATERIAL_BACKDROPS.inspire;
+	const config = MATERIAL_BACKDROPS[categoryId] ?? MATERIAL_BACKDROPS.inspire;
 	return config[tileSize] ?? config.default;
 }
 
@@ -78,7 +74,7 @@ function TileSizeSegmentedControl({
 
 	return (
 		<div
-			className="relative mx-auto grid min-w-[17.5rem] max-w-sm grid-cols-2 rounded-full border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+			className="relative mx-auto grid max-w-sm min-w-[17.5rem] grid-cols-2 rounded-full border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
 			role="tablist"
 			aria-label={t("tileFormat")}
 			onPointerDown={(event) => {
@@ -156,7 +152,7 @@ function MaterialCard({
 			{/* Depth + text legibility */}
 			<div
 				className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#071A2B]/88 via-[#071A2B]/12 to-[#040F1A]/35"
-				aria-hidden
+				aria-hidden="true"
 			/>
 
 			<MaterialTilePreview previews={tilePreview} />
@@ -210,9 +206,7 @@ export function LandingMaterials() {
 	const t = useTranslations("landing.materials");
 	const [activeSize, setActiveSize] = useState<TileSize>("60×120cm");
 
-	const visibleCategories = MATERIAL_CATEGORIES.filter((c) =>
-		c.sizes.includes(activeSize),
-	);
+	const visibleCategories = MATERIAL_CATEGORIES.filter((c) => c.sizes.includes(activeSize));
 
 	// Preserve the 3-top / 2-bottom masonry feel regardless of count.
 	const topRow = visibleCategories.slice(0, 3);
@@ -265,21 +259,17 @@ export function LandingMaterials() {
 					>
 						<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 							{topRow.map((cat) => (
-							<MaterialCard
-								key={cat.id}
-								category={cat}
-								activeSize={activeSize}
-							/>
+								<MaterialCard key={cat.id} category={cat} activeSize={activeSize} />
 							))}
 						</div>
 						{bottomRow.length > 0 && (
 							<div className="mt-4 grid gap-4 sm:grid-cols-2">
 								{bottomRow.map((cat) => (
-								<MaterialCard
-									key={cat.id}
-									category={cat}
-									activeSize={activeSize}
-								/>
+									<MaterialCard
+										key={cat.id}
+										category={cat}
+										activeSize={activeSize}
+									/>
 								))}
 							</div>
 						)}

@@ -5,7 +5,7 @@ import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
 import { AboutHeritage } from "@/page-sections/about/AboutHeritage";
 import { AboutCraft } from "@/page-sections/about/AboutCraft";
 import { AboutCapabilities } from "@/page-sections/about/AboutCapabilities";
-import { AboutLeadership } from "@/page-sections/about/AboutLeadership";
+import { AboutValues } from "@/page-sections/about/AboutValues";
 import { AboutClients } from "@/page-sections/about/AboutClients";
 import { AboutCta } from "@/page-sections/about/AboutCta";
 
@@ -75,7 +75,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 			<AboutHeritage />
 			<AboutCraft />
 			<AboutCapabilities />
-			<AboutLeadership />
+			<AboutValues />
 			<AboutClients />
 			<AboutCta />
 		</main>

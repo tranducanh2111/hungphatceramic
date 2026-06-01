@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -20,13 +20,15 @@ function OrbitalRing() {
 		}
 	});
 
-	// Create some dust particles for the orbit
+	// Create some dust particles for the orbit deterministically (pure render)
 	const particleCount = 200;
 	const positions = new Float32Array(particleCount * 3);
 	for (let i = 0; i < particleCount; i++) {
-		const radius = 3.5 + Math.random() * 1.5;
-		const theta = Math.random() * Math.PI * 2;
-		const y = (Math.random() - 0.5) * 1.5;
+		const sinI = Math.sin(i);
+		const cosI = Math.cos(i * 1.5);
+		const radius = 3.5 + Math.abs(sinI) * 1.5;
+		const theta = i * 0.1;
+		const y = cosI * 0.75;
 		positions[i * 3] = Math.cos(theta) * radius;
 		positions[i * 3 + 1] = y;
 		positions[i * 3 + 2] = Math.sin(theta) * radius;
@@ -50,6 +52,19 @@ function OrbitalRing() {
 }
 
 export function OrbitalRingScene() {
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		const handle = requestAnimationFrame(() => {
+			setMounted(true);
+		});
+		return () => cancelAnimationFrame(handle);
+	}, []);
+
+	if (!mounted) {
+		return <div className="pointer-events-none absolute inset-0 z-0 opacity-50" />;
+	}
+
 	return (
 		<div className="pointer-events-none absolute inset-0 z-0 opacity-50">
 			<Canvas camera={{ position: [0, 0, 8], fov: 45 }} gl={{ alpha: true }}>

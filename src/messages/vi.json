@@ -57,9 +57,9 @@
 			"youtube": "YouTube"
 		},
 		"contact": {
-			"address": "Số 583 Giải Phóng, Giáp Bát, Hoàng Mai, Hà Nội",
-			"phone": "+84 (0) 24 1234 5678",
-			"email": "contact@hungphatceramic.vn"
+			"address": "K3.TT1.SH22, Khu đô thị Tây Hồ Tây, Xuân Tảo, Phường Xuân Đỉnh, Hà Nội",
+			"phone": "0965976599",
+			"email": "congtyhungphat583@gmail.com"
 		},
 		"rights": "© {year} {companyName}. Bảo lưu mọi quyền."
 	},
@@ -296,7 +296,7 @@
 			"origin": {
 				"heading": "Thủ công xuất phát từ niềm tin.",
 				"pullQuote": "Đá là xa xỉ nguyên bản nhất.",
-				"body": "Năm 2012, tại làng nghề Bát Tràng, Hùng Phát được thành lập với một ám ảnh duy nhất — tuyển chọn và thi công bề mặt gốm sứ với sự cẩn trọng của người thợ điêu khắc đá. Từ một xưởng thủ công nhỏ, chúng tôi đã trở thành đối tác gốm sứ B2B đáng tin cậy nhất Việt Nam.",
+				"body": "Perla, được thành lập vào năm 2020 và được bảo trợ bởi Hùng Phát, công ty có hơn hai thập kỷ kinh nghiệm trong ngành từ năm 2004, được thành lập với tầm nhìn rõ ràng: cung cấp các bề mặt gốm sứ và porcelain cao cấp với tay nghề thủ công vượt trội, chất lượng và sự tỉ mỉ đến từng chi tiết.\n\nKhởi đầu từ niềm đam mê tìm kiếm và cung cấp các sản phẩm gốm sứ nổi bật, chúng tôi đã phát triển thành một trong những đối tác B2B đáng tin cậy của Việt Nam, phục vụ các kiến trúc sư, chủ đầu tư, nhà thầu và nhà phân phối với các giải pháp bề mặt sáng tạo cho không gian hiện đại.",
 				"imageAlt": "Ảnh tư liệu xưởng gốm Hùng Phát tại Bát Tràng, Hà Nội"
 			},
 			"heritage": {
@@ -381,40 +381,32 @@
 					}
 				}
 			},
-			"leadership": {
-				"heading": "Đội ngũ lãnh đạo",
-				"subheading": "Những con người tạo nên đẳng cấp thủ công của Perla.",
-				"principal": {
-					"name": "Hùng Nguyễn",
-					"role": "Người sáng lập & Giám đốc",
-					"imageAlt": "Hùng Nguyễn, Người sáng lập và Giám đốc Perla powered by Hung Phat",
-					"environmentalImageAlt": "Hùng Nguyễn trong không gian nội thất gốm sứ cao cấp"
+			"values": {
+				"label": "Giá Trị Cốt Lõi",
+				"heading": "Những Nguyên Tắc Trong Tay Nghề Của Chúng Tôi",
+				"network": {
+					"title": "Quy Mô & Tầm Vóc",
+					"subtitle": "Miền Bắc & Toàn Quốc",
+					"stats": "200+",
+					"statsLabel": "Địa Điểm Liên Kết",
+					"description": "Kết nối hệ thống hơn 200 cửa hàng, đối tác và khách hàng trên khắp miền Bắc Việt Nam, đồng thời thực hiện các dự án porcelain cao cấp quy mô lớn trên toàn quốc. Từ khâu tư vấn đầu tiên đến kiểm định cuối cùng, năng lực vận hành của chúng tôi đảm bảo tiến độ bàn giao chính xác tuyệt đối."
 				},
-				"members": {
-					"creativeDirector": {
-						"name": "Linh Trần",
-						"role": "Giám đốc sáng tạo",
-						"imageAlt": "Linh Trần, Giám đốc sáng tạo tại Perla"
+				"list": {
+					"craftsmanship": {
+						"title": "Sự Tinh Xảo",
+						"description": "Chúng tôi thi công các bề mặt porcelain với sự cẩn trọng tỉ mỉ như một nhà điêu khắc đá thực thụ. Từ khâu cắt ghép gạch, hiệu chỉnh kích thước đến kiểm tra mạch khớp trên công trình, từng chi tiết đều thể hiện cam kết mười năm về độ tinh xảo hoàn mỹ."
 					},
-					"technicalLead": {
-						"name": "Minh Nguyễn",
-						"role": "Trưởng bộ phận kỹ thuật",
-						"imageAlt": "Minh Nguyễn, Trưởng bộ phận kỹ thuật tại Perla"
+					"reliability": {
+						"title": "Sự Tin Cậy",
+						"description": "Các dự án cao cấp luôn đòi hỏi sự chuẩn xác tối đa. Quy trình cung ứng và thi công của chúng tôi được chuẩn hóa với các bước kiểm tra nghiêm ngặt, đảm bảo bàn giao đúng cam kết, đúng chất lượng và đúng tiến độ công trình."
 					},
-					"projectDirector": {
-						"name": "An Bùi",
-						"role": "Giám đốc dự án",
-						"imageAlt": "An Bùi, Giám đốc dự án tại Perla"
+					"customerCentricity": {
+						"title": "Khách Hàng Là Trọng Tâm",
+						"description": "Lợi ích và mong muốn của khách hàng là ưu tiên hàng đầu. Chúng tôi luôn thiết kế các giải pháp kỹ thuật, cung cấp mockup gạch thực tế phù hợp với yêu cầu cụ thể của kiến trúc sư, chủ đầu tư, kèm chế độ hậu mãi tận tâm dài hạn."
 					},
-					"operationsDirector": {
-						"name": "Lan Phạm",
-						"role": "Trưởng bộ phận vận hành",
-						"imageAlt": "Lan Phạm, Trưởng bộ phận vận hành tại Perla"
-					},
-					"salesDirector": {
-						"name": "Đức Trần",
-						"role": "Trưởng bộ phận kinh doanh",
-						"imageAlt": "Đức Trần, Trưởng bộ phận kinh doanh tại Perla"
+					"sustainableGrowth": {
+						"title": "Phát Triển Bền Vững",
+						"description": "Chúng tôi kiến tạo không gian sống với tầm nhìn hướng tới tương lai. Bằng việc lập kế hoạch tối ưu hóa hao phí nguyên liệu, thực hành trách nhiệm bảo vệ môi trường và sử dụng các vật liệu porcelain có độ bền vĩnh cửu."
 					}
 				}
 			},

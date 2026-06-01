@@ -120,7 +120,7 @@ export function LandingTestimonials() {
 							<button
 								key={i}
 								onClick={() => setActiveIndex(i)}
-								aria-label={t("aria.goTo", {index: i + 1})}
+								aria-label={t("aria.goTo", { index: i + 1 })}
 								className={`h-1.5 rounded-full transition-all duration-300 ${
 									i === activeIndex ? "w-6 bg-[#D4B886]" : "w-1.5 bg-[#1A3D5C]"
 								}`}
