@@ -2,7 +2,14 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import {
+	motion,
+	useScroll,
+	useTransform,
+	useSpring,
+	useMotionTemplate,
+	type Variants,
+} from "framer-motion";
 import { Button } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
@@ -43,16 +50,22 @@ export function AboutHero() {
 		offset: ["start start", "end start"],
 	});
 
-	const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-	const textY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
+	const rawTextOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+	const rawTextY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
+
+	const textOpacity = useSpring(rawTextOpacity, { stiffness: 90, damping: 28, mass: 0.1 });
+	const textY = useSpring(rawTextY, { stiffness: 90, damping: 28, mass: 0.1 });
 
 	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
 	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
 	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
 	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
 
-	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
-	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
+	const rawVideoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
+	const rawVideoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
+
+	const videoOpacity = useSpring(rawVideoOpacity, { stiffness: 90, damping: 28, mass: 0.1 });
+	const videoScale = useSpring(rawVideoScale, { stiffness: 90, damping: 28, mass: 0.1 });
 
 	return (
 		<section ref={sectionRef} className="relative h-[150vh] w-full">

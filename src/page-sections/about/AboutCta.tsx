@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Text, Button } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { ROUTES } from "@/constants/routes";
@@ -27,9 +28,21 @@ const fadeUp: Variants = {
  */
 export function AboutCta() {
 	const t = useTranslations("pages.about.cta");
+	const sectionRef = useRef<HTMLElement>(null);
+
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ["start end", "end start"],
+	});
+
+	const rawSignatureY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+	const signatureY = useSpring(rawSignatureY, { stiffness: 100, damping: 30, mass: 0.2 });
 
 	return (
-		<section className="bg-sapphire-deep relative min-h-[85vh] overflow-hidden py-32 lg:min-h-[90vh] lg:py-44">
+		<section
+			ref={sectionRef}
+			className="bg-sapphire-deep relative min-h-[85vh] overflow-hidden py-32 lg:min-h-[90vh] lg:py-44"
+		>
 			{/* Radial background glow */}
 			<div
 				className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_65%)] opacity-60"
@@ -42,7 +55,7 @@ export function AboutCta() {
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
-					viewport={{ once: true, amount: 0.4 }}
+					viewport={{ once: false, amount: 0.1 }}
 				>
 					<Text
 						variant="display-lg"
@@ -60,7 +73,7 @@ export function AboutCta() {
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
-					viewport={{ once: true, amount: 0.4 }}
+					viewport={{ once: false, amount: 0.1 }}
 				>
 					<Text variant="body-lg" className="mt-7 text-[#F4F4F6]/55">
 						{t("description")}
@@ -68,19 +81,24 @@ export function AboutCta() {
 				</motion.div>
 
 				<div className="relative mt-12 flex justify-center py-8">
-					<BlueprintLine
-						variant="signature"
+					<motion.div
+						style={{ y: signatureY }}
 						className="pointer-events-none absolute inset-x-0 top-1/2 left-1/2 z-0 h-28 w-[100vw] max-w-4xl -translate-x-1/2 translate-y-24 sm:h-32 sm:translate-y-18"
-						scrollRange={[0, 0.55]}
-						scrollOffset={["start 0.92", "end 0.35"]}
-						opacity={1}
-					/>
+					>
+						<BlueprintLine
+							variant="signature"
+							className="h-full w-full"
+							scrollRange={[0, 0.55]}
+							scrollOffset={["start 0.92", "end 0.35"]}
+							opacity={1}
+						/>
+					</motion.div>
 					<motion.div
 						custom={0.3}
 						variants={fadeUp}
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.4 }}
+						viewport={{ once: false, amount: 0.1 }}
 						className="relative z-10"
 					>
 						<Button href={ROUTES.contact} variant="outline" size="lg">

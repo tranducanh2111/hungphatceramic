@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
@@ -24,9 +25,22 @@ const fadeUp: Variants = {
  */
 export function AboutOrigin() {
 	const t = useTranslations("pages.about.origin");
+	const sectionRef = useRef<HTMLElement>(null);
+
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ["start end", "end start"],
+	});
+
+	const rawNumberY = useTransform(scrollYProgress, [0, 1], [-45, 45]);
+	const rawImageY = useTransform(scrollYProgress, [0, 1], [-25, 25]);
+
+	const numberY = useSpring(rawNumberY, { stiffness: 100, damping: 30, mass: 0.2 });
+	const imageY = useSpring(rawImageY, { stiffness: 100, damping: 30, mass: 0.2 });
 
 	return (
 		<section
+			ref={sectionRef}
 			id="our-story"
 			className="bg-sapphire-ocean relative overflow-hidden py-20 sm:py-28 lg:py-36"
 		>
@@ -43,7 +57,7 @@ export function AboutOrigin() {
 					variants={fadeUp}
 					initial="hidden"
 					whileInView="visible"
-					viewport={{ once: true, amount: 0.25 }}
+					viewport={{ once: false, amount: 0.15 }}
 					className="max-w-4xl"
 				>
 					<Text
@@ -64,9 +78,9 @@ export function AboutOrigin() {
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
-							viewport={{ once: true, amount: 0.2 }}
+							viewport={{ once: false, amount: 0.1 }}
 							className="font-serif text-[72px] leading-none font-light text-transparent select-none sm:text-[88px] lg:text-[110px]"
-							style={{ WebkitTextStroke: "1px rgba(212,184,134,0.2)" }}
+							style={{ y: numberY, WebkitTextStroke: "1px rgba(212,184,134,0.2)" }}
 							aria-hidden="true"
 						>
 							01
@@ -76,16 +90,22 @@ export function AboutOrigin() {
 							initial={{ opacity: 0, scale: 0.97 }}
 							whileInView={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
-							viewport={{ once: true, amount: 0.2 }}
+							viewport={{ once: false, amount: 0.1 }}
 							className="relative mt-4 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] lg:mt-6"
 						>
-							<Image
-								src={MEDIA_PATHS.images.about.origin}
-								alt={t("imageAlt")}
-								fill
-								className="object-cover object-center grayscale"
-								sizes="(max-width: 1024px) 100vw, 50vw"
-							/>
+							<motion.div
+								style={{ y: imageY, scale: 1.08 }}
+								className="absolute inset-0"
+							>
+								<Image
+									src={MEDIA_PATHS.images.about.origin}
+									alt={t("imageAlt")}
+									fill
+									className="object-cover object-center grayscale"
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									priority
+								/>
+							</motion.div>
 							<div className="ring-champagne/10 absolute inset-0 ring-1" />
 						</motion.div>
 
@@ -94,7 +114,7 @@ export function AboutOrigin() {
 							variants={fadeUp}
 							initial="hidden"
 							whileInView="visible"
-							viewport={{ once: true, amount: 0.2 }}
+							viewport={{ once: false, amount: 0.1 }}
 							className="border-champagne mt-6 border-l-2 pl-5 lg:mt-8"
 						>
 							<Text
@@ -113,7 +133,7 @@ export function AboutOrigin() {
 						variants={fadeUp}
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.25 }}
+						viewport={{ once: false, amount: 0.1 }}
 						className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2"
 					>
 						<Text

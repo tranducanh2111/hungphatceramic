@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Compass, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
 import { Text } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
@@ -27,6 +28,18 @@ const pillarVariants: Variants = {
 
 export function AboutValues() {
 	const t = useTranslations("pages.about.values");
+	const sectionRef = useRef<HTMLElement>(null);
+
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ["start end", "end start"],
+	});
+
+	const rawStatsY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+	const rawScaleLabelY = useTransform(scrollYProgress, [0, 1], [-65, 65]);
+
+	const statsY = useSpring(rawStatsY, { stiffness: 100, damping: 30, mass: 0.2 });
+	const scaleLabelY = useSpring(rawScaleLabelY, { stiffness: 100, damping: 30, mass: 0.2 });
 
 	const pillars = [
 		{ id: "craftsmanship", icon: Compass },
@@ -36,7 +49,10 @@ export function AboutValues() {
 	] as const;
 
 	return (
-		<section className="relative overflow-hidden bg-[#071A2B] py-24 sm:py-28 lg:py-36">
+		<section
+			ref={sectionRef}
+			className="relative overflow-hidden bg-[#071A2B] py-24 sm:py-28 lg:py-36"
+		>
 			{/* Radial background decoration */}
 			<div
 				className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,#0e2a42_0%,transparent_60%)] opacity-40"
@@ -50,9 +66,10 @@ export function AboutValues() {
 					<motion.div
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
+						viewport={{ once: false, amount: 0.1 }}
 						variants={fadeUp}
 						custom={0}
+						style={{ y: statsY }}
 						className="relative flex flex-col justify-center border-l-2 border-[#D4B886]/20 pl-8 lg:col-span-5"
 					>
 						<div className="font-serif text-[100px] leading-none font-light tracking-tight text-[#D4B886] sm:text-[130px] lg:text-[165px]">
@@ -65,20 +82,20 @@ export function AboutValues() {
 							{t("network.statsLabel")}
 						</Text>
 						{/* Absolute background label matching signature draft aesthetic */}
-						<div
+						<motion.div
 							className="pointer-events-none absolute top-0 -left-6 font-serif text-[140px] leading-none font-light opacity-[0.03] select-none"
-							style={{ WebkitTextStroke: "1px #D4B886" }}
+							style={{ y: scaleLabelY, WebkitTextStroke: "1px #D4B886" }}
 							aria-hidden="true"
 						>
 							SCALE
-						</div>
+						</motion.div>
 					</motion.div>
 
 					{/* Right: Scale story and context */}
 					<motion.div
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
+						viewport={{ once: false, amount: 0.1 }}
 						variants={fadeUp}
 						custom={0.15}
 						className="flex flex-col gap-4 lg:col-span-7"
@@ -109,7 +126,7 @@ export function AboutValues() {
 						<motion.span
 							initial={{ opacity: 0, y: 12 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: false }}
 							transition={{ duration: 0.6 }}
 							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 						>
@@ -118,7 +135,7 @@ export function AboutValues() {
 						<motion.h3
 							initial={{ opacity: 0, y: 12 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
+							viewport={{ once: false }}
 							transition={{ duration: 0.6, delay: 0.15 }}
 							className="text-display-lg mt-3 font-serif font-light tracking-wide text-[#F4F4F6]"
 						>
@@ -141,7 +158,7 @@ export function AboutValues() {
 										key={pillar.id}
 										initial="hidden"
 										whileInView="visible"
-										viewport={{ once: true, amount: 0.3 }}
+										viewport={{ once: false, amount: 0.1 }}
 										variants={pillarVariants}
 										className={`relative flex flex-col sm:flex-row ${
 											isEven ? "sm:flex-row-reverse" : ""
@@ -161,13 +178,13 @@ export function AboutValues() {
 														: "sm:items-start sm:text-left"
 												}`}
 											>
-												<span className="text-footnote font-sans tracking-[0.2em] text-[#D4B886] uppercase">
+												<span className="font-sans text-lg font-light tracking-[0.25em] text-[#D4B886] uppercase">
 													{`0${index + 1}`}
 												</span>
 												<Text
-													variant="h4"
-													as="h4"
-													className="mt-1 font-serif text-[#F4F4F6]"
+													variant="h2"
+													as="h3"
+													className="mt-2 font-serif text-2xl leading-tight font-light text-[#F4F4F6] sm:text-3xl lg:text-[32px]"
 												>
 													{t(`list.${pillar.id}.title`)}
 												</Text>

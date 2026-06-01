@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Text } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { HERITAGE_MILESTONES } from "@/constants/about";
@@ -149,6 +149,35 @@ function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 	);
 }
 
+interface MilestoneImageProps {
+	src: string;
+	alt: string;
+}
+
+function MilestoneImage({ src, alt }: MilestoneImageProps) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start end", "end start"],
+	});
+	const rawY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+	const y = useSpring(rawY, { stiffness: 100, damping: 30, mass: 0.2 });
+
+	return (
+		<div ref={containerRef} className="relative h-full w-full overflow-hidden">
+			<motion.div style={{ y, scale: 1.08 }} className="absolute inset-0">
+				<Image
+					src={src}
+					alt={alt}
+					fill
+					className="object-cover object-center"
+					sizes="(max-width: 1024px) 100vw, 50vw"
+				/>
+			</motion.div>
+		</div>
+	);
+}
+
 // ─── Main section ─────────────────────────────────────────────────────────────
 
 export function AboutHeritage() {
@@ -196,7 +225,7 @@ export function AboutHeritage() {
 								<motion.article
 									initial={{ opacity: 0.08, filter: "blur(12px)" }}
 									whileInView={{ opacity: 1, filter: "blur(0px)" }}
-									viewport={{ once: true, amount: 0.22 }}
+									viewport={{ once: false, amount: 0.1 }}
 									transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
 									className="relative z-10 col-span-2 grid items-center gap-x-20 gap-y-10 lg:grid-cols-2"
 								>
@@ -206,12 +235,9 @@ export function AboutHeritage() {
 											!isEven && "lg:order-2",
 										)}
 									>
-										<Image
+										<MilestoneImage
 											src={milestone.imageUrl}
 											alt={t(`milestones.${milestone.id}.imageAlt`)}
-											fill
-											className="object-cover object-center"
-											sizes="(max-width: 1024px) 100vw, 50vw"
 										/>
 										<div className="absolute inset-0 rounded-2xl ring-1 ring-[#D4B886]/8" />
 									</div>

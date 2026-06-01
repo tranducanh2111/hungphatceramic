@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
@@ -121,8 +122,17 @@ interface CapabilityCardProps {
 }
 
 function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) {
+	const cardRef = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: cardRef,
+		offset: ["start end", "end start"],
+	});
+	const rawY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+	const y = useSpring(rawY, { stiffness: 100, damping: 30, mass: 0.2 });
+
 	return (
 		<motion.article
+			ref={cardRef}
 			custom={animationDelay}
 			variants={{
 				hidden: { opacity: 0, y: 28 },
@@ -134,18 +144,20 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 			}}
 			initial="hidden"
 			whileInView="visible"
-			viewport={{ once: true, amount: 0.15 }}
+			viewport={{ once: false, amount: 0.1 }}
 			className="group relative flex flex-col overflow-hidden bg-[#071A2B]"
 		>
 			{/* Image with numbered badge */}
 			<div className="relative h-56 overflow-hidden lg:h-64">
-				<Image
-					src={card.imageUrl}
-					alt={t(`cards.${card.id}.title`)}
-					fill
-					className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-					sizes="(max-width: 640px) 100vw, 50vw"
-				/>
+				<motion.div style={{ y, scale: 1.08 }} className="absolute inset-0">
+					<Image
+						src={card.imageUrl}
+						alt={t(`cards.${card.id}.title`)}
+						fill
+						className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+						sizes="(max-width: 640px) 100vw, 50vw"
+					/>
+				</motion.div>
 				{/* Dark gradient for legibility */}
 				<div
 					className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/60 via-transparent to-transparent"

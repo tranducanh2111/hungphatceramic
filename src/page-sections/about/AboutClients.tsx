@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
 import { BlueprintLine } from "@/components/common";
 import { CLIENT_ROSTER } from "@/constants/about";
@@ -24,18 +25,30 @@ const fadeUp: Variants = {
  */
 export function AboutClients() {
 	const t = useTranslations("pages.about.clients");
+	const sectionRef = useRef<HTMLElement>(null);
+
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ["start end", "end start"],
+	});
+
+	const rawGridY = useTransform(scrollYProgress, [0, 1], [-45, 45]);
+	const gridY = useSpring(rawGridY, { stiffness: 100, damping: 30, mass: 0.2 });
 
 	return (
 		<section
+			ref={sectionRef}
 			className="relative overflow-hidden bg-[#0E2A42] py-24 lg:py-32"
 			aria-label={t("ariaLabel")}
 		>
 			{/* Blueprint grid-paper background — foundation laid motif */}
-			<BlueprintLine
-				variant="grid"
-				className="absolute inset-0 h-full w-full opacity-[0.07]"
-				scrollRange={[0.0, 0.5]}
-			/>
+			<motion.div style={{ y: gridY }} className="absolute inset-0">
+				<BlueprintLine
+					variant="grid"
+					className="h-full w-full opacity-[0.07]"
+					scrollRange={[0.0, 0.5]}
+				/>
+			</motion.div>
 
 			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
 				{/* Header */}
@@ -45,7 +58,7 @@ export function AboutClients() {
 						variants={fadeUp}
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
+						viewport={{ once: false, amount: 0.1 }}
 						className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
 					>
 						{t("label")}
@@ -55,7 +68,7 @@ export function AboutClients() {
 						variants={fadeUp}
 						initial="hidden"
 						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
+						viewport={{ once: false, amount: 0.1 }}
 					>
 						<Text
 							variant="h2"
@@ -77,7 +90,7 @@ export function AboutClients() {
 								variants={fadeUp}
 								initial="hidden"
 								whileInView="visible"
-								viewport={{ once: true, amount: 0.2 }}
+								viewport={{ once: false, amount: 0.1 }}
 								className="group flex items-center justify-center bg-[#0E2A42] px-6 py-10 transition-colors duration-300 hover:bg-[#071A2B]/60"
 							>
 								<span className="text-label text-center font-sans font-medium tracking-widest text-[#F4F4F6]/30 uppercase transition-colors duration-300 group-hover:text-[#D4B886]/80">

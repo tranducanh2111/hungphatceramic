@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import { Text } from "@/components/ui";
 import { CRAFT_BEATS } from "@/constants/about";
 import { BLUEPRINT_TOKENS as T } from "@/constants/blueprint";
@@ -276,6 +276,9 @@ export function AboutCraft() {
 		useTransform(scrollYProgress, [0.66, 1.0], [0, 1]),
 	] as const;
 
+	const rawImageY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+	const imageY = useSpring(rawImageY, { stiffness: 100, damping: 30, mass: 0.2 });
+
 	return (
 		<section ref={sectionRef} className="relative bg-[#071A2B]" aria-label={t("ariaLabel")}>
 			<div className="sticky top-0 flex h-[100dvh] min-h-[600px] flex-col overflow-hidden lg:h-screen lg:flex-row">
@@ -285,7 +288,7 @@ export function AboutCraft() {
 						<motion.div
 							key={beat.id}
 							className="absolute inset-0"
-							style={{ opacity: imageOpacities[index] }}
+							style={{ opacity: imageOpacities[index], y: imageY, scale: 1.08 }}
 						>
 							<Image
 								src={beat.imageUrl}

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     /** Matches `next/image` quality values used in the app (default 75 + custom 55). */
     qualities: [55, 75],
+    minimumCacheTTL: 31536000,
   },
 
   /**
