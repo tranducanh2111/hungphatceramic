@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
+import { CinematicHeroVideo } from "@/components/media";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -28,27 +29,7 @@ const scrollIndicatorVariants: Variants = {
 export function AboutHero() {
 	const t = useTranslations("pages.about.hero");
 	const sectionRef = useRef<HTMLElement>(null);
-	const videoRef = useRef<HTMLVideoElement>(null);
 	const prefersReducedMotion = usePrefersReducedMotion();
-
-	useEffect(() => {
-		const videoElement = videoRef.current;
-		if (!videoElement || prefersReducedMotion) return;
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry?.isIntersecting) {
-					void videoElement.play().catch(() => undefined);
-				} else {
-					videoElement.pause();
-				}
-			},
-			{ threshold: 0.15 },
-		);
-
-		observer.observe(videoElement);
-		return () => observer.disconnect();
-	}, [prefersReducedMotion]);
 
 	return (
 		<section
@@ -68,28 +49,13 @@ export function AboutHero() {
 					)}
 				>
 					<div className="bg-sapphire-deep absolute inset-0" />
-					{prefersReducedMotion ? (
-						<div
-							className="absolute inset-0 bg-cover bg-center"
-							style={{
-								backgroundImage: `url(${MEDIA_PATHS.images.landing.heroPoster})`,
-							}}
-							role="img"
-							aria-label={t("titleLine1")}
-						/>
-					) : (
-						<video
-							ref={videoRef}
-							autoPlay
-							muted
-							loop
-							playsInline
-							className="about-hero-video-scroll transform-gpu absolute inset-0 h-full w-full origin-center object-cover"
-							poster={MEDIA_PATHS.images.landing.heroPoster}
-						>
-							<source src={MEDIA_PATHS.video.aboutHero} type="video/mp4" />
-						</video>
-					)}
+					<CinematicHeroVideo
+						videoSrc={MEDIA_PATHS.video.aboutHero}
+						posterSrc={MEDIA_PATHS.images.landing.heroPoster}
+						posterAlt={t("titleLine1")}
+						prefersReducedMotion={prefersReducedMotion}
+						videoClassName="about-hero-video-scroll transform-gpu"
+					/>
 					<div
 						className="from-sapphire-deep/80 to-sapphire-deep/30 absolute inset-0 bg-gradient-to-t via-transparent"
 						aria-hidden="true"

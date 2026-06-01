@@ -42,7 +42,9 @@ export function LandingVisualStory() {
 						src={VISUAL_STORY_PANORAMA.src}
 						alt={t("imageAlt")}
 						fill
-						sizes="320vw"
+						loading="lazy"
+						quality={55}
+						sizes="(max-width: 1024px) 200vw, 320vw"
 						className="object-cover object-center"
 					/>
 				</motion.div>

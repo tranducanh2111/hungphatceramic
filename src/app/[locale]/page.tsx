@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { LandingHero } from "@/page-sections/landing/LandingHero";
-import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
-import { LandingProjects } from "@/page-sections/landing/LandingProjects";
-import { LandingMaterials } from "@/page-sections/landing/LandingMaterials";
-import { LandingStats } from "@/page-sections/landing/LandingStats";
-import { LandingProcess } from "@/page-sections/landing/LandingProcess";
-import { LandingTestimonials } from "@/page-sections/landing/LandingTestimonials";
-import { LandingVisualStory } from "@/page-sections/landing/LandingVisualStory";
-import { LandingCta } from "@/page-sections/landing/LandingCta";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
+import { LandingPageContent } from "@/page-sections/landing/LandingPageContent";
 
 interface HomePageProps {
 	params: Promise<{ locale: string }>;
@@ -38,15 +32,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
 	return (
 		<main className="relative" style={{ position: "relative" }}>
-			<LandingHero />
-			<LandingBrandStatement />
-			<LandingProjects />
-			<LandingMaterials />
-			<LandingStats />
-			<LandingProcess />
-			<LandingTestimonials />
-			<LandingVisualStory />
-			<LandingCta />
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
+			<LandingPageContent />
 		</main>
 	);
 }
