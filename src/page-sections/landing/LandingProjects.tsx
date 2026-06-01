@@ -22,11 +22,12 @@ function ProjectCard({
 
 	return (
 		<motion.article
-			initial={{ opacity: 0, y: 40 }}
+			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
-			viewport={{ once: true, amount: 0.2 }}
-			className="group relative overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)]"
+			transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
+			viewport={{ once: true, amount: 0.12 }}
+			className="group relative overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)] transform-gpu"
+			style={{ willChange: "transform, opacity" }}
 		>
 			<div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.01]">
 				<div className="relative aspect-[4/3] overflow-hidden">
@@ -57,7 +58,7 @@ function ProjectCard({
 				</div>
 
 				<div className="absolute right-5 bottom-5 left-5 z-10">
-					<div className="rounded-2xl border border-white/12 bg-[#071A2B]/22 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500 group-hover:border-white/18 group-hover:bg-[#071A2B]/30">
+					<div className="rounded-2xl border border-white/12 bg-[#071A2B]/22 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-md backdrop-saturate-150 transition-all duration-500 group-hover:border-white/18 group-hover:bg-[#071A2B]/30">
 						<Text
 							variant="body-sm"
 							className="text-[#F4F4F6]/78 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_20px_rgba(7,26,43,0.65)]"
