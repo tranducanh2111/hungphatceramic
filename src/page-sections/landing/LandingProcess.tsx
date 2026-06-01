@@ -2,7 +2,8 @@
 
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useMotionValueEvent } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
 import { PROCESS_STEPS } from "@/constants/landing";
 import { cn } from "@/lib/cn";
@@ -16,7 +17,7 @@ export function LandingProcess() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const [activeStepIndex, setActiveStepIndex] = useState(0);
 
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end end"],
 	});

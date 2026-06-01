@@ -1,18 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import {
-	motion,
-	useScroll,
-	useTransform,
-	useSpring,
-	useMotionTemplate,
-	type Variants,
-} from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui";
-import { BlueprintLine } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { cn } from "@/lib/cn";
 
 const contentVariants: Variants = {
 	hidden: { opacity: 0, y: 32 },
@@ -31,86 +25,88 @@ const scrollIndicatorVariants: Variants = {
 	},
 };
 
-/**
- * AboutHero — Cinematic manifesto opener.
- *
- * Changes from v1:
- *   - Headline bumped to `display-2xl` on `lg` (dominant typography signal).
- *   - Eyebrow label removed (flyward never uses eyebrows on hero).
- *   - Outline pill CTA "Discover Our Story" added below the manifesto,
- *     smooth-scrolling to the `#our-story` section anchor.
- *   - Scroll indicator retained.
- */
 export function AboutHero() {
 	const t = useTranslations("pages.about.hero");
 	const sectionRef = useRef<HTMLElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const prefersReducedMotion = usePrefersReducedMotion();
 
-	const { scrollYProgress } = useScroll({
-		target: sectionRef,
-		offset: ["start start", "end start"],
-	});
+	useEffect(() => {
+		const videoElement = videoRef.current;
+		if (!videoElement || prefersReducedMotion) return;
 
-	const rawTextOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-	const rawTextY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry?.isIntersecting) {
+					void videoElement.play().catch(() => undefined);
+				} else {
+					videoElement.pause();
+				}
+			},
+			{ threshold: 0.15 },
+		);
 
-	const textOpacity = useSpring(rawTextOpacity, { stiffness: 90, damping: 28, mass: 0.1 });
-	const textY = useSpring(rawTextY, { stiffness: 90, damping: 28, mass: 0.1 });
-
-	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
-	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
-
-	const rawVideoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
-	const rawVideoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
-
-	const videoOpacity = useSpring(rawVideoOpacity, { stiffness: 90, damping: 28, mass: 0.1 });
-	const videoScale = useSpring(rawVideoScale, { stiffness: 90, damping: 28, mass: 0.1 });
+		observer.observe(videoElement);
+		return () => observer.disconnect();
+	}, [prefersReducedMotion]);
 
 	return (
-		<section ref={sectionRef} className="relative h-[150vh] w-full">
-			<div className="sticky top-0 h-screen w-full overflow-hidden bg-[#071A2B]">
-				{/* Radial background gradient */}
+		<section
+			ref={sectionRef}
+			className={cn("relative h-[150vh] w-full", !prefersReducedMotion && "about-hero-scroll")}
+		>
+			<div className="bg-sapphire-deep sticky top-0 h-screen w-full overflow-hidden">
 				<div
 					className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_70%)]"
 					aria-hidden="true"
 				/>
 
-				{/* Expanding cinematic video */}
-				<motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ clipPath }}>
-					<motion.div className="absolute inset-0 bg-[#071A2B]" />
-					<motion.video
-						autoPlay
-						muted
-						loop
-						playsInline
-						className="absolute inset-0 h-full w-full origin-center object-cover"
-						style={{ opacity: videoOpacity, scale: videoScale }}
-						poster={MEDIA_PATHS.images.landing.heroPoster}
-					>
-						<source src={MEDIA_PATHS.video.aboutHero} type="video/mp4" />
-					</motion.video>
+				<div
+					className={cn(
+						"absolute inset-0 z-0 overflow-hidden",
+						!prefersReducedMotion && "about-hero-media-scroll",
+					)}
+				>
+					<div className="bg-sapphire-deep absolute inset-0" />
+					{prefersReducedMotion ? (
+						<div
+							className="absolute inset-0 bg-cover bg-center"
+							style={{
+								backgroundImage: `url(${MEDIA_PATHS.images.landing.heroPoster})`,
+							}}
+							role="img"
+							aria-label={t("titleLine1")}
+						/>
+					) : (
+						<video
+							ref={videoRef}
+							autoPlay
+							muted
+							loop
+							playsInline
+							className="about-hero-video-scroll transform-gpu absolute inset-0 h-full w-full origin-center object-cover"
+							poster={MEDIA_PATHS.images.landing.heroPoster}
+						>
+							<source src={MEDIA_PATHS.video.aboutHero} type="video/mp4" />
+						</video>
+					)}
 					<div
-						className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/80 via-transparent to-[#071A2B]/30"
+						className="from-sapphire-deep/80 to-sapphire-deep/30 absolute inset-0 bg-gradient-to-t via-transparent"
 						aria-hidden="true"
 					/>
-				</motion.div>
+				</div>
 
-				{/* Manifesto content — h1 lives here */}
-				<motion.div
-					style={{ opacity: textOpacity, y: textY }}
-					className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
-				>
+				<div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
 					<motion.h1
 						custom={0.2}
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-display-xl lg:text-display-2xl font-serif leading-[1.05] font-light text-[#F4F4F6]"
+						className="text-display-xl lg:text-display-2xl text-linen font-serif leading-[1.05] font-light"
 					>
 						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
+						<em className="text-champagne italic">{t("titleLine2")}</em>
 					</motion.h1>
 
 					<motion.p
@@ -118,12 +114,11 @@ export function AboutHero() {
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-body-lg mt-6 max-w-md font-sans text-[#F4F4F6]/60"
+						className="text-body-lg text-linen/60 mt-6 max-w-md font-sans"
 					>
 						{t("description")}
 					</motion.p>
 
-					{/* Outline pill CTA — smooth-scrolls to origin section */}
 					<motion.div
 						custom={0.65}
 						variants={contentVariants}
@@ -140,27 +135,18 @@ export function AboutHero() {
 							{t("cta")}
 						</Button>
 					</motion.div>
-				</motion.div>
+				</div>
 
-				{/* Survey blueprint line — site-selection motif near bottom edge */}
-				<BlueprintLine
-					variant="survey"
-					className="absolute inset-x-0 bottom-20 z-10 h-10 opacity-[0.22]"
-					scrollRange={[0, 0.3]}
-				/>
-
-				{/* Scroll indicator */}
 				<motion.div
 					variants={scrollIndicatorVariants}
 					animate="animate"
-					style={{ opacity: textOpacity }}
 					className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
 					aria-hidden="true"
 				>
-					<span className="text-footnote font-sans tracking-widest text-[#D4B886]/45 uppercase">
+					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
 						{t("scroll")}
 					</span>
-					<div className="h-12 w-px bg-gradient-to-b from-[#D4B886]/50 to-transparent" />
+					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
 				</motion.div>
 			</div>
 		</section>

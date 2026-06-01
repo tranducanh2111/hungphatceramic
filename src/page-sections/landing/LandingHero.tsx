@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
@@ -35,7 +36,7 @@ export function LandingHero() {
 	const sectionRef = useRef<HTMLElement>(null);
 
 	// Scroll progress within the 150vh hero section
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end start"],
 	});

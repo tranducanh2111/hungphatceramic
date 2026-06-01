@@ -1,18 +1,61 @@
 "use client";
 
-import { useEffect } from "react";
-import Lenis from "lenis";
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useMemo,
+	useRef,
+	type ReactNode,
+} from "react";
+import { ReactLenis, type LenisRef } from "lenis/react";
+import { cancelFrame, frame } from "framer-motion";
 
 interface SmoothScrollProviderProps {
-	children: React.ReactNode;
+	children: ReactNode;
+}
+
+interface LenisControls {
+	resize: () => void;
+}
+
+const LenisContext = createContext<LenisControls | null>(null);
+
+/** Call after dynamic layout changes (e.g. About page code-split sections). */
+export function useLenisControls(): LenisControls | null {
+	return useContext(LenisContext);
+}
+
+const LENIS_OPTIONS = {
+	autoRaf: false,
+	duration: 1.3,
+	easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+	smoothWheel: true,
+	wheelMultiplier: 1,
+	touchMultiplier: 2,
+	infinite: false,
+} as const;
+
+/**
+ * Drives Lenis from Framer Motion's frame loop so scroll position and
+ * useScroll stay on the same clock.
+ */
+function LenisFramerRaf({ lenisRef }: { lenisRef: React.RefObject<LenisRef | null> }) {
+	useEffect(() => {
+		function update(data: { timestamp: number }) {
+			lenisRef.current?.lenis?.raf(data.timestamp);
+		}
+
+		frame.update(update, true);
+		return () => cancelFrame(update);
+	}, [lenisRef]);
+
+	return null;
 }
 
 /**
- * SmoothScrollProvider — Wraps the page in Lenis smooth scroll.
- *
- * Uses an expo-out easing for a buttery, premium feel.
- * All Framer Motion useScroll hooks continue to work correctly
- * since Lenis operates through native scroll position.
+ * SmoothScrollProvider — Lenis smooth scroll site-wide (including /about).
+ * Exposes resize() for pages with late-hydrating scroll height.
  */
 if (typeof window !== "undefined") {
 	const originalWarn = console.warn;
@@ -31,30 +74,23 @@ if (typeof window !== "undefined") {
 }
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-	useEffect(() => {
-		const lenis = new Lenis({
-			duration: 1.3,
-			easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-			smoothWheel: true,
-			wheelMultiplier: 1,
-			touchMultiplier: 2,
-			infinite: false,
-		});
+	const lenisRef = useRef<LenisRef>(null);
 
-		let rafId: number;
+	const lenisControls = useMemo<LenisControls>(
+		() => ({
+			resize: () => {
+				lenisRef.current?.lenis?.resize();
+			},
+		}),
+		[],
+	);
 
-		function raf(time: number) {
-			lenis.raf(time);
-			rafId = requestAnimationFrame(raf);
-		}
-
-		rafId = requestAnimationFrame(raf);
-
-		return () => {
-			cancelAnimationFrame(rafId);
-			lenis.destroy();
-		};
-	}, []);
-
-	return <>{children}</>;
+	return (
+		<LenisContext.Provider value={lenisControls}>
+			<ReactLenis ref={lenisRef} root options={LENIS_OPTIONS}>
+				<LenisFramerRaf lenisRef={lenisRef} />
+				{children}
+			</ReactLenis>
+		</LenisContext.Provider>
+	);
 }

@@ -1,12 +1,10 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
-import { BlueprintLine } from "@/components/common";
+import { ParallaxElement, RevealOnView } from "@/components/common";
 import { CAPABILITY_CARDS, type CapabilityId } from "@/constants/about";
 
 /** Small footer icon per capability card. */
@@ -17,22 +15,8 @@ const CAPABILITY_ICONS: Record<CapabilityId, LucideIcon> = {
 	aftercare: ShieldCheck,
 } as const;
 
-const fadeUp: Variants = {
-	hidden: { opacity: 0, y: 28 },
-	visible: (delay: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.75, ease: "easeOut" as const, delay },
-	}),
-};
-
 /**
  * AboutCapabilities — 4 numbered image cards (flyward value-card pattern).
- *
- * Layout: 2 columns on desktop (2×2 grid), single column on mobile.
- * Each card: image at top with a numbered badge (01–04) on the upper-right,
- * serif uppercase title, sans body copy, and a small icon footer.
- * A decorative vein curve separates the two rows.
  */
 export function AboutCapabilities() {
 	const t = useTranslations("pages.about.capabilities");
@@ -41,34 +25,21 @@ export function AboutCapabilities() {
 	const bottomRow = CAPABILITY_CARDS.slice(2);
 
 	return (
-		<section className="relative bg-[#0E2A42] py-28 lg:py-36">
+		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
-				{/* Header */}
 				<div className="mb-16">
-					<motion.span
-						custom={0}
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
-						className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-					>
-						{t("label")}
-					</motion.span>
-					<motion.div
-						custom={0.1}
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
-					>
-						<Text variant="h2" as="h2" className="mt-3 max-w-xl text-[#F4F4F6]">
+					<RevealOnView>
+						<span className="text-label font-sans tracking-widest text-champagne uppercase">
+							{t("label")}
+						</span>
+					</RevealOnView>
+					<RevealOnView className="mt-3 max-w-xl" delay={0.1}>
+						<Text variant="h2" as="h2" className="text-linen">
 							{t("heading")}
 						</Text>
-					</motion.div>
+					</RevealOnView>
 				</div>
 
-				{/* Top row */}
 				<div className="grid gap-6 sm:grid-cols-2">
 					{topRow.map((card, index) => {
 						const Icon = CAPABILITY_ICONS[card.id as CapabilityId];
@@ -84,15 +55,7 @@ export function AboutCapabilities() {
 					})}
 				</div>
 
-				{/* Section-cut datum — marks the boundary between capability rows */}
-				<BlueprintLine
-					variant="datum"
-					className="my-8 h-5 w-full"
-					scrollRange={[0.1, 0.6]}
-				/>
-
-				{/* Bottom row */}
-				<div className="grid gap-6 sm:grid-cols-2">
+				<div className="mt-8 grid gap-6 sm:grid-cols-2">
 					{bottomRow.map((card, index) => {
 						const Icon = CAPABILITY_ICONS[card.id as CapabilityId];
 						return (
@@ -107,11 +70,14 @@ export function AboutCapabilities() {
 					})}
 				</div>
 			</div>
+
+			<div
+				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 translate-y-px bg-gradient-to-b from-sapphire-ocean via-[#0a1f32] sm:h-48"
+				aria-hidden="true"
+			/>
 		</section>
 	);
 }
-
-/* ─── Card sub-component ─────────────────────────────────────────────────────── */
 
 interface CapabilityCardProps {
 	card: (typeof CAPABILITY_CARDS)[number];
@@ -122,34 +88,14 @@ interface CapabilityCardProps {
 }
 
 function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) {
-	const cardRef = useRef<HTMLDivElement>(null);
-	const { scrollYProgress } = useScroll({
-		target: cardRef,
-		offset: ["start end", "end start"],
-	});
-	const rawY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
-	const y = useSpring(rawY, { stiffness: 100, damping: 30, mass: 0.2 });
-
 	return (
-		<motion.article
-			ref={cardRef}
-			custom={animationDelay}
-			variants={{
-				hidden: { opacity: 0, y: 28 },
-				visible: (delay: number) => ({
-					opacity: 1,
-					y: 0,
-					transition: { duration: 0.75, ease: "easeOut" as const, delay },
-				}),
-			}}
-			initial="hidden"
-			whileInView="visible"
-			viewport={{ once: false, amount: 0.1 }}
-			className="group relative flex flex-col overflow-hidden bg-[#071A2B]"
+		<RevealOnView
+			as="article"
+			delay={animationDelay}
+			className="group bg-sapphire-deep relative flex flex-col overflow-hidden"
 		>
-			{/* Image with numbered badge */}
 			<div className="relative h-56 overflow-hidden lg:h-64">
-				<motion.div style={{ y, scale: 1.08 }} className="absolute inset-0">
+				<ParallaxElement rangePx={20} className="absolute inset-0 scale-[1.08]">
 					<Image
 						src={card.imageUrl}
 						alt={t(`cards.${card.id}.title`)}
@@ -157,42 +103,37 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 						className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
 						sizes="(max-width: 640px) 100vw, 50vw"
 					/>
-				</motion.div>
-				{/* Dark gradient for legibility */}
+				</ParallaxElement>
 				<div
-					className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/60 via-transparent to-transparent"
+					className="from-sapphire-deep/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
 					aria-hidden="true"
 				/>
 
-				{/* Numbered badge — upper right */}
-				<div className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center border border-[#D4B886]/40 bg-[#071A2B]/70 backdrop-blur-sm">
-					<span className="text-footnote font-serif font-light text-[#D4B886]">
+				<div className="border-champagne/40 bg-sapphire-deep/85 absolute top-4 right-4 flex h-9 w-9 items-center justify-center border">
+					<span className="text-footnote text-champagne font-serif font-light">
 						{card.numeral}
 					</span>
 				</div>
 			</div>
 
-			{/* Card body */}
 			<div className="flex flex-1 flex-col gap-3 px-7 py-7">
 				<Text
 					variant="h4"
 					as="h3"
-					className="font-serif tracking-wide text-[#F4F4F6] uppercase"
+					className="text-linen font-serif tracking-wide uppercase"
 				>
 					{t(`cards.${card.id}.title`)}
 				</Text>
-				<Text variant="body" className="leading-relaxed text-[#F4F4F6]/55">
+				<Text variant="body" className="text-linen/55 leading-relaxed">
 					{t(`cards.${card.id}.body`)}
 				</Text>
 
-				{/* Icon footer */}
-				<div className="mt-auto border-t border-[#D4B886]/10 pt-4">
-					<Icon className="h-4 w-4 text-[#D4B886]/50" />
+				<div className="border-champagne/10 mt-auto border-t pt-4">
+					<Icon className="text-champagne/50 h-4 w-4" />
 				</div>
 			</div>
 
-			{/* Champagne bottom hairline — reveals on hover */}
-			<div className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#D4B886] transition-transform duration-500 ease-out group-hover:scale-x-100" />
-		</motion.article>
+			<div className="bg-champagne absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+		</RevealOnView>
 	);
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { cn } from "@/lib/cn";
 import {
 	type BlueprintVariant,
@@ -12,34 +10,23 @@ import {
 	SIGNATURE_PATH,
 	DATUM_PATH,
 } from "@/constants/blueprint";
+import { RevealOnView } from "./RevealOnView";
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
+const S = T.color;
 
-type ScrollOffset = NonNullable<Parameters<typeof useScroll>[0]>["offset"];
+const DRAW_PATH_CLASS =
+	"blueprint-draw-on-view [stroke-dasharray:1] [stroke-dashoffset:1] motion-reduce:[stroke-dashoffset:0]";
 
 interface BlueprintLineProps {
 	variant: BlueprintVariant;
 	className?: string;
-	/** Scale the base opacity of all strokes. Default 1. */
+	/** Scales fade-in peak opacity for opacity-based variants. */
 	opacity?: number;
-	/** Scroll trigger window as [enter, exit] fractions (default: [0.05, 0.7]). */
-	scrollRange?: [number, number];
-	/** Framer scroll offset — override for footer/short sections. */
-	scrollOffset?: ScrollOffset;
 }
 
-// ─── Per-variant SVG content renderers ────────────────────────────────────────
-
-const S = T.color; // stroke colour shorthand
-
-/**
- * survey — Long horizontal line with five triangular tick bumps.
- * Animation: pathLength (draws left to right).
- */
-function SurveySvg({ draw }: { draw: MotionValue<number> }) {
+function SurveySvg() {
 	return (
 		<>
-			{/* Ghost track */}
 			<path
 				d={SURVEY_PATH}
 				stroke={S}
@@ -49,8 +36,7 @@ function SurveySvg({ draw }: { draw: MotionValue<number> }) {
 				vectorEffect="non-scaling-stroke"
 				fill="none"
 			/>
-			{/* Scroll-revealed stroke */}
-			<motion.path
+			<path
 				d={SURVEY_PATH}
 				stroke={S}
 				strokeWidth={T.strokeRegular}
@@ -58,81 +44,61 @@ function SurveySvg({ draw }: { draw: MotionValue<number> }) {
 				strokeLinecap="round"
 				vectorEffect="non-scaling-stroke"
 				fill="none"
-				style={{ pathLength: draw }}
+				pathLength={1}
+				className={DRAW_PATH_CLASS}
 			/>
 		</>
 	);
 }
 
-/**
- * foundation — Two L-shaped corner brackets with small dimension annotations.
- * Animation: opacity (whole group fades in).
- */
-function FoundationSvg({ opacity }: { opacity: MotionValue<number> }) {
+function FoundationSvg() {
 	return (
-		<motion.g
+		<g
 			stroke={S}
 			fill="none"
 			strokeLinecap="round"
 			vectorEffect="non-scaling-stroke"
-			style={{ opacity }}
+			className="opacity-90"
 		>
-			{/* Top-left bracket */}
 			<path
 				d="M 0 80 L 0 0 L 80 0"
 				strokeWidth={T.strokeRegular}
 				strokeOpacity={T.opacityAnnotation}
 			/>
-			{/* Bottom-right bracket */}
 			<path
 				d="M 160 240 L 240 240 L 240 160"
 				strokeWidth={T.strokeRegular}
 				strokeOpacity={T.opacityAnnotation}
 			/>
-			{/* Dimension extension ticks on top-left */}
 			<path
 				d="M 88 0 L 88 12 M 100 0 L 100 12"
 				strokeWidth={T.strokeHairline}
 				strokeOpacity={T.opacitySketch}
 				strokeDasharray={T.dashDimension}
 			/>
-			{/* Dimension extension ticks on bottom-right */}
 			<path
 				d="M 240 152 L 228 152 M 240 140 L 228 140"
 				strokeWidth={T.strokeHairline}
 				strokeOpacity={T.opacitySketch}
 				strokeDasharray={T.dashDimension}
 			/>
-		</motion.g>
+		</g>
 	);
 }
 
-/**
- * joint — Structural rivet (circle) with horizontal rails and tick marks.
- * Animation: opacity (whole group fades in).
- */
-function JointSvg({ opacity }: { opacity: MotionValue<number> }) {
+function JointSvg() {
 	return (
-		<motion.g
-			stroke={S}
-			fill="none"
-			strokeLinecap="round"
-			vectorEffect="non-scaling-stroke"
-			style={{ opacity }}
-		>
-			{/* Left rail */}
+		<g stroke={S} fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke">
 			<path
 				d="M 0 40 L 222 40"
 				strokeWidth={T.strokeRegular}
 				strokeOpacity={T.opacitySketch}
 			/>
-			{/* Right rail */}
 			<path
 				d="M 278 40 L 500 40"
 				strokeWidth={T.strokeRegular}
 				strokeOpacity={T.opacitySketch}
 			/>
-			{/* Rivet circle */}
 			<circle
 				cx="250"
 				cy="40"
@@ -140,37 +106,29 @@ function JointSvg({ opacity }: { opacity: MotionValue<number> }) {
 				strokeWidth={T.strokeRegular}
 				strokeOpacity={T.opacityAnnotation}
 			/>
-			{/* Crosshair inside rivet */}
 			<path
 				d="M 250 12 L 250 68 M 222 40 L 278 40"
 				strokeWidth={T.strokeHairline}
 				strokeOpacity={T.opacitySketch}
 				strokeDasharray={T.dashSketch}
 			/>
-			{/* Dimension ticks on left rail */}
 			<path
 				d="M 80 34 L 80 46 M 150 34 L 150 46"
 				strokeWidth={T.strokeHairline}
 				strokeOpacity={T.opacitySketch}
 			/>
-			{/* Dimension ticks on right rail */}
 			<path
 				d="M 350 34 L 350 46 M 420 34 L 420 46"
 				strokeWidth={T.strokeHairline}
 				strokeOpacity={T.opacitySketch}
 			/>
-		</motion.g>
+		</g>
 	);
 }
 
-/**
- * keystone — Shallow arc with a center-peak marker tick.
- * Animation: pathLength (draws as a single continuous stroke).
- */
-function KeystoneSvg({ draw }: { draw: MotionValue<number> }) {
+function KeystoneSvg() {
 	return (
 		<>
-			{/* Ghost arc track */}
 			<path
 				d={KEYSTONE_PATH}
 				stroke={S}
@@ -180,8 +138,7 @@ function KeystoneSvg({ draw }: { draw: MotionValue<number> }) {
 				fill="none"
 				vectorEffect="non-scaling-stroke"
 			/>
-			{/* Scroll-revealed arc */}
-			<motion.path
+			<path
 				d={KEYSTONE_PATH}
 				stroke={S}
 				strokeWidth={T.strokeRegular}
@@ -189,19 +146,16 @@ function KeystoneSvg({ draw }: { draw: MotionValue<number> }) {
 				strokeLinecap="round"
 				fill="none"
 				vectorEffect="non-scaling-stroke"
-				style={{ pathLength: draw }}
+				pathLength={1}
+				className={DRAW_PATH_CLASS}
 			/>
 		</>
 	);
 }
 
-/**
- * grid — Orthogonal grid-paper pattern using SVG <pattern>.
- * Animation: opacity (whole pattern fades in as a background texture).
- */
-function GridSvg({ opacity }: { opacity: MotionValue<number> }) {
+function GridSvg({ opacityMultiplier }: { opacityMultiplier: number }) {
 	return (
-		<motion.g style={{ opacity }}>
+		<g style={{ opacity: opacityMultiplier }}>
 			<defs>
 				<pattern
 					id="blueprint-grid-pattern"
@@ -222,19 +176,13 @@ function GridSvg({ opacity }: { opacity: MotionValue<number> }) {
 				</pattern>
 			</defs>
 			<rect width="400" height="300" fill="url(#blueprint-grid-pattern)" />
-		</motion.g>
+		</g>
 	);
 }
 
-/**
- * datum — Full-width section-cut line: diamond ends + 3 station ticks.
- * Use `preserveAspectRatio="none"` on the parent SVG for full-width stretch.
- * Animation: pathLength (draws the cut line from left to right).
- */
-function DatumSvg({ draw }: { draw: MotionValue<number> }) {
+function DatumSvg() {
 	return (
 		<>
-			{/* Ghost track — always visible at near-zero opacity */}
 			<path
 				d={DATUM_PATH}
 				stroke={S}
@@ -244,8 +192,7 @@ function DatumSvg({ draw }: { draw: MotionValue<number> }) {
 				fill="none"
 				vectorEffect="non-scaling-stroke"
 			/>
-			{/* Scroll-revealed datum stroke */}
-			<motion.path
+			<path
 				d={DATUM_PATH}
 				stroke={S}
 				strokeWidth={T.strokeRegular}
@@ -253,31 +200,16 @@ function DatumSvg({ draw }: { draw: MotionValue<number> }) {
 				strokeLinecap="round"
 				fill="none"
 				vectorEffect="non-scaling-stroke"
-				style={{ pathLength: draw }}
+				pathLength={1}
+				className={DRAW_PATH_CLASS}
 			/>
 		</>
 	);
 }
 
-/**
- * signature — Flowing S-curve ending in an architect's approval cross-mark.
- * Animation: pathLength (draws as a single continuous stroke from left to right).
- */
-function SignatureSvg({ draw }: { draw: MotionValue<number> }) {
-	const glowOpacity = useTransform(draw, [0.55, 1], [0, 0.85]);
-
+function SignatureSvg() {
 	return (
 		<>
-			<defs>
-				<filter id="blueprint-signature-glow" x="-20%" y="-20%" width="140%" height="140%">
-					<feGaussianBlur stdDeviation="2.5" result="blur" />
-					<feMerge>
-						<feMergeNode in="blur" />
-						<feMergeNode in="SourceGraphic" />
-					</feMerge>
-				</filter>
-			</defs>
-			{/* Ghost track */}
 			<path
 				d={SIGNATURE_PATH}
 				stroke={S}
@@ -287,8 +219,7 @@ function SignatureSvg({ draw }: { draw: MotionValue<number> }) {
 				fill="none"
 				vectorEffect="non-scaling-stroke"
 			/>
-			{/* Scroll-revealed stroke */}
-			<motion.path
+			<path
 				d={SIGNATURE_PATH}
 				stroke={S}
 				strokeWidth={T.strokeRegular}
@@ -296,63 +227,37 @@ function SignatureSvg({ draw }: { draw: MotionValue<number> }) {
 				strokeLinecap="round"
 				fill="none"
 				vectorEffect="non-scaling-stroke"
-				style={{ pathLength: draw }}
+				pathLength={1}
+				className={DRAW_PATH_CLASS}
 			/>
-			{/* Champagne glow layer — peaks when draw completes */}
-			<motion.path
+			<path
 				d={SIGNATURE_PATH}
 				stroke={S}
 				strokeWidth={T.strokeEmphasis}
+				strokeOpacity={0.55}
 				strokeLinecap="round"
 				fill="none"
 				vectorEffect="non-scaling-stroke"
-				filter="url(#blueprint-signature-glow)"
-				style={{ pathLength: draw, strokeOpacity: glowOpacity }}
+				pathLength={1}
+				className={cn(DRAW_PATH_CLASS, "opacity-70")}
 			/>
 		</>
 	);
 }
 
-// ─── Main component ────────────────────────────────────────────────────────────
-
 /**
- * BlueprintLine — Shared architectural pen-line motif.
- *
- * Each variant is a scroll-linked SVG fragment that progressively reveals on
- * scroll entry, building the "Blueprint to Built" narrative across the page.
- *
- * - pathLength variants (survey, keystone, signature): stroke draws itself.
- * - opacity variants (foundation, joint, grid): element fades in as a group.
- *
- * @example
- * <BlueprintLine variant="survey" className="absolute bottom-12 inset-x-0" />
+ * BlueprintLine — architectural pen-line motif with Tailwind view-timeline draw/fade.
  */
 export function BlueprintLine({
 	variant,
 	className,
 	opacity: opacityMultiplier = 1,
-	scrollRange = [0.05, 0.7],
-	scrollOffset = ["start end", "end start"],
 }: BlueprintLineProps) {
-	const containerRef = useRef<HTMLDivElement>(null);
-	const { viewBox, animation } = BLUEPRINT_META[variant];
-
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: scrollOffset,
-	});
-
-	// pathLength: 0 → 1 as section scrolls into view
-	const drawProgress = useTransform(scrollYProgress, scrollRange, [0, 1]);
-	// opacity: 0 → opacityMultiplier for fade-in variants
-	const fadeProgress = useTransform(scrollYProgress, scrollRange, [0, opacityMultiplier]);
-
-	const isPathLength = animation === "pathLength";
-
+	const { viewBox } = BLUEPRINT_META[variant];
 	const isDatum = variant === "datum";
 
 	return (
-		<div ref={containerRef} className={cn("pointer-events-none", className)} aria-hidden="true">
+		<RevealOnView className={cn("pointer-events-none", className)} aria-hidden={true}>
 			<svg
 				viewBox={viewBox}
 				fill="none"
@@ -361,16 +266,14 @@ export function BlueprintLine({
 				}
 				className="h-full w-full overflow-visible"
 			>
-				{variant === "survey" && <SurveySvg draw={drawProgress} />}
-				{variant === "foundation" && (
-					<FoundationSvg opacity={isPathLength ? drawProgress : fadeProgress} />
-				)}
-				{variant === "joint" && <JointSvg opacity={fadeProgress} />}
-				{variant === "keystone" && <KeystoneSvg draw={drawProgress} />}
-				{variant === "grid" && <GridSvg opacity={fadeProgress} />}
-				{variant === "signature" && <SignatureSvg draw={drawProgress} />}
-				{variant === "datum" && <DatumSvg draw={drawProgress} />}
+				{variant === "survey" && <SurveySvg />}
+				{variant === "foundation" && <FoundationSvg />}
+				{variant === "joint" && <JointSvg />}
+				{variant === "keystone" && <KeystoneSvg />}
+				{variant === "grid" && <GridSvg opacityMultiplier={opacityMultiplier} />}
+				{variant === "signature" && <SignatureSvg />}
+				{variant === "datum" && <DatumSvg />}
 			</svg>
-		</div>
+		</RevealOnView>
 	);
 }

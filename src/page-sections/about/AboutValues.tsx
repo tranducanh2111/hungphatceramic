@@ -1,45 +1,13 @@
 "use client";
 
-import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, useSpring, type Variants } from "framer-motion";
 import { Compass, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
 import { Text } from "@/components/ui";
-import { BlueprintLine } from "@/components/common";
-
-const fadeUp: Variants = {
-	hidden: { opacity: 0, y: 24 },
-	visible: (delay: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.8, ease: "easeOut" as const, delay },
-	}),
-};
-
-const pillarVariants: Variants = {
-	hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
-	visible: {
-		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
-		transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-	},
-};
+import { BlueprintLine, ParallaxElement } from "@/components/common";
+import { ValuesPrinciplesTimeline } from "@/page-sections/about/ValuesPrinciplesTimeline";
 
 export function AboutValues() {
 	const t = useTranslations("pages.about.values");
-	const sectionRef = useRef<HTMLElement>(null);
-
-	const { scrollYProgress } = useScroll({
-		target: sectionRef,
-		offset: ["start end", "end start"],
-	});
-
-	const rawStatsY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-	const rawScaleLabelY = useTransform(scrollYProgress, [0, 1], [-65, 65]);
-
-	const statsY = useSpring(rawStatsY, { stiffness: 100, damping: 30, mass: 0.2 });
-	const scaleLabelY = useSpring(rawScaleLabelY, { stiffness: 100, damping: 30, mass: 0.2 });
 
 	const pillars = [
 		{ id: "craftsmanship", icon: Compass },
@@ -49,163 +17,77 @@ export function AboutValues() {
 	] as const;
 
 	return (
-		<section
-			ref={sectionRef}
-			className="relative overflow-hidden bg-[#071A2B] py-24 sm:py-28 lg:py-36"
-		>
-			{/* Radial background decoration */}
+		<section className="bg-sapphire-deep relative -mt-px overflow-hidden py-24 sm:py-28 lg:py-36">
 			<div
-				className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,#0e2a42_0%,transparent_60%)] opacity-40"
+				className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_70%_58%,#0E2A42_0%,transparent_65%)] opacity-40"
+				aria-hidden="true"
+			/>
+			<div
+				className="from-sapphire-deep via-sapphire-deep/85 pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 bg-gradient-to-b to-transparent sm:h-36"
 				aria-hidden="true"
 			/>
 
 			<div className="relative mx-auto max-w-6xl px-6 lg:px-12">
-				{/* ─── CHAPTER 1: THE SCALE & FOOTPRINT ─── */}
 				<div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-					{/* Left: Giant visual stat */}
-					<motion.div
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: false, amount: 0.1 }}
-						variants={fadeUp}
-						custom={0}
-						style={{ y: statsY }}
-						className="relative flex flex-col justify-center border-l-2 border-[#D4B886]/20 pl-8 lg:col-span-5"
-					>
-						<div className="font-serif text-[100px] leading-none font-light tracking-tight text-[#D4B886] sm:text-[130px] lg:text-[165px]">
-							{t("network.stats")}
-						</div>
-						<Text
-							variant="h4"
-							className="mt-2 font-sans tracking-[0.15em] text-[#F4F4F6] uppercase"
+					<div className="border-champagne/20 relative flex flex-col justify-center border-l-2 pl-8 lg:col-span-5">
+						<ParallaxElement
+							rangePx={30}
+							fadeIn
+							className="relative flex flex-col justify-center"
 						>
-							{t("network.statsLabel")}
-						</Text>
-						{/* Absolute background label matching signature draft aesthetic */}
-						<motion.div
+							<div className="text-champagne font-serif text-[100px] leading-none font-light tracking-tight sm:text-[130px] lg:text-[165px]">
+								{t("network.stats")}
+							</div>
+							<Text
+								variant="h4"
+								className="text-linen mt-2 font-sans tracking-[0.15em] uppercase"
+							>
+								{t("network.statsLabel")}
+							</Text>
+						</ParallaxElement>
+						<ParallaxElement
+							rangePx={65}
+							invert
 							className="pointer-events-none absolute top-0 -left-6 font-serif text-[140px] leading-none font-light opacity-[0.03] select-none"
-							style={{ y: scaleLabelY, WebkitTextStroke: "1px #D4B886" }}
 							aria-hidden="true"
 						>
-							SCALE
-						</motion.div>
-					</motion.div>
+							<span style={{ WebkitTextStroke: "1px #D4B886" }}>SCALE</span>
+						</ParallaxElement>
+					</div>
 
-					{/* Right: Scale story and context */}
-					<motion.div
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: false, amount: 0.1 }}
-						variants={fadeUp}
-						custom={0.15}
-						className="flex flex-col gap-4 lg:col-span-7"
-					>
-						<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
+					<ParallaxElement rangePx={24} invert fadeIn className="lg:col-span-7">
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
 							{t("network.title")}
 						</span>
-						<Text variant="h2" className="font-serif font-light text-[#F4F4F6]">
+						<Text variant="h2" className="text-linen mt-4 font-serif font-light">
 							{t("network.subtitle")}
 						</Text>
-						<Text variant="body" className="leading-relaxed text-[#F4F4F6]/60">
+						<Text variant="body" className="text-linen/60 mt-4 leading-relaxed">
 							{t("network.description")}
 						</Text>
-					</motion.div>
+					</ParallaxElement>
 				</div>
 
-				{/* Connecting blueprint line to guide eyes down to values */}
-				<BlueprintLine
-					variant="datum"
-					className="my-16 h-5 w-full lg:my-24"
-					scrollRange={[0.15, 0.6]}
-				/>
+				<BlueprintLine variant="datum" className="my-16 h-5 w-full lg:my-24" />
 
-				{/* ─── CHAPTER 2: THE FOUR PILLARS ─── */}
 				<div className="mt-8 lg:mt-12">
-					{/* Header */}
-					<div className="mb-20 text-center">
-						<motion.span
-							initial={{ opacity: 0, y: 12 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: false }}
-							transition={{ duration: 0.6 }}
-							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-						>
+					<ParallaxElement rangePx={18} fadeIn className="mb-20 text-center">
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
 							{t("label")}
-						</motion.span>
-						<motion.h3
-							initial={{ opacity: 0, y: 12 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: false }}
-							transition={{ duration: 0.6, delay: 0.15 }}
-							className="text-display-lg mt-3 font-serif font-light tracking-wide text-[#F4F4F6]"
-						>
+						</span>
+						<h3 className="text-display-lg text-linen mt-3 font-serif font-light tracking-wide">
 							{t("heading")}
-						</motion.h3>
-					</div>
+						</h3>
+					</ParallaxElement>
 
-					{/* Storytelling Timeline Columns */}
-					<div className="relative mx-auto max-w-4xl">
-						{/* Vertical Timeline Guide Line */}
-						<div className="absolute top-0 bottom-0 left-[27px] w-px bg-gradient-to-b from-[#D4B886]/35 via-[#1A3D5C] to-transparent sm:left-1/2" />
-
-						<div className="flex flex-col gap-16 lg:gap-20">
-							{pillars.map((pillar, index) => {
-								const Icon = pillar.icon;
-								const isEven = index % 2 === 0;
-
-								return (
-									<motion.div
-										key={pillar.id}
-										initial="hidden"
-										whileInView="visible"
-										viewport={{ once: false, amount: 0.1 }}
-										variants={pillarVariants}
-										className={`relative flex flex-col sm:flex-row ${
-											isEven ? "sm:flex-row-reverse" : ""
-										}`}
-									>
-										{/* Icon node on the line */}
-										<div className="absolute left-0 z-10 flex h-14 w-14 items-center justify-center rounded-full border border-[#D4B886]/30 bg-[#071A2B] shadow-[0_0_20px_rgba(7,26,43,0.8)] sm:left-1/2 sm:-ml-7">
-											<Icon className="h-6 w-6 text-[#D4B886]" />
-										</div>
-
-										{/* Content Card (Left or Right depending on alignment) */}
-										<div className="mt-2 ml-20 w-auto sm:mt-0 sm:ml-0 sm:w-1/2 sm:px-12">
-											<div
-												className={`flex flex-col ${
-													isEven
-														? "sm:items-end sm:text-right"
-														: "sm:items-start sm:text-left"
-												}`}
-											>
-												<span className="font-sans text-lg font-light tracking-[0.25em] text-[#D4B886] uppercase">
-													{`0${index + 1}`}
-												</span>
-												<Text
-													variant="h2"
-													as="h3"
-													className="mt-2 font-serif text-2xl leading-tight font-light text-[#F4F4F6] sm:text-3xl lg:text-[32px]"
-												>
-													{t(`list.${pillar.id}.title`)}
-												</Text>
-												<Text
-													variant="body"
-													className="mt-3 leading-relaxed text-[#F4F4F6]/55"
-												>
-													{t(`list.${pillar.id}.description`)}
-												</Text>
-											</div>
-										</div>
-
-										{/* Spacer for desktop alignment */}
-										<div className="hidden sm:block sm:w-1/2" />
-									</motion.div>
-								);
-							})}
-						</div>
-					</div>
+					<ValuesPrinciplesTimeline pillars={pillars} />
 				</div>
 			</div>
+
+			<div
+				className="to-sapphire-ocean pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent sm:h-36"
+				aria-hidden="true"
+			/>
 		</section>
 	);
 }

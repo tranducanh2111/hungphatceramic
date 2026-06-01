@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 
 // ─── Path data ────────────────────────────────────────────────────────────────
 //
@@ -107,7 +108,7 @@ export function RoomSilhouette() {
 
 	// offset ["start end","end start"]: 0 when element top hits viewport bottom,
 	// 1 when element bottom hits viewport top — full entry-to-exit range.
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: ref,
 		offset: ["start end", "end start"],
 	});

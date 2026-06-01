@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 
@@ -19,7 +20,7 @@ export function LandingVisualStory() {
 	const t = useTranslations("landing.visualStory");
 	const sectionRef = useRef<HTMLDivElement>(null);
 
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end end"],
 	});

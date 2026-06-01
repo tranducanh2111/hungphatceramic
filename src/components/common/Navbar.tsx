@@ -138,15 +138,8 @@ export function Navbar() {
 		recalcTargets();
 		window.addEventListener("resize", recalcTargets);
 
-		let resizeObserver: ResizeObserver | null = null;
-		if (navContentRef.current && "ResizeObserver" in window) {
-			resizeObserver = new ResizeObserver(recalcTargets);
-			resizeObserver.observe(navContentRef.current);
-		}
-
 		return () => {
 			window.removeEventListener("resize", recalcTargets);
-			resizeObserver?.disconnect();
 		};
 	}, []);
 

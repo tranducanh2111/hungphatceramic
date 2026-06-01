@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { AboutHero } from "@/page-sections/about/AboutHero";
-import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
-import { AboutHeritage } from "@/page-sections/about/AboutHeritage";
-import { AboutCraft } from "@/page-sections/about/AboutCraft";
-import { AboutCapabilities } from "@/page-sections/about/AboutCapabilities";
-import { AboutValues } from "@/page-sections/about/AboutValues";
-import { AboutClients } from "@/page-sections/about/AboutClients";
-import { AboutCta } from "@/page-sections/about/AboutCta";
+import { AboutPageContent } from "@/page-sections/about/AboutPageContent";
 
 const SITE_URL = "https://hungphatceramic.vn";
 
@@ -70,14 +63,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
 			/>
-			<AboutHero />
-			<AboutOrigin />
-			<AboutHeritage />
-			<AboutCraft />
-			<AboutCapabilities />
-			<AboutValues />
-			<AboutClients />
-			<AboutCta />
+			<AboutPageContent />
 		</main>
 	);
 }

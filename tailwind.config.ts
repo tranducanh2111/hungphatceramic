@@ -212,6 +212,27 @@ const config: Config = {
         "600": "600ms",
         "800": "800ms",
       },
+
+      // ─── Motion (About page enter + blueprint draw) ───────────────────────────
+      keyframes: {
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(1.5rem)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "draw-line": {
+          from: { strokeDashoffset: "1" },
+          to: { strokeDashoffset: "0" },
+        },
+        "parallax-y": {
+          from: { transform: "translateY(calc(-1 * var(--parallax-range, 40px)))" },
+          to: { transform: "translateY(var(--parallax-range, 40px))" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.8s ease-out both",
+        "draw-line": "draw-line 1.2s ease-out both",
+        "parallax-y": "parallax-y linear both",
+      },
     },
   },
 
