@@ -139,68 +139,6 @@ h6 {
 	}
 }
 
-/* ─── About hero scroll effects (150vh section view timeline) ───────────────── */
-.about-hero-scroll {
-	view-timeline-name: --about-hero;
-	view-timeline-axis: block;
-}
-
-.about-hero-media-scroll {
-	animation: hero-clip-reveal linear both;
-	animation-timeline: --about-hero;
-	animation-range: entry 0% exit 60%;
-}
-
-.about-hero-video-scroll {
-	animation: hero-video-depth linear both;
-	animation-timeline: --about-hero;
-	animation-range: entry 0% exit 60%;
-}
-
-@supports not (animation-timeline: view()) {
-	.about-hero-media-scroll,
-	.about-hero-video-scroll {
-		animation: none;
-		clip-path: none;
-		opacity: 1;
-		transform: none;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.about-hero-scroll {
-		view-timeline-name: none;
-	}
-
-	.about-hero-media-scroll,
-	.about-hero-video-scroll {
-		animation: none !important;
-		clip-path: none !important;
-		opacity: 1 !important;
-		transform: none !important;
-	}
-}
-
-@keyframes hero-clip-reveal {
-	from {
-		clip-path: inset(24% 11% round 24px);
-	}
-	to {
-		clip-path: inset(0% 0% round 0px);
-	}
-}
-
-@keyframes hero-video-depth {
-	from {
-		opacity: 0.55;
-		transform: scale(1.08);
-	}
-	to {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
 @keyframes parallax-y {
 	from {
 		transform: translateY(calc(-1 * var(--parallax-range, 40px)));

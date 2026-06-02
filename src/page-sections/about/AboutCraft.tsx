@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useTransform, type MotionValue } from "framer-motion";
+import { motion, useTransform, useMotionValueEvent } from "framer-motion";
 import { Text } from "@/components/ui";
 import { ParallaxLayer } from "@/components/common";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -15,11 +15,11 @@ const BEAT_COUNT = CRAFT_BEATS.length;
 const NUMERALS = ["01", "02", "03"] as const;
 
 interface SketchProps {
-	captionOpacity: MotionValue<number>;
+	captionOpacity: number;
 }
 
 function KilnSketch({ captionOpacity }: SketchProps) {
-	const sketchOpacity = useTransform(captionOpacity, [0, 0.45, 1], [0.06, 0.06, 1]);
+	const sketchOpacity = captionOpacity === 0 ? 0.06 : 1;
 	return (
 		<motion.div className="w-full" style={{ opacity: sketchOpacity }} aria-hidden="true">
 			<svg viewBox="0 0 200 120" fill="none" className="w-full">
@@ -89,7 +89,7 @@ function KilnSketch({ captionOpacity }: SketchProps) {
 }
 
 function TileSketch({ captionOpacity }: SketchProps) {
-	const sketchOpacity = useTransform(captionOpacity, [0, 0.45, 1], [0.06, 0.06, 1]);
+	const sketchOpacity = captionOpacity === 0 ? 0.06 : 1;
 	return (
 		<motion.div className="w-full" style={{ opacity: sketchOpacity }} aria-hidden="true">
 			<svg viewBox="0 0 200 120" fill="none" className="w-full">
@@ -143,7 +143,7 @@ function TileSketch({ captionOpacity }: SketchProps) {
 }
 
 function InstallSketch({ captionOpacity }: SketchProps) {
-	const sketchOpacity = useTransform(captionOpacity, [0, 0.45, 1], [0.06, 0.06, 1]);
+	const sketchOpacity = captionOpacity === 0 ? 0.06 : 1;
 	return (
 		<motion.div className="w-full" style={{ opacity: sketchOpacity }} aria-hidden="true">
 			<svg viewBox="0 0 200 120" fill="none" className="w-full">
@@ -227,10 +227,10 @@ const BEAT_SKETCHES = [KilnSketch, TileSketch, InstallSketch] as const;
 
 function CraftBeatPanel({
 	beatIndex,
-	captionOpacity,
+	isActive,
 }: {
 	beatIndex: number;
-	captionOpacity: MotionValue<number>;
+	isActive: boolean;
 }) {
 	const t = useTranslations("pages.about.craft");
 	const beat = CRAFT_BEATS[beatIndex];
@@ -238,7 +238,9 @@ function CraftBeatPanel({
 
 	return (
 		<motion.div
-			style={{ opacity: captionOpacity }}
+			animate={{ opacity: isActive ? 1 : 0 }}
+			transition={{ duration: 0.4, ease: "easeInOut" }}
+			style={{ zIndex: isActive ? 10 : 0 }}
 			className="absolute inset-0 flex flex-col justify-center py-2 lg:py-0"
 		>
 			<span
@@ -269,7 +271,7 @@ function CraftBeatPanel({
 			</Text>
 
 			<div className="mt-5 w-full max-w-[200px] sm:mt-6 sm:max-w-[240px]">
-				<Sketch captionOpacity={captionOpacity} />
+				<Sketch captionOpacity={isActive ? 1 : 0} />
 			</div>
 		</motion.div>
 	);
@@ -281,25 +283,24 @@ function CraftScrollStory() {
 
 	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
-		offset: ["start start", "end end"],
+		offset: ["start end", "end end"],
 	});
+	const [activeIndex, setActiveIndex] = useState(0);
 
-	const imageOpacities = [
-		useTransform(scrollYProgress, [0, 0.28, 0.38, 0.5], [1, 1, 0, 0]),
-		useTransform(scrollYProgress, [0.28, 0.38, 0.62, 0.72], [0, 1, 1, 0]),
-		useTransform(scrollYProgress, [0.62, 0.72, 1.0, 1.0], [0, 1, 1, 1]),
-	] as const;
-
-	const captionOpacities = [
-		useTransform(scrollYProgress, [0, 0.08, 0.28, 0.36], [0, 1, 1, 0]),
-		useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.68], [0, 1, 1, 0]),
-		useTransform(scrollYProgress, [0.62, 0.72, 0.92, 1.0], [0, 1, 1, 0]),
-	] as const;
+	useMotionValueEvent(scrollYProgress, "change", (latest) => {
+		let index = 0;
+		if (latest >= 0.63) {
+			index = 2;
+		} else if (latest >= 0.33) {
+			index = 1;
+		}
+		setActiveIndex(index);
+	});
 
 	const segmentProgress = [
 		useTransform(scrollYProgress, [0, 0.33], [0, 1]),
-		useTransform(scrollYProgress, [0.33, 0.66], [0, 1]),
-		useTransform(scrollYProgress, [0.66, 1.0], [0, 1]),
+		useTransform(scrollYProgress, [0.33, 0.63], [0, 1]),
+		useTransform(scrollYProgress, [0.63, 1.0], [0, 1]),
 	] as const;
 
 	return (
@@ -310,7 +311,9 @@ function CraftScrollStory() {
 						<motion.div
 							key={beat.id}
 							className="absolute inset-0 scale-[1.05]"
-							style={{ opacity: imageOpacities[index] }}
+							animate={{ opacity: activeIndex === index ? 1 : 0 }}
+							transition={{ duration: 0.5, ease: "easeInOut" }}
+							style={{ zIndex: activeIndex === index ? 10 : 0 }}
 						>
 							<Image
 								src={beat.imageUrl}
@@ -328,50 +331,52 @@ function CraftScrollStory() {
 					/>
 				</div>
 
-					<div className="bg-sapphire-deep relative flex min-h-0 flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8 lg:h-full lg:w-1/2 lg:px-14 lg:py-20">
+				<div className="bg-sapphire-deep relative flex min-h-0 flex-1 flex-col px-6 py-6 sm:px-8 sm:py-8 lg:h-full lg:w-1/2 lg:px-14 lg:py-20">
+					{CRAFT_BEATS.map((beat, index) => (
+						<motion.div
+							key={`chapter-${beat.id}`}
+							animate={{ opacity: activeIndex === index ? 1 : 0 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}
+							style={{ zIndex: activeIndex === index ? 10 : 0 }}
+							className="pointer-events-none absolute top-5 right-6 text-right sm:top-6 sm:right-8 lg:top-14 lg:right-12"
+							aria-hidden="true"
+						>
+							<span className="text-footnote text-champagne/55 font-sans tracking-widest uppercase">
+								{NUMERALS[index]} / {String(BEAT_COUNT).padStart(2, "0")}
+							</span>
+						</motion.div>
+					))}
+
+					<div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-y-clip">
 						{CRAFT_BEATS.map((beat, index) => (
-							<motion.div
-								key={`chapter-${beat.id}`}
-								style={{ opacity: captionOpacities[index] }}
-								className="pointer-events-none absolute top-5 right-6 text-right sm:top-6 sm:right-8 lg:top-14 lg:right-12"
-								aria-hidden="true"
-							>
-								<span className="text-footnote text-champagne/55 font-sans tracking-widest uppercase">
-									{NUMERALS[index]} / {String(BEAT_COUNT).padStart(2, "0")}
-								</span>
-							</motion.div>
+							<CraftBeatPanel
+								key={beat.id}
+								beatIndex={index}
+								isActive={activeIndex === index}
+							/>
 						))}
-
-						<div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-y-clip">
-							{CRAFT_BEATS.map((beat, index) => (
-								<CraftBeatPanel
-									key={beat.id}
-									beatIndex={index}
-									captionOpacity={captionOpacities[index]}
-								/>
-							))}
-						</div>
-
-						<div className="flex items-center gap-3 pb-2" aria-hidden="true">
-							{CRAFT_BEATS.map((beat, index) => (
-								<div
-									key={`seg-${beat.id}`}
-									className="bg-champagne/15 relative h-px flex-1"
-								>
-									<motion.div
-										className="bg-champagne absolute inset-y-0 left-0"
-										style={{
-											scaleX: segmentProgress[index],
-											transformOrigin: "left",
-										}}
-									/>
-								</div>
-							))}
-						</div>
 					</div>
+
+					<div className="flex items-center gap-3 pb-2" aria-hidden="true">
+						{CRAFT_BEATS.map((beat, index) => (
+							<div
+								key={`seg-${beat.id}`}
+								className="bg-champagne/15 relative h-px flex-1"
+							>
+								<motion.div
+									className="bg-champagne absolute inset-y-0 left-0"
+									style={{
+										scaleX: segmentProgress[index],
+										transformOrigin: "left",
+									}}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
 			</div>
 
-			<div className="h-[300vh]" aria-hidden="true" />
+			<div className="h-[400vh]" aria-hidden="true" />
 		</section>
 	);
 }

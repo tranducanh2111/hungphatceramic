@@ -27,8 +27,8 @@ function useNodeReveal(
 	const nodeCenter = (nodeIndex + 0.5) / nodeCount;
 
 	return useTransform(scrollYProgress, (progress) => {
-		const revealStart = Math.max(0, nodeCenter - 0.14);
-		const revealEnd = Math.min(1, nodeCenter + 0.06);
+		const revealStart = Math.max(0, nodeCenter - 0.2);
+		const revealEnd = nodeCenter - 0.05; // Ends exactly at center
 
 		if (progress <= revealStart) return 0.15;
 		if (progress >= revealEnd) return 1;
@@ -53,8 +53,8 @@ function PillarRow({ pillar, index, nodeCount, scrollYProgress }: PillarRowProps
 	const iconOpacity = useNodeReveal(scrollYProgress, index, nodeCount);
 	const contentOpacity = useTransform(scrollYProgress, (progress) => {
 		const nodeCenter = (index + 0.5) / nodeCount;
-		const revealStart = Math.max(0, nodeCenter - 0.1);
-		const revealEnd = Math.min(1, nodeCenter + 0.12);
+		const revealStart = Math.max(0, nodeCenter - 0.15);
+		const revealEnd = nodeCenter; // Ends exactly at center
 
 		if (progress <= revealStart) return 0;
 		if (progress >= revealEnd) return 1;
@@ -64,9 +64,13 @@ function PillarRow({ pillar, index, nodeCount, scrollYProgress }: PillarRowProps
 
 	const contentY = useTransform(scrollYProgress, (progress) => {
 		const nodeCenter = (index + 0.5) / nodeCount;
-		if (progress < nodeCenter - 0.2) return 20;
-		if (progress > nodeCenter + 0.2) return -8;
-		return 0;
+		
+		// Start with an offset of 24px and slide up to 0 at nodeCenter
+		if (progress <= nodeCenter - 0.15) return 24;
+		if (progress >= nodeCenter) return 0;
+		
+		const t = (progress - (nodeCenter - 0.15)) / 0.15;
+		return 24 - t * 24;
 	});
 
 	return (

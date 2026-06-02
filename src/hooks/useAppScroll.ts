@@ -12,10 +12,11 @@ export function useAppScroll(options: UseScrollOptions = {}) {
 	const lenis = useLenis();
 
 	const container = useMemo(() => {
-		const root =
-			lenis?.rootElement ??
-			(typeof document !== "undefined" ? document.documentElement : null);
-		return root ? { current: root } : undefined;
+		const root = lenis?.rootElement;
+		if (!root || root === document.documentElement || root === document.body) {
+			return undefined;
+		}
+		return { current: root };
 	}, [lenis]);
 
 	return useScroll({

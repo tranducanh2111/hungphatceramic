@@ -2,12 +2,12 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
 import { CinematicHeroVideo } from "@/components/media";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
+import { useAppScroll } from "@/hooks/useAppScroll";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { cn } from "@/lib/cn";
 
 const contentVariants: Variants = {
 	hidden: { opacity: 0, y: 32 },
@@ -31,10 +31,25 @@ export function AboutHero() {
 	const sectionRef = useRef<HTMLElement>(null);
 	const prefersReducedMotion = usePrefersReducedMotion();
 
+	const { scrollYProgress } = useAppScroll({
+		target: sectionRef,
+		offset: ["start start", "end start"],
+	});
+
+	// Same clip path expansion as LandingHero
+	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
+	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
+	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
+	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
+
+	// Same scale/opacity behavior for the video element
+	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
+	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
+
 	return (
 		<section
 			ref={sectionRef}
-			className={cn("relative h-[150vh] w-full", !prefersReducedMotion && "about-hero-scroll")}
+			className="relative h-[150vh] w-full"
 		>
 			<div className="bg-sapphire-deep sticky top-0 h-screen w-full overflow-hidden">
 				<div
@@ -42,11 +57,9 @@ export function AboutHero() {
 					aria-hidden="true"
 				/>
 
-				<div
-					className={cn(
-						"absolute inset-0 z-0 overflow-hidden",
-						!prefersReducedMotion && "about-hero-media-scroll",
-					)}
+				<motion.div
+					className="absolute inset-0 z-0 overflow-hidden"
+					style={prefersReducedMotion ? undefined : { clipPath }}
 				>
 					<div className="bg-sapphire-deep absolute inset-0" />
 					<CinematicHeroVideo
@@ -54,13 +67,18 @@ export function AboutHero() {
 						posterSrc={MEDIA_PATHS.images.landing.heroPoster}
 						posterAlt={t("titleLine1")}
 						prefersReducedMotion={prefersReducedMotion}
-						videoClassName="about-hero-video-scroll transform-gpu"
+						useMotionVideo={!prefersReducedMotion}
+						motionVideoStyle={
+							prefersReducedMotion
+								? undefined
+								: { opacity: videoOpacity, scale: videoScale }
+						}
 					/>
 					<div
 						className="from-sapphire-deep/80 to-sapphire-deep/30 absolute inset-0 bg-gradient-to-t via-transparent"
 						aria-hidden="true"
 					/>
-				</div>
+				</motion.div>
 
 				<div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
 					<motion.h1
@@ -118,3 +136,4 @@ export function AboutHero() {
 		</section>
 	);
 }
+
