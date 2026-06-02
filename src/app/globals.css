@@ -1,6 +1,180 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
-@config "../../tailwind.config.ts";
+/* @config "../../tailwind.config.ts"; */
+
+@theme {
+	/* ─── Breakpoints ───────────────────────────────────────────────────────── */
+	--breakpoint-xs: 475px;
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--breakpoint-2xl: 1536px;
+
+	/* ─── Brand Colors ──────────────────────────────────────────────────────── */
+	--color-sapphire-deep: #071a2b;
+	--color-sapphire-ocean: #0e2a42;
+	--color-sapphire-mist: #1a3d5c;
+	--color-sapphire-faint: #e8eef4;
+
+	--color-champagne: #d4b886;
+	--color-champagne-light: #e8d5b0;
+	--color-champagne-deep: #a88e60;
+
+	--color-linen: #f4f4f6;
+	--color-linen-warm: #eeeae4;
+	--color-linen-dark: #d6d3cc;
+
+	/* ─── Font Families ─────────────────────────────────────────────────────── */
+	--font-serif: var(--font-cormorant), Georgia, serif;
+	--font-sans: var(--font-jost), system-ui, sans-serif;
+	--font-display: var(--font-cormorant), Georgia, serif;
+
+	/* ─── Typography Scale (v4 CSS-First double-dash pattern) ───────────────── */
+	--text-display-2xl: 72px;
+	--text-display-2xl--line-height: 80px;
+	--text-display-2xl--letter-spacing: -0.02em;
+	--text-display-2xl--font-weight: 300;
+
+	--text-display-xl: 60px;
+	--text-display-xl--line-height: 72px;
+	--text-display-xl--letter-spacing: -0.02em;
+	--text-display-xl--font-weight: 300;
+
+	--text-display-lg: 48px;
+	--text-display-lg--line-height: 60px;
+	--text-display-lg--letter-spacing: -0.01em;
+	--text-display-lg--font-weight: 300;
+
+	--text-h1: 40px;
+	--text-h1--line-height: 52px;
+	--text-h1--letter-spacing: -0.01em;
+	--text-h1--font-weight: 500;
+
+	--text-h2: 32px;
+	--text-h2--line-height: 44px;
+	--text-h2--letter-spacing: -0.01em;
+	--text-h2--font-weight: 500;
+
+	--text-h3: 26px;
+	--text-h3--line-height: 36px;
+	--text-h3--letter-spacing: 0em;
+	--text-h3--font-weight: 500;
+
+	--text-h4: 22px;
+	--text-h4--line-height: 32px;
+	--text-h4--letter-spacing: 0em;
+	--text-h4--font-weight: 500;
+
+	--text-h5: 18px;
+	--text-h5--line-height: 28px;
+	--text-h5--letter-spacing: 0.01em;
+	--text-h5--font-weight: 500;
+
+	--text-h6: 16px;
+	--text-h6--line-height: 24px;
+	--text-h6--letter-spacing: 0.01em;
+	--text-h6--font-weight: 600;
+
+	--text-body-lg: 18px;
+	--text-body-lg--line-height: 30px;
+	--text-body-lg--letter-spacing: 0.01em;
+	--text-body-lg--font-weight: 400;
+
+	--text-body: 16px;
+	--text-body--line-height: 26px;
+	--text-body--letter-spacing: 0.01em;
+	--text-body--font-weight: 400;
+
+	--text-body-sm: 14px;
+	--text-body-sm--line-height: 22px;
+	--text-body-sm--letter-spacing: 0.01em;
+	--text-body-sm--font-weight: 400;
+
+	--text-label: 13px;
+	--text-label--line-height: 20px;
+	--text-label--letter-spacing: 0.08em;
+	--text-label--font-weight: 500;
+
+	--text-label-sm: 11px;
+	--text-label-sm--line-height: 16px;
+	--text-label-sm--letter-spacing: 0.10em;
+	--text-label-sm--font-weight: 500;
+
+	--text-footnote: 12px;
+	--text-footnote--line-height: 18px;
+	--text-footnote--letter-spacing: 0.02em;
+	--text-footnote--font-weight: 400;
+
+	--text-caption: 11px;
+	--text-caption--line-height: 16px;
+	--text-caption--letter-spacing: 0.04em;
+	--text-caption--font-weight: 400;
+
+	/* ─── Letter Spacings ───────────────────────────────────────────────────── */
+	--tracking-widest: 0.25em;
+	--tracking-wider: 0.15em;
+	--tracking-wide: 0.08em;
+
+	/* ─── Line Heights ──────────────────────────────────────────────────────── */
+	--leading-extra-tight: 1.1;
+	--leading-tight: 1.25;
+	--leading-snug: 1.35;
+	--leading-comfortable: 1.625;
+	--leading-relaxed: 1.75;
+
+	/* ─── Background Images ─────────────────────────────────────────────────── */
+	--background-image-sapphire-to-ocean: linear-gradient(to bottom, #071a2b, #0e2a42);
+	--background-image-champagne-shimmer: linear-gradient(105deg, #d4b886 0%, #e8d5b0 50%, #d4b886 100%);
+	--background-image-hero-overlay: linear-gradient(to right bottom, rgba(7, 26, 43, 0.8), rgba(7, 26, 43, 0.6));
+
+	/* ─── Extra Design Elements ─────────────────────────────────────────────── */
+	--shadow-luxury: 0 4px 32px 0 rgba(7, 26, 43, 0.25), 0 1px 4px 0 rgba(7, 26, 43, 0.15);
+	--shadow-luxury-lg: 0 12px 64px 0 rgba(7, 26, 43, 0.35), 0 4px 16px 0 rgba(7, 26, 43, 0.20);
+	--shadow-champagne: 0 4px 24px 0 rgba(212, 184, 134, 0.18), 0 1px 6px 0 rgba(212, 184, 134, 0.10);
+	--shadow-inner-sm: inset 0 1px 4px 0 rgba(7, 26, 43, 0.2);
+
+	--radius-4xl: 2rem;
+	--radius-5xl: 2.5rem;
+
+	--ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
+	--ease-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+	--duration-400: 400ms;
+	--duration-600: 600ms;
+	--duration-800: 800ms;
+
+	--animate-fade-up: fade-up 0.8s ease-out both;
+	--animate-draw-line: draw-line 1.2s ease-out both;
+	--animate-parallax-y: parallax-y linear both;
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(1.5rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	@keyframes draw-line {
+		from {
+			stroke-dashoffset: 1;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+	@keyframes parallax-y {
+		from {
+			transform: translateY(calc(-1 * var(--parallax-range, 40px)));
+		}
+		to {
+			transform: translateY(var(--parallax-range, 40px));
+		}
+	}
+}
 
 /* ─── Brand CSS Custom Properties ──────────────────────────────────────────── */
 :root {
@@ -92,7 +266,7 @@ h6 {
 
 /* ─── Scroll-driven reveal (Tailwind @utility) ───────────────────────────────── */
 @utility reveal-on-view {
-	@apply animate-fade-up opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:translate-none;
+	@apply animate-fade-up opacity-0 motion-reduce:translate-none motion-reduce:animate-none motion-reduce:opacity-100;
 	animation-timeline: view();
 	animation-range: entry 0% entry 35%;
 

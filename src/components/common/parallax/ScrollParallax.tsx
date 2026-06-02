@@ -43,11 +43,7 @@ export function ScrollParallax({
 		invert ? [rangePx, -rangePx] : [-rangePx, rangePx],
 	);
 
-	const scrollOpacity = useTransform(
-		scrollYProgress,
-		[0, FADE_IN_PROGRESS_END, 1],
-		[0, 1, 1],
-	);
+	const scrollOpacity = useTransform(scrollYProgress, [0, FADE_IN_PROGRESS_END, 1], [0, 1, 1]);
 
 	if (prefersReducedMotion) {
 		return <div className={className}>{children}</div>;

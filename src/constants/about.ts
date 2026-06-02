@@ -155,3 +155,16 @@ export const CLIENT_ROSTER: ClientEntry[] = [
 	{ id: "aria-boutique-hotel", name: "Aria Boutique Hotel" },
 	{ id: "studio-lan", name: "Studio Lan" },
 ];
+
+// ─── Partner Roster ────────────────────────────────────────────────────────────
+
+export interface PartnerEntry {
+	id: string;
+	name: string;
+}
+
+export const PARTNER_ROSTER: PartnerEntry[] = [
+	{ id: "sunpower", name: "Sunpower" },
+	{ id: "taicera", name: "Taicera" },
+	{ id: "guocera", name: "Guocera" },
+];

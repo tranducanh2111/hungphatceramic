@@ -33,6 +33,10 @@ const AboutCta = dynamic(
 	() => import("@/page-sections/about/AboutCta").then((m) => ({ default: m.AboutCta })),
 	{ ssr: false },
 );
+const AboutPartners = dynamic(
+	() => import("@/page-sections/about/AboutPartners").then((m) => ({ default: m.AboutPartners })),
+	{ ssr: false },
+);
 
 /** Re-measure Lenis after code-split sections mount and change document height. */
 function useLenisResizeOnAboutMount() {
@@ -67,6 +71,7 @@ export function AboutPageContent() {
 		<>
 			<AboutHero />
 			<AboutOrigin />
+			<AboutPartners />
 			<AboutHeritage />
 			<AboutCraft />
 			<AboutCapabilities />

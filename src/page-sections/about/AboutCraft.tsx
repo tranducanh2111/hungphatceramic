@@ -225,13 +225,7 @@ function InstallSketch({ captionOpacity }: SketchProps) {
 
 const BEAT_SKETCHES = [KilnSketch, TileSketch, InstallSketch] as const;
 
-function CraftBeatPanel({
-	beatIndex,
-	isActive,
-}: {
-	beatIndex: number;
-	isActive: boolean;
-}) {
+function CraftBeatPanel({ beatIndex, isActive }: { beatIndex: number; isActive: boolean }) {
 	const t = useTranslations("pages.about.craft");
 	const beat = CRAFT_BEATS[beatIndex];
 	const Sketch = BEAT_SKETCHES[beatIndex];

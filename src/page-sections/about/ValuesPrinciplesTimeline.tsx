@@ -19,11 +19,7 @@ interface ValuesPrinciplesTimelineProps {
 }
 
 /** Maps shared timeline progress to per-node opacity when the fill line reaches each dot. */
-function useNodeReveal(
-	scrollYProgress: MotionValue<number>,
-	nodeIndex: number,
-	nodeCount: number,
-) {
+function useNodeReveal(scrollYProgress: MotionValue<number>, nodeIndex: number, nodeCount: number) {
 	const nodeCenter = (nodeIndex + 0.5) / nodeCount;
 
 	return useTransform(scrollYProgress, (progress) => {
@@ -64,11 +60,11 @@ function PillarRow({ pillar, index, nodeCount, scrollYProgress }: PillarRowProps
 
 	const contentY = useTransform(scrollYProgress, (progress) => {
 		const nodeCenter = (index + 0.5) / nodeCount;
-		
+
 		// Start with an offset of 24px and slide up to 0 at nodeCenter
 		if (progress <= nodeCenter - 0.15) return 24;
 		if (progress >= nodeCenter) return 0;
-		
+
 		const t = (progress - (nodeCenter - 0.15)) / 0.15;
 		return 24 - t * 24;
 	});
@@ -163,7 +159,10 @@ function ValuesPrinciplesTimelineStatic({ pillars }: ValuesPrinciplesTimelinePro
 									>
 										{t(`list.${pillar.id}.title`)}
 									</Text>
-									<Text variant="body" className="text-linen/55 mt-3 leading-relaxed">
+									<Text
+										variant="body"
+										className="text-linen/55 mt-3 leading-relaxed"
+									>
 										{t(`list.${pillar.id}.description`)}
 									</Text>
 								</div>
@@ -200,7 +199,7 @@ export function ValuesPrinciplesTimeline({ pillars }: ValuesPrinciplesTimelinePr
 				className="absolute top-0 bottom-0 left-[27px] w-px -translate-x-1/2 sm:left-1/2"
 				aria-hidden="true"
 			>
-				<div className="via-sapphire-mist/80 absolute inset-0 w-px bg-gradient-to-b from-champagne/20 to-transparent" />
+				<div className="via-sapphire-mist/80 from-champagne/20 absolute inset-0 w-px bg-gradient-to-b to-transparent" />
 				<motion.div
 					className="from-champagne/50 via-champagne to-champagne/70 absolute inset-x-0 top-0 h-full w-px origin-top bg-gradient-to-b"
 					style={{ scaleY: lineScaleY }}

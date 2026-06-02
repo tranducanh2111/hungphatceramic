@@ -237,7 +237,7 @@
 			"description": "Đội ngũ của chúng tôi chỉ nhận số lượng dự án giới hạn theo từng mùa để đảm bảo chất lượng hoàn hảo trong mọi chi tiết. Showroom riêng đón tiếp theo lịch hẹn.",
 			"primaryCta": "Đặt lịch tư vấn",
 			"secondaryCta": "Xem bộ sưu tập",
-			"officeAddress": "Số 583 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, Hà Nội"
+			"officeAddress": "K3.TT1.SH22, Khu đô thị Tây Hồ Tây, Xuân Tảo, Phường Xuân Đỉnh, Hà Nội"
 		}
 	},
 	"meta": {
@@ -414,6 +414,11 @@
 				"label": "Được tin tưởng bởi",
 				"heading": "Được chỉ định bởi những không gian định hình skyline Việt Nam.",
 				"ariaLabel": "Danh sách khách hàng và dự án"
+			},
+			"partners": {
+				"label": "Đối tác",
+				"heading": "Đồng hành cùng các thương hiệu hàng đầu.",
+				"ariaLabel": "Danh sách đối tác"
 			},
 			"cta": {
 				"titleLine1": "Công trình tiếp theo",

@@ -26,7 +26,7 @@ function ProjectCard({
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
 			viewport={{ once: true, amount: 0.12 }}
-			className="group relative overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)] transform-gpu"
+			className="group relative transform-gpu overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)]"
 			style={{ willChange: "transform, opacity" }}
 		>
 			<div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.01]">

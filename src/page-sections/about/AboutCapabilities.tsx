@@ -29,7 +29,7 @@ export function AboutCapabilities() {
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="mb-16">
 					<RevealOnView>
-						<span className="text-label font-sans tracking-widest text-champagne uppercase">
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
 							{t("label")}
 						</span>
 					</RevealOnView>
@@ -72,7 +72,7 @@ export function AboutCapabilities() {
 			</div>
 
 			<div
-				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 translate-y-px bg-gradient-to-b from-sapphire-ocean via-[#0a1f32] sm:h-48"
+				className="to-sapphire-deep from-sapphire-ocean pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 translate-y-px bg-gradient-to-b via-[#0a1f32] sm:h-48"
 				aria-hidden="true"
 			/>
 		</section>

@@ -237,7 +237,7 @@
 			"description": "Our team works with a limited number of projects each season to ensure every detail is perfect. Private showroom available by appointment.",
 			"primaryCta": "Book a Consultation",
 			"secondaryCta": "Browse the Collection",
-			"officeAddress": "583 Giai Phong, Giap Bat Ward, Hoang Mai District, Hanoi"
+			"officeAddress": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi"
 		}
 	},
 	"meta": {
@@ -414,6 +414,11 @@
 				"label": "Trusted By",
 				"heading": "Specified by the spaces that shape Vietnam's skyline.",
 				"ariaLabel": "Client and project roster"
+			},
+			"partners": {
+				"label": "Our Partners",
+				"heading": "In partnership with industry leaders.",
+				"ariaLabel": "Partner roster"
 			},
 			"cta": {
 				"titleLine1": "Your next landmark",

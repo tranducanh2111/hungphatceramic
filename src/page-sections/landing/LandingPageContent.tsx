@@ -7,7 +7,10 @@ import { LandingHero } from "@/page-sections/landing/LandingHero";
 import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
 
 const LandingProjects = dynamic(
-	() => import("@/page-sections/landing/LandingProjects").then((m) => ({ default: m.LandingProjects })),
+	() =>
+		import("@/page-sections/landing/LandingProjects").then((m) => ({
+			default: m.LandingProjects,
+		})),
 	{ ssr: false },
 );
 const LandingMaterials = dynamic(
@@ -22,7 +25,10 @@ const LandingStats = dynamic(
 	{ ssr: false },
 );
 const LandingProcess = dynamic(
-	() => import("@/page-sections/landing/LandingProcess").then((m) => ({ default: m.LandingProcess })),
+	() =>
+		import("@/page-sections/landing/LandingProcess").then((m) => ({
+			default: m.LandingProcess,
+		})),
 	{ ssr: false },
 );
 const LandingTestimonials = dynamic(

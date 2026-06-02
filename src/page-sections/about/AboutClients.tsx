@@ -20,7 +20,7 @@ export function AboutClients() {
 			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="mb-12 text-center">
 					<RevealOnView>
-						<span className="text-label font-sans tracking-widest text-champagne uppercase">
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
 							{t("label")}
 						</span>
 					</RevealOnView>

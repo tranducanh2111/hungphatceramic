@@ -1,13 +1,6 @@
 "use client";
 
-import {
-	createContext,
-	useContext,
-	useEffect,
-	useMemo,
-	useRef,
-	type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { ReactLenis, type LenisRef } from "lenis/react";
 import { cancelFrame, frame } from "framer-motion";
 

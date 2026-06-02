@@ -13,12 +13,7 @@ export function ParallaxLayer({
 	children,
 }: ParallaxLayerProps) {
 	return (
-		<ScrollParallax
-			rangePx={rangePx}
-			invert={invert}
-			fadeIn={fadeIn}
-			className={className}
-		>
+		<ScrollParallax rangePx={rangePx} invert={invert} fadeIn={fadeIn} className={className}>
 			{children}
 		</ScrollParallax>
 	);

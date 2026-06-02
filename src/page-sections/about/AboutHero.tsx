@@ -47,10 +47,7 @@ export function AboutHero() {
 	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
 
 	return (
-		<section
-			ref={sectionRef}
-			className="relative h-[150vh] w-full"
-		>
+		<section ref={sectionRef} className="relative h-[150vh] w-full">
 			<div className="bg-sapphire-deep sticky top-0 h-screen w-full overflow-hidden">
 				<div
 					className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_70%)]"
@@ -136,4 +133,3 @@ export function AboutHero() {
 		</section>
 	);
 }
-
