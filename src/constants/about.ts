@@ -161,10 +161,13 @@ export const CLIENT_ROSTER: ClientEntry[] = [
 export interface PartnerEntry {
 	id: string;
 	name: string;
+	/** Intrinsic PNG size — used with height-first rendering so wide marks match cap height. */
+	imageWidth: number;
+	imageHeight: number;
 }
 
 export const PARTNER_ROSTER: PartnerEntry[] = [
-	{ id: "sunpower", name: "Sunpower" },
-	{ id: "taicera", name: "Taicera" },
-	{ id: "guocera", name: "Guocera" },
+	{ id: "sunpower", name: "Sunpower", imageWidth: 291, imageHeight: 86 },
+	{ id: "taicera", name: "Taicera", imageWidth: 512, imageHeight: 142 },
+	{ id: "guocera", name: "Guocera", imageWidth: 172, imageHeight: 35 },
 ];

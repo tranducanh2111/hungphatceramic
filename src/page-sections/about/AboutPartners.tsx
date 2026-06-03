@@ -1,9 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
 import { PARTNER_ROSTER } from "@/constants/about";
+
+/** Height-first sizing: wide logos (e.g. Guocera) are not shrunk by a narrow box width. */
+const PARTNER_LOGO_HEIGHT_CLASS = "h-14 w-auto sm:h-16 lg:h-20";
+
+/** Recolors raster partner marks to brand champagne; brightens on row hover. */
+const PARTNER_LOGO_COLOR_CLASS =
+	"partner-logo-champagne transition-[filter] duration-500 ease-out group-hover:partner-logo-champagne-hover";
 
 export function AboutPartners() {
 	const t = useTranslations("pages.about.partners");
@@ -56,22 +64,25 @@ export function AboutPartners() {
 					</RevealOnView>
 				</div>
 
-				<div className="mx-auto flex flex-row items-center justify-center gap-6 lg:gap-16">
+				<ul className="mx-auto flex list-none flex-nowrap items-center justify-center gap-8 p-0 sm:gap-12 lg:gap-16">
 					{PARTNER_ROSTER.map((partner, index) => (
-						<RevealOnView
-							key={partner.id}
-							delay={0.1 + index * 0.1}
-							className="group opacity-60 transition-all duration-500 hover:scale-105 hover:opacity-100"
-						>
-							{/* eslint-disable-next-line @next/next/no-img-element */}
-							<img
-								src={`/assets/partners/${partner.id}.png`}
-								alt={`${partner.name} logo`}
-								className="h-12 w-auto object-contain drop-shadow-md sm:h-16 lg:h-24"
-							/>
-						</RevealOnView>
+						<li key={partner.id} className="w-fit shrink-0">
+							<RevealOnView
+								delay={0.1 + index * 0.1}
+								className="group block w-fit opacity-60 transition-all duration-500 hover:scale-105 hover:opacity-100"
+							>
+								<Image
+									src={`/assets/partners/${partner.id}.png`}
+									alt={`${partner.name} logo`}
+									width={partner.imageWidth}
+									height={partner.imageHeight}
+									sizes="(max-width: 640px) 40vw, 320px"
+									className={`${PARTNER_LOGO_HEIGHT_CLASS} ${PARTNER_LOGO_COLOR_CLASS} object-contain object-center`}
+								/>
+							</RevealOnView>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 		</ParallaxSection>
 	);
