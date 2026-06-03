@@ -98,8 +98,19 @@ function ProductsPageContentInner() {
 			{/* Main Catalog Section */}
 			<section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr] lg:gap-16">
-					{/* Sidebar Filter */}
-					<aside className="w-full">
+					{/* Sidebar Filter & Search */}
+					<aside className="w-full md:sticky md:top-28 md:h-fit">
+						{/* Search Input */}
+						<div className="mb-8">
+							<Input
+								type="search"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+								placeholder={t("searchPlaceholder")}
+								className="border-[#1A3D5C] focus:border-[#D4B886] w-full"
+							/>
+						</div>
+
 						<ProductsFilter
 							activeCollectionId={activeCollectionId}
 							onSelectCollection={handleSelectCollection}
@@ -107,18 +118,8 @@ function ProductsPageContentInner() {
 						/>
 					</aside>
 
-					{/* Search & Grid Panel */}
+					{/* Grid Panel */}
 					<div className="flex flex-col gap-8">
-						<div className="max-w-md">
-							<Input
-								type="search"
-								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
-								placeholder={t("searchPlaceholder")}
-								className="border-[#1A3D5C] focus:border-[#D4B886]"
-							/>
-						</div>
-
 						{/* Products List Staggered Grid */}
 						<ProductsGrid
 							products={filteredProducts}
