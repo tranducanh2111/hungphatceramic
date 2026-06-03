@@ -58,9 +58,9 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 	// Sync with Lenis smooth scroll using our custom useAppScroll hook
 	const { scrollY } = useAppScroll();
 
-	// Map absolute scroll position so it starts perfectly flat (0%)
-	// and shifts down to exactly 50% as the user scrolls the first 300px.
-	const middleColumnY = useTransform(scrollY, [0, 300], ["0%", "50%"]);
+	// Map absolute scroll position to pure pixels [0, 240] instead of percentages.
+	// This avoids browser layout recalculation of grid tracks on scroll.
+	const middleColumnY = useTransform(scrollY, [0, 300], [0, 240]);
 
 	if (products.length === 0) {
 		return (
