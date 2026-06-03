@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import type { TileSizeListingMeta } from "@/lib/products/listing";
@@ -42,7 +41,7 @@ export function ProductsFilter({
 	const t = useTranslations("pages.products");
 
 	return (
-		<div className="w-full space-y-8">
+		<div className="w-full space-y-6 md:space-y-5">
 			{/* Mobile — collections */}
 			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-2 md:hidden">
 				<div className="flex gap-2.5 px-6">
@@ -123,19 +122,13 @@ export function ProductsFilter({
 
 			{/* Desktop — collections */}
 			<div className="hidden md:block">
-				<Text
-					variant="label"
-					className="mb-6 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
-				>
-					{t("filterLabel")}
-				</Text>
+				<FilterSectionHeading label={t("filterLabel")} />
 
-				<nav className="flex flex-col space-y-4" aria-label={t("collectionsAriaLabel")}>
+				<nav className="flex flex-col gap-1" aria-label={t("collectionsAriaLabel")}>
 					<FilterNavButton
 						label={t("allCollections")}
 						isSelected={activeCollectionId === "all"}
 						onSelect={() => onSelectCollection("all")}
-						layoutId="activeCollectionUnderline"
 					/>
 
 					{collections.map((col) => {
@@ -150,7 +143,6 @@ export function ProductsFilter({
 								count={col.count}
 								isSelected={activeCollectionId === col.id}
 								onSelect={() => onSelectCollection(col.id)}
-								layoutId="activeCollectionUnderline"
 							/>
 						);
 					})}
@@ -159,19 +151,13 @@ export function ProductsFilter({
 
 			{/* Desktop — tile sizes */}
 			<div className="hidden md:block">
-				<Text
-					variant="label"
-					className="mb-6 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
-				>
-					{t("sizeFilterLabel")}
-				</Text>
+				<FilterSectionHeading label={t("sizeFilterLabel")} />
 
-				<nav className="flex flex-col space-y-4" aria-label={t("sizesAriaLabel")}>
+				<nav className="flex flex-col gap-1" aria-label={t("sizesAriaLabel")}>
 					<FilterNavButton
 						label={t("allSizes")}
 						isSelected={activeSizeId === "all"}
 						onSelect={() => onSelectSize("all")}
-						layoutId="activeSizeUnderline"
 					/>
 
 					{tileSizes.map((size) => {
@@ -186,7 +172,6 @@ export function ProductsFilter({
 								count={size.count}
 								isSelected={activeSizeId === size.id}
 								onSelect={() => onSelectSize(size.id)}
-								layoutId="activeSizeUnderline"
 							/>
 						);
 					})}
@@ -196,31 +181,43 @@ export function ProductsFilter({
 	);
 }
 
+interface FilterSectionHeadingProps {
+	label: string;
+}
+
+function FilterSectionHeading({ label }: FilterSectionHeadingProps) {
+	return (
+		<div className="mb-3 border-b border-champagne pb-2">
+			<Text
+				variant="label"
+				className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+			>
+				{label}
+			</Text>
+		</div>
+	);
+}
+
 interface FilterNavButtonProps {
 	label: string;
 	count?: number;
 	isSelected: boolean;
 	onSelect: () => void;
-	layoutId: string;
 }
 
-function FilterNavButton({
-	label,
-	count,
-	isSelected,
-	onSelect,
-	layoutId,
-}: FilterNavButtonProps) {
+function FilterNavButton({ label, count, isSelected, onSelect }: FilterNavButtonProps) {
 	return (
 		<button
 			type="button"
 			onClick={onSelect}
-			className="group relative flex w-full items-center justify-between py-2 text-left focus:outline-none"
+			className="group flex w-full items-center justify-between py-1 text-left focus:outline-none"
 		>
 			<span
 				className={cn(
 					"font-serif text-lg tracking-wide transition-colors duration-300",
-					isSelected ? "text-[#D4B886]" : "text-[#F4F4F6]/40 group-hover:text-[#F4F4F6]/85",
+					isSelected
+						? "text-champagne"
+						: "text-linen/40 group-hover:text-linen/85",
 				)}
 			>
 				{label}
@@ -230,19 +227,11 @@ function FilterNavButton({
 				<span
 					className={cn(
 						"font-sans text-xs tracking-wider transition-colors duration-300",
-						isSelected ? "text-[#D4B886]" : "text-[#F4F4F6]/20",
+						isSelected ? "text-linen/35" : "text-linen/20",
 					)}
 				>
 					{count}
 				</span>
-			)}
-
-			{isSelected && (
-				<motion.div
-					layoutId={layoutId}
-					className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
-					transition={{ type: "spring", stiffness: 380, damping: 30 }}
-				/>
 			)}
 		</button>
 	);

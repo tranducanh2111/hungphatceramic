@@ -25,7 +25,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 				: t("hero.defaultTitle");
 
 	return (
-		<section className="relative flex min-h-[20vh] w-full flex-col justify-end overflow-hidden px-6 pt-24 pb-8 lg:px-12">
+		<section className="relative flex min-h-[20vh] w-full flex-col justify-end overflow-hidden px-6 pt-44 pb-8 lg:px-12">
 			{/* Brand Radial Background */}
 			<div
 				className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--color-sapphire-mist)_0%,_var(--color-sapphire-deep)_80%)]"
@@ -94,8 +94,8 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 								{totalProductsCount}
 							</span>
 							{totalProductsCount === 1
-								? t("productCountSingle", { count: totalProductsCount })
-								: t("productCount", { count: totalProductsCount })}
+								? t("productCountSingle")
+								: t("productCount")}
 						</motion.div>
 					</AnimatePresence>
 				</div>
