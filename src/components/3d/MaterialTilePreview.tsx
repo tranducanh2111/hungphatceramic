@@ -10,9 +10,13 @@ const TILE_DIMS: Record<string, { w: number; h: number }> = {
 
 const FALLBACK_DIMS = { w: 96, h: 96 };
 
-/** Transform-only hover — avoids animating box-shadow (main-thread heavy). */
+/** Tile slab stays fully lit; card hover only adds a subtle lift. */
 const TILE_HOVER_TRANSITION_CLASS =
 	"duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none";
+
+/** Always-on specimen glow (not tied to card hover opacity). */
+const TILE_GLOW_SHADOW =
+	"shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.38)]";
 
 interface MaterialTilePreviewProps {
 	previews: SizePreview[];
@@ -33,10 +37,9 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 	return (
 		<div
 			className={cn(
-				"relative shrink-0 overflow-hidden rounded-sm shadow-[0_14px_40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(212,184,134,0.22)]",
-				// Stronger shadow on hover/active without interpolating shadow (cheap snap).
-				"group-hover:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)] group-active:shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.32)]",
-				"-rotate-6 transform-gpu transition-transform group-hover:scale-[1.05] group-hover:-rotate-3 group-active:scale-[1.05] group-active:-rotate-3",
+				"relative shrink-0 overflow-hidden rounded-sm",
+				TILE_GLOW_SHADOW,
+				"-rotate-4 transform-gpu transition-transform group-hover:scale-[1.05] group-hover:-rotate-3 group-active:scale-[1.05] group-active:-rotate-3",
 				"motion-reduce:rotate-0 motion-reduce:group-hover:scale-100 motion-reduce:group-active:scale-100",
 				TILE_HOVER_TRANSITION_CLASS,
 			)}
@@ -53,7 +56,7 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 				draggable={false}
 			/>
 			<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-black/22" />
-			<div className="ring-champagne/28 pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset" />
+			<div className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-champagne/40 ring-inset" />
 		</div>
 	);
 }
@@ -63,7 +66,10 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
  */
 export function MaterialTilePreview({ previews }: MaterialTilePreviewProps) {
 	return (
-		<div className="pointer-events-none absolute top-4 right-6 z-20 flex items-start gap-4 opacity-[0.48] transition-opacity duration-500 group-hover:opacity-95 group-active:opacity-95">
+		<div
+			className="pointer-events-none absolute top-4 right-6 z-20 flex items-start gap-4 opacity-100"
+			aria-hidden="true"
+		>
 			{previews.map(({ size, image }) => {
 				const { w, h } = TILE_DIMS[size] ?? FALLBACK_DIMS;
 
