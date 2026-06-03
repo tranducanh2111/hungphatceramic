@@ -7,7 +7,7 @@ import { BlueprintLine, RevealOnView } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
 
 /**
- * AboutOrigin — Founding moment (flyward mission pattern, balanced layout).
+ * AboutOrigin — Founding story: Perla name meaning, then Hung Phat heritage.
  */
 export function AboutOrigin() {
 	const t = useTranslations("pages.about.origin");
@@ -69,19 +69,46 @@ export function AboutOrigin() {
 						</RevealOnView>
 					</div>
 
-					<RevealOnView className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2">
-						<Text
-							variant="body-lg"
-							className="text-linen/65 leading-relaxed whitespace-pre-line lg:ml-auto lg:max-w-md lg:text-right"
-						>
-							{t("body")}
-						</Text>
+					<div className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2">
+						<div className="space-y-8 lg:ml-auto lg:max-w-md lg:text-right">
+							<RevealOnView>
+								<span className="text-label text-champagne font-sans tracking-[0.2em] uppercase">
+									{t("nameLabel")}
+								</span>
+								<Text
+									variant="h3"
+									as="h3"
+									className="text-linen mt-3 font-serif font-light italic"
+								>
+									{t("nameTitle")}
+								</Text>
+								<Text
+									variant="body-lg"
+									className="text-linen/70 mt-4 leading-relaxed"
+								>
+									{t("nameStory")}
+								</Text>
+							</RevealOnView>
+
+							<RevealOnView delay={0.1}>
+								<div
+									className="bg-champagne/25 mx-auto my-2 h-px w-12 lg:ms-auto lg:me-0"
+									aria-hidden="true"
+								/>
+								<Text
+									variant="body-lg"
+									className="text-linen/65 mt-6 leading-relaxed whitespace-pre-line"
+								>
+									{t("body")}
+								</Text>
+							</RevealOnView>
+						</div>
 
 						<BlueprintLine
 							variant="foundation"
 							className="mt-10 h-40 w-40 self-end opacity-90 lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:h-48 lg:w-48"
 						/>
-					</RevealOnView>
+					</div>
 				</div>
 			</div>
 		</section>
