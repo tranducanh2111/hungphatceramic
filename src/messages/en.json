@@ -251,7 +251,7 @@
 		},
 		"about": {
 			"title": "About Us | Perla powered by Hung Phat",
-			"description": "Explore Perla's heritage, craftsmanship standards, and B2B delivery model for luxury interior ceramic projects.",
+			"description": "Explore Perla's craftsmanship standards, capabilities, and B2B delivery model for luxury interior ceramic projects.",
 			"ogTitle": "About Perla | Luxury Interior Ceramic Partner",
 			"ogDescription": "Discover how Perla helps architects, developers, and hospitality brands deliver premium interior spaces with precision ceramic craftsmanship.",
 			"siteName": "Perla powered by Hung Phat",
@@ -259,7 +259,7 @@
 		},
 		"projects": {
 			"title": "Projects | Perla",
-			"description": "Explore completed interior projects by Perla and see how premium ceramics elevate each space."
+			"description": "Explore Perla's project heritage timeline and completed interior work across hospitality, residential, and mixed-use programs."
 		},
 		"products": {
 			"title": "Products | Perla",
@@ -301,43 +301,6 @@
 				"pullQuote": "Stone is the original luxury.",
 				"body": "Perla, established in 2020 and backed by Hung Phat, a company with over two decades of industry experience since 2004, was founded with a clear vision: to deliver premium ceramic and porcelain surfaces with exceptional craftsmanship, quality, and attention to detail.",
 				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
-			},
-			"heritage": {
-				"label": "Heritage",
-				"heading": "A Decade of Defining Spaces",
-				"ariaLabel": "Company heritage timeline",
-				"milestones": {
-					"founding": {
-						"title": "Founded in Bat Trang",
-						"description": "Hung Phat opens its first ceramic sourcing and installation practice in the craft heartland of Vietnam.",
-						"imageAlt": "The original Hung Phat workshop in Bat Trang craft village"
-					},
-					"firstHotel": {
-						"title": "First Hospitality Commission",
-						"description": "A landmark boutique hotel project proves that precision ceramic installation can protect design intent at full commercial scale.",
-						"imageAlt": "First major hotel interior project by Perla in Ha Long Bay"
-					},
-					"hospitalityExpansion": {
-						"title": "Multi-Site Expansion",
-						"description": "Expanded into multi-property hospitality programs with standardised quality controls across contractor teams.",
-						"imageAlt": "Multi-site hospitality project interior by Perla"
-					},
-					"residentialGrowth": {
-						"title": "Premium Residential Milestone",
-						"description": "First large-format residential specification — 200+ luxury apartments with full-scope ceramic systems.",
-						"imageAlt": "Luxury residential project interior with Perla ceramic systems"
-					},
-					"brandsAsPartner": {
-						"title": "Recognised B2B Partner",
-						"description": "Perla brand launched — formalising the partnership model with architects, developers, and hospitality operators.",
-						"imageAlt": "Perla B2B partner project collaboration"
-					},
-					"present": {
-						"title": "Present Day",
-						"description": "200+ projects completed. Trusted across hospitality, residential, and mixed-use programs throughout Vietnam.",
-						"imageAlt": "Current Perla projects across Vietnam's premium interior market"
-					}
-				}
 			},
 			"craft": {
 				"ariaLabel": "Ceramic craft story",
@@ -431,7 +394,44 @@
 			}
 		},
 		"projects": {
-			"heading": "Our Projects"
+			"heading": "Our Projects",
+			"heritage": {
+				"label": "Heritage",
+				"heading": "A Decade of Defining Spaces",
+				"ariaLabel": "Company heritage timeline",
+				"milestones": {
+					"founding": {
+						"title": "Founded in Bat Trang",
+						"description": "Hung Phat opens its first ceramic sourcing and installation practice in the craft heartland of Vietnam.",
+						"imageAlt": "The original Hung Phat workshop in Bat Trang craft village"
+					},
+					"firstHotel": {
+						"title": "First Hospitality Commission",
+						"description": "A landmark boutique hotel project proves that precision ceramic installation can protect design intent at full commercial scale.",
+						"imageAlt": "First major hotel interior project by Perla in Ha Long Bay"
+					},
+					"hospitalityExpansion": {
+						"title": "Multi-Site Expansion",
+						"description": "Expanded into multi-property hospitality programs with standardised quality controls across contractor teams.",
+						"imageAlt": "Multi-site hospitality project interior by Perla"
+					},
+					"residentialGrowth": {
+						"title": "Premium Residential Milestone",
+						"description": "First large-format residential specification — 200+ luxury apartments with full-scope ceramic systems.",
+						"imageAlt": "Luxury residential project interior with Perla ceramic systems"
+					},
+					"brandsAsPartner": {
+						"title": "Recognised B2B Partner",
+						"description": "Perla brand launched — formalising the partnership model with architects, developers, and hospitality operators.",
+						"imageAlt": "Perla B2B partner project collaboration"
+					},
+					"present": {
+						"title": "Present Day",
+						"description": "200+ projects completed. Trusted across hospitality, residential, and mixed-use programs throughout Vietnam.",
+						"imageAlt": "Current Perla projects across Vietnam's premium interior market"
+					}
+				}
+			}
 		},
 		"products": {
 			"heading": "Our Collection",

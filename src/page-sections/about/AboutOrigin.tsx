@@ -7,7 +7,7 @@ import { BlueprintLine, RevealOnView } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
 
 /**
- * AboutOrigin — Founding story: Perla name meaning, then Hung Phat heritage.
+ * AboutOrigin — Founding story: Perla name meaning and Hung Phat background.
  */
 export function AboutOrigin() {
 	const t = useTranslations("pages.about.origin");

@@ -259,7 +259,7 @@
 		},
 		"projects": {
 			"title": "Dự án | Perla",
-			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu porcelain cao cấp."
+			"description": "Khám phá hành trình dự án và các công trình nội thất đã hoàn thiện của Perla trong khách sạn, nhà ở và tổ hợp đa chức năng."
 		},
 		"products": {
 			"title": "Sản phẩm | Perla",
@@ -301,43 +301,6 @@
 				"pullQuote": "Đá là xa xỉ nguyên bản nhất.",
 				"body": "Perla, được thành lập vào năm 2020 và được bảo trợ bởi Hùng Phát, công ty có hơn hai thập kỷ kinh nghiệm trong ngành từ năm 2004, được thành lập với tầm nhìn rõ ràng: cung cấp các bề mặt gốm sứ và porcelain cao cấp với tay nghề thủ công vượt trội, chất lượng và sự tỉ mỉ đến từng chi tiết.",
 				"imageAlt": "Ảnh tư liệu xưởng gốm Hùng Phát tại Bát Tràng, Hà Nội"
-			},
-			"heritage": {
-				"label": "Hành trình",
-				"heading": "Một thập kỷ định hình không gian",
-				"ariaLabel": "Lịch sử phát triển công ty",
-				"milestones": {
-					"founding": {
-						"title": "Thành lập tại Bát Tràng",
-						"description": "Hùng Phát mở xưởng tuyển chọn và thi công gốm sứ đầu tiên tại làng nghề gốm truyền thống của Việt Nam.",
-						"imageAlt": "Xưởng gốm Hùng Phát ban đầu tại làng Bát Tràng"
-					},
-					"firstHotel": {
-						"title": "Dự án khách sạn đầu tiên",
-						"description": "Dự án boutique hotel tiêu biểu đầu tiên chứng minh rằng thi công gốm sứ chính xác có thể bảo toàn ý đồ thiết kế ở quy mô thương mại thực tế.",
-						"imageAlt": "Dự án nội thất khách sạn đầu tiên của Perla tại Hạ Long"
-					},
-					"hospitalityExpansion": {
-						"title": "Mở rộng đa địa điểm",
-						"description": "Mở rộng sang các chương trình khách sạn đa cơ sở với quy trình kiểm soát chất lượng được chuẩn hóa cho các nhà thầu.",
-						"imageAlt": "Dự án nội thất khách sạn đa địa điểm của Perla"
-					},
-					"residentialGrowth": {
-						"title": "Cột mốc nhà ở cao cấp",
-						"description": "Hợp đồng nhà ở quy mô lớn đầu tiên — hơn 200 căn hộ cao cấp với hệ thống gốm sứ toàn diện.",
-						"imageAlt": "Dự án nhà ở cao cấp với hệ thống gốm sứ của Perla"
-					},
-					"brandsAsPartner": {
-						"title": "Đối tác B2B được công nhận",
-						"description": "Thương hiệu Perla ra đời — chính thức hóa mô hình đối tác với kiến trúc sư, chủ đầu tư và đơn vị vận hành.",
-						"imageAlt": "Dự án hợp tác B2B của Perla"
-					},
-					"present": {
-						"title": "Hiện tại",
-						"description": "Hơn 200 dự án hoàn thiện. Được tin tưởng trong các chương trình khách sạn, nhà ở và tổ hợp đa chức năng trên toàn Việt Nam.",
-						"imageAlt": "Các dự án hiện tại của Perla trên thị trường nội thất cao cấp Việt Nam"
-					}
-				}
 			},
 			"craft": {
 				"ariaLabel": "Câu chuyện tay nghề gốm sứ",
@@ -431,7 +394,44 @@
 			}
 		},
 		"projects": {
-			"heading": "Dự án của chúng tôi"
+			"heading": "Dự án của chúng tôi",
+			"heritage": {
+				"label": "Hành trình",
+				"heading": "Một thập kỷ định hình không gian",
+				"ariaLabel": "Lịch sử phát triển công ty",
+				"milestones": {
+					"founding": {
+						"title": "Thành lập tại Bát Tràng",
+						"description": "Hùng Phát mở xưởng tuyển chọn và thi công gốm sứ đầu tiên tại làng nghề gốm truyền thống của Việt Nam.",
+						"imageAlt": "Xưởng gốm Hùng Phát ban đầu tại làng Bát Tràng"
+					},
+					"firstHotel": {
+						"title": "Dự án khách sạn đầu tiên",
+						"description": "Dự án boutique hotel tiêu biểu đầu tiên chứng minh rằng thi công gốm sứ chính xác có thể bảo toàn ý đồ thiết kế ở quy mô thương mại thực tế.",
+						"imageAlt": "Dự án nội thất khách sạn đầu tiên của Perla tại Hạ Long"
+					},
+					"hospitalityExpansion": {
+						"title": "Mở rộng đa địa điểm",
+						"description": "Mở rộng sang các chương trình khách sạn đa cơ sở với quy trình kiểm soát chất lượng được chuẩn hóa cho các nhà thầu.",
+						"imageAlt": "Dự án nội thất khách sạn đa địa điểm của Perla"
+					},
+					"residentialGrowth": {
+						"title": "Cột mốc nhà ở cao cấp",
+						"description": "Hợp đồng nhà ở quy mô lớn đầu tiên — hơn 200 căn hộ cao cấp với hệ thống gốm sứ toàn diện.",
+						"imageAlt": "Dự án nhà ở cao cấp với hệ thống gốm sứ của Perla"
+					},
+					"brandsAsPartner": {
+						"title": "Đối tác B2B được công nhận",
+						"description": "Thương hiệu Perla ra đời — chính thức hóa mô hình đối tác với kiến trúc sư, chủ đầu tư và đơn vị vận hành.",
+						"imageAlt": "Dự án hợp tác B2B của Perla"
+					},
+					"present": {
+						"title": "Hiện tại",
+						"description": "Hơn 200 dự án hoàn thiện. Được tin tưởng trong các chương trình khách sạn, nhà ở và tổ hợp đa chức năng trên toàn Việt Nam.",
+						"imageAlt": "Các dự án hiện tại của Perla trên thị trường nội thất cao cấp Việt Nam"
+					}
+				}
+			}
 		},
 		"products": {
 			"heading": "Bộ sưu tập của chúng tôi",

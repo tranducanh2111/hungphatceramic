@@ -6,10 +6,6 @@ import { useLenisControls } from "@/components/common";
 import { AboutHero } from "@/page-sections/about/AboutHero";
 import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
 
-const AboutHeritage = dynamic(
-	() => import("@/page-sections/about/AboutHeritage").then((m) => ({ default: m.AboutHeritage })),
-	{ ssr: false },
-);
 const AboutCraft = dynamic(
 	() => import("@/page-sections/about/AboutCraft").then((m) => ({ default: m.AboutCraft })),
 	{ ssr: false },
@@ -72,7 +68,6 @@ export function AboutPageContent() {
 			<AboutHero />
 			<AboutOrigin />
 			<AboutPartners />
-			<AboutHeritage />
 			<AboutCraft />
 			<AboutCapabilities />
 			<AboutValues />

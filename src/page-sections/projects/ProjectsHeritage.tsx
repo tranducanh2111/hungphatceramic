@@ -7,7 +7,7 @@ import { motion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
 import { ParallaxElement, ParallaxSection, RevealOnView } from "@/components/common";
-import { HERITAGE_MILESTONES } from "@/constants/about";
+import { HERITAGE_MILESTONES } from "@/constants/projects";
 import { cn } from "@/lib/cn";
 
 const CONNECTOR_PATH_LTR =
@@ -29,7 +29,7 @@ function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 	const isRtl = connectorIndex % 2 === 0;
 	const pathData = isRtl ? CONNECTOR_PATH_RTL : CONNECTOR_PATH_LTR;
 	const viewBox = isRtl ? "0 0 623 400" : "0 0 769 320";
-	const maskId = `heritage-connector-mask-${connectorIndex}`;
+	const maskId = `projects-heritage-connector-mask-${connectorIndex}`;
 
 	const { scrollYProgress } = useAppScroll({
 		target: connectorRef,
@@ -153,19 +153,22 @@ function MilestoneImage({ src, alt, rangePx, invert }: MilestoneImageProps) {
 const HERITAGE_IMAGE_PARALLAX = [36, 42, 38] as const;
 const HERITAGE_TEXT_PARALLAX = [22, 28, 24] as const;
 
-export function AboutHeritage() {
-	const t = useTranslations("pages.about.heritage");
+/**
+ * ProjectsHeritage — Scroll-linked project heritage timeline (moved from About).
+ */
+export function ProjectsHeritage() {
+	const t = useTranslations("pages.projects.heritage");
 	const milestoneCount = HERITAGE_MILESTONES.length;
 
 	return (
 		<ParallaxSection
-			className="bg-sapphire-deep relative py-28 lg:py-36"
+			className="bg-sapphire-deep relative pb-28 lg:pb-36"
 			aria-label={t("ariaLabel")}
 		>
 			<div className="relative mx-auto max-w-6xl px-6 lg:px-12">
 				<div className="mb-24 lg:mb-32">
 					<RevealOnView>
-						<span className="text-label text-champagne font-sans tracking-widest uppercase">
+						<span className="text-label font-sans tracking-widest text-champagne uppercase">
 							{t("label")}
 						</span>
 					</RevealOnView>
@@ -198,7 +201,7 @@ export function AboutHeritage() {
 											rangePx={imageParallax}
 											invert={!isEven}
 										/>
-										<div className="ring-champagne/8 pointer-events-none absolute inset-0 rounded-2xl ring-1" />
+										<div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-champagne/8" />
 									</div>
 
 									<ParallaxElement
@@ -210,24 +213,24 @@ export function AboutHeritage() {
 											isEven ? "lg:order-2" : "lg:order-1",
 										)}
 									>
-										<p className="text-h2 text-champagne/55 font-sans leading-tight font-light tracking-wide">
+										<p className="text-h2 font-sans leading-tight font-light tracking-wide text-champagne/55">
 											{milestone.coordinates}
 										</p>
-										<p className="text-body-sm text-linen/40 mt-2 font-sans">
+										<p className="text-body-sm mt-2 font-sans text-linen/40">
 											{milestone.location}
 										</p>
-										<p className="text-label text-champagne/30 mt-1 font-sans tracking-widest uppercase">
+										<p className="text-label mt-1 font-sans tracking-widest text-champagne/30 uppercase">
 											{milestone.year}
 										</p>
 
-										<div className="bg-champagne/25 my-7 h-px w-10" />
+										<div className="my-7 h-px w-10 bg-champagne/25" />
 
 										<Text variant="h4" as="h3" className="text-linen">
 											{t(`milestones.${milestone.id}.title`)}
 										</Text>
 										<Text
 											variant="body"
-											className="text-linen/55 mt-3 max-w-sm leading-relaxed"
+											className="mt-3 max-w-sm leading-relaxed text-linen/55"
 										>
 											{t(`milestones.${milestone.id}.description`)}
 										</Text>
