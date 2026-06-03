@@ -431,10 +431,151 @@
 			"heading": "Our Projects"
 		},
 		"products": {
-			"heading": "Our Products"
+			"heading": "Our Collection",
+			"allCollections": "All Collections",
+			"filterLabel": "Filter by Collection",
+			"productCount": "{count} products",
+			"productCountSingle": "{count} product",
+			"viewProduct": "View Product",
+			"noProducts": "No products found in this collection.",
+			"searchPlaceholder": "Search products...",
+			"collections": {
+				"inspire": "Inspire Series",
+				"travertine": "Travertine Series",
+				"orient-star": "Orient Star Series",
+				"sunshine": "Sunshine Series",
+				"architectural": "20mm Architectural",
+				"peace": "Peace Series"
+			},
+			"hero": {
+				"label": "Product Catalogue",
+				"defaultTitle": "The Complete Collection"
+			}
 		},
 		"productDetail": {
-			"heading": "Product: {slug}"
+			"heading": "Product: {slug}",
+			"backToProducts": "Back to Collection",
+			"sku": "SKU",
+			"availableSizes": "Available Sizes",
+			"faceVariations": "Surface Variations",
+			"specifications": "Specifications",
+			"relatedProducts": "More from {collection}",
+			"requestQuote": "Request a Quote",
+			"bookConsultation": "Book a Consultation",
+			"surface": "Surface Finish",
+			"thickness": "Thickness",
+			"material": "Material",
+			"faces": "Faces",
+			"finishes": {
+				"matte": "Matte / Natural",
+				"polished": "Polished / Glossy",
+				"structured": "Structured / Textured"
+			}
+		}
+	},
+	"products": {
+		"items": {
+			"inspire-g12962j": {
+				"name": "Inspire G12962J",
+				"description": "Bold patterns with a deep sapphire tone and dynamic natural stone marbling. Perfect for feature walls or statement flooring in high-end projects."
+			},
+			"inspire-g12964j": {
+				"name": "Inspire G12964J",
+				"description": "Complex crystal structures with rich contrast and geometric beauty. Brings dramatic visual drama and refined architecture into living rooms and lobbies."
+			},
+			"inspire-g12967j": {
+				"name": "Inspire G12967J",
+				"description": "Sophisticated gray marble veining for high-end modern projects. Offers a clean, minimal look with complex natural textures."
+			},
+			"inspire-gp12962j": {
+				"name": "Inspire GP12962J",
+				"description": "Glossy polished variant showing rich color depth and pristine light reflections, ideal for premium commercial and residential spaces."
+			},
+			"inspire-gp12964j": {
+				"name": "Inspire GP12964J",
+				"description": "Polished crystal porcelain surface, bringing light reflection, depth, and spatial grandeur into lobbies and main halls."
+			},
+			"inspire-g88962j": {
+				"name": "Inspire G88962J",
+				"description": "Classic square format featuring the signature Inspire patterns. Perfectly sized for balanced layouts in corridors and dining areas."
+			},
+			"inspire-gp88962": {
+				"name": "Inspire GP88962",
+				"description": "High-gloss polished surface in a classic 80×80 format, delivering depth and luxury reflections to dining rooms and entrance halls."
+			},
+			"travertine-t01": {
+				"name": "Travertine G12T01",
+				"description": "The organic warmth of classic Italian travertine stone structure. Ideal for serene, nature-inspired indoor surfaces."
+			},
+			"travertine-t06": {
+				"name": "Travertine G12T06",
+				"description": "Deep linear travertine formations with rich earthy tones. Adds height, structure, and timeless architectural class."
+			},
+			"travertine-g88t01j": {
+				"name": "Travertine G88T01J",
+				"description": "Natural matte finish square tile bringing travertine elegance indoors. Subtle beige tones that coordinate beautifully with wood."
+			},
+			"travertine-g88t06j": {
+				"name": "Travertine G88T06J",
+				"description": "Square travertine format with structural veins and comfortable tactile texture, providing safety and durability."
+			},
+			"travertine-gp88t01j": {
+				"name": "Travertine GP88T01J",
+				"description": "Polished variant of the classic Travertine T01 surface in 80×80 format, merging rustic warmth with clean luxury."
+			},
+			"travertine-gp88t06j": {
+				"name": "Travertine GP88T06J",
+				"description": "Polished linear travertine tiles for elegant floor mappings and beautiful open-plan architectural spaces."
+			},
+			"orient-star-g12w05j": {
+				"name": "Orient Star G12W05J",
+				"description": "Ivory luminance with subtle starburst lines and spatial expansiveness. Soft, timeless elegance for discerning interiors."
+			},
+			"orient-star-gp12w05j": {
+				"name": "Orient Star GP12W05J",
+				"description": "Glossy polished porcelain rendering pure ivory luminance. Excellent for reflecting soft natural light throughout main halls."
+			},
+			"sunshine-g12032j": {
+				"name": "Sunshine G12032J",
+				"description": "Luminous, warm golden tones reflecting natural light beautifully. Creates a welcoming, bright, and luxurious space."
+			},
+			"sunshine-gp12032j": {
+				"name": "Sunshine GP12032J",
+				"description": "High-gloss polished sunshine variant for open, airy, high-contrast layouts. The perfect canvas for premium spatial expressions."
+			},
+			"sunshine-g88032j": {
+				"name": "Sunshine G88032J",
+				"description": "Square matte format of the light-filled Sunshine series. Excellent durability and scratch resistance for high-traffic zones."
+			},
+			"sunshine-gp88032j": {
+				"name": "Sunshine GP88032J",
+				"description": "Square polished porcelain tile with active veining and high-end glow. Uplifts any room with light-catching textures."
+			},
+			"architectural-g12537-dd": {
+				"name": "Architectural G12537-DD",
+				"description": "Thick 20mm architectural gray slate engineered for high load-bearing demands. Excellent slip resistance for luxury outdoor paving."
+			},
+			"architectural-g12539-dd": {
+				"name": "Architectural G12539-DD",
+				"description": "Ultra-heavy-duty 20mm thick porcelain with textured concrete slate aesthetics. Ideal for gardens, terraces, and outdoor driveways."
+			},
+			"peace-gp12h03j": {
+				"name": "Peace GP12H03J (Flow)",
+				"description": "Tranquil flow patterns reflecting architectural stillness and natural calm. Designed for wellness spaces and premium master baths."
+			},
+			"peace-gp12h05j": {
+				"name": "Peace GP12H05J",
+				"description": "Neutral tones and silent design expressions for minimal luxury environments. Enhances peace and focus in modern spaces."
+			},
+			"peace-gp88731j": {
+				"name": "Peace GP88731J",
+				"description": "Sophisticated 80×80 format with mild patterns that breathe tranquility. A gentle foundation for residential flooring."
+			},
+			"peace-gp88736j": {
+				"name": "Peace GP88736J",
+				"description": "Elegant square format tiles for quiet, cohesive architectural landscapes. Resists stains and retains its serene texture over decades."
+			}
 		}
 	}
 }
+

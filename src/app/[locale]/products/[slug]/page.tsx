@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PRODUCTS } from "@/constants/products";
+import { routing } from "@/i18n/routing";
+import { ProductDetailPageContent } from "@/page-sections/products/ProductDetailPageContent";
 
 interface ProductDetailPageProps {
 	params: Promise<{ locale: string; slug: string }>;
 }
 
-function toProductName(slug: string): string {
-	return slug
-		.split("-")
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(" ");
-}
-
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
 	const { locale, slug } = await params;
-	const productName = toProductName(slug);
+	const product = PRODUCTS.find((p) => p.slug === slug);
+	if (!product) return {};
+
 	const t = await getTranslations({ locale, namespace: "meta.productDetail" });
+	const tItems = await getTranslations({ locale, namespace: "products.items" });
+	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
 
 	return {
 		title: t("title", { productName }),
@@ -26,13 +27,22 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
 	const { locale, slug } = await params;
 	setRequestLocale(locale);
-	const t = await getTranslations({ locale, namespace: "pages.productDetail" });
 
-	return (
-		<main>
-			<section className="bg-sapphire-deep flex min-h-screen items-center justify-center px-6">
-				<h1 className="text-display-lg text-linen font-serif">{t("heading", { slug })}</h1>
-			</section>
-		</main>
-	);
+	const product = PRODUCTS.find((p) => p.slug === slug);
+	if (!product) {
+		notFound();
+	}
+
+	return <ProductDetailPageContent product={product} />;
 }
+
+export function generateStaticParams() {
+	const params: { locale: string; slug: string }[] = [];
+	routing.locales.forEach((locale) => {
+		PRODUCTS.forEach((product) => {
+			params.push({ locale, slug: product.slug });
+		});
+	});
+	return params;
+}
+

@@ -25,6 +25,22 @@ export interface ProductSummary {
 	thumbnailUrl: string;
 	category: string;
 	shortDescription: string;
+	skuCode: string;
+}
+
+/** Full product data used on the detail page. */
+export interface ProductDetail extends ProductSummary {
+	collectionId: string;
+	sizes: string[];
+	faceImages: string[];
+	sceneImages: string[];
+	allFacesImage?: string;
+}
+
+/** Collection filter tab item for the products listing. */
+export interface CollectionFilter {
+	id: string;
+	productCount: number;
 }
 
 /** Represents a completed project / portfolio item. */
@@ -36,3 +52,4 @@ export interface ProjectSummary {
 	year: number;
 	shortDescription: string;
 }
+

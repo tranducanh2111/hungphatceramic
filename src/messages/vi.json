@@ -431,10 +431,151 @@
 			"heading": "Dự án của chúng tôi"
 		},
 		"products": {
-			"heading": "Sản phẩm của chúng tôi"
+			"heading": "Bộ sưu tập của chúng tôi",
+			"allCollections": "Tất cả bộ sưu tập",
+			"filterLabel": "Lọc theo bộ sưu tập",
+			"productCount": "{count} sản phẩm",
+			"productCountSingle": "{count} sản phẩm",
+			"viewProduct": "Xem sản phẩm",
+			"noProducts": "Không tìm thấy sản phẩm nào trong bộ sưu tập này.",
+			"searchPlaceholder": "Tìm kiếm sản phẩm...",
+			"collections": {
+				"inspire": "Dòng Inspire",
+				"travertine": "Dòng Travertine",
+				"orient-star": "Dòng Orient Star",
+				"sunshine": "Dòng Sunshine",
+				"architectural": "Dòng kiến trúc 20mm",
+				"peace": "Dòng Peace"
+			},
+			"hero": {
+				"label": "Danh mục sản phẩm",
+				"defaultTitle": "Toàn bộ bộ sưu tập"
+			}
 		},
 		"productDetail": {
-			"heading": "Sản phẩm: {slug}"
+			"heading": "Sản phẩm: {slug}",
+			"backToProducts": "Quay lại bộ sưu tập",
+			"sku": "Mã SKU",
+			"availableSizes": "Kích thước có sẵn",
+			"faceVariations": "Các mặt vân bề mặt",
+			"specifications": "Thông số kỹ thuật",
+			"relatedProducts": "Sản phẩm khác dòng {collection}",
+			"requestQuote": "Yêu cầu báo giá",
+			"bookConsultation": "Đặt lịch tư vấn",
+			"surface": "Bề mặt hoàn thiện",
+			"thickness": "Độ dày",
+			"material": "Chất liệu",
+			"faces": "Số mặt vân",
+			"finishes": {
+				"matte": "Mờ mịn / Tự nhiên",
+				"polished": "Bóng kiếng / Polished",
+				"structured": "Sần nhám / Định hình"
+			}
+		}
+	},
+	"products": {
+		"items": {
+			"inspire-g12962j": {
+				"name": "Inspire G12962J",
+				"description": "Vân đá cẩm thạch mạnh mẽ với tông màu sapphire sâu thẳm, kiến tạo điểm nhấn ấn tượng cho mảng tường hoặc sàn trong các dự án cao cấp."
+			},
+			"inspire-g12964j": {
+				"name": "Inspire G12964J",
+				"description": "Cấu trúc tinh thể phức tạp với độ tương phản cao và vẻ đẹp hình học. Đem lại hiệu ứng thị giác ấn tượng và tinh tế cho phòng khách và sảnh đón."
+			},
+			"inspire-g12967j": {
+				"name": "Inspire G12967J",
+				"description": "Đường vân cẩm thạch xám tinh xảo dành cho các thiết kế hiện đại, tối giản nhưng giàu chiều sâu của chất liệu tự nhiên."
+			},
+			"inspire-gp12962j": {
+				"name": "Inspire GP12962J",
+				"description": "Biến thể bóng kiếng (polished) thể hiện độ sâu màu sắc vượt trội và khả năng phản chiếu ánh sáng hoàn mỹ, tối ưu cho biệt thự và sảnh lớn."
+			},
+			"inspire-gp12964j": {
+				"name": "Inspire GP12964J",
+				"description": "Bề mặt bóng gương lấp lánh mang lại không gian sang trọng rộng mở, nâng tầm thẩm mỹ kiến trúc cho các tiền sảnh và hội trường."
+			},
+			"inspire-g88962j": {
+				"name": "Inspire G88962J",
+				"description": "Kích thước vuông 80x80cm tiêu chuẩn mang họa tiết đặc trưng của dòng Inspire, tối ưu tỷ lệ bố cục cho hành lang và phòng ăn."
+			},
+			"inspire-gp88962": {
+				"name": "Inspire GP88962",
+				"description": "Bề mặt bóng kiếng kích thước 80×80cm, mang lại chiều sâu và phản chiếu sang trọng cho khu vực bàn ăn và sảnh lối vào."
+			},
+			"travertine-t01": {
+				"name": "Travertine G12T01",
+				"description": "Vẻ ấm áp mộc mạc của đá tự nhiên travertine Ý huyền thoại. Lý tưởng cho không gian sống bình yên, gần gũi thiên nhiên."
+			},
+			"travertine-t06": {
+				"name": "Travertine G12T06",
+				"description": "Các lớp vân đá travertine cắt dọc sắc nét cùng tông màu đất ấm áp, mang lại chiều sâu cấu trúc và vẻ đẹp kiến trúc trường tồn."
+			},
+			"travertine-g88t01j": {
+				"name": "Travertine G88T01J",
+				"description": "Gạch vân đá travertine bề mặt mờ mịn tự nhiên. Tông màu beige nhẹ nhàng dễ dàng phối hợp hài hòa cùng nội thất gỗ ấm."
+			},
+			"travertine-g88t06j": {
+				"name": "Travertine G88T06J",
+				"description": "Định dạng vuông tiện dụng với các đường vân chạy dọc, bề mặt có độ ma sát an toàn cao và độ bền vượt trội theo năm tháng."
+			},
+			"travertine-gp88t01j": {
+				"name": "Travertine GP88T01J",
+				"description": "Phiên bản bóng kiếng của dòng Travertine T01 kích thước 80×80cm, kết hợp sự ấm cúng mộc mạc và nét bóng bẩy thời thượng."
+			},
+			"travertine-gp88t06j": {
+				"name": "Travertine GP88T06J",
+				"description": "Gạch vân travertine cắt dọc mài bóng sang trọng, tạo nên hiệu ứng mở rộng diện tích sàn cho các thiết kế mở hiện đại."
+			},
+			"orient-star-g12w05j": {
+				"name": "Orient Star G12W05J",
+				"description": "Sắc ngà ấm áp kết hợp các vệt vân tia sáng nhẹ nhàng lan tỏa. Mang lại vẻ đẹp thanh lịch, nhã nhặn và sang quý cho không gian."
+			},
+			"orient-star-gp12w05j": {
+				"name": "Orient Star GP12W05J",
+				"description": "Bề mặt porcelain mài bóng phản chiếu ánh sáng tự nhiên mềm mại, tối ưu cho phòng khách lớn và sảnh chính đón nắng."
+			},
+			"sunshine-g12032j": {
+				"name": "Sunshine G12032J",
+				"description": "Tông màu vàng cát rực rỡ phản chiếu ánh sáng như những tia nắng ấm áp, mang lại cảm giác tràn đầy năng lượng tươi mới cho ngôi nhà."
+			},
+			"sunshine-gp12032j": {
+				"name": "Sunshine GP12032J",
+				"description": "Bản mài bóng cao cấp của dòng Sunshine, thích hợp làm nổi bật các bức tường trang trí hoặc sàn phòng tắm sang trọng."
+			},
+			"sunshine-g88032j": {
+				"name": "Sunshine G88032J",
+				"description": "Kích thước vuông bề mặt mờ nhẹ của dòng Sunshine, chống trầy xước và chịu lực cực tốt cho các khu vực mật độ đi lại cao."
+			},
+			"sunshine-gp88032j": {
+				"name": "Sunshine GP88032J",
+				"description": "Gạch lát nền bóng kiếng 80×80cm giàu vân sắc, bắt sáng rực rỡ dưới ánh đèn nội thất giúp căn phòng lung linh hơn."
+			},
+			"architectural-g12537-dd": {
+				"name": "Architectural G12537-DD",
+				"description": "Độ dày siêu việt 20mm chuyên dụng cho ngoại thất, chịu lực và chống trơn trượt hoàn hảo cho lát sân vườn, lối đi ngoài trời."
+			},
+			"architectural-g12539-dd": {
+				"name": "Architectural G12539-DD",
+				"description": "Gạch dày 20mm mô phỏng vân đá phiến xám bê tông thô mộc cá tính. Chống chọi tốt với thời tiết khắc nghiệt tại Việt Nam."
+			},
+			"peace-gp12h03j": {
+				"name": "Peace GP12H03J (Flow)",
+				"description": "Những dòng vân chảy êm dịu tái hiện sự tĩnh lặng và thư thái của tâm hồn. Hoàn hảo cho spa, phòng tắm master và khu nghỉ dưỡng."
+			},
+			"peace-gp12h05j": {
+				"name": "Peace GP12H05J",
+				"description": "Tông màu trung tính tĩnh lặng cho các không gian luxury tối giản, giúp làm dịu thị giác và tăng cường sự tập trung."
+			},
+			"peace-gp88731j": {
+				"name": "Peace GP88731J",
+				"description": "Họa tiết nhẹ nhàng thư thái khổ 80x80cm, tạo nên nền sàn dịu mát nâng niu từng bước chân trong gia đình."
+			},
+			"peace-gp88736j": {
+				"name": "Peace GP88736J",
+				"description": "Gạch vuông dòng Peace tinh tế cho các kiến trúc đương đại thanh lịch, chống bám bẩn và dễ dàng vệ sinh sau nhiều thập kỷ."
+			}
 		}
 	}
 }
+
