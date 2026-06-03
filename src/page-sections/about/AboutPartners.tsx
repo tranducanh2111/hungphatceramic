@@ -7,7 +7,7 @@ import { ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/commo
 import { PARTNER_ROSTER } from "@/constants/about";
 
 /** Height-first sizing: wide logos (e.g. Guocera) are not shrunk by a narrow box width. */
-const PARTNER_LOGO_HEIGHT_CLASS = "h-14 w-auto sm:h-16 lg:h-20";
+const PARTNER_LOGO_HEIGHT_CLASS = "h-11 w-auto sm:h-12 lg:h-14";
 
 /** Recolors raster partner marks to brand champagne; brightens on row hover. */
 const PARTNER_LOGO_COLOR_CLASS =
@@ -76,7 +76,7 @@ export function AboutPartners() {
 									alt={`${partner.name} logo`}
 									width={partner.imageWidth}
 									height={partner.imageHeight}
-									sizes="(max-width: 640px) 40vw, 320px"
+									sizes="(max-width: 640px) 28vw, 200px"
 									className={`${PARTNER_LOGO_HEIGHT_CLASS} ${PARTNER_LOGO_COLOR_CLASS} object-contain object-center`}
 								/>
 							</RevealOnView>
