@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useMemo, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useLenisControls } from "@/components/common";
@@ -101,7 +102,12 @@ function ProductsPageContentInner() {
 					{/* Sidebar Filter & Search */}
 					<aside className="w-full md:sticky md:top-28 md:h-fit">
 						{/* Search Input */}
-						<div className="mb-8">
+						<motion.div
+							initial={{ opacity: 0, y: 15 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+							className="mb-8"
+						>
 							<Input
 								type="search"
 								value={searchQuery}
@@ -109,13 +115,19 @@ function ProductsPageContentInner() {
 								placeholder={t("searchPlaceholder")}
 								className="border-[#1A3D5C] focus:border-[#D4B886] w-full"
 							/>
-						</div>
+						</motion.div>
 
-						<ProductsFilter
-							activeCollectionId={activeCollectionId}
-							onSelectCollection={handleSelectCollection}
-							collections={collectionsDef}
-						/>
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+						>
+							<ProductsFilter
+								activeCollectionId={activeCollectionId}
+								onSelectCollection={handleSelectCollection}
+								collections={collectionsDef}
+							/>
+						</motion.div>
 					</aside>
 
 					{/* Grid Panel */}
