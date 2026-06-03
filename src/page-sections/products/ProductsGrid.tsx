@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useTransform } from "framer-motion";
 import { ProductTile } from "@/components/common";
@@ -40,6 +41,20 @@ const itemVariants = {
  */
 export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
+	const [isDesktop, setIsDesktop] = useState(false);
+
+	// Detect screen width client-side to only trigger offset on desktop (lg breakpoint)
+	useEffect(() => {
+		const media = window.matchMedia("(min-width: 1024px)");
+		setIsDesktop(media.matches);
+
+		const listener = (e: MediaQueryListEvent) => {
+			setIsDesktop(e.matches);
+		};
+
+		media.addEventListener("change", listener);
+		return () => media.removeEventListener("change", listener);
+	}, []);
 
 	// Sync with Lenis smooth scroll using our custom useAppScroll hook
 	const { scrollY } = useAppScroll();
@@ -59,10 +74,7 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 	}
 
 	return (
-		<motion.div 
-			className="relative min-h-[600px] w-full"
-			style={{ "--middle-y": middleColumnY } as React.CSSProperties}
-		>
+		<div className="relative min-h-[600px] w-full">
 			{/* Large decorative background text */}
 			<div
 				className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center select-none overflow-hidden"
@@ -83,11 +95,9 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 			>
 				<AnimatePresence mode="popLayout">
 					{products.map((product, index) => {
-						// Apply dynamic staggered offset on desktop columns using CSS variable
 						const isMiddleColumn = index % 3 === 1;
-						const staggerClass = isMiddleColumn 
-							? "lg:translate-y-[var(--middle-y)] will-change-transform" 
-							: "";
+						// Directly bind transform on GPU layer for high performance (smooth 60fps)
+						const staggerY = isDesktop && isMiddleColumn ? middleColumnY : 0;
 
 						return (
 							<motion.div
@@ -95,14 +105,14 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 								variants={itemVariants}
 								layout
 							>
-								<div className={staggerClass}>
+								<motion.div style={{ y: staggerY }}>
 									<ProductTile product={product} />
-								</div>
+								</motion.div>
 							</motion.div>
 						);
 					})}
 				</AnimatePresence>
 			</motion.div>
-		</motion.div>
+		</div>
 	);
 }
