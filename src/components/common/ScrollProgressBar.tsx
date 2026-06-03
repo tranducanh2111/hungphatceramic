@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 
 /**
@@ -11,12 +11,6 @@ import { useAppScroll } from "@/hooks/useAppScroll";
  */
 export function ScrollProgressBar() {
 	const { scrollYProgress } = useAppScroll();
-
-	const smoothProgress = useSpring(scrollYProgress, {
-		stiffness: 80,
-		damping: 25,
-		restDelta: 0.001,
-	});
 
 	return (
 		<div
@@ -30,7 +24,7 @@ export function ScrollProgressBar() {
 					className="absolute top-0 left-0 w-full rounded-full bg-[#D4B886]"
 					style={{
 						height: "100%",
-						scaleY: smoothProgress,
+						scaleY: scrollYProgress,
 						transformOrigin: "top",
 					}}
 				/>

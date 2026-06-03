@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { PRODUCTS } from "@/constants/products";
+import {
+	getCollectionListingMeta,
+	toProductListingItems,
+} from "@/lib/products/listing";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
 
 interface ProductsPageProps {
@@ -21,5 +26,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 	const { locale } = await params;
 	setRequestLocale(locale);
 
-	return <ProductsPageContent />;
+	const products = toProductListingItems(PRODUCTS);
+	const collections = getCollectionListingMeta(PRODUCTS);
+
+	return <ProductsPageContent products={products} collections={collections} />;
 }

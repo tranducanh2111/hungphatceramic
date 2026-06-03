@@ -1,45 +1,21 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { ProductTile } from "@/components/common";
-import { ProductDetail } from "@/types";
 import { Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import type { ProductListingItem } from "@/lib/products/listing";
 
 interface ProductsGridProps {
-	products: ProductDetail[];
+	products: ProductListingItem[];
 	activeCollectionId: string;
 }
 
-const containerVariants = {
-	hidden: { opacity: 0 },
-	show: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.06,
-		},
-	},
-};
-
-const itemVariants = {
-	hidden: { opacity: 0, y: 30 },
-	show: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.8,
-			ease: [0.16, 1, 0.3, 1] as const,
-		},
-	},
-};
-
-/** Static offset for the middle column — replaces scroll-linked transforms that thrashed layout with popLayout. */
+/** Static offset for the middle column on large screens. */
 const MIDDLE_COLUMN_STAGGER_CLASS = "lg:translate-y-[7.5rem]";
 
 /**
- * ProductsGrid — Staggered responsive grid displaying catalog products.
- * Remapped to sapphire/champagne palette.
+ * ProductsGrid — Responsive catalog grid (no scroll-linked motion — keeps scroll smooth).
  */
 export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
@@ -56,7 +32,6 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 
 	return (
 		<div className="relative min-h-[600px] w-full">
-			{/* Large decorative background text */}
 			<div
 				className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden select-none"
 				aria-hidden="true"
@@ -66,28 +41,28 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 				</span>
 			</div>
 
-			{/* Staggered Grid Container */}
-			<motion.div
+			<ul
 				key={activeCollectionId}
-				variants={containerVariants}
-				initial="hidden"
-				animate="show"
-				className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+				className="relative z-10 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
 			>
 				{products.map((product, index) => {
 					const isMiddleColumn = index % 3 === 1;
+					const shouldPrioritizeImage = index < 3;
 
 					return (
-						<motion.div
+						<li
 							key={product.slug}
-							variants={itemVariants}
 							className={cn(isMiddleColumn && MIDDLE_COLUMN_STAGGER_CLASS)}
 						>
-							<ProductTile product={product} />
-						</motion.div>
+							<ProductTile
+								product={product}
+								priority={shouldPrioritizeImage}
+								variant="catalog"
+							/>
+						</li>
 					);
 				})}
-			</motion.div>
+			</ul>
 		</div>
 	);
 }
