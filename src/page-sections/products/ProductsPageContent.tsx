@@ -8,50 +8,88 @@ import { ProductsHero } from "./ProductsHero";
 import { ProductsFilter } from "./ProductsFilter";
 import { ProductsGrid } from "./ProductsGrid";
 import { Input } from "@/components/ui";
-import type { CollectionListingMeta, ProductListingItem } from "@/lib/products/listing";
+import {
+	isTileSizeSlug,
+	productMatchesTileSize,
+	type CollectionListingMeta,
+	type ProductListingItem,
+	type TileSizeListingMeta,
+} from "@/lib/products/listing";
 
 interface ProductsPageContentProps {
 	products: ProductListingItem[];
 	collections: CollectionListingMeta[];
+	tileSizes: TileSizeListingMeta[];
 }
 
-function ProductsPageContentInner({ products, collections }: ProductsPageContentProps) {
+function ProductsPageContentInner({
+	products,
+	collections,
+	tileSizes,
+}: ProductsPageContentProps) {
 	const t = useTranslations("pages.products");
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
 	const [searchQuery, setSearchQuery] = useState("");
-	const activeCollectionId = searchParams.get("collection") || "all";
 
-	const handleSelectCollection = (id: string) => {
-		const current = new URLSearchParams(Array.from(searchParams.entries()));
-		if (id === "all") {
-			current.delete("collection");
-		} else {
-			current.set("collection", id);
-		}
-		const search = current.toString();
+	const rawCollectionId = searchParams.get("collection") || "all";
+	const activeCollectionId =
+		rawCollectionId === "all" ||
+		collections.some((collection) => collection.id === rawCollectionId)
+			? rawCollectionId
+			: "all";
+
+	const rawSizeId = searchParams.get("size") || "all";
+	const activeSizeId = isTileSizeSlug(rawSizeId) ? rawSizeId : "all";
+
+	const pushCatalogQuery = (nextParams: URLSearchParams) => {
+		const search = nextParams.toString();
 		const query = search ? `?${search}` : "";
 		router.push(`${pathname}${query}`);
 	};
 
+	const handleSelectCollection = (id: string) => {
+		const nextParams = new URLSearchParams(Array.from(searchParams.entries()));
+		if (id === "all") {
+			nextParams.delete("collection");
+		} else {
+			nextParams.set("collection", id);
+		}
+		pushCatalogQuery(nextParams);
+	};
+
+	const handleSelectSize = (id: string) => {
+		const nextParams = new URLSearchParams(Array.from(searchParams.entries()));
+		if (id === "all") {
+			nextParams.delete("size");
+		} else {
+			nextParams.set("size", id);
+		}
+		pushCatalogQuery(nextParams);
+	};
+
 	const filteredProducts = useMemo(() => {
+		let result = products;
+
 		if (searchQuery.trim()) {
 			const query = searchQuery.toLowerCase().trim();
-			return products.filter(
+			result = result.filter(
 				(product) =>
 					product.skuCode.toLowerCase().includes(query) ||
 					product.name.toLowerCase().includes(query),
 			);
+		} else if (activeCollectionId !== "all") {
+			result = result.filter((product) => product.collectionId === activeCollectionId);
 		}
 
-		if (activeCollectionId !== "all") {
-			return products.filter((product) => product.collectionId === activeCollectionId);
+		if (activeSizeId !== "all") {
+			result = result.filter((product) => productMatchesTileSize(product, activeSizeId));
 		}
 
-		return products;
-	}, [activeCollectionId, products, searchQuery]);
+		return result;
+	}, [activeCollectionId, activeSizeId, products, searchQuery]);
 
 	return (
 		<main className="bg-[#071A2B] text-[#F4F4F6]">
@@ -77,6 +115,9 @@ function ProductsPageContentInner({ products, collections }: ProductsPageContent
 							activeCollectionId={activeCollectionId}
 							onSelectCollection={handleSelectCollection}
 							collections={collections}
+							activeSizeId={activeSizeId}
+							onSelectSize={handleSelectSize}
+							tileSizes={tileSizes}
 						/>
 					</aside>
 

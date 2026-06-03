@@ -433,11 +433,15 @@
 		"products": {
 			"heading": "Our Collection",
 			"allCollections": "All Collections",
+			"allSizes": "All Sizes",
 			"filterLabel": "Filter by Collection",
+			"sizeFilterLabel": "Filter by Tile Size",
+			"collectionsAriaLabel": "Collections filter",
+			"sizesAriaLabel": "Tile size filter",
 			"productCount": "{count} products",
 			"productCountSingle": "{count} product",
 			"viewProduct": "View Product",
-			"noProducts": "No products found in this collection.",
+			"noProducts": "No products match your filters.",
 			"searchPlaceholder": "Search products...",
 			"collections": {
 				"inspire": "Inspire Series",
@@ -446,6 +450,10 @@
 				"sunshine": "Sunshine Series",
 				"architectural": "20mm Architectural",
 				"peace": "Peace Series"
+			},
+			"sizes": {
+				"60x120": "60×120 cm",
+				"80x80": "80×80 cm"
 			},
 			"hero": {
 				"label": "Product Catalogue",

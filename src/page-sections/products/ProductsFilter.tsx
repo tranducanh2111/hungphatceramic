@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import type { TileSizeListingMeta } from "@/lib/products/listing";
 
 interface CollectionItem {
 	id: string;
@@ -14,33 +15,41 @@ interface ProductsFilterProps {
 	activeCollectionId: string;
 	onSelectCollection: (id: string) => void;
 	collections: CollectionItem[];
+	activeSizeId: string;
+	onSelectSize: (id: string) => void;
+	tileSizes: TileSizeListingMeta[];
 }
 
+const COLLECTION_PILL_CLASS = (isSelected: boolean) =>
+	cn(
+		"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
+		isSelected
+			? "bg-[#D4B886] font-medium text-[#071A2B]"
+			: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
+	);
+
 /**
- * ProductsFilter — Sidebar filters on desktop, horizontal scrollbar on mobile.
+ * ProductsFilter — Collection and tile-size filters (sidebar desktop, pills mobile).
  */
 export function ProductsFilter({
 	activeCollectionId,
 	onSelectCollection,
 	collections,
+	activeSizeId,
+	onSelectSize,
+	tileSizes,
 }: ProductsFilterProps) {
 	const t = useTranslations("pages.products");
 
 	return (
-		<div className="w-full">
-			{/* Mobile Scrollable Pills */}
-			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-4 md:hidden">
+		<div className="w-full space-y-8">
+			{/* Mobile — collections */}
+			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-2 md:hidden">
 				<div className="flex gap-2.5 px-6">
-					{/* "All" button */}
 					<button
 						type="button"
 						onClick={() => onSelectCollection("all")}
-						className={cn(
-							"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
-							activeCollectionId === "all"
-								? "bg-[#D4B886] font-medium text-[#071A2B]"
-								: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
-						)}
+						className={COLLECTION_PILL_CLASS(activeCollectionId === "all")}
 					>
 						{t("allCollections")}
 					</button>
@@ -56,12 +65,7 @@ export function ProductsFilter({
 								key={col.id}
 								type="button"
 								onClick={() => onSelectCollection(col.id)}
-								className={cn(
-									"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
-									isSelected
-										? "bg-[#D4B886] font-medium text-[#071A2B]"
-										: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
-								)}
+								className={COLLECTION_PILL_CLASS(isSelected)}
 							>
 								{label}{" "}
 								<span
@@ -78,95 +82,168 @@ export function ProductsFilter({
 				</div>
 			</div>
 
-			{/* Desktop Vertical Sidebar */}
-			<div className="hidden space-y-8 md:block">
-				<div>
-					<Text
-						variant="label"
-						className="mb-6 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
+			{/* Mobile — tile sizes */}
+			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-4 md:hidden">
+				<div className="flex gap-2.5 px-6">
+					<button
+						type="button"
+						onClick={() => onSelectSize("all")}
+						className={COLLECTION_PILL_CLASS(activeSizeId === "all")}
 					>
-						{t("filterLabel")}
-					</Text>
+						{t("allSizes")}
+					</button>
 
-					<nav className="flex flex-col space-y-4" aria-label="Collections filter">
-						{/* "All" Link */}
-						<button
-							type="button"
-							onClick={() => onSelectCollection("all")}
-							className="group relative flex w-full items-center justify-between py-2 text-left focus:outline-none"
-						>
-							<span
-								className={cn(
-									"font-serif text-lg tracking-wide transition-colors duration-300",
-									activeCollectionId === "all"
-										? "text-[#D4B886]"
-										: "text-[#F4F4F6]/40 group-hover:text-[#F4F4F6]/85",
-								)}
+					{tileSizes.map((size) => {
+						const isSelected = activeSizeId === size.id;
+						const label = t.has(`sizes.${size.id}`)
+							? t(`sizes.${size.id}`)
+							: size.dimension;
+
+						return (
+							<button
+								key={size.id}
+								type="button"
+								onClick={() => onSelectSize(size.id)}
+								className={COLLECTION_PILL_CLASS(isSelected)}
 							>
-								{t("allCollections")}
-							</span>
-
-							{/* Active underline */}
-							{activeCollectionId === "all" && (
-								<motion.div
-									layoutId="activeFilterUnderline"
-									className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
-									transition={{ type: "spring", stiffness: 380, damping: 30 }}
-								/>
-							)}
-						</button>
-
-						{collections.map((col) => {
-							const isSelected = activeCollectionId === col.id;
-							const label = t.has(`collections.${col.id}`)
-								? t(`collections.${col.id}`)
-								: col.id;
-
-							return (
-								<button
-									key={col.id}
-									type="button"
-									onClick={() => onSelectCollection(col.id)}
-									className="group relative flex w-full items-center justify-between py-2 text-left focus:outline-none"
-								>
-									<span
-										className={cn(
-											"font-serif text-lg tracking-wide transition-colors duration-300",
-											isSelected
-												? "text-[#D4B886]"
-												: "text-[#F4F4F6]/40 group-hover:text-[#F4F4F6]/85",
-										)}
-									>
-										{label}
-									</span>
-
-									<span
-										className={cn(
-											"font-sans text-xs tracking-wider transition-colors duration-300",
-											isSelected ? "text-[#D4B886]" : "text-[#F4F4F6]/20",
-										)}
-									>
-										{col.count}
-									</span>
-
-									{/* Active underline */}
-									{isSelected && (
-										<motion.div
-											layoutId="activeFilterUnderline"
-											className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
-											transition={{
-												type: "spring",
-												stiffness: 380,
-												damping: 30,
-											}}
-										/>
+								{label}{" "}
+								<span
+									className={cn(
+										"ml-1.5 text-[10px] opacity-60",
+										isSelected ? "text-[#071A2B]/80" : "text-[#D4B886]/80",
 									)}
-								</button>
-							);
-						})}
-					</nav>
+								>
+									({size.count})
+								</span>
+							</button>
+						);
+					})}
 				</div>
 			</div>
+
+			{/* Desktop — collections */}
+			<div className="hidden md:block">
+				<Text
+					variant="label"
+					className="mb-6 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
+				>
+					{t("filterLabel")}
+				</Text>
+
+				<nav className="flex flex-col space-y-4" aria-label={t("collectionsAriaLabel")}>
+					<FilterNavButton
+						label={t("allCollections")}
+						isSelected={activeCollectionId === "all"}
+						onSelect={() => onSelectCollection("all")}
+						layoutId="activeCollectionUnderline"
+					/>
+
+					{collections.map((col) => {
+						const label = t.has(`collections.${col.id}`)
+							? t(`collections.${col.id}`)
+							: col.id;
+
+						return (
+							<FilterNavButton
+								key={col.id}
+								label={label}
+								count={col.count}
+								isSelected={activeCollectionId === col.id}
+								onSelect={() => onSelectCollection(col.id)}
+								layoutId="activeCollectionUnderline"
+							/>
+						);
+					})}
+				</nav>
+			</div>
+
+			{/* Desktop — tile sizes */}
+			<div className="hidden md:block">
+				<Text
+					variant="label"
+					className="mb-6 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
+				>
+					{t("sizeFilterLabel")}
+				</Text>
+
+				<nav className="flex flex-col space-y-4" aria-label={t("sizesAriaLabel")}>
+					<FilterNavButton
+						label={t("allSizes")}
+						isSelected={activeSizeId === "all"}
+						onSelect={() => onSelectSize("all")}
+						layoutId="activeSizeUnderline"
+					/>
+
+					{tileSizes.map((size) => {
+						const label = t.has(`sizes.${size.id}`)
+							? t(`sizes.${size.id}`)
+							: size.dimension;
+
+						return (
+							<FilterNavButton
+								key={size.id}
+								label={label}
+								count={size.count}
+								isSelected={activeSizeId === size.id}
+								onSelect={() => onSelectSize(size.id)}
+								layoutId="activeSizeUnderline"
+							/>
+						);
+					})}
+				</nav>
+			</div>
 		</div>
+	);
+}
+
+interface FilterNavButtonProps {
+	label: string;
+	count?: number;
+	isSelected: boolean;
+	onSelect: () => void;
+	layoutId: string;
+}
+
+function FilterNavButton({
+	label,
+	count,
+	isSelected,
+	onSelect,
+	layoutId,
+}: FilterNavButtonProps) {
+	return (
+		<button
+			type="button"
+			onClick={onSelect}
+			className="group relative flex w-full items-center justify-between py-2 text-left focus:outline-none"
+		>
+			<span
+				className={cn(
+					"font-serif text-lg tracking-wide transition-colors duration-300",
+					isSelected ? "text-[#D4B886]" : "text-[#F4F4F6]/40 group-hover:text-[#F4F4F6]/85",
+				)}
+			>
+				{label}
+			</span>
+
+			{count !== undefined && (
+				<span
+					className={cn(
+						"font-sans text-xs tracking-wider transition-colors duration-300",
+						isSelected ? "text-[#D4B886]" : "text-[#F4F4F6]/20",
+					)}
+				>
+					{count}
+				</span>
+			)}
+
+			{isSelected && (
+				<motion.div
+					layoutId={layoutId}
+					className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
+					transition={{ type: "spring", stiffness: 380, damping: 30 }}
+				/>
+			)}
+		</button>
 	);
 }

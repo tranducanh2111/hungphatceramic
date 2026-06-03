@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PRODUCTS } from "@/constants/products";
 import {
 	getCollectionListingMeta,
+	getTileSizeListingMeta,
 	toProductListingItems,
 } from "@/lib/products/listing";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
@@ -28,6 +29,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
 	const products = toProductListingItems(PRODUCTS);
 	const collections = getCollectionListingMeta(PRODUCTS);
+	const tileSizes = getTileSizeListingMeta(PRODUCTS);
 
-	return <ProductsPageContent products={products} collections={collections} />;
+	return (
+		<ProductsPageContent
+			products={products}
+			collections={collections}
+			tileSizes={tileSizes}
+		/>
+	);
 }

@@ -433,11 +433,15 @@
 		"products": {
 			"heading": "Bộ sưu tập của chúng tôi",
 			"allCollections": "Tất cả bộ sưu tập",
+			"allSizes": "Tất cả kích thước",
 			"filterLabel": "Lọc theo bộ sưu tập",
+			"sizeFilterLabel": "Lọc theo kích thước",
+			"collectionsAriaLabel": "Bộ lọc bộ sưu tập",
+			"sizesAriaLabel": "Bộ lọc kích thước gạch",
 			"productCount": "{count} sản phẩm",
 			"productCountSingle": "{count} sản phẩm",
 			"viewProduct": "Xem sản phẩm",
-			"noProducts": "Không tìm thấy sản phẩm nào trong bộ sưu tập này.",
+			"noProducts": "Không có sản phẩm phù hợp với bộ lọc.",
 			"searchPlaceholder": "Tìm kiếm sản phẩm...",
 			"collections": {
 				"inspire": "Dòng Inspire",
@@ -446,6 +450,10 @@
 				"sunshine": "Dòng Sunshine",
 				"architectural": "Dòng kiến trúc 20mm",
 				"peace": "Dòng Peace"
+			},
+			"sizes": {
+				"60x120": "60×120 cm",
+				"80x80": "80×80 cm"
 			},
 			"hero": {
 				"label": "Danh mục sản phẩm",
