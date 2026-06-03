@@ -67,22 +67,20 @@ function ProductsPageContentInner() {
 
 	// 2. Filter products based on active collection and search query
 	const filteredProducts = useMemo(() => {
-		let result = PRODUCTS;
-
-		// Filter by collection
-		if (activeCollectionId !== "all") {
-			result = result.filter((p) => p.collectionId === activeCollectionId);
-		}
-
-		// Filter by search query (Name or SKU Code)
+		// If there is an active search query, perform a global search (ignore collection filter)
 		if (searchQuery.trim()) {
 			const query = searchQuery.toLowerCase().trim();
-			result = result.filter(
+			return PRODUCTS.filter(
 				(p) => p.skuCode.toLowerCase().includes(query) || p.name.toLowerCase().includes(query),
 			);
 		}
 
-		return result;
+		// Otherwise, filter by the selected collection
+		if (activeCollectionId !== "all") {
+			return PRODUCTS.filter((p) => p.collectionId === activeCollectionId);
+		}
+
+		return PRODUCTS;
 	}, [activeCollectionId, searchQuery]);
 
 	// Automatically update scroll mapping when products list changes size
