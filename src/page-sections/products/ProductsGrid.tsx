@@ -1,8 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion, useTransform } from "framer-motion";
 import { ProductTile } from "@/components/common";
 import { Text } from "@/components/ui";
+import { useAppScroll } from "@/hooks/useAppScroll";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/cn";
 import type { ProductListingItem } from "@/lib/products/listing";
 
@@ -11,14 +14,30 @@ interface ProductsGridProps {
 	activeCollectionId: string;
 }
 
-/** Static offset for the middle column on large screens. */
-const MIDDLE_COLUMN_STAGGER_CLASS = "lg:translate-y-[7.5rem]";
+/** Pixels of page scroll over which the middle column reaches a half-card drop. */
+const MIDDLE_COLUMN_SCROLL_RANGE_PX = 320;
+
+const LARGE_GRID_MEDIA_QUERY = "(min-width: 1024px)";
+const REDUCED_MOTION_MEDIA_QUERY = "(prefers-reduced-motion: reduce)";
 
 /**
- * ProductsGrid — Responsive catalog grid (no scroll-linked motion — keeps scroll smooth).
+ * ProductsGrid — Catalog grid with scroll-linked middle-column stagger (lg+).
+ * Middle tiles translate by up to 50% of their own height so their top meets the row midpoint.
  */
 export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
+	const isThreeColumnGrid = useMediaQuery(LARGE_GRID_MEDIA_QUERY);
+	const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_MEDIA_QUERY);
+
+	const { scrollY } = useAppScroll();
+	const middleColumnOffset = useTransform(
+		scrollY,
+		[0, MIDDLE_COLUMN_SCROLL_RANGE_PX],
+		["0%", "50%"],
+	);
+
+	const enableScrollStagger = isThreeColumnGrid && !prefersReducedMotion;
+	const enableStaticStagger = isThreeColumnGrid && prefersReducedMotion;
 
 	if (products.length === 0) {
 		return (
@@ -43,22 +62,35 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 
 			<ul
 				key={activeCollectionId}
-				className="relative z-10 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
+				className="catalog-grid-stagger-reserve relative z-10 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
 			>
 				{products.map((product, index) => {
 					const isMiddleColumn = index % 3 === 1;
 					const shouldPrioritizeImage = index < 3;
+					const useScrollStagger = enableScrollStagger && isMiddleColumn;
+					const useStaticStagger = enableStaticStagger && isMiddleColumn;
+
+					const tile = (
+						<ProductTile
+							product={product}
+							priority={shouldPrioritizeImage}
+							variant="catalog"
+						/>
+					);
 
 					return (
 						<li
 							key={product.slug}
-							className={cn(isMiddleColumn && MIDDLE_COLUMN_STAGGER_CLASS)}
+							className={cn(
+								useScrollStagger && "will-change-transform",
+								useStaticStagger && "translate-y-1/2",
+							)}
 						>
-							<ProductTile
-								product={product}
-								priority={shouldPrioritizeImage}
-								variant="catalog"
-							/>
+							{useScrollStagger ? (
+								<motion.div style={{ y: middleColumnOffset }}>{tile}</motion.div>
+							) : (
+								tile
+							)}
 						</li>
 					);
 				})}

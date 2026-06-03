@@ -274,6 +274,16 @@ h6 {
 	border-radius: 4px;
 }
 
+/*
+ * Extra space below the 3-column product grid so middle-column translateY(50%)
+ * does not overlap the footer. Based on ~half tile height (3/4 image + meta).
+ */
+@utility catalog-grid-stagger-reserve {
+	@media (min-width: 1024px) {
+		padding-bottom: calc(((100% - 3rem) / 3) * (2 / 3) + 4rem);
+	}
+}
+
 /* ─── Partner logos (raster PNG → brand champagne on dark sections) ─────────── */
 @utility partner-logo-champagne {
 	filter: brightness(0) saturate(100%) invert(79%) sepia(18%) saturate(638%)
