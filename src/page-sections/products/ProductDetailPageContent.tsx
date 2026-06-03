@@ -66,7 +66,7 @@ const pageVariants = {
 		y: 0,
 		transition: {
 			duration: 0.5,
-			ease: [0.16, 1, 0.3, 1], // iOS spring cubic-bezier
+			ease: [0.16, 1, 0.3, 1] as const, // iOS spring cubic-bezier
 		},
 	},
 	exit: {
@@ -75,7 +75,7 @@ const pageVariants = {
 		y: 24,
 		transition: {
 			duration: 0.35,
-			ease: [0.16, 1, 0.3, 1],
+			ease: [0.16, 1, 0.3, 1] as const,
 		},
 	},
 };
