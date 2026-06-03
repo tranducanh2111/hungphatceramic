@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ProductTile } from "@/components/common";
 import { ProductDetail } from "@/types";
 import { Text } from "@/components/ui";
-import { useAppScroll } from "@/hooks/useAppScroll";
+import { cn } from "@/lib/cn";
 
 interface ProductsGridProps {
 	products: ProductDetail[];
@@ -35,32 +34,15 @@ const itemVariants = {
 	},
 };
 
+/** Static offset for the middle column — replaces scroll-linked transforms that thrashed layout with popLayout. */
+const MIDDLE_COLUMN_STAGGER_CLASS = "lg:translate-y-[7.5rem]";
+
 /**
  * ProductsGrid — Staggered responsive grid displaying catalog products.
  * Remapped to sapphire/champagne palette.
  */
 export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
-	const [isDesktop, setIsDesktop] = useState(false);
-
-	// Detect screen width client-side to only trigger offset on desktop (lg breakpoint)
-	useEffect(() => {
-		const media = window.matchMedia("(min-width: 1024px)");
-		const handleMediaChange = () => {
-			setIsDesktop(media.matches);
-		};
-		handleMediaChange();
-
-		media.addEventListener("change", handleMediaChange);
-		return () => media.removeEventListener("change", handleMediaChange);
-	}, []);
-
-	// Sync with Lenis smooth scroll using our custom useAppScroll hook
-	const { scrollY } = useAppScroll();
-
-	// Map absolute scroll position to pure pixels [0, 240] instead of percentages.
-	// This avoids browser layout recalculation of grid tracks on scroll.
-	const middleColumnY = useTransform(scrollY, [0, 300], [0, 240]);
 
 	if (products.length === 0) {
 		return (
@@ -92,21 +74,19 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 				animate="show"
 				className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
 			>
-				<AnimatePresence mode="popLayout">
-					{products.map((product, index) => {
-						const isMiddleColumn = index % 3 === 1;
-						// Directly bind transform on GPU layer for high performance (smooth 60fps)
-						const staggerY = isDesktop && isMiddleColumn ? middleColumnY : 0;
+				{products.map((product, index) => {
+					const isMiddleColumn = index % 3 === 1;
 
-						return (
-							<motion.div key={product.slug} variants={itemVariants}>
-								<motion.div style={{ y: staggerY }}>
-									<ProductTile product={product} />
-								</motion.div>
-							</motion.div>
-						);
-					})}
-				</AnimatePresence>
+					return (
+						<motion.div
+							key={product.slug}
+							variants={itemVariants}
+							className={cn(isMiddleColumn && MIDDLE_COLUMN_STAGGER_CLASS)}
+						>
+							<ProductTile product={product} />
+						</motion.div>
+					);
+				})}
 			</motion.div>
 		</div>
 	);
