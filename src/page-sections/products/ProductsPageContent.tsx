@@ -71,7 +71,8 @@ function ProductsPageContentInner() {
 		if (searchQuery.trim()) {
 			const query = searchQuery.toLowerCase().trim();
 			return PRODUCTS.filter(
-				(p) => p.skuCode.toLowerCase().includes(query) || p.name.toLowerCase().includes(query),
+				(p) =>
+					p.skuCode.toLowerCase().includes(query) || p.name.toLowerCase().includes(query),
 			);
 		}
 
@@ -111,7 +112,7 @@ function ProductsPageContentInner() {
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								placeholder={t("searchPlaceholder")}
-								className="border-[#1A3D5C] focus:border-[#D4B886] w-full"
+								className="w-full border-[#1A3D5C] focus:border-[#D4B886]"
 							/>
 						</motion.div>
 

@@ -14,7 +14,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire G12962J/G12962J (1).jpg",
-		shortDescription: "Bold patterns with a deep sapphire tone and dynamic natural stone marbling.",
+		shortDescription:
+			"Bold patterns with a deep sapphire tone and dynamic natural stone marbling.",
 		faceImages: [
 			"/assets/60X120/Inspire G12962J/G12962J (1).jpg",
 			"/assets/60X120/Inspire G12962J/G12962J (2).jpg",
@@ -109,7 +110,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire GP12964J/GP12964J_01.jpg",
-		shortDescription: "Polished crystal porcelain surface, bringing light reflection and spatial expanse.",
+		shortDescription:
+			"Polished crystal porcelain surface, bringing light reflection and spatial expanse.",
 		faceImages: [
 			"/assets/60X120/Inspire GP12964J/GP12964J_01.jpg",
 			"/assets/60X120/Inspire GP12964J/GP12964J_02.jpg",
@@ -154,7 +156,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "80×80cm",
 		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88962/GP88962_01.jpg",
-		shortDescription: "High-gloss polished surface in an 80×80 format for luxury living spaces.",
+		shortDescription:
+			"High-gloss polished surface in an 80×80 format for luxury living spaces.",
 		faceImages: [
 			"/assets/80X80/GP88962/GP88962_01.jpg",
 			"/assets/80X80/GP88962/GP88962_02.jpg",
@@ -218,7 +221,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "80×80cm",
 		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/G88T06J/G88T06J (1).jpg",
-		shortDescription: "Square travertine format with structural veins and comfortable tactile texture.",
+		shortDescription:
+			"Square travertine format with structural veins and comfortable tactile texture.",
 		faceImages: [
 			"/assets/80X80/G88T06J/G88T06J (1).jpg",
 			"/assets/80X80/G88T06J/G88T06J (2).jpg",
@@ -346,7 +350,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Sunshine GP12032J/GP12032J_01.jpg",
-		shortDescription: "High-gloss polished sunshine variant for open, airy, high-contrast layouts.",
+		shortDescription:
+			"High-gloss polished sunshine variant for open, airy, high-contrast layouts.",
 		faceImages: [
 			"/assets/60X120/Sunshine GP12032J/GP12032J_01.jpg",
 			"/assets/60X120/Sunshine GP12032J/GP12032J_02.jpg",
@@ -411,7 +416,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
-		shortDescription: "Thick 20mm architectural gray slate engineered for high load-bearing demands.",
+		shortDescription:
+			"Thick 20mm architectural gray slate engineered for high load-bearing demands.",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
 			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey-2.jpg",
@@ -430,7 +436,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
-		shortDescription: "Ultra-heavy-duty 20mm thick porcelain with textured concrete slate aesthetics.",
+		shortDescription:
+			"Ultra-heavy-duty 20mm thick porcelain with textured concrete slate aesthetics.",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
 			"/assets/60X120/Thickness 20mm/G12539-DD 20mm-1 .jpg",
@@ -451,7 +458,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
-		shortDescription: "Tranquil flow patterns reflecting architectural stillness and natural calm.",
+		shortDescription:
+			"Tranquil flow patterns reflecting architectural stillness and natural calm.",
 		faceImages: [
 			"/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
 			"/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_2.jpg",
@@ -476,7 +484,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H05J/GP12H05J (1).jpg",
-		shortDescription: "Neutral tones and silent design expressions for minimal luxury environments.",
+		shortDescription:
+			"Neutral tones and silent design expressions for minimal luxury environments.",
 		faceImages: [
 			"/assets/60X120/Peace GP12H05J/GP12H05J (1).jpg",
 			"/assets/60X120/Peace GP12H05J/GP12H05J (2).jpg",
@@ -519,7 +528,8 @@ export const PRODUCTS: ProductDetail[] = [
 		category: "80×80cm",
 		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88736J/GP88736j_01.jpg",
-		shortDescription: "Elegant square format tiles for quiet, cohesive architectural landscapes.",
+		shortDescription:
+			"Elegant square format tiles for quiet, cohesive architectural landscapes.",
 		faceImages: [
 			"/assets/80X80/GP88736J/GP88736j_01.jpg",
 			"/assets/80X80/GP88736J/GP88736j_02.jpg",

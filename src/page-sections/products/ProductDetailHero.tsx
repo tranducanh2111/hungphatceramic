@@ -39,7 +39,7 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 				<Link
 					href={`/products?collection=${product.collectionId}`}
 					onClick={onBack}
-					className="group inline-flex items-center gap-2 text-body-sm font-sans tracking-widest text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
+					className="group text-body-sm inline-flex items-center gap-2 font-sans tracking-widest text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
 				>
 					<span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
 						←
@@ -59,11 +59,11 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 				</Link>
 			</div>
 
-			<div className="flex flex-col lg:flex-row min-h-[90vh]">
+			<div className="flex min-h-[90vh] flex-col lg:flex-row">
 				{/* Left Panel: Info (40% width on desktop) */}
 				<div className="relative flex flex-col justify-center px-6 pt-44 pb-16 md:px-12 lg:w-[40%] lg:pt-32">
 					{/* Grid layout decoration lines */}
-					<div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#1A3D5C]/35 to-transparent hidden lg:block" />
+					<div className="absolute top-0 right-0 bottom-0 hidden w-px bg-gradient-to-b from-transparent via-[#1A3D5C]/35 to-transparent lg:block" />
 
 					<motion.div
 						initial={{ opacity: 0, y: 30 }}
@@ -80,19 +80,22 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 						</div>
 
 						{/* Product Title */}
-						<h1 className="text-display-lg font-serif font-light leading-tight text-[#F4F4F6]">
+						<h1 className="text-display-lg font-serif leading-tight font-light text-[#F4F4F6]">
 							{name}
 						</h1>
 
 						{/* SKU Pill */}
 						<div className="inline-block rounded-full border border-[#D4B886]/20 bg-[#D4B886]/5 px-4 py-1">
-							<Text variant="footnote" className="font-sans font-medium tracking-widest text-[#D4B886]">
+							<Text
+								variant="footnote"
+								className="font-sans font-medium tracking-widest text-[#D4B886]"
+							>
 								{tDetail("sku")}: {product.skuCode}
 							</Text>
 						</div>
 
 						{/* Description */}
-						<p className="font-sans text-body text-[#F4F4F6]/55 leading-relaxed max-w-md">
+						<p className="text-body max-w-md font-sans leading-relaxed text-[#F4F4F6]/55">
 							{description}
 						</p>
 					</motion.div>
@@ -109,7 +112,7 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 						className="object-cover object-center"
 					/>
 					<div
-						className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-transparent to-transparent opacity-80 hidden lg:block"
+						className="absolute inset-0 hidden bg-gradient-to-r from-[#071A2B] via-transparent to-transparent opacity-80 lg:block"
 						aria-hidden="true"
 					/>
 					<div

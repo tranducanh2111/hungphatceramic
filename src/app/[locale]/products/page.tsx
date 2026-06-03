@@ -23,4 +23,3 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
 	return <ProductsPageContent />;
 }
-

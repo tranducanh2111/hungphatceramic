@@ -35,9 +35,9 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	];
 
 	return (
-		<section className="relative bg-[#071A2B] py-24 px-6 text-[#F4F4F6] lg:px-12">
+		<section className="relative bg-[#071A2B] px-6 py-24 text-[#F4F4F6] lg:px-12">
 			{/* Bottom divider border */}
-			<div className="absolute bottom-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-[#1A3D5C]/35 to-transparent" />
+			<div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-[#1A3D5C]/35 to-transparent" />
 
 			<div className="mx-auto max-w-7xl">
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -54,7 +54,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 						</div>
 
 						{/* Spec Attributes Grid */}
-						<div className="grid grid-cols-1 gap-y-4 gap-x-8 sm:grid-cols-2 border-t border-[#1A3D5C]/30 pt-8">
+						<div className="grid grid-cols-1 gap-x-8 gap-y-4 border-t border-[#1A3D5C]/30 pt-8 sm:grid-cols-2">
 							{specs.map((spec) => (
 								<div
 									key={spec.label}
@@ -63,7 +63,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 									<span className="font-sans text-[11px] font-semibold tracking-wider text-[#F4F4F6]/30 uppercase">
 										{spec.label}
 									</span>
-									<span className="font-sans text-body-sm font-semibold text-[#F4F4F6]">
+									<span className="text-body-sm font-sans font-semibold text-[#F4F4F6]">
 										{spec.value}
 									</span>
 								</div>
@@ -72,7 +72,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 
 						{/* Available Sizes Visualization */}
 						<div className="space-y-6 pt-4">
-							<span className="font-sans text-[11px] font-semibold tracking-wider text-[#F4F4F6]/30 uppercase block">
+							<span className="block font-sans text-[11px] font-semibold tracking-wider text-[#F4F4F6]/30 uppercase">
 								{tDetail("availableSizes")}
 							</span>
 							<div className="flex flex-wrap gap-8">
@@ -87,16 +87,18 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 													isLargeFormat ? "h-20 w-10" : "h-16 w-16"
 												}`}
 											>
-												<span className="text-[10px] text-[#D4B886]/80 font-bold font-sans">
+												<span className="font-sans text-[10px] font-bold text-[#D4B886]/80">
 													{isLargeFormat ? "1:2" : "1:1"}
 												</span>
 											</div>
 											<div>
-												<span className="font-sans text-body-sm font-semibold text-[#F4F4F6] block">
+												<span className="text-body-sm block font-sans font-semibold text-[#F4F4F6]">
 													{size}
 												</span>
-												<span className="font-sans text-[11px] text-[#F4F4F6]/40 uppercase block">
-													{isLargeFormat ? "Large Format" : "Standard Format"}
+												<span className="block font-sans text-[11px] text-[#F4F4F6]/40 uppercase">
+													{isLargeFormat
+														? "Large Format"
+														: "Standard Format"}
 												</span>
 											</div>
 										</div>
@@ -107,7 +109,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 					</div>
 
 					{/* Right Panel: Call to Action (5 columns) */}
-					<div className="flex flex-col justify-between rounded-2xl border border-[#1A3D5C]/30 bg-[#0E2A42] p-8 shadow-luxury-md lg:col-span-5">
+					<div className="shadow-luxury-md flex flex-col justify-between rounded-2xl border border-[#1A3D5C]/30 bg-[#0E2A42] p-8 lg:col-span-5">
 						<div className="space-y-6">
 							<Text
 								variant="label"
@@ -115,10 +117,10 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 							>
 								{tDetail("requestQuote")}
 							</Text>
-							<p className="font-sans text-body-sm text-[#F4F4F6]/55 leading-relaxed">
-								Our premium surfaces are engineered for luxury B2B and architectural specifications.
-								Reach out to consult with our specialists, check stock availability, and receive physical
-								samples.
+							<p className="text-body-sm font-sans leading-relaxed text-[#F4F4F6]/55">
+								Our premium surfaces are engineered for luxury B2B and architectural
+								specifications. Reach out to consult with our specialists, check
+								stock availability, and receive physical samples.
 							</p>
 						</div>
 
@@ -135,7 +137,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								href={`mailto:congtyhungphat583@gmail.com?subject=Inquiry about ${product.name} (SKU: ${product.skuCode})`}
 								variant="secondary"
 								size="md"
-								className="w-full text-center border-[#1A3D5C] hover:border-[#D4B886]"
+								className="w-full border-[#1A3D5C] text-center hover:border-[#D4B886]"
 							>
 								{tDetail("requestQuote")}
 							</Button>

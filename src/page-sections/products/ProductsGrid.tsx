@@ -46,14 +46,13 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 	// Detect screen width client-side to only trigger offset on desktop (lg breakpoint)
 	useEffect(() => {
 		const media = window.matchMedia("(min-width: 1024px)");
-		setIsDesktop(media.matches);
-
-		const listener = (e: MediaQueryListEvent) => {
-			setIsDesktop(e.matches);
+		const handleMediaChange = () => {
+			setIsDesktop(media.matches);
 		};
+		handleMediaChange();
 
-		media.addEventListener("change", listener);
-		return () => media.removeEventListener("change", listener);
+		media.addEventListener("change", handleMediaChange);
+		return () => media.removeEventListener("change", handleMediaChange);
 	}, []);
 
 	// Sync with Lenis smooth scroll using our custom useAppScroll hook
@@ -77,10 +76,10 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 		<div className="relative min-h-[600px] w-full">
 			{/* Large decorative background text */}
 			<div
-				className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center select-none overflow-hidden"
+				className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden select-none"
 				aria-hidden="true"
 			>
-				<span className="font-serif text-[18vw] font-bold text-[#0E2A42]/10 uppercase tracking-[0.2em]">
+				<span className="font-serif text-[18vw] font-bold tracking-[0.2em] text-[#0E2A42]/10 uppercase">
 					{activeCollectionId === "all" ? "PERLA" : activeCollectionId}
 				</span>
 			</div>
@@ -100,11 +99,7 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 						const staggerY = isDesktop && isMiddleColumn ? middleColumnY : 0;
 
 						return (
-							<motion.div
-								key={product.slug}
-								variants={itemVariants}
-								layout
-							>
+							<motion.div key={product.slug} variants={itemVariants}>
 								<motion.div style={{ y: staggerY }}>
 									<ProductTile product={product} />
 								</motion.div>

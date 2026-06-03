@@ -56,7 +56,7 @@ export function AboutPartners() {
 					</RevealOnView>
 				</div>
 
-				<div className="mx-auto flex flex-row items-center justify-center lg:gap-16 gap-6">
+				<div className="mx-auto flex flex-row items-center justify-center gap-6 lg:gap-16">
 					{PARTNER_ROSTER.map((partner, index) => (
 						<RevealOnView
 							key={partner.id}

@@ -41,7 +41,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 
 			{/* Decorative background typography */}
 			<div
-				className="pointer-events-none absolute -bottom-10 left-12 select-none font-serif text-[12vw] font-bold text-[#0E2A42]/20 uppercase tracking-widest leading-none"
+				className="pointer-events-none absolute -bottom-10 left-12 font-serif text-[12vw] leading-none font-bold tracking-widest text-[#0E2A42]/20 uppercase select-none"
 				aria-hidden="true"
 			>
 				{activeCollectionId === "all" ? "Perla" : activeCollectionId}
@@ -74,7 +74,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -20 }}
 								transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-								className="text-display-xl font-serif text-[#F4F4F6] font-light leading-none"
+								className="text-display-xl font-serif leading-none font-light text-[#F4F4F6]"
 							>
 								{collectionHeading}
 							</motion.h1>
@@ -88,7 +88,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.95 }}
 							transition={{ duration: 0.4 }}
-							className="mt-4 shrink-0 font-sans text-body-sm text-[#F4F4F6]/40 md:mt-0 md:text-right"
+							className="text-body-sm mt-4 shrink-0 font-sans text-[#F4F4F6]/40 md:mt-0 md:text-right"
 						>
 							<span className="font-serif text-3xl font-light text-[#D4B886] md:block md:leading-none">
 								{totalProductsCount}

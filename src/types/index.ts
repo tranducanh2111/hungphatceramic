@@ -52,4 +52,3 @@ export interface ProjectSummary {
 	year: number;
 	shortDescription: string;
 }
-

@@ -29,8 +29,8 @@ export function ProductTile({ product, className, priority = false }: ProductTil
 			<motion.div
 				className={cn(
 					"relative overflow-hidden rounded-2xl bg-[#0E2A42] p-4",
-					"border border-[#1A3D5C]/30 shadow-luxury-sm transition-all duration-500 ease-luxury",
-					"group-hover:border-[#D4B886]/40 group-hover:shadow-luxury-md group-focus:border-[#D4B886]/40 group-focus:shadow-luxury-md",
+					"shadow-luxury-sm ease-luxury border border-[#1A3D5C]/30 transition-all duration-500",
+					"group-hover:shadow-luxury-md group-focus:shadow-luxury-md group-hover:border-[#D4B886]/40 group-focus:border-[#D4B886]/40",
 					className,
 				)}
 				whileHover={{ y: -4 }}
@@ -43,7 +43,7 @@ export function ProductTile({ product, className, priority = false }: ProductTil
 						alt={name}
 						fill
 						sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-						className="object-cover object-center transition-transform duration-700 ease-luxury group-hover:scale-105 group-focus:scale-105"
+						className="ease-luxury object-cover object-center transition-transform duration-700 group-hover:scale-105 group-focus:scale-105"
 						priority={priority}
 					/>
 
@@ -63,7 +63,7 @@ export function ProductTile({ product, className, priority = false }: ProductTil
 						>
 							{product.skuCode}
 						</Text>
-						<span className="text-[10px] font-sans font-semibold tracking-wider text-[#F4F4F6]/30 uppercase">
+						<span className="font-sans text-[10px] font-semibold tracking-wider text-[#F4F4F6]/30 uppercase">
 							{product.category}
 						</span>
 					</div>

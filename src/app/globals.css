@@ -98,7 +98,7 @@
 
 	--text-label-sm: 11px;
 	--text-label-sm--line-height: 16px;
-	--text-label-sm--letter-spacing: 0.10em;
+	--text-label-sm--letter-spacing: 0.1em;
 	--text-label-sm--font-weight: 500;
 
 	--text-footnote: 12px;
@@ -125,13 +125,23 @@
 
 	/* ─── Background Images ─────────────────────────────────────────────────── */
 	--background-image-sapphire-to-ocean: linear-gradient(to bottom, #071a2b, #0e2a42);
-	--background-image-champagne-shimmer: linear-gradient(105deg, #d4b886 0%, #e8d5b0 50%, #d4b886 100%);
-	--background-image-hero-overlay: linear-gradient(to right bottom, rgba(7, 26, 43, 0.8), rgba(7, 26, 43, 0.6));
+	--background-image-champagne-shimmer: linear-gradient(
+		105deg,
+		#d4b886 0%,
+		#e8d5b0 50%,
+		#d4b886 100%
+	);
+	--background-image-hero-overlay: linear-gradient(
+		to right bottom,
+		rgba(7, 26, 43, 0.8),
+		rgba(7, 26, 43, 0.6)
+	);
 
 	/* ─── Extra Design Elements ─────────────────────────────────────────────── */
 	--shadow-luxury: 0 4px 32px 0 rgba(7, 26, 43, 0.25), 0 1px 4px 0 rgba(7, 26, 43, 0.15);
-	--shadow-luxury-lg: 0 12px 64px 0 rgba(7, 26, 43, 0.35), 0 4px 16px 0 rgba(7, 26, 43, 0.20);
-	--shadow-champagne: 0 4px 24px 0 rgba(212, 184, 134, 0.18), 0 1px 6px 0 rgba(212, 184, 134, 0.10);
+	--shadow-luxury-lg: 0 12px 64px 0 rgba(7, 26, 43, 0.35), 0 4px 16px 0 rgba(7, 26, 43, 0.2);
+	--shadow-champagne:
+		0 4px 24px 0 rgba(212, 184, 134, 0.18), 0 1px 6px 0 rgba(212, 184, 134, 0.1);
 	--shadow-inner-sm: inset 0 1px 4px 0 rgba(7, 26, 43, 0.2);
 
 	--radius-4xl: 2rem;

@@ -21,8 +21,9 @@ export function ProductDetailRelated({ product }: ProductDetailRelatedProps) {
 
 	// Resolve dynamic related products
 	const related = useMemo(() => {
-		return PRODUCTS.filter((p) => p.collectionId === product.collectionId && p.slug !== product.slug)
-			.slice(0, 3); // Max 3 items
+		return PRODUCTS.filter(
+			(p) => p.collectionId === product.collectionId && p.slug !== product.slug,
+		).slice(0, 3); // Max 3 items
 	}, [product.collectionId, product.slug]);
 
 	if (related.length === 0) return null;
@@ -32,20 +33,18 @@ export function ProductDetailRelated({ product }: ProductDetailRelatedProps) {
 		: product.collectionId;
 
 	return (
-		<section className="relative bg-[#0E2A42] py-24 px-6 text-[#F4F4F6] lg:px-12">
+		<section className="relative bg-[#0E2A42] px-6 py-24 text-[#F4F4F6] lg:px-12">
 			<div className="mx-auto max-w-7xl">
 				{/* Section Header */}
 				<div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between">
 					<div>
 						<Text
 							variant="label"
-							className="mb-4 font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase block"
+							className="mb-4 block font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
 						>
 							{tDetail("relatedProducts", { collection: "" })}
 						</Text>
-						<h3 className="text-h3 font-serif font-light">
-							Explore {collectionName}
-						</h3>
+						<h3 className="text-h3 font-serif font-light">Explore {collectionName}</h3>
 					</div>
 				</div>
 

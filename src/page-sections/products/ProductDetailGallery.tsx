@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Text } from "@/components/ui";
 import { ProductDetail } from "@/types";
 
-
 interface ProductDetailGalleryProps {
 	product: ProductDetail;
 }
@@ -25,9 +24,9 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const hasFaces = product.faceImages && product.faceImages.length > 0;
 
 	return (
-		<section className="relative bg-[#0E2A42] py-24 px-6 text-[#F4F4F6] lg:px-12">
+		<section className="relative bg-[#0E2A42] px-6 py-24 text-[#F4F4F6] lg:px-12">
 			{/* Bottom divider border */}
-			<div className="absolute bottom-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-[#1A3D5C]/35 to-transparent" />
+			<div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-[#1A3D5C]/35 to-transparent" />
 
 			<div className="mx-auto max-w-7xl">
 				{/* Section Heading */}
@@ -38,23 +37,21 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 					>
 						{tDetail("faceVariations")}
 					</Text>
-					<h2 className="text-h2 font-serif font-light text-[#F4F4F6]">
-						{product.name}
-					</h2>
+					<h2 className="text-h2 font-serif font-light text-[#F4F4F6]">{product.name}</h2>
 					<div className="mx-auto mt-4 h-px w-16 bg-[#D4B886]/30" />
 				</div>
 
 				{/* Composite All-Faces Sheet View (if available) */}
 				{product.allFacesImage && (
-					<div className="mb-16 overflow-hidden rounded-2xl border border-[#1A3D5C]/40 bg-[#071A2B] p-6 shadow-luxury-md">
+					<div className="shadow-luxury-md mb-16 overflow-hidden rounded-2xl border border-[#1A3D5C]/40 bg-[#071A2B] p-6">
 						<Text
 							variant="label-sm"
-							className="mb-4 font-sans font-medium tracking-[0.1em] text-[#D4B886]/60 uppercase block text-center"
+							className="mb-4 block text-center font-sans font-medium tracking-[0.1em] text-[#D4B886]/60 uppercase"
 						>
 							{tDetail("faces")} Overview (Composite)
 						</Text>
 						<div
-							className="relative aspect-[16/9] w-full overflow-hidden rounded-xl cursor-zoom-in"
+							className="relative aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-xl"
 							onClick={() => setLightboxSrc(product.allFacesImage!)}
 						>
 							<Image
@@ -62,7 +59,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 								alt={`${product.name} - Composite sheet`}
 								fill
 								sizes="100vw"
-								className="object-cover transition-transform duration-700 ease-luxury hover:scale-[1.02]"
+								className="ease-luxury object-cover transition-transform duration-700 hover:scale-[1.02]"
 							/>
 						</div>
 					</div>
@@ -74,7 +71,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						{product.allFacesImage && (
 							<Text
 								variant="label-sm"
-								className="mb-6 font-sans font-medium tracking-[0.1em] text-[#D4B886]/60 uppercase block text-center lg:text-left"
+								className="mb-6 block text-center font-sans font-medium tracking-[0.1em] text-[#D4B886]/60 uppercase lg:text-left"
 							>
 								Individual Faces ({product.faceImages.length})
 							</Text>
@@ -88,7 +85,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 									whileInView={{ opacity: 1, y: 0 }}
 									viewport={{ once: true, margin: "-50px" }}
 									transition={{ duration: 0.6, delay: index * 0.05 }}
-									className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-[#1A3D5C]/30 bg-[#071A2B] cursor-zoom-in shadow-luxury-sm"
+									className="group shadow-luxury-sm relative aspect-[3/4] cursor-zoom-in overflow-hidden rounded-xl border border-[#1A3D5C]/30 bg-[#071A2B]"
 									onClick={() => setLightboxSrc(face)}
 								>
 									<Image
@@ -96,11 +93,11 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 										alt={`${product.name} Face ${index + 1}`}
 										fill
 										sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 15vw"
-										className="object-cover transition-transform duration-500 ease-luxury group-hover:scale-105"
+										className="ease-luxury object-cover transition-transform duration-500 group-hover:scale-105"
 									/>
 									{/* Hover Overlay */}
-									<div className="absolute inset-0 bg-[#071A2B]/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
-										<span className="rounded-full bg-[#D4B886] p-2 text-[#071A2B] text-xs font-semibold shadow-md">
+									<div className="absolute inset-0 flex items-center justify-center bg-[#071A2B]/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+										<span className="rounded-full bg-[#D4B886] p-2 text-xs font-semibold text-[#071A2B] shadow-md">
 											🔎
 										</span>
 									</div>
@@ -119,12 +116,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={() => setLightboxSrc(null)}
-						className="fixed inset-0 z-50 flex items-center justify-center bg-[#071A2B]/95 p-6 backdrop-blur-md cursor-zoom-out"
+						className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-[#071A2B]/95 p-6 backdrop-blur-md"
 					>
 						<button
 							type="button"
 							onClick={() => setLightboxSrc(null)}
-							className="absolute top-6 right-6 text-[#F4F4F6] text-3xl font-light hover:text-[#D4B886] transition-colors"
+							className="absolute top-6 right-6 text-3xl font-light text-[#F4F4F6] transition-colors hover:text-[#D4B886]"
 						>
 							✕
 						</button>
@@ -132,7 +129,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							initial={{ scale: 0.95 }}
 							animate={{ scale: 1 }}
 							exit={{ scale: 0.95 }}
-							className="relative max-h-[85vh] max-w-[90vw] aspect-[3/4] sm:aspect-auto w-full h-full"
+							className="relative aspect-[3/4] h-full max-h-[85vh] w-full max-w-[90vw] sm:aspect-auto"
 						>
 							<Image
 								src={lightboxSrc}

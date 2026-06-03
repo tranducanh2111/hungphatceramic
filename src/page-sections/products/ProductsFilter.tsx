@@ -29,17 +29,17 @@ export function ProductsFilter({
 	return (
 		<div className="w-full">
 			{/* Mobile Scrollable Pills */}
-			<div className="flex w-full items-center overflow-x-auto pb-4 md:hidden scrollbar-none">
+			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-4 md:hidden">
 				<div className="flex gap-2.5 px-6">
 					{/* "All" button */}
 					<button
 						type="button"
 						onClick={() => onSelectCollection("all")}
 						className={cn(
-							"shrink-0 rounded-full px-5 py-2 text-body-sm font-sans tracking-wide transition-all duration-300",
+							"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
 							activeCollectionId === "all"
-								? "bg-[#D4B886] text-[#071A2B] font-medium"
-								: "bg-[#0E2A42] text-[#F4F4F6]/55 border border-[#1A3D5C]/30 hover:text-[#F4F4F6]",
+								? "bg-[#D4B886] font-medium text-[#071A2B]"
+								: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
 						)}
 					>
 						{t("allCollections")}
@@ -57,14 +57,19 @@ export function ProductsFilter({
 								type="button"
 								onClick={() => onSelectCollection(col.id)}
 								className={cn(
-									"shrink-0 rounded-full px-5 py-2 text-body-sm font-sans tracking-wide transition-all duration-300",
+									"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
 									isSelected
-										? "bg-[#D4B886] text-[#071A2B] font-medium"
-										: "bg-[#0E2A42] text-[#F4F4F6]/55 border border-[#1A3D5C]/30 hover:text-[#F4F4F6]",
+										? "bg-[#D4B886] font-medium text-[#071A2B]"
+										: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
 								)}
 							>
 								{label}{" "}
-								<span className={cn("text-[10px] ml-1.5 opacity-60", isSelected ? "text-[#071A2B]/80" : "text-[#D4B886]/80")}>
+								<span
+									className={cn(
+										"ml-1.5 text-[10px] opacity-60",
+										isSelected ? "text-[#071A2B]/80" : "text-[#D4B886]/80",
+									)}
+								>
 									({col.count})
 								</span>
 							</button>
@@ -105,7 +110,7 @@ export function ProductsFilter({
 							{activeCollectionId === "all" && (
 								<motion.div
 									layoutId="activeFilterUnderline"
-									className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4B886]"
+									className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
 									transition={{ type: "spring", stiffness: 380, damping: 30 }}
 								/>
 							)}
@@ -148,8 +153,12 @@ export function ProductsFilter({
 									{isSelected && (
 										<motion.div
 											layoutId="activeFilterUnderline"
-											className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#D4B886]"
-											transition={{ type: "spring", stiffness: 380, damping: 30 }}
+											className="absolute right-0 bottom-0 left-0 h-[2px] bg-[#D4B886]"
+											transition={{
+												type: "spring",
+												stiffness: 380,
+												damping: 30,
+											}}
 										/>
 									)}
 								</button>
