@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { useRouter } from "@/i18n/navigation";
 import { useLenisControls } from "@/components/common";
 import { ProductDetailHero } from "./ProductDetailHero";
 import { ProductDetail } from "@/types";
@@ -50,21 +53,73 @@ interface ProductDetailPageContentProps {
 	product: ProductDetail;
 }
 
+// iOS App open/close scale-zoom transition physics
+const pageVariants = {
+	initial: {
+		opacity: 0,
+		scale: 0.94,
+		y: 24,
+	},
+	animate: {
+		opacity: 1,
+		scale: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			ease: [0.16, 1, 0.3, 1], // iOS spring cubic-bezier
+		},
+	},
+	exit: {
+		opacity: 0,
+		scale: 0.94,
+		y: 24,
+		transition: {
+			duration: 0.35,
+			ease: [0.16, 1, 0.3, 1],
+		},
+	},
+};
+
 /**
  * ProductDetailPageContent — Client shell hosting the detail page section components.
  */
 export function ProductDetailPageContent({ product }: ProductDetailPageContentProps) {
 	useLenisResizeOnDetailMount();
+	const router = useRouter();
+	const lenis = useLenis();
+	const [isExiting, setIsExiting] = useState(false);
+
+	// Reset scroll position to top instantly on mount to clear scroll memory from listing page
+	useEffect(() => {
+		if (lenis) {
+			lenis.scrollTo(0, { immediate: true });
+		}
+	}, [lenis]);
+
+	// Intercept back links to play iOS-style close animation first
+	const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		e.preventDefault();
+		setIsExiting(true);
+
+		setTimeout(() => {
+			router.push(`/products?collection=${product.collectionId}`);
+		}, 350); // Matches transition exit duration
+	};
 
 	return (
-		<>
-			{/* Static above-fold detail hero */}
-			<ProductDetailHero product={product} />
+		<motion.div
+			variants={pageVariants}
+			initial="initial"
+			animate={isExiting ? "exit" : "animate"}
+			className="origin-center"
+		>
+			{/* Static above-fold detail hero with custom click interceptor */}
+			<ProductDetailHero product={product} onBack={handleBack} />
 
 			{/* Dynamically imported sub-sections */}
 			<ProductDetailGallery product={product} />
 			<ProductDetailSpecs product={product} />
 			<ProductDetailRelated product={product} />
-		</>
+		</motion.div>
 	);
 }

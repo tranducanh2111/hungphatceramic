@@ -9,13 +9,14 @@ import { ProductDetail } from "@/types";
 
 interface ProductDetailHeroProps {
 	product: ProductDetail;
+	onBack: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /**
  * ProductDetailHero — Split-screen product hero section (40% Info, 60% Image).
  * Remapped to sapphire/champagne palette.
  */
-export function ProductDetailHero({ product }: ProductDetailHeroProps) {
+export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 	const tItems = useTranslations("products.items");
 	const tPage = useTranslations("pages.products");
 	const tDetail = useTranslations("pages.productDetail");
@@ -37,6 +38,7 @@ export function ProductDetailHero({ product }: ProductDetailHeroProps) {
 			<div className="absolute top-24 right-0 left-0 z-30 flex items-center justify-between px-6 lg:px-12">
 				<Link
 					href={`/products?collection=${product.collectionId}`}
+					onClick={onBack}
 					className="group inline-flex items-center gap-2 text-body-sm font-sans tracking-widest text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
 				>
 					<span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
@@ -47,6 +49,7 @@ export function ProductDetailHero({ product }: ProductDetailHeroProps) {
 
 				<Link
 					href={`/products?collection=${product.collectionId}`}
+					onClick={onBack}
 					className="group flex h-10 w-10 items-center justify-center rounded-full border border-[#1A3D5C] bg-[#071A2B]/80 text-[#F4F4F6]/55 transition-all duration-300 hover:border-[#D4B886]/40 hover:text-[#D4B886]"
 					aria-label="Close details"
 				>
