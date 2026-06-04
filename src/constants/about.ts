@@ -6,62 +6,6 @@
 
 import { MEDIA_PATHS } from "@/constants/media";
 
-// ─── Heritage Timeline ────────────────────────────────────────────────────────
-
-export interface HeritageMilestone {
-	id: string;
-	year: string;
-	/** GPS-style label matching kaatdm.com aesthetic. */
-	coordinates: string;
-	location: string;
-	imageUrl: string;
-}
-
-export const HERITAGE_MILESTONES: HeritageMilestone[] = [
-	{
-		id: "founding",
-		year: "2012",
-		coordinates: "21°02'N — 105°51'E",
-		location: "Bat Trang, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.founding,
-	},
-	{
-		id: "firstHotel",
-		year: "2014",
-		coordinates: "20°51'N — 106°41'E",
-		location: "Ha Long Bay, Quang Ninh",
-		imageUrl: MEDIA_PATHS.images.about.milestones.firstHotel,
-	},
-	{
-		id: "hospitalityExpansion",
-		year: "2016",
-		coordinates: "21°02'N — 105°51'E",
-		location: "Hoang Mai, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.hospitalityExpansion,
-	},
-	{
-		id: "residentialGrowth",
-		year: "2019",
-		coordinates: "21°04'N — 105°53'E",
-		location: "Vinhomes Riverside, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.residentialGrowth,
-	},
-	{
-		id: "brandsAsPartner",
-		year: "2022",
-		coordinates: "10°46'N — 106°42'E",
-		location: "Thu Duc, Ho Chi Minh City",
-		imageUrl: MEDIA_PATHS.images.about.milestones.brandsAsPartner,
-	},
-	{
-		id: "present",
-		year: "2025",
-		coordinates: "10°46'N — 106°42'E",
-		location: "Vietnam",
-		imageUrl: MEDIA_PATHS.images.about.milestones.present,
-	},
-];
-
 // ─── Craft Story ──────────────────────────────────────────────────────────────
 
 export interface CraftBeat {
@@ -77,8 +21,38 @@ export const CRAFT_BEATS: CraftBeat[] = [
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 
-export const CAPABILITY_IDS = ["specification", "production", "logistics", "aftercare"] as const;
+export interface CapabilityCard {
+	id: string;
+	/** Numeral displayed as the visual anchor (e.g. "01"). */
+	numeral: string;
+	imageUrl: string;
+}
 
+export const CAPABILITY_CARDS: CapabilityCard[] = [
+	{
+		id: "specification",
+		numeral: "01",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.specification,
+	},
+	{
+		id: "production",
+		numeral: "02",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.production,
+	},
+	{
+		id: "logistics",
+		numeral: "03",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.logistics,
+	},
+	{
+		id: "aftercare",
+		numeral: "04",
+		imageUrl: MEDIA_PATHS.images.about.capabilities.aftercare,
+	},
+];
+
+// Keep the raw ID tuple for any code that still references it
+export const CAPABILITY_IDS = ["specification", "production", "logistics", "aftercare"] as const;
 export type CapabilityId = (typeof CAPABILITY_IDS)[number];
 
 // ─── Leadership ───────────────────────────────────────────────────────────────
@@ -88,10 +62,23 @@ export interface LeadershipMember {
 	imageUrl: string;
 }
 
+export interface LeadershipPrincipal extends LeadershipMember {
+	/** Full-bleed environmental portrait used as section background. */
+	environmentalImageUrl: string;
+}
+
+export const LEADERSHIP_PRINCIPAL: LeadershipPrincipal = {
+	id: "founder",
+	imageUrl: MEDIA_PATHS.images.about.leadership.founder,
+	environmentalImageUrl: MEDIA_PATHS.images.about.leadership.founderEnvironmental,
+};
+
 export const LEADERSHIP_MEMBERS: LeadershipMember[] = [
 	{ id: "creativeDirector", imageUrl: MEDIA_PATHS.images.about.leadership.creativeDirector },
 	{ id: "technicalLead", imageUrl: MEDIA_PATHS.images.about.leadership.technicalLead },
 	{ id: "projectDirector", imageUrl: MEDIA_PATHS.images.about.leadership.projectDirector },
+	{ id: "operationsDirector", imageUrl: MEDIA_PATHS.images.about.leadership.operationsDirector },
+	{ id: "salesDirector", imageUrl: MEDIA_PATHS.images.about.leadership.salesDirector },
 ];
 
 // ─── Client Roster ────────────────────────────────────────────────────────────
@@ -111,4 +98,20 @@ export const CLIENT_ROSTER: ClientEntry[] = [
 	{ id: "saigon-intela", name: "Saigon Intela" },
 	{ id: "aria-boutique-hotel", name: "Aria Boutique Hotel" },
 	{ id: "studio-lan", name: "Studio Lan" },
+];
+
+// ─── Partner Roster ────────────────────────────────────────────────────────────
+
+export interface PartnerEntry {
+	id: string;
+	name: string;
+	/** Intrinsic PNG size — used with height-first rendering so wide marks match cap height. */
+	imageWidth: number;
+	imageHeight: number;
+}
+
+export const PARTNER_ROSTER: PartnerEntry[] = [
+	{ id: "sunpower", name: "Sunpower", imageWidth: 291, imageHeight: 86 },
+	{ id: "taicera", name: "Taicera", imageWidth: 512, imageHeight: 142 },
+	{ id: "guocera", name: "Guocera", imageWidth: 172, imageHeight: 35 },
 ];

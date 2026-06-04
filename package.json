@@ -9,7 +9,10 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\""
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
+    "optimize:product-images": "node scripts/optimize-product-catalog-images.mjs",
+    "download:indo-assets": "node scripts/download-indo-assets.mjs",
+    "sync:product-size-assets": "node scripts/sync-product-size-assets.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -35,6 +38,8 @@
     "eslint-config-next": "16.2.6",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "puppeteer": "^25.1.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
@@ -42,6 +47,7 @@
     "onlyBuiltDependencies": [
       "@parcel/watcher",
       "@swc/core",
+      "puppeteer",
       "sharp",
       "unrs-resolver"
     ]

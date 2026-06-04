@@ -19,8 +19,7 @@ const jost = Jost({
 
 export const metadata: Metadata = {
 	title: "Perla powered by Hung Phat",
-	description:
-		"Luxury porcelain interior design and installation.",
+	description: "Luxury porcelain interior design and installation.",
 };
 
 export default function RootLayout({

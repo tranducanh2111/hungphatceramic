@@ -2,7 +2,8 @@
 	"common": {
 		"companyName": "Perla powered by Hung Phat",
 		"logoAriaLabel": "Perla — Return to homepage",
-		"logoAlt": "Perla logo"
+		"logoAlt": "Perla logo",
+		"scrollToTop": "Scroll to top"
 	},
 	"navbar": {
 		"aria": {
@@ -37,7 +38,11 @@
 		"links": {
 			"about": "About Us",
 			"projects": "Our Projects",
-			"process": "Our Process",
+			"ourStory": "Our Story",
+			"partners": "Partners",
+			"ourCraft": "Our Craft",
+			"capabilities": "Capabilities",
+			"activeLocations": "Active Locations",
 			"bookConsultation": "Book a Consultation"
 		},
 		"collections": {
@@ -45,7 +50,9 @@
 			"travertine": "Travertine Series",
 			"orientStar": "Orient Star Series",
 			"sunshine": "Sunshine Series",
-			"architectural": "20mm Architectural"
+			"architectural": "20mm Architectural",
+			"peace": "Peace Series",
+			"indo": "INDO Series"
 		},
 		"legal": {
 			"privacy": "Privacy Policy",
@@ -56,10 +63,14 @@
 			"facebook": "Facebook",
 			"youtube": "YouTube"
 		},
+		"messaging": {
+			"whatsapp": "Chat on WhatsApp ({number})",
+			"zalo": "Chat on Zalo ({number})"
+		},
 		"contact": {
-			"address": "583 Giai Phong, Giap Bat, Hoang Mai, Hanoi",
-			"phone": "+84 (0) 24 1234 5678",
-			"email": "contact@hungphatceramic.vn"
+			"address": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi",
+			"phone": "0965976599",
+			"email": "congtyhungphat583@gmail.com"
 		},
 		"rights": "© {year} {companyName}. All rights reserved."
 	},
@@ -112,9 +123,9 @@
 					"area": "Hotel lobby & public areas",
 					"imageAlt": "Vinhomes Symphony luxury ceramic interior project"
 				},
-				"grand-world-phu-quocquoc": {
+				"grand-world-phu-quoc": {
 					"title": "Grand World Phu Quoc",
-					"location": "Bai Dai, Phu Quoc, An Giang",
+					"location": "Bai Dai, Phu Quoc, Kien Giang",
 					"area": "Hotel lobby & public areas",
 					"imageAlt": "Grand World Phu Quoc luxury ceramic interior project"
 				},
@@ -135,10 +146,12 @@
 		"materials": {
 			"label": "The Collection",
 			"heading": "Surfaces That Define a Space",
-			"description": "Five distinct collections. Each one curated for a different vision of luxury.",
+			"description": "Seven curated collections across large-format slabs and square tiles — from 60×120 to 120×120.",
 			"tileFormat": "Tile format",
 			"size60x120": "60 × 120",
 			"size80x80": "80 × 80",
+			"size100x100": "100 × 100",
+			"size120x120": "120 × 120",
 			"discover": "Discover",
 			"exploreFullCollection": "Explore Full Collection",
 			"categories": {
@@ -161,6 +174,14 @@
 				"architectural": {
 					"name": "20mm Architectural",
 					"tagline": "Engineered for demanding spaces."
+				},
+				"peace": {
+					"name": "Peace Series",
+					"tagline": "Serene surfaces for refined residential spaces."
+				},
+				"indo": {
+					"name": "INDO Series",
+					"tagline": "Contemporary porcelain for bold, modern interiors."
 				}
 			}
 		},
@@ -187,8 +208,8 @@
 					"description": "From our collections of 35+ series, we handpick surfaces that align with your aesthetic and structural requirements. Every recommendation is considered, never arbitrary."
 				},
 				"fulfillment": {
-					"title": "Fulfillment",
-					"description": "Expert craftsmen. Precise execution. Every joint and edge is placed with deliberate care. We treat your space with the same reverence as a master artisan treats their medium."
+					"title": "Project Fulfillment",
+					"description": "We coordinate every detail with precision, from material allocation and quality checks to delivery scheduling and on-site readiness. Ensuring your selected surfaces arrive exactly as envisioned, seamlessly aligned with your project timeline."
 				},
 				"aftercare": {
 					"title": "Aftercare",
@@ -237,7 +258,7 @@
 			"description": "Our team works with a limited number of projects each season to ensure every detail is perfect. Private showroom available by appointment.",
 			"primaryCta": "Book a Consultation",
 			"secondaryCta": "Browse the Collection",
-			"officeAddress": "583 Giai Phong, Giap Bat Ward, Hoang Mai District, Hanoi"
+			"officeAddress": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi"
 		}
 	},
 	"meta": {
@@ -251,7 +272,7 @@
 		},
 		"about": {
 			"title": "About Us | Perla powered by Hung Phat",
-			"description": "Explore Perla's heritage, craftsmanship standards, and B2B delivery model for luxury interior ceramic projects.",
+			"description": "Explore Perla's craftsmanship standards, capabilities, and B2B delivery model for luxury interior ceramic projects.",
 			"ogTitle": "About Perla | Luxury Interior Ceramic Partner",
 			"ogDescription": "Discover how Perla helps architects, developers, and hospitality brands deliver premium interior spaces with precision ceramic craftsmanship.",
 			"siteName": "Perla powered by Hung Phat",
@@ -259,7 +280,7 @@
 		},
 		"projects": {
 			"title": "Projects | Perla",
-			"description": "Explore completed interior projects by Perla and see how premium ceramics elevate each space."
+			"description": "Explore Perla's project heritage timeline and completed interior work across hospitality, residential, and mixed-use programs."
 		},
 		"products": {
 			"title": "Products | Perla",
@@ -268,6 +289,14 @@
 		"productDetail": {
 			"title": "{productName} | Perla",
 			"description": "Discover {productName}, a premium porcelain solution from Perla for luxury interiors."
+		},
+		"contact": {
+			"title": "Contact | Perla powered by Hung Phat",
+			"description": "Book a porcelain consultation with Perla. Reach our Hanoi team by form, phone, WhatsApp, or Zalo for luxury interior projects.",
+			"ogTitle": "Contact Perla | Book a Consultation",
+			"ogDescription": "Connect with Perla for bespoke ceramic surfaces — showroom visits, product quotes, and trade partnerships across Vietnam.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "en_US"
 		}
 	},
 	"pages": {
@@ -287,54 +316,20 @@
 				}
 			},
 			"hero": {
-				"label": "Our Story",
 				"titleLine1": "We don't sell tiles.",
 				"titleLine2": "We compose surfaces.",
 				"description": "Premium porcelain interiors for Vietnam's most demanding spaces.",
+				"cta": "200+ Active Locations",
 				"scroll": "Scroll"
 			},
 			"origin": {
-				"label": "The Beginning",
+				"heading": "Craft born from conviction.",
+				"nameLabel": "Our Name",
+				"nameTitle": "Perla — pearl in Italian",
+				"nameStory": "In Italian, Perla means pearl — a name chosen for what fine porcelain should feel like in a room: depth beneath the surface, soft radiance, and quiet refinement. Like a pearl formed layer by layer, we believe exceptional interiors are built through patience, precision, and an eye for detail that never settles.",
 				"pullQuote": "Stone is the original luxury.",
-				"body": "In 2012, in the craft heartland of Bat Trang, Hung Phat was founded with a single obsession — to source and install ceramic surfaces with the same rigor a master sculptor gives to stone. A workshop born of craft grew into Vietnam's most trusted B2B ceramic partner.",
+				"body": "Perla, established in 2020 and backed by Hung Phat, a company with over two decades of industry experience since 2004, was founded with a clear vision: to deliver premium ceramic and porcelain surfaces with exceptional craftsmanship, quality, and attention to detail.",
 				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
-			},
-			"heritage": {
-				"label": "Heritage",
-				"heading": "A Decade of Defining Spaces",
-				"ariaLabel": "Company heritage timeline",
-				"milestones": {
-					"founding": {
-						"title": "Founded in Bat Trang",
-						"description": "Hung Phat opens its first ceramic sourcing and installation practice in the craft heartland of Vietnam.",
-						"imageAlt": "The original Hung Phat workshop in Bat Trang craft village"
-					},
-					"firstHotel": {
-						"title": "First Hospitality Commission",
-						"description": "A landmark boutique hotel project proves that precision ceramic installation can protect design intent at full commercial scale.",
-						"imageAlt": "First major hotel interior project by Perla in Ha Long Bay"
-					},
-					"hospitalityExpansion": {
-						"title": "Multi-Site Expansion",
-						"description": "Expanded into multi-property hospitality programs with standardised quality controls across contractor teams.",
-						"imageAlt": "Multi-site hospitality project interior by Perla"
-					},
-					"residentialGrowth": {
-						"title": "Premium Residential Milestone",
-						"description": "First large-format residential specification — 200+ luxury apartments with full-scope ceramic systems.",
-						"imageAlt": "Luxury residential project interior with Perla ceramic systems"
-					},
-					"brandsAsPartner": {
-						"title": "Recognised B2B Partner",
-						"description": "Perla brand launched — formalising the partnership model with architects, developers, and hospitality operators.",
-						"imageAlt": "Perla B2B partner project collaboration"
-					},
-					"present": {
-						"title": "Present Day",
-						"description": "200+ projects completed. Trusted across hospitality, residential, and mixed-use programs throughout Vietnam.",
-						"imageAlt": "Current Perla projects across Vietnam's premium interior market"
-					}
-				}
 			},
 			"craft": {
 				"ariaLabel": "Ceramic craft story",
@@ -381,27 +376,32 @@
 					}
 				}
 			},
-			"leadership": {
-				"label": "The People",
-				"heading": "Experience Behind Every Outcome",
-				"members": {
-					"creativeDirector": {
-						"name": "Linh Tran",
-						"role": "Creative Director",
-						"credit": "15 years in luxury interior material specification",
-						"imageAlt": "Linh Tran, Creative Director at Perla"
+			"values": {
+				"label": "Our Foundations",
+				"heading": "The Principles of Our Craft",
+				"network": {
+					"title": "Scale & Footprint",
+					"subtitle": "Northern Region & Nationwide",
+					"stats": "200+",
+					"statsLabel": "Active Locations",
+					"description": "Connecting over 200 partner showrooms and clients across Northern Vietnam, backed by a robust supply chain executing premium projects nationwide. From initial consultation to final inspection, our distribution power ensures prompt delivery and matching specifications for every contract."
+				},
+				"list": {
+					"craftsmanship": {
+						"title": "Craftsmanship",
+						"description": "We treat ceramic surfaces with the same rigor a master sculptor gives to stone. From meticulous cutting and calibration to microscopic alignment audits on-site, every joint is a testament to our decade-long commitment to flawless surface integration."
 					},
-					"technicalLead": {
-						"name": "Minh Nguyen",
-						"role": "Technical Delivery Lead",
-						"credit": "20 years in high-precision ceramic installation",
-						"imageAlt": "Minh Nguyen, Technical Delivery Lead at Perla"
+					"reliability": {
+						"title": "Reliability",
+						"description": "Premium projects require absolute predictability. Our supply chain features strict quality-control audits, structured timelines, and transparent coordination. We deliver exactly what we promise, on schedule, every single time."
 					},
-					"projectDirector": {
-						"name": "An Bui",
-						"role": "Project Director",
-						"credit": "Managed 80+ B2B ceramic programs across Vietnam",
-						"imageAlt": "An Bui, Project Director at Perla"
+					"customerCentricity": {
+						"title": "Customer-Centricity",
+						"description": "We put your project requirements first. From custom mockups to bespoke technical specifications, we adapt our services to meet the specific demands of developers and architects, backed by a dedicated aftercare support program."
+					},
+					"sustainableGrowth": {
+						"title": "Sustainable Growth",
+						"description": "We design and install with the future in mind. By optimizing material waste allocation, practicing environmental responsibility, and selecting highly durable materials, we create architectural structures that endure for generations."
 					}
 				}
 			},
@@ -410,23 +410,394 @@
 				"heading": "Specified by the spaces that shape Vietnam's skyline.",
 				"ariaLabel": "Client and project roster"
 			},
+			"partners": {
+				"label": "Our Partners",
+				"heading": "In partnership with industry leaders.",
+				"ariaLabel": "Partner roster"
+			},
 			"cta": {
-				"label": "Next Step",
-				"titleLine1": "Plan Your Next",
-				"titleLine2": "Premium Project.",
+				"titleLine1": "Your next landmark",
+				"titleLine2": "begins here.",
 				"description": "Book a consultation to discuss your project brief, design direction, and delivery requirements with our senior team.",
-				"primaryCta": "Book a Consultation",
-				"secondaryCta": "Browse Project Portfolio"
+				"primaryCta": "Book a Consultation"
 			}
 		},
 		"projects": {
-			"heading": "Our Projects"
+			"heading": "Our Projects",
+			"hero": {
+				"label": "Portfolio",
+				"title": "Landmarks Across",
+				"titleEmphasis": "Vietnam",
+				"subtitle": "From Ha Long Bay to Phu Quoc — premium porcelain surfaces specified for hospitality, residential, and mixed-use programs at national scale.",
+				"scroll": "Scroll",
+				"posterAlt": "Empire City luxury development overlooking the Saigon River"
+			},
+			"prologue": {
+				"ariaLabel": "Introduction to Perla project portfolio",
+				"label": "The Work",
+				"heading": "Surfaces that carry the weight of landmark ambition.",
+				"body": "Each chapter below follows a real development — coordinates, completion era, and the brands that shaped Vietnam's urban skyline. We document the work so architects and developers can see how ceramic craft holds design intent at scale.",
+				"statDevelopments": "6 signature developments",
+				"statRegions": "3 regions",
+				"statSpan": "2017–2021"
+			},
+			"horizon": {
+				"ariaLabel": "Immersive gallery of featured project imagery",
+				"title": "Six chapters.",
+				"subtitle": "One continuous horizon.",
+				"imageAlt": "Panoramic sequence of Perla featured project interiors and developments"
+			},
+			"regions": {
+				"ariaLabel": "Projects grouped by region in Vietnam",
+				"label": "Across the Map",
+				"heading": "North, south, and island.",
+				"north": {
+					"title": "North",
+					"description": "Ha Long hospitality and Hanoi's mixed-use and riverside residences."
+				},
+				"south": {
+					"title": "South",
+					"description": "Thu Thiem waterfront masterplans and riverside smart living in Binh Chanh."
+				},
+				"island": {
+					"title": "Island",
+					"description": "Phu Quoc's sleepless entertainment city at the heart of United Center."
+				},
+				"viewProject": "View chapter"
+			},
+			"index": {
+				"ariaLabel": "Portfolio index of featured projects",
+				"label": "Index",
+				"heading": "Explore by project",
+				"viewChapter": "View chapter",
+				"sectors": {
+					"hospitality": "Hospitality",
+					"residential": "Residential",
+					"mixed-use": "Mixed-use"
+				}
+			},
+			"clients": {
+				"ariaLabel": "Developers and brands on featured projects",
+				"label": "Partners",
+				"heading": "Trusted on landmark developments by"
+			},
+			"cta": {
+				"titleLine1": "Your next landmark",
+				"titleLine2": "begins with the surface.",
+				"description": "Discuss scope, collections, and delivery for your hospitality, residential, or mixed-use program with our team.",
+				"primaryCta": "Book a Consultation",
+				"secondaryCta": "Explore Collections"
+			},
+			"heritage": {
+				"label": "Heritage",
+				"heading": "A Decade of Defining Spaces",
+				"ariaLabel": "Selected project timeline across Vietnam",
+				"milestones": {
+					"empire-city": {
+						"title": "Empire City",
+						"description": "A Keppel Land–led joint venture on 14.5 hectares in Thu Thiem — one of Ho Chi Minh City's largest waterfront mixed-use masterplans, with about 3,787 premium apartments planned across residential phases including Linden and Tilia Residences.",
+						"imageAlt": "Empire City mixed-use development overlooking the Saigon River in Thu Thiem"
+					},
+					"ramada-ha-long-bay": {
+						"title": "Ramada Ha Long Bay View",
+						"description": "Wyndham-branded hospitality on Ha Long Bay, developed by Lac Hong Construction & Investment. The 33-storey waterfront tower opened in 2019 with 568 serviced apartments beside UNESCO-listed Ha Long Bay.",
+						"imageAlt": "Ramada by Wyndham Ha Long Bay View hotel and serviced apartments in Quang Ninh"
+					},
+					"hinode-city": {
+						"title": "Hinode City",
+						"description": "A Japanese-inspired mixed-use landmark by Vietracimex (WTO) at 201 Minh Khai, Hai Ba Trung. Three 26-storey towers on 2.8 hectares deliver more than 1,100 residences, with handover completed in late 2020.",
+						"imageAlt": "Hinode City mixed-use residential towers in central Hanoi"
+					},
+					"vinhomes-symphony": {
+						"title": "Vinhomes Symphony",
+						"description": "Vinhomes' low-density riverside ensemble inside Vinhomes Riverside, Long Bien — 4.3 hectares, seven towers of 9–15 floors, and about 1,500 apartments brought into operation from September 2020.",
+						"imageAlt": "Vinhomes Symphony apartment towers within Vinhomes Riverside, Hanoi"
+					},
+					"saigon-intela": {
+						"title": "Saigon Intela",
+						"description": "Vietnam's early smart-home apartment community along the Saigon River in Binh Chanh — 1,068 units in two 24-storey towers by Bac Phuoc Kien and LDG Group, with construction completed in 2020.",
+						"imageAlt": "Saigon Intela riverside apartment towers on Nguyen Van Linh, Ho Chi Minh City"
+					},
+					"grand-world-phu-quoc": {
+						"title": "Grand World Phu Quoc",
+						"description": "Vingroup's 85-hectare \"sleepless city\" at Phu Quoc United Center, opened 21 April 2021 — a Venice-inspired canal district with 24/7 shopping, dining, and entertainment anchoring Vietnam's island tourism hub.",
+						"imageAlt": "Grand World Phu Quoc entertainment and retail complex at night"
+					}
+				}
+			}
 		},
 		"products": {
-			"heading": "Our Products"
+			"heading": "Our Collection",
+			"allCollections": "All Collections",
+			"allSizes": "All Sizes",
+			"filterLabel": "Filter by Collection",
+			"sizeFilterLabel": "Filter by Tile Size",
+			"collectionsAriaLabel": "Collections filter",
+			"sizesAriaLabel": "Tile size filter",
+			"productCount": "products",
+			"productCountSingle": "product",
+			"viewProduct": "View Product",
+			"noProducts": "No products match your filters.",
+			"searchPlaceholder": "Search products...",
+			"collections": {
+				"inspire": "Inspire Series",
+				"travertine": "Travertine Series",
+				"orient-star": "Orient Star Series",
+				"sunshine": "Sunshine Series",
+				"architectural": "20mm Architectural",
+				"peace": "Peace Series",
+				"indo": "INDO Series"
+			},
+			"sizes": {
+				"60x120": "60×120 cm",
+				"80x80": "80×80 cm",
+				"100x100": "100×100 cm",
+				"120x120": "120×120 cm"
+			},
+			"hero": {
+				"label": "Product Catalogue",
+				"defaultTitle": "The Complete Collection"
+			}
 		},
 		"productDetail": {
-			"heading": "Product: {slug}"
+			"heading": "Product: {slug}",
+			"backToProducts": "Back to Collection",
+			"sku": "SKU",
+			"availableSizes": "Available Sizes",
+			"faceVariations": "Surface Variations",
+			"facesOverviewComposite": "Faces overview (composite)",
+			"facesOverviewCompositeAlt": "All face variations composite sheet for {productName}",
+			"individualFaces": "Individual faces ({count})",
+			"faceImageAlt": "{productName} face {faceNumber}",
+			"lightboxAlt": "Expanded product image",
+			"specifications": "Specifications",
+			"relatedProducts": "More from {collection}",
+			"requestQuote": "Request a Quote",
+			"bookConsultation": "Book a Consultation",
+			"surface": "Surface Finish",
+			"thickness": "Thickness",
+			"material": "Material",
+			"faces": "Faces",
+			"finishes": {
+				"matte": "Matte / Natural",
+				"polished": "Polished / Glossy",
+				"structured": "Structured / Textured"
+			},
+			"panorama": {
+				"ariaLabel": "Panorama room view for {productName}",
+				"label": "Room panorama",
+				"heading": "See it in the space",
+				"description": "Scroll to explore a wide interior visualization featuring {productName} across the floor and walls.",
+				"scrollHint": "Scroll to explore",
+				"imageAlt": "Wide panoramic interior visualization using {productName} porcelain surfaces"
+			}
+		},
+		"contact": {
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"description": "Luxury porcelain and ceramic interior surfaces in Vietnam.",
+				"areaServed": "Vietnam",
+				"telephone": "+84965976599",
+				"email": "contact@hungphatceramic.vn",
+				"contactType": "customer support"
+			},
+			"hero": {
+				"label": "Get in Touch",
+				"titleLine1": "Begin Your",
+				"titleLine2": "Consultation",
+				"description": "Share your vision with our team — we respond to architects, developers, and homeowners with tailored porcelain guidance.",
+				"cta": "Send an Inquiry",
+				"scroll": "Scroll"
+			},
+			"inquiry": {
+				"label": "Inquiry",
+				"heading": "Tell Us About Your Project",
+				"description": "Complete the form and your email app will open with a draft message ready to send.",
+				"responseNote": "We typically respond within one business day.",
+				"form": {
+					"fullName": "Full name",
+					"fullNamePlaceholder": "Your name",
+					"phone": "Phone",
+					"phonePlaceholder": "09xx xxx xxx",
+					"email": "Email",
+					"emailPlaceholder": "you@company.com",
+					"inquiryType": "Inquiry type",
+					"message": "Message",
+					"messagePlaceholder": "Project scope, timeline, preferred collections, or quantities…",
+					"submit": "Open Email Draft",
+					"success": "Your email app should open with your inquiry. If it does not, email us directly.",
+					"errors": {
+						"required": "This field is required.",
+						"emailInvalid": "Enter a valid email address.",
+						"messageMinLength": "Please add at least {min} characters."
+					}
+				},
+				"inquiryTypes": {
+					"consultation": "Design consultation",
+					"productQuote": "Product quote",
+					"partnership": "Trade / partnership",
+					"other": "Other"
+				}
+			},
+			"channels": {
+				"heading": "Speak With Us Directly",
+				"primaryHeading": "Instant messaging",
+				"secondaryHeading": "Other channels",
+				"whatsapp": "WhatsApp",
+				"whatsappAria": "Chat on WhatsApp at {number}",
+				"zalo": "Zalo",
+				"zaloAria": "Chat on Zalo at {number}",
+				"phone": "Phone",
+				"phoneAria": "Call {number}",
+				"email": "Email",
+				"emailAria": "Email {address}",
+				"address": "Showroom",
+				"addressAria": "Open showroom location in Google Maps"
+			},
+			"showroom": {
+				"label": "Visit",
+				"heading": "Our Showroom",
+				"description": "Meet our specialists in Hanoi to review collections, finishes, and large-format samples in person.",
+				"hours": "Monday – Saturday, 8:00 – 17:30",
+				"mapCta": "Open in Google Maps",
+				"mapEmbedTitle": "Map showing Perla showroom at Starlake Urban Area, Hanoi"
+			}
+		}
+	},
+	"products": {
+		"items": {
+			"inspire-g12962j": {
+				"name": "Inspire G12962J",
+				"description": "Bold patterns with a deep sapphire tone and dynamic natural stone marbling. Perfect for feature walls or statement flooring in high-end projects."
+			},
+			"inspire-g12967j": {
+				"name": "Inspire G12967J",
+				"description": "Sophisticated gray marble veining for high-end modern projects. Offers a clean, minimal look with complex natural textures."
+			},
+			"inspire-gp12962j": {
+				"name": "Inspire GP12962J",
+				"description": "Glossy polished variant showing rich color depth and pristine light reflections, ideal for premium commercial and residential spaces."
+			},
+			"inspire-gp12964j": {
+				"name": "Inspire GP12964J",
+				"description": "Polished crystal porcelain surface, bringing light reflection, depth, and spatial grandeur into lobbies and main halls."
+			},
+			"inspire-g88962j": {
+				"name": "Inspire G88962J",
+				"description": "Classic square format featuring the signature Inspire patterns. Perfectly sized for balanced layouts in corridors and dining areas."
+			},
+			"inspire-gp88962": {
+				"name": "Inspire GP88962",
+				"description": "High-gloss polished surface in a classic 80×80 format, delivering depth and luxury reflections to dining rooms and entrance halls."
+			},
+			"travertine-t01": {
+				"name": "Travertine G12T01",
+				"description": "The organic warmth of classic Italian travertine stone structure. Ideal for serene, nature-inspired indoor surfaces."
+			},
+			"travertine-t06": {
+				"name": "Travertine G12T06",
+				"description": "Deep linear travertine formations with rich earthy tones. Adds height, structure, and timeless architectural class."
+			},
+			"travertine-g88t01j": {
+				"name": "Travertine G88T01J",
+				"description": "Natural matte finish square tile bringing travertine elegance indoors. Subtle beige tones that coordinate beautifully with wood."
+			},
+			"travertine-g88t06j": {
+				"name": "Travertine G88T06J",
+				"description": "Square travertine format with structural veins and comfortable tactile texture, providing safety and durability."
+			},
+			"travertine-gp88t01j": {
+				"name": "Travertine GP88T01J",
+				"description": "Polished variant of the classic Travertine T01 surface in 80×80 format, merging rustic warmth with clean luxury."
+			},
+			"travertine-gp88t06j": {
+				"name": "Travertine GP88T06J",
+				"description": "Polished linear travertine tiles for elegant floor mappings and beautiful open-plan architectural spaces."
+			},
+			"orient-star-g12w05j": {
+				"name": "Orient Star G12W05J",
+				"description": "Ivory luminance with subtle starburst lines and spatial expansiveness. Soft, timeless elegance for discerning interiors."
+			},
+			"orient-star-gp12w05j": {
+				"name": "Orient Star GP12W05J",
+				"description": "Glossy polished porcelain rendering pure ivory luminance. Excellent for reflecting soft natural light throughout main halls."
+			},
+			"sunshine-g12032j": {
+				"name": "Sunshine G12032J",
+				"description": "Luminous, warm golden tones reflecting natural light beautifully. Creates a welcoming, bright, and luxurious space."
+			},
+			"sunshine-gp12032j": {
+				"name": "Sunshine GP12032J",
+				"description": "High-gloss polished sunshine variant for open, airy, high-contrast layouts. The perfect canvas for premium spatial expressions."
+			},
+			"sunshine-g88032j": {
+				"name": "Sunshine G88032J",
+				"description": "Square matte format of the light-filled Sunshine series. Excellent durability and scratch resistance for high-traffic zones."
+			},
+			"sunshine-gp88032j": {
+				"name": "Sunshine GP88032J",
+				"description": "Square polished porcelain tile with active veining and high-end glow. Uplifts any room with light-catching textures."
+			},
+			"architectural-g12537-dd": {
+				"name": "Architectural G12537-DD",
+				"description": "Thick 20mm architectural gray slate engineered for high load-bearing demands. Excellent slip resistance for luxury outdoor paving."
+			},
+			"architectural-g12539-dd": {
+				"name": "Architectural G12539-DD",
+				"description": "Ultra-heavy-duty 20mm thick porcelain with textured concrete slate aesthetics. Ideal for gardens, terraces, and outdoor driveways."
+			},
+			"peace-gp12h03j": {
+				"name": "Peace GP12H03J (Flow)",
+				"description": "Tranquil flow patterns reflecting architectural stillness and natural calm. Designed for wellness spaces and premium master baths."
+			},
+			"peace-gp12h05j": {
+				"name": "Peace GP12H05J",
+				"description": "Neutral tones and silent design expressions for minimal luxury environments. Enhances peace and focus in modern spaces."
+			},
+			"peace-gp88731j": {
+				"name": "Peace GP88731J",
+				"description": "Sophisticated 80×80 format with mild patterns that breathe tranquility. A gentle foundation for residential flooring."
+			},
+			"peace-gp88736j": {
+				"name": "Peace GP88736J",
+				"description": "Elegant square format tiles for quiet, cohesive architectural landscapes. Resists stains and retains its serene texture over decades."
+			},
+			"indo-gs881042": {
+				"name": "INDO GS881042",
+				"description": "INDO square porcelain with balanced natural movement for premium hospitality and residential floors."
+			},
+			"indo-gs881045": {
+				"name": "INDO GS881045",
+				"description": "INDO square surface with refined tonal depth for contemporary living spaces."
+			},
+			"indo-gs883009": {
+				"name": "INDO GS883009",
+				"description": "INDO square tile with expressive veining and a calm, architectural finish."
+			},
+			"indo-ss886101": {
+				"name": "INDO SS886101",
+				"description": "INDO square format suited to open-plan residential and hospitality floors."
+			},
+			"indo-ss886106": {
+				"name": "INDO SS886106",
+				"description": "INDO square porcelain with polished character and soft luminosity."
+			},
+			"indo-ss1261307": {
+				"name": "INDO SS1261307",
+				"description": "INDO large-format slab with vertical rhythm for feature walls and lobbies."
+			},
+			"indo-ss1261310": {
+				"name": "INDO SS1261310",
+				"description": "INDO large-format surface with layered stone inspiration and modern clarity."
+			},
+			"indo-ss1261311": {
+				"name": "INDO SS1261311",
+				"description": "INDO large slab with confident contrast for statement architectural zones."
+			},
+			"indo-ss1261315": {
+				"name": "INDO SS1261315",
+				"description": "INDO large-format tile with muted elegance for serene, high-end interiors."
+			}
 		}
 	}
 }

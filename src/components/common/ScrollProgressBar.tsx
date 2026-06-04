@@ -1,6 +1,7 @@
 "use client";
 
-import { useScroll, motion, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 
 /**
  * ScrollProgressBar — Fixed right-edge vertical progress indicator.
@@ -9,13 +10,7 @@ import { useScroll, motion, useSpring } from "framer-motion";
  * scrolls through the page. Desktop-only (hidden on mobile).
  */
 export function ScrollProgressBar() {
-	const { scrollYProgress } = useScroll();
-
-	const smoothProgress = useSpring(scrollYProgress, {
-		stiffness: 80,
-		damping: 25,
-		restDelta: 0.001,
-	});
+	const { scrollYProgress } = useAppScroll();
 
 	return (
 		<div
@@ -29,7 +24,7 @@ export function ScrollProgressBar() {
 					className="absolute top-0 left-0 w-full rounded-full bg-[#D4B886]"
 					style={{
 						height: "100%",
-						scaleY: smoothProgress,
+						scaleY: scrollYProgress,
 						transformOrigin: "top",
 					}}
 				/>

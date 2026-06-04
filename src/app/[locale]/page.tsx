@@ -1,22 +1,16 @@
-import type {Metadata} from "next";
-import {getTranslations, setRequestLocale} from "next-intl/server";
-import {LandingHero} from "@/page-sections/landing/LandingHero";
-import {LandingBrandStatement} from "@/page-sections/landing/LandingBrandStatement";
-import {LandingProjects} from "@/page-sections/landing/LandingProjects";
-import {LandingMaterials} from "@/page-sections/landing/LandingMaterials";
-import {LandingStats} from "@/page-sections/landing/LandingStats";
-import {LandingProcess} from "@/page-sections/landing/LandingProcess";
-import {LandingTestimonials} from "@/page-sections/landing/LandingTestimonials";
-import {LandingVisualStory} from "@/page-sections/landing/LandingVisualStory";
-import {LandingCta} from "@/page-sections/landing/LandingCta";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
+import { LandingPageContent } from "@/page-sections/landing/LandingPageContent";
 
 interface HomePageProps {
-	params: Promise<{locale: string}>;
+	params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({params}: HomePageProps): Promise<Metadata> {
-	const {locale} = await params;
-	const t = await getTranslations({locale, namespace: "meta.home"});
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "meta.home" });
 
 	return {
 		title: t("title"),
@@ -32,21 +26,14 @@ export async function generateMetadata({params}: HomePageProps): Promise<Metadat
 	};
 }
 
-export default async function HomePage({params}: HomePageProps) {
-	const {locale} = await params;
+export default async function HomePage({ params }: HomePageProps) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 
 	return (
-		<main className="relative" style={{position: "relative"}}>
-			<LandingHero />
-			<LandingBrandStatement />
-			<LandingProjects />
-			<LandingMaterials />
-			<LandingStats />
-			<LandingProcess />
-			<LandingTestimonials />
-			<LandingVisualStory />
-			<LandingCta />
+		<main className="relative" style={{ position: "relative" }}>
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
+			<LandingPageContent />
 		</main>
 	);
 }

@@ -6,47 +6,12 @@
 
 import { productsWithCollection } from "@/constants/routes";
 import { MEDIA_PATHS } from "@/constants/media";
+import {
+	remapAssetPathForTileDimension,
+	type TileDimensionLabel,
+} from "@/lib/products/asset-paths";
 
-// ─── Featured Projects ────────────────────────────────────────────────────────
-
-export interface FeaturedProject {
-	id: string;
-	year: number;
-	imageUrl: string;
-}
-
-export const FEATURED_PROJECTS: FeaturedProject[] = [
-	{
-		id: "ramada-ha-long-bay",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
-	},
-	{
-		id: "hinode-city",
-		year: 2022,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.hinode,
-	},
-	{
-		id: "vinhomes-symphony",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.vinhomesSymphony,
-	},
-	{
-		id: "grand-world-phu-quocquoc",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.grandPhuQuoc,
-	},
-	{
-		id: "saigon-intela",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.saigonIntela,
-	},
-	{
-		id: "empire-city",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.empireCity,
-	},
-];
+export { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/projects";
 
 // ─── Material Categories ──────────────────────────────────────────────────────
 
@@ -67,42 +32,102 @@ export interface MaterialCategory {
 
 type MaterialCategoryDef = Omit<MaterialCategory, "href">;
 
+const SQUARE_FORMAT_SIZES = ["80×80cm", "100×100cm", "120×120cm"] as const;
+const LARGE_FORMAT_SIZES = ["60×120cm", "100×100cm", "120×120cm"] as const;
+
+function sizePreviews(
+	baseDimension: TileDimensionLabel,
+	imagePath: string,
+	extraDimensions: readonly TileDimensionLabel[] = [],
+): SizePreview[] {
+	const dimensions = new Set<TileDimensionLabel>([baseDimension, ...extraDimensions]);
+	return [...dimensions].map((dimension) => ({
+		size: dimension,
+		image: remapAssetPathForTileDimension(imagePath, dimension),
+	}));
+}
+
 const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	{
 		id: "inspire",
-		sizes: ["60×120cm"],
-		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" },
-		],
+		sizes: [...LARGE_FORMAT_SIZES],
+		previews: sizePreviews(
+			"60×120cm",
+			"/assets/60X120/Inspire G12962J/G12962J (1).jpg",
+			["100×100cm", "120×120cm"],
+		),
 	},
 	{
 		id: "travertine",
-		sizes: ["60×120cm", "80×80cm"],
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Travertine T01 T06/G12T01.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/G88T01J/G88T01J (1).jpg" },
+			...sizePreviews("60×120cm", "/assets/60X120/Travertine T01 T06/G12T01.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+			...sizePreviews("80×80cm", "/assets/80X80/G88T01J/G88T01J (1).jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
 		],
 	},
 	{
 		id: "orient-star",
-		sizes: ["60×120cm"],
-		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg" },
-		],
+		sizes: [...LARGE_FORMAT_SIZES],
+		previews: sizePreviews(
+			"60×120cm",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
+			["100×100cm", "120×120cm"],
+		),
 	},
 	{
 		id: "sunshine",
-		sizes: ["60×120cm", "80×80cm"],
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/G88032J/G88032 (1).jpg" },
+			...sizePreviews("60×120cm", "/assets/60X120/Sunshine G12032J/G12032J_01.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+			...sizePreviews("80×80cm", "/assets/80X80/G88032J/G88032 (1).jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
 		],
 	},
 	{
 		id: "architectural",
-		sizes: ["60×120cm"],
+		sizes: [...LARGE_FORMAT_SIZES],
+		previews: sizePreviews(
+			"60×120cm",
+			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
+			["100×100cm", "120×120cm"],
+		),
+	},
+	{
+		id: "peace",
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg" },
+			...sizePreviews("60×120cm", "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+			...sizePreviews("80×80cm", "/assets/80X80/GP88736J/GP88736j_01.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+		],
+	},
+	{
+		id: "indo",
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		previews: [
+			...sizePreviews("60×120cm", "/assets/60X120/INDO SS1261307/SS1261307.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+			...sizePreviews("100×100cm", "/assets/100X100/INDO GS881042/GS881042.jpg", [
+				"120×120cm",
+			]),
 		],
 	},
 ];

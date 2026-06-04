@@ -91,15 +91,15 @@ export function Button(props: ButtonProps) {
 	/* ── Link variant ───────────────────────────────────────────────────────── */
 	if ("href" in rest && rest.href) {
 		const { href, external, ...anchorRest } = rest as LinkButtonProps;
-		const isExternal = external ?? href.startsWith("http");
+		const isHash = href.startsWith("#");
+		const isExternal = external ?? (href.startsWith("http") || isHash);
 
 		if (isExternal) {
 			return (
 				<a
 					href={href}
 					className={baseStyles}
-					target="_blank"
-					rel="noopener noreferrer"
+					{...(!isHash ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 					{...anchorRest}
 				>
 					{children}

@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
 import { Text, Button } from "@/components/ui";
+import { GOOGLE_MAPS_URL } from "@/constants/contact";
 import { ROUTES } from "@/constants/routes";
-
-const GOOGLE_MAPS_URL = "https://maps.google.com/?q=583+Giải+Phóng,+Giáp+Bát,+Hoàng+Mai,+Hà+Nội";
 
 /**
  * LandingCta — Final conversion section with exclusive framing.

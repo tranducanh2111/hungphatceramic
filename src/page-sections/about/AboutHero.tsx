@@ -1,15 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
-import {
-	motion,
-	useScroll,
-	useTransform,
-	useMotionTemplate,
-	type Variants,
-} from "framer-motion";
+import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { CinematicHeroVideo } from "@/components/media";
+import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
+import { useAppScroll } from "@/hooks/useAppScroll";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
+import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 
 const contentVariants: Variants = {
 	hidden: { opacity: 0, y: 32 },
@@ -28,112 +29,113 @@ const scrollIndicatorVariants: Variants = {
 	},
 };
 
-/**
- * AboutHero — Manifesto opener.
- *
- * Reuses the cinematic clip-path expansion pattern from LandingHero with a
- * stronger editorial tone: no CTA buttons, manifesto headline, minimal copy.
- * The `<h1>` lives here — all other About sections use h2 and below.
- */
 export function AboutHero() {
 	const t = useTranslations("pages.about.hero");
 	const sectionRef = useRef<HTMLElement>(null);
+	const prefersReducedMotion = usePrefersReducedMotion();
+	const lenis = useLenis();
 
-	const { scrollYProgress } = useScroll({
+	const handleActiveLocationsClick = useCallback(() => {
+		scrollToAnchorElement(ABOUT_SECTION_IDS.activeLocations, lenis, { offset: -96 });
+	}, [lenis]);
+
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end start"],
 	});
 
-	const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-	const textY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
-
+	// Same clip path expansion as LandingHero
 	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
 	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
 	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
 	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
 
+	// Same scale/opacity behavior for the video element
 	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
 	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
 
 	return (
 		<section ref={sectionRef} className="relative h-[150vh] w-full">
-			<div className="sticky top-0 h-screen w-full overflow-hidden bg-[#071A2B]">
-				{/* Radial background gradient */}
+			<div className="bg-sapphire-deep sticky top-0 h-screen w-full overflow-hidden">
 				<div
 					className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_70%)]"
 					aria-hidden="true"
 				/>
 
-				{/* Expanding cinematic video */}
-				<motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ clipPath }}>
-					<motion.div className="absolute inset-0 bg-[#071A2B]" />
-					<motion.video
-						autoPlay
-						muted
-						loop
-						playsInline
-						className="absolute inset-0 h-full w-full origin-center object-cover"
-						style={{ opacity: videoOpacity, scale: videoScale }}
-						poster={MEDIA_PATHS.images.landing.heroPoster}
-					>
-						<source src={MEDIA_PATHS.video.aboutHero} type="video/mp4" />
-					</motion.video>
+				<motion.div
+					className="absolute inset-0 z-0 overflow-hidden"
+					style={prefersReducedMotion ? undefined : { clipPath }}
+				>
+					<div className="bg-sapphire-deep absolute inset-0" />
+					<CinematicHeroVideo
+						videoSrc={MEDIA_PATHS.video.aboutHero}
+						posterSrc={MEDIA_PATHS.images.landing.heroPoster}
+						posterAlt={t("titleLine1")}
+						prefersReducedMotion={prefersReducedMotion}
+						useMotionVideo={!prefersReducedMotion}
+						motionVideoStyle={
+							prefersReducedMotion
+								? undefined
+								: { opacity: videoOpacity, scale: videoScale }
+						}
+					/>
 					<div
-						className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/80 via-transparent to-[#071A2B]/30"
+						className="from-sapphire-deep/80 to-sapphire-deep/30 absolute inset-0 bg-gradient-to-t via-transparent"
 						aria-hidden="true"
 					/>
 				</motion.div>
 
-				{/* Manifesto content — h1 lives here */}
-				<motion.div
-					style={{ opacity: textOpacity, y: textY }}
-					className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
-				>
-					<motion.span
-						custom={0}
-						variants={contentVariants}
-						initial="hidden"
-						animate="visible"
-						className="text-label inline-block rounded-full border border-[#D4B886]/25 bg-[#D4B886]/6 px-5 py-2 font-sans tracking-widest text-[#D4B886] uppercase backdrop-blur-sm"
-					>
-						{t("label")}
-					</motion.span>
-
+				<div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
 					<motion.h1
-						custom={0.3}
+						custom={0.2}
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-display-xl mt-6 max-w-3xl font-serif leading-[1.1] font-light text-[#F4F4F6]"
+						className="text-display-xl lg:text-display-2xl text-linen font-serif leading-[1.05] font-light"
 					>
 						{t("titleLine1")}
 						<br />
-						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
+						<em className="text-champagne italic">{t("titleLine2")}</em>
 					</motion.h1>
 
 					<motion.p
-						custom={0.6}
+						custom={0.45}
 						variants={contentVariants}
 						initial="hidden"
 						animate="visible"
-						className="text-body-lg mt-6 max-w-md font-sans text-[#F4F4F6]/60"
+						className="text-body-lg text-linen/60 mt-6 max-w-md font-sans"
 					>
 						{t("description")}
 					</motion.p>
-				</motion.div>
 
-				{/* Scroll indicator */}
+					<motion.div
+						custom={0.65}
+						variants={contentVariants}
+						initial="hidden"
+						animate="visible"
+						className="mt-9"
+					>
+						<Button
+							variant="outline"
+							size="lg"
+							className="rounded-full"
+							onClick={handleActiveLocationsClick}
+						>
+							{t("cta")}
+						</Button>
+					</motion.div>
+				</div>
+
 				<motion.div
 					variants={scrollIndicatorVariants}
 					animate="animate"
-					style={{ opacity: textOpacity }}
 					className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
 					aria-hidden="true"
 				>
-					<span className="text-footnote font-sans tracking-widest text-[#D4B886]/45 uppercase">
+					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
 						{t("scroll")}
 					</span>
-					<div className="h-12 w-px bg-gradient-to-b from-[#D4B886]/50 to-transparent" />
+					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
 				</motion.div>
 			</div>
 		</section>

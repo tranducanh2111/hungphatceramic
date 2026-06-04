@@ -1,0 +1,75 @@
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
+import { ContactPageContent } from "@/page-sections/contact/ContactPageContent";
+
+const SITE_URL = "https://hungphatceramic.vn";
+
+interface ContactPageProps {
+	params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "meta.contact" });
+	const contactUrl = `${SITE_URL}/${locale}/contact`;
+
+	return {
+		title: t("title"),
+		description: t("description"),
+		alternates: {
+			canonical: contactUrl,
+		},
+		openGraph: {
+			title: t("ogTitle"),
+			description: t("ogDescription"),
+			url: contactUrl,
+			siteName: t("siteName"),
+			locale: t("ogLocale"),
+			type: "website",
+		},
+	};
+}
+
+export default async function ContactPage({ params }: ContactPageProps) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+
+	const t = await getTranslations({ locale, namespace: "pages.contact.schema" });
+
+	const contactPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		url: `${SITE_URL}/${locale}/contact`,
+		mainEntity: {
+			"@type": "Organization",
+			name: t("name"),
+			description: t("description"),
+			areaServed: t("areaServed"),
+			contactPoint: {
+				"@type": "ContactPoint",
+				telephone: t("telephone"),
+				email: t("email"),
+				contactType: t("contactType"),
+				availableLanguage: ["Vietnamese", "English"],
+			},
+		},
+	};
+
+	return (
+		<main>
+			<PageMediaPreload
+				imagePaths={[
+					MEDIA_PATHS.images.landing.heroPoster,
+					MEDIA_PATHS.images.contact.inquiryBackdrop,
+				]}
+			/>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+			/>
+			<ContactPageContent />
+		</main>
+	);
+}

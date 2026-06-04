@@ -1,13 +1,21 @@
-import type {Metadata} from "next";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { PRODUCTS } from "@/constants/products";
+import {
+	getCollectionListingMeta,
+	getTileSizeListingMeta,
+	toProductListingItems,
+} from "@/lib/products/listing";
+import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
 
 interface ProductsPageProps {
-	params: Promise<{locale: string}>;
+	params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({params}: ProductsPageProps): Promise<Metadata> {
-	const {locale} = await params;
-	const t = await getTranslations({locale, namespace: "meta.products"});
+export async function generateMetadata({ params }: ProductsPageProps): Promise<Metadata> {
+	const { locale } = await params;
+	const t = await getTranslations({ locale, namespace: "meta.products" });
 
 	return {
 		title: t("title"),
@@ -15,16 +23,19 @@ export async function generateMetadata({params}: ProductsPageProps): Promise<Met
 	};
 }
 
-export default async function ProductsPage({params}: ProductsPageProps) {
-	const {locale} = await params;
+export default async function ProductsPage({ params }: ProductsPageProps) {
+	const { locale } = await params;
 	setRequestLocale(locale);
-	const t = await getTranslations({locale, namespace: "pages.products"});
+
+	const products = toProductListingItems(PRODUCTS);
+	const collections = getCollectionListingMeta(PRODUCTS);
+	const tileSizes = getTileSizeListingMeta(PRODUCTS);
 
 	return (
-		<main>
-			<section className="bg-sapphire-deep flex min-h-screen items-center justify-center px-6">
-				<h1 className="text-display-lg text-linen font-serif">{t("heading")}</h1>
-			</section>
-		</main>
+		<ProductsPageContent
+			products={products}
+			collections={collections}
+			tileSizes={tileSizes}
+		/>
 	);
 }

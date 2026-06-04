@@ -212,7 +212,17 @@ The website must be designed with a strong emphasis on **storytelling**, guiding
 - Lazy-load below-the-fold sections with `dynamic()` or `React.lazy()`.
 - Avoid layout shifts — always set explicit `width`/`height` on images.
 
-### 7.5 Before Creating a New Function or Component
+### 7.5 Media delivery & caching (Vercel)
+
+- Reference raster/video paths via [`src/constants/media.ts`](src/constants/media.ts) (`MEDIA_PATHS`); product tiles use `/assets/**` in landing constants.
+- Prefer `next/image` over raw `<img>` or CSS `background-image` so `/_next/image` benefits from `minimumCacheTTL` in `next.config.ts`.
+- Hero video: use [`CinematicHeroVideo`](src/components/media/CinematicHeroVideo.tsx) — `preload="metadata"`, IntersectionObserver pause off-screen, `next/image` poster when `prefers-reduced-motion`.
+- LCP posters: add [`PageMediaPreload`](src/components/media/PageMediaPreload.tsx) on pages with hero media (home, about).
+- Static files under `public/media`, `public/assets`, `public/logo`, and `public/icons` are served with `Cache-Control: public, max-age=31536000, immutable` via `next.config.ts` headers. **Rename or version filenames** when replacing assets to bust cache.
+- Do not set `preload="auto"` on hero `<video>` without explicit review.
+- Landing below-fold sections: load via [`LandingPageContent`](src/page-sections/landing/LandingPageContent.tsx) `dynamic()` (same pattern as about).
+
+### 7.6 Before Creating a New Function or Component
 
 1. **Search the codebase first** — does this utility, hook, or component already exist?
 2. If a similar one exists, extend it rather than creating a duplicate.

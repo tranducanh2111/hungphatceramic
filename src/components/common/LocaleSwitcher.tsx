@@ -1,24 +1,18 @@
 "use client";
 
-import {useEffect, useId, useRef, useState} from "react";
-import {ChevronDown, ChevronUp} from "lucide-react";
-import {useLocale, useTranslations} from "next-intl";
-import {LocaleFlagIcon} from "@/components/icons/LocaleFlagIcon";
-import {routing, type AppLocale} from "@/i18n/routing";
-import {Link, usePathname} from "@/i18n/navigation";
-import {cn} from "@/lib/cn";
+import { useEffect, useId, useRef, useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { LocaleFlagIcon } from "@/components/icons/LocaleFlagIcon";
+import { routing, type AppLocale } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/navigation";
+import { cn } from "@/lib/cn";
 
 interface LocaleSwitcherProps {
 	className?: string;
 }
 
-function LocaleOptionLabel({
-	localeCode,
-	label,
-}: {
-	localeCode: AppLocale;
-	label: string;
-}) {
+function LocaleOptionLabel({ localeCode, label }: { localeCode: AppLocale; label: string }) {
 	return (
 		<span className="inline-flex items-center gap-2">
 			<LocaleFlagIcon locale={localeCode} />
@@ -27,7 +21,7 @@ function LocaleOptionLabel({
 	);
 }
 
-export function LocaleSwitcher({className}: LocaleSwitcherProps) {
+export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const t = useTranslations("navbar.locale");
 	const activeLocale = useLocale() as AppLocale;
@@ -74,9 +68,9 @@ export function LocaleSwitcher({className}: LocaleSwitcherProps) {
 						label={t(`options.${activeLocale}`)}
 					/>
 					{isMenuOpen ? (
-						<ChevronUp className="h-4 w-4 shrink-0" aria-hidden />
+						<ChevronUp className="h-4 w-4 shrink-0" aria-hidden="true" />
 					) : (
-						<ChevronDown className="h-4 w-4 shrink-0" aria-hidden />
+						<ChevronDown className="h-4 w-4 shrink-0" aria-hidden="true" />
 					)}
 				</span>
 			</button>

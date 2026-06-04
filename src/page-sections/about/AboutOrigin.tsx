@@ -2,102 +2,114 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
+import { BlueprintLine, RevealOnView } from "@/components/common";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { MEDIA_PATHS } from "@/constants/media";
 
-const fadeUp: Variants = {
-	hidden: { opacity: 0, y: 24 },
-	visible: (delay: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.8, ease: "easeOut" as const, delay },
-	}),
-};
-
 /**
- * AboutOrigin — Founding moment.
- *
- * Two-column: left has a champagne pull-quote + founding body copy;
- * right has an archival-toned origin photograph.
- * Layout reuses the LandingBrandStatement pattern.
+ * AboutOrigin — Founding story: Perla name meaning and Hung Phat background.
  */
 export function AboutOrigin() {
 	const t = useTranslations("pages.about.origin");
 
 	return (
-		<section className="relative overflow-hidden bg-[#0E2A42] py-28 lg:py-36">
-			<div className="mx-auto max-w-7xl px-6 lg:px-12">
-				<div className="grid items-center gap-16 lg:grid-cols-2">
-					{/* Left: Label, pull-quote, body */}
-					<div>
-						<motion.span
-							custom={0}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-						>
-							{t("label")}
-						</motion.span>
+		<section
+			id={ABOUT_SECTION_IDS.ourStory}
+			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-20 sm:py-28 lg:py-36"
+		>
+			<div
+				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent sm:h-36"
+				aria-hidden="true"
+			/>
 
-						<motion.blockquote
-							custom={0.15}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="mt-6 border-l-2 border-[#D4B886] pl-6"
+			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
+				<RevealOnView className="max-w-4xl">
+					<Text
+						variant="display-xl"
+						as="h2"
+						className="text-linen font-serif leading-[1.08] font-light"
+					>
+						{t("heading")}
+					</Text>
+				</RevealOnView>
+
+				<div className="mt-12 grid items-start gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+					<div className="order-2 flex flex-col lg:order-1">
+						<span
+							className="font-serif text-[72px] leading-none font-light text-transparent select-none sm:text-[88px] lg:text-[110px]"
+							style={{ WebkitTextStroke: "1px rgba(212,184,134,0.2)" }}
+							aria-hidden="true"
+						>
+							01
+						</span>
+
+						<RevealOnView className="relative mt-4 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] lg:mt-6">
+							<Image
+								src={MEDIA_PATHS.images.about.origin}
+								alt={t("imageAlt")}
+								fill
+								className="scale-[1.08] object-cover object-center grayscale"
+								sizes="(max-width: 1024px) 100vw, 50vw"
+								priority
+							/>
+							<div className="ring-champagne/10 pointer-events-none absolute inset-0 ring-1" />
+						</RevealOnView>
+
+						<RevealOnView
+							as="blockquote"
+							className="border-champagne mt-6 border-l-2 pl-5 lg:mt-8"
 						>
 							<Text
-								variant="display-lg"
+								variant="body-lg"
 								as="p"
-								className="font-serif font-light italic text-[#D4B886]"
+								className="text-champagne font-serif font-light italic"
 							>
 								&ldquo;{t("pullQuote")}&rdquo;
 							</Text>
-						</motion.blockquote>
-
-						<motion.div
-							custom={0.25}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-							className="my-8 h-px w-16 bg-[#D4B886]"
-						/>
-
-						<motion.div
-							custom={0.35}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}
-						>
-							<Text variant="body-lg" className="leading-relaxed text-[#F4F4F6]/65">
-								{t("body")}
-							</Text>
-						</motion.div>
+						</RevealOnView>
 					</div>
 
-					{/* Right: Archival origin image */}
-					<motion.div
-						initial={{ opacity: 0, scale: 0.97 }}
-						whileInView={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-						viewport={{ once: true, amount: 0.3 }}
-						className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
-					>
-						<Image
-							src={MEDIA_PATHS.images.about.origin}
-							alt={t("imageAlt")}
-							fill
-							className="object-cover object-center grayscale"
-							sizes="(max-width: 1024px) 100vw, 50vw"
+					<div className="relative order-1 flex min-h-0 flex-col justify-between lg:order-2 lg:min-h-[320px] lg:pt-2">
+						<div className="space-y-8 lg:ml-auto lg:max-w-md lg:text-right">
+							<RevealOnView>
+								<span className="text-label text-champagne font-sans tracking-[0.2em] uppercase">
+									{t("nameLabel")}
+								</span>
+								<Text
+									variant="h3"
+									as="h3"
+									className="text-linen mt-3 font-serif font-light italic"
+								>
+									{t("nameTitle")}
+								</Text>
+								<Text
+									variant="body-lg"
+									className="text-linen/70 mt-4 leading-relaxed"
+								>
+									{t("nameStory")}
+								</Text>
+							</RevealOnView>
+
+							<RevealOnView delay={0.1}>
+								<div
+									className="bg-champagne/25 mx-auto my-2 h-px w-12 lg:ms-auto lg:me-0"
+									aria-hidden="true"
+								/>
+								<Text
+									variant="body-lg"
+									className="text-linen/65 mt-6 leading-relaxed whitespace-pre-line"
+								>
+									{t("body")}
+								</Text>
+							</RevealOnView>
+						</div>
+
+						<BlueprintLine
+							variant="foundation"
+							className="mt-10 h-40 w-40 self-end opacity-90 lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:h-48 lg:w-48"
 						/>
-						<div className="absolute inset-0 rounded-2xl ring-1 ring-[#D4B886]/10" />
-					</motion.div>
+					</div>
 				</div>
 			</div>
 		</section>

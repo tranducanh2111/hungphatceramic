@@ -1,86 +1,63 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
+import { BlueprintLine, ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
 import { CLIENT_ROSTER } from "@/constants/about";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
-const fadeUp: Variants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: (delay: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.7, ease: "easeOut" as const, delay },
-	}),
-};
-
-/**
- * AboutClients — Trusted-by client roster.
- *
- * Text-name fallback grid: client names in champagne uppercase tracking,
- * muted by default, lit up on hover. Grid uses hairline borders built from
- * gap-px + sapphire-mist background — same technique as AboutCapabilities.
- *
- * When logo assets are cleared, swap the name span for an <Image> with the
- * same hover opacity transition.
- */
 export function AboutClients() {
 	const t = useTranslations("pages.about.clients");
 
 	return (
-		<section
-			className="relative bg-[#0E2A42] py-24 lg:py-32"
+		<ParallaxSection
+			id={ABOUT_SECTION_IDS.clients}
+			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-24 lg:py-32"
 			aria-label={t("ariaLabel")}
 		>
-			<div className="mx-auto max-w-7xl px-6 lg:px-12">
-				{/* Header */}
-				<div className="mb-16 text-center">
-					<motion.span
-						custom={0}
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
-						className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-					>
-						{t("label")}
-					</motion.span>
-					<motion.div
-						custom={0.1}
-						variants={fadeUp}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, amount: 0.3 }}
-					>
+			<ParallaxLayer rangePx={45} className="absolute inset-0">
+				<BlueprintLine variant="grid" className="h-full w-full opacity-[0.07]" />
+			</ParallaxLayer>
+
+			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
+				<div className="mb-12 text-center">
+					<RevealOnView>
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
+							{t("label")}
+						</span>
+					</RevealOnView>
+					<RevealOnView className="mx-auto mt-3 max-w-2xl">
 						<Text
 							variant="h2"
 							as="h2"
-							className="mx-auto mt-3 max-w-2xl font-serif font-light italic text-[#F4F4F6]"
+							className="text-linen font-serif font-light italic"
 						>
 							{t("heading")}
 						</Text>
-					</motion.div>
+					</RevealOnView>
 				</div>
 
-				{/* Client name grid */}
-				<div className="grid grid-cols-2 gap-px bg-[#1A3D5C] border border-[#1A3D5C] sm:grid-cols-3 lg:grid-cols-4">
-					{CLIENT_ROSTER.map((client, index) => (
-						<motion.div
-							key={client.id}
-							custom={0.05 + index * 0.06}
-							variants={fadeUp}
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.2 }}
-							className="group flex items-center justify-center px-6 py-10 bg-[#0E2A42] transition-colors duration-300 hover:bg-[#071A2B]/50"
-						>
-							<span className="text-label text-center font-sans font-medium tracking-widest text-[#F4F4F6]/30 uppercase transition-colors duration-300 group-hover:text-[#D4B886]/80">
-								{client.name}
-							</span>
-						</motion.div>
-					))}
+				<div className="border-champagne/20 border">
+					<div className="bg-champagne/10 grid grid-cols-2 gap-px sm:grid-cols-3 lg:grid-cols-4">
+						{CLIENT_ROSTER.map((client, index) => (
+							<RevealOnView
+								key={client.id}
+								delay={0.05 + index * 0.06}
+								className="group bg-sapphire-ocean hover:bg-sapphire-deep/60 flex items-center justify-center px-6 py-10 transition-colors duration-300"
+							>
+								<span className="text-label text-linen/30 group-hover:text-champagne/80 text-center font-sans font-medium tracking-widest uppercase transition-colors duration-300">
+									{client.name}
+								</span>
+							</RevealOnView>
+						))}
+					</div>
 				</div>
 			</div>
-		</section>
+
+			<div
+				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent sm:h-36"
+				aria-hidden="true"
+			/>
+		</ParallaxSection>
 	);
 }
