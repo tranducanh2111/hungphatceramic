@@ -45,6 +45,10 @@ export const MEDIA_PATHS = {
 			heroPoster: "/media/images/landing/hero-poster.png",
 			brandStatement: "/media/images/landing/brand-statement.jpg",
 		},
+		contact: {
+			/** Full-bleed backdrop behind the inquiry form. */
+			inquiryBackdrop: "/media/images/misc/visual-story.jpg",
+		},
 		about: {
 			/** Founding moment / origin section — replace with archival workshop photo. */
 			origin: "/media/images/misc/brand-statement.jpg",

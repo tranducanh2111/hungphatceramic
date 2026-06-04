@@ -289,6 +289,14 @@
 		"productDetail": {
 			"title": "{productName} | Perla",
 			"description": "Khám phá {productName}, giải pháp porcelain cao cấp từ Perla dành cho nội thất sang trọng."
+		},
+		"contact": {
+			"title": "Liên hệ | Perla powered by Hung Phat",
+			"description": "Đặt lịch tư vấn gạch porcelain với Perla. Liên hệ đội ngũ Hà Nội qua biểu mẫu, điện thoại, WhatsApp hoặc Zalo cho dự án nội thất cao cấp.",
+			"ogTitle": "Liên hệ Perla | Đặt lịch tư vấn",
+			"ogDescription": "Kết nối với Perla về bề mặt gốm cao cấp — tham quan showroom, báo giá sản phẩm và hợp tác thương mại tại Việt Nam.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "vi_VN"
 		}
 	},
 	"pages": {
@@ -582,6 +590,77 @@
 				"description": "Cuộn để khám phá hình ảnh panorama mô phỏng không gian sử dụng {productName} trên sàn và tường.",
 				"scrollHint": "Cuộn để khám phá",
 				"imageAlt": "Hình panorama không gian nội thất lắp đặt gạch {productName}"
+			}
+		},
+		"contact": {
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"description": "Bề mặt gốm và porcelain cao cấp cho nội thất tại Việt Nam.",
+				"areaServed": "Việt Nam",
+				"telephone": "+84965976599",
+				"email": "contact@hungphatceramic.vn",
+				"contactType": "hỗ trợ khách hàng"
+			},
+			"hero": {
+				"label": "Liên hệ",
+				"titleLine1": "Bắt đầu",
+				"titleLine2": "tư vấn của bạn",
+				"description": "Chia sẻ ý tưởng dự án — chúng tôi hỗ trợ kiến trúc sư, chủ đầu tư và khách hàng cá nhân với tư vấn porcelain phù hợp.",
+				"cta": "Gửi yêu cầu",
+				"scroll": "Cuộn"
+			},
+			"inquiry": {
+				"label": "Yêu cầu",
+				"heading": "Mô tả dự án của bạn",
+				"description": "Điền biểu mẫu — ứng dụng email sẽ mở với nội dung đã soạn sẵn để gửi.",
+				"responseNote": "Chúng tôi thường phản hồi trong một ngày làm việc.",
+				"form": {
+					"fullName": "Họ và tên",
+					"fullNamePlaceholder": "Họ tên của bạn",
+					"phone": "Điện thoại",
+					"phonePlaceholder": "09xx xxx xxx",
+					"email": "Email",
+					"emailPlaceholder": "ban@congty.com",
+					"inquiryType": "Loại yêu cầu",
+					"message": "Nội dung",
+					"messagePlaceholder": "Quy mô dự án, thời gian, bộ sưu tập hoặc số lượng mong muốn…",
+					"submit": "Mở email soạn sẵn",
+					"success": "Ứng dụng email sẽ mở với yêu cầu của bạn. Nếu không mở được, vui lòng gửi email trực tiếp.",
+					"errors": {
+						"required": "Vui lòng điền trường này.",
+						"emailInvalid": "Nhập địa chỉ email hợp lệ.",
+						"messageMinLength": "Vui lòng nhập ít nhất {min} ký tự."
+					}
+				},
+				"inquiryTypes": {
+					"consultation": "Tư vấn thiết kế",
+					"productQuote": "Báo giá sản phẩm",
+					"partnership": "Hợp tác / đại lý",
+					"other": "Khác"
+				}
+			},
+			"channels": {
+				"heading": "Liên hệ trực tiếp",
+				"primaryHeading": "Nhắn tin nhanh",
+				"secondaryHeading": "Kênh khác",
+				"whatsapp": "WhatsApp",
+				"whatsappAria": "Nhắn WhatsApp số {number}",
+				"zalo": "Zalo",
+				"zaloAria": "Nhắn Zalo số {number}",
+				"phone": "Điện thoại",
+				"phoneAria": "Gọi {number}",
+				"email": "Email",
+				"emailAria": "Gửi email {address}",
+				"address": "Showroom",
+				"addressAria": "Mở vị trí showroom trên Google Maps"
+			},
+			"showroom": {
+				"label": "Tham quan",
+				"heading": "Showroom của chúng tôi",
+				"description": "Gặp chuyên viên tại Hà Nội để xem bộ sưu tập, bề mặt và mẫu định dạng lớn trực tiếp.",
+				"hours": "Thứ Hai – Thứ Bảy, 8:00 – 17:30",
+				"mapCta": "Mở Google Maps",
+				"mapEmbedTitle": "Bản đồ vị trí showroom Perla tại Khu đô thị Starlake, Hà Nội"
 			}
 		}
 	},

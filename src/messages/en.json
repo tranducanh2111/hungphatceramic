@@ -289,6 +289,14 @@
 		"productDetail": {
 			"title": "{productName} | Perla",
 			"description": "Discover {productName}, a premium porcelain solution from Perla for luxury interiors."
+		},
+		"contact": {
+			"title": "Contact | Perla powered by Hung Phat",
+			"description": "Book a porcelain consultation with Perla. Reach our Hanoi team by form, phone, WhatsApp, or Zalo for luxury interior projects.",
+			"ogTitle": "Contact Perla | Book a Consultation",
+			"ogDescription": "Connect with Perla for bespoke ceramic surfaces — showroom visits, product quotes, and trade partnerships across Vietnam.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "en_US"
 		}
 	},
 	"pages": {
@@ -582,6 +590,77 @@
 				"description": "Scroll to explore a wide interior visualization featuring {productName} across the floor and walls.",
 				"scrollHint": "Scroll to explore",
 				"imageAlt": "Wide panoramic interior visualization using {productName} porcelain surfaces"
+			}
+		},
+		"contact": {
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"description": "Luxury porcelain and ceramic interior surfaces in Vietnam.",
+				"areaServed": "Vietnam",
+				"telephone": "+84965976599",
+				"email": "contact@hungphatceramic.vn",
+				"contactType": "customer support"
+			},
+			"hero": {
+				"label": "Get in Touch",
+				"titleLine1": "Begin Your",
+				"titleLine2": "Consultation",
+				"description": "Share your vision with our team — we respond to architects, developers, and homeowners with tailored porcelain guidance.",
+				"cta": "Send an Inquiry",
+				"scroll": "Scroll"
+			},
+			"inquiry": {
+				"label": "Inquiry",
+				"heading": "Tell Us About Your Project",
+				"description": "Complete the form and your email app will open with a draft message ready to send.",
+				"responseNote": "We typically respond within one business day.",
+				"form": {
+					"fullName": "Full name",
+					"fullNamePlaceholder": "Your name",
+					"phone": "Phone",
+					"phonePlaceholder": "09xx xxx xxx",
+					"email": "Email",
+					"emailPlaceholder": "you@company.com",
+					"inquiryType": "Inquiry type",
+					"message": "Message",
+					"messagePlaceholder": "Project scope, timeline, preferred collections, or quantities…",
+					"submit": "Open Email Draft",
+					"success": "Your email app should open with your inquiry. If it does not, email us directly.",
+					"errors": {
+						"required": "This field is required.",
+						"emailInvalid": "Enter a valid email address.",
+						"messageMinLength": "Please add at least {min} characters."
+					}
+				},
+				"inquiryTypes": {
+					"consultation": "Design consultation",
+					"productQuote": "Product quote",
+					"partnership": "Trade / partnership",
+					"other": "Other"
+				}
+			},
+			"channels": {
+				"heading": "Speak With Us Directly",
+				"primaryHeading": "Instant messaging",
+				"secondaryHeading": "Other channels",
+				"whatsapp": "WhatsApp",
+				"whatsappAria": "Chat on WhatsApp at {number}",
+				"zalo": "Zalo",
+				"zaloAria": "Chat on Zalo at {number}",
+				"phone": "Phone",
+				"phoneAria": "Call {number}",
+				"email": "Email",
+				"emailAria": "Email {address}",
+				"address": "Showroom",
+				"addressAria": "Open showroom location in Google Maps"
+			},
+			"showroom": {
+				"label": "Visit",
+				"heading": "Our Showroom",
+				"description": "Meet our specialists in Hanoi to review collections, finishes, and large-format samples in person.",
+				"hours": "Monday – Saturday, 8:00 – 17:30",
+				"mapCta": "Open in Google Maps",
+				"mapEmbedTitle": "Map showing Perla showroom at Starlake Urban Area, Hanoi"
 			}
 		}
 	},

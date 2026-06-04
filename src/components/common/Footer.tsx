@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
-import { CONTACT_CHANNELS } from "@/constants/contact";
+import { CONTACT_CHANNELS, GOOGLE_MAPS_URL, contactMailtoHref } from "@/constants/contact";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { ABOUT_SECTION_IDS, aboutSectionHref } from "@/constants/about-sections";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
@@ -40,7 +40,7 @@ const CONTACT_ITEMS: {
 	{
 		id: "address",
 		iconSrc: ICON_PATHS.contact.mapPin,
-		href: "https://maps.google.com/?q=583+Giải+Phóng,+Giáp+Bát,+Hoàng+Mai,+Hà+Nội",
+		href: GOOGLE_MAPS_URL,
 		isExternal: true,
 	},
 	{
@@ -52,7 +52,7 @@ const CONTACT_ITEMS: {
 	{
 		id: "email",
 		iconSrc: ICON_PATHS.contact.mail,
-		href: "mailto:contact@hungphatceramic.vn",
+		href: contactMailtoHref(),
 		isExternal: false,
 	},
 ];
