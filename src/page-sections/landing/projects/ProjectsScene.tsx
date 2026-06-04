@@ -4,11 +4,8 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import {motion,useMotionValueEvent,useScroll,useSpring,useTransform,type MotionValue} from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Text } from "@/components/ui";
 import { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/landing";
-import { projectDetailPath } from "@/constants/routes";
-import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/cn";
 import {SCROLL_VH_PER_CARD,
 	SPIRAL_CARD_ARTICLE_CLASS,
@@ -294,28 +291,15 @@ function ProjectCardVisual({
 								spiralUi?.stackGap ?? "mt-4",
 							)}
 						/>
-						<div
+						<Text
+							variant={spiralUi ? spiralUi.metaVariant : "body-sm"}
 							className={cn(
-								"flex items-center justify-between gap-3",
+								"truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]",
 								spiralUi?.stackGap ?? "mt-4",
 							)}
 						>
-							<Text
-								variant={spiralUi ? spiralUi.metaVariant : "body-sm"}
-								className="min-w-0 flex-1 truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]"
-							>
-								{t(`${translationNamespace}.location`)}
-							</Text>
-							<Link
-								href={projectDetailPath(project.id)}
-								className={cn(
-									"inline-flex shrink-0 items-center font-sans tracking-[0.08em] text-[#E8D5B0] transition-all duration-300 [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_18px_rgba(7,26,43,0.7)] group-hover:gap-3",
-									spiralUi?.link ?? "text-body-sm gap-2",
-								)}
-							>
-								{t("viewProject")} <ArrowRight className={spiralUi?.linkIcon ?? "h-4 w-4"} />
-							</Link>
-						</div>
+							{t(`${translationNamespace}.location`)}
+						</Text>
 					</div>
 				</div>
 			</div>
