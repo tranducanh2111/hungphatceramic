@@ -520,11 +520,14 @@
 				"orient-star": "Dòng Orient Star",
 				"sunshine": "Dòng Sunshine",
 				"architectural": "Dòng kiến trúc 20mm",
-				"peace": "Dòng Peace"
+				"peace": "Dòng Peace",
+				"indo": "Dòng INDO"
 			},
 			"sizes": {
 				"60x120": "60×120 cm",
-				"80x80": "80×80 cm"
+				"80x80": "80×80 cm",
+				"100x100": "100×100 cm",
+				"120x120": "120×120 cm"
 			},
 			"hero": {
 				"label": "Danh mục sản phẩm",
@@ -662,6 +665,42 @@
 			"peace-gp88736j": {
 				"name": "Peace GP88736J",
 				"description": "Gạch vuông dòng Peace tinh tế cho các kiến trúc đương đại thanh lịch, chống bám bẩn và dễ dàng vệ sinh sau nhiều thập kỷ."
+			},
+			"indo-gs881042": {
+				"name": "INDO GS881042",
+				"description": "Gạch vuông INDO với vân tự nhiên cân bằng, phù hợp sàn khách sạn và nhà ở cao cấp."
+			},
+			"indo-gs881045": {
+				"name": "INDO GS881045",
+				"description": "Bề mặt vuông INDO với chiều sâu tông màu tinh tế cho không gian sống đương đại."
+			},
+			"indo-gs883009": {
+				"name": "INDO GS883009",
+				"description": "Gạch INDO vuông với vân đá biểu cảm và hoàn thiện kiến trúc thanh nhã."
+			},
+			"indo-ss886101": {
+				"name": "INDO SS886101",
+				"description": "Định dạng vuông INDO cho sàn không gian mở nhà ở và khách sạn."
+			},
+			"indo-ss886106": {
+				"name": "INDO SS886106",
+				"description": "Gạch porcelain INDO vuông với độ bóng nhẹ và ánh sáng mềm."
+			},
+			"indo-ss1261307": {
+				"name": "INDO SS1261307",
+				"description": "Slab INDO định dạng lớn với nhịp dọc cho tường điểm nhấn và sảnh."
+			},
+			"indo-ss1261310": {
+				"name": "INDO SS1261310",
+				"description": "Bề mặt INDO lớn với cảm hứng đá xếp lớp và vẻ hiện đại rõ ràng."
+			},
+			"indo-ss1261311": {
+				"name": "INDO SS1261311",
+				"description": "Slab INDO tương phản mạnh cho các vùng kiến trúc nổi bật."
+			},
+			"indo-ss1261315": {
+				"name": "INDO SS1261315",
+				"description": "Gạch INDO định dạng lớn với sắc độ trầm thanh lịch cho nội thất cao cấp."
 			}
 		}
 	}

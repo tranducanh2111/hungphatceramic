@@ -29,12 +29,15 @@ const LISTING_COLLECTION_IDS = [
 	"sunshine",
 	"architectural",
 	"peace",
+	"indo",
 ] as const;
 
 /** URL slug → catalogue dimension label (must match `products.ts` / `ProductDetail.sizes`). */
 export const TILE_SIZE_SLUG_TO_DIMENSION = {
 	"60x120": "60×120cm",
 	"80x80": "80×80cm",
+	"100x100": "100×100cm",
+	"120x120": "120×120cm",
 } as const;
 
 export type TileSizeSlug = keyof typeof TILE_SIZE_SLUG_TO_DIMENSION;

@@ -6,6 +6,8 @@ import type { SizePreview } from "@/constants/landing";
 const TILE_DIMS: Record<string, { w: number; h: number }> = {
 	"60×120cm": { w: 68, h: 136 },
 	"80×80cm": { w: 108, h: 108 },
+	"100×100cm": { w: 96, h: 96 },
+	"120×120cm": { w: 112, h: 112 },
 };
 
 const FALLBACK_DIMS = { w: 96, h: 96 };

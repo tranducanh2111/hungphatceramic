@@ -78,17 +78,30 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 							<div className="flex flex-wrap gap-8">
 								{product.sizes.map((size) => {
 									const isLargeFormat = size.includes("60");
+									const isCompactSquare = size.includes("100") || size.includes("120");
+									const tilePreviewClassName = isLargeFormat
+										? "h-20 w-10"
+										: isCompactSquare
+											? "h-14 w-14"
+											: "h-16 w-16";
+									const aspectLabel = isLargeFormat
+										? "1:2"
+										: isCompactSquare
+											? "1:1"
+											: "1:1";
+									const formatLabel = isLargeFormat
+										? "Large Format"
+										: isCompactSquare
+											? "Compact Square"
+											: "Standard Format";
 
 									return (
 										<div key={size} className="flex items-center gap-4">
-											{/* Proportional geometric representation */}
 											<div
-												className={`flex items-center justify-center rounded-lg border border-[#D4B886]/30 bg-[#0E2A42] p-2 transition-all hover:border-[#D4B886]/60 ${
-													isLargeFormat ? "h-20 w-10" : "h-16 w-16"
-												}`}
+												className={`flex items-center justify-center rounded-lg border border-[#D4B886]/30 bg-[#0E2A42] p-2 transition-all hover:border-[#D4B886]/60 ${tilePreviewClassName}`}
 											>
 												<span className="font-sans text-[10px] font-bold text-[#D4B886]/80">
-													{isLargeFormat ? "1:2" : "1:1"}
+													{aspectLabel}
 												</span>
 											</div>
 											<div>
@@ -96,9 +109,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 													{size}
 												</span>
 												<span className="block font-sans text-[11px] text-[#F4F4F6]/40 uppercase">
-													{isLargeFormat
-														? "Large Format"
-														: "Standard Format"}
+													{formatLabel}
 												</span>
 											</div>
 										</div>

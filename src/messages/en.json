@@ -520,11 +520,14 @@
 				"orient-star": "Orient Star Series",
 				"sunshine": "Sunshine Series",
 				"architectural": "20mm Architectural",
-				"peace": "Peace Series"
+				"peace": "Peace Series",
+				"indo": "INDO Series"
 			},
 			"sizes": {
 				"60x120": "60×120 cm",
-				"80x80": "80×80 cm"
+				"80x80": "80×80 cm",
+				"100x100": "100×100 cm",
+				"120x120": "120×120 cm"
 			},
 			"hero": {
 				"label": "Product Catalogue",
@@ -662,6 +665,42 @@
 			"peace-gp88736j": {
 				"name": "Peace GP88736J",
 				"description": "Elegant square format tiles for quiet, cohesive architectural landscapes. Resists stains and retains its serene texture over decades."
+			},
+			"indo-gs881042": {
+				"name": "INDO GS881042",
+				"description": "INDO square porcelain with balanced natural movement for premium hospitality and residential floors."
+			},
+			"indo-gs881045": {
+				"name": "INDO GS881045",
+				"description": "INDO square surface with refined tonal depth for contemporary living spaces."
+			},
+			"indo-gs883009": {
+				"name": "INDO GS883009",
+				"description": "INDO square tile with expressive veining and a calm, architectural finish."
+			},
+			"indo-ss886101": {
+				"name": "INDO SS886101",
+				"description": "INDO square format suited to open-plan residential and hospitality floors."
+			},
+			"indo-ss886106": {
+				"name": "INDO SS886106",
+				"description": "INDO square porcelain with polished character and soft luminosity."
+			},
+			"indo-ss1261307": {
+				"name": "INDO SS1261307",
+				"description": "INDO large-format slab with vertical rhythm for feature walls and lobbies."
+			},
+			"indo-ss1261310": {
+				"name": "INDO SS1261310",
+				"description": "INDO large-format surface with layered stone inspiration and modern clarity."
+			},
+			"indo-ss1261311": {
+				"name": "INDO SS1261311",
+				"description": "INDO large slab with confident contrast for statement architectural zones."
+			},
+			"indo-ss1261315": {
+				"name": "INDO SS1261315",
+				"description": "INDO large-format tile with muted elegance for serene, high-end interiors."
 			}
 		}
 	}

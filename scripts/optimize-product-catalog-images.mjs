@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const PUBLIC_DIR = path.join(ROOT, "public");
 const PRODUCTS_TS = path.join(ROOT, "src", "constants", "products.ts");
+const INDO_PRODUCTS_TS = path.join(ROOT, "src", "constants", "indo-products.ts");
 
 /** Only process assets referenced in the product registry. */
 const ASSET_PATH_PATTERN = /"(\/assets\/[^"]+\.(?:jpe?g|png|webp))"/gi;
@@ -33,10 +34,36 @@ function getProfile(assetPath) {
 	return PROFILE_BY_HINT.at(-1);
 }
 
-async function collectAssetPaths() {
-	const source = await readFile(PRODUCTS_TS, "utf8");
+function collectIndoAssetPaths(indoSource) {
 	const paths = new Set();
-	for (const match of source.matchAll(ASSET_PATH_PATTERN)) {
+	const squareSkus = new Set(["GS881042", "GS881045", "GS883009", "SS886101", "SS886106"]);
+	const skuPattern = /skuCode:\s*"((?:GS|SS)\d+)"/g;
+	const compositePattern = /hasFullFacesComposite:\s*(true|false)/g;
+
+	const skus = [...indoSource.matchAll(skuPattern)].map((m) => m[1]);
+	const composites = [...indoSource.matchAll(compositePattern)].map((m) => m[1] === "true");
+
+	for (let index = 0; index < skus.length; index += 1) {
+		const sku = skus[index];
+		const sizeFolder = squareSkus.has(sku) ? "100X100" : "60X120";
+		const base = `/assets/${sizeFolder}/INDO ${sku}`;
+		paths.add(`${base}/${sku}.jpg`);
+		paths.add(`${base}/${sku}_PhoiCanh.jpg`);
+		if (composites[index]) {
+			paths.add(`${base}/${sku}_FullFaces.jpg`);
+		}
+	}
+	return paths;
+}
+
+async function collectAssetPaths() {
+	const [productsSource, indoSource] = await Promise.all([
+		readFile(PRODUCTS_TS, "utf8"),
+		readFile(INDO_PRODUCTS_TS, "utf8"),
+	]);
+	const paths = new Set(collectIndoAssetPaths(indoSource));
+
+	for (const match of productsSource.matchAll(ASSET_PATH_PATTERN)) {
 		const assetPath = match[1];
 		if (!assetPath.includes("Ảnh Panorama")) {
 			paths.add(assetPath);

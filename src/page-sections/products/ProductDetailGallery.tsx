@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Text } from "@/components/ui";
+import { encodePublicAssetPath } from "@/lib/products/media";
 import { ProductDetail } from "@/types";
 
 interface ProductDetailGalleryProps {
@@ -55,10 +56,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						</Text>
 						<div
 							className="relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl bg-sapphire-deep sm:min-h-[16rem] lg:min-h-[20rem]"
-							onClick={() => setLightboxSrc(product.allFacesImage!)}
+							onClick={() =>
+								setLightboxSrc(encodePublicAssetPath(product.allFacesImage!))
+							}
 						>
 							<Image
-								src={product.allFacesImage}
+								src={encodePublicAssetPath(product.allFacesImage)}
 								alt={tDetail("facesOverviewCompositeAlt", { productName })}
 								fill
 								unoptimized
@@ -90,10 +93,10 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 									viewport={{ once: true, margin: "-50px" }}
 									transition={{ duration: 0.6, delay: index * 0.05 }}
 									className="group shadow-luxury-sm relative aspect-[3/4] cursor-zoom-in overflow-hidden rounded-xl border border-sapphire-mist/30 bg-sapphire-deep"
-									onClick={() => setLightboxSrc(face)}
+									onClick={() => setLightboxSrc(encodePublicAssetPath(face))}
 								>
 									<Image
-										src={face}
+										src={encodePublicAssetPath(face)}
 										alt={tDetail("faceImageAlt", {
 											productName,
 											faceNumber: index + 1,

@@ -1,4 +1,5 @@
 import { ProductDetail } from "@/types";
+import { INDO_PRODUCTS } from "@/constants/indo-products";
 
 /**
  * Static registry of all porcelain products.
@@ -12,7 +13,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire G12962J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire G12962J/G12962J (1).jpg",
 		shortDescription:
 			"Bold patterns with a deep sapphire tone and dynamic natural stone marbling.",
@@ -37,7 +38,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire G12967J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire G12967J/G12967J_01.jpg",
 		shortDescription: "Sophisticated gray marble veining for high-end modern projects.",
 		faceImages: [
@@ -60,7 +61,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire GP12962J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire GP12962J/GP12962J (1).jpg",
 		shortDescription: "Glossy polished variant of GP12962J showing rich color depth.",
 		faceImages: [
@@ -83,7 +84,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire GP12964J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire GP12964J/GP12964J_01.jpg",
 		shortDescription:
 			"Polished crystal porcelain surface, bringing light reflection and spatial expanse.",
@@ -109,7 +110,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire G88962J",
 		collectionId: "inspire",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/G88962J/G88962 (1).jpg",
 		shortDescription: "Classic square format featuring the signature Inspire patterns.",
 		faceImages: [
@@ -129,7 +130,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Inspire GP88962",
 		collectionId: "inspire",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88962/GP88962_01.jpg",
 		shortDescription:
 			"High-gloss polished surface in an 80×80 format for luxury living spaces.",
@@ -152,7 +153,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine G12T01",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "80×80cm"],
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T01.jpg",
 		shortDescription: "The organic warmth of classic Italian travertine stone structure.",
 		faceImages: ["/assets/60X120/Travertine T01 T06/G12T01.jpg"],
@@ -164,7 +165,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine G12T06",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "80×80cm"],
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T06.jpg",
 		shortDescription: "Deep linear travertine formations with rich earthy tones.",
 		faceImages: ["/assets/60X120/Travertine T01 T06/G12T06.jpg"],
@@ -176,7 +177,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine G88T01J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/G88T01J/G88T01J (1).jpg",
 		shortDescription: "Natural matte finish square tile bringing travertine elegance indoors.",
 		faceImages: [
@@ -194,7 +195,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine G88T06J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/G88T06J/G88T06J (1).jpg",
 		shortDescription:
 			"Square travertine format with structural veins and comfortable tactile texture.",
@@ -213,7 +214,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine GP88T01J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88T01J/GP88T01J_01.jpg",
 		shortDescription: "Polished variant of the classic Travertine T01 surface in 80×80 format.",
 		faceImages: [
@@ -231,7 +232,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Travertine GP88T06J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88T06J/GP88T06J_01.jpg",
 		shortDescription: "Polished linear travertine tiles for elegant floor mappings.",
 		faceImages: [
@@ -251,7 +252,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Orient Star G12W05J",
 		collectionId: "orient-star",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
 		shortDescription: "Ivory luminance with subtle starburst lines and spatial expansiveness.",
 		faceImages: [
@@ -274,7 +275,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Orient Star GP12W05J",
 		collectionId: "orient-star",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
 		shortDescription: "Glossy polished porcelain rendering pure ivory luminance.",
 		faceImages: [
@@ -299,7 +300,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Sunshine G12032J",
 		collectionId: "sunshine",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg",
 		shortDescription: "Luminous, warm golden tones reflecting natural light beautifully.",
 		faceImages: [
@@ -323,7 +324,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Sunshine GP12032J",
 		collectionId: "sunshine",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Sunshine GP12032J/GP12032J_01.jpg",
 		shortDescription:
 			"High-gloss polished sunshine variant for open, airy, high-contrast layouts.",
@@ -347,7 +348,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Sunshine G88032J",
 		collectionId: "sunshine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/G88032J/G88032 (1).jpg",
 		shortDescription: "Square matte format of the light-filled Sunshine series.",
 		faceImages: [
@@ -367,7 +368,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Sunshine GP88032J",
 		collectionId: "sunshine",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88032J/GP88032J_01.jpg",
 		shortDescription: "Square polished porcelain tile with active veining and high-end glow.",
 		faceImages: [
@@ -389,7 +390,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Architectural G12537-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
 		shortDescription:
 			"Thick 20mm architectural gray slate engineered for high load-bearing demands.",
@@ -409,7 +410,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Architectural G12539-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
 		shortDescription:
 			"Ultra-heavy-duty 20mm thick porcelain with textured concrete slate aesthetics.",
@@ -431,7 +432,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Peace GP12H03J (Flow)",
 		collectionId: "peace",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
 		shortDescription:
 			"Tranquil flow patterns reflecting architectural stillness and natural calm.",
@@ -457,7 +458,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Peace GP12H05J",
 		collectionId: "peace",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H05J/GP12H05J (1).jpg",
 		shortDescription:
 			"Neutral tones and silent design expressions for minimal luxury environments.",
@@ -481,7 +482,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Peace GP88731J",
 		collectionId: "peace",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88731J/GP88731J_01.jpg",
 		shortDescription: "Sophisticated 80×80 format with mild patterns that breathe tranquility.",
 		faceImages: [
@@ -501,7 +502,7 @@ export const PRODUCTS: ProductDetail[] = [
 		name: "Peace GP88736J",
 		collectionId: "peace",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "100×100cm", "120×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88736J/GP88736j_01.jpg",
 		shortDescription:
 			"Elegant square format tiles for quiet, cohesive architectural landscapes.",
@@ -516,4 +517,7 @@ export const PRODUCTS: ProductDetail[] = [
 		sceneImages: ["/assets/80X80/GP88736J/PC121-GP88736.jpg"],
 		allFacesImage: "/assets/80X80/GP88736J/GP88736J.jpg",
 	},
+
+	// ─── INDO SERIES (MẪU GẠCH INDO — import assets per public/assets/INDO-IMPORT.md) ─
+	...INDO_PRODUCTS,
 ];

@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ProductTileCard } from "@/components/ui";
+import { encodePublicAssetPath } from "@/lib/products/media";
 import type { ProductListingItem } from "@/lib/products/listing";
 import { ProductSummary, ProductDetail } from "@/types";
 import { cn } from "@/lib/cn";
@@ -33,7 +34,7 @@ export function ProductTile({
 			className={cn("group block focus:outline-none", className)}
 		>
 			<ProductTileCard
-				imageSrc={product.thumbnailUrl}
+				imageSrc={encodePublicAssetPath(product.thumbnailUrl)}
 				imageAlt={productName}
 				productCode={product.skuCode}
 				dimensions={product.category}
