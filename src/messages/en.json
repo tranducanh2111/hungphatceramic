@@ -549,6 +549,14 @@
 				"matte": "Matte / Natural",
 				"polished": "Polished / Glossy",
 				"structured": "Structured / Textured"
+			},
+			"panorama": {
+				"ariaLabel": "Panorama room view for {productName}",
+				"label": "Room panorama",
+				"heading": "See it in the space",
+				"description": "Scroll to explore a wide interior visualization featuring {productName} across the floor and walls.",
+				"scrollHint": "Scroll to explore",
+				"imageAlt": "Wide panoramic interior visualization using {productName} porcelain surfaces"
 			}
 		}
 	},

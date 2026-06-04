@@ -549,6 +549,14 @@
 				"matte": "Mờ mịn / Tự nhiên",
 				"polished": "Bóng kiếng / Polished",
 				"structured": "Sần nhám / Định hình"
+			},
+			"panorama": {
+				"ariaLabel": "Panorama không gian lắp {productName}",
+				"label": "Panorama không gian",
+				"heading": "Trải nghiệm trong không gian thực",
+				"description": "Cuộn để khám phá hình ảnh panorama mô phỏng không gian sử dụng {productName} trên sàn và tường.",
+				"scrollHint": "Cuộn để khám phá",
+				"imageAlt": "Hình panorama không gian nội thất lắp đặt gạch {productName}"
 			}
 		}
 	},

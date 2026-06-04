@@ -49,13 +49,13 @@ export function ProductDetailRelated({ product }: ProductDetailRelatedProps) {
 				</div>
 
 				{/* Related Items Row */}
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				<ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
 					{related.map((item) => (
-						<div key={item.slug}>
+						<li key={item.slug}>
 							<ProductTile product={item} />
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 		</section>
 	);

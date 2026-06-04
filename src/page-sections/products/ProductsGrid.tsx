@@ -71,11 +71,7 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 					const useStaticStagger = enableStaticStagger && isMiddleColumn;
 
 					const tile = (
-						<ProductTile
-							product={product}
-							priority={shouldPrioritizeImage}
-							variant="catalog"
-						/>
+						<ProductTile product={product} priority={shouldPrioritizeImage} />
 					);
 
 					return (

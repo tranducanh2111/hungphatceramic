@@ -15,6 +15,11 @@ const ProductDetailGallery = dynamic(
 	{ ssr: false },
 );
 
+const ProductDetailPanorama = dynamic(
+	() => import("./ProductDetailPanorama").then((m) => ({ default: m.ProductDetailPanorama })),
+	{ ssr: false },
+);
+
 const ProductDetailSpecs = dynamic(
 	() => import("./ProductDetailSpecs").then((m) => ({ default: m.ProductDetailSpecs })),
 	{ ssr: false },
@@ -118,6 +123,7 @@ export function ProductDetailPageContent({ product }: ProductDetailPageContentPr
 
 			{/* Dynamically imported sub-sections */}
 			<ProductDetailGallery product={product} />
+			<ProductDetailPanorama product={product} />
 			<ProductDetailSpecs product={product} />
 			<ProductDetailRelated product={product} />
 		</motion.div>
