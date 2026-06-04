@@ -2,7 +2,10 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { CinematicHeroVideo } from "@/components/media";
+import { useAppScroll } from "@/hooks/useAppScroll";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
@@ -32,10 +35,11 @@ const scrollIndicator: Variants = {
  */
 export function LandingHero() {
 	const t = useTranslations("landing.hero");
+	const prefersReducedMotion = usePrefersReducedMotion();
 	const sectionRef = useRef<HTMLElement>(null);
 
 	// Scroll progress within the 150vh hero section
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end start"],
 	});
@@ -73,17 +77,18 @@ export function LandingHero() {
 				{/* ── Expanding Cinematic Video ── */}
 				<motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ clipPath }}>
 					<motion.div className="absolute inset-0 bg-[#071A2B]" /> {/* Base back */}
-					<motion.video
-						autoPlay
-						muted
-						loop
-						playsInline
-						className="absolute inset-0 h-full w-full origin-center object-cover"
-						style={{ opacity: videoOpacity, scale: videoScale }}
-						poster={MEDIA_PATHS.images.landing.heroPoster}
-					>
-						<source src={MEDIA_PATHS.video.hero} type="video/mp4" />
-					</motion.video>
+					<CinematicHeroVideo
+						videoSrc={MEDIA_PATHS.video.hero}
+						posterSrc={MEDIA_PATHS.images.landing.heroPoster}
+						posterAlt={t("titleLine1")}
+						prefersReducedMotion={prefersReducedMotion}
+						useMotionVideo={!prefersReducedMotion}
+						motionVideoStyle={
+							prefersReducedMotion
+								? undefined
+								: { opacity: videoOpacity, scale: videoScale }
+						}
+					/>
 					{/* Subtle overlay on video to keep text readable */}
 					<div
 						className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/80 via-transparent to-[#071A2B]/30"

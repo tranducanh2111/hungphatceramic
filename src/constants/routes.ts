@@ -3,8 +3,6 @@
 export const ROUTES = {
 	home: "/",
 	about: "/about",
-	/** In-page anchor on the About page */
-	aboutProcess: "/about#process",
 	products: "/products",
 	projects: "/projects",
 	contact: "/contact",
@@ -20,9 +18,17 @@ export function productDetailPath(slug: string): string {
 	return `${ROUTES.products}/${encodeURIComponent(slug)}`;
 }
 
-/** Product listing filtered by collection query (see products page). */
-export function productsWithCollection(collectionId: string): string {
+import { isTileSizeSlug, type TileSizeSlug } from "@/lib/products/listing";
+
+/** Product listing filtered by collection and optional tile-size query. */
+export function productsWithCollection(
+	collectionId: string,
+	sizeSlug?: TileSizeSlug | string,
+): string {
 	const searchParams = new URLSearchParams();
 	searchParams.set("collection", collectionId);
+	if (sizeSlug && isTileSizeSlug(sizeSlug)) {
+		searchParams.set("size", sizeSlug);
+	}
 	return `${ROUTES.products}?${searchParams.toString()}`;
 }

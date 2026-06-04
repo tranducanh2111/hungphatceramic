@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
+import { CONTACT_CHANNELS, GOOGLE_MAPS_URL, contactMailtoHref } from "@/constants/contact";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
+import { ABOUT_SECTION_IDS, aboutSectionHref } from "@/constants/about-sections";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
 import { Link } from "@/i18n/navigation";
 
@@ -14,7 +16,20 @@ const SOCIAL_LINKS = [
 	{ id: "instagram", href: "https://instagram.com", iconSrc: ICON_PATHS.social.instagram },
 	{ id: "facebook", href: "https://facebook.com", iconSrc: ICON_PATHS.social.facebook },
 	{ id: "youtube", href: "https://youtube.com", iconSrc: ICON_PATHS.social.youtube },
-];
+] as const;
+
+const MESSAGING_LINKS = [
+	{
+		id: "whatsapp" as const,
+		href: CONTACT_CHANNELS.whatsapp.href,
+		iconSrc: ICON_PATHS.contact.whatsapp,
+	},
+	{
+		id: "zalo" as const,
+		href: CONTACT_CHANNELS.zalo.href,
+		iconSrc: ICON_PATHS.contact.zalo,
+	},
+] as const;
 
 const CONTACT_ITEMS: {
 	id: "address" | "phone" | "email";
@@ -25,19 +40,19 @@ const CONTACT_ITEMS: {
 	{
 		id: "address",
 		iconSrc: ICON_PATHS.contact.mapPin,
-		href: "https://maps.google.com/?q=583+Giải+Phóng,+Giáp+Bát,+Hoàng+Mai,+Hà+Nội",
+		href: GOOGLE_MAPS_URL,
 		isExternal: true,
 	},
 	{
 		id: "phone",
 		iconSrc: ICON_PATHS.contact.phone,
-		href: "tel:+842412345678",
+		href: CONTACT_CHANNELS.phone.href,
 		isExternal: false,
 	},
 	{
 		id: "email",
 		iconSrc: ICON_PATHS.contact.mail,
-		href: "mailto:contact@hungphatceramic.vn",
+		href: contactMailtoHref(),
 		isExternal: false,
 	},
 ];
@@ -87,8 +102,17 @@ export function Footer() {
 	const companyLinks = [
 		{ label: t("links.about"), href: ROUTES.about },
 		{ label: t("links.projects"), href: ROUTES.projects },
-		{ label: t("links.process"), href: ROUTES.aboutProcess },
-		{ label: t("links.bookConsultation"), href: ROUTES.contact },
+		{ label: t("links.ourStory"), href: aboutSectionHref(ABOUT_SECTION_IDS.ourStory) },
+		{ label: t("links.partners"), href: aboutSectionHref(ABOUT_SECTION_IDS.partners) },
+		{ label: t("links.ourCraft"), href: aboutSectionHref(ABOUT_SECTION_IDS.craft) },
+		{
+			label: t("links.capabilities"),
+			href: aboutSectionHref(ABOUT_SECTION_IDS.capabilities),
+		},
+		{
+			label: t("links.activeLocations"),
+			href: aboutSectionHref(ABOUT_SECTION_IDS.activeLocations),
+		},
 	];
 	const collectionLinks = [
 		{ label: t("collections.inspire"), collectionId: "inspire" },
@@ -96,7 +120,9 @@ export function Footer() {
 		{ label: t("collections.orientStar"), collectionId: "orient-star" },
 		{ label: t("collections.sunshine"), collectionId: "sunshine" },
 		{ label: t("collections.architectural"), collectionId: "architectural" },
-	].map(({label, collectionId}) => ({
+		{ label: t("collections.peace"), collectionId: "peace" },
+		{ label: t("collections.indo"), collectionId: "indo" },
+	].map(({ label, collectionId }) => ({
 		label,
 		href: productsWithCollection(collectionId),
 	}));
@@ -134,8 +160,8 @@ export function Footer() {
 							{t("tagline")}
 						</Text>
 
-						{/* Social links */}
-						<div className="mt-8 flex gap-3">
+						{/* Social + chat */}
+						<div className="mt-8 flex flex-wrap gap-3">
 							{SOCIAL_LINKS.map(({ id, href, iconSrc }) => (
 								<a
 									key={id}
@@ -143,6 +169,25 @@ export function Footer() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={t(`social.${id}`)}
+									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
+								>
+									<PublicIcon
+										src={iconSrc}
+										alt=""
+										size={18}
+										className="opacity-55 transition-opacity group-hover:opacity-100"
+									/>
+								</a>
+							))}
+							{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
+								<a
+									key={id}
+									href={href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={t(`messaging.${id}`, {
+										number: CONTACT_CHANNELS[id].display,
+									})}
 									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
 								>
 									<PublicIcon
@@ -207,8 +252,8 @@ export function Footer() {
 
 				{/* ── Bottom bar ── */}
 				<div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-					<Text variant="footnote" className="text-[#F4F4F6]/25">
-						{t("rights", {year: currentYear, companyName: commonT("companyName")})}
+					<Text variant="footnote" className="text-[#F4F4F6]/25" suppressHydrationWarning>
+						{t("rights", { year: currentYear, companyName: commonT("companyName") })}
 					</Text>
 				</div>
 			</div>

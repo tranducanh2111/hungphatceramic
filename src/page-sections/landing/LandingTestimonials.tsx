@@ -71,7 +71,7 @@ export function LandingTestimonials() {
 								}}
 								transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
 								className={cn(
-									"absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-[#1A3D5C]/40 bg-[#0E2A42] p-8 shadow-2xl backdrop-blur-md",
+									"absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-[#1A3D5C]/40 bg-[#0E2A42] p-8 shadow-2xl",
 									!isActive && "pointer-events-none",
 								)}
 								style={{
@@ -120,7 +120,7 @@ export function LandingTestimonials() {
 							<button
 								key={i}
 								onClick={() => setActiveIndex(i)}
-								aria-label={t("aria.goTo", {index: i + 1})}
+								aria-label={t("aria.goTo", { index: i + 1 })}
 								className={`h-1.5 rounded-full transition-all duration-300 ${
 									i === activeIndex ? "w-6 bg-[#D4B886]" : "w-1.5 bg-[#1A3D5C]"
 								}`}

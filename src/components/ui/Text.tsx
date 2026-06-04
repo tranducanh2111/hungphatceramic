@@ -72,6 +72,25 @@ interface TextProps extends HTMLAttributes<HTMLElement> {
  * <Text variant="label" uppercase>Category</Text>
  * <Text variant="body" as="span" className="text-champagne">Accent copy</Text>
  */
+const VARIANT_CLASS_MAP: Record<TextVariant, string> = {
+	"display-2xl": "text-display-2xl",
+	"display-xl": "text-display-xl",
+	"display-lg": "text-display-lg",
+	h1: "text-h1",
+	h2: "text-h2",
+	h3: "text-h3",
+	h4: "text-h4",
+	h5: "text-h5",
+	h6: "text-h6",
+	"body-lg": "text-body-lg",
+	body: "text-body",
+	"body-sm": "text-body-sm",
+	label: "text-label",
+	"label-sm": "text-label-sm",
+	footnote: "text-footnote",
+	caption: "text-caption",
+};
+
 export function Text({
 	variant = "body",
 	as,
@@ -87,7 +106,7 @@ export function Text({
 		Tag,
 		{
 			className: cn(
-				`text-${variant}`,
+				VARIANT_CLASS_MAP[variant],
 				isHeading ? "font-serif" : "font-sans",
 				uppercase && "uppercase",
 				className,

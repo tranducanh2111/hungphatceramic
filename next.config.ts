@@ -3,11 +3,27 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
+/** Immutable cache for versioned static files under `public/`. Bump filenames when replacing assets. */
+const STATIC_MEDIA_CACHE_HEADER = {
+  key: "Cache-Control",
+  value: "public, max-age=31536000, immutable",
+} as const;
+
+const STATIC_MEDIA_PATHS = ["/media/:path*", "/assets/:path*", "/logo/:path*", "/icons/:path*"];
+
 const nextConfig: NextConfig = {
+  async headers() {
+    return STATIC_MEDIA_PATHS.map((source) => ({
+      source,
+      headers: [STATIC_MEDIA_CACHE_HEADER],
+    }));
+  },
+
   images: {
-    formats: ["image/avif", "image/webp"],
+    formats: ["image/webp"],
     /** Matches `next/image` quality values used in the app (default 75 + custom 55). */
     qualities: [55, 75],
+    minimumCacheTTL: 31536000,
   },
 
   /**

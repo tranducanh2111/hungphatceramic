@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 
 // ─── Path data ────────────────────────────────────────────────────────────────
 //
@@ -107,7 +108,7 @@ export function RoomSilhouette() {
 
 	// offset ["start end","end start"]: 0 when element top hits viewport bottom,
 	// 1 when element bottom hits viewport top — full entry-to-exit range.
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: ref,
 		offset: ["start end", "end start"],
 	});
@@ -118,11 +119,11 @@ export function RoomSilhouette() {
 
 	// Stage 2 — surfaces draw as section approaches centre of viewport
 	const surfacePath = useTransform(scrollYProgress, [0.22, 0.57], [0, 1]);
-	const surfaceOpacity = useTransform(scrollYProgress, [0.22, 0.40], [0, 0.11]);
+	const surfaceOpacity = useTransform(scrollYProgress, [0.22, 0.4], [0, 0.11]);
 
 	// Stage 3 — furnishings complete around viewport centre, synced with count-up
-	const furnishPath = useTransform(scrollYProgress, [0.40, 0.74], [0, 1]);
-	const furnishOpacity = useTransform(scrollYProgress, [0.40, 0.62], [0, 0.55]);
+	const furnishPath = useTransform(scrollYProgress, [0.4, 0.74], [0, 1]);
+	const furnishOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 0.55]);
 
 	return (
 		<div ref={ref} className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">

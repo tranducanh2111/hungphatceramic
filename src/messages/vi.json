@@ -2,7 +2,8 @@
 	"common": {
 		"companyName": "Perla powered by Hung Phat",
 		"logoAriaLabel": "Perla — Quay về trang chủ",
-		"logoAlt": "Logo Perla"
+		"logoAlt": "Logo Perla",
+		"scrollToTop": "Cuộn lên đầu trang"
 	},
 	"navbar": {
 		"aria": {
@@ -37,7 +38,11 @@
 		"links": {
 			"about": "Về chúng tôi",
 			"projects": "Dự án",
-			"process": "Quy trình",
+			"ourStory": "Câu chuyện của chúng tôi",
+			"partners": "Đối tác",
+			"ourCraft": "Nghề thủ công",
+			"capabilities": "Năng lực",
+			"activeLocations": "Địa điểm hoạt động",
 			"bookConsultation": "Đặt lịch tư vấn"
 		},
 		"collections": {
@@ -45,7 +50,9 @@
 			"travertine": "Dòng Travertine",
 			"orientStar": "Dòng Orient Star",
 			"sunshine": "Dòng Sunshine",
-			"architectural": "Dòng kiến trúc 20mm"
+			"architectural": "Dòng kiến trúc 20mm",
+			"peace": "Dòng Peace",
+			"indo": "Dòng INDO"
 		},
 		"legal": {
 			"privacy": "Chính sách bảo mật",
@@ -56,19 +63,23 @@
 			"facebook": "Facebook",
 			"youtube": "YouTube"
 		},
+		"messaging": {
+			"whatsapp": "Nhắn WhatsApp ({number})",
+			"zalo": "Nhắn Zalo ({number})"
+		},
 		"contact": {
-			"address": "Số 583 Giải Phóng, Giáp Bát, Hoàng Mai, Hà Nội",
-			"phone": "+84 (0) 24 1234 5678",
-			"email": "contact@hungphatceramic.vn"
+			"address": "K3.TT1.SH22, Khu đô thị Tây Hồ Tây, Xuân Tảo, Phường Xuân Đỉnh, Hà Nội",
+			"phone": "0965976599",
+			"email": "congtyhungphat583@gmail.com"
 		},
 		"rights": "© {year} {companyName}. Bảo lưu mọi quyền."
 	},
 	"landing": {
 		"hero": {
-			"label": "Nội thất gốm sứ cao cấp",
+			"label": "Nội thất porcelain cao cấp",
 			"titleLine1": "Nơi từng phiến đá",
 			"titleLine2": "Kể nên câu chuyện",
-			"descriptionLine1": "Không gian gốm sứ thiết kế riêng cho gu thẩm mỹ tinh tế.",
+			"descriptionLine1": "Không gian porcelain thiết kế riêng cho gu thẩm mỹ tinh tế.",
 			"descriptionLine2": "Chuẩn xác trong thi công, bền vững theo thời gian.",
 			"primaryCta": "Khám phá dự án",
 			"secondaryCta": "Xem bộ sưu tập",
@@ -78,7 +89,7 @@
 			"label": "Triết lý của chúng tôi",
 			"titleLine1": "Tinh xảo thủ công",
 			"titleLine2": "Trên hết",
-			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt gốm sứ cao cấp như nền tảng cảm xúc cho một không gian",
+			"descriptionPrefix": "Hơn một thập kỷ qua, Perla đã biến những không gian trống thành trải nghiệm sống giàu cảm xúc. Chúng tôi tuyển chọn, tư vấn và thi công bề mặt porcelain cao cấp như nền tảng cảm xúc cho một không gian",
 			"descriptionEmphasis": "đúng nghĩa",
 			"descriptionSuffix": ".",
 			"stats": {
@@ -112,9 +123,9 @@
 					"area": "Sảnh khách sạn và khu vực công cộng",
 					"imageAlt": "Dự án nội thất gốm sứ Vinhomes Symphony"
 				},
-				"grand-world-phu-quocquoc": {
+				"grand-world-phu-quoc": {
 					"title": "Grand World Phú Quốc",
-					"location": "Bãi Dài, Phú Quốc, An Giang",
+					"location": "Bãi Dài, Phú Quốc, Kiên Giang",
 					"area": "Sảnh khách sạn và khu vực công cộng",
 					"imageAlt": "Dự án nội thất gốm sứ Grand World Phú Quốc"
 				},
@@ -135,10 +146,12 @@
 		"materials": {
 			"label": "Bộ sưu tập",
 			"heading": "Bề mặt định hình không gian",
-			"description": "Năm bộ sưu tập riêng biệt, mỗi bộ dành cho một tầm nhìn sang trọng khác nhau.",
+			"description": "Bảy bộ sưu tập từ định dạng lớn 60×120 đến gạch vuông 120×120 — mỗi dòng cho một tầm nhìn sang trọng riêng.",
 			"tileFormat": "Kích thước gạch",
 			"size60x120": "60 × 120",
 			"size80x80": "80 × 80",
+			"size100x100": "100 × 100",
+			"size120x120": "120 × 120",
 			"discover": "Khám phá",
 			"exploreFullCollection": "Khám phá toàn bộ bộ sưu tập",
 			"categories": {
@@ -161,6 +174,14 @@
 				"architectural": {
 					"name": "Dòng kiến trúc 20mm",
 					"tagline": "Thiết kế cho những không gian đòi hỏi độ bền cao."
+				},
+				"peace": {
+					"name": "Dòng Peace",
+					"tagline": "Bề mặt thanh nhã cho không gian nhà ở tinh tế."
+				},
+				"indo": {
+					"name": "Dòng INDO",
+					"tagline": "Gốm sứ đương đại cho nội thất hiện đại ấn tượng."
 				}
 			}
 		},
@@ -187,8 +208,8 @@
 					"description": "Từ hơn 35 dòng sản phẩm, chúng tôi tuyển chọn các bề mặt phù hợp cả thẩm mỹ lẫn kỹ thuật. Mỗi đề xuất đều có chủ đích và căn cứ rõ ràng."
 				},
 				"fulfillment": {
-					"title": "Thi công",
-					"description": "Đội ngũ tay nghề cao thi công chuẩn xác ở từng mạch ghép, từng cạnh cắt. Chúng tôi xử lý không gian với sự tỉ mỉ của một nghệ nhân."
+					"title": "Triển khai dự án",
+					"description": "Chúng tôi điều phối mọi khâu với sự chính xác tuyệt đối, từ chuẩn bị vật liệu, kiểm tra chất lượng đến sắp xếp giao hàng và phối hợp tiến độ công trình. Đảm bảo mọi bề mặt được tuyển chọn đều đến đúng thời điểm, đúng tiêu chuẩn và đúng tinh thần thiết kế ban đầu."
 				},
 				"aftercare": {
 					"title": "Hậu mãi",
@@ -237,7 +258,7 @@
 			"description": "Đội ngũ của chúng tôi chỉ nhận số lượng dự án giới hạn theo từng mùa để đảm bảo chất lượng hoàn hảo trong mọi chi tiết. Showroom riêng đón tiếp theo lịch hẹn.",
 			"primaryCta": "Đặt lịch tư vấn",
 			"secondaryCta": "Xem bộ sưu tập",
-			"officeAddress": "Số 583 Giải Phóng, Phường Giáp Bát, Quận Hoàng Mai, Hà Nội"
+			"officeAddress": "K3.TT1.SH22, Khu đô thị Tây Hồ Tây, Xuân Tảo, Phường Xuân Đỉnh, Hà Nội"
 		}
 	},
 	"meta": {
@@ -250,34 +271,533 @@
 			"ogLocale": "vi_VN"
 		},
 		"about": {
-			"title": "Về chúng tôi | Perla",
-			"description": "Tìm hiểu Perla, hành trình phát triển, triết lý thủ công và cam kết với nội thất gốm sứ cao cấp."
+			"title": "Về chúng tôi | Perla powered by Hung Phat",
+			"description": "Khám phá hành trình, tiêu chuẩn thi công và mô hình hợp tác B2B của Perla cho các dự án nội thất cao cấp.",
+			"ogTitle": "Về Perla | Đối tác gốm sứ nội thất cao cấp",
+			"ogDescription": "Tìm hiểu cách Perla đồng hành cùng kiến trúc sư, chủ đầu tư và thương hiệu khách sạn để hiện thực hóa không gian sang trọng.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "vi_VN"
 		},
 		"projects": {
 			"title": "Dự án | Perla",
-			"description": "Khám phá các dự án nội thất đã hoàn thiện bởi Perla với vật liệu gốm sứ cao cấp."
+			"description": "Khám phá hành trình dự án và các công trình nội thất đã hoàn thiện của Perla trong khách sạn, nhà ở và tổ hợp đa chức năng."
 		},
 		"products": {
 			"title": "Sản phẩm | Perla",
-			"description": "Khám phá bộ sưu tập gạch và bề mặt gốm sứ cao cấp cho các dự án nội thất sang trọng."
+			"description": "Khám phá bộ sưu tập gạch và bề mặt porcelain cao cấp cho các dự án nội thất sang trọng."
 		},
 		"productDetail": {
 			"title": "{productName} | Perla",
-			"description": "Khám phá {productName}, giải pháp gốm sứ cao cấp từ Perla dành cho nội thất sang trọng."
+			"description": "Khám phá {productName}, giải pháp porcelain cao cấp từ Perla dành cho nội thất sang trọng."
+		},
+		"contact": {
+			"title": "Liên hệ | Perla powered by Hung Phat",
+			"description": "Đặt lịch tư vấn gạch porcelain với Perla. Liên hệ đội ngũ Hà Nội qua biểu mẫu, điện thoại, WhatsApp hoặc Zalo cho dự án nội thất cao cấp.",
+			"ogTitle": "Liên hệ Perla | Đặt lịch tư vấn",
+			"ogDescription": "Kết nối với Perla về bề mặt gốm cao cấp — tham quan showroom, báo giá sản phẩm và hợp tác thương mại tại Việt Nam.",
+			"siteName": "Perla powered by Hung Phat",
+			"ogLocale": "vi_VN"
 		}
 	},
 	"pages": {
 		"about": {
-			"heading": "Về chúng tôi"
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"foundingDate": "2012",
+				"address": {
+					"streetAddress": "583 Giải Phóng, Phường Giáp Bát",
+					"addressLocality": "Quận Hoàng Mai, Hà Nội",
+					"addressCountry": "VN"
+				},
+				"contact": {
+					"telephone": "+84-24-1234-5678",
+					"email": "contact@hungphatceramic.vn",
+					"contactType": "hỗ trợ khách hàng"
+				}
+			},
+			"hero": {
+				"titleLine1": "Chúng tôi không bán gạch.",
+				"titleLine2": "Chúng tôi kiến tạo bề mặt.",
+				"description": "Nội thất porcelain cao cấp cho những không gian đòi hỏi nhất tại Việt Nam.",
+				"cta": "200+ địa điểm hoạt động",
+				"scroll": "Cuộn xuống"
+			},
+			"origin": {
+				"heading": "Thủ công xuất phát từ niềm tin.",
+				"nameLabel": "Cái tên",
+				"nameTitle": "Perla — ngọc trai trong tiếng Ý",
+				"nameStory": "Trong tiếng Ý, Perla có nghĩa là ngọc trai — cái tên gợi lên điều mà porcelain tinh tế nên mang lại cho một không gian: chiều sâu bên dưới bề mặt, ánh sáng dịu và sự tinh xảo giản dị. Như viên ngọc trai được hình thành từng lớp một, chúng tôi tin rằng nội thất xuất sắc được xây dựng bằng kiên nhẫn, độ chính xác và con mắt không chấp nhận sự tầm thường.",
+				"pullQuote": "Đá là xa xỉ nguyên bản nhất.",
+				"body": "Perla, được thành lập vào năm 2020 và được bảo trợ bởi Hùng Phát, công ty có hơn hai thập kỷ kinh nghiệm trong ngành từ năm 2004, được thành lập với tầm nhìn rõ ràng: cung cấp các bề mặt gốm sứ và porcelain cao cấp với tay nghề thủ công vượt trội, chất lượng và sự tỉ mỉ đến từng chi tiết.",
+				"imageAlt": "Ảnh tư liệu xưởng gốm Hùng Phát tại Bát Tràng, Hà Nội"
+			},
+			"craft": {
+				"ariaLabel": "Câu chuyện tay nghề gốm sứ",
+				"beats": {
+					"kiln": {
+						"label": "Khởi nguồn",
+						"title": "Sinh ra trong lửa",
+						"body": "Mỗi viên gạch bắt đầu từ đất sét và khoáng chất, được nung ở 1.200°C. Lò nung quyết định tất cả — độ cứng, màu sắc, vân bề mặt.",
+						"imageAlt": "Gạch gốm sứ được nung trong lò công nghiệp nhiệt độ cao"
+					},
+					"polishing": {
+						"label": "Tinh chỉnh",
+						"title": "Hoàn thiện đến từng chi tiết",
+						"body": "Sau khi nung, bề mặt được hiệu chỉnh, đánh bóng và kiểm tra thủ công. Sự đồng nhất trên 10.000 m² không phải tự động hóa — đó là kết quả của tay nghề.",
+						"imageAlt": "Thợ thủ công đánh bóng và kiểm tra bề mặt gốm sứ khổ lớn"
+					},
+					"installation": {
+						"label": "Trách nhiệm",
+						"title": "Thi công có chủ đích",
+						"body": "Chúng tôi lập kế hoạch cắt ghép để giảm thiểu hao phí. Tay nghề tốt không thể tách rời sự trân trọng với không gian chúng tôi xây dựng.",
+						"imageAlt": "Kỹ thuật viên lát gạch gốm sứ khổ lớn với độ chính xác cao"
+					}
+				}
+			},
+			"capabilities": {
+				"label": "Chúng tôi cung cấp",
+				"heading": "Mô hình hoàn chỉnh cho dự án gốm sứ B2B",
+				"cards": {
+					"specification": {
+						"title": "Thông số kỹ thuật dự án",
+						"body": "Tuyển chọn vật liệu, lập hồ sơ kỹ thuật và quản lý mockup phù hợp với ý đồ thiết kế của bạn."
+					},
+					"production": {
+						"title": "Sản xuất theo yêu cầu",
+						"body": "Bộ sưu tập được sản xuất đúng dung sai kích thước, màu sắc và bề mặt theo từng dự án cụ thể."
+					},
+					"logistics": {
+						"title": "Hỗ trợ kỹ thuật & logistics",
+						"body": "Giao hàng theo tiến độ, phối hợp nền thi công và quản lý lắp đặt tại công trường đa bộ môn."
+					},
+					"aftercare": {
+						"title": "Chăm sóc sau thi công",
+						"body": "Tiêu chuẩn bảo trì được lập thành tài liệu, kế hoạch thay thế và hỗ trợ hiệu suất bề mặt dài hạn."
+					}
+				}
+			},
+			"values": {
+				"label": "Giá Trị Cốt Lõi",
+				"heading": "Những Nguyên Tắc Trong Tay Nghề Của Chúng Tôi",
+				"network": {
+					"title": "Quy Mô & Tầm Vóc",
+					"subtitle": "Miền Bắc & Toàn Quốc",
+					"stats": "200+",
+					"statsLabel": "Địa Điểm Liên Kết",
+					"description": "Kết nối hệ thống hơn 200 cửa hàng, đối tác và khách hàng trên khắp miền Bắc Việt Nam, đồng thời thực hiện các dự án porcelain cao cấp quy mô lớn trên toàn quốc. Từ khâu tư vấn đầu tiên đến kiểm định cuối cùng, năng lực vận hành của chúng tôi đảm bảo tiến độ bàn giao chính xác tuyệt đối."
+				},
+				"list": {
+					"craftsmanship": {
+						"title": "Sự Tinh Xảo",
+						"description": "Chúng tôi thi công các bề mặt porcelain với sự cẩn trọng tỉ mỉ như một nhà điêu khắc đá thực thụ. Từ khâu cắt ghép gạch, hiệu chỉnh kích thước đến kiểm tra mạch khớp trên công trình, từng chi tiết đều thể hiện cam kết mười năm về độ tinh xảo hoàn mỹ."
+					},
+					"reliability": {
+						"title": "Sự Tin Cậy",
+						"description": "Các dự án cao cấp luôn đòi hỏi sự chuẩn xác tối đa. Quy trình cung ứng và thi công của chúng tôi được chuẩn hóa với các bước kiểm tra nghiêm ngặt, đảm bảo bàn giao đúng cam kết, đúng chất lượng và đúng tiến độ công trình."
+					},
+					"customerCentricity": {
+						"title": "Khách Hàng Là Trọng Tâm",
+						"description": "Lợi ích và mong muốn của khách hàng là ưu tiên hàng đầu. Chúng tôi luôn thiết kế các giải pháp kỹ thuật, cung cấp mockup gạch thực tế phù hợp với yêu cầu cụ thể của kiến trúc sư, chủ đầu tư, kèm chế độ hậu mãi tận tâm dài hạn."
+					},
+					"sustainableGrowth": {
+						"title": "Phát Triển Bền Vững",
+						"description": "Chúng tôi kiến tạo không gian sống với tầm nhìn hướng tới tương lai. Bằng việc lập kế hoạch tối ưu hóa hao phí nguyên liệu, thực hành trách nhiệm bảo vệ môi trường và sử dụng các vật liệu porcelain có độ bền vĩnh cửu."
+					}
+				}
+			},
+			"clients": {
+				"label": "Được tin tưởng bởi",
+				"heading": "Được chỉ định bởi những không gian định hình skyline Việt Nam.",
+				"ariaLabel": "Danh sách khách hàng và dự án"
+			},
+			"partners": {
+				"label": "Đối tác",
+				"heading": "Đồng hành cùng các thương hiệu hàng đầu.",
+				"ariaLabel": "Danh sách đối tác"
+			},
+			"cta": {
+				"titleLine1": "Công trình tiếp theo",
+				"titleLine2": "bắt đầu từ đây.",
+				"description": "Đặt lịch tư vấn để trao đổi brief dự án, định hướng thiết kế và yêu cầu triển khai cùng đội ngũ chuyên gia của chúng tôi.",
+				"primaryCta": "Đặt lịch tư vấn"
+			}
 		},
 		"projects": {
-			"heading": "Dự án của chúng tôi"
+			"heading": "Dự án của chúng tôi",
+			"hero": {
+				"label": "Danh mục dự án",
+				"title": "Những công trình",
+				"titleEmphasis": "trên khắp Việt Nam",
+				"subtitle": "Từ vịnh Hạ Long đến Phú Quốc — bề mặt porcelain cao cấp cho các chương trình khách sạn, nhà ở và hỗn hợp quy mô quốc gia.",
+				"scroll": "Cuộn xuống",
+				"posterAlt": "Khu phức hợp Empire City nhìn ra sông Sài Gòn"
+			},
+			"prologue": {
+				"ariaLabel": "Giới thiệu danh mục dự án Perla",
+				"label": "Công trình",
+				"heading": "Bề mặt gánh vác tham vọng của những công trình biểu tượng.",
+				"body": "Mỗi chương bên dưới theo sát một dự án thực — tọa độ, thời điểm hoàn thiện và thương hiệu định hình đường chân trời đô thị Việt Nam. Chúng tôi ghi lại để kiến trúc sư và chủ đầu tư thấy tay nghề gốm sứ giữ trọn ý đồ thiết kế ở quy mô lớn.",
+				"statDevelopments": "6 dự án tiêu biểu",
+				"statRegions": "3 vùng",
+				"statSpan": "2017–2021"
+			},
+			"horizon": {
+				"ariaLabel": "Không gian trải nghiệm hình ảnh dự án",
+				"title": "Sáu chương.",
+				"subtitle": "Một đường chân trời liền mạch.",
+				"imageAlt": "Dãy hình ảnh các dự án tiêu biểu của Perla"
+			},
+			"regions": {
+				"ariaLabel": "Dự án theo vùng miền Việt Nam",
+				"label": "Trên bản đồ",
+				"heading": "Bắc, Nam và đảo.",
+				"north": {
+					"title": "Miền Bắc",
+					"description": "Khách sạn Hạ Long và các tổ hợp nhà ở, ven sông tại Hà Nội."
+				},
+				"south": {
+					"title": "Miền Nam",
+					"description": "Quy hoạch ven sông Thủ Thiêm và căn hộ thông minh ven sông tại Bình Chánh."
+				},
+				"island": {
+					"title": "Đảo",
+					"description": "Thành phố giải trí không ngủ Phú Quốc tại trung tâm United Center."
+				},
+				"viewProject": "Xem chương"
+			},
+			"index": {
+				"ariaLabel": "Mục lục dự án tiêu biểu",
+				"label": "Mục lục",
+				"heading": "Khám phá theo dự án",
+				"viewChapter": "Xem chương",
+				"sectors": {
+					"hospitality": "Khách sạn",
+					"residential": "Nhà ở",
+					"mixed-use": "Hỗn hợp"
+				}
+			},
+			"clients": {
+				"ariaLabel": "Chủ đầu tư và thương hiệu trên các dự án tiêu biểu",
+				"label": "Đối tác",
+				"heading": "Đồng hành trên các công trình biểu tượng cùng"
+			},
+			"cta": {
+				"titleLine1": "Công trình tiếp theo",
+				"titleLine2": "bắt đầu từ bề mặt.",
+				"description": "Trao đổi phạm vi, bộ sưu tập và triển khai cho chương trình khách sạn, nhà ở hoặc hỗn hợp của bạn cùng đội ngũ chúng tôi.",
+				"primaryCta": "Đặt lịch tư vấn",
+				"secondaryCta": "Khám phá bộ sưu tập"
+			},
+			"heritage": {
+				"label": "Hành trình",
+				"heading": "Một thập kỷ định hình không gian",
+				"ariaLabel": "Dòng thời gian các dự án tiêu biểu tại Việt Nam",
+				"milestones": {
+					"empire-city": {
+						"title": "Empire City",
+						"description": "Liên doanh do Keppel Land dẫn dắt trên 14,5 ha tại Thủ Thiêm — một trong những quy hoạch hỗn hợp ven sông lớn nhất TP.HCM, với khoảng 3.787 căn hộ cao cấp được quy hoạch qua các phân khu nhà ở như Linden và Tilia Residences.",
+						"imageAlt": "Khu phức hợp Empire City nhìn ra sông Sài Gòn tại Thủ Thiêm"
+					},
+					"ramada-ha-long-bay": {
+						"title": "Ramada Ha Long Bay View",
+						"description": "Công trình khách sạn thương hiệu Wyndham bên vịnh Hạ Long, do Công ty CP Đầu tư và Xây dựng Lạc Hồng phát triển. Tòa tháp 33 tầng ven biển khai trương năm 2019 với 568 căn hộ dịch vụ cạnh vịnh di sản UNESCO.",
+						"imageAlt": "Khách sạn và căn hộ dịch vụ Ramada by Wyndham Ha Long Bay View tại Quảng Ninh"
+					},
+					"hinode-city": {
+						"title": "Hinode City",
+						"description": "Tổ hợp phong cách Nhật do Vietracimex (WTO) phát triển tại 201 Minh Khai, Hai Bà Trưng. Ba tháp 26 tầng trên 2,8 ha cung cấp hơn 1.100 căn hộ, bàn giao hoàn tất cuối năm 2020.",
+						"imageAlt": "Các tháp căn hộ Hinode City tại trung tâm Hà Nội"
+					},
+					"vinhomes-symphony": {
+						"title": "Vinhomes Symphony",
+						"description": "Quần thể thấp tầng ven sông của Vinhomes trong Vinhomes Riverside, Long Biên — 4,3 ha, bảy tháp 9–15 tầng và khoảng 1.500 căn hộ đi vào vận hành từ tháng 9/2020.",
+						"imageAlt": "Các tháp căn hộ Vinhomes Symphony trong Vinhomes Riverside, Hà Nội"
+					},
+					"saigon-intela": {
+						"title": "Saigon Intela",
+						"description": "Khu căn hộ thông minh ven sông Sài Gòn tại Bình Chánh — 1.068 căn trong hai tháp 24 tầng do Bắc Phước Kiển và LDG Group phát triển, hoàn thành xây dựng năm 2020.",
+						"imageAlt": "Tháp căn hộ Saigon Intela trên đường Nguyễn Văn Linh, TP.HCM"
+					},
+					"grand-world-phu-quoc": {
+						"title": "Grand World Phú Quốc",
+						"description": "“Thành phố không ngủ” 85 ha của Vingroup tại Phú Quốc United Center, khai trương 21/4/2021 — khu canal phong cách Venice với mua sắm, ẩm thực và giải trí 24/7 trên đảo ngọc.",
+						"imageAlt": "Quần thể Grand World Phú Quốc về đêm"
+					}
+				}
+			}
 		},
 		"products": {
-			"heading": "Sản phẩm của chúng tôi"
+			"heading": "Bộ sưu tập của chúng tôi",
+			"allCollections": "Tất cả bộ sưu tập",
+			"allSizes": "Tất cả kích thước",
+			"filterLabel": "Lọc theo bộ sưu tập",
+			"sizeFilterLabel": "Lọc theo kích thước",
+			"collectionsAriaLabel": "Bộ lọc bộ sưu tập",
+			"sizesAriaLabel": "Bộ lọc kích thước gạch",
+			"productCount": "sản phẩm",
+			"productCountSingle": "sản phẩm",
+			"viewProduct": "Xem sản phẩm",
+			"noProducts": "Không có sản phẩm phù hợp với bộ lọc.",
+			"searchPlaceholder": "Tìm kiếm sản phẩm...",
+			"collections": {
+				"inspire": "Dòng Inspire",
+				"travertine": "Dòng Travertine",
+				"orient-star": "Dòng Orient Star",
+				"sunshine": "Dòng Sunshine",
+				"architectural": "Dòng kiến trúc 20mm",
+				"peace": "Dòng Peace",
+				"indo": "Dòng INDO"
+			},
+			"sizes": {
+				"60x120": "60×120 cm",
+				"80x80": "80×80 cm",
+				"100x100": "100×100 cm",
+				"120x120": "120×120 cm"
+			},
+			"hero": {
+				"label": "Danh mục sản phẩm",
+				"defaultTitle": "Toàn bộ bộ sưu tập"
+			}
 		},
 		"productDetail": {
-			"heading": "Sản phẩm: {slug}"
+			"heading": "Sản phẩm: {slug}",
+			"backToProducts": "Quay lại bộ sưu tập",
+			"sku": "Mã SKU",
+			"availableSizes": "Kích thước có sẵn",
+			"faceVariations": "Các mặt vân bề mặt",
+			"facesOverviewComposite": "Tổng quan các mặt vân (composite)",
+			"facesOverviewCompositeAlt": "Ảnh tổng hợp các mặt vân của {productName}",
+			"individualFaces": "Từng mặt vân ({count})",
+			"faceImageAlt": "Mặt vân {faceNumber} — {productName}",
+			"lightboxAlt": "Ảnh sản phẩm phóng to",
+			"specifications": "Thông số kỹ thuật",
+			"relatedProducts": "Sản phẩm khác dòng {collection}",
+			"requestQuote": "Yêu cầu báo giá",
+			"bookConsultation": "Đặt lịch tư vấn",
+			"surface": "Bề mặt hoàn thiện",
+			"thickness": "Độ dày",
+			"material": "Chất liệu",
+			"faces": "Số mặt vân",
+			"finishes": {
+				"matte": "Mờ mịn / Tự nhiên",
+				"polished": "Bóng kiếng / Polished",
+				"structured": "Sần nhám / Định hình"
+			},
+			"panorama": {
+				"ariaLabel": "Panorama không gian lắp {productName}",
+				"label": "Panorama không gian",
+				"heading": "Trải nghiệm trong không gian thực",
+				"description": "Cuộn để khám phá hình ảnh panorama mô phỏng không gian sử dụng {productName} trên sàn và tường.",
+				"scrollHint": "Cuộn để khám phá",
+				"imageAlt": "Hình panorama không gian nội thất lắp đặt gạch {productName}"
+			}
+		},
+		"contact": {
+			"schema": {
+				"name": "Perla powered by Hung Phat",
+				"description": "Bề mặt gốm và porcelain cao cấp cho nội thất tại Việt Nam.",
+				"areaServed": "Việt Nam",
+				"telephone": "+84965976599",
+				"email": "contact@hungphatceramic.vn",
+				"contactType": "hỗ trợ khách hàng"
+			},
+			"hero": {
+				"label": "Liên hệ",
+				"titleLine1": "Bắt đầu",
+				"titleLine2": "tư vấn của bạn",
+				"description": "Chia sẻ ý tưởng dự án — chúng tôi hỗ trợ kiến trúc sư, chủ đầu tư và khách hàng cá nhân với tư vấn porcelain phù hợp.",
+				"cta": "Gửi yêu cầu",
+				"scroll": "Cuộn"
+			},
+			"inquiry": {
+				"label": "Yêu cầu",
+				"heading": "Mô tả dự án của bạn",
+				"description": "Điền biểu mẫu — ứng dụng email sẽ mở với nội dung đã soạn sẵn để gửi.",
+				"responseNote": "Chúng tôi thường phản hồi trong một ngày làm việc.",
+				"form": {
+					"fullName": "Họ và tên",
+					"fullNamePlaceholder": "Họ tên của bạn",
+					"phone": "Điện thoại",
+					"phonePlaceholder": "09xx xxx xxx",
+					"email": "Email",
+					"emailPlaceholder": "ban@congty.com",
+					"inquiryType": "Loại yêu cầu",
+					"message": "Nội dung",
+					"messagePlaceholder": "Quy mô dự án, thời gian, bộ sưu tập hoặc số lượng mong muốn…",
+					"submit": "Mở email soạn sẵn",
+					"success": "Ứng dụng email sẽ mở với yêu cầu của bạn. Nếu không mở được, vui lòng gửi email trực tiếp.",
+					"errors": {
+						"required": "Vui lòng điền trường này.",
+						"emailInvalid": "Nhập địa chỉ email hợp lệ.",
+						"messageMinLength": "Vui lòng nhập ít nhất {min} ký tự."
+					}
+				},
+				"inquiryTypes": {
+					"consultation": "Tư vấn thiết kế",
+					"productQuote": "Báo giá sản phẩm",
+					"partnership": "Hợp tác / đại lý",
+					"other": "Khác"
+				}
+			},
+			"channels": {
+				"heading": "Liên hệ trực tiếp",
+				"primaryHeading": "Nhắn tin nhanh",
+				"secondaryHeading": "Kênh khác",
+				"whatsapp": "WhatsApp",
+				"whatsappAria": "Nhắn WhatsApp số {number}",
+				"zalo": "Zalo",
+				"zaloAria": "Nhắn Zalo số {number}",
+				"phone": "Điện thoại",
+				"phoneAria": "Gọi {number}",
+				"email": "Email",
+				"emailAria": "Gửi email {address}",
+				"address": "Showroom",
+				"addressAria": "Mở vị trí showroom trên Google Maps"
+			},
+			"showroom": {
+				"label": "Tham quan",
+				"heading": "Showroom của chúng tôi",
+				"description": "Gặp chuyên viên tại Hà Nội để xem bộ sưu tập, bề mặt và mẫu định dạng lớn trực tiếp.",
+				"hours": "Thứ Hai – Thứ Bảy, 8:00 – 17:30",
+				"mapCta": "Mở Google Maps",
+				"mapEmbedTitle": "Bản đồ vị trí showroom Perla tại Khu đô thị Starlake, Hà Nội"
+			}
+		}
+	},
+	"products": {
+		"items": {
+			"inspire-g12962j": {
+				"name": "Inspire G12962J",
+				"description": "Vân đá cẩm thạch mạnh mẽ với tông màu sapphire sâu thẳm, kiến tạo điểm nhấn ấn tượng cho mảng tường hoặc sàn trong các dự án cao cấp."
+			},
+			"inspire-g12967j": {
+				"name": "Inspire G12967J",
+				"description": "Đường vân cẩm thạch xám tinh xảo dành cho các thiết kế hiện đại, tối giản nhưng giàu chiều sâu của chất liệu tự nhiên."
+			},
+			"inspire-gp12962j": {
+				"name": "Inspire GP12962J",
+				"description": "Biến thể bóng kiếng (polished) thể hiện độ sâu màu sắc vượt trội và khả năng phản chiếu ánh sáng hoàn mỹ, tối ưu cho biệt thự và sảnh lớn."
+			},
+			"inspire-gp12964j": {
+				"name": "Inspire GP12964J",
+				"description": "Bề mặt bóng gương lấp lánh mang lại không gian sang trọng rộng mở, nâng tầm thẩm mỹ kiến trúc cho các tiền sảnh và hội trường."
+			},
+			"inspire-g88962j": {
+				"name": "Inspire G88962J",
+				"description": "Kích thước vuông 80x80cm tiêu chuẩn mang họa tiết đặc trưng của dòng Inspire, tối ưu tỷ lệ bố cục cho hành lang và phòng ăn."
+			},
+			"inspire-gp88962": {
+				"name": "Inspire GP88962",
+				"description": "Bề mặt bóng kiếng kích thước 80×80cm, mang lại chiều sâu và phản chiếu sang trọng cho khu vực bàn ăn và sảnh lối vào."
+			},
+			"travertine-t01": {
+				"name": "Travertine G12T01",
+				"description": "Vẻ ấm áp mộc mạc của đá tự nhiên travertine Ý huyền thoại. Lý tưởng cho không gian sống bình yên, gần gũi thiên nhiên."
+			},
+			"travertine-t06": {
+				"name": "Travertine G12T06",
+				"description": "Các lớp vân đá travertine cắt dọc sắc nét cùng tông màu đất ấm áp, mang lại chiều sâu cấu trúc và vẻ đẹp kiến trúc trường tồn."
+			},
+			"travertine-g88t01j": {
+				"name": "Travertine G88T01J",
+				"description": "Gạch vân đá travertine bề mặt mờ mịn tự nhiên. Tông màu beige nhẹ nhàng dễ dàng phối hợp hài hòa cùng nội thất gỗ ấm."
+			},
+			"travertine-g88t06j": {
+				"name": "Travertine G88T06J",
+				"description": "Định dạng vuông tiện dụng với các đường vân chạy dọc, bề mặt có độ ma sát an toàn cao và độ bền vượt trội theo năm tháng."
+			},
+			"travertine-gp88t01j": {
+				"name": "Travertine GP88T01J",
+				"description": "Phiên bản bóng kiếng của dòng Travertine T01 kích thước 80×80cm, kết hợp sự ấm cúng mộc mạc và nét bóng bẩy thời thượng."
+			},
+			"travertine-gp88t06j": {
+				"name": "Travertine GP88T06J",
+				"description": "Gạch vân travertine cắt dọc mài bóng sang trọng, tạo nên hiệu ứng mở rộng diện tích sàn cho các thiết kế mở hiện đại."
+			},
+			"orient-star-g12w05j": {
+				"name": "Orient Star G12W05J",
+				"description": "Sắc ngà ấm áp kết hợp các vệt vân tia sáng nhẹ nhàng lan tỏa. Mang lại vẻ đẹp thanh lịch, nhã nhặn và sang quý cho không gian."
+			},
+			"orient-star-gp12w05j": {
+				"name": "Orient Star GP12W05J",
+				"description": "Bề mặt porcelain mài bóng phản chiếu ánh sáng tự nhiên mềm mại, tối ưu cho phòng khách lớn và sảnh chính đón nắng."
+			},
+			"sunshine-g12032j": {
+				"name": "Sunshine G12032J",
+				"description": "Tông màu vàng cát rực rỡ phản chiếu ánh sáng như những tia nắng ấm áp, mang lại cảm giác tràn đầy năng lượng tươi mới cho ngôi nhà."
+			},
+			"sunshine-gp12032j": {
+				"name": "Sunshine GP12032J",
+				"description": "Bản mài bóng cao cấp của dòng Sunshine, thích hợp làm nổi bật các bức tường trang trí hoặc sàn phòng tắm sang trọng."
+			},
+			"sunshine-g88032j": {
+				"name": "Sunshine G88032J",
+				"description": "Kích thước vuông bề mặt mờ nhẹ của dòng Sunshine, chống trầy xước và chịu lực cực tốt cho các khu vực mật độ đi lại cao."
+			},
+			"sunshine-gp88032j": {
+				"name": "Sunshine GP88032J",
+				"description": "Gạch lát nền bóng kiếng 80×80cm giàu vân sắc, bắt sáng rực rỡ dưới ánh đèn nội thất giúp căn phòng lung linh hơn."
+			},
+			"architectural-g12537-dd": {
+				"name": "Architectural G12537-DD",
+				"description": "Độ dày siêu việt 20mm chuyên dụng cho ngoại thất, chịu lực và chống trơn trượt hoàn hảo cho lát sân vườn, lối đi ngoài trời."
+			},
+			"architectural-g12539-dd": {
+				"name": "Architectural G12539-DD",
+				"description": "Gạch dày 20mm mô phỏng vân đá phiến xám bê tông thô mộc cá tính. Chống chọi tốt với thời tiết khắc nghiệt tại Việt Nam."
+			},
+			"peace-gp12h03j": {
+				"name": "Peace GP12H03J (Flow)",
+				"description": "Những dòng vân chảy êm dịu tái hiện sự tĩnh lặng và thư thái của tâm hồn. Hoàn hảo cho spa, phòng tắm master và khu nghỉ dưỡng."
+			},
+			"peace-gp12h05j": {
+				"name": "Peace GP12H05J",
+				"description": "Tông màu trung tính tĩnh lặng cho các không gian luxury tối giản, giúp làm dịu thị giác và tăng cường sự tập trung."
+			},
+			"peace-gp88731j": {
+				"name": "Peace GP88731J",
+				"description": "Họa tiết nhẹ nhàng thư thái khổ 80x80cm, tạo nên nền sàn dịu mát nâng niu từng bước chân trong gia đình."
+			},
+			"peace-gp88736j": {
+				"name": "Peace GP88736J",
+				"description": "Gạch vuông dòng Peace tinh tế cho các kiến trúc đương đại thanh lịch, chống bám bẩn và dễ dàng vệ sinh sau nhiều thập kỷ."
+			},
+			"indo-gs881042": {
+				"name": "INDO GS881042",
+				"description": "Gạch vuông INDO với vân tự nhiên cân bằng, phù hợp sàn khách sạn và nhà ở cao cấp."
+			},
+			"indo-gs881045": {
+				"name": "INDO GS881045",
+				"description": "Bề mặt vuông INDO với chiều sâu tông màu tinh tế cho không gian sống đương đại."
+			},
+			"indo-gs883009": {
+				"name": "INDO GS883009",
+				"description": "Gạch INDO vuông với vân đá biểu cảm và hoàn thiện kiến trúc thanh nhã."
+			},
+			"indo-ss886101": {
+				"name": "INDO SS886101",
+				"description": "Định dạng vuông INDO cho sàn không gian mở nhà ở và khách sạn."
+			},
+			"indo-ss886106": {
+				"name": "INDO SS886106",
+				"description": "Gạch porcelain INDO vuông với độ bóng nhẹ và ánh sáng mềm."
+			},
+			"indo-ss1261307": {
+				"name": "INDO SS1261307",
+				"description": "Slab INDO định dạng lớn với nhịp dọc cho tường điểm nhấn và sảnh."
+			},
+			"indo-ss1261310": {
+				"name": "INDO SS1261310",
+				"description": "Bề mặt INDO lớn với cảm hứng đá xếp lớp và vẻ hiện đại rõ ràng."
+			},
+			"indo-ss1261311": {
+				"name": "INDO SS1261311",
+				"description": "Slab INDO tương phản mạnh cho các vùng kiến trúc nổi bật."
+			},
+			"indo-ss1261315": {
+				"name": "INDO SS1261315",
+				"description": "Gạch INDO định dạng lớn với sắc độ trầm thanh lịch cho nội thất cao cấp."
+			}
 		}
 	}
 }

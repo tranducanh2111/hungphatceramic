@@ -29,7 +29,7 @@ function LogoMark() {
 				height={67}
 				priority
 				sizes="(max-width: 768px) 180px, 220px"
-				className="h-auto w-auto max-h-11 object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
+				className="h-auto max-h-11 w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
 			/>
 		</Link>
 	);
@@ -48,7 +48,7 @@ export function Navbar() {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const navContentRef = useRef<HTMLDivElement>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(1024);
+	const [expandedWidthPx, setExpandedWidthPx] = useState(1440);
 	const [shrinkWidthPx, setShrinkWidthPx] = useState(760);
 	const navItems = [
 		{ href: ROUTES.home, label: t("links.home") },
@@ -57,7 +57,7 @@ export function Navbar() {
 		{ href: ROUTES.projects, label: t("links.projects") },
 	];
 
-	const NAV_MAX_EXPANDED_PX = 1024; // 64rem
+	const NAV_MAX_EXPANDED_PX = 1440; // 64rem
 	const NAV_OUTER_SIDE_GAP_PX = 32; // fixed wrapper has px-4 on both sides
 	const NAV_HORIZONTAL_PADDING_PX = 24; // nav has px-3 => 12px each side
 	const NAV_SHRINK_BUFFER_PX = 12; // safety buffer to prevent text wrapping at fit width
@@ -138,15 +138,8 @@ export function Navbar() {
 		recalcTargets();
 		window.addEventListener("resize", recalcTargets);
 
-		let resizeObserver: ResizeObserver | null = null;
-		if (navContentRef.current && "ResizeObserver" in window) {
-			resizeObserver = new ResizeObserver(recalcTargets);
-			resizeObserver.observe(navContentRef.current);
-		}
-
 		return () => {
 			window.removeEventListener("resize", recalcTargets);
-			resizeObserver?.disconnect();
 		};
 	}, []);
 
@@ -218,7 +211,7 @@ export function Navbar() {
 								className={cn(
 									"hidden items-center justify-center lg:inline-flex",
 									"rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
-									"text-body-sm font-sans font-light tracking-[0.12em] text-[#D4B886] whitespace-nowrap uppercase",
+									"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-[#D4B886] uppercase",
 									"px-5 py-1.5 transition-all duration-300 ease-in-out",
 									"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
 								)}
@@ -243,7 +236,9 @@ export function Navbar() {
 								)}
 							>
 								<IconSvg
-									src={isMobileMenuOpen ? ICON_PATHS.ui.close : ICON_PATHS.ui.menu}
+									src={
+										isMobileMenuOpen ? ICON_PATHS.ui.close : ICON_PATHS.ui.menu
+									}
 									alt=""
 									size={16}
 								/>

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
+import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 
@@ -19,7 +20,7 @@ export function LandingVisualStory() {
 	const t = useTranslations("landing.visualStory");
 	const sectionRef = useRef<HTMLDivElement>(null);
 
-	const { scrollYProgress } = useScroll({
+	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
 		offset: ["start start", "end end"],
 	});
@@ -31,11 +32,7 @@ export function LandingVisualStory() {
 	const textY = useTransform(scrollYProgress, [0.08, 0.2], [24, 0]);
 
 	return (
-		<section
-			ref={sectionRef}
-			className="bg-sapphire-deep relative"
-			aria-label={t("ariaLabel")}
-		>
+		<section ref={sectionRef} className="bg-sapphire-deep relative" aria-label={t("ariaLabel")}>
 			<div className="sticky top-0 h-screen overflow-hidden">
 				<motion.div
 					className="absolute top-0 left-0 h-full w-[320vw]"
@@ -45,7 +42,9 @@ export function LandingVisualStory() {
 						src={VISUAL_STORY_PANORAMA.src}
 						alt={t("imageAlt")}
 						fill
-						sizes="320vw"
+						loading="lazy"
+						quality={55}
+						sizes="(max-width: 1024px) 200vw, 320vw"
 						className="object-cover object-center"
 					/>
 				</motion.div>
