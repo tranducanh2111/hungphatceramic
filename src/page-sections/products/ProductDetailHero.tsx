@@ -5,6 +5,10 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Text } from "@/components/ui";
+import {
+	encodePublicAssetPath,
+	shouldUseUnoptimizedProductImage,
+} from "@/lib/products/media";
 import { ProductDetail } from "@/types";
 
 interface ProductDetailHeroProps {
@@ -104,10 +108,11 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 				{/* Right Panel: Hero Image (60% width on desktop) */}
 				<div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden lg:h-auto lg:w-[60%]">
 					<Image
-						src={product.thumbnailUrl}
+						src={encodePublicAssetPath(product.thumbnailUrl)}
 						alt={name}
 						fill
 						priority
+						unoptimized={shouldUseUnoptimizedProductImage(product.slug)}
 						sizes="(max-width: 1024px) 100vw, 60vw"
 						className="object-cover object-center"
 					/>

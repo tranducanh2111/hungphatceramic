@@ -53,7 +53,6 @@ export const PRODUCTS: ProductDetail[] = [
 			"/assets/60X120/Inspire G12967J/PC-G12967J-2.jpg",
 			"/assets/60X120/Ảnh Panorama/Inspire G12967J.png",
 		],
-		allFacesImage: "/assets/60X120/Inspire G12967J/G12967J.jpg",
 	},
 	{
 		slug: "inspire-gp12962j",
@@ -154,7 +153,7 @@ export const PRODUCTS: ProductDetail[] = [
 		collectionId: "travertine",
 		category: "60×120cm",
 		sizes: ["60×120cm", "80×80cm"],
-		thumbnailUrl: "/assets/60X120/Travertine T01 T06/PC137-G12T01.jpg",
+		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T01.jpg",
 		shortDescription: "The organic warmth of classic Italian travertine stone structure.",
 		faceImages: ["/assets/60X120/Travertine T01 T06/G12T01.jpg"],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC137-G12T01.jpg"],
@@ -166,7 +165,7 @@ export const PRODUCTS: ProductDetail[] = [
 		collectionId: "travertine",
 		category: "60×120cm",
 		sizes: ["60×120cm", "80×80cm"],
-		thumbnailUrl: "/assets/60X120/Travertine T01 T06/PC136-G12T06.jpg",
+		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T06.jpg",
 		shortDescription: "Deep linear travertine formations with rich earthy tones.",
 		faceImages: ["/assets/60X120/Travertine T01 T06/G12T06.jpg"],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC136-G12T06.jpg"],
@@ -433,7 +432,7 @@ export const PRODUCTS: ProductDetail[] = [
 		collectionId: "peace",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
-		thumbnailUrl: "/assets/60X120/Peace GP12H03J (Flow)/PC-GP12H03J.jpg",
+		thumbnailUrl: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
 		shortDescription:
 			"Tranquil flow patterns reflecting architectural stillness and natural calm.",
 		faceImages: [
