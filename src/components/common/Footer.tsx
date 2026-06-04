@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
+import { CONTACT_CHANNELS } from "@/constants/contact";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
 import { Link } from "@/i18n/navigation";
@@ -14,7 +15,20 @@ const SOCIAL_LINKS = [
 	{ id: "instagram", href: "https://instagram.com", iconSrc: ICON_PATHS.social.instagram },
 	{ id: "facebook", href: "https://facebook.com", iconSrc: ICON_PATHS.social.facebook },
 	{ id: "youtube", href: "https://youtube.com", iconSrc: ICON_PATHS.social.youtube },
-];
+] as const;
+
+const MESSAGING_LINKS = [
+	{
+		id: "whatsapp" as const,
+		href: CONTACT_CHANNELS.whatsapp.href,
+		iconSrc: ICON_PATHS.contact.whatsapp,
+	},
+	{
+		id: "zalo" as const,
+		href: CONTACT_CHANNELS.zalo.href,
+		iconSrc: ICON_PATHS.contact.zalo,
+	},
+] as const;
 
 const CONTACT_ITEMS: {
 	id: "address" | "phone" | "email";
@@ -31,7 +45,7 @@ const CONTACT_ITEMS: {
 	{
 		id: "phone",
 		iconSrc: ICON_PATHS.contact.phone,
-		href: "tel:+842412345678",
+		href: CONTACT_CHANNELS.phone.href,
 		isExternal: false,
 	},
 	{
@@ -134,8 +148,8 @@ export function Footer() {
 							{t("tagline")}
 						</Text>
 
-						{/* Social links */}
-						<div className="mt-8 flex gap-3">
+						{/* Social + chat */}
+						<div className="mt-8 flex flex-wrap gap-3">
 							{SOCIAL_LINKS.map(({ id, href, iconSrc }) => (
 								<a
 									key={id}
@@ -143,6 +157,25 @@ export function Footer() {
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={t(`social.${id}`)}
+									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
+								>
+									<PublicIcon
+										src={iconSrc}
+										alt=""
+										size={18}
+										className="opacity-55 transition-opacity group-hover:opacity-100"
+									/>
+								</a>
+							))}
+							{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
+								<a
+									key={id}
+									href={href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={t(`messaging.${id}`, {
+										number: CONTACT_CHANNELS[id].display,
+									})}
 									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
 								>
 									<PublicIcon

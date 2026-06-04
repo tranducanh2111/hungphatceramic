@@ -56,6 +56,10 @@
 			"facebook": "Facebook",
 			"youtube": "YouTube"
 		},
+		"messaging": {
+			"whatsapp": "Nhắn WhatsApp ({number})",
+			"zalo": "Nhắn Zalo ({number})"
+		},
 		"contact": {
 			"address": "K3.TT1.SH22, Khu đô thị Tây Hồ Tây, Xuân Tảo, Phường Xuân Đỉnh, Hà Nội",
 			"phone": "0965976599",

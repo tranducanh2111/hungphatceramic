@@ -56,6 +56,10 @@
 			"facebook": "Facebook",
 			"youtube": "YouTube"
 		},
+		"messaging": {
+			"whatsapp": "Chat on WhatsApp ({number})",
+			"zalo": "Chat on Zalo ({number})"
+		},
 		"contact": {
 			"address": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi",
 			"phone": "0965976599",

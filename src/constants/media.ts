@@ -19,6 +19,8 @@ export const ICON_PATHS = {
 		mapPin: "/icons/contact/map-pin.svg",
 		phone: "/icons/contact/phone.svg",
 		mail: "/icons/contact/mail.svg",
+		whatsapp: "/icons/contact/whatsapp.svg",
+		zalo: "/icons/contact/zalo.svg",
 	},
 	social: {
 		instagram: "/icons/social/instagram.svg",
