@@ -3,6 +3,10 @@ import { Text } from "@/components/ui/Text";
 import { cn } from "@/lib/cn";
 import type { ClassNameProp } from "@/types";
 
+/** Multi-stop scrim — smoother than a two-stop Tailwind gradient. */
+const TILE_CARD_BOTTOM_SCRIM =
+	"linear-gradient(to top, #071A2B 0%, rgba(7, 26, 43, 0.96) 14%, rgba(7, 26, 43, 0.78) 32%, rgba(7, 26, 43, 0.48) 52%, rgba(7, 26, 43, 0.2) 72%, rgba(7, 26, 43, 0.06) 88%, transparent 100%)";
+
 export interface ProductTileCardProps extends ClassNameProp {
 	imageSrc: string;
 	imageAlt: string;
@@ -52,11 +56,17 @@ export function ProductTileCard({
 			/>
 
 			<div
-				className="from-sapphire-deep via-sapphire-deep/60 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent"
-				aria-hidden="true"
+				aria-hidden
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] min-h-[6.75rem] max-h-[10rem] sm:min-h-[7.25rem]"
+				style={{ backgroundImage: TILE_CARD_BOTTOM_SCRIM }}
 			/>
 
-			<div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-4 pt-20 sm:p-5 sm:pt-24">
+			<div
+				className={cn(
+					"absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1.5",
+					"px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5",
+				)}
+			>
 				<div className="flex items-center justify-between gap-3">
 					<Text
 						variant="footnote"
