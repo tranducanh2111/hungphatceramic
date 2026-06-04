@@ -11,7 +11,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
     "optimize:product-images": "node scripts/optimize-product-catalog-images.mjs",
-    "download:indo-assets": "node scripts/download-indo-assets.mjs"
+    "download:indo-assets": "node scripts/download-indo-assets.mjs",
+    "sync:product-size-assets": "node scripts/sync-product-size-assets.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

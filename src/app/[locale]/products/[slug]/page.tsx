@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PRODUCTS } from "@/constants/products";
@@ -33,7 +34,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 		notFound();
 	}
 
-	return <ProductDetailPageContent product={product} />;
+	return (
+		<Suspense fallback={null}>
+			<ProductDetailPageContent product={product} />
+		</Suspense>
+	);
 }
 
 export function generateStaticParams() {

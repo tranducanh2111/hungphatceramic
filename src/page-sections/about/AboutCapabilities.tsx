@@ -6,6 +6,7 @@ import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "luci
 import { Text } from "@/components/ui";
 import { ParallaxElement, RevealOnView } from "@/components/common";
 import { CAPABILITY_CARDS, type CapabilityId } from "@/constants/about";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
 /** Small footer icon per capability card. */
 const CAPABILITY_ICONS: Record<CapabilityId, LucideIcon> = {
@@ -25,7 +26,10 @@ export function AboutCapabilities() {
 	const bottomRow = CAPABILITY_CARDS.slice(2);
 
 	return (
-		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
+		<section
+			id={ABOUT_SECTION_IDS.capabilities}
+			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-28 lg:py-36"
+		>
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="mb-16">
 					<RevealOnView>

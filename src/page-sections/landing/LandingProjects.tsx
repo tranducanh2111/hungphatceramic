@@ -3,11 +3,9 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
 import { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/landing";
-import { ROUTES, projectDetailPath } from "@/constants/routes";
-import { Link } from "@/i18n/navigation";
+import { ROUTES } from "@/constants/routes";
 
 function ProjectCard({
 	project,
@@ -66,20 +64,12 @@ function ProjectCard({
 							{t(`${translationNamespace}.area`)}
 						</Text>
 						<div className="mt-4 h-px bg-gradient-to-r from-white/22 via-white/10 to-transparent" />
-						<div className="mt-4 flex items-center justify-between gap-4">
-							<Text
-								variant="body-sm"
-								className="min-w-0 flex-1 truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]"
-							>
-								{t(`${translationNamespace}.location`)}
-							</Text>
-							<Link
-								href={projectDetailPath(project.id)}
-								className="text-body-sm inline-flex shrink-0 items-center gap-2 font-sans tracking-[0.08em] text-[#E8D5B0] transition-all duration-300 [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_18px_rgba(7,26,43,0.7)] group-hover:gap-3"
-							>
-								{t("viewProject")} <ArrowRight className="h-4 w-4" />
-							</Link>
-						</div>
+						<Text
+							variant="body-sm"
+							className="mt-4 font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]"
+						>
+							{t(`${translationNamespace}.location`)}
+						</Text>
 					</div>
 				</div>
 			</div>

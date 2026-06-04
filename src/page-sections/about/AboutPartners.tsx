@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
 import { PARTNER_ROSTER } from "@/constants/about";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
 /** Height-first sizing: wide logos (e.g. Guocera) are not shrunk by a narrow box width. */
 const PARTNER_LOGO_HEIGHT_CLASS = "h-11 w-auto sm:h-12 lg:h-14";
@@ -18,7 +19,8 @@ export function AboutPartners() {
 
 	return (
 		<ParallaxSection
-			className="bg-sapphire-deep relative overflow-hidden py-24 lg:py-32"
+			id={ABOUT_SECTION_IDS.partners}
+			className="bg-sapphire-deep relative scroll-mt-28 overflow-hidden py-24 lg:py-32"
 			aria-label={t("ariaLabel")}
 		>
 			<ParallaxLayer rangePx={30} className="absolute inset-0">

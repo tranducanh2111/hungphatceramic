@@ -20,16 +20,8 @@ interface ProductsFilterProps {
 	tileSizes: TileSizeListingMeta[];
 }
 
-const COLLECTION_PILL_CLASS = (isSelected: boolean) =>
-	cn(
-		"text-body-sm shrink-0 rounded-full px-5 py-2 font-sans tracking-wide transition-all duration-300",
-		isSelected
-			? "bg-[#D4B886] font-medium text-[#071A2B]"
-			: "border border-[#1A3D5C]/30 bg-[#0E2A42] text-[#F4F4F6]/55 hover:text-[#F4F4F6]",
-	);
-
 /**
- * ProductsFilter — Collection and tile-size filters (sidebar desktop, pills mobile).
+ * ProductsFilter — Collection and tile-size filters (expandable accordions on all breakpoints).
  */
 export function ProductsFilter({
 	activeCollectionId,
@@ -42,142 +34,61 @@ export function ProductsFilter({
 	const t = useTranslations("pages.products");
 
 	return (
-		<div className="w-full space-y-6 md:space-y-5">
-			{/* Mobile — collections */}
-			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-2 md:hidden">
-				<div className="flex gap-2.5 px-6">
-					<button
-						type="button"
-						onClick={() => onSelectCollection("all")}
-						className={COLLECTION_PILL_CLASS(activeCollectionId === "all")}
-					>
-						{t("allCollections")}
-					</button>
+		<div className="flex w-full flex-col gap-2.5">
+			<FilterAccordionSection
+				headingLabel={t("filterLabel")}
+				ariaLabel={t("collectionsAriaLabel")}
+				defaultExpanded
+			>
+				<FilterNavButton
+					label={t("allCollections")}
+					isSelected={activeCollectionId === "all"}
+					onSelect={() => onSelectCollection("all")}
+				/>
 
-					{collections.map((col) => {
-						const isSelected = activeCollectionId === col.id;
-						const label = t.has(`collections.${col.id}`)
-							? t(`collections.${col.id}`)
-							: col.id;
+				{collections.map((col) => {
+					const label = t.has(`collections.${col.id}`)
+						? t(`collections.${col.id}`)
+						: col.id;
 
-						return (
-							<button
-								key={col.id}
-								type="button"
-								onClick={() => onSelectCollection(col.id)}
-								className={COLLECTION_PILL_CLASS(isSelected)}
-							>
-								{label}{" "}
-								<span
-									className={cn(
-										"ml-1.5 text-[10px] opacity-60",
-										isSelected ? "text-[#071A2B]/80" : "text-[#D4B886]/80",
-									)}
-								>
-									({col.count})
-								</span>
-							</button>
-						);
-					})}
-				</div>
-			</div>
+					return (
+						<FilterNavButton
+							key={col.id}
+							label={label}
+							count={col.count}
+							isSelected={activeCollectionId === col.id}
+							onSelect={() => onSelectCollection(col.id)}
+						/>
+					);
+				})}
+			</FilterAccordionSection>
 
-			{/* Mobile — tile sizes */}
-			<div className="flex w-full scrollbar-none items-center overflow-x-auto pb-4 md:hidden">
-				<div className="flex gap-2.5 px-6">
-					<button
-						type="button"
-						onClick={() => onSelectSize("all")}
-						className={COLLECTION_PILL_CLASS(activeSizeId === "all")}
-					>
-						{t("allSizes")}
-					</button>
+			<FilterAccordionSection
+				headingLabel={t("sizeFilterLabel")}
+				ariaLabel={t("sizesAriaLabel")}
+			>
+				<FilterNavButton
+					label={t("allSizes")}
+					isSelected={activeSizeId === "all"}
+					onSelect={() => onSelectSize("all")}
+				/>
 
-					{tileSizes.map((size) => {
-						const isSelected = activeSizeId === size.id;
-						const label = t.has(`sizes.${size.id}`)
-							? t(`sizes.${size.id}`)
-							: size.dimension;
+				{tileSizes.map((size) => {
+					const label = t.has(`sizes.${size.id}`)
+						? t(`sizes.${size.id}`)
+						: size.dimension;
 
-						return (
-							<button
-								key={size.id}
-								type="button"
-								onClick={() => onSelectSize(size.id)}
-								className={COLLECTION_PILL_CLASS(isSelected)}
-							>
-								{label}{" "}
-								<span
-									className={cn(
-										"ml-1.5 text-[10px] opacity-60",
-										isSelected ? "text-[#071A2B]/80" : "text-[#D4B886]/80",
-									)}
-								>
-									({size.count})
-								</span>
-							</button>
-						);
-					})}
-				</div>
-			</div>
-
-			{/* Desktop — expandable filter groups */}
-			<div className="hidden flex-col gap-2.5 md:flex">
-				<FilterAccordionSection
-					headingLabel={t("filterLabel")}
-					ariaLabel={t("collectionsAriaLabel")}
-					defaultExpanded
-				>
-					<FilterNavButton
-						label={t("allCollections")}
-						isSelected={activeCollectionId === "all"}
-						onSelect={() => onSelectCollection("all")}
-					/>
-
-					{collections.map((col) => {
-						const label = t.has(`collections.${col.id}`)
-							? t(`collections.${col.id}`)
-							: col.id;
-
-						return (
-							<FilterNavButton
-								key={col.id}
-								label={label}
-								count={col.count}
-								isSelected={activeCollectionId === col.id}
-								onSelect={() => onSelectCollection(col.id)}
-							/>
-						);
-					})}
-				</FilterAccordionSection>
-
-				<FilterAccordionSection
-					headingLabel={t("sizeFilterLabel")}
-					ariaLabel={t("sizesAriaLabel")}
-				>
-					<FilterNavButton
-						label={t("allSizes")}
-						isSelected={activeSizeId === "all"}
-						onSelect={() => onSelectSize("all")}
-					/>
-
-					{tileSizes.map((size) => {
-						const label = t.has(`sizes.${size.id}`)
-							? t(`sizes.${size.id}`)
-							: size.dimension;
-
-						return (
-							<FilterNavButton
-								key={size.id}
-								label={label}
-								count={size.count}
-								isSelected={activeSizeId === size.id}
-								onSelect={() => onSelectSize(size.id)}
-							/>
-						);
-					})}
-				</FilterAccordionSection>
-			</div>
+					return (
+						<FilterNavButton
+							key={size.id}
+							label={label}
+							count={size.count}
+							isSelected={activeSizeId === size.id}
+							onSelect={() => onSelectSize(size.id)}
+						/>
+					);
+				})}
+			</FilterAccordionSection>
 		</div>
 	);
 }

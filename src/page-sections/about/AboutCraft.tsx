@@ -8,6 +8,7 @@ import { Text } from "@/components/ui";
 import { ParallaxLayer } from "@/components/common";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { CRAFT_BEATS } from "@/constants/about";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { BLUEPRINT_TOKENS as T } from "@/constants/blueprint";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -298,7 +299,12 @@ function CraftScrollStory() {
 	] as const;
 
 	return (
-		<section ref={sectionRef} className="bg-sapphire-deep relative" aria-label={t("ariaLabel")}>
+		<section
+			ref={sectionRef}
+			id={ABOUT_SECTION_IDS.craft}
+			className="bg-sapphire-deep relative scroll-mt-28"
+			aria-label={t("ariaLabel")}
+		>
 			<div className="sticky top-0 flex h-[100dvh] min-h-[600px] flex-col overflow-hidden lg:h-screen lg:flex-row">
 				<div className="relative h-[38vh] min-h-[220px] shrink-0 overflow-hidden sm:h-[42vh] lg:h-full lg:min-h-0 lg:w-1/2">
 					{CRAFT_BEATS.map((beat, index) => (
@@ -380,7 +386,11 @@ function CraftReducedMotion() {
 	const beat = CRAFT_BEATS[0];
 
 	return (
-		<section className="bg-sapphire-deep relative" aria-label={t("ariaLabel")}>
+		<section
+			id={ABOUT_SECTION_IDS.craft}
+			className="bg-sapphire-deep relative scroll-mt-28"
+			aria-label={t("ariaLabel")}
+		>
 			<div className="flex min-h-[100dvh] flex-col lg:flex-row">
 				<div className="relative h-[42vh] min-h-[220px] shrink-0 overflow-hidden lg:h-auto lg:min-h-[600px] lg:w-1/2">
 					<ParallaxLayer rangePx={40} className="absolute inset-0">

@@ -12,6 +12,7 @@ import type { ProductListingItem } from "@/lib/products/listing";
 interface ProductsGridProps {
 	products: ProductListingItem[];
 	activeCollectionId: string;
+	activeSizeId: string;
 }
 
 /** Pixels of page scroll over which the middle column reaches a half-card drop. */
@@ -24,7 +25,7 @@ const REDUCED_MOTION_MEDIA_QUERY = "(prefers-reduced-motion: reduce)";
  * ProductsGrid — Catalog grid with scroll-linked middle-column stagger (lg+).
  * Middle tiles translate by up to 50% of their own height so their top meets the row midpoint.
  */
-export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps) {
+export function ProductsGrid({ products, activeCollectionId, activeSizeId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
 	const isThreeColumnGrid = useMediaQuery(LARGE_GRID_MEDIA_QUERY);
 	const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_MEDIA_QUERY);
@@ -71,7 +72,11 @@ export function ProductsGrid({ products, activeCollectionId }: ProductsGridProps
 					const useStaticStagger = enableStaticStagger && isMiddleColumn;
 
 					const tile = (
-						<ProductTile product={product} priority={shouldPrioritizeImage} />
+						<ProductTile
+							product={product}
+							activeSizeId={activeSizeId}
+							priority={shouldPrioritizeImage}
+						/>
 					);
 
 					return (

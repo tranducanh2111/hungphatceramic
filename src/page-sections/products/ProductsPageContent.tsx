@@ -8,6 +8,7 @@ import { ProductsHero } from "./ProductsHero";
 import { ProductsFilter } from "./ProductsFilter";
 import { ProductsGrid } from "./ProductsGrid";
 import { Input } from "@/components/ui";
+import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import {
 	isTileSizeSlug,
 	productMatchesTileSize,
@@ -88,7 +89,7 @@ function ProductsPageContentInner({
 			result = result.filter((product) => productMatchesTileSize(product, activeSizeId));
 		}
 
-		return result;
+		return result.map((product) => applyTileSizeToListingItem(product, activeSizeId));
 	}, [activeCollectionId, activeSizeId, products, searchQuery]);
 
 	return (
@@ -125,6 +126,7 @@ function ProductsPageContentInner({
 						<ProductsGrid
 							products={filteredProducts}
 							activeCollectionId={activeCollectionId}
+							activeSizeId={activeSizeId}
 						/>
 					</div>
 				</div>

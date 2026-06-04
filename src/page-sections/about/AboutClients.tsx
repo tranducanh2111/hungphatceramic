@@ -4,13 +4,15 @@ import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { BlueprintLine, ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
 import { CLIENT_ROSTER } from "@/constants/about";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
 export function AboutClients() {
 	const t = useTranslations("pages.about.clients");
 
 	return (
 		<ParallaxSection
-			className="bg-sapphire-ocean relative overflow-hidden py-24 lg:py-32"
+			id={ABOUT_SECTION_IDS.clients}
+			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-24 lg:py-32"
 			aria-label={t("ariaLabel")}
 		>
 			<ParallaxLayer rangePx={45} className="absolute inset-0">

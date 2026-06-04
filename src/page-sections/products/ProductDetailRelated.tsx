@@ -4,27 +4,33 @@ import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { ProductTile } from "@/components/common";
+import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
+import { toProductListingItems } from "@/lib/products/listing";
 import { PRODUCTS } from "@/constants/products";
 import { ProductDetail } from "@/types";
 
 interface ProductDetailRelatedProps {
 	product: ProductDetail;
+	activeSizeId?: string;
 }
 
 /**
  * ProductDetailRelated — Showcases other tiles in the same collection.
  * Remapped to sapphire/champagne palette.
  */
-export function ProductDetailRelated({ product }: ProductDetailRelatedProps) {
+export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRelatedProps) {
 	const tDetail = useTranslations("pages.productDetail");
 	const tPage = useTranslations("pages.products");
 
 	// Resolve dynamic related products
 	const related = useMemo(() => {
-		return PRODUCTS.filter(
+		const peers = PRODUCTS.filter(
 			(p) => p.collectionId === product.collectionId && p.slug !== product.slug,
-		).slice(0, 3); // Max 3 items
-	}, [product.collectionId, product.slug]);
+		).slice(0, 3);
+		return toProductListingItems(peers).map((item) =>
+			applyTileSizeToListingItem(item, activeSizeId),
+		);
+	}, [product.collectionId, product.slug, activeSizeId]);
 
 	if (related.length === 0) return null;
 
@@ -52,7 +58,7 @@ export function ProductDetailRelated({ product }: ProductDetailRelatedProps) {
 				<ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
 					{related.map((item) => (
 						<li key={item.slug}>
-							<ProductTile product={item} />
+							<ProductTile product={item} activeSizeId={activeSizeId} />
 						</li>
 					))}
 				</ul>

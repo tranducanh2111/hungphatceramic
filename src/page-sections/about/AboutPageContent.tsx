@@ -2,7 +2,9 @@
 
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { useLenis } from "lenis/react";
 import { useLenisControls } from "@/components/common";
+import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 import { AboutHero } from "@/page-sections/about/AboutHero";
 import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
 
@@ -59,9 +61,33 @@ function useLenisResizeOnAboutMount() {
 	}, [lenisControls]);
 }
 
+/** Scroll to hash targets after navigation (e.g. footer “Our Story”). */
+function useAboutHashScroll() {
+	const lenis = useLenis();
+
+	useEffect(() => {
+		const rawHash = window.location.hash.replace(/^#/, "");
+		if (!rawHash) {
+			return;
+		}
+
+		const scrollToHash = () => scrollToAnchorElement(rawHash, lenis, { offset: -96 });
+
+		requestAnimationFrame(() => {
+			scrollToHash();
+			requestAnimationFrame(scrollToHash);
+		});
+
+		// Code-split sections (e.g. Values / Active Locations) mount after first paint.
+		const retryTimer = window.setTimeout(scrollToHash, 900);
+		return () => window.clearTimeout(retryTimer);
+	}, [lenis]);
+}
+
 /** Client shell — below-fold sections code-split without SSR. */
 export function AboutPageContent() {
 	useLenisResizeOnAboutMount();
+	useAboutHashScroll();
 
 	return (
 		<>

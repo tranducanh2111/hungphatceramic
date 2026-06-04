@@ -2,7 +2,7 @@
  * Compresses oversized product catalog images (thumbnails, faces, composites).
  * Run: node scripts/optimize-product-catalog-images.mjs
  */
-import { readFile, rename, unlink, stat } from "node:fs/promises";
+import { readFile, rename, unlink, stat, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -56,6 +56,36 @@ function collectIndoAssetPaths(indoSource) {
 	return paths;
 }
 
+const SYNCED_SIZE_FOLDERS = ["100X100", "120X120"];
+
+async function collectSyncedSizeAssetPaths() {
+	const paths = new Set();
+	const assetsRoot = path.join(PUBLIC_DIR, "assets");
+
+	for (const sizeFolder of SYNCED_SIZE_FOLDERS) {
+		const folderRoot = path.join(assetsRoot, sizeFolder);
+		let productDirs;
+		try {
+			productDirs = await readdir(folderRoot, { withFileTypes: true });
+		} catch {
+			continue;
+		}
+
+		for (const productDir of productDirs) {
+			if (!productDir.isDirectory()) continue;
+			const productPath = path.join(folderRoot, productDir.name);
+			const files = await readdir(productPath, { withFileTypes: true });
+			for (const file of files) {
+				if (!file.isFile()) continue;
+				if (!/\.(jpe?g|png|webp)$/i.test(file.name)) continue;
+				paths.add(`/assets/${sizeFolder}/${productDir.name}/${file.name}`);
+			}
+		}
+	}
+
+	return paths;
+}
+
 async function collectAssetPaths() {
 	const [productsSource, indoSource] = await Promise.all([
 		readFile(PRODUCTS_TS, "utf8"),
@@ -69,6 +99,11 @@ async function collectAssetPaths() {
 			paths.add(assetPath);
 		}
 	}
+
+	for (const syncedPath of await collectSyncedSizeAssetPaths()) {
+		paths.add(syncedPath);
+	}
+
 	return [...paths].sort();
 }
 

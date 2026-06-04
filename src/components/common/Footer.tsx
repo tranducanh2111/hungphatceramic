@@ -6,6 +6,7 @@ import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
 import { CONTACT_CHANNELS } from "@/constants/contact";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
+import { ABOUT_SECTION_IDS, aboutSectionHref } from "@/constants/about-sections";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
 import { Link } from "@/i18n/navigation";
 
@@ -101,8 +102,17 @@ export function Footer() {
 	const companyLinks = [
 		{ label: t("links.about"), href: ROUTES.about },
 		{ label: t("links.projects"), href: ROUTES.projects },
-		{ label: t("links.process"), href: ROUTES.aboutProcess },
-		{ label: t("links.bookConsultation"), href: ROUTES.contact },
+		{ label: t("links.ourStory"), href: aboutSectionHref(ABOUT_SECTION_IDS.ourStory) },
+		{ label: t("links.partners"), href: aboutSectionHref(ABOUT_SECTION_IDS.partners) },
+		{ label: t("links.ourCraft"), href: aboutSectionHref(ABOUT_SECTION_IDS.craft) },
+		{
+			label: t("links.capabilities"),
+			href: aboutSectionHref(ABOUT_SECTION_IDS.capabilities),
+		},
+		{
+			label: t("links.activeLocations"),
+			href: aboutSectionHref(ABOUT_SECTION_IDS.activeLocations),
+		},
 	];
 	const collectionLinks = [
 		{ label: t("collections.inspire"), collectionId: "inspire" },
@@ -110,6 +120,8 @@ export function Footer() {
 		{ label: t("collections.orientStar"), collectionId: "orient-star" },
 		{ label: t("collections.sunshine"), collectionId: "sunshine" },
 		{ label: t("collections.architectural"), collectionId: "architectural" },
+		{ label: t("collections.peace"), collectionId: "peace" },
+		{ label: t("collections.indo"), collectionId: "indo" },
 	].map(({ label, collectionId }) => ({
 		label,
 		href: productsWithCollection(collectionId),

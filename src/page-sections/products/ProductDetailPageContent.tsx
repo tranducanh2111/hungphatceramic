@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
+import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 import { useLenisControls } from "@/components/common";
+import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
 import { ProductDetailHero } from "./ProductDetailHero";
 import { ProductDetail } from "@/types";
 
@@ -92,6 +94,12 @@ export function ProductDetailPageContent({ product }: ProductDetailPageContentPr
 	useLenisResizeOnDetailMount();
 	const router = useRouter();
 	const lenis = useLenis();
+	const searchParams = useSearchParams();
+	const activeSizeId = searchParams.get("size") ?? undefined;
+	const displayProduct = useMemo(
+		() => applyTileSizeToProductDetail(product, activeSizeId),
+		[product, activeSizeId],
+	);
 	const [isExiting, setIsExiting] = useState(false);
 
 	// Reset scroll position to top instantly on mount to clear scroll memory from listing page
@@ -119,13 +127,13 @@ export function ProductDetailPageContent({ product }: ProductDetailPageContentPr
 			className="origin-center"
 		>
 			{/* Static above-fold detail hero with custom click interceptor */}
-			<ProductDetailHero product={product} onBack={handleBack} />
+			<ProductDetailHero product={displayProduct} onBack={handleBack} />
 
 			{/* Dynamically imported sub-sections */}
-			<ProductDetailGallery product={product} />
+			<ProductDetailGallery product={displayProduct} />
 			<ProductDetailPanorama product={product} />
-			<ProductDetailSpecs product={product} />
-			<ProductDetailRelated product={product} />
+			<ProductDetailSpecs product={displayProduct} />
+			<ProductDetailRelated product={displayProduct} activeSizeId={activeSizeId} />
 		</motion.div>
 	);
 }

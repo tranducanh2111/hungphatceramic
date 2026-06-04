@@ -52,6 +52,16 @@ export function getTileSizeDimension(slug: TileSizeSlug): string {
 	return TILE_SIZE_SLUG_TO_DIMENSION[slug];
 }
 
+/** Catalogue dimension label → URL slug for `?size=` (undefined when unknown). */
+export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | undefined {
+	for (const slug of TILE_SIZE_SLUGS) {
+		if (TILE_SIZE_SLUG_TO_DIMENSION[slug] === dimension) {
+			return slug;
+		}
+	}
+	return undefined;
+}
+
 export function toProductListingItems(products: ProductDetail[]): ProductListingItem[] {
 	return products.map(
 		({ slug, skuCode, name, thumbnailUrl, category, collectionId, sizes }) => ({

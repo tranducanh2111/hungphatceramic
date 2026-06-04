@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Compass, ShieldCheck, HeartHandshake, Sprout } from "lucide-react";
 import { Text } from "@/components/ui";
 import { BlueprintLine, ParallaxElement } from "@/components/common";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { ValuesPrinciplesTimeline } from "@/page-sections/about/ValuesPrinciplesTimeline";
 
 export function AboutValues() {
@@ -17,7 +18,10 @@ export function AboutValues() {
 	] as const;
 
 	return (
-		<section className="bg-sapphire-deep relative -mt-px overflow-hidden py-24 sm:py-28 lg:py-36">
+		<section
+			id={ABOUT_SECTION_IDS.activeLocations}
+			className="bg-sapphire-deep relative -mt-px overflow-hidden py-24 sm:py-28 lg:py-36 scroll-mt-28"
+		>
 			<div
 				className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_70%_58%,#0E2A42_0%,transparent_65%)] opacity-40"
 				aria-hidden="true"

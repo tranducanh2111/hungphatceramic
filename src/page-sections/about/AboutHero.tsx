@@ -1,13 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { CinematicHeroVideo } from "@/components/media";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
+import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 
 const contentVariants: Variants = {
 	hidden: { opacity: 0, y: 32 },
@@ -30,6 +33,11 @@ export function AboutHero() {
 	const t = useTranslations("pages.about.hero");
 	const sectionRef = useRef<HTMLElement>(null);
 	const prefersReducedMotion = usePrefersReducedMotion();
+	const lenis = useLenis();
+
+	const handleActiveLocationsClick = useCallback(() => {
+		scrollToAnchorElement(ABOUT_SECTION_IDS.activeLocations, lenis, { offset: -96 });
+	}, [lenis]);
 
 	const { scrollYProgress } = useAppScroll({
 		target: sectionRef,
@@ -108,10 +116,10 @@ export function AboutHero() {
 						className="mt-9"
 					>
 						<Button
-							href="#our-story"
 							variant="outline"
 							size="lg"
 							className="rounded-full"
+							onClick={handleActiveLocationsClick}
 						>
 							{t("cta")}
 						</Button>

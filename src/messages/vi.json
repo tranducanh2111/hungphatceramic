@@ -38,7 +38,11 @@
 		"links": {
 			"about": "Về chúng tôi",
 			"projects": "Dự án",
-			"process": "Quy trình",
+			"ourStory": "Câu chuyện của chúng tôi",
+			"partners": "Đối tác",
+			"ourCraft": "Nghề thủ công",
+			"capabilities": "Năng lực",
+			"activeLocations": "Địa điểm hoạt động",
 			"bookConsultation": "Đặt lịch tư vấn"
 		},
 		"collections": {
@@ -46,7 +50,9 @@
 			"travertine": "Dòng Travertine",
 			"orientStar": "Dòng Orient Star",
 			"sunshine": "Dòng Sunshine",
-			"architectural": "Dòng kiến trúc 20mm"
+			"architectural": "Dòng kiến trúc 20mm",
+			"peace": "Dòng Peace",
+			"indo": "Dòng INDO"
 		},
 		"legal": {
 			"privacy": "Chính sách bảo mật",
@@ -140,10 +146,12 @@
 		"materials": {
 			"label": "Bộ sưu tập",
 			"heading": "Bề mặt định hình không gian",
-			"description": "Năm bộ sưu tập riêng biệt, mỗi bộ dành cho một tầm nhìn sang trọng khác nhau.",
+			"description": "Bảy bộ sưu tập từ định dạng lớn 60×120 đến gạch vuông 120×120 — mỗi dòng cho một tầm nhìn sang trọng riêng.",
 			"tileFormat": "Kích thước gạch",
 			"size60x120": "60 × 120",
 			"size80x80": "80 × 80",
+			"size100x100": "100 × 100",
+			"size120x120": "120 × 120",
 			"discover": "Khám phá",
 			"exploreFullCollection": "Khám phá toàn bộ bộ sưu tập",
 			"categories": {
@@ -166,6 +174,14 @@
 				"architectural": {
 					"name": "Dòng kiến trúc 20mm",
 					"tagline": "Thiết kế cho những không gian đòi hỏi độ bền cao."
+				},
+				"peace": {
+					"name": "Dòng Peace",
+					"tagline": "Bề mặt thanh nhã cho không gian nhà ở tinh tế."
+				},
+				"indo": {
+					"name": "Dòng INDO",
+					"tagline": "Gốm sứ đương đại cho nội thất hiện đại ấn tượng."
 				}
 			}
 		},
@@ -295,7 +311,7 @@
 				"titleLine1": "Chúng tôi không bán gạch.",
 				"titleLine2": "Chúng tôi kiến tạo bề mặt.",
 				"description": "Nội thất porcelain cao cấp cho những không gian đòi hỏi nhất tại Việt Nam.",
-				"cta": "Khám phá câu chuyện của chúng tôi",
+				"cta": "200+ địa điểm hoạt động",
 				"scroll": "Cuộn xuống"
 			},
 			"origin": {

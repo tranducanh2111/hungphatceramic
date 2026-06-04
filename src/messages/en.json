@@ -38,7 +38,11 @@
 		"links": {
 			"about": "About Us",
 			"projects": "Our Projects",
-			"process": "Our Process",
+			"ourStory": "Our Story",
+			"partners": "Partners",
+			"ourCraft": "Our Craft",
+			"capabilities": "Capabilities",
+			"activeLocations": "Active Locations",
 			"bookConsultation": "Book a Consultation"
 		},
 		"collections": {
@@ -46,7 +50,9 @@
 			"travertine": "Travertine Series",
 			"orientStar": "Orient Star Series",
 			"sunshine": "Sunshine Series",
-			"architectural": "20mm Architectural"
+			"architectural": "20mm Architectural",
+			"peace": "Peace Series",
+			"indo": "INDO Series"
 		},
 		"legal": {
 			"privacy": "Privacy Policy",
@@ -140,10 +146,12 @@
 		"materials": {
 			"label": "The Collection",
 			"heading": "Surfaces That Define a Space",
-			"description": "Five distinct collections. Each one curated for a different vision of luxury.",
+			"description": "Seven curated collections across large-format slabs and square tiles — from 60×120 to 120×120.",
 			"tileFormat": "Tile format",
 			"size60x120": "60 × 120",
 			"size80x80": "80 × 80",
+			"size100x100": "100 × 100",
+			"size120x120": "120 × 120",
 			"discover": "Discover",
 			"exploreFullCollection": "Explore Full Collection",
 			"categories": {
@@ -166,6 +174,14 @@
 				"architectural": {
 					"name": "20mm Architectural",
 					"tagline": "Engineered for demanding spaces."
+				},
+				"peace": {
+					"name": "Peace Series",
+					"tagline": "Serene surfaces for refined residential spaces."
+				},
+				"indo": {
+					"name": "INDO Series",
+					"tagline": "Contemporary porcelain for bold, modern interiors."
 				}
 			}
 		},
@@ -295,7 +311,7 @@
 				"titleLine1": "We don't sell tiles.",
 				"titleLine2": "We compose surfaces.",
 				"description": "Premium porcelain interiors for Vietnam's most demanding spaces.",
-				"cta": "Discover Our Story",
+				"cta": "200+ Active Locations",
 				"scroll": "Scroll"
 			},
 			"origin": {
