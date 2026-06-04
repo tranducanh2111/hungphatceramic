@@ -2,7 +2,8 @@
 	"common": {
 		"companyName": "Perla powered by Hung Phat",
 		"logoAriaLabel": "Perla — Return to homepage",
-		"logoAlt": "Perla logo"
+		"logoAlt": "Perla logo",
+		"scrollToTop": "Scroll to top"
 	},
 	"navbar": {
 		"aria": {

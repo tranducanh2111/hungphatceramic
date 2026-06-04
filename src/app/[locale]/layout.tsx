@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { SmoothScrollProvider } from "@/components/common/SmoothScrollProvider";
 import { ScrollProgressBar } from "@/components/common/ScrollProgressBar";
+import { ScrollToTopButton } from "@/components/common/ScrollToTopButton";
 import { Navbar } from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { routing, type AppLocale } from "@/i18n/routing";
@@ -28,6 +29,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 				{children}
 				<Footer />
 				<ScrollProgressBar />
+				<ScrollToTopButton />
 			</SmoothScrollProvider>
 		</NextIntlClientProvider>
 	);

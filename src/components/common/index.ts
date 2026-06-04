@@ -1,5 +1,6 @@
 export { SmoothScrollProvider, useLenisControls } from "./SmoothScrollProvider";
 export { ScrollProgressBar } from "./ScrollProgressBar";
+export { ScrollToTopButton } from "./ScrollToTopButton";
 export { Navbar } from "./Navbar";
 export { Footer } from "./Footer";
 export { LocaleSwitcher } from "./LocaleSwitcher";

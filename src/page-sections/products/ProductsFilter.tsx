@@ -1,5 +1,6 @@
 "use client";
 
+import { useId, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -120,11 +121,13 @@ export function ProductsFilter({
 				</div>
 			</div>
 
-			{/* Desktop — collections */}
-			<div className="hidden md:block">
-				<FilterSectionHeading label={t("filterLabel")} />
-
-				<nav className="flex flex-col gap-1" aria-label={t("collectionsAriaLabel")}>
+			{/* Desktop — expandable filter groups */}
+			<div className="hidden flex-col gap-2.5 md:flex">
+				<FilterAccordionSection
+					headingLabel={t("filterLabel")}
+					ariaLabel={t("collectionsAriaLabel")}
+					defaultExpanded
+				>
 					<FilterNavButton
 						label={t("allCollections")}
 						isSelected={activeCollectionId === "all"}
@@ -146,14 +149,12 @@ export function ProductsFilter({
 							/>
 						);
 					})}
-				</nav>
-			</div>
+				</FilterAccordionSection>
 
-			{/* Desktop — tile sizes */}
-			<div className="hidden md:block">
-				<FilterSectionHeading label={t("sizeFilterLabel")} />
-
-				<nav className="flex flex-col gap-1" aria-label={t("sizesAriaLabel")}>
+				<FilterAccordionSection
+					headingLabel={t("sizeFilterLabel")}
+					ariaLabel={t("sizesAriaLabel")}
+				>
 					<FilterNavButton
 						label={t("allSizes")}
 						isSelected={activeSizeId === "all"}
@@ -175,26 +176,96 @@ export function ProductsFilter({
 							/>
 						);
 					})}
+				</FilterAccordionSection>
+			</div>
+		</div>
+	);
+}
+
+interface FilterAccordionSectionProps {
+	headingLabel: string;
+	ariaLabel: string;
+	defaultExpanded?: boolean;
+	children: ReactNode;
+}
+
+function FilterAccordionSection({
+	headingLabel,
+	ariaLabel,
+	defaultExpanded = false,
+	children,
+}: FilterAccordionSectionProps) {
+	const panelId = useId();
+	const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+
+	return (
+		<div className={cn(isExpanded ? "pb-4" : "pb-3")}>
+			<button
+				type="button"
+				onClick={() => setIsExpanded((previous) => !previous)}
+				aria-expanded={isExpanded}
+				aria-controls={panelId}
+				className="group flex w-full items-center justify-between gap-3 border-b border-champagne pb-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne/50"
+			>
+				<Text
+					variant="label"
+					as="span"
+					className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+				>
+					{headingLabel}
+				</Text>
+				<FilterAccordionChevron isExpanded={isExpanded} />
+			</button>
+
+			<div
+				id={panelId}
+				className={cn(
+					"grid transition-[grid-template-rows] duration-300 ease-out",
+					isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+				)}
+			>
+				<nav
+					className={cn(
+						"flex min-h-0 flex-col gap-1 overflow-hidden",
+						isExpanded && "pt-2",
+					)}
+					aria-label={ariaLabel}
+					aria-hidden={!isExpanded}
+					inert={!isExpanded ? true : undefined}
+				>
+					{children}
 				</nav>
 			</div>
 		</div>
 	);
 }
 
-interface FilterSectionHeadingProps {
-	label: string;
+interface FilterAccordionChevronProps {
+	isExpanded: boolean;
 }
 
-function FilterSectionHeading({ label }: FilterSectionHeadingProps) {
+function FilterAccordionChevron({ isExpanded }: FilterAccordionChevronProps) {
 	return (
-		<div className="mb-3 border-b border-champagne pb-2">
-			<Text
-				variant="label"
-				className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
-			>
-				{label}
-			</Text>
-		</div>
+		<svg
+			width="14"
+			height="14"
+			viewBox="0 0 14 14"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
+			className={cn(
+				"shrink-0 text-champagne/80 transition-transform duration-300 ease-out",
+				isExpanded ? "rotate-180" : "rotate-0",
+			)}
+		>
+			<path
+				d="M3 5.5L7 9.5L11 5.5"
+				stroke="currentColor"
+				strokeWidth="1.25"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+		</svg>
 	);
 }
 
@@ -210,7 +281,7 @@ function FilterNavButton({ label, count, isSelected, onSelect }: FilterNavButton
 		<button
 			type="button"
 			onClick={onSelect}
-			className="group flex w-full items-center justify-between py-1 text-left focus:outline-none"
+			className="group flex w-full items-center justify-between py-1 text-left focus:outline-none focus-visible:text-champagne"
 		>
 			<span
 				className={cn(
