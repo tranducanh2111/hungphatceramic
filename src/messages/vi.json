@@ -114,7 +114,7 @@
 				},
 				"grand-world-phu-quocquoc": {
 					"title": "Grand World Phú Quốc",
-					"location": "Bãi Dài, Phú Quốc, An Giang",
+					"location": "Bãi Dài, Phú Quốc, Kiên Giang",
 					"area": "Sảnh khách sạn và khu vực công cộng",
 					"imageAlt": "Dự án nội thất gốm sứ Grand World Phú Quốc"
 				},
@@ -398,37 +398,37 @@
 			"heritage": {
 				"label": "Hành trình",
 				"heading": "Một thập kỷ định hình không gian",
-				"ariaLabel": "Lịch sử phát triển công ty",
+				"ariaLabel": "Dòng thời gian các dự án tiêu biểu tại Việt Nam",
 				"milestones": {
-					"founding": {
-						"title": "Thành lập tại Bát Tràng",
-						"description": "Hùng Phát mở xưởng tuyển chọn và thi công gốm sứ đầu tiên tại làng nghề gốm truyền thống của Việt Nam.",
-						"imageAlt": "Xưởng gốm Hùng Phát ban đầu tại làng Bát Tràng"
+					"empire-city": {
+						"title": "Empire City",
+						"description": "Liên doanh do Keppel Land dẫn dắt trên 14,5 ha tại Thủ Thiêm — một trong những quy hoạch hỗn hợp ven sông lớn nhất TP.HCM, với khoảng 3.787 căn hộ cao cấp được quy hoạch qua các phân khu nhà ở như Linden và Tilia Residences.",
+						"imageAlt": "Khu phức hợp Empire City nhìn ra sông Sài Gòn tại Thủ Thiêm"
 					},
-					"firstHotel": {
-						"title": "Dự án khách sạn đầu tiên",
-						"description": "Dự án boutique hotel tiêu biểu đầu tiên chứng minh rằng thi công gốm sứ chính xác có thể bảo toàn ý đồ thiết kế ở quy mô thương mại thực tế.",
-						"imageAlt": "Dự án nội thất khách sạn đầu tiên của Perla tại Hạ Long"
+					"ramada-ha-long-bay": {
+						"title": "Ramada Ha Long Bay View",
+						"description": "Công trình khách sạn thương hiệu Wyndham bên vịnh Hạ Long, do Công ty CP Đầu tư và Xây dựng Lạc Hồng phát triển. Tòa tháp 33 tầng ven biển khai trương năm 2019 với 568 căn hộ dịch vụ cạnh vịnh di sản UNESCO.",
+						"imageAlt": "Khách sạn và căn hộ dịch vụ Ramada by Wyndham Ha Long Bay View tại Quảng Ninh"
 					},
-					"hospitalityExpansion": {
-						"title": "Mở rộng đa địa điểm",
-						"description": "Mở rộng sang các chương trình khách sạn đa cơ sở với quy trình kiểm soát chất lượng được chuẩn hóa cho các nhà thầu.",
-						"imageAlt": "Dự án nội thất khách sạn đa địa điểm của Perla"
+					"hinode-city": {
+						"title": "Hinode City",
+						"description": "Tổ hợp phong cách Nhật do Vietracimex (WTO) phát triển tại 201 Minh Khai, Hai Bà Trưng. Ba tháp 26 tầng trên 2,8 ha cung cấp hơn 1.100 căn hộ, bàn giao hoàn tất cuối năm 2020.",
+						"imageAlt": "Các tháp căn hộ Hinode City tại trung tâm Hà Nội"
 					},
-					"residentialGrowth": {
-						"title": "Cột mốc nhà ở cao cấp",
-						"description": "Hợp đồng nhà ở quy mô lớn đầu tiên — hơn 200 căn hộ cao cấp với hệ thống gốm sứ toàn diện.",
-						"imageAlt": "Dự án nhà ở cao cấp với hệ thống gốm sứ của Perla"
+					"vinhomes-symphony": {
+						"title": "Vinhomes Symphony",
+						"description": "Quần thể thấp tầng ven sông của Vinhomes trong Vinhomes Riverside, Long Biên — 4,3 ha, bảy tháp 9–15 tầng và khoảng 1.500 căn hộ đi vào vận hành từ tháng 9/2020.",
+						"imageAlt": "Các tháp căn hộ Vinhomes Symphony trong Vinhomes Riverside, Hà Nội"
 					},
-					"brandsAsPartner": {
-						"title": "Đối tác B2B được công nhận",
-						"description": "Thương hiệu Perla ra đời — chính thức hóa mô hình đối tác với kiến trúc sư, chủ đầu tư và đơn vị vận hành.",
-						"imageAlt": "Dự án hợp tác B2B của Perla"
+					"saigon-intela": {
+						"title": "Saigon Intela",
+						"description": "Khu căn hộ thông minh ven sông Sài Gòn tại Bình Chánh — 1.068 căn trong hai tháp 24 tầng do Bắc Phước Kiển và LDG Group phát triển, hoàn thành xây dựng năm 2020.",
+						"imageAlt": "Tháp căn hộ Saigon Intela trên đường Nguyễn Văn Linh, TP.HCM"
 					},
-					"present": {
-						"title": "Hiện tại",
-						"description": "Hơn 200 dự án hoàn thiện. Được tin tưởng trong các chương trình khách sạn, nhà ở và tổ hợp đa chức năng trên toàn Việt Nam.",
-						"imageAlt": "Các dự án hiện tại của Perla trên thị trường nội thất cao cấp Việt Nam"
+					"grand-world-phu-quoc": {
+						"title": "Grand World Phú Quốc",
+						"description": "“Thành phố không ngủ” 85 ha của Vingroup tại Phú Quốc United Center, khai trương 21/4/2021 — khu canal phong cách Venice với mua sắm, ẩm thực và giải trí 24/7 trên đảo ngọc.",
+						"imageAlt": "Quần thể Grand World Phú Quốc về đêm"
 					}
 				}
 			}

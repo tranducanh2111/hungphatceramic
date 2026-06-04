@@ -114,7 +114,7 @@
 				},
 				"grand-world-phu-quocquoc": {
 					"title": "Grand World Phu Quoc",
-					"location": "Bai Dai, Phu Quoc, An Giang",
+					"location": "Bai Dai, Phu Quoc, Kien Giang",
 					"area": "Hotel lobby & public areas",
 					"imageAlt": "Grand World Phu Quoc luxury ceramic interior project"
 				},
@@ -398,37 +398,37 @@
 			"heritage": {
 				"label": "Heritage",
 				"heading": "A Decade of Defining Spaces",
-				"ariaLabel": "Company heritage timeline",
+				"ariaLabel": "Selected project timeline across Vietnam",
 				"milestones": {
-					"founding": {
-						"title": "Founded in Bat Trang",
-						"description": "Hung Phat opens its first ceramic sourcing and installation practice in the craft heartland of Vietnam.",
-						"imageAlt": "The original Hung Phat workshop in Bat Trang craft village"
+					"empire-city": {
+						"title": "Empire City",
+						"description": "A Keppel Land–led joint venture on 14.5 hectares in Thu Thiem — one of Ho Chi Minh City's largest waterfront mixed-use masterplans, with about 3,787 premium apartments planned across residential phases including Linden and Tilia Residences.",
+						"imageAlt": "Empire City mixed-use development overlooking the Saigon River in Thu Thiem"
 					},
-					"firstHotel": {
-						"title": "First Hospitality Commission",
-						"description": "A landmark boutique hotel project proves that precision ceramic installation can protect design intent at full commercial scale.",
-						"imageAlt": "First major hotel interior project by Perla in Ha Long Bay"
+					"ramada-ha-long-bay": {
+						"title": "Ramada Ha Long Bay View",
+						"description": "Wyndham-branded hospitality on Ha Long Bay, developed by Lac Hong Construction & Investment. The 33-storey waterfront tower opened in 2019 with 568 serviced apartments beside UNESCO-listed Ha Long Bay.",
+						"imageAlt": "Ramada by Wyndham Ha Long Bay View hotel and serviced apartments in Quang Ninh"
 					},
-					"hospitalityExpansion": {
-						"title": "Multi-Site Expansion",
-						"description": "Expanded into multi-property hospitality programs with standardised quality controls across contractor teams.",
-						"imageAlt": "Multi-site hospitality project interior by Perla"
+					"hinode-city": {
+						"title": "Hinode City",
+						"description": "A Japanese-inspired mixed-use landmark by Vietracimex (WTO) at 201 Minh Khai, Hai Ba Trung. Three 26-storey towers on 2.8 hectares deliver more than 1,100 residences, with handover completed in late 2020.",
+						"imageAlt": "Hinode City mixed-use residential towers in central Hanoi"
 					},
-					"residentialGrowth": {
-						"title": "Premium Residential Milestone",
-						"description": "First large-format residential specification — 200+ luxury apartments with full-scope ceramic systems.",
-						"imageAlt": "Luxury residential project interior with Perla ceramic systems"
+					"vinhomes-symphony": {
+						"title": "Vinhomes Symphony",
+						"description": "Vinhomes' low-density riverside ensemble inside Vinhomes Riverside, Long Bien — 4.3 hectares, seven towers of 9–15 floors, and about 1,500 apartments brought into operation from September 2020.",
+						"imageAlt": "Vinhomes Symphony apartment towers within Vinhomes Riverside, Hanoi"
 					},
-					"brandsAsPartner": {
-						"title": "Recognised B2B Partner",
-						"description": "Perla brand launched — formalising the partnership model with architects, developers, and hospitality operators.",
-						"imageAlt": "Perla B2B partner project collaboration"
+					"saigon-intela": {
+						"title": "Saigon Intela",
+						"description": "Vietnam's early smart-home apartment community along the Saigon River in Binh Chanh — 1,068 units in two 24-storey towers by Bac Phuoc Kien and LDG Group, with construction completed in 2020.",
+						"imageAlt": "Saigon Intela riverside apartment towers on Nguyen Van Linh, Ho Chi Minh City"
 					},
-					"present": {
-						"title": "Present Day",
-						"description": "200+ projects completed. Trusted across hospitality, residential, and mixed-use programs throughout Vietnam.",
-						"imageAlt": "Current Perla projects across Vietnam's premium interior market"
+					"grand-world-phu-quoc": {
+						"title": "Grand World Phu Quoc",
+						"description": "Vingroup's 85-hectare \"sleepless city\" at Phu Quoc United Center, opened 21 April 2021 — a Venice-inspired canal district with 24/7 shopping, dining, and entertainment anchoring Vietnam's island tourism hub.",
+						"imageAlt": "Grand World Phu Quoc entertainment and retail complex at night"
 					}
 				}
 			}

@@ -7,7 +7,7 @@ import { motion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
 import { ParallaxElement, ParallaxSection, RevealOnView } from "@/components/common";
-import { HERITAGE_MILESTONES } from "@/constants/projects";
+import { PROJECT_MILESTONES } from "@/constants/projects";
 import { cn } from "@/lib/cn";
 
 const CONNECTOR_PATH_LTR =
@@ -154,11 +154,11 @@ const HERITAGE_IMAGE_PARALLAX = [36, 42, 38] as const;
 const HERITAGE_TEXT_PARALLAX = [22, 28, 24] as const;
 
 /**
- * ProjectsHeritage — Scroll-linked project heritage timeline (moved from About).
+ * ProjectsHeritage — Scroll-linked timeline of signature Vietnam project partners.
  */
 export function ProjectsHeritage() {
 	const t = useTranslations("pages.projects.heritage");
-	const milestoneCount = HERITAGE_MILESTONES.length;
+	const milestoneCount = PROJECT_MILESTONES.length;
 
 	return (
 		<ParallaxSection
@@ -180,7 +180,7 @@ export function ProjectsHeritage() {
 				</div>
 
 				<div className="flex flex-col gap-20 sm:gap-28 lg:gap-0">
-					{HERITAGE_MILESTONES.map((milestone, index) => {
+					{PROJECT_MILESTONES.map((milestone, index) => {
 						const isEven = index % 2 === 0;
 						const isLast = index === milestoneCount - 1;
 						const imageParallax = HERITAGE_IMAGE_PARALLAX[index] ?? 36;

@@ -1,63 +1,64 @@
 /**
  * Projects page static data.
  * Locale-agnostic structure (IDs, images, coordinates).
- * Display text lives under `pages.projects.*` in message files.
+ * Display text lives under `pages.projects.heritage.*` in message files.
  */
 
 import { MEDIA_PATHS } from "@/constants/media";
 
-// ─── Heritage Timeline ────────────────────────────────────────────────────────
+// ─── Featured project timeline (chronological) ───────────────────────────────
 
-export interface HeritageMilestone {
+export interface ProjectMilestone {
 	id: string;
+	/** Completion or opening year — sourced from public project records. */
 	year: string;
-	/** GPS-style label matching kaatdm.com aesthetic. */
+	/** GPS-style label matching timeline aesthetic. */
 	coordinates: string;
 	location: string;
 	imageUrl: string;
 }
 
-export const HERITAGE_MILESTONES: HeritageMilestone[] = [
+export const PROJECT_MILESTONES: ProjectMilestone[] = [
 	{
-		id: "founding",
-		year: "2012",
-		coordinates: "21°02'N — 105°51'E",
-		location: "Bat Trang, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.founding,
+		id: "empire-city",
+		year: "2017",
+		coordinates: "10°47'N — 106°43'E",
+		location: "Thu Thiem New Urban Area, Ho Chi Minh City",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.empireCity,
 	},
 	{
-		id: "firstHotel",
-		year: "2014",
-		coordinates: "20°51'N — 106°41'E",
-		location: "Ha Long Bay, Quang Ninh",
-		imageUrl: MEDIA_PATHS.images.about.milestones.firstHotel,
-	},
-	{
-		id: "hospitalityExpansion",
-		year: "2016",
-		coordinates: "21°02'N — 105°51'E",
-		location: "Hoang Mai, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.hospitalityExpansion,
-	},
-	{
-		id: "residentialGrowth",
+		id: "ramada-ha-long-bay",
 		year: "2019",
-		coordinates: "21°04'N — 105°53'E",
-		location: "Vinhomes Riverside, Hanoi",
-		imageUrl: MEDIA_PATHS.images.about.milestones.residentialGrowth,
+		coordinates: "20°57'N — 107°04'E",
+		location: "Tran Hung Dao, Ha Long, Quang Ninh",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
 	},
 	{
-		id: "brandsAsPartner",
-		year: "2022",
-		coordinates: "10°46'N — 106°42'E",
-		location: "Thu Duc, Ho Chi Minh City",
-		imageUrl: MEDIA_PATHS.images.about.milestones.brandsAsPartner,
+		id: "hinode-city",
+		year: "2020",
+		coordinates: "21°00'N — 105°51'E",
+		location: "201 Minh Khai, Hai Ba Trung, Hanoi",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.hinode,
 	},
 	{
-		id: "present",
-		year: "2025",
-		coordinates: "10°46'N — 106°42'E",
-		location: "Vietnam",
-		imageUrl: MEDIA_PATHS.images.about.milestones.present,
+		id: "vinhomes-symphony",
+		year: "2020",
+		coordinates: "21°02'N — 105°54'E",
+		location: "Vinhomes Riverside, Long Bien, Hanoi",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.vinhomesSymphony,
+	},
+	{
+		id: "saigon-intela",
+		year: "2020",
+		coordinates: "10°43'N — 106°38'E",
+		location: "Nguyen Van Linh, Phong Phu, Ho Chi Minh City",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.saigonIntela,
+	},
+	{
+		id: "grand-world-phu-quoc",
+		year: "2021",
+		coordinates: "10°19'N — 103°51'E",
+		location: "Bai Dai, Phu Quoc, Kien Giang",
+		imageUrl: MEDIA_PATHS.images.featuredProjects.grandPhuQuoc,
 	},
 ];
