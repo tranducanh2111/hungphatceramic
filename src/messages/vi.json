@@ -112,7 +112,7 @@
 					"area": "Sảnh khách sạn và khu vực công cộng",
 					"imageAlt": "Dự án nội thất gốm sứ Vinhomes Symphony"
 				},
-				"grand-world-phu-quocquoc": {
+				"grand-world-phu-quoc": {
 					"title": "Grand World Phú Quốc",
 					"location": "Bãi Dài, Phú Quốc, Kiên Giang",
 					"area": "Sảnh khách sạn và khu vực công cộng",
@@ -330,7 +330,7 @@
 				"heading": "Mô hình hoàn chỉnh cho dự án gốm sứ B2B",
 				"cards": {
 					"specification": {
-						"title": "Specification dự án",
+						"title": "Thông số kỹ thuật dự án",
 						"body": "Tuyển chọn vật liệu, lập hồ sơ kỹ thuật và quản lý mockup phù hợp với ý đồ thiết kế của bạn."
 					},
 					"production": {
@@ -395,6 +395,70 @@
 		},
 		"projects": {
 			"heading": "Dự án của chúng tôi",
+			"hero": {
+				"label": "Danh mục dự án",
+				"title": "Những công trình",
+				"titleEmphasis": "trên khắp Việt Nam",
+				"subtitle": "Từ vịnh Hạ Long đến Phú Quốc — bề mặt porcelain cao cấp cho các chương trình khách sạn, nhà ở và hỗn hợp quy mô quốc gia.",
+				"scroll": "Cuộn xuống",
+				"posterAlt": "Khu phức hợp Empire City nhìn ra sông Sài Gòn"
+			},
+			"prologue": {
+				"ariaLabel": "Giới thiệu danh mục dự án Perla",
+				"label": "Công trình",
+				"heading": "Bề mặt gánh vác tham vọng của những công trình biểu tượng.",
+				"body": "Mỗi chương bên dưới theo sát một dự án thực — tọa độ, thời điểm hoàn thiện và thương hiệu định hình đường chân trời đô thị Việt Nam. Chúng tôi ghi lại để kiến trúc sư và chủ đầu tư thấy tay nghề gốm sứ giữ trọn ý đồ thiết kế ở quy mô lớn.",
+				"statDevelopments": "6 dự án tiêu biểu",
+				"statRegions": "3 vùng",
+				"statSpan": "2017–2021"
+			},
+			"horizon": {
+				"ariaLabel": "Không gian trải nghiệm hình ảnh dự án",
+				"title": "Sáu chương.",
+				"subtitle": "Một đường chân trời liền mạch.",
+				"imageAlt": "Dãy hình ảnh các dự án tiêu biểu của Perla"
+			},
+			"regions": {
+				"ariaLabel": "Dự án theo vùng miền Việt Nam",
+				"label": "Trên bản đồ",
+				"heading": "Bắc, Nam và đảo.",
+				"north": {
+					"title": "Miền Bắc",
+					"description": "Khách sạn Hạ Long và các tổ hợp nhà ở, ven sông tại Hà Nội."
+				},
+				"south": {
+					"title": "Miền Nam",
+					"description": "Quy hoạch ven sông Thủ Thiêm và căn hộ thông minh ven sông tại Bình Chánh."
+				},
+				"island": {
+					"title": "Đảo",
+					"description": "Thành phố giải trí không ngủ Phú Quốc tại trung tâm United Center."
+				},
+				"viewProject": "Xem chương"
+			},
+			"index": {
+				"ariaLabel": "Mục lục dự án tiêu biểu",
+				"label": "Mục lục",
+				"heading": "Khám phá theo dự án",
+				"viewChapter": "Xem chương",
+				"sectors": {
+					"hospitality": "Khách sạn",
+					"residential": "Nhà ở",
+					"mixed-use": "Hỗn hợp"
+				}
+			},
+			"clients": {
+				"ariaLabel": "Chủ đầu tư và thương hiệu trên các dự án tiêu biểu",
+				"label": "Đối tác",
+				"heading": "Đồng hành trên các công trình biểu tượng cùng"
+			},
+			"cta": {
+				"titleLine1": "Công trình tiếp theo",
+				"titleLine2": "bắt đầu từ bề mặt.",
+				"description": "Trao đổi phạm vi, bộ sưu tập và triển khai cho chương trình khách sạn, nhà ở hoặc hỗn hợp của bạn cùng đội ngũ chúng tôi.",
+				"primaryCta": "Đặt lịch tư vấn",
+				"secondaryCta": "Khám phá bộ sưu tập"
+			},
 			"heritage": {
 				"label": "Hành trình",
 				"heading": "Một thập kỷ định hình không gian",

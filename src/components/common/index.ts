@@ -7,3 +7,5 @@ export { BlueprintLine } from "./BlueprintLine";
 export { RevealOnView } from "./RevealOnView";
 export { ParallaxSection, ParallaxProvider, ParallaxLayer, ParallaxElement } from "./parallax";
 export { ProductTile } from "./ProductTile";
+export { SectionBlendOverlay } from "./SectionBlendOverlay";
+

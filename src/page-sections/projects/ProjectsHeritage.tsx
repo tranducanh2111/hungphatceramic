@@ -6,7 +6,16 @@ import { useTranslations } from "next-intl";
 import { motion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
-import { ParallaxElement, ParallaxSection, RevealOnView } from "@/components/common";
+import {
+	ParallaxElement,
+	ParallaxSection,
+	RevealOnView,
+	SectionBlendOverlay,
+} from "@/components/common";
+import {
+	SECTION_BLEND_GRADIENTS,
+	SECTION_BLEND_HEIGHT_COMPACT_MAJOR,
+} from "@/lib/section-blend-gradients";
 import { PROJECT_MILESTONES } from "@/constants/projects";
 import { cn } from "@/lib/cn";
 
@@ -162,11 +171,21 @@ export function ProjectsHeritage() {
 
 	return (
 		<ParallaxSection
-			className="bg-sapphire-deep relative pb-28 lg:pb-36"
+			className="bg-sapphire-deep relative -mt-px overflow-hidden pb-28 pt-24 sm:pb-32 sm:pt-28 lg:pb-36 lg:pt-36"
 			aria-label={t("ariaLabel")}
 		>
+			<div
+				className="from-sapphire-deep via-sapphire-deep/85 pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 bg-gradient-to-b to-transparent sm:h-36"
+				aria-hidden="true"
+			/>
+			<SectionBlendOverlay
+				edge="bottom"
+				gradient={SECTION_BLEND_GRADIENTS.sapphireDeepToLinenWarm}
+				heightClassName={SECTION_BLEND_HEIGHT_COMPACT_MAJOR}
+			/>
+
 			<div className="relative mx-auto max-w-6xl px-6 lg:px-12">
-				<div className="mb-24 lg:mb-32">
+				<div className="mb-24 pt-4 lg:mb-32 lg:pt-8">
 					<RevealOnView>
 						<span className="text-label font-sans tracking-widest text-champagne uppercase">
 							{t("label")}
@@ -187,7 +206,11 @@ export function ProjectsHeritage() {
 						const textParallax = HERITAGE_TEXT_PARALLAX[index] ?? 24;
 
 						return (
-							<div key={milestone.id} className="lg:grid lg:grid-cols-2 lg:gap-x-20">
+							<div
+								key={milestone.id}
+								id={milestone.id}
+								className="scroll-mt-28 lg:grid lg:grid-cols-2 lg:gap-x-20"
+							>
 								<article className="relative z-10 col-span-2 grid items-center gap-x-20 gap-y-10 lg:grid-cols-2">
 									<div
 										className={cn(

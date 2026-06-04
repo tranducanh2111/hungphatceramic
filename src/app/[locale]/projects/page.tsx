@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
 import { ProjectsPageContent } from "@/page-sections/projects/ProjectsPageContent";
 
 interface ProjectsPageProps {
@@ -22,6 +24,12 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 	return (
 		<main>
+			<PageMediaPreload
+				imagePaths={[
+					MEDIA_PATHS.images.featuredProjects.empireCity,
+					MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
+				]}
+			/>
 			<ProjectsPageContent />
 		</main>
 	);

@@ -7,46 +7,7 @@
 import { productsWithCollection } from "@/constants/routes";
 import { MEDIA_PATHS } from "@/constants/media";
 
-// ─── Featured Projects ────────────────────────────────────────────────────────
-
-export interface FeaturedProject {
-	id: string;
-	year: number;
-	imageUrl: string;
-}
-
-export const FEATURED_PROJECTS: FeaturedProject[] = [
-	{
-		id: "ramada-ha-long-bay",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
-	},
-	{
-		id: "hinode-city",
-		year: 2022,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.hinode,
-	},
-	{
-		id: "vinhomes-symphony",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.vinhomesSymphony,
-	},
-	{
-		id: "grand-world-phu-quocquoc",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.grandPhuQuoc,
-	},
-	{
-		id: "saigon-intela",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.saigonIntela,
-	},
-	{
-		id: "empire-city",
-		year: 2026,
-		imageUrl: MEDIA_PATHS.images.featuredProjects.empireCity,
-	},
-];
+export { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/projects";
 
 // ─── Material Categories ──────────────────────────────────────────────────────
 

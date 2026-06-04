@@ -112,7 +112,7 @@
 					"area": "Hotel lobby & public areas",
 					"imageAlt": "Vinhomes Symphony luxury ceramic interior project"
 				},
-				"grand-world-phu-quocquoc": {
+				"grand-world-phu-quoc": {
 					"title": "Grand World Phu Quoc",
 					"location": "Bai Dai, Phu Quoc, Kien Giang",
 					"area": "Hotel lobby & public areas",
@@ -395,6 +395,70 @@
 		},
 		"projects": {
 			"heading": "Our Projects",
+			"hero": {
+				"label": "Portfolio",
+				"title": "Landmarks Across",
+				"titleEmphasis": "Vietnam",
+				"subtitle": "From Ha Long Bay to Phu Quoc — premium porcelain surfaces specified for hospitality, residential, and mixed-use programs at national scale.",
+				"scroll": "Scroll",
+				"posterAlt": "Empire City luxury development overlooking the Saigon River"
+			},
+			"prologue": {
+				"ariaLabel": "Introduction to Perla project portfolio",
+				"label": "The Work",
+				"heading": "Surfaces that carry the weight of landmark ambition.",
+				"body": "Each chapter below follows a real development — coordinates, completion era, and the brands that shaped Vietnam's urban skyline. We document the work so architects and developers can see how ceramic craft holds design intent at scale.",
+				"statDevelopments": "6 signature developments",
+				"statRegions": "3 regions",
+				"statSpan": "2017–2021"
+			},
+			"horizon": {
+				"ariaLabel": "Immersive gallery of featured project imagery",
+				"title": "Six chapters.",
+				"subtitle": "One continuous horizon.",
+				"imageAlt": "Panoramic sequence of Perla featured project interiors and developments"
+			},
+			"regions": {
+				"ariaLabel": "Projects grouped by region in Vietnam",
+				"label": "Across the Map",
+				"heading": "North, south, and island.",
+				"north": {
+					"title": "North",
+					"description": "Ha Long hospitality and Hanoi's mixed-use and riverside residences."
+				},
+				"south": {
+					"title": "South",
+					"description": "Thu Thiem waterfront masterplans and riverside smart living in Binh Chanh."
+				},
+				"island": {
+					"title": "Island",
+					"description": "Phu Quoc's sleepless entertainment city at the heart of United Center."
+				},
+				"viewProject": "View chapter"
+			},
+			"index": {
+				"ariaLabel": "Portfolio index of featured projects",
+				"label": "Index",
+				"heading": "Explore by project",
+				"viewChapter": "View chapter",
+				"sectors": {
+					"hospitality": "Hospitality",
+					"residential": "Residential",
+					"mixed-use": "Mixed-use"
+				}
+			},
+			"clients": {
+				"ariaLabel": "Developers and brands on featured projects",
+				"label": "Partners",
+				"heading": "Trusted on landmark developments by"
+			},
+			"cta": {
+				"titleLine1": "Your next landmark",
+				"titleLine2": "begins with the surface.",
+				"description": "Discuss scope, collections, and delivery for your hospitality, residential, or mixed-use program with our team.",
+				"primaryCta": "Book a Consultation",
+				"secondaryCta": "Explore Collections"
+			},
 			"heritage": {
 				"label": "Heritage",
 				"heading": "A Decade of Defining Spaces",
