@@ -30,7 +30,7 @@ export function AboutCapabilities() {
 			id={ABOUT_SECTION_IDS.capabilities}
 			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-28 lg:py-36"
 		>
-			<div className="mx-auto max-w-7xl px-6 lg:px-12">
+			<div className="relative z-20 mx-auto max-w-7xl px-6 pb-28 lg:px-12 lg:pb-36">
 				<div className="mb-16">
 					<RevealOnView>
 						<span className="text-label text-champagne font-sans tracking-widest uppercase">
@@ -76,7 +76,7 @@ export function AboutCapabilities() {
 			</div>
 
 			<div
-				className="to-sapphire-deep from-sapphire-ocean pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 translate-y-px bg-gradient-to-b via-[#0a1f32] sm:h-48"
+				className="to-sapphire-deep from-sapphire-ocean pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 translate-y-px bg-gradient-to-b via-[#0a1f32] sm:h-40 lg:h-48"
 				aria-hidden="true"
 			/>
 		</section>
