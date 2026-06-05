@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -38,12 +38,13 @@ export function LandingVisualStory() {
 					className="absolute top-0 left-0 h-full w-[320vw]"
 					style={{ x: panoramaX }}
 				>
-					<Image
+					<ViewportDeferredImage
 						src={VISUAL_STORY_PANORAMA.src}
 						alt={t("imageAlt")}
 						fill
 						loading="lazy"
 						quality={55}
+						unloadWhenFar={false}
 						sizes="(max-width: 1024px) 200vw, 320vw"
 						className="object-cover object-center"
 					/>

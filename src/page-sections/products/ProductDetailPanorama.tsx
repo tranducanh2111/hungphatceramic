@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -23,6 +23,13 @@ export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 	const shouldReduceMotion = useReducedMotion();
 
 	const panoramaPath = getProductPanoramaImage(product);
+	const { scrollYProgress } = useAppScroll({
+		target: sectionRef,
+		offset: ["start start", "end end"],
+	});
+	const panoramaX = useTransform(scrollYProgress, [0, 1], ["0vw", "-220vw"]);
+	const hintOpacity = useTransform(scrollYProgress, [0, 0.12, 0.88, 1], [1, 0.4, 0.4, 0]);
+
 	if (!panoramaPath) {
 		return null;
 	}
@@ -48,7 +55,7 @@ export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 
 					<div className="border-sapphire-mist/40 overflow-x-auto overscroll-x-contain rounded-xl border">
 						<div className="relative h-[min(50vh,28rem)] w-[min(320%,2400px)] min-w-[960px]">
-							<Image
+							<ViewportDeferredImage
 								src={panoramaSrc}
 								alt={tDetail("panorama.imageAlt", { productName })}
 								fill
@@ -62,14 +69,6 @@ export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 			</section>
 		);
 	}
-
-	const { scrollYProgress } = useAppScroll({
-		target: sectionRef,
-		offset: ["start start", "end end"],
-	});
-
-	const panoramaX = useTransform(scrollYProgress, [0, 1], ["0vw", "-220vw"]);
-	const hintOpacity = useTransform(scrollYProgress, [0, 0.12, 0.88, 1], [1, 0.4, 0.4, 0]);
 
 	return (
 		<section
@@ -86,12 +85,13 @@ export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 					className="absolute top-0 left-0 h-full w-[320vw]"
 					style={{ x: panoramaX }}
 				>
-					<Image
+					<ViewportDeferredImage
 						src={panoramaSrc}
 						alt={tDetail("panorama.imageAlt", { productName })}
 						fill
 						loading="lazy"
 						quality={55}
+						unloadWhenFar={false}
 						sizes="(max-width: 1024px) 200vw, 320vw"
 						className="object-cover object-center"
 					/>

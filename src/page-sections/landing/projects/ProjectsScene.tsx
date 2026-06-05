@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import {motion,useMotionValueEvent,useScroll,useSpring,useTransform,type MotionValue} from "framer-motion";
 import { Text } from "@/components/ui";
@@ -213,11 +213,11 @@ function ProjectCardVisual({
 				)}
 			>
 				<div className={cn("relative overflow-hidden", isFillLayout ? "min-h-0 flex-1" : "aspect-[4/3]")}>
-					<Image
+					<ViewportDeferredImage
 						src={project.imageUrl}
 						alt={t(`${translationNamespace}.imageAlt`)}
 						fill
-						priority={index < 2}
+						eager={index < 2}
 						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
 						sizes={spiralUi?.imageSizes ?? "(min-width: 1024px) 420px, (min-width: 768px) 310px, 85vw"}
 					/>
@@ -327,12 +327,12 @@ function ProjectCardBack({
 		<article className={SPIRAL_CARD_ARTICLE_CLASS}>
 			<div className="relative h-full w-full">
 				<div className="absolute inset-0 bg-[#0E2A42]" aria-hidden="true" />
-				<Image
+				<ViewportDeferredImage
 					src={project.imageUrl}
 					alt=""
 					aria-hidden
 					fill
-					priority={index < 2}
+					eager={index < 2}
 					className="object-cover opacity-30 saturate-50"
 					sizes={SPIRAL_CARD_UI[spiralSize].imageSizes}
 				/>
