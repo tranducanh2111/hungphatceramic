@@ -1,4 +1,5 @@
 export { SmoothScrollProvider, useLenisControls } from "./SmoothScrollProvider";
+export { ScrollToTopOnNavigate } from "./ScrollToTopOnNavigate";
 export { ScrollProgressBar } from "./ScrollProgressBar";
 export { ScrollToTopButton } from "./ScrollToTopButton";
 export { Navbar } from "./Navbar";

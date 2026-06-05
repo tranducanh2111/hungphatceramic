@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
+import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { useLenis } from "lenis/react";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
@@ -34,30 +33,29 @@ const ProductDetailRelated = dynamic(
 
 interface ProductDetailPageContentProps {
 	product: ProductDetail;
+	activeSizeId?: string;
+	heroMedia: ReactNode;
 }
 
-// iOS App open/close scale-zoom transition physics
-const pageVariants = {
+// Below-fold entrance — hero stays visible immediately (LCP must not wait on opacity fade).
+const belowFoldVariants = {
 	initial: {
 		opacity: 0,
-		scale: 0.94,
-		y: 24,
+		y: 16,
 	},
 	animate: {
 		opacity: 1,
-		scale: 1,
 		y: 0,
 		transition: {
-			duration: 0.5,
-			ease: [0.16, 1, 0.3, 1] as const, // iOS spring cubic-bezier
+			duration: 0.45,
+			ease: [0.16, 1, 0.3, 1] as const,
 		},
 	},
 	exit: {
 		opacity: 0,
-		scale: 0.94,
-		y: 24,
+		y: 16,
 		transition: {
-			duration: 0.35,
+			duration: 0.3,
 			ease: [0.16, 1, 0.3, 1] as const,
 		},
 	},
@@ -66,24 +64,18 @@ const pageVariants = {
 /**
  * ProductDetailPageContent — Client shell hosting the detail page section components.
  */
-export function ProductDetailPageContent({ product }: ProductDetailPageContentProps) {
+export function ProductDetailPageContent({
+	product,
+	activeSizeId,
+	heroMedia,
+}: ProductDetailPageContentProps) {
 	useLenisResizeOnMount();
 	const router = useRouter();
-	const lenis = useLenis();
-	const searchParams = useSearchParams();
-	const activeSizeId = searchParams.get("size") ?? undefined;
 	const displayProduct = useMemo(
 		() => applyTileSizeToProductDetail(product, activeSizeId),
 		[product, activeSizeId],
 	);
 	const [isExiting, setIsExiting] = useState(false);
-
-	// Reset scroll position to top instantly on mount to clear scroll memory from listing page
-	useEffect(() => {
-		if (lenis) {
-			lenis.scrollTo(0, { immediate: true });
-		}
-	}, [lenis]);
 
 	// Intercept back links to play iOS-style close animation first
 	const handleBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -96,20 +88,23 @@ export function ProductDetailPageContent({ product }: ProductDetailPageContentPr
 	};
 
 	return (
-		<motion.div
-			variants={pageVariants}
-			initial="initial"
-			animate={isExiting ? "exit" : "animate"}
-			className="origin-center"
-		>
-			{/* Static above-fold detail hero with custom click interceptor */}
-			<ProductDetailHero product={displayProduct} onBack={handleBack} />
+		<>
+			<ProductDetailHero
+				product={displayProduct}
+				heroMedia={heroMedia}
+				onBack={handleBack}
+			/>
 
-			{/* Dynamically imported sub-sections */}
-			<ProductDetailGallery product={displayProduct} />
-			<ProductDetailPanorama product={product} />
-			<ProductDetailSpecs product={displayProduct} />
-			<ProductDetailRelated product={displayProduct} activeSizeId={activeSizeId} />
-		</motion.div>
+			<motion.div
+				variants={belowFoldVariants}
+				initial="initial"
+				animate={isExiting ? "exit" : "animate"}
+			>
+				<ProductDetailGallery product={displayProduct} />
+				<ProductDetailPanorama product={product} />
+				<ProductDetailSpecs product={displayProduct} />
+				<ProductDetailRelated product={displayProduct} activeSizeId={activeSizeId} />
+			</motion.div>
+		</>
 	);
 }
