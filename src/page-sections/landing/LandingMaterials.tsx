@@ -101,7 +101,7 @@ function TileSizeSegmentedControl({
 
 	return (
 		<div
-			className="relative mx-auto grid w-full max-w-3xl min-w-[17.5rem] grid-cols-2 gap-1 rounded-full border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:grid-cols-4 sm:gap-0"
+			className="relative mx-auto grid w-full max-w-3xl min-w-[17.5rem] grid-cols-2 gap-1 rounded-2xl border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:grid-cols-4 sm:gap-0 sm:rounded-full"
 			role="tablist"
 			aria-label={t("tileFormat")}
 			onPointerDown={(event) => {
@@ -119,17 +119,13 @@ function TileSizeSegmentedControl({
 				swipeStartX.current = null;
 			}}
 		>
+			{/* Single-row sliding thumb (sm+). Mobile uses per-button highlight — 2×2 + 50% thumb overlapped labels. */}
 			<div
-				className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left,width] duration-300 ease-out max-sm:hidden sm:block"
+				aria-hidden
+				className="pointer-events-none absolute top-1 bottom-1 hidden rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left,width] duration-300 ease-out sm:block"
 				style={{
 					left: `calc(${(activeIndex / segmentCount) * 100}% + 4px)`,
 					width: `calc(${thumbWidthPercent}% - 8px)`,
-				}}
-			/>
-			<div
-				className="pointer-events-none absolute top-1 bottom-1 w-[calc(50%-6px)] rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left] duration-300 ease-out sm:hidden"
-				style={{
-					left: activeIndex < 2 ? "4px" : "calc(50% + 2px)",
 				}}
 			/>
 			{SIZE_OPTIONS.map(({ labelKey, value }) => {
@@ -140,13 +136,15 @@ function TileSizeSegmentedControl({
 						type="button"
 						role="tab"
 						aria-selected={selected}
-						tabIndex={0}
+						tabIndex={selected ? 0 : -1}
 						onClick={() => onSizeChange(value)}
 						className={cn(
-							"relative z-10 rounded-full px-3 py-2 font-sans text-xs tracking-[0.1em] uppercase transition-colors duration-200 sm:px-4 sm:text-sm sm:tracking-[0.12em]",
+							"relative z-10 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-xs tracking-[0.08em] uppercase transition-colors duration-200 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em]",
 							selected
 								? "text-[#071A2B]"
 								: "text-[#F4F4F6]/45 hover:text-[#F4F4F6]/78",
+							selected &&
+								"bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] sm:bg-transparent sm:shadow-none",
 						)}
 					>
 						{t(labelKey)}
