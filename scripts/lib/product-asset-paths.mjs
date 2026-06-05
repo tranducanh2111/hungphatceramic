@@ -19,6 +19,15 @@ export const ALL_FACES_IMAGE_PATTERN = /allFacesImage:\s*"(\/assets\/[^"]+)"/g;
 export const SIZE_THRESHOLD_BYTES = 1_500_000;
 export const SYNCED_SIZE_FOLDERS = ["100X100", "120X120"];
 export const SOURCE_SIZE_FOLDERS = ["60X120", "80X80"];
+export const SQUARE_FORMAT_MIRROR_FOLDER = "80X80";
+
+/** Default mirror targets per canonical source folder (`sync-product-size-assets.mjs`). */
+export const BASE_SYNC_TARGETS_BY_SOURCE = {
+	"60X120": ["100X100", "120X120"],
+	"80X80": ["100X100", "120X120"],
+};
+
+const PRODUCT_BLOCK_PATTERN = /\t\{[\s\S]*?\n\t\},/g;
 
 export function isDemoWorkAssetPath(assetPath) {
 	const fileName = path.basename(assetPath);
@@ -65,6 +74,51 @@ export function toArchiveAssetPath(assetPath) {
 
 export function remapAssetPathForSizeFolder(assetPath, targetFolder) {
 	return assetPath.replace(/\/assets\/(60X120|80X80|100X100|120X120)\//, `/assets/${targetFolder}/`);
+}
+
+export function getSourceSizeFolder(assetPath) {
+	return SOURCE_SIZE_FOLDERS.find((folder) => assetPath.includes(`/assets/${folder}/`)) ?? null;
+}
+
+/**
+ * 60×120 products that also sell 80×80 need an extra mirror into `80X80/`
+ * (e.g. Travertine G12T01 / G12T06 under `Travertine T01 T06/`).
+ */
+export function collectAssetPathsRequiringSquareMirror(productsSource) {
+	const paths = new Set();
+
+	for (const block of productsSource.match(PRODUCT_BLOCK_PATTERN) ?? []) {
+		if (!block.includes("80×80cm") || !block.includes("/assets/60X120/")) {
+			continue;
+		}
+
+		for (const match of block.matchAll(ASSET_PATH_PATTERN)) {
+			paths.add(match[1]);
+		}
+	}
+
+	return paths;
+}
+
+/** Resolve all size-folder mirrors that must exist on disk for a registry asset path. */
+export function getSyncTargetFolders(assetPath, squareMirrorPaths) {
+	const sourceFolder = getSourceSizeFolder(assetPath);
+	if (!sourceFolder) {
+		return [];
+	}
+
+	const targets = [...BASE_SYNC_TARGETS_BY_SOURCE[sourceFolder]];
+
+	if (sourceFolder === "60X120" && squareMirrorPaths.has(assetPath)) {
+		targets.unshift(SQUARE_FORMAT_MIRROR_FOLDER);
+	}
+
+	return targets;
+}
+
+/** Runtime / audit expansion folders for a source catalog path (matches sync + `?size=` remaps). */
+export function getRuntimeMirrorFolders(assetPath, squareMirrorPaths) {
+	return getSyncTargetFolders(assetPath, squareMirrorPaths);
 }
 
 export function collectAllFacesImagePaths(productsSource) {
@@ -115,15 +169,16 @@ export async function collectRuntimeDetailSources() {
 		}
 	}
 
+	const squareMirrorPaths = collectAssetPathsRequiringSquareMirror(productsSource);
 	const expanded = new Set(paths);
 	for (const assetPath of paths) {
 		if (isPanoramaAssetPath(assetPath)) {
 			continue;
 		}
-		if (!SOURCE_SIZE_FOLDERS.some((folder) => assetPath.includes(`/assets/${folder}/`))) {
+		if (!getSourceSizeFolder(assetPath)) {
 			continue;
 		}
-		for (const targetFolder of SYNCED_SIZE_FOLDERS) {
+		for (const targetFolder of getRuntimeMirrorFolders(assetPath, squareMirrorPaths)) {
 			expanded.add(remapAssetPathForSizeFolder(assetPath, targetFolder));
 		}
 	}

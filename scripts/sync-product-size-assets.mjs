@@ -1,28 +1,23 @@
 /**
- * Mirrors catalog JPG/PNG assets into 100X100 and 120X120 folders per product.
- * Run: node scripts/sync-product-size-assets.mjs
- * Then: pnpm optimize:product-images
+ * Mirrors catalog assets into size folders consumed by `?size=` remaps.
+ * - 60X120 / 80X80 → 100X100 & 120X120 (always)
+ * - 60X120 → 80X80 when the product also lists 80×80cm (e.g. Travertine G12T01/T06)
+ * Run: pnpm sync:product-size-assets
  */
-import { copyFile, mkdir, stat } from "node:fs/promises";
+import { copyFile, mkdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(__dirname, "..");
-const PUBLIC_ASSETS = path.join(ROOT, "public", "assets");
-const PRODUCTS_TS = path.join(ROOT, "src", "constants", "products.ts");
-const INDO_TS = path.join(ROOT, "src", "constants", "indo-products.ts");
-
-const TARGET_SIZE_FOLDERS = ["100X100", "120X120"];
-const ASSET_PATH_PATTERN = /"(\/assets\/[^"]+\.(?:jpe?g|png|webp))"/gi;
-const SOURCE_SIZE_FOLDERS = ["60X120", "80X80"];
+import {
+	ASSET_PATH_PATTERN,
+	INDO_PRODUCTS_TS,
+	PRODUCTS_TS,
+	PUBLIC_ASSETS,
+	collectAssetPathsRequiringSquareMirror,
+	getSourceSizeFolder,
+	getSyncTargetFolders,
+	remapAssetPathForSizeFolder,
+} from "./lib/product-asset-paths.mjs";
 
 const SKIP_PATH_HINTS = [/panorama/i, /Ảnh Panorama/i];
-
-async function readUtf8(filePath) {
-	const { readFile } = await import("node:fs/promises");
-	return readFile(filePath, "utf8");
-}
 
 function shouldSkipAssetPath(assetPath) {
 	return SKIP_PATH_HINTS.some((hint) => hint.test(assetPath));
@@ -39,18 +34,20 @@ function parseAssetPaths(source) {
 	return [...paths];
 }
 
-function remapFolder(assetPath, targetFolder) {
-	return assetPath.replace(/\/assets\/(60X120|80X80|100X100|120X120)\//, `/assets/${targetFolder}/`);
-}
-
 function getSidecarPaths(assetPath) {
 	const base = assetPath.replace(/\.(jpe?g|png|webp)$/i, "");
 	return [`${base}.listing.webp`, `${base}.detail.webp`];
 }
 
 async function copyIfNeeded(sourceRelative, targetRelative) {
-	const sourceAbsolute = path.join(PUBLIC_ASSETS, sourceRelative.replace(/^\/assets\//, "").split("/").join(path.sep));
-	const targetAbsolute = path.join(PUBLIC_ASSETS, targetRelative.replace(/^\/assets\//, "").split("/").join(path.sep));
+	const sourceAbsolute = path.join(
+		PUBLIC_ASSETS,
+		sourceRelative.replace(/^\/assets\//, "").split("/").join(path.sep),
+	);
+	const targetAbsolute = path.join(
+		PUBLIC_ASSETS,
+		targetRelative.replace(/^\/assets\//, "").split("/").join(path.sep),
+	);
 
 	let sourceStat;
 	try {
@@ -80,17 +77,14 @@ async function copyIfNeeded(sourceRelative, targetRelative) {
 	return { status: "copied", path: targetRelative };
 }
 
-function isSourceCatalogAsset(assetPath) {
-	return SOURCE_SIZE_FOLDERS.some((folder) => assetPath.includes(`/assets/${folder}/`));
-}
-
-async function syncCatalogAsset(assetPath) {
+async function syncCatalogAsset(assetPath, squareMirrorPaths) {
 	const results = { copied: 0, skipped: 0, missing: 0 };
 	const pathsToSync = [assetPath, ...getSidecarPaths(assetPath)];
+	const targetFolders = getSyncTargetFolders(assetPath, squareMirrorPaths);
 
 	for (const sourcePath of pathsToSync) {
-		for (const targetFolder of TARGET_SIZE_FOLDERS) {
-			const targetPath = remapFolder(sourcePath, targetFolder);
+		for (const targetFolder of targetFolders) {
+			const targetPath = remapAssetPathForSizeFolder(sourcePath, targetFolder);
 			const outcome = await copyIfNeeded(sourcePath, targetPath);
 
 			if (outcome.status === "copied") {
@@ -110,28 +104,31 @@ async function syncCatalogAsset(assetPath) {
 
 async function main() {
 	const [productsSource, indoSource] = await Promise.all([
-		readUtf8(PRODUCTS_TS),
-		readUtf8(INDO_TS),
+		readFile(PRODUCTS_TS, "utf8"),
+		readFile(INDO_PRODUCTS_TS, "utf8"),
 	]);
 
-	const assetPaths = [
-		...new Set([
-			...parseAssetPaths(productsSource),
-			...parseAssetPaths(indoSource),
-		]),
-	].filter(isSourceCatalogAsset);
+	const squareMirrorPaths = collectAssetPathsRequiringSquareMirror(productsSource);
+	const assetPaths = [...new Set([...parseAssetPaths(productsSource), ...parseAssetPaths(indoSource)])].filter(
+		(assetPath) => getSourceSizeFolder(assetPath),
+	);
 
 	let totalCopied = 0;
 	let totalMissing = 0;
 
 	for (const assetPath of assetPaths) {
-		const { copied, missing } = await syncCatalogAsset(assetPath);
+		const { copied, missing } = await syncCatalogAsset(assetPath, squareMirrorPaths);
 		totalCopied += copied;
 		totalMissing += missing;
 	}
 
+	const mirrorNote =
+		squareMirrorPaths.size > 0
+			? ` (+80X80 for ${squareMirrorPaths.size} cross-format 60×120 asset path(s))`
+			: "";
+
 	console.log(
-		`Synced ${assetPaths.length} source assets → ${TARGET_SIZE_FOLDERS.join(" & ")}: ${totalCopied} copied, ${totalMissing} missing sources.`,
+		`Synced ${assetPaths.length} source assets${mirrorNote}: ${totalCopied} copied, ${totalMissing} missing sources.`,
 	);
 	if (totalCopied > 0) {
 		console.log("Run: pnpm optimize:product-images");
