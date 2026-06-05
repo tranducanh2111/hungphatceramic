@@ -4,10 +4,29 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ProductTileCard } from "@/components/ui";
 import { productDetailHref } from "@/lib/products/asset-paths";
-import { encodePublicAssetPath } from "@/lib/products/media";
+import {
+	encodePublicAssetPath,
+	getPrimaryDemoWorkAssetPath,
+	resolveListingDemoWorkHoverPath,
+} from "@/lib/products/media";
 import type { ProductListingItem } from "@/lib/products/listing";
 import { ProductSummary, ProductDetail } from "@/types";
+import { useCatalogTileMediaLifecycle } from "@/hooks/useCatalogTileMediaLifecycle";
 import { cn } from "@/lib/cn";
+
+function resolveDemoWorkThumbnailUrl(
+	product: ProductSummary | ProductDetail | ProductListingItem,
+): string | undefined {
+	if ("demoWorkThumbnailUrl" in product) {
+		return product.demoWorkThumbnailUrl;
+	}
+
+	if ("demoWorkImages" in product) {
+		return getPrimaryDemoWorkAssetPath(product.demoWorkImages);
+	}
+
+	return undefined;
+}
 
 interface ProductTileProps {
 	product: ProductSummary | ProductDetail | ProductListingItem;
@@ -15,6 +34,8 @@ interface ProductTileProps {
 	className?: string;
 	priority?: boolean;
 	imageSizes?: string;
+	/** When true, tile photos mount near the viewport and unmount when scrolled away. */
+	deferMediaUntilVisible?: boolean;
 }
 
 /**
@@ -26,25 +47,35 @@ export function ProductTile({
 	className,
 	priority = false,
 	imageSizes,
+	deferMediaUntilVisible = false,
 }: ProductTileProps) {
 	const t = useTranslations("products.items");
+	const { containerRef, isMediaMounted } = useCatalogTileMediaLifecycle({
+		isDeferred: deferMediaUntilVisible && !priority,
+	});
 
 	const productName = t.has(`${product.slug}.name`) ? t(`${product.slug}.name`) : product.name;
+	const hoverImageSrc = resolveListingDemoWorkHoverPath(resolveDemoWorkThumbnailUrl(product));
+	const encodedHoverImageSrc = hoverImageSrc ? encodePublicAssetPath(hoverImageSrc) : undefined;
 
 	return (
-		<Link
-			href={productDetailHref(product.slug, activeSizeId)}
-			className={cn("group block focus:outline-none", className)}
-		>
-			<ProductTileCard
-				imageSrc={encodePublicAssetPath(product.thumbnailUrl)}
-				imageAlt={productName}
-				productCode={product.skuCode}
-				dimensions={product.category}
-				productName={productName}
-				priority={priority}
-				imageSizes={imageSizes}
-			/>
-		</Link>
+		<div ref={containerRef} className={cn("h-full", className)}>
+			<Link
+				href={productDetailHref(product.slug, activeSizeId)}
+				className="group block h-full focus:outline-none"
+			>
+				<ProductTileCard
+					imageSrc={encodePublicAssetPath(product.thumbnailUrl)}
+					hoverImageSrc={encodedHoverImageSrc}
+					imageAlt={productName}
+					productCode={product.skuCode}
+					dimensions={product.category}
+					productName={productName}
+					isMediaMounted={isMediaMounted}
+					priority={priority}
+					imageSizes={imageSizes}
+				/>
+			</Link>
+		</div>
 	);
 }

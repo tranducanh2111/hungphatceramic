@@ -75,6 +75,28 @@ export function collectProductDemoWorkImages(product: ProductDetail): string[] {
 	return product.demoWorkImages;
 }
 
+/** Primary install render for listing-card hover (first sorted PC-* path). */
+export function getPrimaryDemoWorkAssetPath(demoWorkImages: string[]): string | undefined {
+	return demoWorkImages[0];
+}
+
+/** Lightweight WebP beside the source PC file — safe for `next/image` on the catalog grid. */
+export function getListingDemoWorkPreviewPath(assetPath: string): string {
+	if (assetPath.endsWith(".listing.webp")) {
+		return assetPath;
+	}
+
+	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
+}
+
+export function resolveListingDemoWorkHoverPath(demoWorkAssetPath: string | undefined): string | undefined {
+	if (!demoWorkAssetPath) {
+		return undefined;
+	}
+
+	return getListingDemoWorkPreviewPath(demoWorkAssetPath);
+}
+
 /** Responsive grid for 1–N demo renders (e.g. Inspire GP12964J ×2, Peace ×3). */
 export function getDemoWorkGridClassName(imageCount: number): string {
 	if (imageCount <= 1) {
