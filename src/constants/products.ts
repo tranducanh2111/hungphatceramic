@@ -1,11 +1,12 @@
-import { ProductDetail } from "@/types";
+import { normalizeProductMedia } from "@/lib/products/media";
+import type { ProductCatalogEntry, ProductDetail } from "@/types";
 import { INDO_PRODUCTS } from "@/constants/indo-products";
 
 /**
  * Static registry of all porcelain products.
- * Includes image paths for both individual faces and room scene renders.
+ * PC-* paths in `sceneImages` are promoted to `demoWorkImages` via `normalizeProductMedia`.
  */
-export const PRODUCTS: ProductDetail[] = [
+const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	// ─── INSPIRE SERIES (60×120cm) ───────────────────────────────────────────────
 	{
 		slug: "inspire-g12962j",
@@ -521,3 +522,5 @@ export const PRODUCTS: ProductDetail[] = [
 	// ─── INDO SERIES (MẪU GẠCH INDO — import assets per public/assets/INDO-IMPORT.md) ─
 	...INDO_PRODUCTS,
 ];
+
+export const PRODUCTS: ProductDetail[] = PRODUCT_CATALOG.map(normalizeProductMedia);

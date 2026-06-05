@@ -76,6 +76,7 @@ export function applyTileSizeToProductDetail(
 		category: tileDimension,
 		thumbnailUrl: remap(product.thumbnailUrl),
 		faceImages: product.faceImages.map(remap),
+		demoWorkImages: product.demoWorkImages.map(remap),
 		sceneImages: product.sceneImages.map(remap),
 		...(product.allFacesImage ? { allFacesImage: remap(product.allFacesImage) } : {}),
 	};

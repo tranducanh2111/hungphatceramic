@@ -1,4 +1,4 @@
-import type { ProductDetail } from "@/types";
+import type { ProductCatalogEntry } from "@/types";
 
 const SQUARE_SIZE = "100×100cm" as const;
 const RECT_SIZE = "60×120cm" as const;
@@ -77,7 +77,7 @@ function indoAssetBase(format: IndoProductSeed["format"], skuCode: string): stri
 	return `/assets/${sizeFolder}/${indoFolderLabel(skuCode)}`;
 }
 
-function buildIndoProduct(seed: IndoProductSeed): ProductDetail {
+function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 	const assetBase = indoAssetBase(seed.format, seed.skuCode);
 	const primarySize = seed.format === "square" ? SQUARE_SIZE : RECT_SIZE;
 	const sizes =
@@ -105,4 +105,4 @@ function buildIndoProduct(seed: IndoProductSeed): ProductDetail {
 }
 
 /** MẪU GẠCH INDO — assets from client Drive folder (see public/assets/INDO-IMPORT.md). */
-export const INDO_PRODUCTS: ProductDetail[] = INDO_PRODUCT_SEEDS.map(buildIndoProduct);
+export const INDO_PRODUCTS: ProductCatalogEntry[] = INDO_PRODUCT_SEEDS.map(buildIndoProduct);
