@@ -59,6 +59,36 @@ const CONTACT_ITEMS: {
 
 // ─── Subcomponents ────────────────────────────────────────────────────────────
 
+const FOOTER_SOCIAL_LINK_CLASS =
+	"group flex h-11 w-11 items-center justify-center rounded-full border border-champagne/50 bg-champagne/10 shadow-[0_0_0_1px_rgba(212,184,134,0.12)] transition-all duration-300 hover:border-champagne hover:bg-champagne/20 hover:shadow-[0_0_18px_rgba(212,184,134,0.22)]";
+
+function FooterSocialLink({
+	href,
+	ariaLabel,
+	iconSrc,
+}: {
+	href: string;
+	ariaLabel: string;
+	iconSrc: string;
+}) {
+	return (
+		<a
+			href={href}
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={ariaLabel}
+			className={FOOTER_SOCIAL_LINK_CLASS}
+		>
+			<PublicIcon
+				src={iconSrc}
+				alt=""
+				size={22}
+				className="transition-transform duration-300 group-hover:scale-110"
+			/>
+		</a>
+	);
+}
+
 function FooterLinkGroup({
 	heading,
 	links,
@@ -161,42 +191,24 @@ export function Footer() {
 						</Text>
 
 						{/* Social + chat */}
-						<div className="mt-8 flex flex-wrap gap-3">
+						<div className="mt-8 flex flex-wrap gap-3.5">
 							{SOCIAL_LINKS.map(({ id, href, iconSrc }) => (
-								<a
+								<FooterSocialLink
 									key={id}
 									href={href}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={t(`social.${id}`)}
-									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
-								>
-									<PublicIcon
-										src={iconSrc}
-										alt=""
-										size={18}
-										className="opacity-55 transition-opacity group-hover:opacity-100"
-									/>
-								</a>
+									iconSrc={iconSrc}
+									ariaLabel={t(`social.${id}`)}
+								/>
 							))}
 							{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
-								<a
+								<FooterSocialLink
 									key={id}
 									href={href}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={t(`messaging.${id}`, {
+									iconSrc={iconSrc}
+									ariaLabel={t(`messaging.${id}`, {
 										number: CONTACT_CHANNELS[id].display,
 									})}
-									className="group flex h-9 w-9 items-center justify-center rounded-full border border-[#1A3D5C] transition-all duration-300 hover:border-[#D4B886]/50"
-								>
-									<PublicIcon
-										src={iconSrc}
-										alt=""
-										size={18}
-										className="opacity-55 transition-opacity group-hover:opacity-100"
-									/>
-								</a>
+								/>
 							))}
 						</div>
 					</div>
