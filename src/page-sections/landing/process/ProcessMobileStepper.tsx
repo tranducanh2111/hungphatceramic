@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
-import { PROCESS_STEPS, type ProcessStep } from "@/constants/landing";
+import { PROCESS_STEP_CARD_CLASS, PROCESS_STEPS, type ProcessStep } from "@/constants/landing";
 
 interface ProcessStepCardProps {
 	step: ProcessStep;
@@ -20,19 +20,19 @@ function ProcessStepCard({ step, index }: ProcessStepCardProps) {
 			transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.06 }}
 			viewport={{ once: true, amount: 0.2 }}
 		>
-			<article className="rounded-2xl border border-[#1A3D5C] bg-[#071A2B]/50 p-7 backdrop-blur-sm">
+			<article className={`${PROCESS_STEP_CARD_CLASS} p-7`}>
 				<Text
 					variant="display-lg"
-					className="font-serif font-light text-[#D4B886]/20 select-none"
+					className="font-serif font-light text-champagne/20 select-none"
 					aria-hidden
 				>
 					{step.number}
 				</Text>
-				<Text variant="h4" className="mt-1 text-[#F4F4F6]">
+				<Text variant="h4" className="mt-1 text-linen">
 					{t(`steps.${step.id}.title`)}
 				</Text>
-				<div className="my-4 h-px w-12 bg-[#D4B886]" aria-hidden />
-				<Text variant="body" className="leading-relaxed text-[#F4F4F6]/65">
+				<div className="my-4 h-px w-12 bg-champagne" aria-hidden />
+				<Text variant="body" className="leading-relaxed text-linen/65">
 					{t(`steps.${step.id}.description`)}
 				</Text>
 			</article>
@@ -47,10 +47,10 @@ export function ProcessMobileStepper() {
 	return (
 		<div className="mx-auto max-w-7xl px-6 py-20 lg:px-12">
 			<header className="text-center">
-				<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
+				<span className="text-label font-sans tracking-widest text-champagne uppercase">
 					{t("label")}
 				</span>
-				<Text variant="h2" className="mt-3 text-[#F4F4F6]">
+				<Text variant="h2" className="mt-3 text-linen">
 					{t("heading")}
 				</Text>
 			</header>

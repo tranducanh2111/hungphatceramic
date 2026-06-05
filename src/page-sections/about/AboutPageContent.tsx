@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useLenis } from "lenis/react";
-import { useLenisControls } from "@/components/common";
+import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 import { AboutHero } from "@/page-sections/about/AboutHero";
 import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
@@ -36,31 +36,6 @@ const AboutPartners = dynamic(
 	{ ssr: false },
 );
 
-/** Re-measure Lenis after code-split sections mount and change document height. */
-function useLenisResizeOnAboutMount() {
-	const lenisControls = useLenisControls();
-
-	useEffect(() => {
-		if (!lenisControls) return;
-
-		const resizeLenis = () => lenisControls.resize();
-
-		resizeLenis();
-
-		const rafId = requestAnimationFrame(() => {
-			resizeLenis();
-			requestAnimationFrame(resizeLenis);
-		});
-
-		window.addEventListener("load", resizeLenis, { once: true });
-
-		return () => {
-			cancelAnimationFrame(rafId);
-			window.removeEventListener("load", resizeLenis);
-		};
-	}, [lenisControls]);
-}
-
 /** Scroll to hash targets after navigation (e.g. footer “Our Story”). */
 function useAboutHashScroll() {
 	const lenis = useLenis();
@@ -86,7 +61,7 @@ function useAboutHashScroll() {
 
 /** Client shell — below-fold sections code-split without SSR. */
 export function AboutPageContent() {
-	useLenisResizeOnAboutMount();
+	useLenisResizeOnMount();
 	useAboutHashScroll();
 
 	return (

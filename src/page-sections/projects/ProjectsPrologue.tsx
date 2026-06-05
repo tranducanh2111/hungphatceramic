@@ -1,8 +1,13 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Text } from "@/components/ui";
-import { BlueprintLine, ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
+import {
+	BlueprintLine,
+	ParallaxLayer,
+	ParallaxSection,
+	RevealOnView,
+	SectionHeader,
+} from "@/components/common";
 
 /**
  * ProjectsPrologue — Short narrative chapter before the heritage timeline.
@@ -25,23 +30,14 @@ export function ProjectsPrologue() {
 			/>
 
 			<div className="relative mx-auto max-w-3xl px-6 text-center lg:px-12">
-				<RevealOnView>
-					<span className="text-label font-sans tracking-widest text-champagne uppercase">
-						{t("label")}
-					</span>
-				</RevealOnView>
-
-				<RevealOnView className="mt-4">
-					<Text variant="h2" as="h2" className="text-linen font-serif font-light italic">
-						{t("heading")}
-					</Text>
-				</RevealOnView>
-
-				<RevealOnView className="mt-6">
-					<Text variant="body-lg" className="text-linen/55 leading-relaxed">
-						{t("body")}
-					</Text>
-				</RevealOnView>
+				<SectionHeader
+					label={t("label")}
+					heading={t("heading")}
+					description={t("body")}
+					align="center"
+					italic
+					className="mb-0"
+				/>
 
 				<RevealOnView className="mt-10">
 					<p className="text-body-sm font-sans tracking-wide text-linen/35">

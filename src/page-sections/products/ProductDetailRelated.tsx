@@ -39,14 +39,14 @@ export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRel
 		: product.collectionId;
 
 	return (
-		<section className="relative bg-[#0E2A42] px-6 py-24 text-[#F4F4F6] lg:px-12">
+		<section className="relative bg-sapphire-ocean px-6 py-24 text-linen lg:px-12">
 			<div className="mx-auto max-w-7xl">
 				{/* Section Header */}
 				<div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between">
 					<div>
 						<Text
 							variant="label"
-							className="mb-4 block font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
+							className="mb-4 block font-sans font-medium tracking-[0.2em] text-champagne uppercase"
 						>
 							{tDetail("relatedProducts", { collection: "" })}
 						</Text>

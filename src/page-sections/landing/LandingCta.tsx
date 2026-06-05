@@ -1,99 +1,49 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
-import { Text, Button } from "@/components/ui";
+import { Text, DecorativeDivider } from "@/components/ui";
+import { ClosingCtaSection } from "@/components/common";
 import { GOOGLE_MAPS_URL } from "@/constants/contact";
 import { ROUTES } from "@/constants/routes";
 
-/**
- * LandingCta — Final conversion section with exclusive framing.
- */
+/** LandingCta — Final conversion section with exclusive framing. */
 export function LandingCta() {
 	const t = useTranslations("landing.cta");
 
 	return (
-		<section className="relative overflow-hidden bg-[#0E2A42] py-28 lg:py-36">
-			{/* Background glow */}
+		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
 			<div
-				className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D4B886]/5 blur-[120px]"
+				className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-champagne/5 blur-[120px]"
 				aria-hidden="true"
 			/>
 
-			{/* Decorative top border */}
-			<div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-[#D4B886]/30 to-transparent" />
+			<DecorativeDivider variant="gradient" className="absolute top-0 right-0 left-0" />
 
-			<div className="relative mx-auto max-w-3xl px-6 text-center lg:px-12">
-				<motion.span
-					initial={{ opacity: 0, y: 16 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-					viewport={{ once: true }}
-					className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-				>
-					{t("label")}
-				</motion.span>
-
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.7, delay: 0.1 }}
-					viewport={{ once: true }}
-				>
-					<Text variant="display-lg" className="mt-4 text-[#F4F4F6]">
-						{t("titleLine1")}
-						<br />
-						<em className="text-[#D4B886] italic">{t("titleLine2")}</em>
-					</Text>
-				</motion.div>
-
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.7, delay: 0.2 }}
-					viewport={{ once: true }}
-				>
-					<Text variant="body-lg" className="mx-auto mt-6 max-w-xl text-[#F4F4F6]/60">
-						{t("description")}
-					</Text>
-				</motion.div>
-
-				{/* CTAs */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.7, delay: 0.3 }}
-					viewport={{ once: true }}
-					className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center"
-				>
-					<Button href={ROUTES.contact} size="lg">
-						{t("primaryCta")}
-					</Button>
-					<Button href={ROUTES.products} variant="secondary" size="lg">
-						{t("secondaryCta")}
-					</Button>
-				</motion.div>
-
-				{/* Office details */}
-				<motion.div
-					initial={{ opacity: 0 }}
-					whileInView={{ opacity: 1 }}
-					transition={{ duration: 0.8, delay: 0.45 }}
-					viewport={{ once: true }}
-					className="mt-14 flex flex-col items-center gap-4 border-t border-[#1A3D5C] pt-10 sm:flex-row sm:justify-center"
-				>
-					<a
-						href={GOOGLE_MAPS_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
-					>
-						<MapPin className="h-4 w-4 shrink-0 text-[#D4B886]" />
-						<Text variant="body-sm">{t("officeAddress")}</Text>
-					</a>
-				</motion.div>
-			</div>
+			<ClosingCtaSection
+				bare
+				titleLine1={t("titleLine1")}
+				titleLine2={t("titleLine2")}
+				description={t("description")}
+				actions={[
+					{ label: t("primaryCta"), href: ROUTES.contact, variant: "primary" },
+					{ label: t("secondaryCta"), href: ROUTES.products, variant: "secondary" },
+				]}
+				actionsDelay={0.3}
+				footer={
+					<div className="mt-14 flex flex-col items-center gap-4 border-t border-sapphire-mist pt-10 sm:flex-row sm:justify-center">
+						<a
+							href={GOOGLE_MAPS_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="inline-flex items-center gap-2 text-linen/45 transition-colors duration-300 hover:text-champagne"
+						>
+							<MapPin className="h-4 w-4 shrink-0 text-champagne" />
+							<Text variant="body-sm">{t("officeAddress")}</Text>
+						</a>
+					</div>
+				}
+			/>
 		</section>
 	);
 }

@@ -5,7 +5,7 @@ import { motion, useMotionValueEvent } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { Text } from "@/components/ui";
-import { PROCESS_STEPS } from "@/constants/landing";
+import { PROCESS_STEP_CARD_CLASS, PROCESS_STEPS } from "@/constants/landing";
 import { cn } from "@/lib/cn";
 
 const STEP_NODE_POSITIONS = [
@@ -47,10 +47,10 @@ export function ProcessScrollTimeline() {
 			<div className="sticky top-0 flex h-screen items-center overflow-hidden">
 				<div className="mx-auto w-full max-w-7xl px-6 lg:px-12">
 					<header className="mb-12 text-center">
-						<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
+						<span className="text-label font-sans tracking-widest text-champagne uppercase">
 							{t("label")}
 						</span>
-						<Text variant="h2" className="mt-3 text-[#F4F4F6]">
+						<Text variant="h2" className="mt-3 text-linen">
 							{t("heading")}
 						</Text>
 					</header>
@@ -113,18 +113,18 @@ export function ProcessScrollTimeline() {
 														repeat: Infinity,
 														ease: "easeOut",
 													}}
-													className="absolute h-full w-full rounded-full bg-[#D4B886]"
+													className="absolute h-full w-full rounded-full bg-champagne"
 													aria-hidden
 												/>
 											)}
 											<div
 												className={cn(
-													"text-body-sm relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 bg-[#0E2A42] font-sans font-medium transition-colors duration-500",
+													"text-body-sm relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 bg-sapphire-ocean font-sans font-medium transition-colors duration-500",
 													isActive
-														? "border-[#D4B886] text-[#D4B886] shadow-[0_0_15px_rgba(212,184,134,0.3)]"
+														? "border-champagne text-champagne shadow-[0_0_15px_rgba(212,184,134,0.3)]"
 														: isPast
-															? "border-[#D4B886]/40 text-[#D4B886]/60"
-															: "border-[#1A3D5C] text-[#F4F4F6]/30",
+															? "border-champagne/40 text-champagne/60"
+															: "border-sapphire-mist text-linen/30",
 												)}
 											>
 												{step.number}
@@ -135,7 +135,7 @@ export function ProcessScrollTimeline() {
 											variant="h5"
 											className={cn(
 												"absolute left-14 whitespace-nowrap transition-colors duration-500",
-												isActive ? "text-[#F4F4F6]" : "text-[#F4F4F6]/35",
+												isActive ? "text-linen" : "text-linen/35",
 											)}
 										>
 											{t(`steps.${step.id}.title`)}
@@ -150,20 +150,20 @@ export function ProcessScrollTimeline() {
 							initial={{ opacity: 0, x: 20 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, ease: "easeOut" }}
-							className="rounded-2xl border border-[#1A3D5C] bg-[#071A2B]/50 p-8 backdrop-blur-sm lg:p-10"
+							className={`${PROCESS_STEP_CARD_CLASS} p-8 lg:p-10`}
 						>
 							<Text
 								variant="display-lg"
-								className="font-serif font-light text-[#D4B886]/20 select-none"
+								className="font-serif font-light text-champagne/20 select-none"
 								aria-hidden
 							>
 								{activeStep.number}
 							</Text>
-							<Text variant="h3" className="mt-2 text-[#F4F4F6]">
+							<Text variant="h3" className="mt-2 text-linen">
 								{t(`steps.${activeStep.id}.title`)}
 							</Text>
-							<div className="my-5 h-px w-12 bg-[#D4B886]" aria-hidden />
-							<Text variant="body-lg" className="leading-relaxed text-[#F4F4F6]/65">
+							<div className="my-5 h-px w-12 bg-champagne" aria-hidden />
+							<Text variant="body-lg" className="leading-relaxed text-linen/65">
 								{t(`steps.${activeStep.id}.description`)}
 							</Text>
 
@@ -174,10 +174,10 @@ export function ProcessScrollTimeline() {
 										className={cn(
 											"h-1 rounded-full transition-all duration-500",
 											index === activeStepIndex
-												? "w-8 bg-[#D4B886]"
+												? "w-8 bg-champagne"
 												: index < activeStepIndex
-													? "w-4 bg-[#D4B886]/40"
-													: "w-4 bg-[#1A3D5C]",
+													? "w-4 bg-champagne/40"
+													: "w-4 bg-sapphire-mist",
 										)}
 									/>
 								))}

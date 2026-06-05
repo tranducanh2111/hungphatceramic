@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { ViewportDeferredImage } from "@/components/media";
 import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
-import { ParallaxElement, RevealOnView } from "@/components/common";
+import { ParallaxElement, RevealOnView, SectionContainer, SectionHeader } from "@/components/common";
 import { CAPABILITY_CARDS, type CapabilityId } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
@@ -30,19 +30,8 @@ export function AboutCapabilities() {
 			id={ABOUT_SECTION_IDS.capabilities}
 			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-28 lg:py-36"
 		>
-			<div className="relative z-20 mx-auto max-w-7xl px-6 pb-28 lg:px-12 lg:pb-36">
-				<div className="mb-16">
-					<RevealOnView>
-						<span className="text-label text-champagne font-sans tracking-widest uppercase">
-							{t("label")}
-						</span>
-					</RevealOnView>
-					<RevealOnView className="mt-3 max-w-xl" delay={0.1}>
-						<Text variant="h2" as="h2" className="text-linen">
-							{t("heading")}
-						</Text>
-					</RevealOnView>
-				</div>
+			<SectionContainer className="relative z-20 pb-28 lg:pb-36">
+				<SectionHeader label={t("label")} heading={t("heading")} />
 
 				<div className="grid gap-6 sm:grid-cols-2">
 					{topRow.map((card, index) => {
@@ -73,7 +62,7 @@ export function AboutCapabilities() {
 						);
 					})}
 				</div>
-			</div>
+			</SectionContainer>
 
 			<div
 				className="to-sapphire-deep from-sapphire-ocean pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 translate-y-px bg-gradient-to-b via-[#0a1f32] sm:h-40 lg:h-48"

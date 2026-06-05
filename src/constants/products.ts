@@ -79,30 +79,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Ảnh Panorama/GP12962J.png",
 		],
 	},
-	{
-		slug: "inspire-gp12964j",
-		skuCode: "GP12964J",
-		name: "Inspire GP12964J",
-		collectionId: "inspire",
-		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
-		thumbnailUrl: "/assets/60X120/Inspire GP12964J/GP12964J_01.jpg",
-		shortDescription:
-			"Polished crystal porcelain surface, bringing light reflection and spatial expanse.",
-		faceImages: [
-			"/assets/60X120/Inspire GP12964J/GP12964J_01.jpg",
-			"/assets/60X120/Inspire GP12964J/GP12964J_02.jpg",
-			"/assets/60X120/Inspire GP12964J/GP12964J_03.jpg",
-			"/assets/60X120/Inspire GP12964J/GP12964J_04.jpg",
-			"/assets/60X120/Inspire GP12964J/GP12964J_05.jpg",
-			"/assets/60X120/Inspire GP12964J/GP12964J_06.jpg",
-		],
-		sceneImages: [
-			"/assets/60X120/Inspire GP12964J/PC-GP12964J.jpg",
-			"/assets/60X120/Inspire GP12964J/PC-GP12964J-1.jpg",
-			"/assets/60X120/Ảnh Panorama/Inspire GP12964J.png",
-		],
-	},
 
 	// ─── INSPIRE SERIES (80×80cm) ─────────────────────────────────────────────────
 	{
@@ -269,29 +245,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Ảnh Panorama/Orient Star G12W05J.png",
 		],
 		allFacesImage: "/assets/60X120/Orient Star G12W05J/G12W05J-6 faces.jpg",
-	},
-	{
-		slug: "orient-star-gp12w05j",
-		skuCode: "GP12W05J",
-		name: "Orient Star GP12W05J",
-		collectionId: "orient-star",
-		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
-		thumbnailUrl: "/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
-		shortDescription: "Glossy polished porcelain rendering pure ivory luminance.",
-		faceImages: [
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (2).jpg",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (3).jpg",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (4).jpg",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (5).jpg",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (7).jpg",
-		],
-		sceneImages: [
-			"/assets/60X120/Orient Star GP12W05J/PC-GP12W05J.jpg",
-			"/assets/60X120/Ảnh Panorama/Orient Star GP12W05J.png",
-		],
-		allFacesImage: "/assets/60X120/Orient Star GP12W05J/GP12W05J-6 faces.jpg",
 	},
 
 	// ─── SUNSHINE SERIES (60×120cm & 80×80cm) ─────────────────────────────────────
@@ -476,26 +429,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Ảnh Panorama/GP12H05J.png",
 		],
 		allFacesImage: "/assets/60X120/Peace GP12H05J/GP12H05J.jpg",
-	},
-	{
-		slug: "peace-gp88731j",
-		skuCode: "GP88731J",
-		name: "Peace GP88731J",
-		collectionId: "peace",
-		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
-		thumbnailUrl: "/assets/80X80/GP88731J/GP88731J_01.jpg",
-		shortDescription: "Sophisticated 80×80 format with mild patterns that breathe tranquility.",
-		faceImages: [
-			"/assets/80X80/GP88731J/GP88731J_01.jpg",
-			"/assets/80X80/GP88731J/GP88731J_02.jpg",
-			"/assets/80X80/GP88731J/GP88731J_03.jpg",
-			"/assets/80X80/GP88731J/GP88731J_04.jpg",
-			"/assets/80X80/GP88731J/GP88731J_05.jpg",
-			"/assets/80X80/GP88731J/GP88731J_06.jpg",
-		],
-		sceneImages: ["/assets/80X80/GP88731J/PC118-GP88761.jpg"],
-		allFacesImage: "/assets/80X80/GP88731J/GP88731J.jpg",
 	},
 	{
 		slug: "peace-gp88736j",

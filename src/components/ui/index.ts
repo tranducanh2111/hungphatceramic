@@ -1,7 +1,13 @@
 export { Text } from "./Text";
 export { Button } from "./Button";
+export type { ButtonProps } from "./Button";
 export { Input } from "./Input";
 export { Select } from "./Select";
 export { Textarea } from "./Textarea";
+export { Eyebrow } from "./Eyebrow";
+export { DecorativeDivider } from "./DecorativeDivider";
+export { Badge } from "./Badge";
+export { IconButton } from "./IconButton";
+export { PaginationDots } from "./PaginationDots";
 export { ProductTileCard } from "./ProductTileCard";
 export type { ProductTileCardProps } from "./ProductTileCard";

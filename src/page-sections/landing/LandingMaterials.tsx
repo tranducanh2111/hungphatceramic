@@ -101,7 +101,7 @@ function TileSizeSegmentedControl({
 
 	return (
 		<div
-			className="relative mx-auto grid w-full max-w-3xl min-w-[17.5rem] grid-cols-2 gap-1 rounded-2xl border border-[#1A3D5C] bg-[#071A2B]/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:grid-cols-4 sm:gap-0 sm:rounded-full"
+			className="relative mx-auto grid w-full max-w-3xl min-w-[17.5rem] grid-cols-2 gap-1 rounded-2xl border border-sapphire-mist bg-sapphire-deep/92 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:grid-cols-4 sm:gap-0 sm:rounded-full"
 			role="tablist"
 			aria-label={t("tileFormat")}
 			onPointerDown={(event) => {
@@ -122,7 +122,7 @@ function TileSizeSegmentedControl({
 			{/* Single-row sliding thumb (sm+). Mobile uses per-button highlight — 2×2 + 50% thumb overlapped labels. */}
 			<div
 				aria-hidden
-				className="pointer-events-none absolute top-1 bottom-1 hidden rounded-full bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left,width] duration-300 ease-out sm:block"
+				className="pointer-events-none absolute top-1 bottom-1 hidden rounded-full bg-champagne shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-[left,width] duration-300 ease-out sm:block"
 				style={{
 					left: `calc(${(activeIndex / segmentCount) * 100}% + 4px)`,
 					width: `calc(${thumbWidthPercent}% - 8px)`,
@@ -142,9 +142,9 @@ function TileSizeSegmentedControl({
 							"relative z-10 whitespace-nowrap rounded-full px-3 py-2.5 font-sans text-xs tracking-[0.08em] uppercase transition-colors duration-200 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em]",
 							selected
 								? "text-[#071A2B]"
-								: "text-[#F4F4F6]/45 hover:text-[#F4F4F6]/78",
+								: "text-linen/45 hover:text-linen/78",
 							selected &&
-								"bg-[#D4B886] shadow-[0_2px_12px_rgba(0,0,0,0.28)] sm:bg-transparent sm:shadow-none",
+								"bg-champagne shadow-[0_2px_12px_rgba(0,0,0,0.28)] sm:bg-transparent sm:shadow-none",
 						)}
 					>
 						{t(labelKey)}
@@ -193,7 +193,7 @@ function MaterialCard({
 			{/* Hover shimmer */}
 			<div
 				className={cn(
-					"absolute inset-0 bg-[#D4B886]/0 transition-colors group-hover:bg-[#D4B886]/5 group-active:bg-[#D4B886]/8",
+					"absolute inset-0 bg-champagne/0 transition-colors group-hover:bg-champagne/5 group-active:bg-champagne/8",
 					CARD_HOVER_TRANSITION_CLASS,
 				)}
 			/>
@@ -204,20 +204,20 @@ function MaterialCard({
 			{/* Content */}
 			<div className="relative z-10 flex min-h-56 flex-col justify-between p-7">
 				<div>
-					<Text variant="label" className="tracking-widest text-[#D4B886] uppercase">
+					<Text variant="label" className="tracking-widest text-champagne uppercase">
 						{category.sizes.join(" · ")}
 					</Text>
-					<Text variant="h4" className="mt-3 text-[#F4F4F6]">
+					<Text variant="h4" className="mt-3 text-linen">
 						{t(`categories.${category.id}.name`)}
 					</Text>
-					<Text variant="body-sm" className="mt-2 text-[#F4F4F6]/55">
+					<Text variant="body-sm" className="mt-2 text-linen/55">
 						{t(`categories.${category.id}.tagline`)}
 					</Text>
 				</div>
 
 				<span
 					className={cn(
-						"text-body-sm inline-flex items-center gap-2 font-sans text-[#D4B886] opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100",
+						"text-body-sm inline-flex items-center gap-2 font-sans text-champagne opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100",
 						CARD_HOVER_TRANSITION_CLASS,
 					)}
 				>
@@ -241,7 +241,7 @@ export function LandingMaterials() {
 	const featuredCategories = MATERIAL_CATEGORIES.slice(0, 3);
 
 	return (
-		<section className="bg-[#0E2A42] py-28 lg:py-36">
+		<section className="bg-sapphire-ocean py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				{/* ── Header ── */}
 				<motion.div
@@ -251,13 +251,13 @@ export function LandingMaterials() {
 					viewport={{ once: true, amount: 0.12, margin: "0px 0px -8% 0px" }}
 					className="mb-10 text-center"
 				>
-					<span className="text-label font-sans tracking-widest text-[#D4B886] uppercase">
+					<span className="text-label font-sans tracking-widest text-champagne uppercase">
 						{t("label")}
 					</span>
-					<Text variant="display-lg" className="mt-3 text-[#F4F4F6]">
+					<Text variant="display-lg" className="mt-3 text-linen">
 						{t("heading")}
 					</Text>
-					<Text variant="body-lg" className="mx-auto mt-5 max-w-xl text-[#F4F4F6]/55">
+					<Text variant="body-lg" className="mx-auto mt-5 max-w-xl text-linen/55">
 						{t("description")}
 					</Text>
 				</motion.div>

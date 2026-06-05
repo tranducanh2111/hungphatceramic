@@ -97,7 +97,7 @@ export function resolveListingDemoWorkHoverPath(demoWorkAssetPath: string | unde
 	return getListingDemoWorkPreviewPath(demoWorkAssetPath);
 }
 
-/** Responsive grid for 1–N demo renders (e.g. Inspire GP12964J ×2, Peace ×3). */
+/** Responsive grid for 1–N demo renders (e.g. dual install shots, triple room scenes). */
 export function getDemoWorkGridClassName(imageCount: number): string {
 	if (imageCount <= 1) {
 		return "mx-auto grid max-w-3xl grid-cols-1 gap-6";

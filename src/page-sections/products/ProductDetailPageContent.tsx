@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
-import { useLenisControls } from "@/components/common";
+import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
 import { ProductDetailHero } from "./ProductDetailHero";
 import { ProductDetail } from "@/types";
@@ -31,30 +31,6 @@ const ProductDetailRelated = dynamic(
 	() => import("./ProductDetailRelated").then((m) => ({ default: m.ProductDetailRelated })),
 	{ ssr: false },
 );
-
-/** Re-measure Lenis when product detail page is fully mounted and heights shift */
-function useLenisResizeOnDetailMount() {
-	const lenisControls = useLenisControls();
-
-	useEffect(() => {
-		if (!lenisControls) return;
-
-		const resizeLenis = () => lenisControls.resize();
-		resizeLenis();
-
-		const rafId = requestAnimationFrame(() => {
-			resizeLenis();
-			requestAnimationFrame(resizeLenis);
-		});
-
-		window.addEventListener("load", resizeLenis, { once: true });
-
-		return () => {
-			cancelAnimationFrame(rafId);
-			window.removeEventListener("load", resizeLenis);
-		};
-	}, [lenisControls]);
-}
 
 interface ProductDetailPageContentProps {
 	product: ProductDetail;
@@ -91,7 +67,7 @@ const pageVariants = {
  * ProductDetailPageContent — Client shell hosting the detail page section components.
  */
 export function ProductDetailPageContent({ product }: ProductDetailPageContentProps) {
-	useLenisResizeOnDetailMount();
+	useLenisResizeOnMount();
 	const router = useRouter();
 	const lenis = useLenis();
 	const searchParams = useSearchParams();

@@ -76,7 +76,7 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 		sizes: [...LARGE_FORMAT_SIZES],
 		previews: sizePreviews(
 			"60×120cm",
-			"/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
+			"/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
 			["100×100cm", "120×120cm"],
 		),
 	},
@@ -182,6 +182,10 @@ export const PROCESS_STEPS: ProcessStep[] = [
 export interface Testimonial {
 	id: string;
 }
+
+/** Shared process step card shell — mobile stepper and scroll timeline. */
+export const PROCESS_STEP_CARD_CLASS =
+	"rounded-2xl border border-sapphire-mist bg-sapphire-deep/50 backdrop-blur-sm";
 
 export const TESTIMONIALS: Testimonial[] = [
 	{

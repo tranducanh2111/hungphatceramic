@@ -9,4 +9,11 @@ export { RevealOnView } from "./RevealOnView";
 export { ParallaxSection, ParallaxProvider, ParallaxLayer, ParallaxElement } from "./parallax";
 export { ProductTile } from "./ProductTile";
 export { SectionBlendOverlay } from "./SectionBlendOverlay";
-
+export { SectionContainer } from "./SectionContainer";
+export { SectionHeader } from "./SectionHeader";
+export { ClosingCtaSection } from "./ClosingCtaSection";
+export type { ClosingCtaAction } from "./ClosingCtaSection";
+export { ClientRosterGrid } from "./ClientRosterGrid";
+export type { ClientRosterItem } from "./ClientRosterGrid";
+export { CinematicHero } from "./CinematicHero";
+export { FeaturedProjectCard, type FeaturedProjectCardContent } from "./FeaturedProjectCard";

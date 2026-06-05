@@ -37,7 +37,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 			/>
 
 			{/* Top champagne border decoration */}
-			<div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-[#D4B886]/20 to-transparent" />
+			<div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-champagne/20 to-transparent" />
 
 			{/* Decorative background typography */}
 			<div
@@ -55,10 +55,10 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 					className="mb-4 inline-flex items-center gap-3"
 				>
-					<span className="h-px w-8 bg-[#D4B886]/60" />
+					<span className="h-px w-8 bg-champagne/60" />
 					<Text
 						variant="label"
-						className="font-sans font-medium tracking-[0.2em] text-[#D4B886] uppercase"
+						className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
 					>
 						{t("hero.label")}
 					</Text>
@@ -74,7 +74,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -20 }}
 								transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-								className="text-display-xl font-serif leading-none font-light text-[#F4F4F6]"
+								className="text-display-xl font-serif leading-none font-light text-linen"
 							>
 								{collectionHeading}
 							</motion.h1>
@@ -88,9 +88,9 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.95 }}
 							transition={{ duration: 0.4 }}
-							className="text-body-sm mt-4 shrink-0 font-sans text-[#F4F4F6]/40 md:mt-0 md:text-right"
+							className="text-body-sm mt-4 shrink-0 font-sans text-linen/40 md:mt-0 md:text-right"
 						>
-							<span className="font-serif text-3xl font-light text-[#D4B886] md:block md:leading-none">
+							<span className="font-serif text-3xl font-light text-champagne md:block md:leading-none">
 								{totalProductsCount}
 							</span>
 							{totalProductsCount === 1
