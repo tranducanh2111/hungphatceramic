@@ -10,6 +10,7 @@
     "lint": "eslint",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
+    "validate:locale-messages": "node scripts/validate-locale-messages.mjs",
     "audit:product-media": "node scripts/audit-product-media.mjs",
     "generate:detail-media": "node scripts/generate-detail-media.mjs",
     "archive:product-media": "node scripts/archive-original-media.mjs",
