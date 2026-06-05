@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Text } from "@/components/ui";
-import { encodePublicAssetPath } from "@/lib/products/media";
 import { ProductDetail } from "@/types";
 
 interface ProductDetailHeroProps {
 	product: ProductDetail;
+	heroMedia: ReactNode;
 	onBack: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
@@ -17,7 +17,7 @@ interface ProductDetailHeroProps {
  * ProductDetailHero — Split-screen product hero section (40% Info, 60% Image).
  * Remapped to sapphire/champagne palette.
  */
-export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
+export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailHeroProps) {
 	const tItems = useTranslations("products.items");
 	const tPage = useTranslations("pages.products");
 	const tDetail = useTranslations("pages.productDetail");
@@ -102,25 +102,8 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 					</motion.div>
 				</div>
 
-				{/* Right Panel: Hero Image (60% width on desktop) */}
-				<div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden lg:h-auto lg:w-[60%]">
-					<Image
-						src={encodePublicAssetPath(product.thumbnailUrl)}
-						alt={name}
-						fill
-						priority
-						sizes="(max-width: 1024px) 100vw, 60vw"
-						className="object-cover object-center"
-					/>
-					<div
-						className="absolute inset-0 hidden bg-gradient-to-r from-[#071A2B] via-transparent to-transparent opacity-80 lg:block"
-						aria-hidden="true"
-					/>
-					<div
-						className="absolute inset-0 bg-gradient-to-t from-[#071A2B] via-transparent to-transparent opacity-80 lg:hidden"
-						aria-hidden="true"
-					/>
-				</div>
+				{/* Right panel — server-rendered LCP image passed from page.tsx */}
+				{heroMedia}
 			</div>
 		</section>
 	);
