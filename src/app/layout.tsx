@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
 	variable: "--font-cormorant",
-	subsets: ["latin"],
+	subsets: ["latin", "vietnamese"],
 	weight: ["300", "400", "500", "600"],
 	style: ["normal", "italic"],
 	display: "swap",
 });
 
-const jost = Jost({
+// Inter replaces Jost: next/font Jost has no vietnamese subset, so diacritics fell back to system-ui.
+const jost = Inter({
 	variable: "--font-jost",
-	subsets: ["latin"],
+	subsets: ["latin", "vietnamese"],
 	weight: ["300", "400", "500", "600"],
 	display: "swap",
 });

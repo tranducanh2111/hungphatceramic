@@ -495,31 +495,37 @@
 				"milestones": {
 					"empire-city": {
 						"title": "Empire City",
+						"location": "Khu đô thị mới Thủ Thiêm, TP. Hồ Chí Minh",
 						"description": "Liên doanh do Keppel Land dẫn dắt trên 14,5 ha tại Thủ Thiêm — một trong những quy hoạch hỗn hợp ven sông lớn nhất TP.HCM, với khoảng 3.787 căn hộ cao cấp được quy hoạch qua các phân khu nhà ở như Linden và Tilia Residences.",
 						"imageAlt": "Khu phức hợp Empire City nhìn ra sông Sài Gòn tại Thủ Thiêm"
 					},
 					"ramada-ha-long-bay": {
 						"title": "Ramada Ha Long Bay View",
+						"location": "Trần Hưng Đạo, Hạ Long, Quảng Ninh",
 						"description": "Công trình khách sạn thương hiệu Wyndham bên vịnh Hạ Long, do Công ty CP Đầu tư và Xây dựng Lạc Hồng phát triển. Tòa tháp 33 tầng ven biển khai trương năm 2019 với 568 căn hộ dịch vụ cạnh vịnh di sản UNESCO.",
 						"imageAlt": "Khách sạn và căn hộ dịch vụ Ramada by Wyndham Ha Long Bay View tại Quảng Ninh"
 					},
 					"hinode-city": {
 						"title": "Hinode City",
+						"location": "201 Minh Khai, Hai Bà Trưng, Hà Nội",
 						"description": "Tổ hợp phong cách Nhật do Vietracimex (WTO) phát triển tại 201 Minh Khai, Hai Bà Trưng. Ba tháp 26 tầng trên 2,8 ha cung cấp hơn 1.100 căn hộ, bàn giao hoàn tất cuối năm 2020.",
 						"imageAlt": "Các tháp căn hộ Hinode City tại trung tâm Hà Nội"
 					},
 					"vinhomes-symphony": {
 						"title": "Vinhomes Symphony",
+						"location": "Vinhomes Riverside, Long Biên, Hà Nội",
 						"description": "Quần thể thấp tầng ven sông của Vinhomes trong Vinhomes Riverside, Long Biên — 4,3 ha, bảy tháp 9–15 tầng và khoảng 1.500 căn hộ đi vào vận hành từ tháng 9/2020.",
 						"imageAlt": "Các tháp căn hộ Vinhomes Symphony trong Vinhomes Riverside, Hà Nội"
 					},
 					"saigon-intela": {
 						"title": "Saigon Intela",
+						"location": "Nguyễn Văn Linh, Phong Phú, TP. Hồ Chí Minh",
 						"description": "Khu căn hộ thông minh ven sông Sài Gòn tại Bình Chánh — 1.068 căn trong hai tháp 24 tầng do Bắc Phước Kiển và LDG Group phát triển, hoàn thành xây dựng năm 2020.",
 						"imageAlt": "Tháp căn hộ Saigon Intela trên đường Nguyễn Văn Linh, TP.HCM"
 					},
 					"grand-world-phu-quoc": {
 						"title": "Grand World Phú Quốc",
+						"location": "Bãi Dài, Phú Quốc, Kiên Giang",
 						"description": "“Thành phố không ngủ” 85 ha của Vingroup tại Phú Quốc United Center, khai trương 21/4/2021 — khu canal phong cách Venice với mua sắm, ẩm thực và giải trí 24/7 trên đảo ngọc.",
 						"imageAlt": "Quần thể Grand World Phú Quốc về đêm"
 					}
@@ -581,6 +587,7 @@
 			"specifications": "Thông số kỹ thuật",
 			"relatedProducts": "Sản phẩm khác dòng {collection}",
 			"requestQuote": "Yêu cầu báo giá",
+			"requestQuoteDescription": "Các bề mặt cao cấp của chúng tôi được thiết kế cho yêu cầu B2B sang trọng và tiêu chuẩn kiến trúc. Liên hệ để được tư vấn cùng chuyên gia, kiểm tra tồn kho và nhận mẫu vật lý.",
 			"bookConsultation": "Đặt lịch tư vấn",
 			"surface": "Bề mặt hoàn thiện",
 			"thickness": "Độ dày",

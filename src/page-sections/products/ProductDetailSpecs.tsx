@@ -50,7 +50,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 							>
 								{tDetail("specifications")}
 							</Text>
-							<h3 className="text-h2 font-serif font-light">{product.name}</h3>
+							<h3 className="text-h2 font-serif lining-nums font-light">{product.name}</h3>
 						</div>
 
 						{/* Spec Attributes Grid */}
@@ -129,9 +129,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								{tDetail("requestQuote")}
 							</Text>
 							<p className="text-body-sm font-sans leading-relaxed text-linen/55">
-								Our premium surfaces are engineered for luxury B2B and architectural
-								specifications. Reach out to consult with our specialists, check
-								stock availability, and receive physical samples.
+								{tDetail("requestQuoteDescription")}
 							</p>
 						</div>
 

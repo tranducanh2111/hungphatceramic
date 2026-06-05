@@ -325,7 +325,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 					>
 						{tDetail("demoWork")}
 					</Text>
-					<h2 className="text-h2 font-serif font-light text-linen">{productName}</h2>
+					<h2 className="text-h2 font-serif lining-nums font-light text-linen">{productName}</h2>
 					<div className="mx-auto mt-4 h-px w-16 bg-champagne/30" />
 				</div>
 

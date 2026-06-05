@@ -234,7 +234,7 @@ export function ProjectsHeritage() {
 											{milestone.coordinates}
 										</p>
 										<p className="text-body-sm mt-2 font-sans text-linen/40">
-											{milestone.location}
+											{t(`milestones.${milestone.id}.location`)}
 										</p>
 										<p className="text-label mt-1 font-sans tracking-widest text-champagne/30 uppercase">
 											{milestone.year}
