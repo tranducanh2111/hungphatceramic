@@ -81,7 +81,7 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 						</div>
 
 						{/* Product Title */}
-						<h1 className="text-display-lg font-serif leading-tight font-light text-linen">
+						<h1 className="text-display-lg font-serif lining-nums leading-tight font-light text-linen">
 							{name}
 						</h1>
 

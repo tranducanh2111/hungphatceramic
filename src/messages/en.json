@@ -495,31 +495,37 @@
 				"milestones": {
 					"empire-city": {
 						"title": "Empire City",
+						"location": "Thu Thiem New Urban Area, Ho Chi Minh City",
 						"description": "A Keppel Land–led joint venture on 14.5 hectares in Thu Thiem — one of Ho Chi Minh City's largest waterfront mixed-use masterplans, with about 3,787 premium apartments planned across residential phases including Linden and Tilia Residences.",
 						"imageAlt": "Empire City mixed-use development overlooking the Saigon River in Thu Thiem"
 					},
 					"ramada-ha-long-bay": {
 						"title": "Ramada Ha Long Bay View",
+						"location": "Tran Hung Dao, Ha Long, Quang Ninh",
 						"description": "Wyndham-branded hospitality on Ha Long Bay, developed by Lac Hong Construction & Investment. The 33-storey waterfront tower opened in 2019 with 568 serviced apartments beside UNESCO-listed Ha Long Bay.",
 						"imageAlt": "Ramada by Wyndham Ha Long Bay View hotel and serviced apartments in Quang Ninh"
 					},
 					"hinode-city": {
 						"title": "Hinode City",
+						"location": "201 Minh Khai, Hai Ba Trung, Hanoi",
 						"description": "A Japanese-inspired mixed-use landmark by Vietracimex (WTO) at 201 Minh Khai, Hai Ba Trung. Three 26-storey towers on 2.8 hectares deliver more than 1,100 residences, with handover completed in late 2020.",
 						"imageAlt": "Hinode City mixed-use residential towers in central Hanoi"
 					},
 					"vinhomes-symphony": {
 						"title": "Vinhomes Symphony",
+						"location": "Vinhomes Riverside, Long Bien, Hanoi",
 						"description": "Vinhomes' low-density riverside ensemble inside Vinhomes Riverside, Long Bien — 4.3 hectares, seven towers of 9–15 floors, and about 1,500 apartments brought into operation from September 2020.",
 						"imageAlt": "Vinhomes Symphony apartment towers within Vinhomes Riverside, Hanoi"
 					},
 					"saigon-intela": {
 						"title": "Saigon Intela",
+						"location": "Nguyen Van Linh, Phong Phu, Ho Chi Minh City",
 						"description": "Vietnam's early smart-home apartment community along the Saigon River in Binh Chanh — 1,068 units in two 24-storey towers by Bac Phuoc Kien and LDG Group, with construction completed in 2020.",
 						"imageAlt": "Saigon Intela riverside apartment towers on Nguyen Van Linh, Ho Chi Minh City"
 					},
 					"grand-world-phu-quoc": {
 						"title": "Grand World Phu Quoc",
+						"location": "Bai Dai, Phu Quoc, Kien Giang",
 						"description": "Vingroup's 85-hectare \"sleepless city\" at Phu Quoc United Center, opened 21 April 2021 — a Venice-inspired canal district with 24/7 shopping, dining, and entertainment anchoring Vietnam's island tourism hub.",
 						"imageAlt": "Grand World Phu Quoc entertainment and retail complex at night"
 					}
@@ -581,6 +587,7 @@
 			"specifications": "Specifications",
 			"relatedProducts": "More from {collection}",
 			"requestQuote": "Request a Quote",
+			"requestQuoteDescription": "Our premium surfaces are engineered for luxury B2B and architectural specifications. Reach out to consult with our specialists, check stock availability, and receive physical samples.",
 			"bookConsultation": "Book a Consultation",
 			"surface": "Surface Finish",
 			"thickness": "Thickness",

@@ -89,6 +89,9 @@ function FooterSocialLink({
 	);
 }
 
+const FOOTER_SECTION_HEADING_CLASS =
+	"mb-8 block font-sans tracking-[0.2em] text-[#D4B886] uppercase";
+
 function FooterLinkGroup({
 	heading,
 	links,
@@ -98,13 +101,10 @@ function FooterLinkGroup({
 }) {
 	return (
 		<div>
-			<Text
-				variant="label"
-				className="mb-5 font-sans tracking-[0.2em] text-[#D4B886] uppercase"
-			>
+			<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
 				{heading}
 			</Text>
-			<ul className="space-y-3" role="list">
+			<ul className="space-y-2" role="list">
 				{links.map(({ label, href }) => (
 					<li key={href}>
 						<Link
@@ -219,13 +219,10 @@ export function Footer() {
 
 					{/* ── Contact ── */}
 					<div>
-						<Text
-							variant="label"
-							className="mb-5 font-sans tracking-[0.2em] text-[#D4B886] uppercase"
-						>
+						<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
 							{t("sections.contact")}
 						</Text>
-						<ul className="space-y-4" role="list">
+						<ul className="space-y-2" role="list">
 							{CONTACT_ITEMS.map(({ id, iconSrc, href, isExternal }) => (
 								<li key={href}>
 									<a
