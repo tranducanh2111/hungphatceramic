@@ -2,14 +2,21 @@
 
 import { useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { CinematicHeroVideo } from "@/components/media";
 import { Button } from "@/components/ui";
 import { CONTACT_SECTION_IDS } from "@/constants/contact";
+import {
+	CINEMATIC_HERO_CONTENT_CLASS,
+	CINEMATIC_HERO_SCRIM_CLASS,
+	CINEMATIC_HERO_STICKY_CLASS,
+} from "@/constants/hero";
 import { MEDIA_PATHS } from "@/constants/media";
 import { useAppScroll } from "@/hooks/useAppScroll";
+import { useCinematicHeroClip } from "@/hooks/useCinematicHeroClip";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { cn } from "@/lib/cn";
 import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 
 const contentVariants: Variants = {
@@ -44,17 +51,11 @@ export function ContactHero() {
 		offset: ["start start", "end start"],
 	});
 
-	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
-	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
-
-	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.55, 1]);
-	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
+	const { clipPath, videoOpacity, videoScale } = useCinematicHeroClip(scrollYProgress);
 
 	return (
 		<section ref={sectionRef} className="relative h-[150vh] w-full">
-			<div className="bg-sapphire-deep sticky top-0 h-screen w-full overflow-hidden">
+			<div className={cn("bg-sapphire-deep", CINEMATIC_HERO_STICKY_CLASS)}>
 				<div
 					className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_70%)]"
 					aria-hidden="true"
@@ -77,13 +78,10 @@ export function ContactHero() {
 								: { opacity: videoOpacity, scale: videoScale }
 						}
 					/>
-					<div
-						className="from-sapphire-deep/80 to-sapphire-deep/30 absolute inset-0 bg-gradient-to-t via-transparent"
-						aria-hidden="true"
-					/>
+					<div className={CINEMATIC_HERO_SCRIM_CLASS} aria-hidden="true" />
 				</motion.div>
 
-				<div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+				<div className={CINEMATIC_HERO_CONTENT_CLASS}>
 					<motion.span
 						custom={0.1}
 						variants={contentVariants}
