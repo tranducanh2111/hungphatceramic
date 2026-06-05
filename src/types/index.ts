@@ -28,13 +28,19 @@ export interface ProductSummary {
 	skuCode: string;
 }
 
-/** Full product data used on the detail page. */
-export interface ProductDetail extends ProductSummary {
+/** Catalogue row before demo/scene paths are split (see `normalizeProductMedia`). */
+export interface ProductCatalogEntry extends ProductSummary {
 	collectionId: string;
 	sizes: string[];
 	faceImages: string[];
 	sceneImages: string[];
 	allFacesImage?: string;
+}
+
+/** Full product data used on the detail page. */
+export interface ProductDetail extends ProductCatalogEntry {
+	/** PC-* install renders from the product asset folder (may be multiple per SKU). */
+	demoWorkImages: string[];
 }
 
 /** Collection filter tab item for the products listing. */
