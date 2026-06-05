@@ -56,6 +56,14 @@ export function applyTileSizeToListingItem(
 		...product,
 		category: tileDimension,
 		thumbnailUrl: remapAssetPathForTileDimension(product.thumbnailUrl, tileDimension),
+		...(product.demoWorkThumbnailUrl
+			? {
+					demoWorkThumbnailUrl: remapAssetPathForTileDimension(
+						product.demoWorkThumbnailUrl,
+						tileDimension,
+					),
+				}
+			: {}),
 	};
 }
 

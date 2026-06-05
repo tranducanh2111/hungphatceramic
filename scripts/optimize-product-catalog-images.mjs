@@ -19,8 +19,21 @@ const ASSET_PATH_PATTERN = /"(\/assets\/[^"]+\.(?:jpe?g|png|webp))"/gi;
 const SIZE_THRESHOLD_BYTES = 1_500_000;
 const MIN_SAVINGS_RATIO = 0.08;
 
+const LISTING_PREVIEW_MAX_EDGE = 1280;
+const LISTING_PREVIEW_QUALITY = 78;
+
+function isDemoWorkAssetPath(assetPath) {
+	const fileName = path.basename(assetPath);
+	if (fileName.endsWith(".listing.webp")) {
+		return false;
+	}
+
+	return /^PC/i.test(fileName);
+}
+
 const PROFILE_BY_HINT = [
-	{ test: (p) => /panorama/i.test(p) || /PC-/i.test(p), skip: true },
+	{ test: (p) => /panorama/i.test(p), skip: true },
+	{ test: (p) => isDemoWorkAssetPath(p), skip: true },
 	{ test: (p) => /faces|6 faces|6 FACES/i.test(p), maxEdge: 2800, quality: 82 },
 	{ test: () => true, maxEdge: 1600, quality: 84 },
 ];
@@ -78,6 +91,7 @@ async function collectSyncedSizeAssetPaths() {
 			for (const file of files) {
 				if (!file.isFile()) continue;
 				if (!/\.(jpe?g|png|webp)$/i.test(file.name)) continue;
+				if (file.name.endsWith(".listing.webp")) continue;
 				paths.add(`/assets/${sizeFolder}/${productDir.name}/${file.name}`);
 			}
 		}
@@ -105,6 +119,76 @@ async function collectAssetPaths() {
 	}
 
 	return [...paths].sort();
+}
+
+function getListingPreviewAssetPath(assetPath) {
+	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
+}
+
+async function generateListingPreview(assetPath) {
+	if (!isDemoWorkAssetPath(assetPath)) {
+		return { assetPath, status: "skip-not-demo" };
+	}
+
+	const absoluteSourcePath = path.join(
+		PUBLIC_DIR,
+		assetPath.replace(/^\//, "").split("/").join(path.sep),
+	);
+	const listingAssetPath = getListingPreviewAssetPath(assetPath);
+	const absoluteListingPath = path.join(
+		PUBLIC_DIR,
+		listingAssetPath.replace(/^\//, "").split("/").join(path.sep),
+	);
+
+	let sourceStat;
+	try {
+		sourceStat = await stat(absoluteSourcePath);
+	} catch {
+		return { assetPath: listingAssetPath, status: "missing-source" };
+	}
+
+	try {
+		const listingStat = await stat(absoluteListingPath);
+		if (listingStat.mtimeMs >= sourceStat.mtimeMs) {
+			return {
+				assetPath: listingAssetPath,
+				status: "preview-current",
+				afterMb: (listingStat.size / 1e6).toFixed(2),
+			};
+		}
+	} catch {
+		// Generate a new listing preview.
+	}
+
+	const inputBuffer = await readFile(absoluteSourcePath);
+	const pipeline = sharp(inputBuffer, { failOn: "none", limitInputPixels: false }).rotate();
+	const metadata = await pipeline.metadata();
+	const longestEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);
+	const resizeTo = Math.min(LISTING_PREVIEW_MAX_EDGE, longestEdge);
+
+	let outputPipeline = pipeline;
+	if (longestEdge > resizeTo) {
+		outputPipeline = outputPipeline.resize({
+			width: metadata.width >= metadata.height ? resizeTo : undefined,
+			height: metadata.height > metadata.width ? resizeTo : undefined,
+			fit: "inside",
+			withoutEnlargement: true,
+		});
+	}
+
+	const outputBuffer = await outputPipeline
+		.webp({ quality: LISTING_PREVIEW_QUALITY })
+		.toBuffer();
+
+	await sharp(outputBuffer).toFile(absoluteListingPath);
+
+	return {
+		assetPath: listingAssetPath,
+		status: "preview-created",
+		beforeMb: (sourceStat.size / 1e6).toFixed(2),
+		afterMb: (outputBuffer.length / 1e6).toFixed(2),
+		dimensions: `${metadata.width}×${metadata.height} → max ${resizeTo}`,
+	};
 }
 
 async function optimizeImage(assetPath) {
@@ -191,7 +275,28 @@ async function main() {
 	}
 
 	const optimized = results.filter((r) => r.status === "optimized");
-	console.log(`\nDone. Optimized ${optimized.length} file(s).`);
+	console.log(`\nOptimized ${optimized.length} in-place file(s).`);
+
+	const demoWorkPaths = assetPaths.filter((assetPath) => isDemoWorkAssetPath(assetPath));
+	console.log(`\nGenerating ${demoWorkPaths.length} listing preview(s) for PC-* demo work...\n`);
+
+	const previewResults = [];
+	for (const assetPath of demoWorkPaths) {
+		const result = await generateListingPreview(assetPath);
+		previewResults.push(result);
+		const detail = [
+			result.status,
+			result.beforeMb ? `${result.beforeMb}MB` : "",
+			result.afterMb ? `→ ${result.afterMb}MB` : "",
+			result.dimensions ?? "",
+		]
+			.filter(Boolean)
+			.join(" ");
+		console.log(`${result.assetPath}: ${detail}`);
+	}
+
+	const created = previewResults.filter((result) => result.status === "preview-created");
+	console.log(`\nDone. Created ${created.length} listing preview(s).`);
 }
 
 main().catch((error) => {

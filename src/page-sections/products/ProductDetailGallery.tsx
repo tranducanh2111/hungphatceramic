@@ -179,6 +179,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 											exampleNumber: activeDemoIndex + 1,
 										})}
 										fill
+										unoptimized
 										priority={activeDemoIndex === 0}
 										sizes="(max-width: 896px) 100vw, 896px"
 										className="ease-luxury object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
@@ -320,6 +321,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 									exampleNumber: activeDemoIndex + 1,
 								})}
 								fill
+								unoptimized
 								sizes="95vw"
 								className="object-contain"
 							/>

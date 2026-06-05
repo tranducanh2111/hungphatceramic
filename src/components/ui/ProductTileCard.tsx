@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProductTileCardMedia } from "@/components/ui/ProductTileCardMedia";
 import { Text } from "@/components/ui/Text";
 import { cn } from "@/lib/cn";
 import type { ClassNameProp } from "@/types";
@@ -9,11 +9,14 @@ const TILE_CARD_BOTTOM_SCRIM =
 
 export interface ProductTileCardProps extends ClassNameProp {
 	imageSrc: string;
+	/** Install render shown on hover when available. */
+	hoverImageSrc?: string;
 	imageAlt: string;
 	productCode: string;
 	/** Display size label, e.g. `60×120cm`. */
 	dimensions: string;
 	productName: string;
+	isMediaMounted?: boolean;
 	priority?: boolean;
 	imageSizes?: string;
 }
@@ -24,10 +27,12 @@ export interface ProductTileCardProps extends ClassNameProp {
  */
 export function ProductTileCard({
 	imageSrc,
+	hoverImageSrc,
 	imageAlt,
 	productCode,
 	dimensions,
 	productName,
+	isMediaMounted = true,
 	priority = false,
 	imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
 	className,
@@ -44,15 +49,13 @@ export function ProductTileCard({
 				className,
 			)}
 		>
-			<Image
-				src={imageSrc}
-				alt={imageAlt}
-				fill
-				sizes={imageSizes}
-				quality={55}
-				loading={priority ? undefined : "lazy"}
-				className="ease-luxury object-cover object-center transition-transform duration-700 group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+			<ProductTileCardMedia
+				imageSrc={imageSrc}
+				hoverImageSrc={hoverImageSrc}
+				imageAlt={imageAlt}
+				isMediaMounted={isMediaMounted}
 				priority={priority}
+				imageSizes={imageSizes}
 			/>
 
 			<div

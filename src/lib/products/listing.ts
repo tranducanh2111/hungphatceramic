@@ -1,3 +1,4 @@
+import { resolveListingDemoWorkHoverPath } from "@/lib/products/media";
 import type { ProductDetail } from "@/types";
 
 /** Minimal product fields for the catalog grid — keeps client bundles small. */
@@ -6,6 +7,8 @@ export interface ProductListingItem {
 	skuCode: string;
 	name: string;
 	thumbnailUrl: string;
+	/** First PC-* install render for catalog card hover preview. */
+	demoWorkThumbnailUrl?: string;
 	category: string;
 	collectionId: string;
 	sizes: string[];
@@ -64,11 +67,12 @@ export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | 
 
 export function toProductListingItems(products: ProductDetail[]): ProductListingItem[] {
 	return products.map(
-		({ slug, skuCode, name, thumbnailUrl, category, collectionId, sizes }) => ({
+		({ slug, skuCode, name, thumbnailUrl, demoWorkImages, category, collectionId, sizes }) => ({
 			slug,
 			skuCode,
 			name,
 			thumbnailUrl,
+			demoWorkThumbnailUrl: resolveListingDemoWorkHoverPath(demoWorkImages[0]),
 			category,
 			collectionId,
 			sizes,

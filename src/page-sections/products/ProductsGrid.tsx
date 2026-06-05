@@ -76,6 +76,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 							product={product}
 							activeSizeId={activeSizeId}
 							priority={shouldPrioritizeImage}
+							deferMediaUntilVisible
 						/>
 					);
 
@@ -83,6 +84,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 						<li
 							key={product.slug}
 							className={cn(
+								"[content-visibility:auto] [contain-intrinsic-size:auto_28rem]",
 								useScrollStagger && "will-change-transform",
 								useStaticStagger && "translate-y-1/2",
 							)}
