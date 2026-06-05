@@ -14,7 +14,7 @@ export type TileDimensionLabel = keyof typeof TILE_DIMENSION_TO_ASSET_FOLDER;
 
 const ASSET_SIZE_FOLDER_PATTERN = /\/assets\/(60X120|80X80|100X100|120X120)\//;
 
-/** Swap the size folder segment in a catalog asset path. */
+/** Swap the size folder segment in a catalog asset path (targets must exist — see `pnpm sync:product-size-assets`). */
 export function remapAssetPathForTileDimension(
 	assetPath: string,
 	tileDimension: TileDimensionLabel,
