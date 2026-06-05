@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { getProductPanoramaImage } from "@/lib/products/panorama";
-import { Text } from "@/components/ui";
+import { SectionHeader } from "@/components/common";
 import type { ProductDetail } from "@/types";
 
 interface ProductDetailPanoramaProps {
@@ -120,20 +120,13 @@ function PanoramaSectionHeader({ productName }: { productName: string }) {
 	const tDetail = useTranslations("pages.productDetail");
 
 	return (
-		<div className="mb-10 text-center lg:mb-12">
-			<Text
-				variant="label"
-				className="mb-4 font-sans font-medium tracking-[0.2em] text-champagne uppercase"
-			>
-				{tDetail("panorama.label")}
-			</Text>
-			<Text variant="h2" as="h2" className="font-serif font-light text-linen">
-				{tDetail("panorama.heading")}
-			</Text>
-			<p className="text-body-sm mx-auto mt-4 max-w-xl font-sans leading-relaxed text-linen/50">
-				{tDetail("panorama.description", { productName })}
-			</p>
-			<div className="mx-auto mt-4 h-px w-16 bg-champagne/30" />
-		</div>
+		<SectionHeader
+			label={tDetail("panorama.label")}
+			heading={tDetail("panorama.heading")}
+			description={tDetail("panorama.description", { productName })}
+			align="center"
+			showDivider
+			className="mb-10 lg:mb-12"
+		/>
 	);
 }

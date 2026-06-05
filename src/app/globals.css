@@ -280,7 +280,15 @@ h6 {
  */
 @utility catalog-grid-stagger-reserve {
 	@media (min-width: 1024px) {
-		padding-bottom: calc(((100% - 3rem) / 3) * (2 / 3) + 4rem);
+		/* Half staggered tile height + generous footer clearance (transforms don't affect layout). */
+		padding-bottom: calc(((100% - 3rem) / 3) * (2 / 3) + 10rem);
+	}
+}
+
+/* Row gap for middle-column 50% drop — half tile height (3:4 aspect) + base gap. */
+@utility catalog-grid-stagger-gap {
+	@media (min-width: 1024px) {
+		row-gap: calc(((100% - 3rem) / 3) * (2 / 3) + 1.5rem);
 	}
 }
 

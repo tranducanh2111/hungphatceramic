@@ -102,7 +102,7 @@ export const MEDIA_PATHS = {
 		},
 		/** Panorama filenames may include spaces — use with `encodeURI` when building URLs. */
 		panorama: {
-			orientStarGp12w05j: "/media/images/panorama/Orient Star GP12W05J.png",
+			orientStarG12w05j: "/media/images/panorama/Orient Star G12W05J.png",
 		},
 	},
 	video: {

@@ -93,13 +93,13 @@ function ProductsPageContentInner({
 	}, [activeCollectionId, activeSizeId, products, searchQuery]);
 
 	return (
-		<main className="bg-[#071A2B] text-[#F4F4F6]">
+		<main className="bg-sapphire-deep text-linen">
 			<ProductsHero
 				activeCollectionId={activeCollectionId}
 				totalProductsCount={filteredProducts.length}
 			/>
 
-			<section className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+			<section className="mx-auto max-w-7xl px-6 pt-16 pb-28 lg:px-12 lg:pb-44">
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr] lg:gap-16">
 					<aside className="w-full md:sticky md:top-28 md:h-fit">
 						<div className="mb-8">
@@ -108,7 +108,7 @@ function ProductsPageContentInner({
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								placeholder={t("searchPlaceholder")}
-								className="w-full border-[#1A3D5C] focus:border-[#D4B886]"
+								className="w-full border-sapphire-mist focus:border-champagne"
 							/>
 						</div>
 
@@ -122,7 +122,7 @@ function ProductsPageContentInner({
 						/>
 					</aside>
 
-					<div className="flex flex-col gap-8">
+					<div className="flex flex-col gap-8 overflow-visible">
 						<ProductsGrid
 							products={filteredProducts}
 							activeCollectionId={activeCollectionId}
@@ -140,7 +140,7 @@ function ProductsPageContentInner({
  */
 export function ProductsPageContent(props: ProductsPageContentProps) {
 	return (
-		<Suspense fallback={<div className="min-h-screen bg-[#071A2B]" />}>
+		<Suspense fallback={<div className="min-h-screen bg-sapphire-deep" />}>
 			<ProductsPageContentInner {...props} />
 		</Suspense>
 	);

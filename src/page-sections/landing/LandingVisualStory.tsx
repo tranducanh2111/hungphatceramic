@@ -9,7 +9,7 @@ import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 
 const VISUAL_STORY_PANORAMA = {
-	src: encodeURI(MEDIA_PATHS.images.panorama.orientStarGp12w05j),
+	src: encodeURI(MEDIA_PATHS.images.panorama.orientStarG12w05j),
 } as const;
 
 /**

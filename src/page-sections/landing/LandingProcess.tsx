@@ -15,7 +15,7 @@ export function LandingProcess() {
 	const useCompactStepper = prefersReducedMotion;
 
 	return (
-		<section className="bg-[#0E2A42]" aria-label={t("heading")}>
+		<section className="bg-sapphire-ocean" aria-label={t("heading")}>
 			<div className={cn(useCompactStepper ? "block" : "lg:hidden")}>
 				<ProcessMobileStepper />
 			</div>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Text } from "@/components/ui";
+import { Text, IconButton, PaginationDots } from "@/components/ui";
 import { collectProductDemoWorkImages, encodePublicAssetPath } from "@/lib/products/media";
 import { cn } from "@/lib/cn";
 import { ProductDetail } from "@/types";
@@ -210,43 +210,34 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 										})}
 									</p>
 
-									<button
-										type="button"
+									<IconButton
+										variant="gallery"
 										onClick={goToPreviousDemo}
-										className="absolute top-1/2 left-3 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-linen/20 bg-sapphire-deep/55 text-linen backdrop-blur-sm transition-colors hover:border-champagne/50 hover:text-champagne sm:left-4 sm:h-11 sm:w-11"
+										className="absolute top-1/2 left-3 z-20 sm:left-4"
 										aria-label={tDetail("demoWorkLightboxPrevious")}
 									>
 										<ChevronLeft className="h-5 w-5" aria-hidden />
-									</button>
+									</IconButton>
 
-									<button
-										type="button"
+									<IconButton
+										variant="gallery"
 										onClick={goToNextDemo}
-										className="absolute top-1/2 right-3 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-linen/20 bg-sapphire-deep/55 text-linen backdrop-blur-sm transition-colors hover:border-champagne/50 hover:text-champagne sm:right-4 sm:h-11 sm:w-11"
+										className="absolute top-1/2 right-3 z-20 sm:right-4"
 										aria-label={tDetail("demoWorkLightboxNext")}
 									>
 										<ChevronRight className="h-5 w-5" aria-hidden />
-									</button>
+									</IconButton>
 
-									<div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-										{demoWorkImages.map((demoImage, index) => (
-											<button
-												key={demoImage}
-												type="button"
-												onClick={() => goToDemoByIndex(index)}
-												aria-label={tDetail("demoWorkGoToExample", {
-													exampleNumber: index + 1,
-												})}
-												aria-current={index === activeDemoIndex ? "true" : undefined}
-												className={cn(
-													"h-1.5 rounded-full transition-all duration-300",
-													index === activeDemoIndex
-														? "w-6 bg-champagne"
-														: "w-1.5 bg-linen/40 hover:bg-champagne/60",
-												)}
-											/>
-										))}
-									</div>
+									<PaginationDots
+										tone="light"
+										className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2"
+										count={demoWorkImages.length}
+										activeIndex={activeDemoIndex}
+										onSelect={goToDemoByIndex}
+										getAriaLabel={(index) =>
+											tDetail("demoWorkGoToExample", { exampleNumber: index + 1 })
+										}
+									/>
 								</>
 							)}
 						</div>
@@ -280,28 +271,28 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 										total: demoWorkCount,
 									})}
 								</p>
-								<button
-									type="button"
+								<IconButton
+									variant="galleryOverlay"
 									onClick={(event) => {
 										event.stopPropagation();
 										goToPreviousDemo();
 									}}
-									className="absolute top-1/2 left-2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-linen/25 bg-sapphire-deep/90 text-linen backdrop-blur-sm transition-colors hover:border-champagne/50 hover:text-champagne sm:left-4"
+									className="absolute top-1/2 left-2 z-[60] sm:left-4"
 									aria-label={tDetail("demoWorkLightboxPrevious")}
 								>
 									<ChevronLeft className="h-5 w-5" aria-hidden />
-								</button>
-								<button
-									type="button"
+								</IconButton>
+								<IconButton
+									variant="galleryOverlay"
 									onClick={(event) => {
 										event.stopPropagation();
 										goToNextDemo();
 									}}
-									className="absolute top-1/2 right-2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-linen/25 bg-sapphire-deep/90 text-linen backdrop-blur-sm transition-colors hover:border-champagne/50 hover:text-champagne sm:right-4"
+									className="absolute top-1/2 right-2 z-[60] sm:right-4"
 									aria-label={tDetail("demoWorkLightboxNext")}
 								>
 									<ChevronRight className="h-5 w-5" aria-hidden />
-								</button>
+								</IconButton>
 							</>
 						)}
 

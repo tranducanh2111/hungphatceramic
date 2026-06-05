@@ -43,7 +43,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 	if (products.length === 0) {
 		return (
 			<div className="flex min-h-[300px] flex-col items-center justify-center text-center">
-				<Text variant="body-lg" className="text-[#F4F4F6]/45">
+				<Text variant="body-lg" className="text-linen/45">
 					{t("noProducts")}
 				</Text>
 			</div>
@@ -51,25 +51,26 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 	}
 
 	return (
-		<div className="relative min-h-[600px] w-full">
+		<div className="relative min-h-[600px] w-full overflow-visible pb-8 lg:pb-0">
 			<div
 				className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden select-none"
 				aria-hidden="true"
 			>
-				<span className="font-serif text-[18vw] font-bold tracking-[0.2em] text-[#0E2A42]/10 uppercase">
+				<span className="font-serif text-[18vw] font-bold tracking-[0.2em] text-sapphire-ocean/10 uppercase">
 					{activeCollectionId === "all" ? "PERLA" : activeCollectionId}
 				</span>
 			</div>
 
 			<ul
 				key={activeCollectionId}
-				className="catalog-grid-stagger-reserve relative z-10 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
+				className="catalog-grid-stagger-reserve catalog-grid-stagger-gap relative z-10 grid list-none grid-cols-1 gap-6 overflow-visible p-0 sm:grid-cols-2 lg:grid-cols-3"
 			>
 				{products.map((product, index) => {
 					const isMiddleColumn = index % 3 === 1;
 					const shouldPrioritizeImage = index < 3;
 					const useScrollStagger = enableScrollStagger && isMiddleColumn;
 					const useStaticStagger = enableStaticStagger && isMiddleColumn;
+					const useStagger = useScrollStagger || useStaticStagger;
 
 					const tile = (
 						<ProductTile
@@ -81,16 +82,17 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 					);
 
 					return (
-						<li
-							key={product.slug}
-							className={cn(
-								"[content-visibility:auto] [contain-intrinsic-size:auto_28rem]",
-								useScrollStagger && "will-change-transform",
-								useStaticStagger && "translate-y-1/2",
-							)}
-						>
-							{useScrollStagger ? (
-								<motion.div style={{ y: middleColumnOffset }}>{tile}</motion.div>
+						<li key={product.slug} className="overflow-visible">
+							{useStagger ? (
+								<motion.div
+									className={cn(
+										useScrollStagger && "will-change-transform",
+										useStaticStagger && "translate-y-1/2",
+									)}
+									style={useScrollStagger ? { y: middleColumnOffset } : undefined}
+								>
+									{tile}
+								</motion.div>
 							) : (
 								tile
 							)}

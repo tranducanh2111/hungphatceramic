@@ -201,7 +201,7 @@ function ProjectCardVisual({
 				"group relative h-full",
 				isFillLayout
 					? SPIRAL_CARD_ARTICLE_CLASS
-					: "overflow-hidden rounded-[1.75rem] border border-[#D4B886]/15 bg-[#0E2A42] shadow-[0_12px_42px_rgba(4,15,26,0.36)]",
+					: "overflow-hidden rounded-[1.75rem] border border-champagne/15 bg-sapphire-ocean shadow-[0_12px_42px_rgba(4,15,26,0.36)]",
 			)}
 		>
 			<div
@@ -242,14 +242,14 @@ function ProjectCardVisual({
 							"max-w-[min(100%,calc(100%-4.5rem))] border border-white/10",
 							spiralUi?.titleBox ?? "rounded-xl px-4 py-3",
 							isFillLayout
-								? "bg-[#071A2B]/88"
-								: "bg-[#071A2B]/28 backdrop-blur-md backdrop-saturate-150",
+								? "bg-sapphire-deep/88"
+								: "bg-sapphire-deep/28 backdrop-blur-md backdrop-saturate-150",
 						)}
 					>
 						<Text
 							variant={spiralUi ? spiralUi.titleVariant : "h4"}
 							className={cn(
-								"line-clamp-2 text-[#F4F4F6] [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_24px_rgba(7,26,43,0.7)]",
+								"line-clamp-2 text-linen [text-shadow:0_1px_2px_rgba(7,26,43,0.95),0_2px_24px_rgba(7,26,43,0.7)]",
 								spiralSize === "md" && isFillLayout && "font-serif leading-snug",
 							)}
 						>
@@ -258,11 +258,11 @@ function ProjectCardVisual({
 					</div>
 					<span
 						className={cn(
-							"shrink-0 rounded-full border border-[#D4B886]/28 font-sans text-[#D4B886] uppercase",
+							"shrink-0 rounded-full border border-champagne/28 font-sans text-champagne uppercase",
 							spiralUi?.year ?? "text-footnote px-3 py-1.5 tracking-[0.14em]",
 							isFillLayout
-								? "bg-[#071A2B]/90"
-								: "bg-[#071A2B]/45 backdrop-blur-md backdrop-saturate-150",
+								? "bg-sapphire-deep/90"
+								: "bg-sapphire-deep/45 backdrop-blur-md backdrop-saturate-150",
 						)}
 					>
 						{project.year}
@@ -275,13 +275,13 @@ function ProjectCardVisual({
 							"border border-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]",
 							spiralUi?.panel ?? "rounded-2xl p-5",
 							isFillLayout
-								? "bg-[#071A2B]/88"
-								: "rounded-2xl bg-[#071A2B]/22 p-5 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500 group-hover:border-white/18 group-hover:bg-[#071A2B]/30",
+								? "bg-sapphire-deep/88"
+								: "rounded-2xl bg-sapphire-deep/22 p-5 backdrop-blur-2xl backdrop-saturate-150 transition-all duration-500 group-hover:border-white/18 group-hover:bg-sapphire-deep/30",
 						)}
 					>
 						<Text
 							variant={spiralUi ? spiralUi.metaVariant : "body-sm"}
-							className="text-[#F4F4F6]/78 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_20px_rgba(7,26,43,0.65)]"
+							className="text-linen/78 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_20px_rgba(7,26,43,0.65)]"
 						>
 							{t(`${translationNamespace}.area`)}
 						</Text>
@@ -294,7 +294,7 @@ function ProjectCardVisual({
 						<Text
 							variant={spiralUi ? spiralUi.metaVariant : "body-sm"}
 							className={cn(
-								"truncate font-sans text-[#F4F4F6]/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]",
+								"truncate font-sans text-linen/82 [text-shadow:0_1px_2px_rgba(7,26,43,0.92),0_2px_18px_rgba(7,26,43,0.62)]",
 								spiralUi?.stackGap ?? "mt-4",
 							)}
 						>
@@ -326,7 +326,7 @@ function ProjectCardBack({
 	return (
 		<article className={SPIRAL_CARD_ARTICLE_CLASS}>
 			<div className="relative h-full w-full">
-				<div className="absolute inset-0 bg-[#0E2A42]" aria-hidden="true" />
+				<div className="absolute inset-0 bg-sapphire-ocean" aria-hidden="true" />
 				<ViewportDeferredImage
 					src={project.imageUrl}
 					alt=""
@@ -339,12 +339,12 @@ function ProjectCardBack({
 				<div className="absolute inset-0 bg-gradient-to-br from-[#071A2B] via-[#0E2A42]/95 to-[#1A3D5C]/90" />
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(212,184,134,0.12),transparent_50%)]" />
 				<div className={cn("flex h-full flex-col items-center justify-center text-center", backUi.body)}>
-					<span className={cn("font-sans text-[#D4B886]/70 uppercase", backUi.brand)}>Perla</span>
-					<div className={cn("h-px bg-gradient-to-r from-transparent via-[#D4B886]/50 to-transparent", backUi.divider)} />
-					<Text variant={backUi.titleVariant} className="line-clamp-2 text-[#F4F4F6]/88">
+					<span className={cn("font-sans text-champagne/70 uppercase", backUi.brand)}>Perla</span>
+					<div className={cn("h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent", backUi.divider)} />
+					<Text variant={backUi.titleVariant} className="line-clamp-2 text-linen/88">
 						{t(`${translationNamespace}.title`)}
 					</Text>
-					<span className={cn("font-sans tracking-[0.16em] text-[#F4F4F6]/35 uppercase tabular-nums", backUi.year)}>
+					<span className={cn("font-sans tracking-[0.16em] text-linen/35 uppercase tabular-nums", backUi.year)}>
 						{project.year}
 					</span>
 				</div>
@@ -502,9 +502,9 @@ function ProjectsActiveOverlay({ activeIndex, totalCards }: ProjectsActiveOverla
 			className="pointer-events-none absolute top-1/2 right-6 z-10 flex -translate-y-1/2 flex-col items-center gap-2 lg:right-10"
 			aria-hidden="true"
 		>
-			<span className="font-sans text-[11px] tracking-[0.22em] text-[#D4B886] uppercase tabular-nums">{displayCurrent}</span>
-			<div className="h-14 w-px bg-gradient-to-b from-[#D4B886]/70 via-[#D4B886]/30 to-transparent" />
-			<span className="font-sans text-[11px] tracking-[0.22em] text-[#F4F4F6]/30 uppercase tabular-nums">{displayTotal}</span>
+			<span className="font-sans text-[11px] tracking-[0.22em] text-champagne uppercase tabular-nums">{displayCurrent}</span>
+			<div className="h-14 w-px bg-gradient-to-b from-champagne/70 via-champagne/30 to-transparent" />
+			<span className="font-sans text-[11px] tracking-[0.22em] text-linen/30 uppercase tabular-nums">{displayTotal}</span>
 		</div>
 	);
 }

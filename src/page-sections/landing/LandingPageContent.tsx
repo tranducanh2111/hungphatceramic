@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useLenisControls } from "@/components/common";
+import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { LandingHero } from "@/page-sections/landing/LandingHero";
 import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
 
@@ -50,34 +49,9 @@ const LandingCta = dynamic(
 	{ ssr: false },
 );
 
-/** Re-measure Lenis after code-split sections mount and change document height. */
-function useLenisResizeOnLandingMount() {
-	const lenisControls = useLenisControls();
-
-	useEffect(() => {
-		if (!lenisControls) return;
-
-		const resizeLenis = () => lenisControls.resize();
-
-		resizeLenis();
-
-		const rafId = requestAnimationFrame(() => {
-			resizeLenis();
-			requestAnimationFrame(resizeLenis);
-		});
-
-		window.addEventListener("load", resizeLenis, { once: true });
-
-		return () => {
-			cancelAnimationFrame(rafId);
-			window.removeEventListener("load", resizeLenis);
-		};
-	}, [lenisControls]);
-}
-
 /** Client shell — hero + brand statement sync; below-fold sections code-split. */
 export function LandingPageContent() {
-	useLenisResizeOnLandingMount();
+	useLenisResizeOnMount();
 
 	return (
 		<>

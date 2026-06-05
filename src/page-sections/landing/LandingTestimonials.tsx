@@ -4,14 +4,12 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { Text } from "@/components/ui";
+import { Text, IconButton, PaginationDots, Eyebrow, DecorativeDivider } from "@/components/ui";
+import { RevealOnView, SectionContainer } from "@/components/common";
 import { TESTIMONIALS } from "@/constants/landing";
 import { cn } from "@/lib/cn";
 
-/**
- * LandingTestimonials — Animated carousel of client quotes.
- * ⚠️ Placeholder content — replace with real client quotes when received.
- */
+/** LandingTestimonials — Animated carousel of client quotes. */
 export function LandingTestimonials() {
 	const t = useTranslations("landing.testimonials");
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -21,37 +19,21 @@ export function LandingTestimonials() {
 	const goToNext = () => setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
 
 	return (
-		<section className="bg-[#071A2B] py-28 lg:py-36">
-			<div className="mx-auto max-w-4xl px-6 text-center lg:px-12">
-				{/* Label */}
-				<motion.span
-					initial={{ opacity: 0, y: 16 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-					viewport={{ once: true }}
-					className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
-				>
-					{t("label")}
-				</motion.span>
+		<section className="bg-sapphire-deep py-28 lg:py-36">
+			<SectionContainer width="content" className="text-center">
+				<RevealOnView>
+					<Eyebrow>{t("label")}</Eyebrow>
+				</RevealOnView>
 
-				{/* Large quote icon */}
-				<motion.div
-					initial={{ opacity: 0, scale: 0.8 }}
-					whileInView={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.6, delay: 0.1 }}
-					viewport={{ once: true }}
-					className="mt-8 flex justify-center"
-				>
-					<Quote className="h-12 w-12 text-[#D4B886]/25" />
-				</motion.div>
+				<RevealOnView delay={0.1} className="mt-8 flex justify-center">
+					<Quote className="h-12 w-12 text-champagne/25" />
+				</RevealOnView>
 
-				{/* Quote carousel 3D Stack */}
 				<div className="relative mx-auto mt-12 h-[260px] w-full max-w-2xl [perspective:1200px]">
 					{TESTIMONIALS.map((testimonial, i) => {
 						const isActive = i === activeIndex;
 						const itemNamespace = `items.${testimonial.id}`;
 
-						// Calculate wrapping distance
 						let distance = i - activeIndex;
 						if (distance < -1) distance += TESTIMONIALS.length;
 						if (distance > 2) distance -= TESTIMONIALS.length;
@@ -71,7 +53,7 @@ export function LandingTestimonials() {
 								}}
 								transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
 								className={cn(
-									"absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-[#1A3D5C]/40 bg-[#0E2A42] p-8 shadow-2xl",
+									"absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-sapphire-mist/40 bg-sapphire-ocean p-8 shadow-2xl",
 									!isActive && "pointer-events-none",
 								)}
 								style={{
@@ -81,20 +63,17 @@ export function LandingTestimonials() {
 							>
 								<Text
 									variant="h4"
-									className="font-serif font-light text-[#F4F4F6]/90 italic"
+									className="font-serif font-light text-linen/90 italic"
 								>
 									&ldquo;{t(`${itemNamespace}.quote`)}&rdquo;
 								</Text>
 
 								<div className="mt-8 flex flex-col items-center gap-1">
-									<div className="h-px w-8 bg-[#D4B886]" />
-									<Text
-										variant="body"
-										className="mt-4 font-medium text-[#F4F4F6]"
-									>
+									<DecorativeDivider variant="inline" />
+									<Text variant="body" className="mt-4 font-medium text-linen">
 										{t(`${itemNamespace}.authorName`)}
 									</Text>
-									<Text variant="body-sm" className="text-[#F4F4F6]/50">
+									<Text variant="body-sm" className="text-linen/50">
 										{t(`${itemNamespace}.authorTitle`)} —{" "}
 										{t(`${itemNamespace}.authorCompany`)}
 									</Text>
@@ -104,39 +83,23 @@ export function LandingTestimonials() {
 					})}
 				</div>
 
-				{/* Controls */}
 				<div className="mt-10 flex items-center justify-center gap-6">
-					<button
-						onClick={goToPrev}
-						aria-label={t("aria.previous")}
-						className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1A3D5C] text-[#F4F4F6]/50 transition-all duration-300 hover:border-[#D4B886] hover:text-[#D4B886]"
-					>
+					<IconButton onClick={goToPrev} aria-label={t("aria.previous")}>
 						<ChevronLeft className="h-5 w-5" />
-					</button>
+					</IconButton>
 
-					{/* Dot indicators */}
-					<div className="flex gap-2">
-						{TESTIMONIALS.map((_, i) => (
-							<button
-								key={i}
-								onClick={() => setActiveIndex(i)}
-								aria-label={t("aria.goTo", { index: i + 1 })}
-								className={`h-1.5 rounded-full transition-all duration-300 ${
-									i === activeIndex ? "w-6 bg-[#D4B886]" : "w-1.5 bg-[#1A3D5C]"
-								}`}
-							/>
-						))}
-					</div>
+					<PaginationDots
+						count={TESTIMONIALS.length}
+						activeIndex={activeIndex}
+						onSelect={setActiveIndex}
+						getAriaLabel={(index) => t("aria.goTo", { index: index + 1 })}
+					/>
 
-					<button
-						onClick={goToNext}
-						aria-label={t("aria.next")}
-						className="flex h-10 w-10 items-center justify-center rounded-full border border-[#1A3D5C] text-[#F4F4F6]/50 transition-all duration-300 hover:border-[#D4B886] hover:text-[#D4B886]"
-					>
+					<IconButton onClick={goToNext} aria-label={t("aria.next")}>
 						<ChevronRight className="h-5 w-5" />
-					</button>
+					</IconButton>
 				</div>
-			</div>
+			</SectionContainer>
 		</section>
 	);
 }

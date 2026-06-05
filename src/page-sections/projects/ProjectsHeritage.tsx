@@ -11,6 +11,7 @@ import {
 	ParallaxSection,
 	RevealOnView,
 	SectionBlendOverlay,
+	SectionHeader,
 } from "@/components/common";
 import {
 	SECTION_BLEND_GRADIENTS,
@@ -185,18 +186,11 @@ export function ProjectsHeritage() {
 			/>
 
 			<div className="relative mx-auto max-w-6xl px-6 lg:px-12">
-				<div className="mb-24 pt-4 lg:mb-32 lg:pt-8">
-					<RevealOnView>
-						<span className="text-label font-sans tracking-widest text-champagne uppercase">
-							{t("label")}
-						</span>
-					</RevealOnView>
-					<RevealOnView className="mt-2">
-						<Text variant="h2" as="h2" className="text-linen">
-							{t("heading")}
-						</Text>
-					</RevealOnView>
-				</div>
+				<SectionHeader
+					label={t("label")}
+					heading={t("heading")}
+					className="mb-24 pt-4 lg:mb-32 lg:pt-8"
+				/>
 
 				<div className="flex flex-col gap-20 sm:gap-28 lg:gap-0">
 					{PROJECT_MILESTONES.map((milestone, index) => {

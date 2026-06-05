@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Text } from "@/components/ui";
-import { ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/common";
+import { ParallaxLayer, ParallaxSection, RevealOnView, SectionContainer, SectionHeader } from "@/components/common";
 import { PARTNER_ROSTER } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
@@ -47,23 +46,13 @@ export function AboutPartners() {
 				</svg>
 			</ParallaxLayer>
 
-			<div className="relative mx-auto max-w-7xl px-6 lg:px-12">
-				<div className="mb-16 text-center">
-					<RevealOnView>
-						<span className="text-label text-champagne font-sans tracking-widest uppercase">
-							{t("label")}
-						</span>
-					</RevealOnView>
-					<RevealOnView className="mx-auto mt-3 max-w-2xl">
-						<Text
-							variant="h2"
-							as="h2"
-							className="text-linen font-serif font-light italic"
-						>
-							{t("heading")}
-						</Text>
-					</RevealOnView>
-				</div>
+			<SectionContainer>
+				<SectionHeader
+					label={t("label")}
+					heading={t("heading")}
+					align="center"
+					italic
+				/>
 
 				<div className="scrollbar-hidden -mx-6 snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-6 pb-1 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0 sm:pb-0">
 					<ul className="mx-auto flex w-max min-w-full list-none flex-nowrap items-center justify-start gap-10 p-0 sm:w-auto sm:min-w-0 sm:justify-center sm:gap-12 lg:gap-16">
@@ -86,7 +75,7 @@ export function AboutPartners() {
 						))}
 					</ul>
 				</div>
-			</div>
+			</SectionContainer>
 		</ParallaxSection>
 	);
 }

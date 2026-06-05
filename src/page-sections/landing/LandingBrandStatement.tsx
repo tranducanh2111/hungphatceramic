@@ -28,7 +28,7 @@ export function LandingBrandStatement() {
 	const t = useTranslations("landing.brandStatement");
 
 	return (
-		<section className="relative overflow-hidden bg-[#071A2B] py-28 lg:py-36">
+		<section className="relative overflow-hidden bg-sapphire-deep py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="grid items-center gap-16 lg:grid-cols-2">
 					{/* ── Left: Text ─────────────────────────────────────────────── */}
@@ -39,7 +39,7 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="text-label font-sans tracking-widest text-[#D4B886] uppercase"
+							className="text-label font-sans tracking-widest text-champagne uppercase"
 						>
 							{t("label")}
 						</motion.span>
@@ -51,10 +51,10 @@ export function LandingBrandStatement() {
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
 						>
-							<Text variant="display-lg" className="mt-4 text-[#F4F4F6]">
+							<Text variant="display-lg" className="mt-4 text-linen">
 								{t("titleLine1")}
 								<br />
-								<em className="font-light text-[#D4B886] italic">
+								<em className="font-light text-champagne italic">
 									{t("titleLine2")}
 								</em>
 							</Text>
@@ -67,7 +67,7 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="my-8 h-px w-16 bg-[#D4B886]"
+							className="my-8 h-px w-16 bg-champagne"
 						/>
 
 						<motion.div
@@ -77,9 +77,9 @@ export function LandingBrandStatement() {
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
 						>
-							<Text variant="body-lg" className="text-[#F4F4F6]/65">
+							<Text variant="body-lg" className="text-linen/65">
 								{t("descriptionPrefix")}
-								<em className="text-[#F4F4F6]/90 not-italic">
+								<em className="text-linen/90 not-italic">
 									{" "}
 									{t("descriptionEmphasis")}
 								</em>
@@ -94,17 +94,17 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="mt-12 grid grid-cols-3 gap-6 border-t border-[#1A3D5C] pt-10"
+							className="mt-12 grid grid-cols-3 gap-6 border-t border-sapphire-mist pt-10"
 						>
 							{BRAND_STATS.map(({ id, value }) => (
 								<div key={id}>
 									<Text
 										variant="display-lg"
-										className="font-serif text-[#D4B886]"
+										className="font-serif text-champagne"
 									>
 										{value}
 									</Text>
-									<Text variant="body-sm" className="mt-1 text-[#F4F4F6]/50">
+									<Text variant="body-sm" className="mt-1 text-linen/50">
 										{t(`stats.${id}`)}
 									</Text>
 								</div>
