@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
@@ -120,7 +120,7 @@ export function LandingBrandStatement() {
 						viewport={{ once: true, amount: 0.3 }}
 						className="relative h-[520px] overflow-hidden rounded-2xl lg:h-[640px]"
 					>
-						<Image
+						<ViewportDeferredImage
 							src={MEDIA_PATHS.images.landing.brandStatement}
 							alt={t("imageAlt")}
 							fill

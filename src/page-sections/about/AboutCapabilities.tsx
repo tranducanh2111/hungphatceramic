@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ViewportDeferredImage } from "@/components/media";
 import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
 import { ParallaxElement, RevealOnView } from "@/components/common";
@@ -96,11 +96,11 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 		<RevealOnView
 			as="article"
 			delay={animationDelay}
-			className="group bg-sapphire-deep relative flex flex-col overflow-hidden"
+			className="group bg-sapphire-deep relative flex flex-col overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_24rem]"
 		>
 			<div className="relative h-56 overflow-hidden lg:h-64">
 				<ParallaxElement rangePx={20} className="absolute inset-0 scale-[1.08]">
-					<Image
+					<ViewportDeferredImage
 						src={card.imageUrl}
 						alt={t(`cards.${card.id}.title`)}
 						fill

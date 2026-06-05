@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Text, Button } from "@/components/ui";
@@ -29,10 +29,11 @@ function ProjectCard({
 		>
 			<div className="relative h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.01]">
 				<div className="relative aspect-[4/3] overflow-hidden">
-					<Image
+					<ViewportDeferredImage
 						src={project.imageUrl}
 						alt={t(`${translationNamespace}.imageAlt`)}
 						fill
+						eager={index < 2}
 						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
 						sizes="(max-width: 768px) 100vw, 50vw"
 					/>

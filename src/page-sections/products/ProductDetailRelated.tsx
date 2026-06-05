@@ -58,7 +58,11 @@ export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRel
 				<ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
 					{related.map((item) => (
 						<li key={item.slug}>
-							<ProductTile product={item} activeSizeId={activeSizeId} />
+							<ProductTile
+								product={item}
+								activeSizeId={activeSizeId}
+								deferMediaUntilVisible
+							/>
 						</li>
 					))}
 				</ul>

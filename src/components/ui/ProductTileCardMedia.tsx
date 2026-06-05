@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 
@@ -45,11 +45,7 @@ export function ProductTileCardMedia({
 		setIsHoverPreviewActive(false);
 	}, []);
 
-	useEffect(() => {
-		if (!isMediaMounted) {
-			setIsHoverPreviewActive(false);
-		}
-	}, [isMediaMounted]);
+	const isHoverPreviewVisible = isHoverPreviewActive && isMediaMounted;
 
 	if (!isMediaMounted) {
 		return <div className="absolute inset-0 bg-sapphire-mist/15" aria-hidden />;
@@ -70,11 +66,11 @@ export function ProductTileCardMedia({
 				loading={priority ? undefined : "lazy"}
 				className={cn(
 					"object-cover object-center transition-opacity duration-500",
-					isHoverPreviewActive && "opacity-0",
+					isHoverPreviewVisible && "opacity-0",
 				)}
 				priority={priority}
 			/>
-			{hasHoverPreview && hoverImageSrc && isHoverPreviewActive && (
+			{hasHoverPreview && hoverImageSrc && isHoverPreviewVisible && (
 				<Image
 					src={hoverImageSrc}
 					alt=""

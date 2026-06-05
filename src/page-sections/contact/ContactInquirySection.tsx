@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ViewportDeferredImage } from "@/components/media";
 import { Text } from "@/components/ui";
 import { RevealOnView } from "@/components/common";
 import { CONTACT_SECTION_IDS } from "@/constants/contact";
@@ -27,11 +27,10 @@ export function ContactInquirySection() {
 			aria-labelledby="contact-inquiry-heading"
 		>
 			<div className="absolute inset-0" aria-hidden="true">
-				<Image
+				<ViewportDeferredImage
 					src={MEDIA_PATHS.images.contact.inquiryBackdrop}
 					alt=""
 					fill
-					priority={false}
 					quality={72}
 					sizes="100vw"
 					className="object-cover object-center"

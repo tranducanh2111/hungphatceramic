@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
+import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -147,7 +147,7 @@ function MilestoneImage({ src, alt, rangePx, invert }: MilestoneImageProps) {
 				fadeIn
 				className="absolute inset-0 scale-[1.08]"
 			>
-				<Image
+				<ViewportDeferredImage
 					src={src}
 					alt={alt}
 					fill
@@ -209,7 +209,7 @@ export function ProjectsHeritage() {
 							<div
 								key={milestone.id}
 								id={milestone.id}
-								className="scroll-mt-28 lg:grid lg:grid-cols-2 lg:gap-x-20"
+								className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:auto_28rem] lg:grid lg:grid-cols-2 lg:gap-x-20"
 							>
 								<article className="relative z-10 col-span-2 grid items-center gap-x-20 gap-y-10 lg:grid-cols-2">
 									<div

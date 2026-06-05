@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ViewportDeferredImage } from "@/components/media";
 import { Text } from "@/components/ui";
 import { BlueprintLine, RevealOnView } from "@/components/common";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
@@ -45,13 +45,12 @@ export function AboutOrigin() {
 						</span>
 
 						<RevealOnView className="relative mt-4 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] lg:mt-6">
-							<Image
+							<ViewportDeferredImage
 								src={MEDIA_PATHS.images.about.origin}
 								alt={t("imageAlt")}
 								fill
 								className="scale-[1.08] object-cover object-center grayscale"
 								sizes="(max-width: 1024px) 100vw, 50vw"
-								priority
 							/>
 							<div className="ring-champagne/10 pointer-events-none absolute inset-0 ring-1" />
 						</RevealOnView>

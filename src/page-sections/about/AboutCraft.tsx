@@ -307,24 +307,30 @@ function CraftScrollStory() {
 		>
 			<div className="sticky top-0 flex h-[100dvh] min-h-[600px] flex-col overflow-hidden lg:h-screen lg:flex-row">
 				<div className="relative h-[38vh] min-h-[220px] shrink-0 overflow-hidden sm:h-[42vh] lg:h-full lg:min-h-0 lg:w-1/2">
-					{CRAFT_BEATS.map((beat, index) => (
-						<motion.div
-							key={beat.id}
-							className="absolute inset-0 scale-[1.05]"
-							animate={{ opacity: activeIndex === index ? 1 : 0 }}
-							transition={{ duration: 0.5, ease: "easeInOut" }}
-							style={{ zIndex: activeIndex === index ? 10 : 0 }}
-						>
-							<Image
-								src={beat.imageUrl}
-								alt={t(`beats.${beat.id}.imageAlt`)}
-								fill
-								className="object-cover object-center"
-								sizes="(max-width: 1024px) 100vw, 50vw"
-								priority={index === 0}
-							/>
-						</motion.div>
-					))}
+					{CRAFT_BEATS.map((beat, index) => {
+						if (activeIndex !== index) {
+							return null;
+						}
+
+						return (
+							<motion.div
+								key={beat.id}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								transition={{ duration: 0.5, ease: "easeInOut" }}
+								className="absolute inset-0 scale-[1.05]"
+							>
+								<Image
+									src={beat.imageUrl}
+									alt={t(`beats.${beat.id}.imageAlt`)}
+									fill
+									className="object-cover object-center"
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									priority={index === 0}
+								/>
+							</motion.div>
+						);
+					})}
 					<div
 						className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent lg:inset-y-0 lg:right-0 lg:left-auto lg:h-full lg:w-16 lg:bg-gradient-to-r lg:from-transparent"
 						aria-hidden="true"
