@@ -2,13 +2,20 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useTransform, useMotionTemplate, type Variants } from "framer-motion";
+import { motion, useTransform, type Variants } from "framer-motion";
 import { CinematicHeroVideo } from "@/components/media";
+import {
+	CINEMATIC_HERO_CONTENT_CLASS,
+	CINEMATIC_HERO_SCRIM_CLASS,
+	CINEMATIC_HERO_STICKY_CLASS,
+} from "@/constants/hero";
 import { useAppScroll } from "@/hooks/useAppScroll";
+import { useCinematicHeroClip } from "@/hooks/useCinematicHeroClip";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
+import { cn } from "@/lib/cn";
 
 const contentVariants: Variants = {
 	hidden: { opacity: 0, y: 32 },
@@ -48,17 +55,7 @@ export function LandingHero() {
 	const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 	const textY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
 
-	// Cinematic expansion: starts a touch more open + slightly zoomed; ends full-bleed
-	const clipVertical = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-	const clipHorizontal = useTransform(scrollYProgress, [0, 0.6], [11, 0]);
-	const borderRadius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-
-	// Create a dynamic clip-path CSS string
-	const clipPath = useMotionTemplate`inset(${clipVertical}% ${clipHorizontal}% round ${borderRadius}px)`;
-
-	// Video becomes brighter as it expands; slight zoom-in at rest reads larger on first paint
-	const videoOpacity = useTransform(scrollYProgress, [0, 0.6], [0.6, 1]);
-	const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.08, 1]);
+	const { clipPath, videoOpacity, videoScale } = useCinematicHeroClip(scrollYProgress);
 
 	return (
 		<section
@@ -67,7 +64,7 @@ export function LandingHero() {
 			style={{ position: "relative" }}
 		>
 			{/* Sticky container stays pinned for 150vh of scrolling */}
-			<div className="sticky top-0 h-screen w-full overflow-hidden bg-[#071A2B]">
+			<div className={cn(CINEMATIC_HERO_STICKY_CLASS, "bg-[#071A2B]")}>
 				{/* ── Background gradient (behind the video) ── */}
 				<div
 					className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#1A3D5C_0%,#071A2B_70%)]"
@@ -75,7 +72,10 @@ export function LandingHero() {
 				/>
 
 				{/* ── Expanding Cinematic Video ── */}
-				<motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ clipPath }}>
+				<motion.div
+					className="absolute inset-0 z-0 overflow-hidden"
+					style={prefersReducedMotion ? undefined : { clipPath }}
+				>
 					<motion.div className="absolute inset-0 bg-[#071A2B]" /> {/* Base back */}
 					<CinematicHeroVideo
 						videoSrc={MEDIA_PATHS.video.hero}
@@ -90,16 +90,13 @@ export function LandingHero() {
 						}
 					/>
 					{/* Subtle overlay on video to keep text readable */}
-					<div
-						className="absolute inset-0 bg-gradient-to-t from-[#071A2B]/80 via-transparent to-[#071A2B]/30"
-						aria-hidden="true"
-					/>
+					<div className={CINEMATIC_HERO_SCRIM_CLASS} aria-hidden="true" />
 				</motion.div>
 
 				{/* ── Hero Content ── */}
 				<motion.div
 					style={{ opacity: textOpacity, y: textY }}
-					className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+					className={CINEMATIC_HERO_CONTENT_CLASS}
 				>
 					<motion.span
 						custom={0}
