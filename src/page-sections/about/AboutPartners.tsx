@@ -52,6 +52,7 @@ export function AboutPartners() {
 					heading={t("heading")}
 					align="center"
 					italic
+					className="mb-12 lg:mb-16"
 				/>
 
 				<div className="scrollbar-hidden -mx-6 snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-6 pb-1 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0 sm:pb-0">
