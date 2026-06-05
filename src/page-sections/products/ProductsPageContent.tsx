@@ -99,7 +99,7 @@ function ProductsPageContentInner({
 				totalProductsCount={filteredProducts.length}
 			/>
 
-			<section className="mx-auto max-w-7xl px-6 pt-16 pb-28 lg:px-12 lg:pb-44">
+			<section className="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-12 lg:pb-20">
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr] lg:gap-16">
 					<aside className="w-full md:sticky md:top-28 md:h-fit">
 						<div className="mb-8">

@@ -89,6 +89,15 @@ export function getListingDemoWorkPreviewPath(assetPath: string): string {
 	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
 }
 
+/** Resolves gallery/panorama paths to `.detail.webp` sidecars; registry keeps canonical JPG/PNG. */
+export function resolveDetailGalleryImagePath(assetPath: string): string {
+	if (assetPath.endsWith(".detail.webp")) {
+		return assetPath;
+	}
+
+	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".detail.webp");
+}
+
 export function resolveListingDemoWorkHoverPath(demoWorkAssetPath: string | undefined): string | undefined {
 	if (!demoWorkAssetPath) {
 		return undefined;
@@ -97,21 +106,3 @@ export function resolveListingDemoWorkHoverPath(demoWorkAssetPath: string | unde
 	return getListingDemoWorkPreviewPath(demoWorkAssetPath);
 }
 
-/** Responsive grid for 1–N demo renders (e.g. dual install shots, triple room scenes). */
-export function getDemoWorkGridClassName(imageCount: number): string {
-	if (imageCount <= 1) {
-		return "mx-auto grid max-w-3xl grid-cols-1 gap-6";
-	}
-	if (imageCount === 2) {
-		return "grid grid-cols-1 gap-6 sm:grid-cols-2";
-	}
-	return "grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3";
-}
-
-/**
- * Bypass `/_next/image` when a source is already web-sized or optimizer-unfriendly.
- * Catalog assets are pre-compressed via `pnpm optimize:product-images`.
- */
-export function shouldUseUnoptimizedProductImage(_productSlug: string): boolean {
-	return false;
-}

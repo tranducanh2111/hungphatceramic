@@ -274,21 +274,10 @@ h6 {
 	border-radius: 4px;
 }
 
-/*
- * Extra space below the 3-column product grid so middle-column translateY(50%)
- * does not overlap the footer. Based on ~half tile height (3/4 image + meta).
- */
+/* Last middle-column tile translateY(50%) — half tile only; transforms don't affect layout. */
 @utility catalog-grid-stagger-reserve {
 	@media (min-width: 1024px) {
-		/* Half staggered tile height + generous footer clearance (transforms don't affect layout). */
-		padding-bottom: calc(((100% - 3rem) / 3) * (2 / 3) + 10rem);
-	}
-}
-
-/* Row gap for middle-column 50% drop — half tile height (3:4 aspect) + base gap. */
-@utility catalog-grid-stagger-gap {
-	@media (min-width: 1024px) {
-		row-gap: calc(((100% - 3rem) / 3) * (2 / 3) + 1.5rem);
+		padding-bottom: calc((100cqw - 3rem) / 3 * 2 / 3);
 	}
 }
 

@@ -6,7 +6,11 @@ import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Text, IconButton, PaginationDots } from "@/components/ui";
-import { collectProductDemoWorkImages, encodePublicAssetPath } from "@/lib/products/media";
+import {
+	collectProductDemoWorkImages,
+	encodePublicAssetPath,
+	resolveDetailGalleryImagePath,
+} from "@/lib/products/media";
 import { cn } from "@/lib/cn";
 import { ProductDetail } from "@/types";
 
@@ -14,6 +18,203 @@ const DEMO_WORK_AUTO_ADVANCE_MS = 5000;
 
 interface ProductDetailGalleryProps {
 	product: ProductDetail;
+}
+
+interface CompositeOverviewPanelProps {
+	allFacesImage: string;
+	productName: string;
+	compositeAlt: string;
+	onOpenLightbox: () => void;
+	onImageError: () => void;
+	className?: string;
+}
+
+function CompositeOverviewPanel({
+	allFacesImage,
+	productName,
+	compositeAlt,
+	onOpenLightbox,
+	onImageError,
+	className,
+}: CompositeOverviewPanelProps) {
+	const tDetail = useTranslations("pages.productDetail");
+
+	return (
+		<div
+			className={cn(
+				"shadow-luxury-md w-full overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep p-6",
+				className,
+			)}
+		>
+			<Text
+				variant="label-sm"
+				className="mb-4 block text-center font-sans font-medium tracking-[0.1em] text-champagne/60 uppercase"
+			>
+				{tDetail("facesOverviewComposite")}
+			</Text>
+			<div
+				className="relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl bg-sapphire-deep sm:min-h-[16rem] lg:min-h-[20rem]"
+				onClick={onOpenLightbox}
+			>
+				<Image
+					src={encodePublicAssetPath(resolveDetailGalleryImagePath(allFacesImage))}
+					alt={compositeAlt}
+					fill
+					sizes="(max-width: 1024px) 100vw, 50vw"
+					className="ease-luxury object-contain object-center transition-transform duration-700 hover:scale-[1.01]"
+					onError={onImageError}
+				/>
+			</div>
+			<p className="text-footnote mt-3 text-center font-sans text-linen/45">{productName}</p>
+		</div>
+	);
+}
+
+interface DemoWorkCarouselPanelProps {
+	demoWorkImages: string[];
+	productName: string;
+	activeDemoIndex: number;
+	onSelectDemo: (index: number) => void;
+	onPreviousDemo: () => void;
+	onNextDemo: () => void;
+	onOpenLightbox: () => void;
+	onPauseAutoPlay: () => void;
+	onResumeAutoPlay: () => void;
+	/** Stretch image area to match the adjacent composite panel in lg side-by-side layout. */
+	fillHeight?: boolean;
+	className?: string;
+}
+
+function DemoWorkCarouselPanel({
+	demoWorkImages,
+	productName,
+	activeDemoIndex,
+	onSelectDemo,
+	onPreviousDemo,
+	onNextDemo,
+	onOpenLightbox,
+	onPauseAutoPlay,
+	onResumeAutoPlay,
+	fillHeight = false,
+	className,
+}: DemoWorkCarouselPanelProps) {
+	const tDetail = useTranslations("pages.productDetail");
+	const demoWorkCount = demoWorkImages.length;
+	const hasMultipleDemoWork = demoWorkCount > 1;
+	const activeDemoImage = demoWorkImages[activeDemoIndex];
+
+	if (!activeDemoImage) {
+		return null;
+	}
+
+	return (
+		<div
+			className={cn(
+				"shadow-luxury-md relative w-full overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep",
+				fillHeight && "flex h-full flex-col",
+				className,
+			)}
+			onMouseEnter={onPauseAutoPlay}
+			onMouseLeave={onResumeAutoPlay}
+			onFocusCapture={onPauseAutoPlay}
+			onBlurCapture={(event) => {
+				if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+					onResumeAutoPlay();
+				}
+			}}
+		>
+			<div
+				className={cn(
+					"relative w-full bg-sapphire-deep",
+					fillHeight
+						? "min-h-[12rem] flex-1 sm:min-h-[16rem]"
+						: "aspect-[4/3]",
+				)}
+			>
+				<AnimatePresence mode="wait" initial={false}>
+					<motion.button
+						type="button"
+						key={activeDemoImage}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.45, ease: "easeInOut" }}
+						className="group absolute inset-0 z-[1] cursor-zoom-in"
+						onClick={onOpenLightbox}
+						aria-label={tDetail("demoWorkZoom", {
+							exampleNumber: activeDemoIndex + 1,
+						})}
+					>
+						<Image
+							src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeDemoImage))}
+							alt={tDetail("demoWorkImageAlt", {
+								productName,
+								exampleNumber: activeDemoIndex + 1,
+							})}
+							fill
+							priority={activeDemoIndex === 0}
+							sizes="(max-width: 1024px) 100vw, 50vw"
+							className="ease-luxury object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+						/>
+						<span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sapphire-deep/0 transition-colors duration-300 group-hover:bg-sapphire-deep/25">
+							<span className="rounded-full bg-champagne/90 p-2.5 text-sm font-semibold text-sapphire-deep opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
+								🔎
+							</span>
+						</span>
+					</motion.button>
+				</AnimatePresence>
+
+				{hasMultipleDemoWork && (
+					<>
+						<div
+							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-sapphire-deep/70 to-transparent"
+							aria-hidden
+						/>
+						<div
+							className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-sapphire-deep/80 to-transparent"
+							aria-hidden
+						/>
+
+						<p className="text-footnote absolute top-4 left-1/2 z-20 -translate-x-1/2 font-sans tracking-[0.15em] text-linen uppercase">
+							{tDetail("demoWorkLightboxCounter", {
+								current: activeDemoIndex + 1,
+								total: demoWorkCount,
+							})}
+						</p>
+
+						<IconButton
+							variant="gallery"
+							onClick={onPreviousDemo}
+							className="absolute top-1/2 left-3 z-20 sm:left-4"
+							aria-label={tDetail("demoWorkLightboxPrevious")}
+						>
+							<ChevronLeft className="h-5 w-5" aria-hidden />
+						</IconButton>
+
+						<IconButton
+							variant="gallery"
+							onClick={onNextDemo}
+							className="absolute top-1/2 right-3 z-20 sm:right-4"
+							aria-label={tDetail("demoWorkLightboxNext")}
+						>
+							<ChevronRight className="h-5 w-5" aria-hidden />
+						</IconButton>
+
+						<PaginationDots
+							tone="light"
+							className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2"
+							count={demoWorkImages.length}
+							activeIndex={activeDemoIndex}
+							onSelect={onSelectDemo}
+							getAriaLabel={(index) =>
+								tDetail("demoWorkGoToExample", { exampleNumber: index + 1 })
+							}
+						/>
+					</>
+				)}
+			</div>
+		</div>
+	);
 }
 
 /**
@@ -37,9 +238,10 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const demoWorkCount = demoWorkImages.length;
 	const hasDemoWork = demoWorkCount > 0;
 	const hasMultipleDemoWork = demoWorkCount > 1;
-	const showCompositeOverview = Boolean(product.allFacesImage) && isCompositeImageVisible;
-
+	const hasComposite = Boolean(product.allFacesImage) && isCompositeImageVisible;
 	const activeDemoImage = demoWorkImages[activeDemoIndex];
+	const hasDemoPanel = hasDemoWork && Boolean(activeDemoImage);
+
 	const carouselPauseRef = useRef({
 		isAutoPlayPaused: isDemoAutoPlayPaused,
 		isLightboxOpen: isDemoLightboxOpen,
@@ -104,6 +306,13 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 		return () => window.clearInterval(intervalId);
 	}, [activeDemoIndex, demoWorkCount, hasMultipleDemoWork]);
 
+	if (!hasComposite && !hasDemoPanel) {
+		return null;
+	}
+
+	const showSideBySide = hasComposite && hasDemoPanel;
+	const compositeAlt = tDetail("facesOverviewCompositeAlt", { productName });
+
 	return (
 		<section className="relative bg-sapphire-ocean px-6 py-24 text-linen lg:px-12">
 			<div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-sapphire-mist/35 to-transparent" />
@@ -120,129 +329,41 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 					<div className="mx-auto mt-4 h-px w-16 bg-champagne/30" />
 				</div>
 
-				{showCompositeOverview && product.allFacesImage && (
-					<div className="shadow-luxury-md mb-16 overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep p-6">
-						<Text
-							variant="label-sm"
-							className="mb-4 block text-center font-sans font-medium tracking-[0.1em] text-champagne/60 uppercase"
-						>
-							{tDetail("facesOverviewComposite")}
-						</Text>
-						<div
-							className="relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl bg-sapphire-deep sm:min-h-[16rem] lg:min-h-[20rem]"
-							onClick={() => setIsCompositeLightboxOpen(true)}
-						>
-							<Image
-								src={encodePublicAssetPath(product.allFacesImage)}
-								alt={tDetail("facesOverviewCompositeAlt", { productName })}
-								fill
-								unoptimized
-								sizes="100vw"
-								className="ease-luxury object-contain object-center transition-transform duration-700 hover:scale-[1.01]"
-								onError={() => setIsCompositeImageVisible(false)}
-							/>
-						</div>
-					</div>
-				)}
+				<div
+					className={cn(
+						"grid gap-6 lg:gap-8",
+						showSideBySide
+							? "grid-cols-1 justify-items-center lg:grid-cols-2 lg:items-stretch lg:justify-items-stretch"
+							: "grid-cols-1 justify-items-center",
+					)}
+				>
+					{hasComposite && product.allFacesImage && (
+						<CompositeOverviewPanel
+							allFacesImage={product.allFacesImage}
+							productName={productName}
+							compositeAlt={compositeAlt}
+							onOpenLightbox={() => setIsCompositeLightboxOpen(true)}
+							onImageError={() => setIsCompositeImageVisible(false)}
+							className={cn("w-full max-w-4xl", showSideBySide && "lg:max-w-none")}
+						/>
+					)}
 
-				{hasDemoWork && activeDemoImage && (
-					<div
-						className="shadow-luxury-md relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep"
-						onMouseEnter={() => setIsDemoAutoPlayPaused(true)}
-						onMouseLeave={resumeDemoAutoPlay}
-						onFocusCapture={() => setIsDemoAutoPlayPaused(true)}
-						onBlurCapture={(event) => {
-							if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-								resumeDemoAutoPlay();
-							}
-						}}
-					>
-						<div className="relative aspect-[4/3] w-full bg-sapphire-deep">
-							<AnimatePresence mode="wait" initial={false}>
-								<motion.button
-									type="button"
-									key={activeDemoImage}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{ duration: 0.45, ease: "easeInOut" }}
-									className="group absolute inset-0 z-[1] cursor-zoom-in"
-									onClick={openDemoLightbox}
-									aria-label={tDetail("demoWorkZoom", {
-										exampleNumber: activeDemoIndex + 1,
-									})}
-								>
-									<Image
-										src={encodePublicAssetPath(activeDemoImage)}
-										alt={tDetail("demoWorkImageAlt", {
-											productName,
-											exampleNumber: activeDemoIndex + 1,
-										})}
-										fill
-										unoptimized
-										priority={activeDemoIndex === 0}
-										sizes="(max-width: 896px) 100vw, 896px"
-										className="ease-luxury object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-									/>
-									<span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sapphire-deep/0 transition-colors duration-300 group-hover:bg-sapphire-deep/25">
-										<span className="rounded-full bg-champagne/90 p-2.5 text-sm font-semibold text-sapphire-deep opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
-											🔎
-										</span>
-									</span>
-								</motion.button>
-							</AnimatePresence>
-
-							{hasMultipleDemoWork && (
-								<>
-									<div
-										className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-sapphire-deep/70 to-transparent"
-										aria-hidden
-									/>
-									<div
-										className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-sapphire-deep/80 to-transparent"
-										aria-hidden
-									/>
-
-									<p className="text-footnote absolute top-4 left-1/2 z-20 -translate-x-1/2 font-sans tracking-[0.15em] text-linen uppercase">
-										{tDetail("demoWorkLightboxCounter", {
-											current: activeDemoIndex + 1,
-											total: demoWorkCount,
-										})}
-									</p>
-
-									<IconButton
-										variant="gallery"
-										onClick={goToPreviousDemo}
-										className="absolute top-1/2 left-3 z-20 sm:left-4"
-										aria-label={tDetail("demoWorkLightboxPrevious")}
-									>
-										<ChevronLeft className="h-5 w-5" aria-hidden />
-									</IconButton>
-
-									<IconButton
-										variant="gallery"
-										onClick={goToNextDemo}
-										className="absolute top-1/2 right-3 z-20 sm:right-4"
-										aria-label={tDetail("demoWorkLightboxNext")}
-									>
-										<ChevronRight className="h-5 w-5" aria-hidden />
-									</IconButton>
-
-									<PaginationDots
-										tone="light"
-										className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2"
-										count={demoWorkImages.length}
-										activeIndex={activeDemoIndex}
-										onSelect={goToDemoByIndex}
-										getAriaLabel={(index) =>
-											tDetail("demoWorkGoToExample", { exampleNumber: index + 1 })
-										}
-									/>
-								</>
-							)}
-						</div>
-					</div>
-				)}
+					{hasDemoPanel && (
+						<DemoWorkCarouselPanel
+							demoWorkImages={demoWorkImages}
+							productName={productName}
+							activeDemoIndex={activeDemoIndex}
+							onSelectDemo={goToDemoByIndex}
+							onPreviousDemo={goToPreviousDemo}
+							onNextDemo={goToNextDemo}
+							onOpenLightbox={openDemoLightbox}
+							onPauseAutoPlay={() => setIsDemoAutoPlayPaused(true)}
+							onResumeAutoPlay={resumeDemoAutoPlay}
+							fillHeight={showSideBySide}
+							className={cn("w-full max-w-4xl", showSideBySide && "lg:max-w-none")}
+						/>
+					)}
+				</div>
 			</div>
 
 			<AnimatePresence>
@@ -306,13 +427,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							onClick={(event) => event.stopPropagation()}
 						>
 							<Image
-								src={encodePublicAssetPath(activeDemoImage)}
+								src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeDemoImage))}
 								alt={tDetail("demoWorkImageAlt", {
 									productName,
 									exampleNumber: activeDemoIndex + 1,
 								})}
 								fill
-								unoptimized
 								sizes="95vw"
 								className="object-contain"
 							/>
@@ -345,10 +465,11 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							onClick={(event) => event.stopPropagation()}
 						>
 							<Image
-								src={encodePublicAssetPath(product.allFacesImage)}
-								alt={tDetail("facesOverviewCompositeAlt", { productName })}
+								src={encodePublicAssetPath(
+									resolveDetailGalleryImagePath(product.allFacesImage),
+								)}
+								alt={compositeAlt}
 								fill
-								unoptimized
 								sizes="90vw"
 								className="object-contain"
 							/>

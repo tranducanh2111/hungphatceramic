@@ -43,6 +43,11 @@ function remapFolder(assetPath, targetFolder) {
 	return assetPath.replace(/\/assets\/(60X120|80X80|100X100|120X120)\//, `/assets/${targetFolder}/`);
 }
 
+function getSidecarPaths(assetPath) {
+	const base = assetPath.replace(/\.(jpe?g|png|webp)$/i, "");
+	return [`${base}.listing.webp`, `${base}.detail.webp`];
+}
+
 async function copyIfNeeded(sourceRelative, targetRelative) {
 	const sourceAbsolute = path.join(PUBLIC_ASSETS, sourceRelative.replace(/^\/assets\//, "").split("/").join(path.sep));
 	const targetAbsolute = path.join(PUBLIC_ASSETS, targetRelative.replace(/^\/assets\//, "").split("/").join(path.sep));
@@ -81,17 +86,22 @@ function isSourceCatalogAsset(assetPath) {
 
 async function syncCatalogAsset(assetPath) {
 	const results = { copied: 0, skipped: 0, missing: 0 };
+	const pathsToSync = [assetPath, ...getSidecarPaths(assetPath)];
 
-	for (const targetFolder of TARGET_SIZE_FOLDERS) {
-		const targetPath = remapFolder(assetPath, targetFolder);
-		const outcome = await copyIfNeeded(assetPath, targetPath);
+	for (const sourcePath of pathsToSync) {
+		for (const targetFolder of TARGET_SIZE_FOLDERS) {
+			const targetPath = remapFolder(sourcePath, targetFolder);
+			const outcome = await copyIfNeeded(sourcePath, targetPath);
 
-		if (outcome.status === "copied") {
-			results.copied += 1;
-		} else if (outcome.status === "missing-source") {
-			results.missing += 1;
-		} else {
-			results.skipped += 1;
+			if (outcome.status === "copied") {
+				results.copied += 1;
+			} else if (outcome.status === "missing-source") {
+				if (sourcePath === assetPath) {
+					results.missing += 1;
+				}
+			} else {
+				results.skipped += 1;
+			}
 		}
 	}
 

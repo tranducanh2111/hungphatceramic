@@ -1,40 +1,28 @@
 /**
- * Compresses oversized product catalog images (thumbnails, faces, composites).
- * Run: node scripts/optimize-product-catalog-images.mjs
+ * Compresses oversized product catalog images (thumbnails, faces, composites)
+ * and generates `.listing.webp` sidecars for PC-* demo work.
+ * Run: pnpm optimize:product-images
  */
-import { readFile, rename, unlink, stat, readdir } from "node:fs/promises";
+import { readFile, rename, unlink, stat } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import sharp from "sharp";
+import {
+	SIZE_THRESHOLD_BYTES,
+	collectAllCatalogAssetPaths,
+	getListingPreviewAssetPath,
+	isDemoWorkAssetPath,
+	isPanoramaAssetPath,
+	toAbsoluteAssetPath,
+} from "./lib/product-asset-paths.mjs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(__dirname, "..");
-const PUBLIC_DIR = path.join(ROOT, "public");
-const PRODUCTS_TS = path.join(ROOT, "src", "constants", "products.ts");
-const INDO_PRODUCTS_TS = path.join(ROOT, "src", "constants", "indo-products.ts");
-
-/** Only process assets referenced in the product registry. */
-const ASSET_PATH_PATTERN = /"(\/assets\/[^"]+\.(?:jpe?g|png|webp))"/gi;
-
-const SIZE_THRESHOLD_BYTES = 1_500_000;
 const MIN_SAVINGS_RATIO = 0.08;
-
 const LISTING_PREVIEW_MAX_EDGE = 1280;
 const LISTING_PREVIEW_QUALITY = 78;
 
-function isDemoWorkAssetPath(assetPath) {
-	const fileName = path.basename(assetPath);
-	if (fileName.endsWith(".listing.webp")) {
-		return false;
-	}
-
-	return /^PC/i.test(fileName);
-}
-
 const PROFILE_BY_HINT = [
-	{ test: (p) => /panorama/i.test(p), skip: true },
-	{ test: (p) => isDemoWorkAssetPath(p), skip: true },
-	{ test: (p) => /faces|6 faces|6 FACES/i.test(p), maxEdge: 2800, quality: 82 },
+	{ test: (assetPath) => isPanoramaAssetPath(assetPath), skip: true },
+	{ test: (assetPath) => isDemoWorkAssetPath(assetPath), skip: true },
+	{ test: (assetPath) => /faces|6 faces|6 FACES|FullFaces/i.test(path.basename(assetPath)), maxEdge: 2800, quality: 82 },
 	{ test: () => true, maxEdge: 1600, quality: 84 },
 ];
 
@@ -47,98 +35,15 @@ function getProfile(assetPath) {
 	return PROFILE_BY_HINT.at(-1);
 }
 
-function collectIndoAssetPaths(indoSource) {
-	const paths = new Set();
-	const squareSkus = new Set(["GS881042", "GS881045", "GS883009", "SS886101", "SS886106"]);
-	const skuPattern = /skuCode:\s*"((?:GS|SS)\d+)"/g;
-	const compositePattern = /hasFullFacesComposite:\s*(true|false)/g;
-
-	const skus = [...indoSource.matchAll(skuPattern)].map((m) => m[1]);
-	const composites = [...indoSource.matchAll(compositePattern)].map((m) => m[1] === "true");
-
-	for (let index = 0; index < skus.length; index += 1) {
-		const sku = skus[index];
-		const sizeFolder = squareSkus.has(sku) ? "100X100" : "60X120";
-		const base = `/assets/${sizeFolder}/INDO ${sku}`;
-		paths.add(`${base}/${sku}.jpg`);
-		paths.add(`${base}/${sku}_PhoiCanh.jpg`);
-		if (composites[index]) {
-			paths.add(`${base}/${sku}_FullFaces.jpg`);
-		}
-	}
-	return paths;
-}
-
-const SYNCED_SIZE_FOLDERS = ["100X100", "120X120"];
-
-async function collectSyncedSizeAssetPaths() {
-	const paths = new Set();
-	const assetsRoot = path.join(PUBLIC_DIR, "assets");
-
-	for (const sizeFolder of SYNCED_SIZE_FOLDERS) {
-		const folderRoot = path.join(assetsRoot, sizeFolder);
-		let productDirs;
-		try {
-			productDirs = await readdir(folderRoot, { withFileTypes: true });
-		} catch {
-			continue;
-		}
-
-		for (const productDir of productDirs) {
-			if (!productDir.isDirectory()) continue;
-			const productPath = path.join(folderRoot, productDir.name);
-			const files = await readdir(productPath, { withFileTypes: true });
-			for (const file of files) {
-				if (!file.isFile()) continue;
-				if (!/\.(jpe?g|png|webp)$/i.test(file.name)) continue;
-				if (file.name.endsWith(".listing.webp")) continue;
-				paths.add(`/assets/${sizeFolder}/${productDir.name}/${file.name}`);
-			}
-		}
-	}
-
-	return paths;
-}
-
-async function collectAssetPaths() {
-	const [productsSource, indoSource] = await Promise.all([
-		readFile(PRODUCTS_TS, "utf8"),
-		readFile(INDO_PRODUCTS_TS, "utf8"),
-	]);
-	const paths = new Set(collectIndoAssetPaths(indoSource));
-
-	for (const match of productsSource.matchAll(ASSET_PATH_PATTERN)) {
-		const assetPath = match[1];
-		if (!assetPath.includes("Ảnh Panorama")) {
-			paths.add(assetPath);
-		}
-	}
-
-	for (const syncedPath of await collectSyncedSizeAssetPaths()) {
-		paths.add(syncedPath);
-	}
-
-	return [...paths].sort();
-}
-
-function getListingPreviewAssetPath(assetPath) {
-	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
+async function collectOptimizableAssetPaths() {
+	const assetPaths = await collectAllCatalogAssetPaths();
+	return assetPaths.filter((assetPath) => !isPanoramaAssetPath(assetPath));
 }
 
 async function generateListingPreview(assetPath) {
-	if (!isDemoWorkAssetPath(assetPath)) {
-		return { assetPath, status: "skip-not-demo" };
-	}
-
-	const absoluteSourcePath = path.join(
-		PUBLIC_DIR,
-		assetPath.replace(/^\//, "").split("/").join(path.sep),
-	);
+	const absoluteSourcePath = toAbsoluteAssetPath(assetPath);
 	const listingAssetPath = getListingPreviewAssetPath(assetPath);
-	const absoluteListingPath = path.join(
-		PUBLIC_DIR,
-		listingAssetPath.replace(/^\//, "").split("/").join(path.sep),
-	);
+	const absoluteListingPath = toAbsoluteAssetPath(listingAssetPath);
 
 	let sourceStat;
 	try {
@@ -176,9 +81,7 @@ async function generateListingPreview(assetPath) {
 		});
 	}
 
-	const outputBuffer = await outputPipeline
-		.webp({ quality: LISTING_PREVIEW_QUALITY })
-		.toBuffer();
+	const outputBuffer = await outputPipeline.webp({ quality: LISTING_PREVIEW_QUALITY }).toBuffer();
 
 	await sharp(outputBuffer).toFile(absoluteListingPath);
 
@@ -197,7 +100,7 @@ async function optimizeImage(assetPath) {
 		return { assetPath, status: "skipped-scene" };
 	}
 
-	const absolutePath = path.join(PUBLIC_DIR, assetPath.replace(/^\//, "").split("/").join(path.sep));
+	const absolutePath = toAbsoluteAssetPath(assetPath);
 	let fileStat;
 
 	try {
@@ -256,8 +159,8 @@ async function optimizeImage(assetPath) {
 }
 
 async function main() {
-	const assetPaths = await collectAssetPaths();
-	console.log(`Found ${assetPaths.length} catalog asset paths in products.ts\n`);
+	const assetPaths = await collectOptimizableAssetPaths();
+	console.log(`Found ${assetPaths.length} catalog asset paths\n`);
 
 	const results = [];
 	for (const assetPath of assetPaths) {
@@ -274,7 +177,7 @@ async function main() {
 		console.log(`${assetPath}: ${detail}`);
 	}
 
-	const optimized = results.filter((r) => r.status === "optimized");
+	const optimized = results.filter((result) => result.status === "optimized");
 	console.log(`\nOptimized ${optimized.length} in-place file(s).`);
 
 	const demoWorkPaths = assetPaths.filter((assetPath) => isDemoWorkAssetPath(assetPath));
