@@ -5,10 +5,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Text } from "@/components/ui";
-import {
-	encodePublicAssetPath,
-	shouldUseUnoptimizedProductImage,
-} from "@/lib/products/media";
+import { encodePublicAssetPath } from "@/lib/products/media";
 import { ProductDetail } from "@/types";
 
 interface ProductDetailHeroProps {
@@ -112,7 +109,6 @@ export function ProductDetailHero({ product, onBack }: ProductDetailHeroProps) {
 						alt={name}
 						fill
 						priority
-						unoptimized={shouldUseUnoptimizedProductImage(product.slug)}
 						sizes="(max-width: 1024px) 100vw, 60vw"
 						className="object-cover object-center"
 					/>
