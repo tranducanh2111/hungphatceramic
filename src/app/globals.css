@@ -295,6 +295,16 @@ h6 {
 		hue-rotate(358deg) brightness(102%) contrast(92%);
 }
 
+/** Horizontal scroll without visible scrollbar (e.g. partner logo strip on mobile). */
+@utility scrollbar-hidden {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
 /* ─── Scroll-driven reveal (Tailwind @utility) ───────────────────────────────── */
 @utility reveal-on-view {
 	@apply animate-fade-up opacity-0 motion-reduce:translate-none motion-reduce:animate-none motion-reduce:opacity-100;

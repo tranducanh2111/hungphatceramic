@@ -7,7 +7,6 @@ import { ParallaxLayer, ParallaxSection, RevealOnView } from "@/components/commo
 import { PARTNER_ROSTER } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
-/** Height-first sizing: wide logos (e.g. Guocera) are not shrunk by a narrow box width. */
 const PARTNER_LOGO_HEIGHT_CLASS = "h-11 w-auto sm:h-12 lg:h-14";
 
 /** Recolors raster partner marks to brand champagne; brightens on row hover. */
@@ -66,25 +65,27 @@ export function AboutPartners() {
 					</RevealOnView>
 				</div>
 
-				<ul className="mx-auto flex list-none flex-nowrap items-center justify-center gap-8 p-0 sm:gap-12 lg:gap-16">
-					{PARTNER_ROSTER.map((partner, index) => (
-						<li key={partner.id} className="w-fit shrink-0">
-							<RevealOnView
-								delay={0.1 + index * 0.1}
-								className="group block w-fit opacity-60 transition-all duration-500 hover:scale-105 hover:opacity-100"
-							>
-								<Image
-									src={`/assets/partners/${partner.id}.png`}
-									alt={`${partner.name} logo`}
-									width={partner.imageWidth}
-									height={partner.imageHeight}
-									sizes="(max-width: 640px) 28vw, 200px"
-									className={`${PARTNER_LOGO_HEIGHT_CLASS} ${PARTNER_LOGO_COLOR_CLASS} object-contain object-center`}
-								/>
-							</RevealOnView>
-						</li>
-					))}
-				</ul>
+				<div className="scrollbar-hidden -mx-6 snap-x snap-mandatory overflow-x-auto overscroll-x-contain px-6 pb-1 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:snap-none sm:overflow-visible sm:px-0 sm:pb-0">
+					<ul className="mx-auto flex w-max min-w-full list-none flex-nowrap items-center justify-start gap-10 p-0 sm:w-auto sm:min-w-0 sm:justify-center sm:gap-12 lg:gap-16">
+						{PARTNER_ROSTER.map((partner, index) => (
+							<li key={partner.id} className="w-fit shrink-0 snap-center">
+								<RevealOnView
+									delay={0.1 + index * 0.1}
+									className="group block w-fit opacity-60 transition-all duration-500 hover:scale-105 hover:opacity-100"
+								>
+									<Image
+										src={`/assets/partners/normalized/${partner.id}.png`}
+										alt={`${partner.name} logo`}
+										width={512}
+										height={142}
+										sizes="(max-width: 640px) 40vw, 240px"
+										className={`${PARTNER_LOGO_HEIGHT_CLASS} ${PARTNER_LOGO_COLOR_CLASS} object-contain object-center`}
+									/>
+								</RevealOnView>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		</ParallaxSection>
 	);
