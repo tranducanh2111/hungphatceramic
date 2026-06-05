@@ -565,7 +565,7 @@
 			"sku": "SKU",
 			"availableSizes": "Available Sizes",
 			"faceVariations": "Surface Variations",
-			"demoWork": "Installed Examples",
+			"demoWork": "Installed Applications",
 			"demoWorkImageAlt": "{productName} installed example {exampleNumber}",
 			"demoWorkLightboxPrevious": "Previous installation example",
 			"demoWorkLightboxNext": "Next installation example",
