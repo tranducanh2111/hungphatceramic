@@ -63,7 +63,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 
 			<ul
 				key={activeCollectionId}
-				className="catalog-grid-stagger-reserve relative z-10 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3"
+				className="catalog-grid-stagger-reserve relative z-10 grid list-none grid-cols-1 gap-6 overflow-visible p-0 sm:grid-cols-2 lg:grid-cols-3"
 			>
 				{products.map((product, index) => {
 					const isMiddleColumn = index % 3 === 1;
@@ -84,7 +84,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 						<li
 							key={product.slug}
 							className={cn(
-								"[content-visibility:auto] [contain-intrinsic-size:auto_28rem]",
+								"overflow-visible",
 								useScrollStagger && "will-change-transform",
 								useStaticStagger && "translate-y-1/2",
 							)}
