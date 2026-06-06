@@ -131,9 +131,12 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		collectionId: "travertine",
 		category: "60×120cm",
 		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
-		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T01.jpg",
+		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T01.png",
 		shortDescription: "The organic warmth of classic Italian travertine stone structure.",
-		faceImages: ["/assets/60X120/Travertine T01 T06/G12T01.jpg"],
+		faceImages: [
+			"/assets/60X120/Travertine T01 T06/T01.png",
+			"/assets/60X120/Travertine T01 T06/G12T01.jpg",
+		],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC137-G12T01.jpg"],
 	},
 	{
@@ -143,9 +146,12 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		collectionId: "travertine",
 		category: "60×120cm",
 		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
-		thumbnailUrl: "/assets/60X120/Travertine T01 T06/G12T06.jpg",
+		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T06.png",
 		shortDescription: "Deep linear travertine formations with rich earthy tones.",
-		faceImages: ["/assets/60X120/Travertine T01 T06/G12T06.jpg"],
+		faceImages: [
+			"/assets/60X120/Travertine T01 T06/T06.png",
+			"/assets/60X120/Travertine T01 T06/G12T06.jpg",
+		],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC136-G12T06.jpg"],
 	},
 	{
