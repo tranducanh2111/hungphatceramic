@@ -1,12 +1,18 @@
 import type { ProductCatalogEntry } from "@/types";
 
 const SQUARE_SIZE = "100×100cm" as const;
+const SQUARE_80_SIZE = "80×80cm" as const;
 const RECT_SIZE = "60×120cm" as const;
+
+type IndoProductFormat = "square" | "square80" | "rect";
 
 interface IndoProductSeed {
 	skuCode: string;
-	format: "square" | "rect";
-	/** Omit composite when Drive only provides PDF. */
+	format: IndoProductFormat;
+	marketingName?: string;
+	faceCount?: number;
+	sceneCount?: number;
+	/** Omit composite when Drive only provides PDF or individual faces. */
 	hasFullFacesComposite: boolean;
 	shortDescription: string;
 }
@@ -32,15 +38,23 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	},
 	{
 		skuCode: "SS886101",
-		format: "square",
-		hasFullFacesComposite: true,
-		shortDescription: "INDO square format suited to open-plan residential and hospitality floors.",
+		format: "square80",
+		marketingName: "Olympus White",
+		faceCount: 12,
+		sceneCount: 1,
+		hasFullFacesComposite: false,
+		shortDescription:
+			"INDO 80×80cm porcelain in Olympus White — twelve face variations for open residential and hospitality floors.",
 	},
 	{
 		skuCode: "SS886106",
-		format: "square",
+		format: "square80",
+		marketingName: "Elbrus Gris",
+		faceCount: 12,
+		sceneCount: 2,
 		hasFullFacesComposite: false,
-		shortDescription: "INDO square porcelain with polished character and soft luminosity.",
+		shortDescription:
+			"INDO 80×80cm Elbrus Gris surface with polished character, soft luminosity, and twelve face variations.",
 	},
 	{
 		skuCode: "SS1261307",
@@ -72,37 +86,58 @@ function indoFolderLabel(skuCode: string): string {
 	return `INDO ${skuCode}`;
 }
 
-function indoAssetBase(format: IndoProductSeed["format"], skuCode: string): string {
-	const sizeFolder = format === "square" ? "100X100" : "60X120";
+function indoAssetBase(format: IndoProductFormat, skuCode: string): string {
+	const sizeFolder =
+		format === "square80" ? "80X80" : format === "square" ? "100X100" : "60X120";
 	return `/assets/${sizeFolder}/${indoFolderLabel(skuCode)}`;
+}
+
+function buildFaceImages(assetBase: string, skuCode: string, faceCount = 1): string[] {
+	const facePaths = [`${assetBase}/${skuCode}.jpg`];
+	for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
+		facePaths.push(`${assetBase}/${skuCode}_F${faceIndex}.jpg`);
+	}
+	return [...new Set(facePaths)];
+}
+
+function buildSceneImages(assetBase: string, skuCode: string, sceneCount = 1): string[] {
+	const scenePaths = [`${assetBase}/${skuCode}_PhoiCanh.jpg`];
+	for (let sceneIndex = 2; sceneIndex <= sceneCount; sceneIndex += 1) {
+		scenePaths.push(`${assetBase}/${skuCode}_PhoiCanh_${sceneIndex}.jpg`);
+	}
+	return scenePaths;
 }
 
 function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 	const assetBase = indoAssetBase(seed.format, seed.skuCode);
-	const primarySize = seed.format === "square" ? SQUARE_SIZE : RECT_SIZE;
+	const primarySize =
+		seed.format === "square80" ? SQUARE_80_SIZE : seed.format === "square" ? SQUARE_SIZE : RECT_SIZE;
 	const sizes =
-		seed.format === "square"
-			? ([SQUARE_SIZE, "120×120cm", RECT_SIZE] as const)
-			: ([RECT_SIZE, SQUARE_SIZE, "120×120cm"] as const);
+		seed.format === "square80"
+			? ([SQUARE_80_SIZE, SQUARE_SIZE, "120×120cm"] as const)
+			: seed.format === "square"
+				? ([SQUARE_SIZE, "120×120cm", RECT_SIZE] as const)
+				: ([RECT_SIZE, SQUARE_SIZE, "120×120cm"] as const);
 
-	const faceImage = `${assetBase}/${seed.skuCode}.jpg`;
-	const sceneImage = `${assetBase}/${seed.skuCode}_PhoiCanh.jpg`;
+	const displayName = seed.marketingName
+		? `INDO ${seed.skuCode} ${seed.marketingName}`
+		: `INDO ${seed.skuCode}`;
 	const compositeImage = `${assetBase}/${seed.skuCode}_FullFaces.jpg`;
 
 	return {
 		slug: `indo-${seed.skuCode.toLowerCase()}`,
 		skuCode: seed.skuCode,
-		name: `INDO ${seed.skuCode}`,
+		name: displayName,
 		collectionId: "indo",
 		category: primarySize,
 		sizes: [...sizes],
-		thumbnailUrl: faceImage,
+		thumbnailUrl: `${assetBase}/${seed.skuCode}.jpg`,
 		shortDescription: seed.shortDescription,
-		faceImages: [faceImage],
-		sceneImages: [sceneImage],
+		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount ?? 1),
+		sceneImages: buildSceneImages(assetBase, seed.skuCode, seed.sceneCount ?? 1),
 		...(seed.hasFullFacesComposite ? { allFacesImage: compositeImage } : {}),
 	};
 }
 
-/** MẪU GẠCH INDO — assets from client Drive folder (see public/assets/INDO-IMPORT.md). */
+/** MẪU GẠCH INDO — assets from client Drive folders (see public/assets/INDO-IMPORT.md). */
 export const INDO_PRODUCTS: ProductCatalogEntry[] = INDO_PRODUCT_SEEDS.map(buildIndoProduct);

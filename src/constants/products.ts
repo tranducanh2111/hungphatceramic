@@ -4,7 +4,7 @@ import { INDO_PRODUCTS } from "@/constants/indo-products";
 
 /**
  * Static registry of all porcelain products.
- * PC-* paths in `sceneImages` are promoted to `demoWorkImages` via `normalizeProductMedia`.
+ * Install/showcase paths in `sceneImages` (PC-*, *_PhoiCanh*, Venora) become `demoWorkImages` via `normalizeProductMedia`.
  */
 const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	// ─── INSPIRE SERIES (60×120cm) ───────────────────────────────────────────────

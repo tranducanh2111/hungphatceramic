@@ -9,10 +9,20 @@ export function encodePublicAssetPath(publicPath: string): string {
 	return encodeURI(publicPath);
 }
 
-/** Room / install renders in product folders (e.g. `PC-G12962J.jpg`, `PC1-GP12962J.jpg`). */
+/** Interior install/showcase renders — not tile faces or panoramas. */
 export function isProductDemoWorkImage(assetPath: string): boolean {
 	const fileName = assetPath.split("/").pop() ?? "";
-	return /^PC/i.test(fileName);
+	if (/^PC/i.test(fileName)) {
+		return true;
+	}
+	if (/_PhoiCanh/i.test(fileName)) {
+		return true;
+	}
+	// Architectural 20 mm line uses a shared room render name.
+	if (/^Venora\./i.test(fileName)) {
+		return true;
+	}
+	return false;
 }
 
 /** Order: base PC file first, then numeric suffixes (`-1`, `PC1-`, `PC2-`, …). */
@@ -30,6 +40,11 @@ function compareDemoWorkAssetPaths(pathA: string, pathB: string): number {
 }
 
 function extractDemoWorkSortKey(fileName: string): number {
+	const phoiCanhMatch = fileName.match(/_PhoiCanh(?:_(\d+))?/i);
+	if (phoiCanhMatch) {
+		return phoiCanhMatch[1] ? Number.parseInt(phoiCanhMatch[1], 10) : 0;
+	}
+
 	const hyphenMatch = fileName.match(/-(\d+)(?=\.[^.]+$)/);
 	if (hyphenMatch) {
 		return Number.parseInt(hyphenMatch[1], 10) + 1;
@@ -47,7 +62,7 @@ export function sortDemoWorkAssetPaths(assetPaths: string[]): string[] {
 	return [...assetPaths].sort(compareDemoWorkAssetPaths);
 }
 
-/** Splits PC-* paths into `demoWorkImages`; keeps panoramas and other scenes separate. */
+/** Splits install/showcase paths into `demoWorkImages`; keeps panoramas separate. */
 export function normalizeProductMedia(catalogEntry: ProductCatalogEntry): ProductDetail {
 	const seen = new Set<string>();
 	const demoWorkImages: string[] = [];

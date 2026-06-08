@@ -1,13 +1,25 @@
 # INDO tile assets — import from Google Drive
 
-Source folder: [MẪU GẠCH INDO](https://drive.google.com/drive/folders/1rEh2ZKte59w-NTTw5H9DvrwgrkccX6gA)
+Source folders:
 
-**Automated (recommended):** pull all JPGs from the shared Drive folder:
+- [MẪU GẠCH INDO (flat)](https://drive.google.com/drive/folders/1rEh2ZKte59w-NTTw5H9DvrwgrkccX6gA)
+- [INDO 80×80 nested](https://drive.google.com/drive/folders/15PlYXiJMhoQvrYaMdPVsyf2itcovBgTE)
+
+**Automated (recommended):**
 
 ```bash
+# Legacy flat JPGs (100×100 / 60×120)
 pnpm download:indo-assets
+
+# Nested 80×80 product folders (SS886101, SS886106, …)
+pnpm download:indo-assets:80x80
+
 pnpm optimize:product-images
+pnpm sync:product-size-assets
+pnpm ensure:product-media:fix
 ```
+
+`ensure:product-media:fix` verifies every catalog path has its source file plus required `.detail.webp` / `.listing.webp` sidecars (including `*_PhoiCanh*` demo work). Run it after any import.
 
 **Manual:** copy each file into the path below (keep filenames). Then run `pnpm optimize:product-images`.
 
