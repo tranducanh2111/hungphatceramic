@@ -34,7 +34,16 @@ export function isDemoWorkAssetPath(assetPath) {
 	if (fileName.endsWith(".listing.webp") || fileName.endsWith(".detail.webp")) {
 		return false;
 	}
-	return /^PC/i.test(fileName);
+	if (/^PC/i.test(fileName)) {
+		return true;
+	}
+	if (/_PhoiCanh/i.test(fileName)) {
+		return true;
+	}
+	if (/^Venora\./i.test(fileName)) {
+		return true;
+	}
+	return false;
 }
 
 export function isPanoramaAssetPath(assetPath) {
@@ -169,6 +178,13 @@ export async function collectRuntimeDetailSources() {
 		}
 	}
 
+	// INDO assets are built in code — no literal `/assets/...` strings in indo-products.ts.
+	for (const assetPath of collectIndoAssetPaths(indoSource)) {
+		if (isDemoWorkAssetPath(assetPath)) {
+			paths.add(assetPath);
+		}
+	}
+
 	const squareMirrorPaths = collectAssetPathsRequiringSquareMirror(productsSource);
 	const expanded = new Set(paths);
 	for (const assetPath of paths) {
@@ -192,23 +208,34 @@ export function requiresListingWebp(assetPath) {
 
 export function collectIndoAssetPaths(indoSource) {
 	const paths = new Set();
-	const squareSkus = new Set(["GS881042", "GS881045", "GS883009", "SS886101", "SS886106"]);
-	const skuPattern = /skuCode:\s*"((?:GS|SS)\d+)"/g;
-	const compositePattern = /hasFullFacesComposite:\s*(true|false)/g;
+	const squareSkus = new Set(["GS881042", "GS881045", "GS883009"]);
+	const square80Skus = new Set(["SS886101", "SS886106"]);
+	const seedBlocks = indoSource.match(/\{[\s\S]*?hasFullFacesComposite[\s\S]*?\}/g) ?? [];
 
-	const skus = [...indoSource.matchAll(skuPattern)].map((match) => match[1]);
-	const composites = [...indoSource.matchAll(compositePattern)].map((match) => match[1] === "true");
+	for (const block of seedBlocks) {
+		const sku = block.match(/skuCode:\s*"((?:GS|SS)\d+)"/)?.[1];
+		if (!sku) continue;
 
-	for (let index = 0; index < skus.length; index += 1) {
-		const sku = skus[index];
-		const sizeFolder = squareSkus.has(sku) ? "100X100" : "60X120";
+		const sceneCount = Number.parseInt(block.match(/sceneCount:\s*(\d+)/)?.[1] ?? "1", 10);
+		const hasFullFacesComposite = block.includes("hasFullFacesComposite: true");
+
+		const sizeFolder = square80Skus.has(sku)
+			? "80X80"
+			: squareSkus.has(sku)
+				? "100X100"
+				: "60X120";
 		const base = `/assets/${sizeFolder}/INDO ${sku}`;
+
 		paths.add(`${base}/${sku}.jpg`);
 		paths.add(`${base}/${sku}_PhoiCanh.jpg`);
-		if (composites[index]) {
+		for (let sceneIndex = 2; sceneIndex <= sceneCount; sceneIndex += 1) {
+			paths.add(`${base}/${sku}_PhoiCanh_${sceneIndex}.jpg`);
+		}
+		if (hasFullFacesComposite) {
 			paths.add(`${base}/${sku}_FullFaces.jpg`);
 		}
 	}
+
 	return paths;
 }
 

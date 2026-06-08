@@ -6,18 +6,16 @@
 import { readFile, rename, unlink, stat } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { generateListingPreview } from "./lib/product-media-sidecars.mjs";
 import {
 	SIZE_THRESHOLD_BYTES,
 	collectAllCatalogAssetPaths,
-	getListingPreviewAssetPath,
 	isDemoWorkAssetPath,
 	isPanoramaAssetPath,
 	toAbsoluteAssetPath,
 } from "./lib/product-asset-paths.mjs";
 
 const MIN_SAVINGS_RATIO = 0.08;
-const LISTING_PREVIEW_MAX_EDGE = 1280;
-const LISTING_PREVIEW_QUALITY = 78;
 
 const PROFILE_BY_HINT = [
 	{ test: (assetPath) => isPanoramaAssetPath(assetPath), skip: true },
@@ -38,60 +36,6 @@ function getProfile(assetPath) {
 async function collectOptimizableAssetPaths() {
 	const assetPaths = await collectAllCatalogAssetPaths();
 	return assetPaths.filter((assetPath) => !isPanoramaAssetPath(assetPath));
-}
-
-async function generateListingPreview(assetPath) {
-	const absoluteSourcePath = toAbsoluteAssetPath(assetPath);
-	const listingAssetPath = getListingPreviewAssetPath(assetPath);
-	const absoluteListingPath = toAbsoluteAssetPath(listingAssetPath);
-
-	let sourceStat;
-	try {
-		sourceStat = await stat(absoluteSourcePath);
-	} catch {
-		return { assetPath: listingAssetPath, status: "missing-source" };
-	}
-
-	try {
-		const listingStat = await stat(absoluteListingPath);
-		if (listingStat.mtimeMs >= sourceStat.mtimeMs) {
-			return {
-				assetPath: listingAssetPath,
-				status: "preview-current",
-				afterMb: (listingStat.size / 1e6).toFixed(2),
-			};
-		}
-	} catch {
-		// Generate a new listing preview.
-	}
-
-	const inputBuffer = await readFile(absoluteSourcePath);
-	const pipeline = sharp(inputBuffer, { failOn: "none", limitInputPixels: false }).rotate();
-	const metadata = await pipeline.metadata();
-	const longestEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);
-	const resizeTo = Math.min(LISTING_PREVIEW_MAX_EDGE, longestEdge);
-
-	let outputPipeline = pipeline;
-	if (longestEdge > resizeTo) {
-		outputPipeline = outputPipeline.resize({
-			width: metadata.width >= metadata.height ? resizeTo : undefined,
-			height: metadata.height > metadata.width ? resizeTo : undefined,
-			fit: "inside",
-			withoutEnlargement: true,
-		});
-	}
-
-	const outputBuffer = await outputPipeline.webp({ quality: LISTING_PREVIEW_QUALITY }).toBuffer();
-
-	await sharp(outputBuffer).toFile(absoluteListingPath);
-
-	return {
-		assetPath: listingAssetPath,
-		status: "preview-created",
-		beforeMb: (sourceStat.size / 1e6).toFixed(2),
-		afterMb: (outputBuffer.length / 1e6).toFixed(2),
-		dimensions: `${metadata.width}×${metadata.height} → max ${resizeTo}`,
-	};
 }
 
 async function optimizeImage(assetPath) {
@@ -181,7 +125,7 @@ async function main() {
 	console.log(`\nOptimized ${optimized.length} in-place file(s).`);
 
 	const demoWorkPaths = assetPaths.filter((assetPath) => isDemoWorkAssetPath(assetPath));
-	console.log(`\nGenerating ${demoWorkPaths.length} listing preview(s) for PC-* demo work...\n`);
+	console.log(`\nGenerating ${demoWorkPaths.length} listing preview(s) for demo work...\n`);
 
 	const previewResults = [];
 	for (const assetPath of demoWorkPaths) {

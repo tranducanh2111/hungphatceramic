@@ -119,9 +119,13 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	},
 	{
 		id: "indo",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
 			...sizePreviews("60×120cm", "/assets/60X120/INDO SS1261307/SS1261307.jpg", [
+				"100×100cm",
+				"120×120cm",
+			]),
+			...sizePreviews("80×80cm", "/assets/80X80/INDO SS886101/SS886101.jpg", [
 				"100×100cm",
 				"120×120cm",
 			]),
