@@ -3,8 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ContactPageContent } from "@/page-sections/contact/ContactPageContent";
-
-const SITE_URL = "https://hungphatceramic.vn";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface ContactPageProps {
 	params: Promise<{ locale: string }>;
@@ -13,22 +12,18 @@ interface ContactPageProps {
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.contact" });
-	const contactUrl = `${SITE_URL}/${locale}/contact`;
+	const alternates = buildAlternatesForLocale("/contact", locale);
 
 	return {
 		title: t("title"),
 		description: t("description"),
-		alternates: {
-			canonical: contactUrl,
-		},
-		openGraph: {
+		alternates,
+		openGraph: buildOpenGraphForLocale({
 			title: t("ogTitle"),
 			description: t("ogDescription"),
-			url: contactUrl,
-			siteName: t("siteName"),
-			locale: t("ogLocale"),
-			type: "website",
-		},
+			url: alternates.canonical,
+			ogLocale: t("ogLocale"),
+		}),
 	};
 }
 

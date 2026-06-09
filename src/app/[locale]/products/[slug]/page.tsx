@@ -9,6 +9,7 @@ import { isTileSizeSlug } from "@/lib/products/listing";
 import { encodePublicAssetPath } from "@/lib/products/media";
 import { ProductDetailPageContent } from "@/page-sections/products/ProductDetailPageContent";
 import { ProductDetailHeroMedia } from "@/page-sections/products/ProductDetailHeroMedia";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface ProductDetailPageProps {
 	params: Promise<{ locale: string; slug: string }>;
@@ -30,10 +31,20 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 	const t = await getTranslations({ locale, namespace: "meta.productDetail" });
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
+	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
+	const ogImage = product.thumbnailUrl;
 
 	return {
 		title: t("title", { productName }),
 		description: t("description", { productName }),
+		alternates,
+		openGraph: buildOpenGraphForLocale({
+			title: t("title", { productName }),
+			description: t("description", { productName }),
+			url: alternates.canonical,
+			ogLocale: locale === "vi" ? "vi_VN" : "en_US",
+			image: ogImage,
+		}),
 	};
 }
 
@@ -53,10 +64,37 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
+	const productDesc = tItems.has(`${slug}.description`) ? tItems(`${slug}.description`) : product.shortDescription;
+
+	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
+	const productSchema = {
+		"@context": "https://schema.org",
+		"@type": "Product",
+		name: productName,
+		image: `${SITE_URL}${heroThumbnailPath}`,
+		description: productDesc,
+		sku: product.skuCode,
+		mpn: product.skuCode,
+		brand: {
+			"@type": "Brand",
+			name: "Perla",
+		},
+		offers: {
+			"@type": "Offer",
+			priceCurrency: "VND",
+			price: "0",
+			availability: "https://schema.org/InStock",
+			url: alternates.canonical,
+		},
+	};
 
 	return (
 		<>
 			<PageMediaPreload imagePaths={[heroThumbnailPath]} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+			/>
 			<ProductDetailPageContent
 				product={product}
 				activeSizeId={activeSizeId}
