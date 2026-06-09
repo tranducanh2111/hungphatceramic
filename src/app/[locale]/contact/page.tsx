@@ -33,6 +33,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
 	const t = await getTranslations({ locale, namespace: "pages.contact.schema" });
 
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const tFooter = await getTranslations({ locale, namespace: "footer.sections" });
+
 	const contactPageSchema = {
 		"@context": "https://schema.org",
 		"@type": "ContactPage",
@@ -52,6 +55,27 @@ export default async function ContactPage({ params }: ContactPageProps) {
 		},
 	};
 
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tFooter("contact"),
+				item: `${SITE_URL}/${locale}/contact`,
+			},
+		],
+	};
+
+	const schemas = [contactPageSchema, breadcrumbSchema];
+
 	return (
 		<main>
 			<PageMediaPreload
@@ -62,7 +86,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 			/>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ContactPageContent />
 		</main>

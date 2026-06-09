@@ -10,7 +10,7 @@ export function PageMediaPreload({ imagePaths }: PageMediaPreloadProps) {
 	return (
 		<>
 			{imagePaths.map((href) => (
-				<link key={href} rel="preload" as="image" href={href} />
+				<link key={href} rel="preload" as="image" href={href} fetchPriority="high" />
 			))}
 		</>
 	);

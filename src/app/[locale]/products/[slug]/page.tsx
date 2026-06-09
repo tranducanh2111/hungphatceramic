@@ -75,6 +75,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 		description: productDesc,
 		sku: product.skuCode,
 		mpn: product.skuCode,
+		material: "Porcelain",
 		brand: {
 			"@type": "Brand",
 			name: "Perla",
@@ -86,14 +87,54 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 			availability: "https://schema.org/InStock",
 			url: alternates.canonical,
 		},
+		additionalProperty: [
+			{
+				"@type": "PropertyValue",
+				name: "Sizes Available",
+				value: product.sizes.join(", "),
+			},
+			{
+				"@type": "PropertyValue",
+				name: "Collection",
+				value: product.collectionId,
+			},
+		],
 	};
+
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tNavbar("products"),
+				item: `${SITE_URL}/${locale}/products`,
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: productName,
+				item: `${SITE_URL}/${locale}/products/${product.slug}`,
+			},
+		],
+	};
+
+	const schemas = [productSchema, breadcrumbSchema];
 
 	return (
 		<>
 			<PageMediaPreload imagePaths={[heroThumbnailPath]} />
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ProductDetailPageContent
 				product={product}

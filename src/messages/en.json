@@ -259,40 +259,61 @@
 			"primaryCta": "Book a Consultation",
 			"secondaryCta": "Browse the Collection",
 			"officeAddress": "K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi"
+		},
+		"faq": {
+			"label": "FAQ",
+			"heading": "Frequently Asked Questions",
+			"description": "Find answers to common questions about our premium porcelain tiles and architectural installation services.",
+			"q1": {
+				"question": "What is porcelain tile? How does it differ from standard ceramic tiles?",
+				"answer": "Porcelain tile is made from refined, pure clay and natural minerals fired at extremely high temperatures (1200°C). It is denser, harder, and virtually impervious to water (absorption rate < 0.5%), offering superior durability and color retention compared to standard ceramic tiles."
+			},
+			"q2": {
+				"question": "What large-format porcelain tile sizes does Perla offer?",
+				"answer": "We specialize in imported, luxury large-format porcelain tile sizes including 60x120cm, 80x80cm, 100x100cm, and 120x120cm. These sizes are ideal for expansive flooring and feature walls in luxury residential and B2B projects."
+			},
+			"q3": {
+				"question": "Where is the Perla and Hung Phat Ceramic showroom located? Can I visit?",
+				"answer": "Our showroom is located at K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Hanoi. We welcome architects, developers, and homeowners by appointment. Please contact us via phone or Zalo to schedule a visit and view physical samples."
+			},
+			"q4": {
+				"question": "Do you provide shipping and professional tile installation services?",
+				"answer": "Yes, we provide nationwide shipping and specialized, professional large-format tile installation services. Our experienced installation team ensures precise execution and high-aesthetic finishing for luxury properties."
+			}
 		}
 	},
 	"meta": {
 		"home": {
-			"title": "Luxury Porcelain Tiles & Premium Ceramic Surfaces | Perla",
-			"description": "Supplier of luxury porcelain tiles, large format imported tiles, and custom ceramic surfaces for upscale residential and commercial projects in Vietnam.",
+			"title": "Luxury Porcelain Tiles | Imported Large Format Slabs - Perla by Hung Phat",
+			"description": "Importer & supplier of premium porcelain tiles, large format slabs, and custom marble-look ceramic surfaces for luxury villas and hotels in Vietnam.",
 			"ogTitle": "Premium Porcelain Tiles & Bespoke Ceramic Surfaces | Perla",
 			"ogDescription": "Perla provides high-end porcelain tile solutions, including large format tiles and bespoke surfaces, for luxury villas, hotels, and luxury apartments in Vietnam.",
 			"siteName": "Perla powered by Hung Phat",
 			"ogLocale": "en_US"
 		},
 		"about": {
-			"title": "About Hung Phat Ceramic - 12 Years of Premium Porcelain | Perla",
-			"description": "Learn about the 12-year journey of Hung Phat Ceramic and our luxury brand Perla, specializing in high-end imported porcelain tiles and large format surfaces.",
+			"title": "Hung Phat Ceramic - Premium Imported Porcelain Tiles Vietnam | Perla",
+			"description": "Hung Phat Ceramic (Perla brand) distributes high-end Italian, Spanish, and Indonesian porcelain tiles. Over 12 years of specialized architectural surface supply.",
 			"ogTitle": "About Hung Phat Ceramic - Leading Luxury Porcelain Partner",
 			"ogDescription": "Discover how Hung Phat Ceramic and Perla deliver premium, high-precision porcelain tile surfaces for prestigious architectural projects across Vietnam.",
 			"siteName": "Perla powered by Hung Phat",
 			"ogLocale": "en_US"
 		},
 		"projects": {
-			"title": "Luxury Porcelain Tile Projects - Hotels, Villas, Residences | Perla",
-			"description": "Explore our portfolio of completed premium porcelain tile installations in hotels, luxury villas, and high-end residential complexes in Hanoi, Ha Long, Phu Quoc."
+			"title": "Premium Tile Project Showcase - Luxury Villas & Hotels | Perla",
+			"description": "View our completed high-end porcelain tile installations at Vinhomes Riverside, Ramada Ha Long, Grand World Phu Quoc, and Empire City."
 		},
 		"products": {
-			"title": "Imported Porcelain Tiles & Large Format Tiles 60x120, 80x80 | Perla",
-			"description": "Browse our collections of imported luxury porcelain tiles and large format tiles (60x120cm, 80x80cm, 100x100cm, 120x120cm) for premium indoor & outdoor spaces."
+			"title": "Luxury Imported Porcelain Tiles | Large Format Slabs 60x120, 80x80 | Perla",
+			"description": "Explore our collection of imported porcelain tiles and large format slabs (60x120cm, 80x80cm, 100x100cm, 120x120cm) for luxury indoor and outdoor tiling."
 		},
 		"productDetail": {
 			"title": "{productName} - Luxury Porcelain Tile | Perla by Hung Phat",
 			"description": "Explore {productName}, a premium large format porcelain tile imported by Perla. Exceptional design and durability for high-end luxury interiors."
 		},
 		"contact": {
-			"title": "Contact Showroom & Consultations - Hung Phat Ceramic | Perla",
-			"description": "Book a personalized consultation at our Starlake showroom in Hanoi to view our premium porcelain tile collection and request physical samples.",
+			"title": "Luxury Tile Showroom Hanoi - Hung Phat Ceramic | Perla",
+			"description": "Visit our premium porcelain tile showroom at Starlake Tay Ho Tay, Hanoi. Contact us for design consultations, catalog access, and free physical samples.",
 			"ogTitle": "Contact Hung Phat Ceramic Showroom | Perla",
 			"ogDescription": "Get in touch with Hung Phat Ceramic for expert advice on luxury porcelain tiles, custom quotes, and samples of premium imported tiles.",
 			"siteName": "Perla powered by Hung Phat",

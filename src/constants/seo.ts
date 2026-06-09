@@ -1,6 +1,6 @@
 import { type AppLocale } from "@/i18n/routing";
 
-export const SITE_URL = "https://hungphatceramic.vn";
+export const SITE_URL = "https://perla.com.vn";
 export const SITE_NAME = "Perla powered by Hung Phat";
 export const DEFAULT_OG_IMAGE = "/logo/hungphat_ceramic_logo_big.png";
 

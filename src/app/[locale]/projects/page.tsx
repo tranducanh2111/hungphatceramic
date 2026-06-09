@@ -64,6 +64,28 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 		}),
 	};
 
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tNavbar("projects"),
+				item: `${SITE_URL}/${locale}/projects`,
+			},
+		],
+	};
+
+	const schemas = [collectionSchema, breadcrumbSchema];
+
 	return (
 		<main>
 			<PageMediaPreload
@@ -74,7 +96,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 			/>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ProjectsPageContent />
 		</main>
