@@ -9,6 +9,7 @@ import { isTileSizeSlug } from "@/lib/products/listing";
 import { encodePublicAssetPath } from "@/lib/products/media";
 import { ProductDetailPageContent } from "@/page-sections/products/ProductDetailPageContent";
 import { ProductDetailHeroMedia } from "@/page-sections/products/ProductDetailHeroMedia";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface ProductDetailPageProps {
 	params: Promise<{ locale: string; slug: string }>;
@@ -30,10 +31,20 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 	const t = await getTranslations({ locale, namespace: "meta.productDetail" });
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
+	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
+	const ogImage = product.thumbnailUrl;
 
 	return {
 		title: t("title", { productName }),
 		description: t("description", { productName }),
+		alternates,
+		openGraph: buildOpenGraphForLocale({
+			title: t("title", { productName }),
+			description: t("description", { productName }),
+			url: alternates.canonical,
+			ogLocale: locale === "vi" ? "vi_VN" : "en_US",
+			image: ogImage,
+		}),
 	};
 }
 
@@ -53,10 +64,80 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
+	const productDesc = tItems.has(`${slug}.description`)
+		? tItems(`${slug}.description`)
+		: product.shortDescription;
+
+	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
+	const productSchema = {
+		"@context": "https://schema.org",
+		"@type": "Product",
+		name: productName,
+		image: `${SITE_URL}${heroThumbnailPath}`,
+		description: productDesc,
+		sku: product.skuCode,
+		mpn: product.skuCode,
+		material: "Porcelain",
+		brand: {
+			"@type": "Brand",
+			name: "Perla",
+		},
+		offers: {
+			"@type": "Offer",
+			priceCurrency: "VND",
+			price: "0",
+			availability: "https://schema.org/InStock",
+			url: alternates.canonical,
+		},
+		additionalProperty: [
+			{
+				"@type": "PropertyValue",
+				name: "Sizes Available",
+				value: product.sizes.join(", "),
+			},
+			{
+				"@type": "PropertyValue",
+				name: "Collection",
+				value: product.collectionId,
+			},
+		],
+	};
+
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tNavbar("products"),
+				item: `${SITE_URL}/${locale}/products`,
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: productName,
+				item: `${SITE_URL}/${locale}/products/${product.slug}`,
+			},
+		],
+	};
+
+	const schemas = [productSchema, breadcrumbSchema];
 
 	return (
 		<>
 			<PageMediaPreload imagePaths={[heroThumbnailPath]} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+			/>
 			<ProductDetailPageContent
 				product={product}
 				activeSizeId={activeSizeId}

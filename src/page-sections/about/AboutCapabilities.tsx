@@ -4,7 +4,12 @@ import { useTranslations } from "next-intl";
 import { ViewportDeferredImage } from "@/components/media";
 import { ClipboardList, Layers, Truck, ShieldCheck, type LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
-import { ParallaxElement, RevealOnView, SectionContainer, SectionHeader } from "@/components/common";
+import {
+	ParallaxElement,
+	RevealOnView,
+	SectionContainer,
+	SectionHeader,
+} from "@/components/common";
 import { CAPABILITY_CARDS, type CapabilityId } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
@@ -85,7 +90,7 @@ function CapabilityCard({ card, Icon, animationDelay, t }: CapabilityCardProps) 
 		<RevealOnView
 			as="article"
 			delay={animationDelay}
-			className="group bg-sapphire-deep relative flex flex-col overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_24rem]"
+			className="group bg-sapphire-deep relative flex flex-col overflow-hidden [contain-intrinsic-size:auto_24rem] [content-visibility:auto]"
 		>
 			<div className="relative h-56 overflow-hidden lg:h-64">
 				<ParallaxElement rangePx={20} className="absolute inset-0 scale-[1.08]">

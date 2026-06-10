@@ -40,7 +40,7 @@ export function LandingProjectsSpiral() {
 							<Eyebrow>{t("label")}</Eyebrow>
 						</RevealOnView>
 						<RevealOnView delay={0.1}>
-							<Text variant="display-lg" as="h2" className="mt-3 text-linen">
+							<Text variant="display-lg" as="h2" className="text-linen mt-3">
 								{t("heading")}
 							</Text>
 						</RevealOnView>

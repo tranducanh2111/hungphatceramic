@@ -3,8 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ContactPageContent } from "@/page-sections/contact/ContactPageContent";
-
-const SITE_URL = "https://hungphatceramic.vn";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface ContactPageProps {
 	params: Promise<{ locale: string }>;
@@ -13,22 +12,18 @@ interface ContactPageProps {
 export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.contact" });
-	const contactUrl = `${SITE_URL}/${locale}/contact`;
+	const alternates = buildAlternatesForLocale("/contact", locale);
 
 	return {
 		title: t("title"),
 		description: t("description"),
-		alternates: {
-			canonical: contactUrl,
-		},
-		openGraph: {
+		alternates,
+		openGraph: buildOpenGraphForLocale({
 			title: t("ogTitle"),
 			description: t("ogDescription"),
-			url: contactUrl,
-			siteName: t("siteName"),
-			locale: t("ogLocale"),
-			type: "website",
-		},
+			url: alternates.canonical,
+			ogLocale: t("ogLocale"),
+		}),
 	};
 }
 
@@ -37,6 +32,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
 	setRequestLocale(locale);
 
 	const t = await getTranslations({ locale, namespace: "pages.contact.schema" });
+
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const tFooter = await getTranslations({ locale, namespace: "footer.sections" });
 
 	const contactPageSchema = {
 		"@context": "https://schema.org",
@@ -57,6 +55,27 @@ export default async function ContactPage({ params }: ContactPageProps) {
 		},
 	};
 
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tFooter("contact"),
+				item: `${SITE_URL}/${locale}/contact`,
+			},
+		],
+	};
+
+	const schemas = [contactPageSchema, breadcrumbSchema];
+
 	return (
 		<main>
 			<PageMediaPreload
@@ -67,7 +86,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 			/>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ContactPageContent />
 		</main>

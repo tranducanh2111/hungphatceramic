@@ -116,12 +116,12 @@ function FilterAccordionSection({
 				onClick={() => setIsExpanded((previous) => !previous)}
 				aria-expanded={isExpanded}
 				aria-controls={panelId}
-				className="group flex w-full items-center justify-between gap-3 border-b border-champagne pb-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne/50"
+				className="group border-champagne focus-visible:ring-champagne/50 flex w-full items-center justify-between gap-3 border-b pb-2 text-left focus:outline-none focus-visible:ring-2"
 			>
 				<Text
 					variant="label"
 					as="span"
-					className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+					className="text-champagne font-sans font-medium tracking-[0.2em] uppercase"
 				>
 					{headingLabel}
 				</Text>
@@ -165,7 +165,7 @@ function FilterAccordionChevron({ isExpanded }: FilterAccordionChevronProps) {
 			xmlns="http://www.w3.org/2000/svg"
 			aria-hidden="true"
 			className={cn(
-				"shrink-0 text-champagne/80 transition-transform duration-300 ease-out",
+				"text-champagne/80 shrink-0 transition-transform duration-300 ease-out",
 				isExpanded ? "rotate-180" : "rotate-0",
 			)}
 		>
@@ -192,14 +192,12 @@ function FilterNavButton({ label, count, isSelected, onSelect }: FilterNavButton
 		<button
 			type="button"
 			onClick={onSelect}
-			className="group flex w-full items-center justify-between py-1 text-left focus:outline-none focus-visible:text-champagne"
+			className="group focus-visible:text-champagne flex w-full items-center justify-between py-1 text-left focus:outline-none"
 		>
 			<span
 				className={cn(
 					"font-serif text-lg tracking-wide transition-colors duration-300",
-					isSelected
-						? "text-champagne"
-						: "text-linen/40 group-hover:text-linen/85",
+					isSelected ? "text-champagne" : "text-linen/40 group-hover:text-linen/85",
 				)}
 			>
 				{label}

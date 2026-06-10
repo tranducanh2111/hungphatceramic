@@ -18,7 +18,7 @@ export function ContactShowroomMap({ className }: ContactShowroomMapProps) {
 			<iframe
 				title={t("mapEmbedTitle")}
 				src={GOOGLE_MAPS_EMBED_URL}
-				className="h-full min-h-[18rem] w-full rounded-2xl border border-sapphire-mist/60 lg:min-h-[22rem]"
+				className="border-sapphire-mist/60 h-full min-h-[18rem] w-full rounded-2xl border lg:min-h-[22rem]"
 				loading="lazy"
 				referrerPolicy="no-referrer-when-downgrade"
 				allowFullScreen

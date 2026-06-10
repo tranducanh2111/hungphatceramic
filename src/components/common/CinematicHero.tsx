@@ -71,7 +71,7 @@ function CinematicHeroContent({
 						variants={CINEMATIC_HERO_CONTENT_VARIANTS}
 						initial="hidden"
 						animate="visible"
-						className="text-label font-sans tracking-widest text-champagne uppercase"
+						className="text-label text-champagne font-sans tracking-widest uppercase"
 					>
 						{eyebrow}
 					</motion.span>

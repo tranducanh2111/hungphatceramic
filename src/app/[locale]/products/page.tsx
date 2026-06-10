@@ -8,6 +8,7 @@ import {
 	toProductListingItems,
 } from "@/lib/products/listing";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface ProductsPageProps {
 	params: Promise<{ locale: string }>;
@@ -16,10 +17,18 @@ interface ProductsPageProps {
 export async function generateMetadata({ params }: ProductsPageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.products" });
+	const alternates = buildAlternatesForLocale("/products", locale);
 
 	return {
 		title: t("title"),
 		description: t("description"),
+		alternates,
+		openGraph: buildOpenGraphForLocale({
+			title: t("title"),
+			description: t("description"),
+			url: alternates.canonical,
+			ogLocale: locale === "vi" ? "vi_VN" : "en_US",
+		}),
 	};
 }
 
@@ -31,11 +40,53 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 	const collections = getCollectionListingMeta(PRODUCTS);
 	const tileSizes = getTileSizeListingMeta(PRODUCTS);
 
+	const alternates = buildAlternatesForLocale("/products", locale);
+	const itemListSchema = {
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		name: products.length > 0 ? "Product Collections" : "Products",
+		description: "Browse our collections of luxury porcelain tiles and custom ceramics.",
+		url: alternates.canonical,
+		itemListElement: PRODUCTS.map((product, index) => ({
+			"@type": "ListItem",
+			position: index + 1,
+			url: `${SITE_URL}/${locale}/products/${product.slug}`,
+			name: product.name,
+		})),
+	};
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tNavbar("products"),
+				item: `${SITE_URL}/${locale}/products`,
+			},
+		],
+	};
+
+	const schemas = [itemListSchema, breadcrumbSchema];
+
 	return (
-		<ProductsPageContent
-			products={products}
-			collections={collections}
-			tileSizes={tileSizes}
-		/>
+		<main>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+			/>
+			<ProductsPageContent
+				products={products}
+				collections={collections}
+				tileSizes={tileSizes}
+			/>
+		</main>
 	);
 }

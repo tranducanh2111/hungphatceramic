@@ -1,26 +1,50 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-	variable: "--font-cormorant",
-	subsets: ["latin", "vietnamese"],
-	weight: ["300", "400", "500", "600"],
-	style: ["normal", "italic"],
-	display: "swap",
-});
-
-// Inter replaces Jost: next/font Jost has no vietnamese subset, so diacritics fell back to system-ui.
-const jost = Inter({
-	variable: "--font-jost",
-	subsets: ["latin", "vietnamese"],
-	weight: ["300", "400", "500", "600"],
-	display: "swap",
-});
-
 export const metadata: Metadata = {
-	title: "Perla powered by Hung Phat",
-	description: "Luxury porcelain interior design and installation.",
+	metadataBase: new URL("https://perla.com.vn"),
+	title: {
+		default: "Perla powered by Hung Phat | Gạch Porcelain Cao Cấp & Gạch Ốp Lát Sang Trọng",
+		template: "%s | Perla powered by Hung Phat",
+	},
+	description:
+		"Chuyên cung cấp gạch porcelain cao cấp, gạch ốp lát khổ lớn nhập khẩu sang trọng cho biệt thự, khách sạn và căn hộ cao cấp tại Việt Nam.",
+	keywords: [
+		"gạch porcelain",
+		"gạch porcelain cao cấp",
+		"gạch ốp lát",
+		"gạch ốp lát cao cấp",
+		"gạch khổ lớn",
+		"gạch trang trí",
+		"gạch lát nền cao cấp",
+		"gạch ốp tường sang trọng",
+		"gạch giả đá marble",
+		"gạch porcelain khổ lớn",
+		"gạch nhập khẩu cao cấp",
+		"gạch porcelain tây ban nha",
+		"gạch porcelain ý",
+		"gạch porcelain indonesia",
+		"gạch porcelain ấn độ",
+		"gạch lát nền biệt thự",
+		"thi công gạch khổ lớn",
+		"showroom gạch porcelain hà nội",
+		"Hùng Phát Ceramic",
+		"Perla Ceramic",
+		"thiết kế nội thất gốm sứ",
+		"luxury porcelain tiles",
+		"premium ceramic tiles",
+		"large format porcelain slabs",
+		"imported wall tiles vietnam",
+		"marble look porcelain tiles",
+		"high end tile showroom hanoi",
+		"vietnam tile supplier",
+	],
+	verification: {
+		google: "google-site-verification-placeholder",
+	},
+	other: {
+		"google-site-verification": "google-site-verification-placeholder",
+	},
 };
 
 export default function RootLayout({
@@ -28,21 +52,5 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return (
-		<html
-			lang="vi"
-			data-scroll-behavior="smooth"
-			className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
-			style={{ position: "relative" }}
-			suppressHydrationWarning
-		>
-			<body
-				className="relative flex min-h-full flex-col"
-				style={{ position: "relative" }}
-				suppressHydrationWarning
-			>
-				{children}
-			</body>
-		</html>
-	);
+	return children;
 }

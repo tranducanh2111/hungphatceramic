@@ -37,7 +37,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 			/>
 
 			{/* Top champagne border decoration */}
-			<div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent via-champagne/20 to-transparent" />
+			<div className="via-champagne/20 absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent to-transparent" />
 
 			{/* Decorative background typography */}
 			<div
@@ -55,10 +55,10 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
 					className="mb-4 inline-flex items-center gap-3"
 				>
-					<span className="h-px w-8 bg-champagne/60" />
+					<span className="bg-champagne/60 h-px w-8" />
 					<Text
 						variant="label"
-						className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+						className="text-champagne font-sans font-medium tracking-[0.2em] uppercase"
 					>
 						{t("hero.label")}
 					</Text>
@@ -74,7 +74,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -20 }}
 								transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-								className="text-display-xl font-serif leading-none font-light text-linen"
+								className="text-display-xl text-linen font-serif leading-none font-light"
 							>
 								{collectionHeading}
 							</motion.h1>
@@ -88,14 +88,12 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.95 }}
 							transition={{ duration: 0.4 }}
-							className="text-body-sm mt-4 shrink-0 font-sans text-linen/40 md:mt-0 md:text-right"
+							className="text-body-sm text-linen/40 mt-4 shrink-0 font-sans md:mt-0 md:text-right"
 						>
-							<span className="font-serif text-3xl font-light text-champagne md:block md:leading-none">
+							<span className="text-champagne font-serif text-3xl font-light md:block md:leading-none">
 								{totalProductsCount}
 							</span>
-							{totalProductsCount === 1
-								? t("productCountSingle")
-								: t("productCount")}
+							{totalProductsCount === 1 ? t("productCountSingle") : t("productCount")}
 						</motion.div>
 					</AnimatePresence>
 				</div>

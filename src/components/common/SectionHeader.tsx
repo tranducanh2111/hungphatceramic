@@ -42,11 +42,7 @@ export function SectionHeader({
 
 	return (
 		<div
-			className={cn(
-				isCentered ? "text-center" : "mb-16",
-				!isCentered && "mb-12",
-				className,
-			)}
+			className={cn(isCentered ? "text-center" : "mb-16", !isCentered && "mb-12", className)}
 		>
 			<RevealOnView delay={labelDelay}>
 				<Eyebrow>{label}</Eyebrow>
@@ -59,10 +55,7 @@ export function SectionHeader({
 				<Text
 					variant={headingVariant}
 					as={headingAs}
-					className={cn(
-						"text-linen",
-						italic && "font-serif font-light italic",
-					)}
+					className={cn("text-linen", italic && "font-serif font-light italic")}
 				>
 					{heading}
 				</Text>

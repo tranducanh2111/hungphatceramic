@@ -19,7 +19,7 @@ export function LandingProjectsGrid() {
 							<Eyebrow>{t("label")}</Eyebrow>
 						</RevealOnView>
 						<RevealOnView delay={0.1}>
-							<Text variant="display-lg" className="mt-3 text-linen">
+							<Text variant="display-lg" className="text-linen mt-3">
 								{t("heading")}
 							</Text>
 						</RevealOnView>

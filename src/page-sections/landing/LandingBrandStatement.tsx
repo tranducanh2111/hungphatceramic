@@ -28,7 +28,7 @@ export function LandingBrandStatement() {
 	const t = useTranslations("landing.brandStatement");
 
 	return (
-		<section className="relative overflow-hidden bg-sapphire-deep py-28 lg:py-36">
+		<section className="bg-sapphire-deep relative overflow-hidden py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="grid items-center gap-16 lg:grid-cols-2">
 					{/* ── Left: Text ─────────────────────────────────────────────── */}
@@ -39,7 +39,7 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="text-label font-sans tracking-widest text-champagne uppercase"
+							className="text-label text-champagne font-sans tracking-widest uppercase"
 						>
 							{t("label")}
 						</motion.span>
@@ -51,10 +51,10 @@ export function LandingBrandStatement() {
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
 						>
-							<Text variant="display-lg" className="mt-4 text-linen">
+							<Text variant="display-lg" className="text-linen mt-4">
 								{t("titleLine1")}
 								<br />
-								<em className="font-light text-champagne italic">
+								<em className="text-champagne font-light italic">
 									{t("titleLine2")}
 								</em>
 							</Text>
@@ -67,7 +67,7 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="my-8 h-px w-16 bg-champagne"
+							className="bg-champagne my-8 h-px w-16"
 						/>
 
 						<motion.div
@@ -94,17 +94,17 @@ export function LandingBrandStatement() {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}
-							className="mt-12 grid grid-cols-3 gap-6 border-t border-sapphire-mist pt-10"
+							className="border-sapphire-mist mt-12 grid grid-cols-3 gap-6 border-t pt-10"
 						>
 							{BRAND_STATS.map(({ id, value }) => (
 								<div key={id}>
 									<Text
 										variant="display-lg"
-										className="font-serif text-champagne"
+										className="text-champagne font-serif"
 									>
 										{value}
 									</Text>
-									<Text variant="body-sm" className="mt-1 text-linen/50">
+									<Text variant="body-sm" className="text-linen/50 mt-1">
 										{t(`stats.${id}`)}
 									</Text>
 								</div>

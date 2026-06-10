@@ -21,14 +21,6 @@ export function ProductDetailHeroMedia({ src, alt }: ProductDetailHeroMediaProps
 				sizes="(max-width: 1024px) 100vw, 60vw"
 				className="object-cover object-center"
 			/>
-			<div
-				className="absolute inset-0 hidden bg-gradient-to-r from-sapphire-deep via-transparent to-transparent opacity-80 lg:block"
-				aria-hidden="true"
-			/>
-			<div
-				className="absolute inset-0 bg-gradient-to-t from-sapphire-deep via-transparent to-transparent opacity-80 lg:hidden"
-				aria-hidden="true"
-			/>
 		</div>
 	);
 }

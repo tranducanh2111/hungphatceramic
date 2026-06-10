@@ -41,7 +41,7 @@ export function ProductTileCard({
 		<article
 			className={cn(
 				"relative aspect-[3/4] overflow-hidden rounded-3xl",
-				"bg-sapphire-deep shadow-luxury-sm ease-luxury border border-sapphire-mist/30",
+				"bg-sapphire-deep shadow-luxury-sm ease-luxury border-sapphire-mist/30 border",
 				"transition-all duration-500",
 				"group-hover:shadow-luxury-md group-focus-visible:shadow-luxury-md",
 				"group-hover:border-champagne/40 group-focus-visible:border-champagne/40",
@@ -60,31 +60,31 @@ export function ProductTileCard({
 
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] min-h-[6.75rem] max-h-[10rem] sm:min-h-[7.25rem]"
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] max-h-[10rem] min-h-[6.75rem] sm:min-h-[7.25rem]"
 				style={{ backgroundImage: TILE_CARD_BOTTOM_SCRIM }}
 			/>
 
 			<div
 				className={cn(
 					"absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1.5",
-					"px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5",
+					"px-4 pt-3 pb-3.5 sm:px-5 sm:pt-3.5 sm:pb-4",
 				)}
 			>
 				<div className="flex items-center justify-between gap-3">
 					<Text
 						variant="footnote"
-						className="font-sans font-medium tracking-[0.15em] text-champagne/90 uppercase"
+						className="text-champagne/90 font-sans font-medium tracking-[0.15em] uppercase"
 					>
 						{productCode}
 					</Text>
-					<span className="shrink-0 font-sans text-[10px] font-semibold tracking-wider text-linen/50 uppercase">
+					<span className="text-linen/50 shrink-0 font-sans text-[10px] font-semibold tracking-wider uppercase">
 						{dimensions}
 					</span>
 				</div>
 
 				<Text
 					variant="body-sm"
-					className="line-clamp-2 font-sans font-semibold text-linen transition-colors duration-300 group-hover:text-champagne-light group-focus-visible:text-champagne-light"
+					className="text-linen group-hover:text-champagne-light group-focus-visible:text-champagne-light line-clamp-2 font-sans font-semibold transition-colors duration-300"
 				>
 					{productName}
 				</Text>

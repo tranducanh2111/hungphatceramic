@@ -26,7 +26,7 @@ export function LandingTestimonials() {
 				</RevealOnView>
 
 				<RevealOnView delay={0.1} className="mt-8 flex justify-center">
-					<Quote className="h-12 w-12 text-champagne/25" />
+					<Quote className="text-champagne/25 h-12 w-12" />
 				</RevealOnView>
 
 				<div className="relative mx-auto mt-12 h-[260px] w-full max-w-2xl [perspective:1200px]">
@@ -53,7 +53,7 @@ export function LandingTestimonials() {
 								}}
 								transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
 								className={cn(
-									"absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-sapphire-mist/40 bg-sapphire-ocean p-8 shadow-2xl",
+									"border-sapphire-mist/40 bg-sapphire-ocean absolute inset-0 flex flex-col items-center justify-center rounded-2xl border p-8 shadow-2xl",
 									!isActive && "pointer-events-none",
 								)}
 								style={{
@@ -63,14 +63,14 @@ export function LandingTestimonials() {
 							>
 								<Text
 									variant="h4"
-									className="font-serif font-light text-linen/90 italic"
+									className="text-linen/90 font-serif font-light italic"
 								>
 									&ldquo;{t(`${itemNamespace}.quote`)}&rdquo;
 								</Text>
 
 								<div className="mt-8 flex flex-col items-center gap-1">
 									<DecorativeDivider variant="inline" />
-									<Text variant="body" className="mt-4 font-medium text-linen">
+									<Text variant="body" className="text-linen mt-4 font-medium">
 										{t(`${itemNamespace}.authorName`)}
 									</Text>
 									<Text variant="body-sm" className="text-linen/50">

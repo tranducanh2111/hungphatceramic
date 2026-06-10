@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { LandingPageContent } from "@/page-sections/landing/LandingPageContent";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface HomePageProps {
 	params: Promise<{ locale: string }>;
@@ -11,18 +12,18 @@ interface HomePageProps {
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.home" });
+	const alternates = buildAlternatesForLocale("/", locale);
 
 	return {
 		title: t("title"),
 		description: t("description"),
-		openGraph: {
+		alternates,
+		openGraph: buildOpenGraphForLocale({
 			title: t("ogTitle"),
 			description: t("ogDescription"),
-			url: "https://hungphatceramic.vn",
-			siteName: t("siteName"),
-			locale: t("ogLocale"),
-			type: "website",
-		},
+			url: alternates.canonical,
+			ogLocale: t("ogLocale"),
+		}),
 	};
 }
 
@@ -30,9 +31,74 @@ export default async function HomePage({ params }: HomePageProps) {
 	const { locale } = await params;
 	setRequestLocale(locale);
 
+	const tCommon = await getTranslations({ locale, namespace: "common" });
+	const tContact = await getTranslations({ locale, namespace: "footer.contact" });
+	const tAbout = await getTranslations({ locale, namespace: "pages.about.schema" });
+
+	const organizationSchema = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: tAbout("name"),
+		url: SITE_URL,
+		logo: `${SITE_URL}/logo/hungphat_ceramic_logo_big.png`,
+		foundingDate: tAbout("foundingDate"),
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: tAbout("address.streetAddress"),
+			addressLocality: tAbout("address.addressLocality"),
+			addressCountry: tAbout("address.addressCountry"),
+		},
+		contactPoint: {
+			"@type": "ContactPoint",
+			telephone: tAbout("contact.telephone"),
+			email: tAbout("contact.email"),
+			contactType: tAbout("contact.contactType"),
+		},
+	};
+
+	const websiteSchema = {
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		name: tCommon("companyName"),
+		url: `${SITE_URL}/${locale}`,
+		potentialAction: {
+			"@type": "SearchAction",
+			target: `${SITE_URL}/${locale}/products?search={search_term_string}`,
+			"query-input": "required name=search_term_string",
+		},
+	};
+
+	const localBusinessSchema = {
+		"@context": "https://schema.org",
+		"@type": "LocalBusiness",
+		name: tCommon("companyName"),
+		image: `${SITE_URL}/logo/hungphat_ceramic_logo_big.png`,
+		telephone: tContact("phone"),
+		email: tContact("email"),
+		address: {
+			"@type": "PostalAddress",
+			streetAddress: tContact("address"),
+			addressLocality: "Hà Nội",
+			addressCountry: "VN",
+		},
+		geo: {
+			"@type": "GeoCoordinates",
+			latitude: 21.0601,
+			longitude: 105.8,
+		},
+		url: `${SITE_URL}/${locale}`,
+		priceRange: "$$$$",
+	};
+
+	const schemas = [organizationSchema, websiteSchema, localBusinessSchema];
+
 	return (
 		<main className="relative" style={{ position: "relative" }}>
 			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+			/>
 			<LandingPageContent />
 		</main>
 	);

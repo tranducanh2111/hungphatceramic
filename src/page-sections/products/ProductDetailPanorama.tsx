@@ -55,7 +55,7 @@ function ProductDetailPanoramaStatic({ productName, panoramaSrc }: PanoramaConte
 			<div className="mx-auto max-w-7xl">
 				<PanoramaSectionHeader productName={productName} />
 
-				<p className="text-body-sm mb-4 font-sans text-linen/45">
+				<p className="text-body-sm text-linen/45 mb-4 font-sans">
 					{tDetail("panorama.scrollHint")}
 				</p>
 
@@ -86,9 +86,7 @@ function ProductDetailPanoramaScroll({ productName, panoramaSrc }: PanoramaConte
 	}, []);
 
 	const { scrollYProgress } = useAppScroll(
-		isScrollTargetReady
-			? { target: sectionRef, offset: ["start start", "end end"] }
-			: {},
+		isScrollTargetReady ? { target: sectionRef, offset: ["start start", "end end"] } : {},
 	);
 	const panoramaX = useTransform(scrollYProgress, [0, 1], ["0vw", "-220vw"]);
 	const hintOpacity = useTransform(scrollYProgress, [0, 0.12, 0.88, 1], [1, 0.4, 0.4, 0]);
@@ -120,7 +118,10 @@ function ProductDetailPanoramaScroll({ productName, panoramaSrc }: PanoramaConte
 					/>
 				</motion.div>
 
-				<div className="bg-sapphire-deep/50 pointer-events-none absolute inset-0" aria-hidden="true" />
+				<div
+					className="bg-sapphire-deep/50 pointer-events-none absolute inset-0"
+					aria-hidden="true"
+				/>
 				<div
 					className="from-sapphire-deep/60 to-sapphire-deep/75 pointer-events-none absolute inset-0 bg-gradient-to-b via-transparent"
 					aria-hidden="true"
@@ -128,7 +129,7 @@ function ProductDetailPanoramaScroll({ productName, panoramaSrc }: PanoramaConte
 
 				<motion.p
 					style={{ opacity: hintOpacity }}
-					className="text-label pointer-events-none absolute bottom-10 left-1/2 z-10 -translate-x-1/2 font-sans tracking-[0.2em] text-champagne/80 uppercase"
+					className="text-label text-champagne/80 pointer-events-none absolute bottom-10 left-1/2 z-10 -translate-x-1/2 font-sans tracking-[0.2em] uppercase"
 				>
 					{tDetail("panorama.scrollHint")}
 				</motion.p>

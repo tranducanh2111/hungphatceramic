@@ -23,12 +23,7 @@ export const CONTACT_SECTION_IDS = {
 
 export type ContactSectionId = (typeof CONTACT_SECTION_IDS)[keyof typeof CONTACT_SECTION_IDS];
 
-export const INQUIRY_TYPE_IDS = [
-	"consultation",
-	"productQuote",
-	"partnership",
-	"other",
-] as const;
+export const INQUIRY_TYPE_IDS = ["consultation", "productQuote", "partnership", "other"] as const;
 
 export type InquiryTypeId = (typeof INQUIRY_TYPE_IDS)[number];
 

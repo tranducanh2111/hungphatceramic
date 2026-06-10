@@ -39,48 +39,48 @@ export function ClosingCtaSection({
 	className,
 }: ClosingCtaSectionProps) {
 	const content = (
-			<div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
-				<RevealOnView>
-					<Text
-						variant="display-lg"
-						as="h2"
-						className="lg:text-display-2xl text-linen font-serif font-light"
-					>
-						{titleLine1}
-						<br />
-						<em className="text-champagne italic">{titleLine2}</em>
-					</Text>
-				</RevealOnView>
-
-				<RevealOnView className="mt-7">
-					<Text variant="body-lg" className="text-linen/55">
-						{description}
-					</Text>
-				</RevealOnView>
-
-				<RevealOnView
-					delay={actionsDelay}
-					className={cn(
-						"mt-12",
-						actions.length > 1
-							? "flex flex-col items-center justify-center gap-4 sm:flex-row"
-							: undefined,
-					)}
+		<div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+			<RevealOnView>
+				<Text
+					variant="display-lg"
+					as="h2"
+					className="lg:text-display-2xl text-linen font-serif font-light"
 				>
-					{actions.map((action) => (
-						<Button
-							key={action.href + action.label}
-							href={action.href}
-							variant={action.variant ?? "outline"}
-							size={action.size ?? "lg"}
-						>
-							{action.label}
-						</Button>
-					))}
-				</RevealOnView>
+					{titleLine1}
+					<br />
+					<em className="text-champagne italic">{titleLine2}</em>
+				</Text>
+			</RevealOnView>
 
-				{footer && <RevealOnView delay={0.35}>{footer}</RevealOnView>}
-			</div>
+			<RevealOnView className="mt-7">
+				<Text variant="body-lg" className="text-linen/55">
+					{description}
+				</Text>
+			</RevealOnView>
+
+			<RevealOnView
+				delay={actionsDelay}
+				className={cn(
+					"mt-12",
+					actions.length > 1
+						? "flex flex-col items-center justify-center gap-4 sm:flex-row"
+						: undefined,
+				)}
+			>
+				{actions.map((action) => (
+					<Button
+						key={action.href + action.label}
+						href={action.href}
+						variant={action.variant ?? "outline"}
+						size={action.size ?? "lg"}
+					>
+						{action.label}
+					</Button>
+				))}
+			</RevealOnView>
+
+			{footer && <RevealOnView delay={0.35}>{footer}</RevealOnView>}
+		</div>
 	);
 
 	if (bare) {
@@ -89,10 +89,7 @@ export function ClosingCtaSection({
 
 	return (
 		<ParallaxSection
-			className={cn(
-				"bg-sapphire-deep relative overflow-hidden py-20 lg:py-28",
-				className,
-			)}
+			className={cn("bg-sapphire-deep relative overflow-hidden py-20 lg:py-28", className)}
 		>
 			<div className={CTA_RADIAL_CLASS} aria-hidden="true" />
 			{content}

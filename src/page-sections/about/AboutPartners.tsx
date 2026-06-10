@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ParallaxLayer, ParallaxSection, RevealOnView, SectionContainer, SectionHeader } from "@/components/common";
+import {
+	ParallaxLayer,
+	ParallaxSection,
+	RevealOnView,
+	SectionContainer,
+	SectionHeader,
+} from "@/components/common";
 import { PARTNER_ROSTER } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 

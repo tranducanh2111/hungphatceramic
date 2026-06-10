@@ -107,7 +107,7 @@ export function Text({
 		{
 			className: cn(
 				VARIANT_CLASS_MAP[variant],
-				isHeading ? "font-serif" : "font-sans",
+				isHeading ? "font-serif text-balance" : "font-sans",
 				uppercase && "uppercase",
 				className,
 			),

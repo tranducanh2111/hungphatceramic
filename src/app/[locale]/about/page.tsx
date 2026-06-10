@@ -3,8 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { AboutPageContent } from "@/page-sections/about/AboutPageContent";
-
-const SITE_URL = "https://hungphatceramic.vn";
+import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
 interface AboutPageProps {
 	params: Promise<{ locale: string }>;
@@ -13,22 +12,18 @@ interface AboutPageProps {
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.about" });
-	const aboutUrl = `${SITE_URL}/${locale}/about`;
+	const alternates = buildAlternatesForLocale("/about", locale);
 
 	return {
 		title: t("title"),
 		description: t("description"),
-		alternates: {
-			canonical: aboutUrl,
-		},
-		openGraph: {
+		alternates,
+		openGraph: buildOpenGraphForLocale({
 			title: t("ogTitle"),
 			description: t("ogDescription"),
-			url: aboutUrl,
-			siteName: t("siteName"),
-			locale: t("ogLocale"),
-			type: "website",
-		},
+			url: alternates.canonical,
+			ogLocale: t("ogLocale"),
+		}),
 	};
 }
 
@@ -37,6 +32,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 	setRequestLocale(locale);
 
 	const t = await getTranslations({ locale, namespace: "pages.about.schema" });
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
 
 	const organizationSchema = {
 		"@context": "https://schema.org",
@@ -59,12 +55,33 @@ export default async function AboutPage({ params }: AboutPageProps) {
 		},
 	};
 
+	const breadcrumbSchema = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: tNavbar("home"),
+				item: `${SITE_URL}/${locale}`,
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: tNavbar("about"),
+				item: `${SITE_URL}/${locale}/about`,
+			},
+		],
+	};
+
+	const schemas = [organizationSchema, breadcrumbSchema];
+
 	return (
 		<main>
 			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<AboutPageContent />
 		</main>

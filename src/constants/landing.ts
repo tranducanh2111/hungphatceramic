@@ -51,11 +51,10 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	{
 		id: "inspire",
 		sizes: [...LARGE_FORMAT_SIZES],
-		previews: sizePreviews(
-			"60×120cm",
-			"/assets/60X120/Inspire G12962J/G12962J (1).jpg",
-			["100×100cm", "120×120cm"],
-		),
+		previews: sizePreviews("60×120cm", "/assets/60X120/Inspire G12962J/G12962J (1).jpg", [
+			"100×100cm",
+			"120×120cm",
+		]),
 	},
 	{
 		id: "travertine",
@@ -74,11 +73,10 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	{
 		id: "orient-star",
 		sizes: [...LARGE_FORMAT_SIZES],
-		previews: sizePreviews(
-			"60×120cm",
-			"/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
-			["100×100cm", "120×120cm"],
-		),
+		previews: sizePreviews("60×120cm", "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg", [
+			"100×100cm",
+			"120×120cm",
+		]),
 	},
 	{
 		id: "sunshine",

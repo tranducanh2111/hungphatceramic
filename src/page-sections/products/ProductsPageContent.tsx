@@ -23,11 +23,7 @@ interface ProductsPageContentProps {
 	tileSizes: TileSizeListingMeta[];
 }
 
-function ProductsPageContentInner({
-	products,
-	collections,
-	tileSizes,
-}: ProductsPageContentProps) {
+function ProductsPageContentInner({ products, collections, tileSizes }: ProductsPageContentProps) {
 	const t = useTranslations("pages.products");
 	const router = useRouter();
 	const pathname = usePathname();
@@ -108,7 +104,7 @@ function ProductsPageContentInner({
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								placeholder={t("searchPlaceholder")}
-								className="w-full border-sapphire-mist focus:border-champagne"
+								className="border-sapphire-mist focus:border-champagne w-full"
 							/>
 						</div>
 
@@ -140,7 +136,7 @@ function ProductsPageContentInner({
  */
 export function ProductsPageContent(props: ProductsPageContentProps) {
 	return (
-		<Suspense fallback={<div className="min-h-screen bg-sapphire-deep" />}>
+		<Suspense fallback={<div className="bg-sapphire-deep min-h-screen" />}>
 			<ProductsPageContentInner {...props} />
 		</Suspense>
 	);

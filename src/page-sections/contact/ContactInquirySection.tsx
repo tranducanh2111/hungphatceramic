@@ -37,7 +37,7 @@ export function ContactInquirySection() {
 				/>
 				<div className="bg-sapphire-deep/72 absolute inset-0" />
 				<div className="from-sapphire-deep/90 via-sapphire-deep/55 to-sapphire-deep/92 absolute inset-0 bg-gradient-to-b" />
-				<div className="from-sapphire-deep absolute inset-0 bg-gradient-to-r via-transparent to-sapphire-deep/80" />
+				<div className="from-sapphire-deep to-sapphire-deep/80 absolute inset-0 bg-gradient-to-r via-transparent" />
 			</div>
 
 			<div className="relative z-10 py-24 lg:py-32">
@@ -67,7 +67,11 @@ export function ContactInquirySection() {
 							<div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
 								<ContactInquiryForm />
 								<div className="border-sapphire-mist/50 lg:border-sapphire-mist/40 pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-12">
-									<Text variant="h4" as="h3" className="text-linen font-serif font-light">
+									<Text
+										variant="h4"
+										as="h3"
+										className="text-linen font-serif font-light"
+									>
 										{tChannels("heading")}
 									</Text>
 									<ContactChannelGrid className="mt-6" />

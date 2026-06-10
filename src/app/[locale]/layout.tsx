@@ -7,6 +7,23 @@ import { ScrollToTopButton } from "@/components/common/ScrollToTopButton";
 import { Navbar } from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { routing, type AppLocale } from "@/i18n/routing";
+import { Cormorant_Garamond, Inter } from "next/font/google";
+
+const cormorant = Cormorant_Garamond({
+	variable: "--font-cormorant",
+	subsets: ["latin", "vietnamese"],
+	weight: ["300", "400", "500", "600"],
+	style: ["normal", "italic"],
+	display: "swap",
+});
+
+// Inter replaces Jost: next/font Jost has no vietnamese subset, so diacritics fell back to system-ui.
+const jost = Inter({
+	variable: "--font-jost",
+	subsets: ["latin", "vietnamese"],
+	weight: ["300", "400", "500", "600"],
+	display: "swap",
+});
 
 interface LocaleLayoutProps {
 	children: React.ReactNode;
@@ -23,15 +40,29 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 	const messages = await getMessages();
 
 	return (
-		<NextIntlClientProvider messages={messages}>
-			<SmoothScrollProvider>
-				<Navbar />
-				{children}
-				<Footer />
-				<ScrollProgressBar />
-				<ScrollToTopButton />
-			</SmoothScrollProvider>
-		</NextIntlClientProvider>
+		<html
+			lang={locale}
+			data-scroll-behavior="smooth"
+			className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
+			style={{ position: "relative" }}
+			suppressHydrationWarning
+		>
+			<body
+				className="relative flex min-h-full flex-col"
+				style={{ position: "relative" }}
+				suppressHydrationWarning
+			>
+				<NextIntlClientProvider messages={messages}>
+					<SmoothScrollProvider>
+						<Navbar />
+						{children}
+						<Footer />
+						<ScrollProgressBar />
+						<ScrollToTopButton />
+					</SmoothScrollProvider>
+				</NextIntlClientProvider>
+			</body>
+		</html>
 	);
 }
 

@@ -89,18 +89,14 @@ export function ProductDetailPageContent({
 
 	return (
 		<>
-			<ProductDetailHero
-				product={displayProduct}
-				heroMedia={heroMedia}
-				onBack={handleBack}
-			/>
+			<ProductDetailHero product={displayProduct} heroMedia={heroMedia} onBack={handleBack} />
 
 			<motion.div
 				variants={belowFoldVariants}
 				initial="initial"
 				animate={isExiting ? "exit" : "animate"}
 			>
-				<ProductDetailGallery product={displayProduct} />
+				<ProductDetailGallery key={displayProduct.slug} product={displayProduct} />
 				<ProductDetailPanorama product={product} />
 				<ProductDetailSpecs product={displayProduct} />
 				<ProductDetailRelated product={displayProduct} activeSizeId={activeSizeId} />

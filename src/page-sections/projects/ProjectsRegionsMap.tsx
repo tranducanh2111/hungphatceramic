@@ -25,7 +25,7 @@ function VietnamOutlineDecor({ className }: { className?: string }) {
 	return (
 		<svg
 			viewBox="0 0 120 200"
-			className={cn("pointer-events-none text-champagne-deep/35", className)}
+			className={cn("text-champagne-deep/35 pointer-events-none", className)}
 			fill="none"
 			aria-hidden="true"
 		>
@@ -50,21 +50,21 @@ function RegionColumn({ region }: { region: ProjectRegion }) {
 
 	return (
 		<RevealOnView className="flex flex-col">
-			<span className="text-label font-sans font-medium tracking-[0.2em] text-champagne-deep uppercase">
+			<span className="text-label text-champagne-deep font-sans font-medium tracking-[0.2em] uppercase">
 				{t(`${regionKey}.title`)}
 			</span>
-			<p className="text-body-sm mt-3 font-sans leading-relaxed text-sapphire-deep/75">
+			<p className="text-body-sm text-sapphire-deep/75 mt-3 font-sans leading-relaxed">
 				{t(`${regionKey}.description`)}
 			</p>
-			<ul className="mt-6 flex flex-col gap-3 border-sapphire-mist/25 border-t pt-6">
+			<ul className="border-sapphire-mist/25 mt-6 flex flex-col gap-3 border-t pt-6">
 				{projects.map((project) => (
 					<li key={project.id}>
 						<Link
 							href={`#${project.id}`}
-							className="group inline-flex items-center gap-2 font-serif text-lg font-medium text-sapphire-deep transition-colors duration-300 hover:text-champagne-deep"
+							className="group text-sapphire-deep hover:text-champagne-deep inline-flex items-center gap-2 font-serif text-lg font-medium transition-colors duration-300"
 						>
 							{tHeritage(`milestones.${project.id}.title`)}
-							<ArrowRight className="h-4 w-4 text-champagne-deep opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
+							<ArrowRight className="text-champagne-deep h-4 w-4 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
 						</Link>
 					</li>
 				))}
@@ -105,7 +105,7 @@ export function ProjectsRegionsMap() {
 			>
 				<div className="mb-10 text-center lg:mb-12">
 					<RevealOnView>
-						<span className="text-label font-sans font-medium tracking-widest text-champagne-deep uppercase">
+						<span className="text-label text-champagne-deep font-sans font-medium tracking-widest uppercase">
 							{t("label")}
 						</span>
 					</RevealOnView>
