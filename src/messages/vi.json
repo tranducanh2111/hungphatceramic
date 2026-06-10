@@ -563,6 +563,12 @@
 			"hero": {
 				"label": "Danh mục sản phẩm",
 				"defaultTitle": "Toàn bộ bộ sưu tập"
+			},
+			"catalogPdfCard": {
+				"title": "Catalogue Hung Phat Ceramic",
+				"description": "Tải xuống hoặc xem toàn bộ catalogue sản phẩm của chúng tôi dưới dạng PDF để khám phá tất cả bộ sưu tập cao cấp.",
+				"viewPdf": "Xem PDF",
+				"downloadPdf": "Tải PDF"
 			}
 		},
 		"productDetail": {
@@ -586,6 +592,10 @@
 			"lightboxClose": "Đóng ảnh phóng to",
 			"specifications": "Thông số kỹ thuật",
 			"relatedProducts": "Sản phẩm khác dòng {collection}",
+			"catalogSection": {
+				"title": "Catalogue {collection}",
+				"description": "Khám phá catalogue đầy đủ của bộ sưu tập {collection} để xem toàn bộ các kích thước, thiết kế vân gạch và hình ảnh phối cảnh thực tế."
+			},
 			"requestQuote": "Yêu cầu báo giá",
 			"requestQuoteDescription": "Các bề mặt cao cấp của chúng tôi được thiết kế cho yêu cầu B2B sang trọng và tiêu chuẩn kiến trúc. Liên hệ để được tư vấn cùng chuyên gia, kiểm tra tồn kho và nhận mẫu vật lý.",
 			"bookConsultation": "Đặt lịch tư vấn",

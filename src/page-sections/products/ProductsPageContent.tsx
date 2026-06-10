@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { ProductsHero } from "./ProductsHero";
 import { ProductsFilter } from "./ProductsFilter";
 import { ProductsGrid } from "./ProductsGrid";
+import { CatalogPdfCard } from "./CatalogPdfCard";
 import { Input } from "@/components/ui";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import {
@@ -119,6 +120,7 @@ function ProductsPageContentInner({ products, collections, tileSizes }: Products
 					</aside>
 
 					<div className="flex flex-col gap-8 overflow-visible">
+						<CatalogPdfCard />
 						<ProductsGrid
 							products={filteredProducts}
 							activeCollectionId={activeCollectionId}

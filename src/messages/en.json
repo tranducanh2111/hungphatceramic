@@ -584,6 +584,12 @@
 			"hero": {
 				"label": "Product Catalogue",
 				"defaultTitle": "The Complete Collection"
+			},
+			"catalogPdfCard": {
+				"title": "Hung Phat Ceramic Catalog",
+				"description": "Download or view our complete product catalog in PDF format to explore all of our premium collections.",
+				"viewPdf": "View PDF",
+				"downloadPdf": "Download PDF"
 			}
 		},
 		"productDetail": {
@@ -607,6 +613,10 @@
 			"lightboxClose": "Close expanded image",
 			"specifications": "Specifications",
 			"relatedProducts": "More from {collection}",
+			"catalogSection": {
+				"title": "{collection} Catalog",
+				"description": "Explore the complete {collection} catalog to see all format variations, design patterns, and application showcases."
+			},
 			"requestQuote": "Request a Quote",
 			"requestQuoteDescription": "Our premium surfaces are engineered for luxury B2B and architectural specifications. Reach out to consult with our specialists, check stock availability, and receive physical samples.",
 			"bookConsultation": "Book a Consultation",

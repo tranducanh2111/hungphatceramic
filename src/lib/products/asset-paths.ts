@@ -1,6 +1,6 @@
 import type { ProductDetail } from "@/types";
 import type { ProductListingItem } from "@/lib/products/listing";
-import { getTileSizeDimension, isTileSizeSlug, type TileSizeSlug } from "@/lib/products/listing";
+import { getTileSizeDimension, isTileSizeSlug } from "@/lib/products/listing";
 
 /** Catalogue dimension label → `public/assets` folder name. */
 export const TILE_DIMENSION_TO_ASSET_FOLDER = {
@@ -95,4 +95,36 @@ export function productDetailHref(slug: string, sizeSlug: string | undefined): s
 		return `/products/${slug}?size=${sizeSlug}`;
 	}
 	return `/products/${slug}`;
+}
+
+/**
+ * Resolves the PDF catalog asset path for a specific collection.
+ * Future-proofed so that when collection-specific catalogs are added, this mapping can be updated.
+ * For now, it returns the universal catalog path.
+ */
+export function getCollectionCatalogPath(collectionId: string): string {
+	// Future:
+	// const collectionCatalogs: Record<string, string> = {
+	// 	"inspire": "/assets/catalogs/inspire.pdf",
+	// 	"travertine": "/assets/catalogs/travertine.pdf",
+	// };
+	// return collectionCatalogs[collectionId] || "/assets/catalog.pdf";
+
+	if (collectionId) {
+		return "/assets/catalog.pdf";
+	}
+	return "/assets/catalog.pdf";
+}
+
+/**
+ * Resolves the download filename for a specific collection's catalog.
+ */
+export function getCollectionCatalogDownloadName(collectionId: string): string {
+	// Future:
+	// return `HungPhat_Ceramic_Catalog_${collectionId}.pdf`;
+
+	if (collectionId) {
+		return "HungPhat_Ceramic_Catalog.pdf";
+	}
+	return "HungPhat_Ceramic_Catalog.pdf";
 }
