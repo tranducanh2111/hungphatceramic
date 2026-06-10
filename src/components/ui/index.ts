@@ -11,3 +11,4 @@ export { IconButton } from "./IconButton";
 export { PaginationDots } from "./PaginationDots";
 export { ProductTileCard } from "./ProductTileCard";
 export type { ProductTileCardProps } from "./ProductTileCard";
+export { ZoomableImage } from "./ZoomableImage";
