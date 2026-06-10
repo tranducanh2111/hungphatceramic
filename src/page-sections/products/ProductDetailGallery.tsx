@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Text, IconButton, PaginationDots } from "@/components/ui";
+import { Text, IconButton, PaginationDots, ZoomableImage } from "@/components/ui";
 import {
 	collectProductDemoWorkImages,
 	encodePublicAssetPath,
@@ -371,7 +371,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={closeDemoLightbox}
-						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center p-4 backdrop-blur-md sm:p-6"
+						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-default items-center justify-center p-4 backdrop-blur-md sm:p-6"
 					>
 						<button
 							type="button"
@@ -421,10 +421,10 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.95, opacity: 0 }}
 							transition={{ duration: 0.25 }}
-							className="relative z-[55] h-[85vh] w-full max-w-5xl px-12 sm:px-16"
+							className="relative z-[55] flex h-[calc(100vh-6rem)] w-full items-center justify-center"
 							onClick={(event) => event.stopPropagation()}
 						>
-							<Image
+							<ZoomableImage
 								src={encodePublicAssetPath(
 									resolveDetailGalleryImagePath(activeDemoImage),
 								)}
@@ -435,6 +435,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 								fill
 								sizes="95vw"
 								className="object-contain"
+								containerClassName="h-full w-full"
 							/>
 						</motion.div>
 					</motion.div>
@@ -446,7 +447,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={() => setIsCompositeLightboxOpen(false)}
-						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center p-6 backdrop-blur-md"
+						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-default items-center justify-center p-6 backdrop-blur-md"
 					>
 						<button
 							type="button"
@@ -461,10 +462,10 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							initial={{ scale: 0.95 }}
 							animate={{ scale: 1 }}
 							exit={{ scale: 0.95 }}
-							className="relative h-full max-h-[85vh] w-full max-w-4xl"
+							className="relative z-[55] flex h-[calc(100vh-6rem)] w-full items-center justify-center"
 							onClick={(event) => event.stopPropagation()}
 						>
-							<Image
+							<ZoomableImage
 								src={encodePublicAssetPath(
 									resolveDetailGalleryImagePath(product.allFacesImage),
 								)}
@@ -472,6 +473,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 								fill
 								sizes="90vw"
 								className="object-contain"
+								containerClassName="h-full w-full"
 							/>
 						</motion.div>
 					</motion.div>
