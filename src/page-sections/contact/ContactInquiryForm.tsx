@@ -79,11 +79,7 @@ export function ContactInquiryForm({ className }: ContactInquiryFormProps) {
 	};
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			className={cn("flex flex-col gap-5", className)}
-			noValidate
-		>
+		<form onSubmit={handleSubmit} className={cn("flex flex-col gap-5", className)} noValidate>
 			<Input
 				label={t("form.fullName")}
 				name="fullName"
@@ -128,9 +124,7 @@ export function ContactInquiryForm({ className }: ContactInquiryFormProps) {
 				label={t("form.inquiryType")}
 				name="inquiryType"
 				value={inquiryType}
-				onChange={(event) =>
-					setInquiryType(event.target.value as InquiryTypeId)
-				}
+				onChange={(event) => setInquiryType(event.target.value as InquiryTypeId)}
 			>
 				{INQUIRY_TYPE_IDS.map((typeId) => (
 					<option key={typeId} value={typeId}>

@@ -22,11 +22,11 @@ export function ProductDetailHeroMedia({ src, alt }: ProductDetailHeroMediaProps
 				className="object-cover object-center"
 			/>
 			<div
-				className="absolute inset-0 hidden bg-gradient-to-r from-sapphire-deep via-transparent to-transparent opacity-80 lg:block"
+				className="from-sapphire-deep absolute inset-0 hidden bg-gradient-to-r via-transparent to-transparent opacity-80 lg:block"
 				aria-hidden="true"
 			/>
 			<div
-				className="absolute inset-0 bg-gradient-to-t from-sapphire-deep via-transparent to-transparent opacity-80 lg:hidden"
+				className="from-sapphire-deep absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-80 lg:hidden"
 				aria-hidden="true"
 			/>
 		</div>

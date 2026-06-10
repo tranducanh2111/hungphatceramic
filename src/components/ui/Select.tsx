@@ -77,8 +77,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 		const options = parseOptionChildren(children);
 
 		const [isOpen, setIsOpen] = useState(false);
-		const [internalValue, setInternalValue] = useState(
-			() => String(value ?? defaultValue ?? options[0]?.value ?? ""),
+		const [internalValue, setInternalValue] = useState(() =>
+			String(value ?? defaultValue ?? options[0]?.value ?? ""),
 		);
 		const rootRef = useRef<HTMLDivElement>(null);
 		const hiddenSelectRef = useRef<HTMLSelectElement>(null);
@@ -136,7 +136,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 			"transition-[border-color,background-color,box-shadow] duration-300",
 			!disabled && "hover:border-champagne/35 hover:bg-sapphire-ocean/75",
 			"focus-visible:ring-2 focus-visible:outline-none",
-			isOpen && !hasError && "border-champagne/50 bg-sapphire-ocean/75 ring-champagne/20 ring-2",
+			isOpen &&
+				!hasError &&
+				"border-champagne/50 bg-sapphire-ocean/75 ring-champagne/20 ring-2",
 			hasError
 				? "border-red-400 focus-visible:border-red-400 focus-visible:ring-red-400/30"
 				: "border-sapphire-mist focus-visible:border-champagne focus-visible:ring-champagne/25",

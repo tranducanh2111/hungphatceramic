@@ -42,18 +42,18 @@ function CompositeOverviewPanel({
 	return (
 		<div
 			className={cn(
-				"shadow-luxury-md w-full overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep p-6",
+				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep w-full overflow-hidden rounded-2xl border p-6",
 				className,
 			)}
 		>
 			<Text
 				variant="label-sm"
-				className="mb-4 block text-center font-sans font-medium tracking-[0.1em] text-champagne/60 uppercase"
+				className="text-champagne/60 mb-4 block text-center font-sans font-medium tracking-[0.1em] uppercase"
 			>
 				{tDetail("facesOverviewComposite")}
 			</Text>
 			<div
-				className="relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl bg-sapphire-deep sm:min-h-[16rem] lg:min-h-[20rem]"
+				className="bg-sapphire-deep relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl sm:min-h-[16rem] lg:min-h-[20rem]"
 				onClick={onOpenLightbox}
 			>
 				<Image
@@ -65,7 +65,7 @@ function CompositeOverviewPanel({
 					onError={onImageError}
 				/>
 			</div>
-			<p className="text-footnote mt-3 text-center font-sans text-linen/45">{productName}</p>
+			<p className="text-footnote text-linen/45 mt-3 text-center font-sans">{productName}</p>
 		</div>
 	);
 }
@@ -110,7 +110,7 @@ function DemoWorkCarouselPanel({
 	return (
 		<div
 			className={cn(
-				"shadow-luxury-md relative w-full overflow-hidden rounded-2xl border border-sapphire-mist/40 bg-sapphire-deep",
+				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep relative w-full overflow-hidden rounded-2xl border",
 				fillHeight && "flex h-full flex-col",
 				className,
 			)}
@@ -125,10 +125,8 @@ function DemoWorkCarouselPanel({
 		>
 			<div
 				className={cn(
-					"relative w-full bg-sapphire-deep",
-					fillHeight
-						? "min-h-[12rem] flex-1 sm:min-h-[16rem]"
-						: "aspect-[4/3]",
+					"bg-sapphire-deep relative w-full",
+					fillHeight ? "min-h-[12rem] flex-1 sm:min-h-[16rem]" : "aspect-[4/3]",
 				)}
 			>
 				<AnimatePresence mode="wait" initial={false}>
@@ -146,7 +144,9 @@ function DemoWorkCarouselPanel({
 						})}
 					>
 						<Image
-							src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeDemoImage))}
+							src={encodePublicAssetPath(
+								resolveDetailGalleryImagePath(activeDemoImage),
+							)}
 							alt={tDetail("demoWorkImageAlt", {
 								productName,
 								exampleNumber: activeDemoIndex + 1,
@@ -156,8 +156,8 @@ function DemoWorkCarouselPanel({
 							sizes="(max-width: 1024px) 100vw, 50vw"
 							className="ease-luxury object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
 						/>
-						<span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sapphire-deep/0 transition-colors duration-300 group-hover:bg-sapphire-deep/25">
-							<span className="rounded-full bg-champagne/90 p-2.5 text-sm font-semibold text-sapphire-deep opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
+						<span className="bg-sapphire-deep/0 group-hover:bg-sapphire-deep/25 pointer-events-none absolute inset-0 flex items-center justify-center transition-colors duration-300">
+							<span className="bg-champagne/90 text-sapphire-deep rounded-full p-2.5 text-sm font-semibold opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100">
 								🔎
 							</span>
 						</span>
@@ -167,15 +167,15 @@ function DemoWorkCarouselPanel({
 				{hasMultipleDemoWork && (
 					<>
 						<div
-							className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-sapphire-deep/70 to-transparent"
+							className="from-sapphire-deep/70 pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b to-transparent"
 							aria-hidden
 						/>
 						<div
-							className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-sapphire-deep/80 to-transparent"
+							className="from-sapphire-deep/80 pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t to-transparent"
 							aria-hidden
 						/>
 
-						<p className="text-footnote absolute top-4 left-1/2 z-20 -translate-x-1/2 font-sans tracking-[0.15em] text-linen uppercase">
+						<p className="text-footnote text-linen absolute top-4 left-1/2 z-20 -translate-x-1/2 font-sans tracking-[0.15em] uppercase">
 							{tDetail("demoWorkLightboxCounter", {
 								current: activeDemoIndex + 1,
 								total: demoWorkCount,
@@ -247,10 +247,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 		isLightboxOpen: isDemoLightboxOpen,
 	});
 
-	carouselPauseRef.current = {
-		isAutoPlayPaused: isDemoAutoPlayPaused,
-		isLightboxOpen: isDemoLightboxOpen,
-	};
+	useEffect(() => {
+		carouselPauseRef.current = {
+			isAutoPlayPaused: isDemoAutoPlayPaused,
+			isLightboxOpen: isDemoLightboxOpen,
+		};
+	}, [isDemoAutoPlayPaused, isDemoLightboxOpen]);
 
 	const goToPreviousDemo = useCallback(() => {
 		setActiveDemoIndex((previousIndex) => (previousIndex - 1 + demoWorkCount) % demoWorkCount);
@@ -277,12 +279,6 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 		setIsDemoLightboxOpen(false);
 		setIsDemoAutoPlayPaused(false);
 	}, []);
-
-	useEffect(() => {
-		setActiveDemoIndex(0);
-		setIsDemoAutoPlayPaused(false);
-		setIsDemoLightboxOpen(false);
-	}, [product.slug]);
 
 	useEffect(() => {
 		if (!hasMultipleDemoWork) {
@@ -314,19 +310,21 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const compositeAlt = tDetail("facesOverviewCompositeAlt", { productName });
 
 	return (
-		<section className="relative bg-sapphire-ocean px-6 py-24 text-linen lg:px-12">
-			<div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-sapphire-mist/35 to-transparent" />
+		<section className="bg-sapphire-ocean text-linen relative px-6 py-24 lg:px-12">
+			<div className="via-sapphire-mist/35 absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent to-transparent" />
 
 			<div className="mx-auto max-w-7xl">
 				<div className="mb-16 text-center">
 					<Text
 						variant="label"
-						className="mb-4 font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+						className="text-champagne mb-4 font-sans font-medium tracking-[0.2em] uppercase"
 					>
 						{tDetail("demoWork")}
 					</Text>
-					<h2 className="text-h2 font-serif lining-nums font-light text-linen">{productName}</h2>
-					<div className="mx-auto mt-4 h-px w-16 bg-champagne/30" />
+					<h2 className="text-h2 text-linen font-serif font-light lining-nums">
+						{productName}
+					</h2>
+					<div className="bg-champagne/30 mx-auto mt-4 h-px w-16" />
 				</div>
 
 				<div
@@ -373,12 +371,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={closeDemoLightbox}
-						className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-sapphire-deep/95 p-4 backdrop-blur-md sm:p-6"
+						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center p-4 backdrop-blur-md sm:p-6"
 					>
 						<button
 							type="button"
 							onClick={closeDemoLightbox}
-							className="absolute top-4 right-4 z-[60] flex h-10 w-10 items-center justify-center text-2xl font-light text-linen transition-colors hover:text-champagne sm:top-6 sm:right-6 sm:text-3xl"
+							className="text-linen hover:text-champagne absolute top-4 right-4 z-[60] flex h-10 w-10 items-center justify-center text-2xl font-light transition-colors sm:top-6 sm:right-6 sm:text-3xl"
 							aria-label={tDetail("lightboxClose")}
 						>
 							✕
@@ -386,7 +384,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 
 						{hasMultipleDemoWork && (
 							<>
-								<p className="text-footnote absolute top-5 left-1/2 z-[60] -translate-x-1/2 font-sans tracking-[0.15em] text-linen uppercase sm:top-6">
+								<p className="text-footnote text-linen absolute top-5 left-1/2 z-[60] -translate-x-1/2 font-sans tracking-[0.15em] uppercase sm:top-6">
 									{tDetail("demoWorkLightboxCounter", {
 										current: activeDemoIndex + 1,
 										total: demoWorkCount,
@@ -427,7 +425,9 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							onClick={(event) => event.stopPropagation()}
 						>
 							<Image
-								src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeDemoImage))}
+								src={encodePublicAssetPath(
+									resolveDetailGalleryImagePath(activeDemoImage),
+								)}
 								alt={tDetail("demoWorkImageAlt", {
 									productName,
 									exampleNumber: activeDemoIndex + 1,
@@ -446,12 +446,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						onClick={() => setIsCompositeLightboxOpen(false)}
-						className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-sapphire-deep/95 p-6 backdrop-blur-md"
+						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center p-6 backdrop-blur-md"
 					>
 						<button
 							type="button"
 							onClick={() => setIsCompositeLightboxOpen(false)}
-							className="absolute top-6 right-6 z-10 text-3xl font-light text-linen transition-colors hover:text-champagne"
+							className="text-linen hover:text-champagne absolute top-6 right-6 z-10 text-3xl font-light transition-colors"
 							aria-label={tDetail("lightboxClose")}
 						>
 							✕

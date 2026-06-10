@@ -8,13 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const currentDate = new Date();
 
 	// Static routes mapping
-	const staticPaths = [
-		"",
-		"/about",
-		"/products",
-		"/projects",
-		"/contact",
-	];
+	const staticPaths = ["", "/about", "/products", "/projects", "/contact"];
 
 	const sitemapEntries: MetadataRoute.Sitemap = [];
 

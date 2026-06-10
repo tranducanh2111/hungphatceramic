@@ -40,7 +40,7 @@ export function ProjectsPrologue() {
 				/>
 
 				<RevealOnView className="mt-10">
-					<p className="text-body-sm font-sans tracking-wide text-linen/35">
+					<p className="text-body-sm text-linen/35 font-sans tracking-wide">
 						{t("statDevelopments")}
 						<span className="text-champagne/40 mx-3" aria-hidden="true">
 							·

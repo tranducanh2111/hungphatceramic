@@ -17,8 +17,7 @@ const TILE_HOVER_TRANSITION_CLASS =
 	"duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none";
 
 /** Always-on specimen glow (not tied to card hover opacity). */
-const TILE_GLOW_SHADOW =
-	"shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.38)]";
+const TILE_GLOW_SHADOW = "shadow-[0_22px_56px_rgba(0,0,0,0.55),0_0_0_1px_rgba(212,184,134,0.38)]";
 
 interface MaterialTilePreviewProps {
 	previews: SizePreview[];
@@ -58,7 +57,7 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 				draggable={false}
 			/>
 			<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-black/22" />
-			<div className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-champagne/40 ring-inset" />
+			<div className="ring-champagne/40 pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset" />
 		</div>
 	);
 }

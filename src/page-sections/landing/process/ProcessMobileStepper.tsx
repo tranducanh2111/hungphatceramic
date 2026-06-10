@@ -23,16 +23,16 @@ function ProcessStepCard({ step, index }: ProcessStepCardProps) {
 			<article className={`${PROCESS_STEP_CARD_CLASS} p-7`}>
 				<Text
 					variant="display-lg"
-					className="font-serif font-light text-champagne/20 select-none"
+					className="text-champagne/20 font-serif font-light select-none"
 					aria-hidden
 				>
 					{step.number}
 				</Text>
-				<Text variant="h4" className="mt-1 text-linen">
+				<Text variant="h4" className="text-linen mt-1">
 					{t(`steps.${step.id}.title`)}
 				</Text>
-				<div className="my-4 h-px w-12 bg-champagne" aria-hidden />
-				<Text variant="body" className="leading-relaxed text-linen/65">
+				<div className="bg-champagne my-4 h-px w-12" aria-hidden />
+				<Text variant="body" className="text-linen/65 leading-relaxed">
 					{t(`steps.${step.id}.description`)}
 				</Text>
 			</article>
@@ -47,10 +47,10 @@ export function ProcessMobileStepper() {
 	return (
 		<div className="mx-auto max-w-7xl px-6 py-20 lg:px-12">
 			<header className="text-center">
-				<span className="text-label font-sans tracking-widest text-champagne uppercase">
+				<span className="text-label text-champagne font-sans tracking-widest uppercase">
 					{t("label")}
 				</span>
-				<Text variant="h2" className="mt-3 text-linen">
+				<Text variant="h2" className="text-linen mt-3">
 					{t("heading")}
 				</Text>
 			</header>

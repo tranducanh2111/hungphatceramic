@@ -35,7 +35,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	];
 
 	return (
-		<section className="relative bg-sapphire-deep px-6 py-24 text-linen lg:px-12">
+		<section className="bg-sapphire-deep text-linen relative px-6 py-24 lg:px-12">
 			{/* Bottom divider border */}
 			<div className="absolute right-0 bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-[#1A3D5C]/35 to-transparent" />
 
@@ -46,24 +46,26 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 						<div>
 							<Text
 								variant="label"
-								className="mb-4 font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+								className="text-champagne mb-4 font-sans font-medium tracking-[0.2em] uppercase"
 							>
 								{tDetail("specifications")}
 							</Text>
-							<h3 className="text-h2 font-serif lining-nums font-light">{product.name}</h3>
+							<h3 className="text-h2 font-serif font-light lining-nums">
+								{product.name}
+							</h3>
 						</div>
 
 						{/* Spec Attributes Grid */}
-						<div className="grid grid-cols-1 gap-x-8 gap-y-4 border-t border-sapphire-mist/30 pt-8 sm:grid-cols-2">
+						<div className="border-sapphire-mist/30 grid grid-cols-1 gap-x-8 gap-y-4 border-t pt-8 sm:grid-cols-2">
 							{specs.map((spec) => (
 								<div
 									key={spec.label}
-									className="flex flex-col gap-1 border-b border-sapphire-mist/20 pb-4"
+									className="border-sapphire-mist/20 flex flex-col gap-1 border-b pb-4"
 								>
-									<span className="font-sans text-[11px] font-semibold tracking-wider text-linen/30 uppercase">
+									<span className="text-linen/30 font-sans text-[11px] font-semibold tracking-wider uppercase">
 										{spec.label}
 									</span>
-									<span className="text-body-sm font-sans font-semibold text-linen">
+									<span className="text-body-sm text-linen font-sans font-semibold">
 										{spec.value}
 									</span>
 								</div>
@@ -72,13 +74,14 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 
 						{/* Available Sizes Visualization */}
 						<div className="space-y-6 pt-4">
-							<span className="block font-sans text-[11px] font-semibold tracking-wider text-linen/30 uppercase">
+							<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
 								{tDetail("availableSizes")}
 							</span>
 							<div className="flex flex-wrap gap-8">
 								{product.sizes.map((size) => {
 									const isLargeFormat = size.includes("60");
-									const isCompactSquare = size.includes("100") || size.includes("120");
+									const isCompactSquare =
+										size.includes("100") || size.includes("120");
 									const tilePreviewClassName = isLargeFormat
 										? "h-20 w-10"
 										: isCompactSquare
@@ -98,17 +101,17 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 									return (
 										<div key={size} className="flex items-center gap-4">
 											<div
-												className={`flex items-center justify-center rounded-lg border border-champagne/30 bg-sapphire-ocean p-2 transition-all hover:border-champagne/60 ${tilePreviewClassName}`}
+												className={`border-champagne/30 bg-sapphire-ocean hover:border-champagne/60 flex items-center justify-center rounded-lg border p-2 transition-all ${tilePreviewClassName}`}
 											>
-												<span className="font-sans text-[10px] font-bold text-champagne/80">
+												<span className="text-champagne/80 font-sans text-[10px] font-bold">
 													{aspectLabel}
 												</span>
 											</div>
 											<div>
-												<span className="text-body-sm block font-sans font-semibold text-linen">
+												<span className="text-body-sm text-linen block font-sans font-semibold">
 													{size}
 												</span>
-												<span className="block font-sans text-[11px] text-linen/40 uppercase">
+												<span className="text-linen/40 block font-sans text-[11px] uppercase">
 													{formatLabel}
 												</span>
 											</div>
@@ -120,15 +123,15 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 					</div>
 
 					{/* Right Panel: Call to Action (5 columns) */}
-					<div className="shadow-luxury-md flex flex-col justify-between rounded-2xl border border-sapphire-mist/30 bg-sapphire-ocean p-8 lg:col-span-5">
+					<div className="shadow-luxury-md border-sapphire-mist/30 bg-sapphire-ocean flex flex-col justify-between rounded-2xl border p-8 lg:col-span-5">
 						<div className="space-y-6">
 							<Text
 								variant="label"
-								className="font-sans font-medium tracking-[0.2em] text-champagne uppercase"
+								className="text-champagne font-sans font-medium tracking-[0.2em] uppercase"
 							>
 								{tDetail("requestQuote")}
 							</Text>
-							<p className="text-body-sm font-sans leading-relaxed text-linen/55">
+							<p className="text-body-sm text-linen/55 font-sans leading-relaxed">
 								{tDetail("requestQuoteDescription")}
 							</p>
 						</div>
@@ -146,7 +149,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								href={`mailto:congtyhungphat583@gmail.com?subject=Inquiry about ${product.name} (SKU: ${product.skuCode})`}
 								variant="secondary"
 								size="md"
-								className="w-full border-sapphire-mist text-center hover:border-champagne"
+								className="border-sapphire-mist hover:border-champagne w-full text-center"
 							>
 								{tDetail("requestQuote")}
 							</Button>

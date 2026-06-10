@@ -29,10 +29,7 @@ export function ProcessScrollTimeline() {
 	});
 
 	useMotionValueEvent(scrollYProgress, "change", (latest) => {
-		const index = Math.min(
-			Math.floor(latest * PROCESS_STEPS.length),
-			PROCESS_STEPS.length - 1,
-		);
+		const index = Math.min(Math.floor(latest * PROCESS_STEPS.length), PROCESS_STEPS.length - 1);
 		setActiveStepIndex(index);
 	});
 
@@ -47,10 +44,10 @@ export function ProcessScrollTimeline() {
 			<div className="sticky top-0 flex h-screen items-center overflow-hidden">
 				<div className="mx-auto w-full max-w-7xl px-6 lg:px-12">
 					<header className="mb-12 text-center">
-						<span className="text-label font-sans tracking-widest text-champagne uppercase">
+						<span className="text-label text-champagne font-sans tracking-widest uppercase">
 							{t("label")}
 						</span>
-						<Text variant="h2" className="mt-3 text-linen">
+						<Text variant="h2" className="text-linen mt-3">
 							{t("heading")}
 						</Text>
 					</header>
@@ -65,10 +62,28 @@ export function ProcessScrollTimeline() {
 									fill="none"
 								>
 									<defs>
-										<linearGradient id="champagneGlow" x1="0" y1="0" x2="0" y2="1">
-											<stop offset="0%" stopColor="#D4B886" stopOpacity="0.2" />
-											<stop offset="50%" stopColor="#D4B886" stopOpacity="1" />
-											<stop offset="100%" stopColor="#D4B886" stopOpacity="0.2" />
+										<linearGradient
+											id="champagneGlow"
+											x1="0"
+											y1="0"
+											x2="0"
+											y2="1"
+										>
+											<stop
+												offset="0%"
+												stopColor="#D4B886"
+												stopOpacity="0.2"
+											/>
+											<stop
+												offset="50%"
+												stopColor="#D4B886"
+												stopOpacity="1"
+											/>
+											<stop
+												offset="100%"
+												stopColor="#D4B886"
+												stopOpacity="0.2"
+											/>
 										</linearGradient>
 									</defs>
 									<path
@@ -113,13 +128,13 @@ export function ProcessScrollTimeline() {
 														repeat: Infinity,
 														ease: "easeOut",
 													}}
-													className="absolute h-full w-full rounded-full bg-champagne"
+													className="bg-champagne absolute h-full w-full rounded-full"
 													aria-hidden
 												/>
 											)}
 											<div
 												className={cn(
-													"text-body-sm relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 bg-sapphire-ocean font-sans font-medium transition-colors duration-500",
+													"text-body-sm bg-sapphire-ocean relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 font-sans font-medium transition-colors duration-500",
 													isActive
 														? "border-champagne text-champagne shadow-[0_0_15px_rgba(212,184,134,0.3)]"
 														: isPast
@@ -154,16 +169,16 @@ export function ProcessScrollTimeline() {
 						>
 							<Text
 								variant="display-lg"
-								className="font-serif font-light text-champagne/20 select-none"
+								className="text-champagne/20 font-serif font-light select-none"
 								aria-hidden
 							>
 								{activeStep.number}
 							</Text>
-							<Text variant="h3" className="mt-2 text-linen">
+							<Text variant="h3" className="text-linen mt-2">
 								{t(`steps.${activeStep.id}.title`)}
 							</Text>
-							<div className="my-5 h-px w-12 bg-champagne" aria-hidden />
-							<Text variant="body-lg" className="leading-relaxed text-linen/65">
+							<div className="bg-champagne my-5 h-px w-12" aria-hidden />
+							<Text variant="body-lg" className="text-linen/65 leading-relaxed">
 								{t(`steps.${activeStep.id}.description`)}
 							</Text>
 
@@ -174,10 +189,10 @@ export function ProcessScrollTimeline() {
 										className={cn(
 											"h-1 rounded-full transition-all duration-500",
 											index === activeStepIndex
-												? "w-8 bg-champagne"
+												? "bg-champagne w-8"
 												: index < activeStepIndex
-													? "w-4 bg-champagne/40"
-													: "w-4 bg-sapphire-mist",
+													? "bg-champagne/40 w-4"
+													: "bg-sapphire-mist w-4",
 										)}
 									/>
 								))}

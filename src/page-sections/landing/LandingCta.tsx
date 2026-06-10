@@ -14,7 +14,7 @@ export function LandingCta() {
 	return (
 		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
 			<div
-				className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-champagne/5 blur-[120px]"
+				className="bg-champagne/5 absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
 				aria-hidden="true"
 			/>
 
@@ -31,14 +31,14 @@ export function LandingCta() {
 				]}
 				actionsDelay={0.3}
 				footer={
-					<div className="mt-14 flex flex-col items-center gap-4 border-t border-sapphire-mist pt-10 sm:flex-row sm:justify-center">
+					<div className="border-sapphire-mist mt-14 flex flex-col items-center gap-4 border-t pt-10 sm:flex-row sm:justify-center">
 						<a
 							href={GOOGLE_MAPS_URL}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="inline-flex items-center gap-2 text-linen/45 transition-colors duration-300 hover:text-champagne"
+							className="text-linen/45 hover:text-champagne inline-flex items-center gap-2 transition-colors duration-300"
 						>
-							<MapPin className="h-4 w-4 shrink-0 text-champagne" />
+							<MapPin className="text-champagne h-4 w-4 shrink-0" />
 							<Text variant="body-sm">{t("officeAddress")}</Text>
 						</a>
 					</div>

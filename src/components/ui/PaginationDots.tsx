@@ -36,9 +36,7 @@ export function PaginationDots({
 					aria-current={index === activeIndex ? "true" : undefined}
 					className={cn(
 						"h-1.5 rounded-full transition-all duration-300",
-						index === activeIndex
-							? "w-6 bg-champagne"
-							: INACTIVE_DOT_STYLES[tone],
+						index === activeIndex ? "bg-champagne w-6" : INACTIVE_DOT_STYLES[tone],
 					)}
 				/>
 			))}

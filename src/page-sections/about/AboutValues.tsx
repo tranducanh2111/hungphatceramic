@@ -20,7 +20,7 @@ export function AboutValues() {
 	return (
 		<section
 			id={ABOUT_SECTION_IDS.activeLocations}
-			className="bg-sapphire-deep relative -mt-px overflow-hidden py-24 sm:py-28 lg:py-36 scroll-mt-28"
+			className="bg-sapphire-deep relative -mt-px scroll-mt-28 overflow-hidden py-24 sm:py-28 lg:py-36"
 		>
 			<div
 				className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_70%_58%,#0E2A42_0%,transparent_65%)] opacity-40"

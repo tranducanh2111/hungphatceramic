@@ -48,7 +48,7 @@ export function ProductTileCardMedia({
 	const isHoverPreviewVisible = isHoverPreviewActive && isMediaMounted;
 
 	if (!isMediaMounted) {
-		return <div className="absolute inset-0 bg-sapphire-mist/15" aria-hidden />;
+		return <div className="bg-sapphire-mist/15 absolute inset-0" aria-hidden />;
 	}
 
 	return (

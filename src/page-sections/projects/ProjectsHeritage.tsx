@@ -172,7 +172,7 @@ export function ProjectsHeritage() {
 
 	return (
 		<ParallaxSection
-			className="bg-sapphire-deep relative -mt-px overflow-hidden pb-28 pt-24 sm:pb-32 sm:pt-28 lg:pb-36 lg:pt-36"
+			className="bg-sapphire-deep relative -mt-px overflow-hidden pt-24 pb-28 sm:pt-28 sm:pb-32 lg:pt-36 lg:pb-36"
 			aria-label={t("ariaLabel")}
 		>
 			<div
@@ -203,7 +203,7 @@ export function ProjectsHeritage() {
 							<div
 								key={milestone.id}
 								id={milestone.id}
-								className="scroll-mt-28 [content-visibility:auto] [contain-intrinsic-size:auto_28rem] lg:grid lg:grid-cols-2 lg:gap-x-20"
+								className="scroll-mt-28 [contain-intrinsic-size:auto_28rem] [content-visibility:auto] lg:grid lg:grid-cols-2 lg:gap-x-20"
 							>
 								<article className="relative z-10 col-span-2 grid items-center gap-x-20 gap-y-10 lg:grid-cols-2">
 									<div
@@ -218,7 +218,7 @@ export function ProjectsHeritage() {
 											rangePx={imageParallax}
 											invert={!isEven}
 										/>
-										<div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-champagne/8" />
+										<div className="ring-champagne/8 pointer-events-none absolute inset-0 rounded-2xl ring-1" />
 									</div>
 
 									<ParallaxElement
@@ -230,24 +230,24 @@ export function ProjectsHeritage() {
 											isEven ? "lg:order-2" : "lg:order-1",
 										)}
 									>
-										<p className="text-h2 font-sans leading-tight font-light tracking-wide text-champagne/55">
+										<p className="text-h2 text-champagne/55 font-sans leading-tight font-light tracking-wide">
 											{milestone.coordinates}
 										</p>
-										<p className="text-body-sm mt-2 font-sans text-linen/40">
+										<p className="text-body-sm text-linen/40 mt-2 font-sans">
 											{t(`milestones.${milestone.id}.location`)}
 										</p>
-										<p className="text-label mt-1 font-sans tracking-widest text-champagne/30 uppercase">
+										<p className="text-label text-champagne/30 mt-1 font-sans tracking-widest uppercase">
 											{milestone.year}
 										</p>
 
-										<div className="my-7 h-px w-10 bg-champagne/25" />
+										<div className="bg-champagne/25 my-7 h-px w-10" />
 
 										<Text variant="h4" as="h3" className="text-linen">
 											{t(`milestones.${milestone.id}.title`)}
 										</Text>
 										<Text
 											variant="body"
-											className="mt-3 max-w-sm leading-relaxed text-linen/55"
+											className="text-linen/55 mt-3 max-w-sm leading-relaxed"
 										>
 											{t(`milestones.${milestone.id}.description`)}
 										</Text>

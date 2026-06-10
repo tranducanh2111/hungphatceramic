@@ -55,6 +55,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire G12967J/PC-G12967J-2.jpg",
 			"/assets/60X120/Ảnh Panorama/Inspire G12967J.png",
 		],
+		allFacesImage: "/assets/60X120/Inspire G12967J/G12967J - FullFaces.jpg",
 	},
 	{
 		slug: "inspire-gp12962j",
@@ -78,6 +79,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire GP12962J/PC1-GP12962J.jpg",
 			"/assets/60X120/Ảnh Panorama/GP12962J.png",
 		],
+		allFacesImage: "/assets/60X120/Inspire GP12962J/GP12962J - FullFaces.jpg",
 	},
 
 	// ─── INSPIRE SERIES (80×80cm) ─────────────────────────────────────────────────
@@ -138,6 +140,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Travertine T01 T06/G12T01.jpg",
 		],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC137-G12T01.jpg"],
+		allFacesImage: "/assets/60X120/Travertine T01 T06/G12T01 - FullFaces.jpg",
 	},
 	{
 		slug: "travertine-t06",
@@ -153,6 +156,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Travertine T01 T06/G12T06.jpg",
 		],
 		sceneImages: ["/assets/60X120/Travertine T01 T06/PC136-G12T06.jpg"],
+		allFacesImage: "/assets/60X120/Travertine T01 T06/G12T06 - FullFaces.jpg",
 	},
 	{
 		slug: "travertine-g88t01j",
@@ -363,6 +367,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey-6.jpg",
 		],
 		sceneImages: ["/assets/60X120/Thickness 20mm/Venora.jpg"],
+		allFacesImage: "/assets/60X120/Thickness 20mm/G12537-DD - FullFaces.jpg",
 	},
 	{
 		slug: "architectural-g12539-dd",
@@ -383,6 +388,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Thickness 20mm/G12539-DD 20mm-6 .jpg",
 		],
 		sceneImages: ["/assets/60X120/Thickness 20mm/Venora.jpg"],
+		allFacesImage: "/assets/60X120/Thickness 20mm/G12539-DD - FullFaces.jpg",
 	},
 
 	// ─── PEACE SERIES (60×120cm & 80×80cm) ─────────────────────────────────────────

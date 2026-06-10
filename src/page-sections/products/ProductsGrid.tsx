@@ -119,10 +119,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 	const enableScrollStagger = isThreeColumnGrid && !prefersReducedMotion;
 	const enableStaticStagger = isThreeColumnGrid && prefersReducedMotion;
 
-	const staggeredColumns = useMemo(
-		() => distributeProductsIntoColumns(products, 3),
-		[products],
-	);
+	const staggeredColumns = useMemo(() => distributeProductsIntoColumns(products, 3), [products]);
 
 	if (products.length === 0) {
 		return (
@@ -139,7 +136,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 			className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden select-none"
 			aria-hidden="true"
 		>
-			<span className="font-serif text-[18vw] font-bold tracking-[0.2em] text-sapphire-ocean/10 uppercase">
+			<span className="text-sapphire-ocean/10 font-serif text-[18vw] font-bold tracking-[0.2em] uppercase">
 				{activeCollectionId === "all" ? "PERLA" : activeCollectionId}
 			</span>
 		</div>

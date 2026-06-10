@@ -45,12 +45,7 @@ export function ClientRosterGrid({
 
 	return (
 		<div className={cn("border-champagne/20 border", className)}>
-			<div
-				className={cn(
-					"grid gap-px bg-champagne/10",
-					COLUMN_STYLES[columnKey],
-				)}
-			>
+			<div className={cn("bg-champagne/10 grid gap-px", COLUMN_STYLES[columnKey])}>
 				{items.map((item, index) => (
 					<RevealOnView
 						key={item.id}

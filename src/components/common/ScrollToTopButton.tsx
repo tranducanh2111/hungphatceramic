@@ -1,12 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import {
-	AnimatePresence,
-	motion,
-	useMotionValueEvent,
-	useReducedMotion,
-} from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useTranslations } from "next-intl";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -56,9 +51,9 @@ export function ScrollToTopButton() {
 					aria-label={t("scrollToTop")}
 					className={cn(
 						"fixed right-5 bottom-6 z-50 flex h-11 w-11 items-center justify-center rounded-full",
-						"border border-champagne/45 bg-sapphire-deep/90 text-champagne shadow-luxury-sm backdrop-blur-sm",
-						"transition-colors duration-300 hover:border-champagne hover:bg-sapphire-ocean",
-						"focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne/50",
+						"border-champagne/45 bg-sapphire-deep/90 text-champagne shadow-luxury-sm border backdrop-blur-sm",
+						"hover:border-champagne hover:bg-sapphire-ocean transition-colors duration-300",
+						"focus-visible:ring-champagne/50 focus:outline-none focus-visible:ring-2",
 						"sm:right-6 sm:bottom-8 lg:bottom-10",
 					)}
 				>

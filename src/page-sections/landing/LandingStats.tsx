@@ -41,11 +41,11 @@ function StatCounter({ stat, label }: { stat: StatItem; label: string }) {
 
 	return (
 		<div ref={ref} className="flex flex-col items-center text-center">
-			<Text variant="display-xl" className="font-serif font-light text-champagne">
+			<Text variant="display-xl" className="text-champagne font-serif font-light">
 				{formattedValue}
 				{stat.suffix}
 			</Text>
-			<Text variant="body-sm" className="mt-2 text-linen/50">
+			<Text variant="body-sm" className="text-linen/50 mt-2">
 				{label}
 			</Text>
 		</div>
@@ -59,22 +59,22 @@ export function LandingStats() {
 	const t = useTranslations("landing.stats");
 
 	return (
-		<section className="relative overflow-hidden bg-sapphire-deep py-28 lg:py-32">
+		<section className="bg-sapphire-deep relative overflow-hidden py-28 lg:py-32">
 			<RoomSilhouette />
 			<div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
 				{/* Decorative line */}
 				<div className="mb-16 flex items-center gap-6">
-					<div className="h-px flex-1 bg-sapphire-mist" />
+					<div className="bg-sapphire-mist h-px flex-1" />
 					<motion.span
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 1 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
-						className="text-label font-sans tracking-widest text-champagne uppercase"
+						className="text-label text-champagne font-sans tracking-widest uppercase"
 					>
 						{t("label")}
 					</motion.span>
-					<div className="h-px flex-1 bg-sapphire-mist" />
+					<div className="bg-sapphire-mist h-px flex-1" />
 				</div>
 
 				{/* Stats grid */}

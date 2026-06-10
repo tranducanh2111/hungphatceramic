@@ -14,7 +14,10 @@ interface AlternatesInput {
  * @param path The path of the page (e.g. "/", "/about", "/products")
  * @param currentLocale The current active locale ("vi" | "en")
  */
-export function buildAlternatesForLocale(path: string, currentLocale: AppLocale | string): AlternatesInput {
+export function buildAlternatesForLocale(
+	path: string,
+	currentLocale: AppLocale | string,
+): AlternatesInput {
 	// Normalize path: handle root specifically, otherwise ensure a leading slash
 	const normalizedPath = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
 

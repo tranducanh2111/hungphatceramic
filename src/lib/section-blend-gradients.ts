@@ -43,7 +43,8 @@ export const SECTION_BLEND_CONTENT_PAD_AFTER_MAJOR = "pt-20 sm:pt-24 lg:pt-28" a
 export const SECTION_BLEND_OVERLAP_AFTER_MINOR = "-mt-8 sm:-mt-12" as const;
 
 /** Top pad on Partners after linen → deep — modest trim, not tight. */
-export const SECTION_BLEND_CONTENT_PAD_AFTER_MINOR = "pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28" as const;
+export const SECTION_BLEND_CONTENT_PAD_AFTER_MINOR =
+	"pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28" as const;
 
 /** High-contrast section pairs (deep↔linen) — tall storytelling band when needed. */
 export const SECTION_BLEND_HEIGHT_MAJOR = "h-72 sm:h-[26rem] lg:h-[30rem] xl:h-[34rem]" as const;

@@ -283,13 +283,13 @@ h6 {
 
 /* ─── Partner logos (raster PNG → brand champagne on dark sections) ─────────── */
 @utility partner-logo-champagne {
-	filter: brightness(0) saturate(100%) invert(79%) sepia(18%) saturate(638%)
-		hue-rotate(358deg) brightness(94%) contrast(89%);
+	filter: brightness(0) saturate(100%) invert(79%) sepia(18%) saturate(638%) hue-rotate(358deg)
+		brightness(94%) contrast(89%);
 }
 
 @utility partner-logo-champagne-hover {
-	filter: brightness(0) saturate(100%) invert(93%) sepia(14%) saturate(720%)
-		hue-rotate(358deg) brightness(102%) contrast(92%);
+	filter: brightness(0) saturate(100%) invert(93%) sepia(14%) saturate(720%) hue-rotate(358deg)
+		brightness(102%) contrast(92%);
 }
 
 /** Horizontal scroll without visible scrollbar (e.g. partner logo strip on mobile). */

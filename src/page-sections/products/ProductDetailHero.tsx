@@ -34,13 +34,13 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 		: product.collectionId;
 
 	return (
-		<section className="relative min-h-[90vh] w-full bg-sapphire-deep text-linen">
+		<section className="bg-sapphire-deep text-linen relative min-h-[90vh] w-full">
 			{/* Top bar with back navigation and close button */}
 			<div className="absolute top-24 right-0 left-0 z-30 flex items-center justify-between px-6 lg:px-12">
 				<Link
 					href={`/products?collection=${product.collectionId}`}
 					onClick={onBack}
-					className="group text-body-sm inline-flex items-center gap-2 font-sans tracking-widest text-linen/45 transition-colors duration-300 hover:text-champagne"
+					className="group text-body-sm text-linen/45 hover:text-champagne inline-flex items-center gap-2 font-sans tracking-widest transition-colors duration-300"
 				>
 					<span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">
 						←
@@ -51,7 +51,7 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 				<Link
 					href={`/products?collection=${product.collectionId}`}
 					onClick={onBack}
-					className="group flex h-10 w-10 items-center justify-center rounded-full border border-sapphire-mist bg-sapphire-deep/80 text-linen/55 transition-all duration-300 hover:border-champagne/40 hover:text-champagne"
+					className="group border-sapphire-mist bg-sapphire-deep/80 text-linen/55 hover:border-champagne/40 hover:text-champagne flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300"
 					aria-label="Close details"
 				>
 					<span className="font-sans text-xl leading-none transition-transform duration-500 group-hover:rotate-90">
@@ -74,29 +74,29 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 					>
 						{/* Collection Badge */}
 						<div className="inline-flex items-center gap-3">
-							<span className="h-px w-6 bg-champagne/50" />
-							<span className="font-sans text-xs font-semibold tracking-[0.15em] text-champagne uppercase">
+							<span className="bg-champagne/50 h-px w-6" />
+							<span className="text-champagne font-sans text-xs font-semibold tracking-[0.15em] uppercase">
 								{collectionName}
 							</span>
 						</div>
 
 						{/* Product Title */}
-						<h1 className="text-display-lg font-serif lining-nums leading-tight font-light text-linen">
+						<h1 className="text-display-lg text-linen font-serif leading-tight font-light lining-nums">
 							{name}
 						</h1>
 
 						{/* SKU Pill */}
-						<div className="inline-block rounded-full border border-champagne/20 bg-champagne/5 px-4 py-1">
+						<div className="border-champagne/20 bg-champagne/5 inline-block rounded-full border px-4 py-1">
 							<Text
 								variant="footnote"
-								className="font-sans font-medium tracking-widest text-champagne"
+								className="text-champagne font-sans font-medium tracking-widest"
 							>
 								{tDetail("sku")}: {product.skuCode}
 							</Text>
 						</div>
 
 						{/* Description */}
-						<p className="text-body max-w-md font-sans leading-relaxed text-linen/55">
+						<p className="text-body text-linen/55 max-w-md font-sans leading-relaxed">
 							{description}
 						</p>
 					</motion.div>

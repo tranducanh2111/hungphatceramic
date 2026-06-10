@@ -64,7 +64,9 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
-	const productDesc = tItems.has(`${slug}.description`) ? tItems(`${slug}.description`) : product.shortDescription;
+	const productDesc = tItems.has(`${slug}.description`)
+		? tItems(`${slug}.description`)
+		: product.shortDescription;
 
 	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
 	const productSchema = {

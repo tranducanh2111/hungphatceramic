@@ -5,8 +5,7 @@ import type { ClassNameProp } from "@/types";
 type IconButtonVariant = "carousel" | "gallery" | "galleryOverlay";
 
 interface IconButtonProps
-	extends ClassNameProp,
-		Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+	extends ClassNameProp, Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
 	children: ReactNode;
 	variant?: IconButtonVariant;
 }
@@ -29,11 +28,7 @@ export function IconButton({
 	...rest
 }: IconButtonProps) {
 	return (
-		<button
-			type={type}
-			className={cn(VARIANT_STYLES[variant], className)}
-			{...rest}
-		>
+		<button type={type} className={cn(VARIANT_STYLES[variant], className)} {...rest}>
 			{children}
 		</button>
 	);

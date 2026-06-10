@@ -75,7 +75,12 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 							className="border-sapphire-mist bg-sapphire-ocean/40 hover:border-champagne/40 flex items-center gap-4 rounded-xl border px-5 py-4 transition-colors duration-300"
 							aria-label={t(`${channel.id}Aria`, { number: channel.display })}
 						>
-							<PublicIcon src={channel.iconSrc} alt="" size={28} className="shrink-0" />
+							<PublicIcon
+								src={channel.iconSrc}
+								alt=""
+								size={28}
+								className="shrink-0"
+							/>
 							<div>
 								<Text variant="label" className="text-champagne uppercase">
 									{t(channel.id)}
@@ -96,7 +101,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 				<ul className="mt-4 space-y-3" role="list">
 					{SECONDARY_CHANNELS.map((channel) => {
 						const label =
-							channel.id === "address" ? tFooter("address") : channel.display ?? "";
+							channel.id === "address" ? tFooter("address") : (channel.display ?? "");
 						const ariaLabel =
 							channel.id === "phone"
 								? t("phoneAria", { number: channel.display ?? "" })
@@ -121,7 +126,10 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 										className="text-champagne mt-0.5 shrink-0"
 									/>
 									<div>
-										<Text variant="label" className="text-champagne/80 uppercase">
+										<Text
+											variant="label"
+											className="text-champagne/80 uppercase"
+										>
 											{t(channel.id)}
 										</Text>
 										<Text

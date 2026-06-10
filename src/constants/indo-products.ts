@@ -22,19 +22,22 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		skuCode: "GS881042",
 		format: "square",
 		hasFullFacesComposite: true,
-		shortDescription: "INDO square porcelain with balanced natural movement for premium interiors.",
+		shortDescription:
+			"INDO square porcelain with balanced natural movement for premium interiors.",
 	},
 	{
 		skuCode: "GS881045",
 		format: "square",
 		hasFullFacesComposite: true,
-		shortDescription: "INDO square surface with refined tonal depth for contemporary living spaces.",
+		shortDescription:
+			"INDO square surface with refined tonal depth for contemporary living spaces.",
 	},
 	{
 		skuCode: "GS883009",
 		format: "square",
 		hasFullFacesComposite: true,
-		shortDescription: "INDO square tile with expressive veining and a calm, architectural finish.",
+		shortDescription:
+			"INDO square tile with expressive veining and a calm, architectural finish.",
 	},
 	{
 		skuCode: "SS886101",
@@ -42,7 +45,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		marketingName: "Olympus White",
 		faceCount: 12,
 		sceneCount: 1,
-		hasFullFacesComposite: false,
+		hasFullFacesComposite: true,
 		shortDescription:
 			"INDO 80×80cm porcelain in Olympus White — twelve face variations for open residential and hospitality floors.",
 	},
@@ -52,7 +55,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		marketingName: "Elbrus Gris",
 		faceCount: 12,
 		sceneCount: 2,
-		hasFullFacesComposite: false,
+		hasFullFacesComposite: true,
 		shortDescription:
 			"INDO 80×80cm Elbrus Gris surface with polished character, soft luminosity, and twelve face variations.",
 	},
@@ -60,25 +63,29 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		skuCode: "SS1261307",
 		format: "rect",
 		hasFullFacesComposite: true,
-		shortDescription: "INDO large-format slab with vertical rhythm for feature walls and lobbies.",
+		shortDescription:
+			"INDO large-format slab with vertical rhythm for feature walls and lobbies.",
 	},
 	{
 		skuCode: "SS1261310",
 		format: "rect",
-		hasFullFacesComposite: false,
-		shortDescription: "INDO rectilinear surface with layered stone inspiration and modern clarity.",
+		hasFullFacesComposite: true,
+		shortDescription:
+			"INDO rectilinear surface with layered stone inspiration and modern clarity.",
 	},
 	{
 		skuCode: "SS1261311",
 		format: "rect",
 		hasFullFacesComposite: true,
-		shortDescription: "INDO large slab with confident contrast for statement architectural zones.",
+		shortDescription:
+			"INDO large slab with confident contrast for statement architectural zones.",
 	},
 	{
 		skuCode: "SS1261315",
 		format: "rect",
-		hasFullFacesComposite: false,
-		shortDescription: "INDO large-format tile with muted elegance for serene, high-end interiors.",
+		hasFullFacesComposite: true,
+		shortDescription:
+			"INDO large-format tile with muted elegance for serene, high-end interiors.",
 	},
 ];
 
@@ -87,8 +94,7 @@ function indoFolderLabel(skuCode: string): string {
 }
 
 function indoAssetBase(format: IndoProductFormat, skuCode: string): string {
-	const sizeFolder =
-		format === "square80" ? "80X80" : format === "square" ? "100X100" : "60X120";
+	const sizeFolder = format === "square80" ? "80X80" : format === "square" ? "100X100" : "60X120";
 	return `/assets/${sizeFolder}/${indoFolderLabel(skuCode)}`;
 }
 
@@ -111,7 +117,11 @@ function buildSceneImages(assetBase: string, skuCode: string, sceneCount = 1): s
 function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 	const assetBase = indoAssetBase(seed.format, seed.skuCode);
 	const primarySize =
-		seed.format === "square80" ? SQUARE_80_SIZE : seed.format === "square" ? SQUARE_SIZE : RECT_SIZE;
+		seed.format === "square80"
+			? SQUARE_80_SIZE
+			: seed.format === "square"
+				? SQUARE_SIZE
+				: RECT_SIZE;
 	const sizes =
 		seed.format === "square80"
 			? ([SQUARE_80_SIZE, SQUARE_SIZE, "120×120cm"] as const)

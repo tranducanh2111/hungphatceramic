@@ -7,7 +7,8 @@ export const metadata: Metadata = {
 		default: "Perla powered by Hung Phat | Gạch Porcelain Cao Cấp & Gạch Ốp Lát Sang Trọng",
 		template: "%s | Perla powered by Hung Phat",
 	},
-	description: "Chuyên cung cấp gạch porcelain cao cấp, gạch ốp lát khổ lớn nhập khẩu sang trọng cho biệt thự, khách sạn và căn hộ cao cấp tại Việt Nam.",
+	description:
+		"Chuyên cung cấp gạch porcelain cao cấp, gạch ốp lát khổ lớn nhập khẩu sang trọng cho biệt thự, khách sạn và căn hộ cao cấp tại Việt Nam.",
 	keywords: [
 		"gạch porcelain",
 		"gạch porcelain cao cấp",

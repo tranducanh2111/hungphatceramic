@@ -32,7 +32,7 @@ export function ContactShowroom() {
 						<Text variant="body-lg" className="text-linen/55 mt-5">
 							{t("description")}
 						</Text>
-						<address className="text-body text-linen/70 mt-8 not-italic font-sans">
+						<address className="text-body text-linen/70 mt-8 font-sans not-italic">
 							{tFooter("address")}
 						</address>
 						<Text variant="body-sm" className="text-linen/45 mt-3 font-sans">

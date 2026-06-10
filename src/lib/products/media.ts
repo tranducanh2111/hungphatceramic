@@ -113,11 +113,12 @@ export function resolveDetailGalleryImagePath(assetPath: string): string {
 	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".detail.webp");
 }
 
-export function resolveListingDemoWorkHoverPath(demoWorkAssetPath: string | undefined): string | undefined {
+export function resolveListingDemoWorkHoverPath(
+	demoWorkAssetPath: string | undefined,
+): string | undefined {
 	if (!demoWorkAssetPath) {
 		return undefined;
 	}
 
 	return getListingDemoWorkPreviewPath(demoWorkAssetPath);
 }
-
