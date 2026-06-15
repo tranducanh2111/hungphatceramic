@@ -1,17 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Text, IconButton, PaginationDots, ZoomableImage } from "@/components/ui";
-import { DetailGalleryImage } from "@/components/media";
 import {
 	collectProductDemoWorkImages,
 	encodePublicAssetPath,
-	resolveCompositeGalleryPreview,
 	resolveDetailGalleryImagePath,
-	type CompositeGalleryLayout,
 } from "@/lib/products/media";
 import { cn } from "@/lib/cn";
 import { ProductDetail } from "@/types";
@@ -23,18 +21,16 @@ interface ProductDetailGalleryProps {
 }
 
 interface CompositeOverviewPanelProps {
-	previewImages: string[];
-	layout: CompositeGalleryLayout;
+	allFacesImage: string;
 	productName: string;
 	compositeAlt: string;
-	onOpenLightbox: (imageIndex: number) => void;
+	onOpenLightbox: () => void;
 	onImageError: () => void;
 	className?: string;
 }
 
 function CompositeOverviewPanel({
-	previewImages,
-	layout,
+	allFacesImage,
 	productName,
 	compositeAlt,
 	onOpenLightbox,
@@ -42,7 +38,6 @@ function CompositeOverviewPanel({
 	className,
 }: CompositeOverviewPanelProps) {
 	const tDetail = useTranslations("pages.productDetail");
-	const isFaceTileLayout = layout === "faces";
 
 	return (
 		<div
@@ -58,65 +53,17 @@ function CompositeOverviewPanel({
 				{tDetail("facesOverviewComposite")}
 			</Text>
 			<div
-				className={cn(
-					"bg-sapphire-deep w-full overflow-hidden rounded-none",
-					isFaceTileLayout
-						? "flex min-h-[12rem] flex-wrap items-center justify-center gap-4 sm:min-h-[16rem] lg:min-h-[20rem]"
-						: "relative min-h-[12rem] sm:min-h-[16rem] lg:min-h-[20rem]",
-				)}
+				className="bg-sapphire-deep relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-none sm:min-h-[16rem] lg:min-h-[20rem]"
+				onClick={onOpenLightbox}
 			>
-				{previewImages.map((imagePath, imageIndex) => {
-					const imageAlt =
-						previewImages.length > 1
-							? tDetail("faceImageAlt", {
-									productName,
-									faceNumber: imageIndex + 1,
-								})
-							: compositeAlt;
-
-					if (isFaceTileLayout) {
-						return (
-							<button
-								key={imagePath}
-								type="button"
-								onClick={() => onOpenLightbox(imageIndex)}
-								className={cn(
-									"bg-sapphire-deep relative cursor-zoom-in overflow-hidden rounded-none",
-									previewImages.length === 1
-										? "aspect-[1/2] h-[min(20rem,60vh)] w-auto max-w-[min(100%,12rem)]"
-										: "aspect-[1/2] h-40 w-28 sm:h-48 sm:w-32",
-								)}
-							>
-								<DetailGalleryImage
-									assetPath={imagePath}
-									alt={imageAlt}
-									fill
-									sizes="(max-width: 1024px) 40vw, 20vw"
-									className="object-contain object-center"
-									onAssetError={imageIndex === 0 ? onImageError : undefined}
-								/>
-							</button>
-						);
-					}
-
-					return (
-						<button
-							key={imagePath}
-							type="button"
-							onClick={() => onOpenLightbox(imageIndex)}
-							className="absolute inset-0 cursor-zoom-in"
-						>
-							<DetailGalleryImage
-								assetPath={imagePath}
-								alt={imageAlt}
-								fill
-								sizes="(max-width: 1024px) 100vw, 50vw"
-								className="object-contain object-center"
-								onAssetError={onImageError}
-							/>
-						</button>
-					);
-				})}
+				<Image
+					src={encodePublicAssetPath(resolveDetailGalleryImagePath(allFacesImage))}
+					alt={compositeAlt}
+					fill
+					sizes="(max-width: 1024px) 100vw, 50vw"
+					className="ease-luxury object-contain object-center transition-transform duration-700 hover:scale-[1.01]"
+					onError={onImageError}
+				/>
 			</div>
 			<p className="text-footnote text-linen/45 mt-3 text-center font-sans">{productName}</p>
 		</div>
@@ -196,8 +143,10 @@ function DemoWorkCarouselPanel({
 							exampleNumber: activeDemoIndex + 1,
 						})}
 					>
-						<DetailGalleryImage
-							assetPath={activeDemoImage}
+						<Image
+							src={encodePublicAssetPath(
+								resolveDetailGalleryImagePath(activeDemoImage),
+							)}
 							alt={tDetail("demoWorkImageAlt", {
 								productName,
 								exampleNumber: activeDemoIndex + 1,
@@ -279,9 +228,6 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const [isDemoAutoPlayPaused, setIsDemoAutoPlayPaused] = useState(false);
 	const [isDemoLightboxOpen, setIsDemoLightboxOpen] = useState(false);
 	const [isCompositeLightboxOpen, setIsCompositeLightboxOpen] = useState(false);
-	const [compositeLightboxImagePath, setCompositeLightboxImagePath] = useState<string | null>(
-		null,
-	);
 	const [isCompositeImageVisible, setIsCompositeImageVisible] = useState(true);
 
 	const productName = tItems.has(`${product.slug}.name`)
@@ -292,8 +238,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const demoWorkCount = demoWorkImages.length;
 	const hasDemoWork = demoWorkCount > 0;
 	const hasMultipleDemoWork = demoWorkCount > 1;
-	const compositePreview = resolveCompositeGalleryPreview(product);
-	const hasComposite = compositePreview.images.length > 0 && isCompositeImageVisible;
+	const hasComposite = Boolean(product.allFacesImage) && isCompositeImageVisible;
 	const activeDemoImage = demoWorkImages[activeDemoIndex];
 	const hasDemoPanel = hasDemoWork && Boolean(activeDemoImage);
 
@@ -357,21 +302,6 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 		return () => window.clearInterval(intervalId);
 	}, [activeDemoIndex, demoWorkCount, hasMultipleDemoWork]);
 
-	const openCompositeLightbox = useCallback(
-		(imageIndex: number) => {
-			const imagePath = compositePreview.images[imageIndex];
-			if (!imagePath) return;
-			setCompositeLightboxImagePath(imagePath);
-			setIsCompositeLightboxOpen(true);
-		},
-		[compositePreview.images],
-	);
-
-	const closeCompositeLightbox = useCallback(() => {
-		setIsCompositeLightboxOpen(false);
-		setCompositeLightboxImagePath(null);
-	}, []);
-
 	if (!hasComposite && !hasDemoPanel) {
 		return null;
 	}
@@ -405,13 +335,12 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							: "grid-cols-1 justify-items-center",
 					)}
 				>
-					{hasComposite && (
+					{hasComposite && product.allFacesImage && (
 						<CompositeOverviewPanel
-							previewImages={compositePreview.images}
-							layout={compositePreview.layout}
+							allFacesImage={product.allFacesImage}
 							productName={productName}
 							compositeAlt={compositeAlt}
-							onOpenLightbox={openCompositeLightbox}
+							onOpenLightbox={() => setIsCompositeLightboxOpen(true)}
 							onImageError={() => setIsCompositeImageVisible(false)}
 							className={cn("w-full max-w-4xl", showSideBySide && "lg:max-w-none")}
 						/>
@@ -512,17 +441,17 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 					</motion.div>
 				)}
 
-				{isCompositeLightboxOpen && compositeLightboxImagePath && (
+				{isCompositeLightboxOpen && product.allFacesImage && (
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						onClick={closeCompositeLightbox}
+						onClick={() => setIsCompositeLightboxOpen(false)}
 						className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-default items-center justify-center p-6 backdrop-blur-md"
 					>
 						<button
 							type="button"
-							onClick={closeCompositeLightbox}
+							onClick={() => setIsCompositeLightboxOpen(false)}
 							className="text-linen hover:text-champagne absolute top-6 right-6 z-10 text-3xl font-light transition-colors"
 							aria-label={tDetail("lightboxClose")}
 						>
@@ -538,7 +467,7 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 						>
 							<ZoomableImage
 								src={encodePublicAssetPath(
-									resolveDetailGalleryImagePath(compositeLightboxImagePath),
+									resolveDetailGalleryImagePath(product.allFacesImage),
 								)}
 								alt={compositeAlt}
 								fill

@@ -98,7 +98,7 @@ function indoAssetBase(format: IndoProductFormat, skuCode: string): string {
 	return `/assets/${sizeFolder}/${indoFolderLabel(skuCode)}`;
 }
 
-function buildFaceImages(assetBase: string, skuCode: string, faceCount = 0): string[] {
+function buildFaceImages(assetBase: string, skuCode: string, faceCount = 1): string[] {
 	const facePaths = [`${assetBase}/${skuCode}.jpg`];
 	for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
 		facePaths.push(`${assetBase}/${skuCode}_F${faceIndex}.jpg`);
@@ -143,7 +143,7 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 		sizes: [...sizes],
 		thumbnailUrl: `${assetBase}/${seed.skuCode}.jpg`,
 		shortDescription: seed.shortDescription,
-		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount ?? 0),
+		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount ?? 1),
 		sceneImages: buildSceneImages(assetBase, seed.skuCode, seed.sceneCount ?? 1),
 		...(seed.hasFullFacesComposite ? { allFacesImage: compositeImage } : {}),
 	};

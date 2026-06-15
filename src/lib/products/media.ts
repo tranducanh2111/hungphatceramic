@@ -25,33 +25,6 @@ export function isProductDemoWorkImage(assetPath: string): boolean {
 	return false;
 }
 
-/** Wide composite sheets and panoramas — matches `requiresDetailWebp` in product-asset-paths.mjs. */
-function isPanoramaAssetPath(assetPath: string): boolean {
-	return /panorama/i.test(assetPath) || /Ảnh Panorama/i.test(assetPath);
-}
-
-function isCompositeFacesAssetPath(assetPath: string): boolean {
-	const fileName = assetPath.split("/").pop() ?? "";
-	return /faces|6 faces|6 FACES|FullFaces/i.test(fileName);
-}
-
-/** Only these registry assets get `.detail.webp` sidecars from `pnpm generate:detail-media`. */
-export function shouldPreferDetailGallerySidecar(assetPath: string): boolean {
-	if (assetPath.endsWith(".detail.webp")) {
-		return true;
-	}
-	if (isProductDemoWorkImage(assetPath)) {
-		return true;
-	}
-	if (isPanoramaAssetPath(assetPath)) {
-		return true;
-	}
-	if (isCompositeFacesAssetPath(assetPath)) {
-		return true;
-	}
-	return false;
-}
-
 /** Order: base PC file first, then numeric suffixes (`-1`, `PC1-`, `PC2-`, …). */
 function compareDemoWorkAssetPaths(pathA: string, pathB: string): number {
 	const fileNameA = pathA.split("/").pop() ?? "";
@@ -131,13 +104,9 @@ export function getListingDemoWorkPreviewPath(assetPath: string): string {
 	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
 }
 
-/** Resolves gallery paths to `.detail.webp` only when a sidecar is expected; otherwise canonical registry path. */
+/** Resolves gallery/panorama paths to `.detail.webp` sidecars; registry keeps canonical JPG/PNG. */
 export function resolveDetailGalleryImagePath(assetPath: string): string {
 	if (assetPath.endsWith(".detail.webp")) {
-		return assetPath;
-	}
-
-	if (!shouldPreferDetailGallerySidecar(assetPath)) {
 		return assetPath;
 	}
 
@@ -152,33 +121,4 @@ export function resolveListingDemoWorkHoverPath(
 	}
 
 	return getListingDemoWorkPreviewPath(demoWorkAssetPath);
-}
-
-/** Max face tiles before we prefer the wide FullFaces composite sheet. */
-const FEW_FACE_COMPOSITE_MAX = 3;
-
-export type CompositeGalleryLayout = "faces" | "strip";
-
-export interface CompositeGalleryPreview {
-	images: string[];
-	layout: CompositeGalleryLayout;
-}
-
-/**
- * Few-face SKUs often ship a FullFaces sheet with one tile and excess canvas —
- * show individual face tiles centered instead of the composite sheet.
- */
-export function resolveCompositeGalleryPreview(product: ProductDetail): CompositeGalleryPreview {
-	const composite = product.allFacesImage;
-	const uniqueFaceImages = [...new Set(product.faceImages)];
-
-	if (!composite) {
-		return { images: [], layout: "strip" };
-	}
-
-	if (uniqueFaceImages.length > 0 && uniqueFaceImages.length <= FEW_FACE_COMPOSITE_MAX) {
-		return { images: uniqueFaceImages, layout: "faces" };
-	}
-
-	return { images: [composite], layout: "strip" };
 }

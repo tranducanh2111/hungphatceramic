@@ -76,8 +76,7 @@ function LogoMark({ isScrolled }: LogoMarkProps) {
 		>
 			{isDesktopNav ? (
 				<motion.div
-					style={{ aspectRatio: LOGO_ASPECT_RATIO, height: logoHeight }}
-					initial={{ height: logoHeight }}
+					style={{ aspectRatio: LOGO_ASPECT_RATIO }}
 					animate={{ height: logoHeight }}
 					transition={NAVBAR_MOTION_TRANSITION}
 					className="relative shrink-0"
@@ -86,8 +85,8 @@ function LogoMark({ isScrolled }: LogoMarkProps) {
 				</motion.div>
 			) : (
 				<div
-					style={{ aspectRatio: LOGO_ASPECT_RATIO }}
-					className="relative h-14 shrink-0"
+					style={{ aspectRatio: LOGO_ASPECT_RATIO, height: LOGO_HEIGHT_EXPANDED }}
+					className="relative shrink-0"
 				>
 					<LogoImage />
 				</div>
