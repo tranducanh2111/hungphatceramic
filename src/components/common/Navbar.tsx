@@ -1,19 +1,62 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { ROUTES } from "@/constants/routes";
 import { IconSvg } from "@/components/icons";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
+import { useAppScroll } from "@/hooks/useAppScroll";
+
+// ─── Navbar constants ─────────────────────────────────────────────────────────
+
+/** CSS aspect-ratio for `LOGO_PATHS.small` (177×96 px PNG). Width auto-computes from height. */
+const LOGO_ASPECT_RATIO = "177 / 96";
+const LOGO_HEIGHT_EXPANDED = 56;
+const LOGO_HEIGHT_SHRUNK = 44;
+
+const NAV_SCROLL_THRESHOLD = 40; //   scroll depth (px) that triggers the shrink state
+const NAV_PADDING_X_EXPANDED = 24; // wider pill at top of page
+const NAV_PADDING_X_SHRUNK = 12; // compact pill when scrolled
+const NAV_MAX_WIDTH = 1440;
+const NAV_OUTER_GAP = 32;
+const NAV_CONTENT_GAP = 32;
+const NAV_SHRINK_BUFFER = 24; // extra room so CTA + locale never clip the pill edge
+
+/** Sum visible flex children + gaps — reliable regardless of justify-between. */
+function measureVisibleContentWidth(contentEl: HTMLDivElement): number {
+	const visibleChildren = Array.from(contentEl.children).filter(
+		(child): child is HTMLElement =>
+			child instanceof HTMLElement && child.getBoundingClientRect().width > 0,
+	);
+
+	if (visibleChildren.length === 0) return 0;
+
+	const itemsWidth = visibleChildren.reduce(
+		(total, child) => total + child.getBoundingClientRect().width,
+		0,
+	);
+
+	return Math.ceil(itemsWidth + NAV_CONTENT_GAP * (visibleChildren.length - 1));
+}
 
 // ─── Logo Mark ────────────────────────────────────────────────────────────────
 
-function LogoMark() {
+const NAVBAR_MOTION_TRANSITION = {
+	type: "tween",
+	duration: 1,
+	ease: [0.22, 1, 0.36, 1],
+} as const;
+
+interface LogoMarkProps {
+	isScrolled: boolean;
+}
+
+function LogoMark({ isScrolled }: LogoMarkProps) {
 	const t = useTranslations("common");
 
 	return (
@@ -22,15 +65,21 @@ function LogoMark() {
 			aria-label={t("logoAriaLabel")}
 			className="group flex shrink-0 items-center"
 		>
-			<Image
-				src={LOGO_PATHS.small}
-				alt={t("logoAlt")}
-				width={240}
-				height={67}
-				priority
-				sizes="(max-width: 768px) 180px, 220px"
-				className="h-auto max-h-11 w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
-			/>
+			<motion.div
+				style={{ aspectRatio: LOGO_ASPECT_RATIO }}
+				animate={{ height: isScrolled ? LOGO_HEIGHT_SHRUNK : LOGO_HEIGHT_EXPANDED }}
+				transition={NAVBAR_MOTION_TRANSITION}
+				className="relative shrink-0"
+			>
+				<Image
+					src={LOGO_PATHS.small}
+					alt={t("logoAlt")}
+					fill
+					priority
+					sizes="(max-width: 768px) 200px, 260px"
+					className="object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
+				/>
+			</motion.div>
 		</Link>
 	);
 }
@@ -45,33 +94,19 @@ function LogoMark() {
 export function Navbar() {
 	const t = useTranslations("navbar");
 	const pathname = usePathname();
+	const { scrollY } = useAppScroll();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const navRef = useRef<HTMLElement>(null);
 	const navContentRef = useRef<HTMLDivElement>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(1440);
-	const [shrinkWidthPx, setShrinkWidthPx] = useState(760);
+	const [expandedWidthPx, setExpandedWidthPx] = useState(NAV_MAX_WIDTH);
+	const [shrinkWidthPx, setShrinkWidthPx] = useState(800);
 	const navItems = [
 		{ href: ROUTES.home, label: t("links.home") },
 		{ href: ROUTES.about, label: t("links.about") },
 		{ href: ROUTES.products, label: t("links.products") },
 		{ href: ROUTES.projects, label: t("links.projects") },
 	];
-
-	const NAV_MAX_EXPANDED_PX = 1440; // 64rem
-	const NAV_OUTER_SIDE_GAP_PX = 32; // fixed wrapper has px-4 on both sides
-	const NAV_HORIZONTAL_PADDING_PX = 24; // nav has px-3 => 12px each side
-	const NAV_SHRINK_BUFFER_PX = 12; // safety buffer to prevent text wrapping at fit width
-
-	const getCurrentScrollY = (): number => {
-		if (typeof window === "undefined") return 0;
-		return Math.max(
-			window.scrollY,
-			window.pageYOffset,
-			document.documentElement.scrollTop,
-			document.body.scrollTop,
-			0,
-		);
-	};
 
 	// Close mobile menu on route change
 	useEffect(() => {
@@ -81,99 +116,91 @@ export function Navbar() {
 		return () => cancelAnimationFrame(frameId);
 	}, [pathname]);
 
-	// Scroll threshold: only toggles between two stable width states
+	// Lenis owns scroll — use Framer's scrollY (same pattern as ScrollToTopButton).
+	useMotionValueEvent(scrollY, "change", (latest) => {
+		const nextScrolled = latest > NAV_SCROLL_THRESHOLD;
+		setIsScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+	});
+
 	useEffect(() => {
-		const updateScrolledState = () => {
-			const nextScrolled = getCurrentScrollY() > 40;
-			setIsScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
-		};
+		setIsScrolled(scrollY.get() > NAV_SCROLL_THRESHOLD);
+	}, [scrollY]);
 
-		const handleScroll = () => {
-			updateScrolledState();
-		};
+	/**
+	 * Derives both target widths from the current DOM.
+	 * Uses visible-child summation (not max-content) so justify-between never skews the read.
+	 */
+	const recalcWidths = useCallback(() => {
+		const contentEl = navContentRef.current;
+		const navEl = navRef.current;
+		if (!contentEl) return;
 
-		// Sync immediately in case user reloads mid-page.
-		updateScrolledState();
-		window.addEventListener("scroll", handleScroll, { passive: true });
-		return () => window.removeEventListener("scroll", handleScroll);
+		setExpandedWidthPx(
+			Math.min(NAV_MAX_WIDTH, Math.max(320, window.innerWidth - NAV_OUTER_GAP)),
+		);
+
+		const contentWidth = measureVisibleContentWidth(contentEl);
+		let nextShrinkWidth = Math.max(
+			320,
+			contentWidth + 2 * NAV_PADDING_X_SHRUNK + NAV_SHRINK_BUFFER,
+		);
+
+		// When already shrunk, scrollWidth catches any content we still underestimated.
+		if (navEl && navEl.scrollWidth > navEl.clientWidth + 1) {
+			nextShrinkWidth = Math.max(nextShrinkWidth, navEl.scrollWidth + NAV_SHRINK_BUFFER);
+		}
+
+		setShrinkWidthPx(nextShrinkWidth);
 	}, []);
 
-	// Measure both targets so animation is numeric (no `auto` width jitter).
-	useEffect(() => {
-		const measureIntrinsicContentWidth = (): number => {
-			const contentEl = navContentRef.current;
-			if (!contentEl) return 0;
+	// Re-measure when scroll state or route changes (logo size / labels shift width).
+	useLayoutEffect(() => {
+		recalcWidths();
+	}, [recalcWidths, isScrolled, pathname]);
 
-			// Measure the row at max-content so "shrink" uses true intrinsic width,
-			// not the stretched width inherited from the expanded container.
-			const prevWidth = contentEl.style.width;
-			const prevMaxWidth = contentEl.style.maxWidth;
-			contentEl.style.width = "max-content";
-			contentEl.style.maxWidth = "none";
-			const width = Math.ceil(contentEl.getBoundingClientRect().width);
-			contentEl.style.width = prevWidth;
-			contentEl.style.maxWidth = prevMaxWidth;
-			return width;
-		};
+	// Keep shrink width in sync with font load, viewport resize, and content reflow.
+	useLayoutEffect(() => {
+		const contentEl = navContentRef.current;
+		if (!contentEl) return;
 
-		const recalcTargets = () => {
-			const viewportWidth = window.innerWidth;
-			const nextExpandedWidth = Math.min(
-				NAV_MAX_EXPANDED_PX,
-				Math.max(320, viewportWidth - NAV_OUTER_SIDE_GAP_PX),
-			);
-			setExpandedWidthPx(nextExpandedWidth);
+		const resizeObserver = new ResizeObserver(recalcWidths);
+		const observeTarget = (target: Element) => resizeObserver.observe(target);
 
-			const contentWidth = measureIntrinsicContentWidth();
-			const nextShrinkWidth = Math.min(
-				nextExpandedWidth,
-				Math.max(
-					300,
-					Math.ceil(contentWidth + NAV_HORIZONTAL_PADDING_PX + NAV_SHRINK_BUFFER_PX),
-				),
-			);
-			setShrinkWidthPx(nextShrinkWidth);
-		};
+		observeTarget(contentEl);
+		Array.from(contentEl.children).forEach(observeTarget);
 
-		recalcTargets();
-		window.addEventListener("resize", recalcTargets);
+		void document.fonts.ready.then(recalcWidths);
+		window.addEventListener("resize", recalcWidths);
 
 		return () => {
-			window.removeEventListener("resize", recalcTargets);
+			resizeObserver.disconnect();
+			window.removeEventListener("resize", recalcWidths);
 		};
-	}, []);
-
-	const pillBaseClasses = cn(
-		/* Allow locale dropdown to extend below the pill (was clipped by overflow-hidden). */
-		"overflow-visible",
-		"rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl",
-		"shadow-[0_8px_32px_rgba(7,26,43,0.5)]",
-		"px-3 py-3 pointer-events-auto mx-auto",
-	);
+	}, [recalcWidths]);
 
 	return (
 		<>
 			{/* ── Fixed pill container ─────────────────────────────────────────── */}
 			<div className="pointer-events-none fixed top-5 right-0 left-0 z-50 flex justify-center px-4">
 				<motion.nav
+					ref={navRef}
 					aria-label={t("aria.mainNavigation")}
-					className={pillBaseClasses}
-					initial={false}
-					animate={{ width: isScrolled ? shrinkWidthPx : expandedWidthPx }}
-					transition={{
-						type: "tween",
-						duration: 1,
-						ease: [0.22, 1, 0.36, 1],
+					className="overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto"
+					animate={{
+						width: isScrolled ? shrinkWidthPx : expandedWidthPx,
+						paddingLeft: isScrolled ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
+						paddingRight: isScrolled ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
 					}}
+					transition={NAVBAR_MOTION_TRANSITION}
 				>
 					<div
 						ref={navContentRef}
 						className="flex min-w-0 flex-nowrap items-center justify-between gap-8 whitespace-nowrap"
 					>
-						<LogoMark />
+						<LogoMark isScrolled={isScrolled} />
 
 						{/* ── Desktop links ──────────────────────────────────────────── */}
-						<ul className="hidden items-center gap-8 lg:flex" role="list">
+						<ul className="hidden shrink-0 items-center gap-8 lg:flex" role="list">
 							{navItems.map(({ label, href }) => {
 								const isActive =
 									href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -205,7 +232,7 @@ export function Navbar() {
 						</ul>
 
 						{/* ── CTA + Mobile toggle ────────────────────────────────────── */}
-						<div className="flex items-center gap-3">
+						<div className="flex shrink-0 items-center gap-3">
 							<Link
 								href={ROUTES.contact}
 								className={cn(
