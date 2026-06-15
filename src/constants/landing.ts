@@ -127,7 +127,8 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 				"100×100cm",
 				"120×120cm",
 			]),
-			...sizePreviews("100×100cm", "/assets/100X100/INDO GS881042/GS881042.jpg", [
+			...sizePreviews("80×80cm", "/assets/80X80/INDO GS881042/GS881042.jpg", [
+				"100×100cm",
 				"120×120cm",
 			]),
 		],
