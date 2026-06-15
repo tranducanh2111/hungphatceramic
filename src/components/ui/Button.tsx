@@ -90,6 +90,17 @@ export function Button(props: ButtonProps) {
 		className,
 	);
 
+	const shimmerLabelClass = cn(
+		"button-shimmer-label",
+		variant === "primary" && "button-shimmer-label-inverse",
+	);
+
+	const content = withShimmer ? (
+		<span className={shimmerLabelClass}>{children}</span>
+	) : (
+		children
+	);
+
 	/* ── Link variant ───────────────────────────────────────────────────────── */
 	if ("href" in rest && rest.href) {
 		const { href, external, ...anchorRest } = rest as LinkButtonProps;
@@ -104,14 +115,14 @@ export function Button(props: ButtonProps) {
 					{...(!isHash ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 					{...anchorRest}
 				>
-					{children}
+					{content}
 				</a>
 			);
 		}
 
 		return (
 			<Link href={href} className={baseStyles} {...anchorRest}>
-				{children}
+				{content}
 			</Link>
 		);
 	}
@@ -121,7 +132,7 @@ export function Button(props: ButtonProps) {
 
 	return (
 		<button type="button" className={baseStyles} {...buttonRest}>
-			{children}
+			{content}
 		</button>
 	);
 }
