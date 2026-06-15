@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence, useMotionValueEvent } from "framer-motion";
@@ -11,6 +11,7 @@ import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 import { useAppScroll } from "@/hooks/useAppScroll";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // ─── Navbar constants ─────────────────────────────────────────────────────────
 
@@ -20,6 +21,9 @@ const LOGO_HEIGHT_EXPANDED = 56;
 const LOGO_HEIGHT_SHRUNK = 44;
 
 const NAV_SCROLL_THRESHOLD = 40; //   scroll depth (px) that triggers the shrink state
+const NAV_SCROLL_ENTER_THRESHOLD = 56; // hysteresis — avoids flicker near page top
+const NAV_SCROLL_EXIT_THRESHOLD = 12;
+const DESKTOP_NAV_QUERY = "(min-width: 1024px)"; // Tailwind `lg`
 const NAV_PADDING_X_EXPANDED = 24; // wider pill at top of page
 const NAV_PADDING_X_SHRUNK = 12; // compact pill when scrolled
 const NAV_MAX_WIDTH = 1440;
@@ -52,12 +56,17 @@ const NAVBAR_MOTION_TRANSITION = {
 	ease: [0.22, 1, 0.36, 1],
 } as const;
 
+const NAV_PILL_BASE_CLASS =
+	"overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/95 shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto lg:bg-[#071A2B]/70 lg:backdrop-blur-xl";
+
 interface LogoMarkProps {
 	isScrolled: boolean;
 }
 
 function LogoMark({ isScrolled }: LogoMarkProps) {
 	const t = useTranslations("common");
+	const isDesktopNav = useMediaQuery(DESKTOP_NAV_QUERY);
+	const logoHeight = isScrolled ? LOGO_HEIGHT_SHRUNK : LOGO_HEIGHT_EXPANDED;
 
 	return (
 		<Link
@@ -65,71 +74,96 @@ function LogoMark({ isScrolled }: LogoMarkProps) {
 			aria-label={t("logoAriaLabel")}
 			className="group flex shrink-0 items-center"
 		>
-			<motion.div
-				style={{ aspectRatio: LOGO_ASPECT_RATIO }}
-				animate={{ height: isScrolled ? LOGO_HEIGHT_SHRUNK : LOGO_HEIGHT_EXPANDED }}
-				transition={NAVBAR_MOTION_TRANSITION}
-				className="relative shrink-0"
-			>
-				<Image
-					src={LOGO_PATHS.small}
-					alt={t("logoAlt")}
-					fill
-					priority
-					sizes="(max-width: 768px) 200px, 260px"
-					className="object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
-				/>
-			</motion.div>
+			{isDesktopNav ? (
+				<motion.div
+					style={{ aspectRatio: LOGO_ASPECT_RATIO }}
+					animate={{ height: logoHeight }}
+					transition={NAVBAR_MOTION_TRANSITION}
+					className="relative shrink-0"
+				>
+					<LogoImage />
+				</motion.div>
+			) : (
+				<div
+					style={{ aspectRatio: LOGO_ASPECT_RATIO, height: LOGO_HEIGHT_EXPANDED }}
+					className="relative shrink-0"
+				>
+					<LogoImage />
+				</div>
+			)}
 		</Link>
 	);
 }
 
-// ─── Main Navbar ─────────────────────────────────────────────────────────────
+function LogoImage() {
+	const t = useTranslations("common");
 
-/**
- * Navbar — Premium pill-shaped navigation.
- * Starts full-width and shrinks smoothly on scroll.
- * Auto-closes mobile menu on route change.
- */
-export function Navbar() {
-	const t = useTranslations("navbar");
-	const pathname = usePathname();
+	return (
+		<Image
+			src={LOGO_PATHS.small}
+			alt={t("logoAlt")}
+			fill
+			priority
+			sizes="(max-width: 768px) 200px, 260px"
+			className="object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
+		/>
+	);
+}
+
+interface NavbarDesktopScrollListenerProps {
+	onScrolledChange: (isScrolled: boolean) => void;
+}
+
+/** Desktop-only scroll subscription — avoids Framer scroll work on mobile. */
+function NavbarDesktopScrollListener({ onScrolledChange }: NavbarDesktopScrollListenerProps) {
 	const { scrollY } = useAppScroll();
-	const [isScrolled, setIsScrolled] = useState(false);
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const navRef = useRef<HTMLElement>(null);
-	const navContentRef = useRef<HTMLDivElement>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(NAV_MAX_WIDTH);
-	const [shrinkWidthPx, setShrinkWidthPx] = useState(800);
-	const navItems = [
-		{ href: ROUTES.home, label: t("links.home") },
-		{ href: ROUTES.about, label: t("links.about") },
-		{ href: ROUTES.products, label: t("links.products") },
-		{ href: ROUTES.projects, label: t("links.projects") },
-	];
+	const isScrolledRef = useRef(false);
 
-	// Close mobile menu on route change
-	useEffect(() => {
-		const frameId = requestAnimationFrame(() => {
-			setIsMobileMenuOpen(false);
-		});
-		return () => cancelAnimationFrame(frameId);
-	}, [pathname]);
-
-	// Lenis owns scroll — use Framer's scrollY (same pattern as ScrollToTopButton).
 	useMotionValueEvent(scrollY, "change", (latest) => {
-		const nextScrolled = latest > NAV_SCROLL_THRESHOLD;
-		setIsScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+		const prev = isScrolledRef.current;
+		let next = prev;
+
+		if (!prev && latest > NAV_SCROLL_ENTER_THRESHOLD) {
+			next = true;
+		} else if (prev && latest < NAV_SCROLL_EXIT_THRESHOLD) {
+			next = false;
+		}
+
+		if (next !== prev) {
+			isScrolledRef.current = next;
+			onScrolledChange(next);
+		}
 	});
 
 	useEffect(() => {
-		setIsScrolled(scrollY.get() > NAV_SCROLL_THRESHOLD);
-	}, [scrollY]);
+		const initial = scrollY.get() > NAV_SCROLL_THRESHOLD;
+		isScrolledRef.current = initial;
+		onScrolledChange(initial);
+	}, [onScrolledChange, scrollY]);
 
-	/**
-	 * Derives both target widths from the current DOM.
-	 * Uses visible-child summation (not max-content) so justify-between never skews the read.
-	 */
+	return null;
+}
+
+interface NavbarDesktopPillProps {
+	ariaLabel: string;
+	navIsCompact: boolean;
+	pathname: string;
+	children: React.ReactNode;
+}
+
+/** Desktop pill with measured width animation — effects only mount at lg+. */
+function NavbarDesktopPill({
+	ariaLabel,
+	navIsCompact,
+	pathname,
+	children,
+}: NavbarDesktopPillProps) {
+	const navRef = useRef<HTMLElement>(null);
+	const navContentRef = useRef<HTMLDivElement>(null);
+	const recalcFrameRef = useRef<number | null>(null);
+	const [expandedWidthPx, setExpandedWidthPx] = useState(NAV_MAX_WIDTH);
+	const [shrinkWidthPx, setShrinkWidthPx] = useState(800);
+
 	const recalcWidths = useCallback(() => {
 		const contentEl = navContentRef.current;
 		const navEl = navRef.current;
@@ -145,7 +179,6 @@ export function Navbar() {
 			contentWidth + 2 * NAV_PADDING_X_SHRUNK + NAV_SHRINK_BUFFER,
 		);
 
-		// When already shrunk, scrollWidth catches any content we still underestimated.
 		if (navEl && navEl.scrollWidth > navEl.clientWidth + 1) {
 			nextShrinkWidth = Math.max(nextShrinkWidth, navEl.scrollWidth + NAV_SHRINK_BUFFER);
 		}
@@ -153,127 +186,199 @@ export function Navbar() {
 		setShrinkWidthPx(nextShrinkWidth);
 	}, []);
 
-	// Re-measure when scroll state or route changes (logo size / labels shift width).
-	useLayoutEffect(() => {
-		recalcWidths();
-	}, [recalcWidths, isScrolled, pathname]);
+	const scheduleRecalcWidths = useCallback(() => {
+		if (recalcFrameRef.current !== null) {
+			cancelAnimationFrame(recalcFrameRef.current);
+		}
 
-	// Keep shrink width in sync with font load, viewport resize, and content reflow.
+		recalcFrameRef.current = requestAnimationFrame(() => {
+			recalcFrameRef.current = null;
+			recalcWidths();
+		});
+	}, [recalcWidths]);
+
+	useLayoutEffect(() => {
+		scheduleRecalcWidths();
+	}, [scheduleRecalcWidths, navIsCompact, pathname]);
+
 	useLayoutEffect(() => {
 		const contentEl = navContentRef.current;
 		if (!contentEl) return;
 
-		const resizeObserver = new ResizeObserver(recalcWidths);
+		scheduleRecalcWidths();
+
+		const resizeObserver = new ResizeObserver(scheduleRecalcWidths);
 		const observeTarget = (target: Element) => resizeObserver.observe(target);
 
 		observeTarget(contentEl);
 		Array.from(contentEl.children).forEach(observeTarget);
 
-		void document.fonts.ready.then(recalcWidths);
-		window.addEventListener("resize", recalcWidths);
+		void document.fonts.ready.then(scheduleRecalcWidths);
+		window.addEventListener("resize", scheduleRecalcWidths);
 
 		return () => {
+			if (recalcFrameRef.current !== null) {
+				cancelAnimationFrame(recalcFrameRef.current);
+			}
 			resizeObserver.disconnect();
-			window.removeEventListener("resize", recalcWidths);
+			window.removeEventListener("resize", scheduleRecalcWidths);
 		};
-	}, [recalcWidths]);
+	}, [scheduleRecalcWidths]);
+
+	return (
+		<motion.nav
+			ref={navRef}
+			aria-label={ariaLabel}
+			className={NAV_PILL_BASE_CLASS}
+			animate={{
+				width: navIsCompact ? shrinkWidthPx : expandedWidthPx,
+				paddingLeft: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
+				paddingRight: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
+			}}
+			transition={NAVBAR_MOTION_TRANSITION}
+		>
+			<div
+				ref={navContentRef}
+				className="flex min-w-0 flex-nowrap items-center justify-between gap-8 whitespace-nowrap"
+			>
+				{children}
+			</div>
+		</motion.nav>
+	);
+}
+
+// ─── Main Navbar ─────────────────────────────────────────────────────────────
+
+/**
+ * Navbar — Premium pill-shaped navigation.
+ * Starts full-width and shrinks smoothly on scroll.
+ * Auto-closes mobile menu on route change.
+ */
+export function Navbar() {
+	const t = useTranslations("navbar");
+	const pathname = usePathname();
+	const isDesktopNav = useMediaQuery(DESKTOP_NAV_QUERY);
+	const [isScrolled, setIsScrolled] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const navIsCompact = isDesktopNav && isScrolled;
+
+	const handleDesktopScrolledChange = useCallback((nextScrolled: boolean) => {
+		setIsScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+	}, []);
+	const navItems = [
+		{ href: ROUTES.home, label: t("links.home") },
+		{ href: ROUTES.about, label: t("links.about") },
+		{ href: ROUTES.products, label: t("links.products") },
+		{ href: ROUTES.projects, label: t("links.projects") },
+	];
+
+	// Close mobile menu on route change
+	useEffect(() => {
+		const frameId = requestAnimationFrame(() => {
+			setIsMobileMenuOpen(false);
+		});
+		return () => cancelAnimationFrame(frameId);
+	}, [pathname]);
+
+	const navPillContent: ReactNode = (
+		<>
+			<LogoMark isScrolled={navIsCompact} />
+
+			{/* ── Desktop links ──────────────────────────────────────────── */}
+			<ul className="hidden shrink-0 items-center gap-8 lg:flex" role="list">
+				{navItems.map(({ label, href }) => {
+					const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+					return (
+						<li key={href}>
+							<Link
+								href={href}
+								data-active={isActive}
+								className={cn(
+									"group text-body-sm relative font-sans font-light tracking-[0.12em] whitespace-nowrap uppercase",
+									"transition-colors duration-300",
+									isActive
+										? "text-[#D4B886]"
+										: "text-[#F4F4F6]/60 hover:text-[#F4F4F6]",
+								)}
+							>
+								{label}
+								<span
+									className={cn(
+										"absolute -bottom-0.5 left-0 h-px bg-[#D4B886] transition-all duration-300",
+										isActive ? "w-full" : "w-0 group-hover:w-full",
+									)}
+								/>
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+
+			{/* ── CTA + Mobile toggle ────────────────────────────────────── */}
+			<div className="flex shrink-0 items-center gap-3">
+				<Link
+					href={ROUTES.contact}
+					className={cn(
+						"hidden items-center justify-center lg:inline-flex",
+						"rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
+						"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-[#D4B886] uppercase",
+						"px-5 py-1.5 transition-all duration-300 ease-in-out",
+						"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
+						"button-border-shimmer",
+					)}
+				>
+					{t("cta.bookConsultation")}
+				</Link>
+				<LocaleSwitcher className="hidden lg:block" />
+
+				<button
+					type="button"
+					onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+					aria-label={isMobileMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")}
+					aria-expanded={isMobileMenuOpen}
+					className={cn(
+						"flex items-center justify-center lg:hidden",
+						"rounded-full border border-[#D4B886]/20 text-[#F4F4F6]/70",
+						"transition-all duration-300 hover:border-[#D4B886]/50 hover:text-[#D4B886]",
+						"pointer-events-auto h-8 w-8",
+					)}
+				>
+					<IconSvg
+						src={isMobileMenuOpen ? ICON_PATHS.ui.close : ICON_PATHS.ui.menu}
+						alt=""
+						size={16}
+					/>
+				</button>
+			</div>
+		</>
+	);
 
 	return (
 		<>
+			{isDesktopNav && (
+				<NavbarDesktopScrollListener onScrolledChange={handleDesktopScrolledChange} />
+			)}
+
 			{/* ── Fixed pill container ─────────────────────────────────────────── */}
 			<div className="pointer-events-none fixed top-5 right-0 left-0 z-50 flex justify-center px-4">
-				<motion.nav
-					ref={navRef}
-					aria-label={t("aria.mainNavigation")}
-					className="overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto"
-					animate={{
-						width: isScrolled ? shrinkWidthPx : expandedWidthPx,
-						paddingLeft: isScrolled ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
-						paddingRight: isScrolled ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
-					}}
-					transition={NAVBAR_MOTION_TRANSITION}
-				>
-					<div
-						ref={navContentRef}
-						className="flex min-w-0 flex-nowrap items-center justify-between gap-8 whitespace-nowrap"
+				{isDesktopNav ? (
+					<NavbarDesktopPill
+						ariaLabel={t("aria.mainNavigation")}
+						navIsCompact={navIsCompact}
+						pathname={pathname}
 					>
-						<LogoMark isScrolled={isScrolled} />
-
-						{/* ── Desktop links ──────────────────────────────────────────── */}
-						<ul className="hidden shrink-0 items-center gap-8 lg:flex" role="list">
-							{navItems.map(({ label, href }) => {
-								const isActive =
-									href === "/" ? pathname === "/" : pathname.startsWith(href);
-								return (
-									<li key={href}>
-										<Link
-											href={href}
-											data-active={isActive}
-											className={cn(
-												"group text-body-sm relative font-sans font-light tracking-[0.12em] whitespace-nowrap uppercase",
-												"transition-colors duration-300",
-												isActive
-													? "text-[#D4B886]"
-													: "text-[#F4F4F6]/60 hover:text-[#F4F4F6]",
-											)}
-										>
-											{label}
-											{/* Animated underline */}
-											<span
-												className={cn(
-													"absolute -bottom-0.5 left-0 h-px bg-[#D4B886] transition-all duration-300",
-													isActive ? "w-full" : "w-0 group-hover:w-full",
-												)}
-											/>
-										</Link>
-									</li>
-								);
-							})}
-						</ul>
-
-						{/* ── CTA + Mobile toggle ────────────────────────────────────── */}
-						<div className="flex shrink-0 items-center gap-3">
-							<Link
-								href={ROUTES.contact}
-								className={cn(
-									"hidden items-center justify-center lg:inline-flex",
-									"rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
-									"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-[#D4B886] uppercase",
-									"px-5 py-1.5 transition-all duration-300 ease-in-out",
-									"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
-									"button-border-shimmer",
-								)}
-							>
-								{t("cta.bookConsultation")}
-							</Link>
-							<LocaleSwitcher className="hidden lg:block" />
-
-							{/* Mobile menu toggle */}
-							<button
-								type="button"
-								onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-								aria-label={
-									isMobileMenuOpen ? t("aria.closeMenu") : t("aria.openMenu")
-								}
-								aria-expanded={isMobileMenuOpen}
-								className={cn(
-									"flex items-center justify-center lg:hidden",
-									"rounded-full border border-[#D4B886]/20 text-[#F4F4F6]/70",
-									"transition-all duration-300 hover:border-[#D4B886]/50 hover:text-[#D4B886]",
-									"pointer-events-auto h-8 w-8",
-								)}
-							>
-								<IconSvg
-									src={
-										isMobileMenuOpen ? ICON_PATHS.ui.close : ICON_PATHS.ui.menu
-									}
-									alt=""
-									size={16}
-								/>
-							</button>
+						{navPillContent}
+					</NavbarDesktopPill>
+				) : (
+					<nav
+						aria-label={t("aria.mainNavigation")}
+						className={cn(NAV_PILL_BASE_CLASS, "w-full px-6")}
+					>
+						<div className="flex min-w-0 flex-nowrap items-center justify-between gap-8 whitespace-nowrap">
+							{navPillContent}
 						</div>
-					</div>
-				</motion.nav>
+					</nav>
+				)}
 			</div>
 
 			{/* ── Mobile dropdown ──────────────────────────────────────────────── */}

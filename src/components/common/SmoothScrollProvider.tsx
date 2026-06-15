@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode }
 import { ReactLenis, type LenisRef } from "lenis/react";
 import { cancelFrame, frame } from "framer-motion";
 import { ScrollToTopOnNavigate } from "@/components/common/ScrollToTopOnNavigate";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface SmoothScrollProviderProps {
 	children: ReactNode;
@@ -20,13 +21,15 @@ export function useLenisControls(): LenisControls | null {
 	return useContext(LenisContext);
 }
 
+/** Matches Tailwind `lg` — smooth Lenis is desktop-only; mobile uses native scroll. */
+const DESKTOP_SMOOTH_SCROLL_QUERY = "(min-width: 1024px)";
+
 const LENIS_OPTIONS = {
 	autoRaf: false,
 	duration: 1.3,
 	easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 	smoothWheel: true,
 	wheelMultiplier: 1,
-	touchMultiplier: 2,
 	infinite: false,
 } as const;
 
@@ -69,6 +72,7 @@ if (typeof window !== "undefined") {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 	const lenisRef = useRef<LenisRef>(null);
+	const shouldUseLenis = useMediaQuery(DESKTOP_SMOOTH_SCROLL_QUERY);
 
 	const lenisControls = useMemo<LenisControls>(
 		() => ({
@@ -78,6 +82,15 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 		}),
 		[],
 	);
+
+	if (!shouldUseLenis) {
+		return (
+			<LenisContext.Provider value={lenisControls}>
+				<ScrollToTopOnNavigate />
+				{children}
+			</LenisContext.Provider>
+		);
+	}
 
 	return (
 		<LenisContext.Provider value={lenisControls}>

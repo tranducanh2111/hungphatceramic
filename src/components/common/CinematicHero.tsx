@@ -14,6 +14,7 @@ import {
 } from "@/constants/hero";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useCinematicHeroClip } from "@/hooks/useCinematicHeroClip";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/cn";
 
@@ -43,6 +44,9 @@ interface CinematicHeroContentProps {
 	children?: ReactNode;
 	childrenClassName?: string;
 }
+
+
+const DESKTOP_HERO_QUERY = "(min-width: 1024px)";
 
 function CinematicHeroContent({
 	eyebrow,
@@ -124,8 +128,71 @@ function CinematicHeroContent({
 	);
 }
 
-/** Shared cinematic scroll-clip hero shell for landing, about, contact, and projects. */
-export function CinematicHero({
+/** Full-viewport hero without scroll-linked clip — avoids mobile scroll jank. */
+function CinematicHeroStatic({
+	videoSrc,
+	posterSrc,
+	posterAlt,
+	titleLine1,
+	titleLine2,
+	eyebrow,
+	eyebrowVariant = "default",
+	description,
+	children,
+	childrenClassName,
+	scrollLabel,
+	className,
+}: CinematicHeroProps) {
+	const heroContent = (
+		<CinematicHeroContent
+			eyebrow={eyebrow}
+			eyebrowVariant={eyebrowVariant}
+			titleLine1={titleLine1}
+			titleLine2={titleLine2}
+			description={description}
+			childrenClassName={childrenClassName}
+		>
+			{children}
+		</CinematicHeroContent>
+	);
+
+	return (
+		<section className={cn("bg-sapphire-deep relative min-h-[100dvh] w-full", className)}>
+			<div className={CINEMATIC_HERO_RADIAL_CLASS} aria-hidden="true" />
+
+			<div className="absolute inset-0 z-0 overflow-hidden">
+				<div className="bg-sapphire-deep absolute inset-0" />
+				<CinematicHeroVideo
+					videoSrc={videoSrc}
+					posterSrc={posterSrc}
+					posterAlt={posterAlt}
+					prefersReducedMotion={false}
+					useMotionVideo={false}
+				/>
+				<div className={CINEMATIC_HERO_SCRIM_CLASS} aria-hidden="true" />
+			</div>
+
+			<div className={CINEMATIC_HERO_CONTENT_CLASS}>{heroContent}</div>
+
+			{scrollLabel && (
+				<motion.div
+					variants={CINEMATIC_HERO_SCROLL_INDICATOR_VARIANTS}
+					animate="animate"
+					className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
+					aria-hidden="true"
+				>
+					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
+						{scrollLabel}
+					</span>
+					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
+				</motion.div>
+			)}
+		</section>
+	);
+}
+
+/** Desktop scroll-clip hero — 150vh sticky driver with letterbox expansion. */
+function CinematicHeroScroll({
 	videoSrc,
 	posterSrc,
 	posterAlt,
@@ -218,4 +285,17 @@ export function CinematicHero({
 			</div>
 		</section>
 	);
+}
+
+/** Shared cinematic hero shell for landing, about, contact, and projects. */
+export function CinematicHero(props: CinematicHeroProps) {
+	const prefersReducedMotion = usePrefersReducedMotion();
+	// Mobile-first SSR default (false) — avoids hydrating 150vh scroll hero on phones.
+	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
+
+	if (prefersReducedMotion || !isDesktopHero) {
+		return <CinematicHeroStatic {...props} />;
+	}
+
+	return <CinematicHeroScroll {...props} />;
 }

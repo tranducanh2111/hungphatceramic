@@ -1,19 +1,17 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useTranslations } from "next-intl";
 import { useAppScroll } from "@/hooks/useAppScroll";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/cn";
 
 const SCROLL_VISIBILITY_THRESHOLD_PX = 480;
+const DESKTOP_SCROLL_QUERY = "(min-width: 1024px)";
 
-/**
- * ScrollToTopButton — Fixed corner control; appears after the user scrolls down.
- * Uses Lenis when available so smooth scroll stays consistent site-wide.
- */
-export function ScrollToTopButton() {
+function ScrollToTopButtonDesktop() {
 	const t = useTranslations("common");
 	const lenis = useLenis();
 	const prefersReducedMotion = useReducedMotion();
@@ -39,6 +37,49 @@ export function ScrollToTopButton() {
 	}, [lenis, prefersReducedMotion]);
 
 	return (
+		<ScrollToTopButtonControl
+			isVisible={isVisible}
+			onClick={handleScrollToTop}
+			label={t("scrollToTop")}
+		/>
+	);
+}
+
+function ScrollToTopButtonMobile() {
+	const t = useTranslations("common");
+	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsVisible(window.scrollY > SCROLL_VISIBILITY_THRESHOLD_PX);
+		};
+
+		handleScroll();
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	const handleScrollToTop = useCallback(() => {
+		window.scrollTo({ top: 0, behavior: "auto" });
+	}, []);
+
+	return (
+		<ScrollToTopButtonControl
+			isVisible={isVisible}
+			onClick={handleScrollToTop}
+			label={t("scrollToTop")}
+		/>
+	);
+}
+
+interface ScrollToTopButtonControlProps {
+	isVisible: boolean;
+	onClick: () => void;
+	label: string;
+}
+
+function ScrollToTopButtonControl({ isVisible, onClick, label }: ScrollToTopButtonControlProps) {
+	return (
 		<AnimatePresence>
 			{isVisible && (
 				<motion.button
@@ -47,8 +88,8 @@ export function ScrollToTopButton() {
 					animate={{ opacity: 1, y: 0, scale: 1 }}
 					exit={{ opacity: 0, y: 10, scale: 0.92 }}
 					transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-					onClick={handleScrollToTop}
-					aria-label={t("scrollToTop")}
+					onClick={onClick}
+					aria-label={label}
 					className={cn(
 						"fixed right-5 bottom-6 z-50 flex h-11 w-11 items-center justify-center rounded-full",
 						"border-champagne/45 bg-sapphire-deep/90 text-champagne shadow-luxury-sm border backdrop-blur-sm",
@@ -62,6 +103,20 @@ export function ScrollToTopButton() {
 			)}
 		</AnimatePresence>
 	);
+}
+
+/**
+ * ScrollToTopButton — Fixed corner control; appears after the user scrolls down.
+ * Uses Lenis on desktop; native passive scroll on mobile.
+ */
+export function ScrollToTopButton() {
+	const isDesktop = useMediaQuery(DESKTOP_SCROLL_QUERY);
+
+	if (isDesktop) {
+		return <ScrollToTopButtonDesktop />;
+	}
+
+	return <ScrollToTopButtonMobile />;
 }
 
 function ScrollToTopIcon() {
