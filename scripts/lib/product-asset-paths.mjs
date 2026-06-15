@@ -208,8 +208,8 @@ export function requiresListingWebp(assetPath) {
 
 export function collectIndoAssetPaths(indoSource) {
 	const paths = new Set();
-	const squareSkus = new Set(["GS881042", "GS881045", "GS883009"]);
-	const square80Skus = new Set(["SS886101", "SS886106"]);
+	const squareSkus = new Set([]);
+	const square80Skus = new Set(["SS886101", "SS886106", "GS881042", "GS881045", "GS883009"]);
 	const seedBlocks = indoSource.match(/\{[\s\S]*?hasFullFacesComposite[\s\S]*?\}/g) ?? [];
 
 	for (const block of seedBlocks) {

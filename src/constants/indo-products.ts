@@ -20,21 +20,21 @@ interface IndoProductSeed {
 const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS881042",
-		format: "square",
+		format: "square80",
 		hasFullFacesComposite: true,
 		shortDescription:
 			"INDO square porcelain with balanced natural movement for premium interiors.",
 	},
 	{
 		skuCode: "GS881045",
-		format: "square",
+		format: "square80",
 		hasFullFacesComposite: true,
 		shortDescription:
 			"INDO square surface with refined tonal depth for contemporary living spaces.",
 	},
 	{
 		skuCode: "GS883009",
-		format: "square",
+		format: "square80",
 		hasFullFacesComposite: true,
 		shortDescription:
 			"INDO square tile with expressive veining and a calm, architectural finish.",
