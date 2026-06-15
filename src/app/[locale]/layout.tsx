@@ -42,7 +42,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 	return (
 		<html
 			lang={locale}
-			data-scroll-behavior="smooth"
+			data-scroll-behavior="auto"
 			className={`${cormorant.variable} ${jost.variable} h-full antialiased`}
 			style={{ position: "relative" }}
 			suppressHydrationWarning

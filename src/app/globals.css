@@ -229,10 +229,16 @@
 }
 
 html {
-	scroll-behavior: smooth;
+	scroll-behavior: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 1024px) {
+	html {
+		scroll-behavior: smooth;
+	}
 }
 
 body {
