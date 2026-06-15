@@ -141,6 +141,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								href={ROUTES.contact}
 								variant="primary"
 								size="lg"
+								withShimmer
 								className="w-full text-center"
 							>
 								{tDetail("bookConsultation")}

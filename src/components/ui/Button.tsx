@@ -41,6 +41,7 @@ type ButtonSize = keyof typeof SIZE_STYLES;
 interface SharedButtonProps {
 	variant?: ButtonVariant;
 	size?: ButtonSize;
+	withShimmer?: boolean;
 	className?: string;
 	children: ReactNode;
 }
@@ -75,7 +76,7 @@ export type ButtonProps = NativeButtonProps | LinkButtonProps;
  * <Button href="https://maps.google.com" external>Find Us</Button>
  */
 export function Button(props: ButtonProps) {
-	const { variant = "primary", size = "md", className, children, ...rest } = props;
+	const { variant = "primary", size = "md", withShimmer = false, className, children, ...rest } = props;
 
 	const baseStyles = cn(
 		"inline-flex items-center justify-center gap-2",
@@ -85,6 +86,7 @@ export function Button(props: ButtonProps) {
 		"cursor-pointer select-none",
 		VARIANT_STYLES[variant],
 		SIZE_STYLES[size],
+		withShimmer && "button-border-shimmer",
 		className,
 	);
 

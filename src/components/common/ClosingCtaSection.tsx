@@ -14,6 +14,7 @@ export interface ClosingCtaAction {
 	href: string;
 	variant?: ButtonProps["variant"];
 	size?: ButtonProps["size"];
+	withShimmer?: boolean;
 }
 
 interface ClosingCtaSectionProps extends ClassNameProp {
@@ -73,6 +74,7 @@ export function ClosingCtaSection({
 						href={action.href}
 						variant={action.variant ?? "outline"}
 						size={action.size ?? "lg"}
+						withShimmer={action.withShimmer}
 					>
 						{action.label}
 					</Button>
