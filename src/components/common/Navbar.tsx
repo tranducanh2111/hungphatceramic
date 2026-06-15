@@ -214,6 +214,7 @@ export function Navbar() {
 									"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-[#D4B886] uppercase",
 									"px-5 py-1.5 transition-all duration-300 ease-in-out",
 									"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
+									"button-border-shimmer",
 								)}
 							>
 								{t("cta.bookConsultation")}
@@ -301,6 +302,7 @@ export function Navbar() {
 									"border border-[#D4B886]/40 bg-[#D4B886]/8 px-6 py-3",
 									"text-body-sm font-sans tracking-[0.12em] text-[#D4B886] uppercase",
 									"transition-all duration-300 hover:bg-[#D4B886] hover:text-[#071A2B]",
+									"button-border-shimmer",
 								)}
 							>
 								{t("cta.bookConsultation")}
