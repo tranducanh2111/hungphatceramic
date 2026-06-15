@@ -235,12 +235,6 @@ html {
 	text-rendering: optimizeLegibility;
 }
 
-@media (min-width: 1024px) {
-	html {
-		scroll-behavior: smooth;
-	}
-}
-
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text-primary);
