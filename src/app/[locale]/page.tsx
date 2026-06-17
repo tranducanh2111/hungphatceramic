@@ -83,8 +83,8 @@ export default async function HomePage({ params }: HomePageProps) {
 		},
 		geo: {
 			"@type": "GeoCoordinates",
-			latitude: 21.0601,
-			longitude: 105.8,
+			latitude: 21.0546308,
+			longitude: 105.7979539,
 		},
 		url: `${SITE_URL}/${locale}`,
 		priceRange: "$$$$",
