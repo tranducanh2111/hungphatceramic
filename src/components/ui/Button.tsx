@@ -93,13 +93,18 @@ export function Button(props: ButtonProps) {
 		"cursor-pointer select-none",
 		VARIANT_STYLES[variant],
 		SIZE_STYLES[size],
-		withShimmer && "relative overflow-hidden",
+		withShimmer && "relative overflow-hidden group",
 		className,
+	);
+
+	const shimmerLabelClass = cn(
+		"button-shimmer-label",
+		variant === "primary" && "button-shimmer-label-inverse",
 	);
 
 	const innerContent = (
 		<>
-			{children}
+			{withShimmer ? <span className={shimmerLabelClass}>{children}</span> : children}
 			{withShimmer && (
 				<span className="button-border-shimmer-wrap pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] p-[1.5px]">
 					<span className="button-border-shimmer-line absolute inset-[-100%] bg-[linear-gradient(90deg,transparent_0%,var(--color-champagne)_50%,transparent_100%)] bg-[length:50%_100%]" />

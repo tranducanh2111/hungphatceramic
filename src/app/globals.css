@@ -193,6 +193,15 @@
 			transform: translateX(50%);
 		}
 	}
+
+	@keyframes border-shimmer-pan {
+		0% {
+			background-position: 200% 50%;
+		}
+		100% {
+			background-position: -200% 50%;
+		}
+	}
 }
 
 /* ─── Brand CSS Custom Properties ──────────────────────────────────────────── */
@@ -387,4 +396,59 @@ h6 {
 @utility button-border-shimmer-line {
 	animation: composited-shimmer-pan 6s linear infinite;
 	will-change: transform;
+}
+
+/* ─── Button Text Shimmer ─────────────────────────────────────────────────── */
+.button-shimmer-label {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	/* Floor at champagne — shimmer only brightens, never darkens below brand gold */
+	background-image: linear-gradient(
+		90deg,
+		var(--color-champagne) 0%,
+		var(--color-champagne) 38%,
+		var(--color-champagne-light) 47%,
+		var(--color-linen-warm) 50%,
+		var(--color-champagne-light) 53%,
+		var(--color-champagne) 62%,
+		var(--color-champagne) 100%
+	);
+	background-size: 200% auto;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+	animation: border-shimmer-pan 6s linear infinite;
+}
+
+/* Primary filled CTA — sapphire base with a champagne highlight sweep */
+.button-shimmer-label-inverse {
+	background-image: linear-gradient(
+		90deg,
+		var(--color-sapphire-deep) 0%,
+		var(--color-sapphire-deep) 38%,
+		var(--color-champagne) 47%,
+		var(--color-champagne-light) 50%,
+		var(--color-champagne) 53%,
+		var(--color-sapphire-deep) 62%,
+		var(--color-sapphire-deep) 100%
+	);
+}
+
+.group:hover .button-shimmer-label,
+.group:focus-visible .button-shimmer-label {
+	animation-play-state: paused;
+	background-image: none;
+	-webkit-text-fill-color: currentColor;
+	color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.button-shimmer-label {
+		animation: none;
+		background-image: none;
+		-webkit-text-fill-color: currentColor;
+		color: currentColor;
+	}
 }
