@@ -59,7 +59,7 @@ function ProductDetailPanoramaStatic({ productName, panoramaSrc }: PanoramaConte
 					{tDetail("panorama.scrollHint")}
 				</p>
 
-				<div className="border-sapphire-mist/40 overflow-x-auto overscroll-x-contain rounded-none border">
+				<div className="border-sapphire-mist/40 overflow-x-auto overscroll-x-contain rounded-xl border">
 					<div className="relative h-[min(50vh,28rem)] w-[min(320%,2400px)] min-w-[960px]">
 						<ViewportDeferredImage
 							src={panoramaSrc}

@@ -101,7 +101,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 									return (
 										<div key={size} className="flex items-center gap-4">
 											<div
-												className={`border-champagne/30 bg-sapphire-ocean hover:border-champagne/60 flex items-center justify-center rounded-none border p-2 transition-all ${tilePreviewClassName}`}
+												className={`border-champagne/30 bg-sapphire-ocean hover:border-champagne/60 flex items-center justify-center rounded-lg border p-2 transition-all ${tilePreviewClassName}`}
 											>
 												<span className="text-champagne/80 font-sans text-[10px] font-bold">
 													{aspectLabel}
