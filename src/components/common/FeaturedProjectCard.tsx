@@ -44,6 +44,7 @@ export function FeaturedProjectCard({
 							src={content.imageSrc}
 							alt={content.imageAlt}
 							fill
+							quality={55}
 							eager={index < 2}
 							className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
 							sizes="(max-width: 768px) 100vw, 50vw"

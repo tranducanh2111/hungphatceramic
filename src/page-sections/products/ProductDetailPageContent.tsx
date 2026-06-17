@@ -16,9 +16,8 @@ const ProductDetailGallery = dynamic(
 	{ ssr: false },
 );
 
-const ProductDetailPanorama = dynamic(
-	() => import("./ProductDetailPanorama").then((m) => ({ default: m.ProductDetailPanorama })),
-	{ ssr: false },
+const ProductDetailPanorama = dynamic(() =>
+	import("./ProductDetailPanorama").then((m) => ({ default: m.ProductDetailPanorama })),
 );
 
 const ProductDetailSpecs = dynamic(

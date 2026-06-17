@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PageMediaPreload } from "@/components/media";
 import { PRODUCTS } from "@/constants/products";
 import { routing } from "@/i18n/routing";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
@@ -133,7 +132,6 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 
 	return (
 		<>
-			<PageMediaPreload imagePaths={[heroThumbnailPath]} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

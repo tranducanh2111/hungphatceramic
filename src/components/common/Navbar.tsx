@@ -58,7 +58,7 @@ const NAVBAR_MOTION_TRANSITION = {
 } as const;
 
 const NAV_PILL_BASE_CLASS =
-	"overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/95 shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto lg:bg-[#071A2B]/70 lg:backdrop-blur-xl";
+	"overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/95 shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto lg:bg-[#071A2B]/70 lg:backdrop-blur-xl w-full max-w-[1440px]";
 
 interface LogoMarkProps {
 	isScrolled: boolean;
@@ -163,17 +163,12 @@ function NavbarDesktopPill({
 	const navRef = useRef<HTMLElement>(null);
 	const navContentRef = useRef<HTMLDivElement>(null);
 	const recalcFrameRef = useRef<number | null>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(NAV_MAX_WIDTH);
 	const [shrinkWidthPx, setShrinkWidthPx] = useState(800);
 
 	const recalcWidths = useCallback(() => {
 		const contentEl = navContentRef.current;
 		const navEl = navRef.current;
 		if (!contentEl) return;
-
-		setExpandedWidthPx(
-			Math.min(NAV_MAX_WIDTH, Math.max(320, window.innerWidth - NAV_OUTER_GAP)),
-		);
 
 		const contentWidth = measureVisibleContentWidth(contentEl);
 		let nextShrinkWidth = Math.max(
@@ -233,7 +228,7 @@ function NavbarDesktopPill({
 			aria-label={ariaLabel}
 			className={NAV_PILL_BASE_CLASS}
 			animate={{
-				width: navIsCompact ? shrinkWidthPx : expandedWidthPx,
+				width: navIsCompact ? shrinkWidthPx : "100%",
 				paddingLeft: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
 				paddingRight: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
 			}}

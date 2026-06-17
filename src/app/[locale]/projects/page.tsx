@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PageMediaPreload } from "@/components/media";
-import { MEDIA_PATHS } from "@/constants/media";
 import { PROJECTS } from "@/constants/projects";
 import { ProjectsPageContent } from "@/page-sections/projects/ProjectsPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
@@ -88,12 +86,6 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 	return (
 		<main>
-			<PageMediaPreload
-				imagePaths={[
-					MEDIA_PATHS.images.featuredProjects.empireCity,
-					MEDIA_PATHS.images.featuredProjects.ramadaHaLongBay,
-				]}
-			/>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

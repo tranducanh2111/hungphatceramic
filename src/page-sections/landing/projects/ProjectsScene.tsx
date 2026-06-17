@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ViewportDeferredImage } from "@/components/media";
 import { useRef, useState } from "react";
@@ -318,6 +318,7 @@ function ProjectCardVisual({
 						src={project.imageUrl}
 						alt={t(`${translationNamespace}.imageAlt`)}
 						fill
+						quality={55}
 						eager={index < 2}
 						unloadWhenFar={!isFillLayout}
 						className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -437,6 +438,7 @@ function ProjectCardBack({
 					alt=""
 					aria-hidden
 					fill
+					quality={55}
 					eager={index < 2}
 					unloadWhenFar={false}
 					className="object-cover opacity-30 saturate-50"

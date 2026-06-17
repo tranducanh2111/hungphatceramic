@@ -133,7 +133,7 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 
 	const watermark = (
 		<div
-			className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden select-none"
+			className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-center overflow-hidden select-none md:flex"
 			aria-hidden="true"
 		>
 			<span className="text-sapphire-ocean/10 font-serif text-[18vw] font-bold tracking-[0.2em] uppercase">
