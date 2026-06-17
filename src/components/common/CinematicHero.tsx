@@ -45,7 +45,6 @@ interface CinematicHeroContentProps {
 	childrenClassName?: string;
 }
 
-
 const DESKTOP_HERO_QUERY = "(min-width: 1024px)";
 
 function CinematicHeroContent({

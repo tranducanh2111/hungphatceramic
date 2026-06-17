@@ -185,12 +185,12 @@
 		}
 	}
 
-	@keyframes border-shimmer-pan {
+	@keyframes composited-shimmer-pan {
 		0% {
-			background-position: 200% 50%;
+			transform: translateX(-50%);
 		}
 		100% {
-			background-position: -200% 50%;
+			transform: translateX(50%);
 		}
 	}
 }
@@ -376,21 +376,15 @@ h6 {
 }
 
 /* ─── Button Border Shimmer ──────────────────────────────────────────────────── */
-@utility button-border-shimmer {
-	position: relative;
-}
-
-.button-border-shimmer::before {
-	content: "";
-	position: absolute;
-	inset: -1.5px;
-	border-radius: inherit;
-	padding: 1.5px;
-	background: linear-gradient(90deg, transparent 0%, var(--color-champagne) 50%, transparent 100%);
-	background-size: 200% 100%;
-	animation: border-shimmer-pan 6s linear infinite;
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+@utility button-border-shimmer-wrap {
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
 	-webkit-mask-composite: xor;
 	mask-composite: exclude;
-	pointer-events: none;
+}
+
+@utility button-border-shimmer-line {
+	animation: composited-shimmer-pan 6s linear infinite;
+	will-change: transform;
 }

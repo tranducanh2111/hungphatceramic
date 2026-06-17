@@ -40,10 +40,14 @@ export const metadata: Metadata = {
 		"vietnam tile supplier",
 	],
 	verification: {
-		google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "X4OwkClp6U5m8C7teGOPNxpX5UkLtCSL2UtskXmMin4",
+		google:
+			process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+			"X4OwkClp6U5m8C7teGOPNxpX5UkLtCSL2UtskXmMin4",
 	},
 	other: {
-		"google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "X4OwkClp6U5m8C7teGOPNxpX5UkLtCSL2UtskXmMin4",
+		"google-site-verification":
+			process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+			"X4OwkClp6U5m8C7teGOPNxpX5UkLtCSL2UtskXmMin4",
 	},
 };
 

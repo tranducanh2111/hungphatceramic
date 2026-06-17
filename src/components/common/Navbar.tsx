@@ -12,6 +12,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Button } from "@/components/ui";
 
 // ─── Navbar constants ─────────────────────────────────────────────────────────
 
@@ -316,19 +317,19 @@ export function Navbar() {
 
 			{/* ── CTA + Mobile toggle ────────────────────────────────────── */}
 			<div className="flex shrink-0 items-center gap-3">
-				<Link
+				<Button
 					href={ROUTES.contact}
+					variant="outline"
+					size="sm"
+					withShimmer
 					className={cn(
 						"hidden items-center justify-center lg:inline-flex",
-						"rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
-						"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-[#D4B886] uppercase",
-						"px-5 py-1.5 transition-all duration-300 ease-in-out",
-						"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
-						"button-border-shimmer",
+						"border-[#D4B886]/40 bg-[#D4B886]/8 text-[#D4B886]",
+						"py-1.5 hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
 					)}
 				>
 					{t("cta.bookConsultation")}
-				</Link>
+				</Button>
 				<LocaleSwitcher className="hidden lg:block" />
 
 				<button
@@ -426,19 +427,16 @@ export function Navbar() {
 
 						{/* Mobile CTA */}
 						<div className="mt-4 border-t border-[#1A3D5C] pt-4">
-							<Link
+							<Button
 								href={ROUTES.contact}
+								variant="outline"
+								size="lg"
+								withShimmer
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={cn(
-									"flex w-full items-center justify-center rounded-full",
-									"border border-[#D4B886]/40 bg-[#D4B886]/8 px-6 py-3",
-									"text-body-sm font-sans tracking-[0.12em] text-[#D4B886] uppercase",
-									"transition-all duration-300 hover:bg-[#D4B886] hover:text-[#071A2B]",
-									"button-border-shimmer",
-								)}
+								className="w-full border-[#D4B886]/40 bg-[#D4B886]/8 text-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]"
 							>
 								{t("cta.bookConsultation")}
-							</Link>
+							</Button>
 						</div>
 					</motion.div>
 				)}
