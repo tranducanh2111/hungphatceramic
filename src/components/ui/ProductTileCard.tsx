@@ -40,7 +40,7 @@ export function ProductTileCard({
 	return (
 		<article
 			className={cn(
-				"relative aspect-[3/4] overflow-hidden rounded-3xl",
+				"relative aspect-[3/4] overflow-hidden rounded-none",
 				"bg-sapphire-deep shadow-luxury-sm ease-luxury border-sapphire-mist/30 border",
 				"transition-all duration-500",
 				"group-hover:shadow-luxury-md group-focus-visible:shadow-luxury-md",

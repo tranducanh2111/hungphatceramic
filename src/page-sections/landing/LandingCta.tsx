@@ -26,7 +26,12 @@ export function LandingCta() {
 				titleLine2={t("titleLine2")}
 				description={t("description")}
 				actions={[
-					{ label: t("primaryCta"), href: ROUTES.contact, variant: "primary", withShimmer: true },
+					{
+						label: t("primaryCta"),
+						href: ROUTES.contact,
+						variant: "primary",
+						withShimmer: true,
+					},
 					{ label: t("secondaryCta"), href: ROUTES.products, variant: "secondary" },
 				]}
 				actionsDelay={0.3}

@@ -12,7 +12,14 @@ export function AboutCta() {
 			titleLine1={t("titleLine1")}
 			titleLine2={t("titleLine2")}
 			description={t("description")}
-			actions={[{ label: t("primaryCta"), href: ROUTES.contact, variant: "outline", withShimmer: true }]}
+			actions={[
+				{
+					label: t("primaryCta"),
+					href: ROUTES.contact,
+					variant: "outline",
+					withShimmer: true,
+				},
+			]}
 			actionsDelay={0.3}
 		/>
 	);

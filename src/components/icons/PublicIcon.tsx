@@ -22,6 +22,7 @@ export function PublicIcon({ src, alt, className, size = 16 }: PublicIconProps) 
 			height={size}
 			className={cn("shrink-0", className)}
 			unoptimized
+			suppressHydrationWarning
 		/>
 	);
 }

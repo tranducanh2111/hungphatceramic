@@ -67,7 +67,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 				{/* Title and Count section with Cross-fade transition */}
 				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div className="max-w-2xl">
-						<AnimatePresence mode="wait">
+						<AnimatePresence mode="wait" initial={false}>
 							<motion.h1
 								key={activeCollectionId}
 								initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 						</AnimatePresence>
 					</div>
 
-					<AnimatePresence mode="wait">
+					<AnimatePresence mode="wait" initial={false}>
 						<motion.div
 							key={`${activeCollectionId}-${totalProductsCount}`}
 							initial={{ opacity: 0, scale: 0.95 }}

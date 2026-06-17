@@ -264,6 +264,7 @@ export function BlueprintLine({
 				preserveAspectRatio={
 					variant === "grid" ? "xMidYMid slice" : isDatum ? "none" : "xMidYMid meet"
 				}
+				suppressHydrationWarning
 				className="h-full w-full overflow-visible"
 			>
 				{variant === "survey" && <SurveySvg />}

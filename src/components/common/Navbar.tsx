@@ -12,6 +12,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Button } from "@/components/ui";
 
 // ─── Navbar constants ─────────────────────────────────────────────────────────
 
@@ -57,7 +58,7 @@ const NAVBAR_MOTION_TRANSITION = {
 } as const;
 
 const NAV_PILL_BASE_CLASS =
-	"overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/95 shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto lg:bg-[#071A2B]/70 lg:backdrop-blur-xl";
+	"overflow-visible rounded-full border border-[#D4B886]/15 bg-[#071A2B]/95 shadow-[0_8px_32px_rgba(7,26,43,0.5)] py-3 pointer-events-auto mx-auto lg:bg-[#071A2B]/70 lg:backdrop-blur-xl w-full max-w-[1440px]";
 
 interface LogoMarkProps {
 	isScrolled: boolean;
@@ -76,7 +77,7 @@ function LogoMark({ isScrolled }: LogoMarkProps) {
 		>
 			{isDesktopNav ? (
 				<motion.div
-					style={{ aspectRatio: LOGO_ASPECT_RATIO }}
+					style={{ aspectRatio: LOGO_ASPECT_RATIO, height: logoHeight }}
 					animate={{ height: logoHeight }}
 					transition={NAVBAR_MOTION_TRANSITION}
 					className="relative shrink-0"
@@ -104,6 +105,7 @@ function LogoImage() {
 			alt={t("logoAlt")}
 			fill
 			priority
+			suppressHydrationWarning
 			sizes="(max-width: 768px) 200px, 260px"
 			className="object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
 		/>
@@ -161,17 +163,12 @@ function NavbarDesktopPill({
 	const navRef = useRef<HTMLElement>(null);
 	const navContentRef = useRef<HTMLDivElement>(null);
 	const recalcFrameRef = useRef<number | null>(null);
-	const [expandedWidthPx, setExpandedWidthPx] = useState(NAV_MAX_WIDTH);
 	const [shrinkWidthPx, setShrinkWidthPx] = useState(800);
 
 	const recalcWidths = useCallback(() => {
 		const contentEl = navContentRef.current;
 		const navEl = navRef.current;
 		if (!contentEl) return;
-
-		setExpandedWidthPx(
-			Math.min(NAV_MAX_WIDTH, Math.max(320, window.innerWidth - NAV_OUTER_GAP)),
-		);
 
 		const contentWidth = measureVisibleContentWidth(contentEl);
 		let nextShrinkWidth = Math.max(
@@ -231,7 +228,7 @@ function NavbarDesktopPill({
 			aria-label={ariaLabel}
 			className={NAV_PILL_BASE_CLASS}
 			animate={{
-				width: navIsCompact ? shrinkWidthPx : expandedWidthPx,
+				width: navIsCompact ? shrinkWidthPx : "100%",
 				paddingLeft: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
 				paddingRight: navIsCompact ? NAV_PADDING_X_SHRUNK : NAV_PADDING_X_EXPANDED,
 			}}
@@ -316,19 +313,19 @@ export function Navbar() {
 
 			{/* ── CTA + Mobile toggle ────────────────────────────────────── */}
 			<div className="flex shrink-0 items-center gap-3">
-				<Link
+				<Button
 					href={ROUTES.contact}
+					variant="outline"
+					size="sm"
+					withShimmer
 					className={cn(
 						"hidden items-center justify-center lg:inline-flex",
-						"rounded-full border border-[#D4B886]/40 bg-[#D4B886]/8",
-						"text-body-sm font-sans font-light tracking-[0.12em] whitespace-nowrap text-champagne uppercase",
-						"px-5 py-1.5 transition-all duration-300 ease-in-out",
-						"hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
-						"button-border-shimmer",
+						"border-[#D4B886]/40 bg-[#D4B886]/8 text-[#D4B886]",
+						"py-1.5 hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]",
 					)}
 				>
-					<span className="button-shimmer-label">{t("cta.bookConsultation")}</span>
-				</Link>
+					{t("cta.bookConsultation")}
+				</Button>
 				<LocaleSwitcher className="hidden lg:block" />
 
 				<button
@@ -426,19 +423,16 @@ export function Navbar() {
 
 						{/* Mobile CTA */}
 						<div className="mt-4 border-t border-[#1A3D5C] pt-4">
-							<Link
+							<Button
 								href={ROUTES.contact}
+								variant="outline"
+								size="lg"
+								withShimmer
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={cn(
-									"flex w-full items-center justify-center rounded-full",
-									"border border-[#D4B886]/40 bg-[#D4B886]/8 px-6 py-3",
-									"text-body-sm font-sans tracking-[0.12em] text-[#D4B886] uppercase",
-									"transition-all duration-300 hover:bg-[#D4B886] hover:text-[#071A2B]",
-									"button-border-shimmer",
-								)}
+								className="w-full border-[#D4B886]/40 bg-[#D4B886]/8 text-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]"
 							>
-								<span className="button-shimmer-label">{t("cta.bookConsultation")}</span>
-							</Link>
+								{t("cta.bookConsultation")}
+							</Button>
 						</div>
 					</motion.div>
 				)}

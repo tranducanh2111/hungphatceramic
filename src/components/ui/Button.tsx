@@ -76,7 +76,14 @@ export type ButtonProps = NativeButtonProps | LinkButtonProps;
  * <Button href="https://maps.google.com" external>Find Us</Button>
  */
 export function Button(props: ButtonProps) {
-	const { variant = "primary", size = "md", withShimmer = false, className, children, ...rest } = props;
+	const {
+		variant = "primary",
+		size = "md",
+		withShimmer = false,
+		className,
+		children,
+		...rest
+	} = props;
 
 	const baseStyles = cn(
 		"inline-flex items-center justify-center gap-2",
@@ -86,7 +93,7 @@ export function Button(props: ButtonProps) {
 		"cursor-pointer select-none",
 		VARIANT_STYLES[variant],
 		SIZE_STYLES[size],
-		withShimmer && "button-border-shimmer",
+		withShimmer && "relative overflow-hidden group",
 		className,
 	);
 
@@ -95,10 +102,15 @@ export function Button(props: ButtonProps) {
 		variant === "primary" && "button-shimmer-label-inverse",
 	);
 
-	const content = withShimmer ? (
-		<span className={shimmerLabelClass}>{children}</span>
-	) : (
-		children
+	const innerContent = (
+		<>
+			{withShimmer ? <span className={shimmerLabelClass}>{children}</span> : children}
+			{withShimmer && (
+				<span className="button-border-shimmer-wrap pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] p-[1.5px]">
+					<span className="button-border-shimmer-line absolute inset-[-100%] bg-[linear-gradient(90deg,transparent_0%,var(--color-champagne)_50%,transparent_100%)] bg-[length:50%_100%]" />
+				</span>
+			)}
+		</>
 	);
 
 	/* ── Link variant ───────────────────────────────────────────────────────── */
@@ -115,14 +127,14 @@ export function Button(props: ButtonProps) {
 					{...(!isHash ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 					{...anchorRest}
 				>
-					{content}
+					{innerContent}
 				</a>
 			);
 		}
 
 		return (
 			<Link href={href} className={baseStyles} {...anchorRest}>
-				{content}
+				{innerContent}
 			</Link>
 		);
 	}
@@ -132,7 +144,7 @@ export function Button(props: ButtonProps) {
 
 	return (
 		<button type="button" className={baseStyles} {...buttonRest}>
-			{content}
+			{innerContent}
 		</button>
 	);
 }

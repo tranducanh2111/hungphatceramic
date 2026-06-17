@@ -185,6 +185,15 @@
 		}
 	}
 
+	@keyframes composited-shimmer-pan {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(50%);
+		}
+	}
+
 	@keyframes border-shimmer-pan {
 		0% {
 			background-position: 200% 50%;
@@ -317,16 +326,6 @@ h6 {
 	}
 }
 
-/** Horizontal scroll without visible scrollbar (e.g. partner logo strip on mobile). */
-@utility scrollbar-hidden {
-	scrollbar-width: none;
-	-ms-overflow-style: none;
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
-
 /* ─── Scroll-driven reveal (Tailwind @utility) ───────────────────────────────── */
 @utility reveal-on-view {
 	@apply animate-fade-up opacity-0 motion-reduce:translate-none motion-reduce:animate-none motion-reduce:opacity-100;
@@ -385,28 +384,21 @@ h6 {
 	}
 }
 
-/* ─── Button Border + Text Shimmer ───────────────────────────────────────────── */
-@utility button-border-shimmer {
-	position: relative;
-	isolation: isolate;
-}
-
-.button-border-shimmer::before {
-	content: "";
-	position: absolute;
-	inset: -1.5px;
-	border-radius: inherit;
-	padding: 1.5px;
-	background: linear-gradient(90deg, transparent 0%, var(--color-champagne) 50%, transparent 100%);
-	background-size: 200% 100%;
-	animation: border-shimmer-pan 6s linear infinite;
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+/* ─── Button Border Shimmer ──────────────────────────────────────────────────── */
+@utility button-border-shimmer-wrap {
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
 	-webkit-mask-composite: xor;
 	mask-composite: exclude;
-	pointer-events: none;
-	z-index: 0;
 }
 
+@utility button-border-shimmer-line {
+	animation: composited-shimmer-pan 6s linear infinite;
+	will-change: transform;
+}
+
+/* ─── Button Text Shimmer ─────────────────────────────────────────────────── */
 .button-shimmer-label {
 	position: relative;
 	z-index: 1;
@@ -444,7 +436,8 @@ h6 {
 	);
 }
 
-.button-border-shimmer:hover .button-shimmer-label {
+.group:hover .button-shimmer-label,
+.group:focus-visible .button-shimmer-label {
 	animation-play-state: paused;
 	background-image: none;
 	-webkit-text-fill-color: currentColor;
@@ -452,12 +445,8 @@ h6 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.button-border-shimmer::before,
 	.button-shimmer-label {
 		animation: none;
-	}
-
-	.button-shimmer-label {
 		background-image: none;
 		-webkit-text-fill-color: currentColor;
 		color: currentColor;

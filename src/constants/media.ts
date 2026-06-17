@@ -42,40 +42,40 @@ export const LOGO_PATHS = {
 export const MEDIA_PATHS = {
 	images: {
 		landing: {
-			heroPoster: "/media/images/landing/hero-poster.png",
-			brandStatement: "/media/images/landing/brand-statement.jpg",
+			heroPoster: "/media/images/landing/hero-poster.webp",
+			brandStatement: "/media/images/landing/brand-statement.webp",
 		},
 		contact: {
 			/** Full-bleed backdrop behind the inquiry form. */
-			inquiryBackdrop: "/media/images/misc/visual-story.jpg",
+			inquiryBackdrop: "/media/images/misc/visual-story.webp",
 		},
 		about: {
 			/** Founding moment / origin section — replace with archival workshop photo. */
-			origin: "/media/images/misc/brand-statement.jpg",
+			origin: "/media/images/misc/brand-statement.webp",
 			/** Heritage timeline milestone images — swap with project-specific shots. */
 			milestones: {
-				founding: "/media/images/misc/visual-story.jpg",
-				firstHotel: "/media/images/featured-projects/ramada-halong.png",
-				hospitalityExpansion: "/media/images/featured-projects/hinode.jpg",
-				residentialGrowth: "/media/images/featured-projects/vinhomes-symphony.jpg",
-				brandsAsPartner: "/media/images/featured-projects/empire-city.jpg",
+				founding: "/media/images/misc/visual-story.webp",
+				firstHotel: "/media/images/featured-projects/ramada-halong.webp",
+				hospitalityExpansion: "/media/images/featured-projects/hinode.webp",
+				residentialGrowth: "/media/images/featured-projects/vinhomes-symphony.webp",
+				brandsAsPartner: "/media/images/featured-projects/empire-city.webp",
 				present: "/media/images/featured-projects/grand-phuquoc.webp",
 			},
 			/** Craft story section — three sequential craft process images. */
 			craft: {
-				kiln: "/media/images/misc/tile-texture.jpg",
-				polishing: "/media/images/misc/brand-statement.jpg",
-				installation: "/media/images/misc/visual-story.jpg",
+				kiln: "/media/images/misc/tile-texture.webp",
+				polishing: "/media/images/misc/brand-statement.webp",
+				installation: "/media/images/misc/visual-story.webp",
 			},
 			/**
 			 * Capability card images (numbered 01-04).
 			 * Replace placeholders with real per-service photography.
 			 */
 			capabilities: {
-				specification: "/media/images/featured-projects/ramada-halong.png",
-				production: "/media/images/featured-projects/hinode.jpg",
-				logistics: "/media/images/featured-projects/vinhomes-symphony.jpg",
-				aftercare: "/media/images/featured-projects/saigon-intela.jpg",
+				specification: "/media/images/featured-projects/ramada-halong.webp",
+				production: "/media/images/featured-projects/hinode.webp",
+				logistics: "/media/images/featured-projects/vinhomes-symphony.webp",
+				aftercare: "/media/images/featured-projects/saigon-intela.webp",
 			},
 			/**
 			 * Leadership portraits — replace with editorial head-shots.
@@ -83,22 +83,22 @@ export const MEDIA_PATHS = {
 			 * as the section background (the founder in a finished interior space).
 			 */
 			leadership: {
-				founderEnvironmental: "/media/images/misc/visual-story.jpg",
-				founder: "/media/images/featured-projects/empire-city.jpg",
-				creativeDirector: "/media/images/featured-projects/hinode.jpg",
-				technicalLead: "/media/images/featured-projects/empire-city.jpg",
-				projectDirector: "/media/images/featured-projects/saigon-intela.jpg",
-				operationsDirector: "/media/images/featured-projects/vinhomes-symphony.jpg",
+				founderEnvironmental: "/media/images/misc/visual-story.webp",
+				founder: "/media/images/featured-projects/empire-city.webp",
+				creativeDirector: "/media/images/featured-projects/hinode.webp",
+				technicalLead: "/media/images/featured-projects/empire-city.webp",
+				projectDirector: "/media/images/featured-projects/saigon-intela.webp",
+				operationsDirector: "/media/images/featured-projects/vinhomes-symphony.webp",
 				salesDirector: "/media/images/featured-projects/grand-phuquoc.webp",
 			},
 		},
 		featuredProjects: {
-			ramadaHaLongBay: "/media/images/featured-projects/ramada-halong.png",
-			hinode: "/media/images/featured-projects/hinode.jpg",
-			vinhomesSymphony: "/media/images/featured-projects/vinhomes-symphony.jpg",
+			ramadaHaLongBay: "/media/images/featured-projects/ramada-halong.webp",
+			hinode: "/media/images/featured-projects/hinode.webp",
+			vinhomesSymphony: "/media/images/featured-projects/vinhomes-symphony.webp",
 			grandPhuQuoc: "/media/images/featured-projects/grand-phuquoc.webp",
-			saigonIntela: "/media/images/featured-projects/saigon-intela.jpg",
-			empireCity: "/media/images/featured-projects/empire-city.jpg",
+			saigonIntela: "/media/images/featured-projects/saigon-intela.webp",
+			empireCity: "/media/images/featured-projects/empire-city.webp",
 		},
 		/** Panorama filenames may include spaces — use with `encodeURI` when building URLs. */
 		panorama: {
@@ -111,9 +111,9 @@ export const MEDIA_PATHS = {
 	},
 	/** Raster extras (textures, alternate art) — not wired in components yet. */
 	misc: {
-		visualStory: "/media/images/misc/visual-story.jpg",
-		tileTexturePng: "/media/images/misc/tile-texture.png",
-		tileTextureJpg: "/media/images/misc/tile-texture.jpg",
-		brandStatementJpg: "/media/images/misc/brand-statement.jpg",
+		visualStory: "/media/images/misc/visual-story.webp",
+		tileTexturePng: "/media/images/misc/tile-texture.webp",
+		tileTextureJpg: "/media/images/misc/tile-texture.webp",
+		brandStatementJpg: "/media/images/misc/brand-statement.webp",
 	},
 } as const;

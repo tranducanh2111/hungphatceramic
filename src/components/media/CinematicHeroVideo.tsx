@@ -10,6 +10,8 @@ export interface CinematicHeroVideoProps {
 	posterSrc: string;
 	posterAlt: string;
 	prefersReducedMotion: boolean;
+	/** On mobile, skip the video entirely — show only the poster for optimal LCP. */
+	isMobile?: boolean;
 	className?: string;
 	videoClassName?: string;
 	videoStyle?: React.CSSProperties;
@@ -19,8 +21,34 @@ export interface CinematicHeroVideoProps {
 	useMotionVideo?: boolean;
 }
 
+/** Shared poster-only render path — used for reduced motion and mobile. */
+function HeroPosterImage({
+	posterSrc,
+	posterAlt,
+	className,
+}: {
+	posterSrc: string;
+	posterAlt: string;
+	className?: string;
+}) {
+	return (
+		<div className={cn("absolute inset-0", className)}>
+			<Image
+				src={posterSrc}
+				alt={posterAlt}
+				fill
+				priority
+				suppressHydrationWarning
+				sizes="100vw"
+				className="object-cover object-center"
+			/>
+		</div>
+	);
+}
+
 /**
- * Hero background video — metadata preload, IO pause off-screen, poster via next/image when reduced motion.
+ * Hero background video — metadata preload, IO pause off-screen, poster via next/image when reduced motion or mobile.
+ * On mobile (`isMobile=true`) the video element is skipped to avoid downloading a large media file during LCP.
  */
 export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVideoProps>(
 	function CinematicHeroVideo(
@@ -29,6 +57,7 @@ export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVide
 			posterSrc,
 			posterAlt,
 			prefersReducedMotion,
+			isMobile = false,
 			className,
 			videoClassName,
 			videoStyle,
@@ -43,7 +72,7 @@ export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVide
 
 		useEffect(() => {
 			const videoElement = videoRef.current;
-			if (!videoElement || prefersReducedMotion) return;
+			if (!videoElement || prefersReducedMotion || isMobile) return;
 
 			const observer = new IntersectionObserver(
 				([entry]) => {
@@ -58,20 +87,16 @@ export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVide
 
 			observer.observe(videoElement);
 			return () => observer.disconnect();
-		}, [prefersReducedMotion]);
+		}, [prefersReducedMotion, isMobile]);
 
-		if (prefersReducedMotion) {
+		// Mobile and reduced-motion share the same static poster path.
+		if (prefersReducedMotion || isMobile) {
 			return (
-				<div className={cn("absolute inset-0", className)}>
-					<Image
-						src={posterSrc}
-						alt={posterAlt}
-						fill
-						priority
-						sizes="100vw"
-						className="object-cover object-center"
-					/>
-				</div>
+				<HeroPosterImage
+					posterSrc={posterSrc}
+					posterAlt={posterAlt}
+					className={className}
+				/>
 			);
 		}
 
@@ -87,6 +112,7 @@ export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVide
 						playsInline
 						preload="metadata"
 						poster={posterSrc}
+						suppressHydrationWarning
 						className={cn(
 							"absolute inset-0 h-full w-full origin-center object-cover",
 							videoClassName,
@@ -108,6 +134,7 @@ export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVide
 					playsInline
 					preload="metadata"
 					poster={posterSrc}
+					suppressHydrationWarning
 					className={cn(
 						"absolute inset-0 h-full w-full origin-center object-cover",
 						videoClassName,

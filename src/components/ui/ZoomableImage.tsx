@@ -122,7 +122,11 @@ export function ZoomableImage({
 			const rawY = cursorY - ratio * (cursorY - y);
 
 			const maxPan = computeMaxPan(rect, nextScale);
-			applyTransform(nextScale, clamp(rawX, -maxPan.x, maxPan.x), clamp(rawY, -maxPan.y, maxPan.y));
+			applyTransform(
+				nextScale,
+				clamp(rawX, -maxPan.x, maxPan.x),
+				clamp(rawY, -maxPan.y, maxPan.y),
+			);
 		}
 
 		container.addEventListener("wheel", onWheel, { passive: false });
@@ -176,7 +180,11 @@ export function ZoomableImage({
 			const rawX = event.clientX - panAnchorRef.current.x;
 			const rawY = event.clientY - panAnchorRef.current.y;
 			const maxPan = computeMaxPan(rect, scale);
-			applyTransform(scale, clamp(rawX, -maxPan.x, maxPan.x), clamp(rawY, -maxPan.y, maxPan.y));
+			applyTransform(
+				scale,
+				clamp(rawX, -maxPan.x, maxPan.x),
+				clamp(rawY, -maxPan.y, maxPan.y),
+			);
 		},
 		[applyTransform],
 	);
@@ -243,9 +251,13 @@ export function ZoomableImage({
 		<div
 			ref={containerRef}
 			tabIndex={0}
-			aria-label={isZoomed ? "Zoom active — drag to pan, double-click to reset" : "Click or scroll to zoom"}
+			aria-label={
+				isZoomed
+					? "Zoom active — drag to pan, double-click to reset"
+					: "Click or scroll to zoom"
+			}
 			className={cn(
-				"relative select-none overflow-hidden outline-none",
+				"relative overflow-hidden outline-none select-none",
 				isZoomed ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in",
 				containerClassName,
 			)}

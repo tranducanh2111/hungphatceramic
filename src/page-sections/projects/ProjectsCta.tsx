@@ -14,7 +14,12 @@ export function ProjectsCta() {
 			titleLine2={t("titleLine2")}
 			description={t("description")}
 			actions={[
-				{ label: t("primaryCta"), href: ROUTES.contact, variant: "outline", withShimmer: true },
+				{
+					label: t("primaryCta"),
+					href: ROUTES.contact,
+					variant: "outline",
+					withShimmer: true,
+				},
 				{ label: t("secondaryCta"), href: ROUTES.products, variant: "secondary" },
 			]}
 		/>

@@ -42,7 +42,7 @@ function CompositeOverviewPanel({
 	return (
 		<div
 			className={cn(
-				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep w-full overflow-hidden rounded-2xl border p-6",
+				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep w-full overflow-hidden rounded-none border p-6",
 				className,
 			)}
 		>
@@ -53,7 +53,7 @@ function CompositeOverviewPanel({
 				{tDetail("facesOverviewComposite")}
 			</Text>
 			<div
-				className="bg-sapphire-deep relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-xl sm:min-h-[16rem] lg:min-h-[20rem]"
+				className="bg-sapphire-deep relative min-h-[12rem] w-full cursor-zoom-in overflow-hidden rounded-none sm:min-h-[16rem] lg:min-h-[20rem]"
 				onClick={onOpenLightbox}
 			>
 				<Image
@@ -110,7 +110,7 @@ function DemoWorkCarouselPanel({
 	return (
 		<div
 			className={cn(
-				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep relative w-full overflow-hidden rounded-2xl border",
+				"shadow-luxury-md border-sapphire-mist/40 bg-sapphire-deep relative w-full overflow-hidden rounded-none border",
 				fillHeight && "flex h-full flex-col",
 				className,
 			)}

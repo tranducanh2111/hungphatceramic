@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
@@ -59,7 +59,7 @@ function ProductDetailPanoramaStatic({ productName, panoramaSrc }: PanoramaConte
 					{tDetail("panorama.scrollHint")}
 				</p>
 
-				<div className="border-sapphire-mist/40 overflow-x-auto overscroll-x-contain rounded-xl border">
+				<div className="border-sapphire-mist/40 overflow-x-auto overscroll-x-contain rounded-none border">
 					<div className="relative h-[min(50vh,28rem)] w-[min(320%,2400px)] min-w-[960px]">
 						<ViewportDeferredImage
 							src={panoramaSrc}
@@ -79,15 +79,11 @@ function ProductDetailPanoramaStatic({ productName, panoramaSrc }: PanoramaConte
 function ProductDetailPanoramaScroll({ productName, panoramaSrc }: PanoramaContentProps) {
 	const tDetail = useTranslations("pages.productDetail");
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const [isScrollTargetReady, setIsScrollTargetReady] = useState(false);
 
-	useLayoutEffect(() => {
-		setIsScrollTargetReady(Boolean(sectionRef.current));
-	}, []);
-
-	const { scrollYProgress } = useAppScroll(
-		isScrollTargetReady ? { target: sectionRef, offset: ["start start", "end end"] } : {},
-	);
+	const { scrollYProgress } = useAppScroll({
+		target: sectionRef,
+		offset: ["start start", "end end"],
+	});
 	const panoramaX = useTransform(scrollYProgress, [0, 1], ["0vw", "-220vw"]);
 	const hintOpacity = useTransform(scrollYProgress, [0, 0.12, 0.88, 1], [1, 0.4, 0.4, 0]);
 
