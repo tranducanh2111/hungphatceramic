@@ -30,6 +30,7 @@ export function LocaleFlagIcon({ locale, className }: LocaleFlagIconProps) {
 				height={height}
 				className="overflow-hidden rounded-[2px] ring-1 ring-white/15"
 				unoptimized
+				suppressHydrationWarning
 			/>
 		</span>
 	);

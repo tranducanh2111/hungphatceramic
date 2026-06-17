@@ -4,7 +4,11 @@ import dynamic from "next/dynamic";
 import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { LandingHero } from "@/page-sections/landing/LandingHero";
 import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
+import { LandingStats } from "@/page-sections/landing/LandingStats";
+import { LandingTestimonials } from "@/page-sections/landing/LandingTestimonials";
+import { LandingCta } from "@/page-sections/landing/LandingCta";
 
+// LandingProjects may use WebGL (LandingProjectsSpiral) — keep ssr:false.
 const LandingProjects = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingProjects").then((m) => ({
@@ -12,6 +16,8 @@ const LandingProjects = dynamic(
 		})),
 	{ ssr: false },
 );
+
+// LandingMaterials uses a 3D tile context internally — keep ssr:false.
 const LandingMaterials = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingMaterials").then((m) => ({
@@ -19,10 +25,8 @@ const LandingMaterials = dynamic(
 		})),
 	{ ssr: false },
 );
-const LandingStats = dynamic(
-	() => import("@/page-sections/landing/LandingStats").then((m) => ({ default: m.LandingStats })),
-	{ ssr: false },
-);
+
+// LandingProcess uses scroll-driven animations with browser APIs — keep ssr:false.
 const LandingProcess = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingProcess").then((m) => ({
@@ -30,13 +34,8 @@ const LandingProcess = dynamic(
 		})),
 	{ ssr: false },
 );
-const LandingTestimonials = dynamic(
-	() =>
-		import("@/page-sections/landing/LandingTestimonials").then((m) => ({
-			default: m.LandingTestimonials,
-		})),
-	{ ssr: false },
-);
+
+// LandingVisualStory uses sticky scroll + panorama — keep ssr:false.
 const LandingVisualStory = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingVisualStory").then((m) => ({
@@ -44,12 +43,11 @@ const LandingVisualStory = dynamic(
 		})),
 	{ ssr: false },
 );
-const LandingCta = dynamic(
-	() => import("@/page-sections/landing/LandingCta").then((m) => ({ default: m.LandingCta })),
-	{ ssr: false },
-);
 
-/** Client shell — hero + brand statement sync; below-fold sections code-split. */
+/**
+ * Client shell — hero + brand statement + stats + testimonials + cta are SSR'd.
+ * Complex browser-API sections (Projects, Materials, Process, VisualStory) code-split.
+ */
 export function LandingPageContent() {
 	useLenisResizeOnMount();
 

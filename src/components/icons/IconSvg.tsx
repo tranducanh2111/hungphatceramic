@@ -22,6 +22,7 @@ export function IconSvg({ src, alt, size = 16, className }: IconSvgProps) {
 			aria-label={alt || undefined}
 			aria-hidden={!alt ? true : undefined}
 			className={cn("inline-block shrink-0", className)}
+			suppressHydrationWarning
 			style={{
 				width: size,
 				height: size,

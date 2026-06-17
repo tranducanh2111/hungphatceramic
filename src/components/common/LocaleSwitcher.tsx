@@ -68,9 +68,17 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
 						label={t(`options.${activeLocale}`)}
 					/>
 					{isMenuOpen ? (
-						<ChevronUp className="h-4 w-4 shrink-0" aria-hidden="true" />
+						<ChevronUp
+							suppressHydrationWarning
+							className="h-4 w-4 shrink-0"
+							aria-hidden="true"
+						/>
 					) : (
-						<ChevronDown className="h-4 w-4 shrink-0" aria-hidden="true" />
+						<ChevronDown
+							suppressHydrationWarning
+							className="h-4 w-4 shrink-0"
+							aria-hidden="true"
+						/>
 					)}
 				</span>
 			</button>

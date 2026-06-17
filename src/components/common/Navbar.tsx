@@ -77,7 +77,7 @@ function LogoMark({ isScrolled }: LogoMarkProps) {
 		>
 			{isDesktopNav ? (
 				<motion.div
-					style={{ aspectRatio: LOGO_ASPECT_RATIO }}
+					style={{ aspectRatio: LOGO_ASPECT_RATIO, height: logoHeight }}
 					animate={{ height: logoHeight }}
 					transition={NAVBAR_MOTION_TRANSITION}
 					className="relative shrink-0"
@@ -105,6 +105,7 @@ function LogoImage() {
 			alt={t("logoAlt")}
 			fill
 			priority
+			suppressHydrationWarning
 			sizes="(max-width: 768px) 200px, 260px"
 			className="object-contain object-left transition-opacity duration-300 group-hover:opacity-90"
 		/>

@@ -142,6 +142,9 @@ function CinematicHeroStatic({
 	scrollLabel,
 	className,
 }: CinematicHeroProps) {
+	// On mobile (non-desktop hero), skip the video entirely for LCP.
+	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
+
 	const heroContent = (
 		<CinematicHeroContent
 			eyebrow={eyebrow}
@@ -166,6 +169,7 @@ function CinematicHeroStatic({
 					posterSrc={posterSrc}
 					posterAlt={posterAlt}
 					prefersReducedMotion={false}
+					isMobile={!isDesktopHero}
 					useMotionVideo={false}
 				/>
 				<div className={CINEMATIC_HERO_SCRIM_CLASS} aria-hidden="true" />
