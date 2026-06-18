@@ -11,6 +11,7 @@ import {
 	CINEMATIC_HERO_SCRIM_CLASS,
 	CINEMATIC_HERO_SCROLL_INDICATOR_VARIANTS,
 	CINEMATIC_HERO_STICKY_CLASS,
+	SCROLL_INDICATOR_BOUNCE_CLASS,
 } from "@/constants/hero";
 import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
 import { useAppScroll } from "@/hooks/useAppScroll";
@@ -220,19 +221,33 @@ function CinematicHeroStatic({
 
 			<div className={CINEMATIC_HERO_CONTENT_CLASS}>{heroContent}</div>
 
-			{scrollLabel && (
-				<motion.div
-					variants={CINEMATIC_HERO_SCROLL_INDICATOR_VARIANTS}
-					animate="animate"
-					className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
-					aria-hidden="true"
-				>
-					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
-						{scrollLabel}
-					</span>
-					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
-				</motion.div>
-			)}
+			{scrollLabel &&
+				(isDesktopHero ? (
+					<motion.div
+						variants={CINEMATIC_HERO_SCROLL_INDICATOR_VARIANTS}
+						animate="animate"
+						className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
+						aria-hidden="true"
+					>
+						<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
+							{scrollLabel}
+						</span>
+						<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
+					</motion.div>
+				) : (
+					<div
+						className={cn(
+							"absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2",
+							SCROLL_INDICATOR_BOUNCE_CLASS,
+						)}
+						aria-hidden="true"
+					>
+						<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
+							{scrollLabel}
+						</span>
+						<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
+					</div>
+				))}
 		</section>
 	);
 }
