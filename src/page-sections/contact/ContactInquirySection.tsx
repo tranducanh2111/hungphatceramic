@@ -12,7 +12,7 @@ import { ContactInquiryForm } from "./ContactInquiryForm";
 
 const inquiryPanelClassName = cn(
 	"rounded-2xl border border-sapphire-mist/70",
-	"bg-sapphire-deep/88 backdrop-blur-md",
+	"bg-sapphire-deep/95 lg:bg-sapphire-deep/88 lg:backdrop-blur-md",
 	"p-6 shadow-[0_24px_64px_rgba(4,15,26,0.45)] lg:p-8",
 );
 

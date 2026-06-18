@@ -1,21 +1,13 @@
 "use client";
 
-import { useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { useLenis } from "lenis/react";
 import { CinematicHero } from "@/components/common";
 import { Button } from "@/components/ui";
 import { CONTACT_SECTION_IDS } from "@/constants/contact";
 import { MEDIA_PATHS } from "@/constants/media";
-import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 
 export function ContactHero() {
 	const t = useTranslations("pages.contact.hero");
-	const lenis = useLenis();
-
-	const handleInquiryClick = useCallback(() => {
-		scrollToAnchorElement(CONTACT_SECTION_IDS.inquiry, lenis, { offset: -96 });
-	}, [lenis]);
 
 	return (
 		<CinematicHero
@@ -32,7 +24,7 @@ export function ContactHero() {
 				variant="outline"
 				size="lg"
 				className="rounded-full"
-				onClick={handleInquiryClick}
+				href={`#${CONTACT_SECTION_IDS.inquiry}`}
 			>
 				{t("cta")}
 			</Button>
