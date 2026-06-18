@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/siteUrl";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://perla.com.vn"),
+	metadataBase: new URL(SITE_URL),
 	title: {
 		default: "Perla powered by Hung Phat | Gạch Porcelain Cao Cấp & Gạch Ốp Lát Sang Trọng",
 		template: "%s | Perla powered by Hung Phat",
