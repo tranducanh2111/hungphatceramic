@@ -5,8 +5,10 @@ import { useTranslations } from "next-intl";
 import { motion, useTransform, type MotionValue } from "framer-motion";
 import { ProductTile } from "@/components/common";
 import { Text } from "@/components/ui";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/cn";
 import type { ProductListingItem } from "@/lib/products/listing";
 
@@ -18,9 +20,6 @@ interface ProductsGridProps {
 
 /** Pixels of page scroll over which the middle column reaches a half-card drop. */
 const MIDDLE_COLUMN_SCROLL_RANGE_PX = 320;
-
-const LARGE_GRID_MEDIA_QUERY = "(min-width: 1024px)";
-const REDUCED_MOTION_MEDIA_QUERY = "(prefers-reduced-motion: reduce)";
 
 function distributeProductsIntoColumns(
 	products: ProductListingItem[],
@@ -100,38 +99,18 @@ function CatalogTileList({
 	);
 }
 
-/**
- * ProductsGrid — Catalog grid with scroll-linked middle-column stagger (lg+).
- * Three independent columns at lg so side tiles keep normal gap-6 rhythm.
- */
-export function ProductsGrid({ products, activeCollectionId, activeSizeId }: ProductsGridProps) {
-	const t = useTranslations("pages.products");
-	const isThreeColumnGrid = useMediaQuery(LARGE_GRID_MEDIA_QUERY);
-	const prefersReducedMotion = useMediaQuery(REDUCED_MOTION_MEDIA_QUERY);
+interface ProductsGridLayoutProps {
+	products: ProductListingItem[];
+	activeCollectionId: string;
+	activeSizeId: string;
+	columnCount: 1 | 2 | 3;
+	enableScrollStagger?: boolean;
+	enableStaticStagger?: boolean;
+	middleColumnOffset?: MotionValue<string>;
+}
 
-	const { scrollY } = useAppScroll();
-	const middleColumnOffset = useTransform(
-		scrollY,
-		[0, MIDDLE_COLUMN_SCROLL_RANGE_PX],
-		["0%", "50%"],
-	);
-
-	const enableScrollStagger = isThreeColumnGrid && !prefersReducedMotion;
-	const enableStaticStagger = isThreeColumnGrid && prefersReducedMotion;
-
-	const staggeredColumns = useMemo(() => distributeProductsIntoColumns(products, 3), [products]);
-
-	if (products.length === 0) {
-		return (
-			<div className="flex min-h-[300px] flex-col items-center justify-center text-center">
-				<Text variant="body-lg" className="text-linen/45">
-					{t("noProducts")}
-				</Text>
-			</div>
-		);
-	}
-
-	const watermark = (
+function ProductsGridWatermark({ activeCollectionId }: { activeCollectionId: string }) {
+	return (
 		<div
 			className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-center overflow-hidden select-none md:flex"
 			aria-hidden="true"
@@ -141,11 +120,26 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 			</span>
 		</div>
 	);
+}
 
-	if (isThreeColumnGrid) {
+function ProductsGridLayout({
+	products,
+	activeCollectionId,
+	activeSizeId,
+	columnCount,
+	enableScrollStagger = false,
+	enableStaticStagger = false,
+	middleColumnOffset,
+}: ProductsGridLayoutProps) {
+	const staggeredColumns = useMemo(
+		() => distributeProductsIntoColumns(products, columnCount),
+		[products, columnCount],
+	);
+
+	if (columnCount === 3) {
 		return (
 			<div className="@container relative min-h-[600px] w-full overflow-visible pb-8 lg:pb-0">
-				{watermark}
+				<ProductsGridWatermark activeCollectionId={activeCollectionId} />
 				<div className="relative z-10 grid grid-cols-3 gap-6 overflow-visible">
 					{staggeredColumns.map((columnProducts, columnIndex) => (
 						<CatalogTileList
@@ -165,10 +159,13 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 
 	return (
 		<div className="relative min-h-[600px] w-full overflow-visible pb-8 lg:pb-0">
-			{watermark}
+			<ProductsGridWatermark activeCollectionId={activeCollectionId} />
 			<ul
 				key={activeCollectionId}
-				className="relative z-10 grid list-none grid-cols-1 gap-6 overflow-visible p-0 sm:grid-cols-2"
+				className={cn(
+					"relative z-10 grid list-none gap-6 overflow-visible p-0",
+					columnCount === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1",
+				)}
 			>
 				{products.map((product, index) => (
 					<li key={product.slug} className="overflow-visible">
@@ -182,5 +179,70 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 				))}
 			</ul>
 		</div>
+	);
+}
+
+/** Desktop three-column grid with scroll-linked middle-column stagger. */
+function ProductsGridScrollStaggered({
+	products,
+	activeCollectionId,
+	activeSizeId,
+}: ProductsGridProps) {
+	const { scrollY } = useAppScroll();
+	const middleColumnOffset = useTransform(
+		scrollY,
+		[0, MIDDLE_COLUMN_SCROLL_RANGE_PX],
+		["0%", "50%"],
+	);
+
+	return (
+		<ProductsGridLayout
+			products={products}
+			activeCollectionId={activeCollectionId}
+			activeSizeId={activeSizeId}
+			columnCount={3}
+			enableScrollStagger
+			middleColumnOffset={middleColumnOffset}
+		/>
+	);
+}
+
+/**
+ * ProductsGrid — Catalog grid with optional scroll-linked middle-column stagger (lg+).
+ * Scroll subscriptions mount only when the staggered desktop layout is active.
+ */
+export function ProductsGrid({ products, activeCollectionId, activeSizeId }: ProductsGridProps) {
+	const t = useTranslations("pages.products");
+	const isThreeColumnGrid = useMediaQuery(DESKTOP_LAYOUT_QUERY);
+	const prefersReducedMotion = usePrefersReducedMotion();
+
+	if (products.length === 0) {
+		return (
+			<div className="flex min-h-[300px] flex-col items-center justify-center text-center">
+				<Text variant="body-lg" className="text-linen/45">
+					{t("noProducts")}
+				</Text>
+			</div>
+		);
+	}
+
+	if (isThreeColumnGrid && !prefersReducedMotion) {
+		return (
+			<ProductsGridScrollStaggered
+				products={products}
+				activeCollectionId={activeCollectionId}
+				activeSizeId={activeSizeId}
+			/>
+		);
+	}
+
+	return (
+		<ProductsGridLayout
+			products={products}
+			activeCollectionId={activeCollectionId}
+			activeSizeId={activeSizeId}
+			columnCount={isThreeColumnGrid ? 3 : 2}
+			enableStaticStagger={isThreeColumnGrid && prefersReducedMotion}
+		/>
 	);
 }

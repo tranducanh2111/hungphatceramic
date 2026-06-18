@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { PageMediaPreload } from "@/components/media";
 import { PRODUCTS } from "@/constants/products";
+import { encodePublicAssetPath } from "@/lib/products/media";
 import {
 	getCollectionListingMeta,
 	getTileSizeListingMeta,
@@ -75,9 +77,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 	};
 
 	const schemas = [itemListSchema, breadcrumbSchema];
+	const lcpThumbnailPaths = products
+		.slice(0, 3)
+		.map((product) => encodePublicAssetPath(product.thumbnailUrl));
 
 	return (
 		<main>
+			<PageMediaPreload imagePaths={lcpThumbnailPaths} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

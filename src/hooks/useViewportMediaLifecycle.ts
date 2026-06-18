@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { observeSharedViewportIntersection } from "@/lib/sharedViewportObserver";
 
 export interface ViewportMediaLifecycleOptions {
 	/** When false, media stays mounted (heroes, above-the-fold LCP). */
@@ -34,30 +35,29 @@ export function useViewportMediaLifecycle({
 			return;
 		}
 
-		const loadObserver = new IntersectionObserver(
-			([entry]) => {
-				if (entry?.isIntersecting) {
+		const unobserveLoad = observeSharedViewportIntersection(
+			observedElement,
+			loadRootMargin,
+			(isIntersecting) => {
+				if (isIntersecting) {
 					setIsObservedMounted(true);
 				}
 			},
-			{ rootMargin: loadRootMargin, threshold: 0 },
 		);
 
-		const unloadObserver = new IntersectionObserver(
-			([entry]) => {
-				if (entry && !entry.isIntersecting) {
+		const unobserveUnload = observeSharedViewportIntersection(
+			observedElement,
+			unloadRootMargin,
+			(isIntersecting) => {
+				if (!isIntersecting) {
 					setIsObservedMounted(false);
 				}
 			},
-			{ rootMargin: unloadRootMargin, threshold: 0 },
 		);
 
-		loadObserver.observe(observedElement);
-		unloadObserver.observe(observedElement);
-
 		return () => {
-			loadObserver.disconnect();
-			unloadObserver.disconnect();
+			unobserveLoad();
+			unobserveUnload();
 		};
 	}, [isDeferred, loadRootMargin, unloadRootMargin]);
 
