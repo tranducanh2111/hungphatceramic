@@ -300,8 +300,11 @@
 			"ogLocale": "en_US"
 		},
 		"projects": {
-			"title": "Premium Tile Project Showcase - Luxury Villas & Hotels | Perla",
-			"description": "View our completed high-end porcelain tile installations at Vinhomes Riverside, Ramada Ha Long, Grand World Phu Quoc, and Empire City."
+			"title": "Luxury Tile Projects Portfolio | Perla powered by Hung Phat",
+			"description": "Explore completed porcelain tile installations at Empire City, Ramada Ha Long, Vinhomes Symphony, Saigon Intela, and Grand World Phu Quoc across Vietnam.",
+			"ogTitle": "Landmark Porcelain Tile Projects in Vietnam | Perla",
+			"ogDescription": "Signature hospitality, residential, and mixed-use developments where Perla porcelain surfaces shaped Vietnam's most ambitious interiors.",
+			"ogLocale": "en_US"
 		},
 		"products": {
 			"title": "Porcelain Tile Catalog | Perla powered by Hung Phat",
@@ -560,6 +563,11 @@
 						"imageAlt": "Grand World Phu Quoc entertainment and retail complex at night"
 					}
 				}
+			},
+			"schema": {
+				"pageName": "Luxury Porcelain Tile Projects in Vietnam",
+				"itemListName": "Signature Perla Project Portfolio",
+				"itemListDescription": "Completed porcelain tile installations at landmark developments across Vietnam."
 			}
 		},
 		"products": {

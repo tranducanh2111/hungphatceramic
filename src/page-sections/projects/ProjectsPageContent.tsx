@@ -13,7 +13,6 @@ const ProjectsHeritage = dynamic(
 		import("@/page-sections/projects/ProjectsHeritage").then((m) => ({
 			default: m.ProjectsHeritage,
 		})),
-	{ ssr: false },
 );
 
 /** Client shell — scroll narrative with code-split motion sections. */
