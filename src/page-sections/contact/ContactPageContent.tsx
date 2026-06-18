@@ -6,18 +6,16 @@ import { useLenisControls } from "@/components/common";
 import { CONTACT_SECTION_IDS } from "@/constants/contact";
 import { ContactHero } from "./ContactHero";
 
-const ContactInquirySection = dynamic(
-	() =>
-		import("./ContactInquirySection").then((module) => ({
-			default: module.ContactInquirySection,
-		})),
+const ContactInquirySection = dynamic(() =>
+	import("./ContactInquirySection").then((module) => ({
+		default: module.ContactInquirySection,
+	})),
 );
 
-const ContactShowroom = dynamic(
-	() =>
-		import("./ContactShowroom").then((module) => ({
-			default: module.ContactShowroom,
-		})),
+const ContactShowroom = dynamic(() =>
+	import("./ContactShowroom").then((module) => ({
+		default: module.ContactShowroom,
+	})),
 );
 
 const BELOW_FOLD_IDLE_TIMEOUT_MS = 1500;

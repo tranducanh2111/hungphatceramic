@@ -4,14 +4,16 @@ import "./globals.css";
 export default function GlobalNotFound() {
 	return (
 		<html lang="en">
-			<body className="bg-sapphire-deep flex min-h-screen items-center justify-center text-linen antialiased">
+			<body className="bg-sapphire-deep text-linen flex min-h-screen items-center justify-center antialiased">
 				<main className="text-center">
-					<h1 className="mb-4 text-7xl text-champagne font-light tracking-tight">404</h1>
+					<h1 className="text-champagne mb-4 text-7xl font-light tracking-tight">404</h1>
 					<h2 className="mb-6 text-2xl">Page Not Found</h2>
-					<p className="mb-10 text-linen-warm">The page you are looking for does not exist.</p>
+					<p className="text-linen-warm mb-10">
+						The page you are looking for does not exist.
+					</p>
 					<Link
 						href="/"
-						className="inline-flex h-12 items-center justify-center bg-champagne px-8 text-sm font-medium text-sapphire-deep transition-colors hover:bg-champagne-light focus:outline-none focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-sapphire-deep"
+						className="bg-champagne text-sapphire-deep hover:bg-champagne-light focus:ring-champagne focus:ring-offset-sapphire-deep inline-flex h-12 items-center justify-center px-8 text-sm font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
 					>
 						Return to Home
 					</Link>

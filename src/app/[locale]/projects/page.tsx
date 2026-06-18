@@ -100,7 +100,10 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 	return (
 		<main>
-			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.featuredProjects.empireCity]} desktopOnly />
+			<PageMediaPreload
+				imagePaths={[MEDIA_PATHS.images.featuredProjects.empireCity]}
+				desktopOnly
+			/>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
