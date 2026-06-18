@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { ViewportDeferredImage } from "@/components/media";
 import { Text } from "@/components/ui";
@@ -8,7 +9,16 @@ import { CONTACT_SECTION_IDS } from "@/constants/contact";
 import { MEDIA_PATHS } from "@/constants/media";
 import { cn } from "@/lib/cn";
 import { ContactChannelGrid } from "./ContactChannelGrid";
-import { ContactInquiryForm } from "./ContactInquiryForm";
+
+const ContactInquiryForm = dynamic(
+	() =>
+		import("./ContactInquiryForm").then((module) => ({
+			default: module.ContactInquiryForm,
+		})),
+	{
+		loading: () => <div className="min-h-[22rem]" aria-hidden="true" />,
+	},
+);
 
 const inquiryPanelClassName = cn(
 	"rounded-2xl border border-sapphire-mist/70",
@@ -27,14 +37,18 @@ export function ContactInquirySection() {
 			aria-labelledby="contact-inquiry-heading"
 		>
 			<div className="absolute inset-0" aria-hidden="true">
-				<ViewportDeferredImage
-					src={MEDIA_PATHS.images.contact.inquiryBackdrop}
-					alt=""
-					fill
-					quality={72}
-					sizes="100vw"
-					className="object-cover object-center"
-				/>
+				<div className="bg-sapphire-ocean absolute inset-0 lg:hidden" />
+				<div className="absolute inset-0 hidden lg:block">
+					<ViewportDeferredImage
+						src={MEDIA_PATHS.images.contact.inquiryBackdrop}
+						alt=""
+						fill
+						quality={72}
+						sizes="100vw"
+						className="object-cover object-center"
+						loadRootMargin="480px 0px"
+					/>
+				</div>
 				<div className="bg-sapphire-deep/72 absolute inset-0" />
 				<div className="from-sapphire-deep/90 via-sapphire-deep/55 to-sapphire-deep/92 absolute inset-0 bg-gradient-to-b" />
 				<div className="from-sapphire-deep to-sapphire-deep/80 absolute inset-0 bg-gradient-to-r via-transparent" />
