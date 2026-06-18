@@ -12,6 +12,9 @@ const STATIC_MEDIA_CACHE_HEADER = {
 const STATIC_MEDIA_PATHS = ["/media/:path*", "/assets/:path*", "/logo/:path*", "/icons/:path*"];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ["framer-motion"],
+  },
   async headers() {
     return STATIC_MEDIA_PATHS.map((source) => ({
       source,
