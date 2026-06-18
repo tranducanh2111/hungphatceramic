@@ -101,7 +101,10 @@ export function ProductsPageContent({
 				</h2>
 
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr] lg:gap-16">
-					<aside className="w-full md:sticky md:top-28 md:h-fit" aria-label={t("filterLabel")}>
+					<aside
+						className="w-full md:sticky md:top-28 md:h-fit"
+						aria-label={t("filterLabel")}
+					>
 						<div className="mb-8">
 							<Input
 								type="search"

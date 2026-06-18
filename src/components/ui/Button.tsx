@@ -107,7 +107,7 @@ export function Button(props: ButtonProps) {
 			{withShimmer ? <span className={shimmerLabelClass}>{children}</span> : children}
 			{withShimmer && (
 				<span className="button-border-shimmer-wrap pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] p-[1.5px]">
-					<span className="button-border-shimmer-line absolute inset-0 bg-[length:300%_100%] bg-[linear-gradient(90deg,transparent_35%,var(--color-champagne)_47%,var(--color-linen-warm)_50%,var(--color-champagne)_53%,transparent_65%)]" />
+					<span className="button-border-shimmer-line absolute inset-0 bg-[linear-gradient(90deg,transparent_35%,var(--color-champagne)_47%,var(--color-linen-warm)_50%,var(--color-champagne)_53%,transparent_65%)] bg-[length:300%_100%]" />
 				</span>
 			)}
 		</>

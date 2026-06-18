@@ -44,8 +44,8 @@ export function PageMediaPreload({
 					desktopOnly
 						? "(min-width: 1024px)"
 						: mobileImagePaths && mobileImagePaths.length > 0
-						? "(min-width: 1024px)"
-						: undefined,
+							? "(min-width: 1024px)"
+							: undefined,
 				),
 			)}
 		</>

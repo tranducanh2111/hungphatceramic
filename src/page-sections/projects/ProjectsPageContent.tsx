@@ -8,11 +8,10 @@ import { ProjectsRegionsMap } from "@/page-sections/projects/ProjectsRegionsMap"
 import { ProjectsClientStrip } from "@/page-sections/projects/ProjectsClientStrip";
 import { ProjectsCta } from "@/page-sections/projects/ProjectsCta";
 
-const ProjectsHeritage = dynamic(
-	() =>
-		import("@/page-sections/projects/ProjectsHeritage").then((m) => ({
-			default: m.ProjectsHeritage,
-		})),
+const ProjectsHeritage = dynamic(() =>
+	import("@/page-sections/projects/ProjectsHeritage").then((m) => ({
+		default: m.ProjectsHeritage,
+	})),
 );
 
 /** Client shell — scroll narrative with code-split motion sections. */
