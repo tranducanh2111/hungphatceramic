@@ -300,6 +300,12 @@
 		}
 	},
 	"pages": {
+		"notFound": {
+			"title": "404",
+			"heading": "Không Tìm Thấy Trang",
+			"description": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.",
+			"backHome": "Về Trang Chủ"
+		},
 		"about": {
 			"schema": {
 				"name": "Perla powered by Hung Phat",

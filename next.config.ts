@@ -19,6 +19,26 @@ const nextConfig: NextConfig = {
     }));
   },
 
+  async redirects() {
+    return [
+      {
+        source: "/about-us",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/en/about-us",
+        destination: "/en/about",
+        permanent: true,
+      },
+      {
+        source: "/vi/about-us",
+        destination: "/vi/about",
+        permanent: true,
+      },
+    ];
+  },
+
   images: {
     formats: ["image/avif", "image/webp"],
     /** Matches `next/image` quality values used in the app (default 75 + custom 55). */
