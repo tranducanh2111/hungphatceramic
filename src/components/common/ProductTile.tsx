@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ProductTileCard } from "@/components/ui";
 import { productDetailHref } from "@/lib/products/asset-paths";
@@ -49,12 +48,10 @@ export function ProductTile({
 	imageSizes,
 	deferMediaUntilVisible = false,
 }: ProductTileProps) {
-	const t = useTranslations("products.items");
 	const { containerRef, isMediaMounted } = useCatalogTileMediaLifecycle({
 		isDeferred: deferMediaUntilVisible && !priority,
 	});
 
-	const productName = t.has(`${product.slug}.name`) ? t(`${product.slug}.name`) : product.name;
 	const hoverImageSrc = resolveListingDemoWorkHoverPath(resolveDemoWorkThumbnailUrl(product));
 	const encodedHoverImageSrc = hoverImageSrc ? encodePublicAssetPath(hoverImageSrc) : undefined;
 
@@ -67,10 +64,10 @@ export function ProductTile({
 				<ProductTileCard
 					imageSrc={encodePublicAssetPath(product.thumbnailUrl)}
 					hoverImageSrc={encodedHoverImageSrc}
-					imageAlt={productName}
+					imageAlt={product.name}
 					productCode={product.skuCode}
 					dimensions={product.category}
-					productName={productName}
+					productName={product.name}
 					isMediaMounted={isMediaMounted}
 					priority={priority}
 					imageSizes={imageSizes}

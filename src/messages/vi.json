@@ -283,8 +283,11 @@
 			"description": "Chiêm ngưỡng các công trình ốp lát gạch porcelain cao cấp khổ lớn thực tế tại Vinhomes Riverside, Ramada Hạ Long, Grand World Phú Quốc, Empire City."
 		},
 		"products": {
-			"title": "Gạch Lát Nền Cao Cấp | Gạch Porcelain Nhập Khẩu Khổ Lớn | Perla",
-			"description": "Tổng kho gạch porcelain nhập khẩu cao cấp Tây Ban Nha, Ý, Indonesia. Cung cấp gạch lát nền biệt thự, gạch ốp tường sang trọng khổ 60x120, 80x80, 120x120."
+			"title": "Gạch Porcelain Cao Cấp | Perla powered by Hung Phat",
+			"description": "Khám phá gạch porcelain nhập khẩu khổ lớn 60×120, 80×80, 100×100 & 120×120 cm. Bề mặt cao cấp cho nội thất biệt thự và dự án thương mại tại Việt Nam.",
+			"ogTitle": "Bộ Sưu Tập Gạch Porcelain Cao Cấp | Perla",
+			"ogDescription": "Tổng hợp gạch porcelain và slab kiến trúc nhập khẩu do Perla powered by Hung Phat tuyển chọn cho các công trình nhà ở và thương mại cao cấp.",
+			"ogLocale": "vi_VN"
 		},
 		"productDetail": {
 			"title": "{productName} - Gạch Porcelain Cao Cấp | Perla by Hùng Phát",
@@ -569,6 +572,11 @@
 			"hero": {
 				"label": "Danh mục sản phẩm",
 				"defaultTitle": "Toàn bộ bộ sưu tập"
+			},
+			"schema": {
+				"itemListName": "Bộ sưu tập gạch porcelain cao cấp",
+				"itemListDescription": "Khám phá gạch porcelain nhập khẩu và slab khổ lớn từ Perla powered by Hung Phat.",
+				"productBrand": "Perla powered by Hung Phat"
 			}
 		},
 		"productDetail": {

@@ -1,17 +1,16 @@
 "use client";
 
-import { Suspense, useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
 import { ProductsHero } from "./ProductsHero";
 import { ProductsFilter } from "./ProductsFilter";
 import { ProductsGrid } from "./ProductsGrid";
 import { Input } from "@/components/ui";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import {
-	isTileSizeSlug,
-	productMatchesTileSize,
+	filterProductListingByCatalog,
+	type CatalogFilterState,
 	type CollectionListingMeta,
 	type ProductListingItem,
 	type TileSizeListingMeta,
@@ -21,25 +20,22 @@ interface ProductsPageContentProps {
 	products: ProductListingItem[];
 	collections: CollectionListingMeta[];
 	tileSizes: TileSizeListingMeta[];
+	initialFilter: CatalogFilterState;
 }
 
-function ProductsPageContentInner({ products, collections, tileSizes }: ProductsPageContentProps) {
+export function ProductsPageContent({
+	products,
+	collections,
+	tileSizes,
+	initialFilter,
+}: ProductsPageContentProps) {
 	const t = useTranslations("pages.products");
 	const router = useRouter();
 	const pathname = usePathname();
-	const searchParams = useSearchParams();
 
 	const [searchQuery, setSearchQuery] = useState("");
-
-	const rawCollectionId = searchParams.get("collection") || "all";
-	const activeCollectionId =
-		rawCollectionId === "all" ||
-		collections.some((collection) => collection.id === rawCollectionId)
-			? rawCollectionId
-			: "all";
-
-	const rawSizeId = searchParams.get("size") || "all";
-	const activeSizeId = isTileSizeSlug(rawSizeId) ? rawSizeId : "all";
+	const [activeCollectionId, setActiveCollectionId] = useState(initialFilter.collectionId);
+	const [activeSizeId, setActiveSizeId] = useState(initialFilter.sizeId);
 
 	const pushCatalogQuery = (nextParams: URLSearchParams) => {
 		const search = nextParams.toString();
@@ -48,27 +44,34 @@ function ProductsPageContentInner({ products, collections, tileSizes }: Products
 	};
 
 	const handleSelectCollection = (id: string) => {
-		const nextParams = new URLSearchParams(Array.from(searchParams.entries()));
-		if (id === "all") {
-			nextParams.delete("collection");
-		} else {
+		setActiveCollectionId(id);
+		const nextParams = new URLSearchParams();
+		if (activeSizeId !== "all") {
+			nextParams.set("size", activeSizeId);
+		}
+		if (id !== "all") {
 			nextParams.set("collection", id);
 		}
 		pushCatalogQuery(nextParams);
 	};
 
 	const handleSelectSize = (id: string) => {
-		const nextParams = new URLSearchParams(Array.from(searchParams.entries()));
-		if (id === "all") {
-			nextParams.delete("size");
-		} else {
+		setActiveSizeId(id);
+		const nextParams = new URLSearchParams();
+		if (activeCollectionId !== "all") {
+			nextParams.set("collection", activeCollectionId);
+		}
+		if (id !== "all") {
 			nextParams.set("size", id);
 		}
 		pushCatalogQuery(nextParams);
 	};
 
 	const filteredProducts = useMemo(() => {
-		let result = products;
+		let result = filterProductListingByCatalog(products, {
+			collectionId: activeCollectionId,
+			sizeId: activeSizeId,
+		});
 
 		if (searchQuery.trim()) {
 			const query = searchQuery.toLowerCase().trim();
@@ -77,32 +80,33 @@ function ProductsPageContentInner({ products, collections, tileSizes }: Products
 					product.skuCode.toLowerCase().includes(query) ||
 					product.name.toLowerCase().includes(query),
 			);
-		} else if (activeCollectionId !== "all") {
-			result = result.filter((product) => product.collectionId === activeCollectionId);
-		}
-
-		if (activeSizeId !== "all") {
-			result = result.filter((product) => productMatchesTileSize(product, activeSizeId));
 		}
 
 		return result.map((product) => applyTileSizeToListingItem(product, activeSizeId));
 	}, [activeCollectionId, activeSizeId, products, searchQuery]);
 
 	return (
-		<main className="bg-sapphire-deep text-linen">
+		<div className="bg-sapphire-deep text-linen">
 			<ProductsHero
 				activeCollectionId={activeCollectionId}
 				totalProductsCount={filteredProducts.length}
 			/>
 
-			<section className="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-12 lg:pb-20">
+			<section
+				className="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-12 lg:pb-20"
+				aria-labelledby="products-catalog-heading"
+			>
+				<h2 id="products-catalog-heading" className="sr-only">
+					{t("heading")}
+				</h2>
+
 				<div className="grid grid-cols-1 gap-10 md:grid-cols-[240px_1fr] lg:gap-16">
-					<aside className="w-full md:sticky md:top-28 md:h-fit">
+					<aside className="w-full md:sticky md:top-28 md:h-fit" aria-label={t("filterLabel")}>
 						<div className="mb-8">
 							<Input
 								type="search"
 								value={searchQuery}
-								onChange={(e) => setSearchQuery(e.target.value)}
+								onChange={(event) => setSearchQuery(event.target.value)}
 								placeholder={t("searchPlaceholder")}
 								className="border-sapphire-mist focus:border-champagne w-full"
 							/>
@@ -127,17 +131,6 @@ function ProductsPageContentInner({ products, collections, tileSizes }: Products
 					</div>
 				</div>
 			</section>
-		</main>
-	);
-}
-
-/**
- * ProductsPageContent — Client shell for catalog filtering; product data is passed from the server page.
- */
-export function ProductsPageContent(props: ProductsPageContentProps) {
-	return (
-		<Suspense fallback={<div className="bg-sapphire-deep min-h-screen" />}>
-			<ProductsPageContentInner {...props} />
-		</Suspense>
+		</div>
 	);
 }
