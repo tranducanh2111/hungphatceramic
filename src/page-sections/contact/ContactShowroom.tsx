@@ -51,7 +51,7 @@ export function ContactShowroom() {
 					</RevealOnView>
 
 					<RevealOnView delay={0.15} className="min-h-[18rem] lg:min-h-[22rem]">
-						<ContactShowroomMap className="h-full w-full" />
+						<ContactShowroomMap />
 					</RevealOnView>
 				</div>
 			</div>

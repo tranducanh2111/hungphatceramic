@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
 import { ContactPageContent } from "@/page-sections/contact/ContactPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
@@ -76,6 +78,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
 	return (
 		<main>
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
