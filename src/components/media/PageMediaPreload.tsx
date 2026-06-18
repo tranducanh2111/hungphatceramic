@@ -3,6 +3,8 @@ interface PageMediaPreloadProps {
 	imagePaths: readonly string[];
 	/** Optional mobile-only preloads — use when desktop needs more LCP candidates than mobile. */
 	mobileImagePaths?: readonly string[];
+	/** When true, restricts preloading to desktop viewports (min-width: 1024px). */
+	desktopOnly?: boolean;
 }
 
 /**
@@ -10,7 +12,11 @@ interface PageMediaPreloadProps {
  * The `type` attribute tells browsers the format upfront so they can prioritize
  * decoding without a round-trip Content-Type sniff.
  */
-export function PageMediaPreload({ imagePaths, mobileImagePaths }: PageMediaPreloadProps) {
+export function PageMediaPreload({
+	imagePaths,
+	mobileImagePaths,
+	desktopOnly = false,
+}: PageMediaPreloadProps) {
 	const renderPreloadLink = (href: string, media?: string) => {
 		const isWebP = href.endsWith(".webp");
 		const isAvif = href.endsWith(".avif");
@@ -35,7 +41,9 @@ export function PageMediaPreload({ imagePaths, mobileImagePaths }: PageMediaPrel
 			{imagePaths.map((href) =>
 				renderPreloadLink(
 					href,
-					mobileImagePaths && mobileImagePaths.length > 0
+					desktopOnly
+						? "(min-width: 1024px)"
+						: mobileImagePaths && mobileImagePaths.length > 0
 						? "(min-width: 1024px)"
 						: undefined,
 				),

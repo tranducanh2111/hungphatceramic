@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { PageMediaPreload } from "@/components/media";
 import { PRODUCTS } from "@/constants/products";
 import { encodePublicAssetPath } from "@/lib/products/media";
 import {
-	filterProductListingByCatalog,
 	getCollectionListingMeta,
 	getTileSizeListingMeta,
 	resolveCatalogFilterState,
 	toProductListingItems,
 } from "@/lib/products/listing";
-import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
@@ -109,24 +106,8 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 
 	const schemas = [itemListSchema, breadcrumbSchema];
 
-	const filteredForPreload = filterProductListingByCatalog(products, initialFilter).map(
-		(product) => applyTileSizeToListingItem(product, initialFilter.sizeId),
-	);
-	const mobileLcpThumbnail = filteredForPreload[0]?.thumbnailUrl;
-	const desktopLcpThumbnails = filteredForPreload
-		.slice(0, 3)
-		.map((product) => encodePublicAssetPath(product.thumbnailUrl));
-
 	return (
 		<main>
-			<PageMediaPreload
-				imagePaths={desktopLcpThumbnails}
-				mobileImagePaths={
-					mobileLcpThumbnail
-						? [encodePublicAssetPath(mobileLcpThumbnail)]
-						: undefined
-				}
-			/>
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

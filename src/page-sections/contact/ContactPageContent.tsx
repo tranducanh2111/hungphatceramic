@@ -52,8 +52,8 @@ function ContactDeferredSections() {
 
 	useEffect(() => {
 		if (window.location.hash === `#${CONTACT_SECTION_IDS.inquiry}`) {
-			setShouldMountBelowFold(true);
-			return;
+			const timer = setTimeout(() => setShouldMountBelowFold(true), 0);
+			return () => clearTimeout(timer);
 		}
 
 		return scheduleBelowFoldMount(() => setShouldMountBelowFold(true));
