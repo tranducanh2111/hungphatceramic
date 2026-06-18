@@ -172,7 +172,7 @@ function ProductsGridLayout({
 						<ProductTile
 							product={product}
 							activeSizeId={activeSizeId}
-							priority={index < 3}
+							priority={index < 1}
 							deferMediaUntilVisible
 						/>
 					</li>

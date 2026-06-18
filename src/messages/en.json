@@ -304,8 +304,11 @@
 			"description": "View our completed high-end porcelain tile installations at Vinhomes Riverside, Ramada Ha Long, Grand World Phu Quoc, and Empire City."
 		},
 		"products": {
-			"title": "Luxury Imported Porcelain Tiles | Large Format Slabs 60x120, 80x80 | Perla",
-			"description": "Explore our collection of imported porcelain tiles and large format slabs (60x120cm, 80x80cm, 100x100cm, 120x120cm) for luxury indoor and outdoor tiling."
+			"title": "Porcelain Tile Catalog | Perla powered by Hung Phat",
+			"description": "Browse imported porcelain tiles and large-format slabs in 60×120, 80×80, 100×100 & 120×120 cm. Premium surfaces for luxury interiors in Vietnam.",
+			"ogTitle": "Luxury Porcelain Tile Collection | Perla",
+			"ogDescription": "Explore premium imported porcelain tiles and architectural slabs curated by Perla powered by Hung Phat for high-end residential and commercial projects.",
+			"ogLocale": "en_US"
 		},
 		"productDetail": {
 			"title": "{productName} - Luxury Porcelain Tile | Perla by Hung Phat",
@@ -590,6 +593,11 @@
 			"hero": {
 				"label": "Product Catalogue",
 				"defaultTitle": "The Complete Collection"
+			},
+			"schema": {
+				"itemListName": "Luxury Porcelain Tile Collection",
+				"itemListDescription": "Browse imported porcelain tiles and large-format slabs from Perla powered by Hung Phat.",
+				"productBrand": "Perla powered by Hung Phat"
 			}
 		},
 		"productDetail": {

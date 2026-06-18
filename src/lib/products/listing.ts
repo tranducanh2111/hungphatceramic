@@ -104,3 +104,45 @@ export function productMatchesTileSize(product: ProductListingItem, sizeSlug: st
 	}
 	return product.sizes.includes(getTileSizeDimension(sizeSlug));
 }
+
+export interface CatalogFilterState {
+	collectionId: string;
+	sizeId: string;
+}
+
+/** Validates URL filter params against catalogue metadata. */
+export function resolveCatalogFilterState(
+	collectionParam: string | undefined,
+	sizeParam: string | undefined,
+	collections: readonly CollectionListingMeta[],
+): CatalogFilterState {
+	const rawCollectionId = collectionParam ?? "all";
+	const collectionId =
+		rawCollectionId === "all" ||
+		collections.some((collection) => collection.id === rawCollectionId)
+			? rawCollectionId
+			: "all";
+
+	const rawSizeId = sizeParam ?? "all";
+	const sizeId = isTileSizeSlug(rawSizeId) ? rawSizeId : "all";
+
+	return { collectionId, sizeId };
+}
+
+/** Server/client shared catalogue filter — excludes client-only search. */
+export function filterProductListingByCatalog(
+	products: readonly ProductListingItem[],
+	{ collectionId, sizeId }: CatalogFilterState,
+): ProductListingItem[] {
+	let result = [...products];
+
+	if (collectionId !== "all") {
+		result = result.filter((product) => product.collectionId === collectionId);
+	}
+
+	if (sizeId !== "all") {
+		result = result.filter((product) => productMatchesTileSize(product, sizeId));
+	}
+
+	return result;
+}
