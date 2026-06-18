@@ -72,7 +72,6 @@ export function ZoomableImage({
 	const [isDragging, setIsDragging] = useState(false);
 
 	// ── Drag state (all refs — no re-render needed) ───────────────────────────
-	const [isDragging, setIsDragging] = useState(false);
 	const isDraggingRef = useRef(false);
 	/** Pan-offset anchor: clientXY at mousedown minus the current translate. */
 	const panAnchorRef = useRef<Point>({ x: 0, y: 0 });
