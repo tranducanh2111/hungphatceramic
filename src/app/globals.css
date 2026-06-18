@@ -393,60 +393,52 @@ h6 {
 	position: relative;
 	z-index: 1;
 	display: inline-block;
-	color: var(--color-champagne);
-	overflow: hidden;
-}
-
-.button-shimmer-label::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: -100%;
-	width: 200%;
-	height: 100%;
-	background: linear-gradient(
+	/* Floor at champagne — shimmer only brightens, never darkens below brand gold */
+	background-image: linear-gradient(
 		90deg,
-		transparent 0%,
-		var(--color-champagne-light) 40%,
+		var(--color-champagne) 0%,
+		var(--color-champagne) 38%,
+		var(--color-champagne-light) 47%,
 		var(--color-linen-warm) 50%,
-		var(--color-champagne-light) 60%,
-		transparent 100%
+		var(--color-champagne-light) 53%,
+		var(--color-champagne) 62%,
+		var(--color-champagne) 100%
 	);
-	mix-blend-mode: overlay;
-	pointer-events: none;
-	animation: composited-shimmer-pan 6s linear infinite;
-	will-change: transform;
+	background-size: 200% auto;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+	animation: border-shimmer-pan 6s linear infinite;
 }
 
 /* Primary filled CTA — sapphire base with a champagne highlight sweep */
 .button-shimmer-label-inverse {
-	color: var(--color-sapphire-deep);
-}
-
-.button-shimmer-label-inverse::after {
-	background: linear-gradient(
+	background-image: linear-gradient(
 		90deg,
-		transparent 0%,
-		var(--color-champagne) 40%,
+		var(--color-sapphire-deep) 0%,
+		var(--color-sapphire-deep) 38%,
+		var(--color-champagne) 47%,
 		var(--color-champagne-light) 50%,
-		var(--color-champagne) 60%,
-		transparent 100%
+		var(--color-champagne) 53%,
+		var(--color-sapphire-deep) 62%,
+		var(--color-sapphire-deep) 100%
 	);
-}
-
-.group:hover .button-shimmer-label::after,
-.group:focus-visible .button-shimmer-label::after {
-	display: none;
 }
 
 .group:hover .button-shimmer-label,
 .group:focus-visible .button-shimmer-label {
+	animation-play-state: paused;
+	background-image: none;
+	-webkit-text-fill-color: currentColor;
 	color: currentColor;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.button-shimmer-label::after {
+	.button-shimmer-label {
 		animation: none;
-		display: none;
+		background-image: none;
+		-webkit-text-fill-color: currentColor;
+		color: currentColor;
 	}
 }
