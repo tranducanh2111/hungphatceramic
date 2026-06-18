@@ -10,6 +10,8 @@ import { useAppScroll } from "@/hooks/useAppScroll";
 import { CRAFT_BEATS } from "@/constants/about";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { BLUEPRINT_TOKENS as T } from "@/constants/blueprint";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const BEAT_COUNT = CRAFT_BEATS.length;
@@ -432,8 +434,9 @@ function CraftReducedMotion() {
 
 export function AboutCraft() {
 	const prefersReducedMotion = usePrefersReducedMotion();
+	const isDesktop = useMediaQuery(DESKTOP_LAYOUT_QUERY);
 
-	if (prefersReducedMotion) {
+	if (prefersReducedMotion || !isDesktop) {
 		return <CraftReducedMotion />;
 	}
 
