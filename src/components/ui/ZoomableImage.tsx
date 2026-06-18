@@ -70,6 +70,7 @@ export function ZoomableImage({
 	const [isHintVisible, setIsHintVisible] = useState(showHint);
 
 	// ── Drag state (all refs — no re-render needed) ───────────────────────────
+	const [isDragging, setIsDragging] = useState(false);
 	const isDraggingRef = useRef(false);
 	/** Pan-offset anchor: clientXY at mousedown minus the current translate. */
 	const panAnchorRef = useRef<Point>({ x: 0, y: 0 });
@@ -149,6 +150,7 @@ export function ZoomableImage({
 		if (transformRef.current.scale <= 1) return;
 		event.preventDefault();
 		isDraggingRef.current = true;
+		setIsDragging(true);
 		wasDraggingRef.current = false; // reset for this press session
 		panAnchorRef.current = {
 			x: event.clientX - transformRef.current.x,
@@ -194,6 +196,7 @@ export function ZoomableImage({
 		// Only stop the active drag — wasDraggingRef stays true until onClick
 		// consumes it so the click event (which fires after mouseup) can read it.
 		isDraggingRef.current = false;
+		setIsDragging(false);
 	}, []);
 
 	// ── click: zoom in, or reset — but skip if this was a drag ────────────────
@@ -274,7 +277,7 @@ export function ZoomableImage({
 				className={cn("origin-center will-change-transform", className)}
 				style={{
 					transform: `translate(${displayTransform.x}px, ${displayTransform.y}px) scale(${displayTransform.scale})`,
-					transition: isDraggingRef.current ? "none" : "transform 0.2s ease-out",
+					transition: isDragging ? "none" : "transform 0.2s ease-out",
 				}}
 			/>
 

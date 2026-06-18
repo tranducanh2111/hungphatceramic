@@ -78,7 +78,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
 	return (
 		<main>
-			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} desktopOnly />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
