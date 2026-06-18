@@ -12,6 +12,7 @@ import {
 	CINEMATIC_HERO_SCROLL_INDICATOR_VARIANTS,
 	CINEMATIC_HERO_STICKY_CLASS,
 } from "@/constants/hero";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useCinematicHeroClip } from "@/hooks/useCinematicHeroClip";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -46,7 +47,7 @@ interface CinematicHeroContentProps {
 	shouldAnimate?: boolean;
 }
 
-const DESKTOP_HERO_QUERY = "(min-width: 1024px)";
+const DESKTOP_HERO_QUERY = DESKTOP_LAYOUT_QUERY;
 
 function CinematicHeroContent({
 	eyebrow,
@@ -184,10 +185,8 @@ function CinematicHeroStatic({
 	childrenClassName,
 	scrollLabel,
 	className,
-}: CinematicHeroProps) {
-	// On mobile (non-desktop hero), skip the video entirely for LCP.
-	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
-
+	isDesktopHero = false,
+}: CinematicHeroProps & { isDesktopHero?: boolean }) {
 	const heroContent = (
 		<CinematicHeroContent
 			eyebrow={eyebrow}
@@ -341,7 +340,7 @@ export function CinematicHero(props: CinematicHeroProps) {
 	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
 
 	if (prefersReducedMotion || !isDesktopHero) {
-		return <CinematicHeroStatic {...props} />;
+		return <CinematicHeroStatic {...props} isDesktopHero={isDesktopHero} />;
 	}
 
 	return <CinematicHeroScroll {...props} />;

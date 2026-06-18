@@ -7,33 +7,25 @@ import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 import { AboutHero } from "@/page-sections/about/AboutHero";
 import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
+import { AboutPartners } from "@/page-sections/about/AboutPartners";
 
 const AboutCraft = dynamic(
 	() => import("@/page-sections/about/AboutCraft").then((m) => ({ default: m.AboutCraft })),
-	{ ssr: false },
 );
 const AboutCapabilities = dynamic(
 	() =>
 		import("@/page-sections/about/AboutCapabilities").then((m) => ({
 			default: m.AboutCapabilities,
 		})),
-	{ ssr: false },
 );
 const AboutValues = dynamic(
 	() => import("@/page-sections/about/AboutValues").then((m) => ({ default: m.AboutValues })),
-	{ ssr: false },
 );
 const AboutClients = dynamic(
 	() => import("@/page-sections/about/AboutClients").then((m) => ({ default: m.AboutClients })),
-	{ ssr: false },
 );
 const AboutCta = dynamic(
 	() => import("@/page-sections/about/AboutCta").then((m) => ({ default: m.AboutCta })),
-	{ ssr: false },
-);
-const AboutPartners = dynamic(
-	() => import("@/page-sections/about/AboutPartners").then((m) => ({ default: m.AboutPartners })),
-	{ ssr: false },
 );
 
 /** Scroll to hash targets after navigation (e.g. footer “Our Story”). */

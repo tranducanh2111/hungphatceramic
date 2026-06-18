@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AboutPageContent } from "@/page-sections/about/AboutPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
 
 interface AboutPageProps {
 	params: Promise<{ locale: string }>;
@@ -76,6 +78,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
 	return (
 		<main>
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

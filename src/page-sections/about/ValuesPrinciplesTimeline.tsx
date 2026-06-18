@@ -6,6 +6,8 @@ import { motion, useTransform, type MotionValue } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import type { LucideIcon } from "lucide-react";
 import { Text } from "@/components/ui";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/cn";
 
@@ -176,8 +178,7 @@ function ValuesPrinciplesTimelineStatic({ pillars }: ValuesPrinciplesTimelinePro
 	);
 }
 
-export function ValuesPrinciplesTimeline({ pillars }: ValuesPrinciplesTimelineProps) {
-	const prefersReducedMotion = usePrefersReducedMotion();
+function ValuesPrinciplesTimelineAnimated({ pillars }: ValuesPrinciplesTimelineProps) {
 	const timelineRef = useRef<HTMLDivElement>(null);
 	const nodeCount = pillars.length;
 
@@ -187,10 +188,6 @@ export function ValuesPrinciplesTimeline({ pillars }: ValuesPrinciplesTimelinePr
 	});
 
 	const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-	if (prefersReducedMotion) {
-		return <ValuesPrinciplesTimelineStatic pillars={pillars} />;
-	}
 
 	return (
 		<div ref={timelineRef} className="relative mx-auto max-w-4xl">
@@ -219,4 +216,15 @@ export function ValuesPrinciplesTimeline({ pillars }: ValuesPrinciplesTimelinePr
 			</div>
 		</div>
 	);
+}
+
+export function ValuesPrinciplesTimeline({ pillars }: ValuesPrinciplesTimelineProps) {
+	const prefersReducedMotion = usePrefersReducedMotion();
+	const isDesktop = useMediaQuery(DESKTOP_LAYOUT_QUERY);
+
+	if (prefersReducedMotion || !isDesktop) {
+		return <ValuesPrinciplesTimelineStatic pillars={pillars} />;
+	}
+
+	return <ValuesPrinciplesTimelineAnimated pillars={pillars} />;
 }

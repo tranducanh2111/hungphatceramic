@@ -74,7 +74,7 @@ export function AboutPartners() {
 										alt={`${partner.name} logo`}
 										width={512}
 										height={142}
-										sizes="(max-width: 640px) 40vw, 240px"
+										sizes="(max-width: 640px) 80px, 160px"
 										className={`${PARTNER_LOGO_HEIGHT_CLASS} ${PARTNER_LOGO_COLOR_CLASS} object-contain object-center`}
 									/>
 								</RevealOnView>

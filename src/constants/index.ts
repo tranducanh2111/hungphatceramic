@@ -1,3 +1,4 @@
+export * from "./breakpoints";
 export * from "./about-sections";
 export * from "./about";
 export * from "./blueprint";

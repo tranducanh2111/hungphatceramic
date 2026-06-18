@@ -321,6 +321,12 @@
 		}
 	},
 	"pages": {
+		"notFound": {
+			"title": "404",
+			"heading": "Page Not Found",
+			"description": "The page you are looking for does not exist or has been moved.",
+			"backHome": "Return to Home"
+		},
 		"about": {
 			"schema": {
 				"name": "Perla powered by Hung Phat",
