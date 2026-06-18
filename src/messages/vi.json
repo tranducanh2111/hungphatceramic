@@ -279,8 +279,11 @@
 			"ogLocale": "vi_VN"
 		},
 		"projects": {
-			"title": "Dự Án Gạch Ốp Lát Cao Cấp - Sảnh Khách Sạn & Biệt Thự | Perla",
-			"description": "Chiêm ngưỡng các công trình ốp lát gạch porcelain cao cấp khổ lớn thực tế tại Vinhomes Riverside, Ramada Hạ Long, Grand World Phú Quốc, Empire City."
+			"title": "Dự Án Gạch Porcelain Cao Cấp | Perla powered by Hung Phat",
+			"description": "Khám phá các công trình ốp lát gạch porcelain tại Empire City, Ramada Hạ Long, Vinhomes Symphony, Saigon Intela và Grand World Phú Quốc trên khắp Việt Nam.",
+			"ogTitle": "Dự Án Gạch Porcelain Tiêu Biểu tại Việt Nam | Perla",
+			"ogDescription": "Các công trình khách sạn, nhà ở và hỗn hợp nơi bề mặt porcelain Perla góp phần định hình không gian kiến trúc đẳng cấp.",
+			"ogLocale": "vi_VN"
 		},
 		"products": {
 			"title": "Gạch Porcelain Cao Cấp | Perla powered by Hung Phat",
@@ -539,6 +542,11 @@
 						"imageAlt": "Quần thể Grand World Phú Quốc về đêm"
 					}
 				}
+			},
+			"schema": {
+				"pageName": "Dự án gạch porcelain cao cấp tại Việt Nam",
+				"itemListName": "Danh mục dự án tiêu biểu của Perla",
+				"itemListDescription": "Các công trình ốp lát gạch porcelain đã hoàn thiện tại những dự án kiến trúc trọng điểm trên khắp Việt Nam."
 			}
 		},
 		"products": {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { PageMediaPreload } from "@/components/media";
+import { MEDIA_PATHS } from "@/constants/media";
 import { PROJECTS } from "@/constants/projects";
 import { ProjectsPageContent } from "@/page-sections/projects/ProjectsPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
@@ -12,17 +14,25 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 	const { locale } = await params;
 	const t = await getTranslations({ locale, namespace: "meta.projects" });
 	const alternates = buildAlternatesForLocale("/projects", locale);
+	const ogImage = MEDIA_PATHS.images.featuredProjects.empireCity;
 
 	return {
 		title: t("title"),
 		description: t("description"),
 		alternates,
 		openGraph: buildOpenGraphForLocale({
-			title: t("title"),
-			description: t("description"),
+			title: t("ogTitle"),
+			description: t("ogDescription"),
 			url: alternates.canonical,
-			ogLocale: locale === "vi" ? "vi_VN" : "en_US",
+			ogLocale: t("ogLocale"),
+			image: ogImage,
 		}),
+		twitter: {
+			card: "summary_large_image",
+			title: t("ogTitle"),
+			description: t("ogDescription"),
+			images: [`${SITE_URL}${ogImage}`],
+		},
 	};
 }
 
@@ -31,38 +41,42 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 	setRequestLocale(locale);
 
 	const t = await getTranslations({ locale, namespace: "meta.projects" });
-	const tItems = await getTranslations({ locale, namespace: "landing.projects.items" });
+	const tHeritage = await getTranslations({ locale, namespace: "pages.projects.heritage" });
+	const tSchema = await getTranslations({ locale, namespace: "pages.projects.schema" });
+	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
 
 	const alternates = buildAlternatesForLocale("/projects", locale);
 
 	const collectionSchema = {
 		"@context": "https://schema.org",
 		"@type": "CollectionPage",
-		name: t("title"),
+		name: tSchema("pageName"),
 		description: t("description"),
 		url: alternates.canonical,
-		about: {
-			"@type": "Thing",
-			name: "Luxury interior design projects using porcelain and ceramic materials",
-		},
-		hasPart: PROJECTS.map((project) => {
-			const projectTitle = tItems.has(`${project.id}.title`)
-				? tItems(`${project.id}.title`)
-				: project.id;
-
-			return {
-				"@type": "CreativeWork",
-				name: projectTitle,
-				locationCreated: {
-					"@type": "Place",
-					name: project.location,
+		inLanguage: locale === "vi" ? "vi-VN" : "en-US",
+		mainEntity: {
+			"@type": "ItemList",
+			name: tSchema("itemListName"),
+			description: tSchema("itemListDescription"),
+			numberOfItems: PROJECTS.length,
+			itemListElement: PROJECTS.map((project, index) => ({
+				"@type": "ListItem",
+				position: index + 1,
+				item: {
+					"@type": "CreativeWork",
+					name: tHeritage(`milestones.${project.id}.title`),
+					description: tHeritage(`milestones.${project.id}.description`),
+					url: `${alternates.canonical}#${project.id}`,
+					image: `${SITE_URL}${project.imageUrl}`,
+					locationCreated: {
+						"@type": "Place",
+						name: tHeritage(`milestones.${project.id}.location`),
+					},
 				},
-				image: `${SITE_URL}${project.imageUrl}`,
-			};
-		}),
+			})),
+		},
 	};
 
-	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
 	const breadcrumbSchema = {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
@@ -86,6 +100,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 	return (
 		<main>
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.featuredProjects.empireCity]} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}

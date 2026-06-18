@@ -39,6 +39,21 @@ const nextConfig: NextConfig = {
         destination: "/vi/about",
         permanent: true,
       },
+      {
+        source: "/projetcs",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/en/projetcs",
+        destination: "/en/projects",
+        permanent: true,
+      },
+      {
+        source: "/vi/projetcs",
+        destination: "/vi/projects",
+        permanent: true,
+      },
     ];
   },
 
