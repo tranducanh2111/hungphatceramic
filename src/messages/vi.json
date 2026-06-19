@@ -5,6 +5,29 @@
 		"logoAlt": "Logo Perla",
 		"scrollToTop": "Cuộn lên đầu trang"
 	},
+	"collections": {
+		"inspire": {
+			"name": "Dòng Inspire"
+		},
+		"travertine": {
+			"name": "Dòng Travertine"
+		},
+		"orient-star": {
+			"name": "Dòng Orient Star"
+		},
+		"sunshine": {
+			"name": "Dòng Sunshine"
+		},
+		"architectural": {
+			"name": "Gạch kiến trúc 20mm"
+		},
+		"peace": {
+			"name": "Dòng Peace"
+		},
+		"indo": {
+			"name": "Dòng INDO"
+		}
+	},
 	"navbar": {
 		"aria": {
 			"mainNavigation": "Điều hướng chính",
@@ -251,6 +274,27 @@
 			"title": "Chi tiết mà số đông bỏ qua.",
 			"subtitle": "Tinh xảo tạo nên tổng thể."
 		},
+		"faq": {
+			"label": "Hỏi đáp",
+			"heading": "Câu hỏi thường gặp",
+			"description": "Giải đáp các câu hỏi phổ biến về gạch porcelain cao cấp và dịch vụ thi công kiến trúc của chúng tôi.",
+			"q1": {
+				"question": "Gạch porcelain là gì? Khác gì so với gạch ceramic thông thường?",
+				"answer": "Gạch porcelain được làm từ đất sét tinh khiết và khoáng chất tự nhiên nung ở nhiệt độ rất cao (1200°C). Gạch đặc hơn, cứng hơn và gần như không thấm nước (tỷ lệ hấp thụ < 0,5%), bền bỉ và giữ màu tốt hơn gạch ceramic thông thường."
+			},
+			"q2": {
+				"question": "Perla cung cấp những kích thước gạch porcelain khổ lớn nào?",
+				"answer": "Chúng tôi chuyên cung cấp gạch porcelain nhập khẩu cao cấp gồm 60×120cm, 80×80cm, 100×100cm và 120×120cm, phù hợp sàn và tường accent trong dự án nhà ở và B2B sang trọng."
+			},
+			"q3": {
+				"question": "Showroom Perla và Hùng Phát ở đâu? Tôi có thể đến tham quan không?",
+				"answer": "Showroom tại K3.TT1.SH22, Khu đô thị Starlake, đường Xuân Tảo, phường Xuân Đỉnh, Hà Nội. Chúng tôi đón kiến trúc sư, chủ đầu tư và khách hàng theo lịch hẹn. Vui lòng liên hệ qua điện thoại hoặc Zalo để đặt lịch và xem mẫu thực tế."
+			},
+			"q4": {
+				"question": "Có cung cấp vận chuyển và thi công gạch chuyên nghiệp không?",
+				"answer": "Có, chúng tôi giao hàng toàn quốc và cung cấp dịch vụ thi công gạch khổ lớn chuyên biệt. Đội thi công giàu kinh nghiệm đảm bảo độ chính xác và hoàn thiện thẩm mỹ cao cho công trình sang trọng."
+			}
+		},
 		"cta": {
 			"label": "Bắt đầu dự án của bạn",
 			"titleLine1": "Sẵn sàng định hình",
@@ -323,7 +367,7 @@
 				},
 				"contact": {
 					"telephone": "+84-24-1234-5678",
-					"email": "contact@hungphatceramic.vn",
+					"email": "congtyhungphat583@gmail.com",
 					"contactType": "hỗ trợ khách hàng"
 				}
 			},
@@ -620,6 +664,19 @@
 				"polished": "Bóng kiếng / Polished",
 				"structured": "Sần nhám / Định hình"
 			},
+			"specs": {
+				"materialValue": "Gốm sứ Porcelain cao cấp",
+				"facesSingle": "1 mặt vân",
+				"facesRandom": "{count} mặt vân ngẫu nhiên",
+				"thicknessArchitectural": "20 mm",
+				"thicknessStandard": "9,5 mm",
+				"formatLarge": "Định dạng lớn",
+				"formatCompact": "Vuông compact",
+				"formatStandard": "Định dạng tiêu chuẩn",
+				"aspectLarge": "1:2",
+				"aspectSquare": "1:1",
+				"quoteMailtoSubject": "Yêu cầu báo giá {productName} (SKU: {skuCode})"
+			},
 			"panorama": {
 				"ariaLabel": "Panorama không gian lắp {productName}",
 				"label": "Panorama không gian",
@@ -635,7 +692,7 @@
 				"description": "Bề mặt gốm và porcelain cao cấp cho nội thất tại Việt Nam.",
 				"areaServed": "Việt Nam",
 				"telephone": "+84965976599",
-				"email": "contact@hungphatceramic.vn",
+				"email": "congtyhungphat583@gmail.com",
 				"contactType": "hỗ trợ khách hàng"
 			},
 			"hero": {

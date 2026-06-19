@@ -138,7 +138,7 @@ async function main() {
 			const absolutePath = path.join(process.cwd(), "public", product.allFacesImage);
 			try {
 				await fs.access(absolutePath);
-				console.log(`Composite already exists for ${product.name}, skipping.`);
+				// console.log(`Composite already exists for ${product.skuCode}, skipping.`);
 				continue;
 			} catch {
 				// File missing on disk, regenerate
@@ -156,7 +156,12 @@ async function main() {
 		}
 
 		if (compositePath) {
-			await generateComposite(product.name, product.faceImages, product.category, compositePath);
+			await generateComposite(
+				product.skuCode,
+				product.faceImages,
+				product.category,
+				compositePath,
+			);
 		}
 	}
 
@@ -177,9 +182,14 @@ async function main() {
 					: "60X120";
 			const compositePath = `/assets/${sizeFolder}/INDO ${product.skuCode}/${product.skuCode}_FullFaces.jpg`;
 
-			await generateComposite(product.name, product.faceImages, product.category, compositePath);
+			await generateComposite(
+				product.skuCode,
+				product.faceImages,
+				product.category,
+				compositePath,
+			);
 		} else {
-			console.log(`Indo Product ${product.name} has only 1 face. No composite stitching needed.`);
+			// console.log(`Indo Product ${product.skuCode} has only 1 face. No composite stitching needed.`);
 		}
 	}
 

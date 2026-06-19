@@ -30,6 +30,7 @@ export function ProductsFilter({
 	tileSizes,
 }: ProductsFilterProps) {
 	const t = useTranslations("pages.products");
+	const collectionsT = useTranslations("collections");
 
 	return (
 		<div className="flex w-full flex-col gap-2.5">
@@ -45,8 +46,8 @@ export function ProductsFilter({
 				/>
 
 				{collections.map((col) => {
-					const label = t.has(`collections.${col.id}`)
-						? t(`collections.${col.id}`)
+					const label = collectionsT.has(`${col.id}.name`)
+						? collectionsT(`${col.id}.name`)
 						: col.id;
 
 					return (

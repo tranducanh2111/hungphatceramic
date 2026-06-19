@@ -5,6 +5,29 @@
 		"logoAlt": "Perla logo",
 		"scrollToTop": "Scroll to top"
 	},
+	"collections": {
+		"inspire": {
+			"name": "Inspire Series"
+		},
+		"travertine": {
+			"name": "Travertine Series"
+		},
+		"orient-star": {
+			"name": "Orient Star Series"
+		},
+		"sunshine": {
+			"name": "Sunshine Series"
+		},
+		"architectural": {
+			"name": "20mm Architectural"
+		},
+		"peace": {
+			"name": "Peace Series"
+		},
+		"indo": {
+			"name": "INDO Series"
+		}
+	},
 	"navbar": {
 		"aria": {
 			"mainNavigation": "Main navigation",
@@ -344,7 +367,7 @@
 				},
 				"contact": {
 					"telephone": "+84-24-1234-5678",
-					"email": "contact@hungphatceramic.vn",
+					"email": "congtyhungphat583@gmail.com",
 					"contactType": "customer support"
 				}
 			},
@@ -641,6 +664,19 @@
 				"polished": "Polished / Glossy",
 				"structured": "Structured / Textured"
 			},
+			"specs": {
+				"materialValue": "Premium Porcelain Ceramic",
+				"facesSingle": "1 face",
+				"facesRandom": "{count} random faces",
+				"thicknessArchitectural": "20 mm",
+				"thicknessStandard": "9.5 mm",
+				"formatLarge": "Large Format",
+				"formatCompact": "Compact Square",
+				"formatStandard": "Standard Format",
+				"aspectLarge": "1:2",
+				"aspectSquare": "1:1",
+				"quoteMailtoSubject": "Inquiry about {productName} (SKU: {skuCode})"
+			},
 			"panorama": {
 				"ariaLabel": "Panorama room view for {productName}",
 				"label": "Room panorama",
@@ -656,7 +692,7 @@
 				"description": "Luxury porcelain and ceramic interior surfaces in Vietnam.",
 				"areaServed": "Vietnam",
 				"telephone": "+84965976599",
-				"email": "contact@hungphatceramic.vn",
+				"email": "congtyhungphat583@gmail.com",
 				"contactType": "customer support"
 			},
 			"hero": {

@@ -2,34 +2,42 @@
 
 import { useTranslations } from "next-intl";
 import { Text, Button } from "@/components/ui";
-import { ProductDetail } from "@/types";
+import { CONTACT_EMAIL } from "@/constants/contact";
+import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { ROUTES } from "@/constants/routes";
 
 interface ProductDetailSpecsProps {
-	product: ProductDetail;
+	product: LocalizedProductDetail;
 }
 
 /** ProductDetailSpecs (technical specifications and Call to Action, remapped to sapphire/champagne palette). */
 export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const tDetail = useTranslations("pages.productDetail");
 
-	// Determine surface finish based on SKU prefix/slug content
 	const isPolished = product.slug.includes("-gp") || product.skuCode.startsWith("GP");
 	const surfaceFinish = isPolished ? tDetail("finishes.polished") : tDetail("finishes.matte");
 
-	// Determine thickness
-	const thickness = product.collectionId === "architectural" ? "20 mm" : "9.5 mm";
+	const thickness =
+		product.collectionId === "architectural"
+			? tDetail("specs.thicknessArchitectural")
+			: tDetail("specs.thicknessStandard");
 
-	// Technical spec attributes definition
+	const faceCount = product.faceImages?.length ?? 0;
+	const facesValue =
+		faceCount > 0
+			? tDetail("specs.facesRandom", { count: faceCount })
+			: tDetail("specs.facesSingle");
+
 	const specs = [
 		{ label: tDetail("surface"), value: surfaceFinish },
 		{ label: tDetail("thickness"), value: thickness },
-		{ label: tDetail("material"), value: "Premium Porcelain Ceramic" },
-		{
-			label: tDetail("faces"),
-			value: product.faceImages ? `${product.faceImages.length} random faces` : "1 face",
-		},
+		{ label: tDetail("material"), value: tDetail("specs.materialValue") },
+		{ label: tDetail("faces"), value: facesValue },
 	];
+
+	const quoteMailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+		tDetail("specs.quoteMailtoSubject", { productName: product.title, skuCode: product.skuCode }),
+	)}`;
 
 	return (
 		<section className="bg-sapphire-deep text-linen relative px-6 py-24 lg:px-12">
@@ -48,7 +56,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								{tDetail("specifications")}
 							</Text>
 							<h3 className="text-h2 font-serif font-light lining-nums">
-								{product.name}
+								{product.title}
 							</h3>
 						</div>
 
@@ -85,15 +93,13 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 											? "h-14 w-14"
 											: "h-16 w-16";
 									const aspectLabel = isLargeFormat
-										? "1:2"
-										: isCompactSquare
-											? "1:1"
-											: "1:1";
+										? tDetail("specs.aspectLarge")
+										: tDetail("specs.aspectSquare");
 									const formatLabel = isLargeFormat
-										? "Large Format"
+										? tDetail("specs.formatLarge")
 										: isCompactSquare
-											? "Compact Square"
-											: "Standard Format";
+											? tDetail("specs.formatCompact")
+											: tDetail("specs.formatStandard");
 
 									return (
 										<div key={size} className="flex items-center gap-4">
@@ -144,7 +150,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								{tDetail("bookConsultation")}
 							</Button>
 							<Button
-								href={`mailto:congtyhungphat583@gmail.com?subject=Inquiry about ${product.name} (SKU: ${product.skuCode})`}
+								href={quoteMailtoHref}
 								variant="secondary"
 								size="md"
 								className="border-sapphire-mist hover:border-champagne w-full text-center"

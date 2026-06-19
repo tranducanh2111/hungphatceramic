@@ -2,24 +2,22 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useTransform, type MotionValue } from "framer-motion";
+import { type MotionValue } from "framer-motion";
 import { ProductTile } from "@/components/common";
 import { Text } from "@/components/ui";
 import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
-import { useAppScroll } from "@/hooks/useAppScroll";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/cn";
 import type { ProductListingItem } from "@/lib/products/listing";
+import { CatalogTileList } from "@/page-sections/products/CatalogTileList";
+import { useCatalogGridStagger } from "@/page-sections/products/useCatalogGridStagger";
 
 interface ProductsGridProps {
 	products: ProductListingItem[];
 	activeCollectionId: string;
 	activeSizeId: string;
 }
-
-/** Pixels of page scroll over which the middle column reaches a half-card drop. */
-const MIDDLE_COLUMN_SCROLL_RANGE_PX = 320;
 
 function distributeProductsIntoColumns(
 	products: ProductListingItem[],
@@ -30,73 +28,6 @@ function distributeProductsIntoColumns(
 		columns[index % columnCount].push(product);
 	});
 	return columns;
-}
-
-interface CatalogTileListProps {
-	products: ProductListingItem[];
-	activeSizeId: string;
-	columnIndex: number;
-	middleColumnOffset?: MotionValue<string>;
-	enableScrollStagger?: boolean;
-	enableStaticStagger?: boolean;
-}
-
-function CatalogTileList({
-	products,
-	activeSizeId,
-	columnIndex,
-	middleColumnOffset,
-	enableScrollStagger = false,
-	enableStaticStagger = false,
-}: CatalogTileListProps) {
-	const isMiddleColumn = columnIndex === 1;
-
-	return (
-		<ul
-			className={cn(
-				"flex list-none flex-col gap-6 overflow-visible p-0",
-				isMiddleColumn && "catalog-grid-stagger-reserve",
-			)}
-		>
-			{products.map((product, index) => {
-				const globalIndex = columnIndex + index * 3;
-				const shouldPrioritizeImage = globalIndex < 3;
-				const useScrollStagger = enableScrollStagger && isMiddleColumn;
-				const useStaticStagger = enableStaticStagger && isMiddleColumn;
-				const useStagger = useScrollStagger || useStaticStagger;
-
-				const tile = (
-					<ProductTile
-						product={product}
-						activeSizeId={activeSizeId}
-						priority={shouldPrioritizeImage}
-						deferMediaUntilVisible
-					/>
-				);
-
-				return (
-					<li
-						key={product.slug}
-						className={cn("overflow-visible", isMiddleColumn && "relative z-10")}
-					>
-						{useStagger ? (
-							<motion.div
-								className={cn(
-									useScrollStagger && "will-change-transform",
-									useStaticStagger && "translate-y-1/2",
-								)}
-								style={useScrollStagger ? { y: middleColumnOffset } : undefined}
-							>
-								{tile}
-							</motion.div>
-						) : (
-							tile
-						)}
-					</li>
-				);
-			})}
-		</ul>
-	);
 }
 
 interface ProductsGridLayoutProps {
@@ -188,12 +119,7 @@ function ProductsGridScrollStaggered({
 	activeCollectionId,
 	activeSizeId,
 }: ProductsGridProps) {
-	const { scrollY } = useAppScroll();
-	const middleColumnOffset = useTransform(
-		scrollY,
-		[0, MIDDLE_COLUMN_SCROLL_RANGE_PX],
-		["0%", "50%"],
-	);
+	const { middleColumnOffset } = useCatalogGridStagger();
 
 	return (
 		<ProductsGridLayout

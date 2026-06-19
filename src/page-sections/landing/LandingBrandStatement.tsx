@@ -5,12 +5,7 @@ import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
 import { Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
-
-const BRAND_STATS = [
-	{ id: "craftsmanshipYears", value: "12+" },
-	{ id: "projectsCompleted", value: "200+" },
-	{ id: "materialCollections", value: "35+" },
-];
+import { BRAND_STATEMENT_STATS } from "@/constants/landing";
 
 const fadeUp: Variants = {
 	hidden: { opacity: 0, y: 24 },
@@ -94,16 +89,16 @@ export function LandingBrandStatement() {
 							viewport={{ once: true, amount: 0.3 }}
 							className="border-sapphire-mist mt-12 grid grid-cols-3 gap-6 border-t pt-10"
 						>
-							{BRAND_STATS.map(({ id, value }) => (
-								<div key={id}>
+							{BRAND_STATEMENT_STATS.map((stat) => (
+								<div key={stat.brandStatementKey}>
 									<Text
 										variant="display-lg"
 										className="text-champagne font-serif"
 									>
-										{value}
+										{`${stat.numericValue}${stat.suffix}`}
 									</Text>
 									<Text variant="body-sm" className="text-linen/50 mt-1">
-										{t(`stats.${id}`)}
+										{t(`stats.${stat.brandStatementKey}`)}
 									</Text>
 								</div>
 							))}

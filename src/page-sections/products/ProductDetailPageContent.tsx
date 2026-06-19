@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { useRouter } from "@/i18n/navigation";
 import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
+import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { ProductDetailHero } from "./ProductDetailHero";
-import { ProductDetail } from "@/types";
 
 /** Below-fold sections loaded dynamically to save initial bundle size */
 const ProductDetailGallery = dynamic(
@@ -31,7 +31,7 @@ const ProductDetailRelated = dynamic(
 );
 
 interface ProductDetailPageContentProps {
-	product: ProductDetail;
+	product: LocalizedProductDetail;
 	activeSizeId?: string;
 	heroMedia: ReactNode;
 }

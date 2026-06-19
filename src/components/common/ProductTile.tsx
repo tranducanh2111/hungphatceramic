@@ -9,26 +9,15 @@ import {
 	resolveListingDemoWorkHoverPath,
 } from "@/lib/products/media";
 import type { ProductListingItem } from "@/lib/products/listing";
-import { ProductSummary, ProductDetail } from "@/types";
 import { useCatalogTileMediaLifecycle } from "@/hooks/useCatalogTileMediaLifecycle";
 import { cn } from "@/lib/cn";
 
-function resolveDemoWorkThumbnailUrl(
-	product: ProductSummary | ProductDetail | ProductListingItem,
-): string | undefined {
-	if ("demoWorkThumbnailUrl" in product) {
-		return product.demoWorkThumbnailUrl;
-	}
-
-	if ("demoWorkImages" in product) {
-		return getPrimaryDemoWorkAssetPath(product.demoWorkImages);
-	}
-
-	return undefined;
+function resolveDemoWorkThumbnailUrl(product: ProductListingItem): string | undefined {
+	return product.demoWorkThumbnailUrl;
 }
 
 interface ProductTileProps {
-	product: ProductSummary | ProductDetail | ProductListingItem;
+	product: ProductListingItem;
 	activeSizeId?: string;
 	className?: string;
 	priority?: boolean;
@@ -37,9 +26,7 @@ interface ProductTileProps {
 	deferMediaUntilVisible?: boolean;
 }
 
-/**
- * ProductTile (linked catalog card for product listing and related grids).
- */
+/** Linked catalog card for the products grid and related tiles. */
 export function ProductTile({
 	product,
 	activeSizeId,
@@ -64,10 +51,10 @@ export function ProductTile({
 				<ProductTileCard
 					imageSrc={encodePublicAssetPath(product.thumbnailUrl)}
 					hoverImageSrc={encodedHoverImageSrc}
-					imageAlt={product.name}
+					imageAlt={product.title}
 					productCode={product.skuCode}
 					dimensions={product.category}
-					productName={product.name}
+					productName={product.title}
 					isMediaMounted={isMediaMounted}
 					priority={priority}
 					imageSizes={imageSizes}

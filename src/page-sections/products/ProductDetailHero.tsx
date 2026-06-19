@@ -5,29 +5,21 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { Text } from "@/components/ui";
-import { ProductDetail } from "@/types";
+import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 
 interface ProductDetailHeroProps {
-	product: ProductDetail;
+	product: LocalizedProductDetail;
 	heroMedia: ReactNode;
 	onBack: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 /** ProductDetailHero (split-screen product hero section, 40% Info, 60% Image, remapped to sapphire/champagne palette). */
 export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailHeroProps) {
-	const tItems = useTranslations("products.items");
-	const tPage = useTranslations("pages.products");
+	const collectionsT = useTranslations("collections");
 	const tDetail = useTranslations("pages.productDetail");
 
-	// Localized name and description
-	const name = tItems.has(`${product.slug}.name`) ? tItems(`${product.slug}.name`) : product.name;
-	const description = tItems.has(`${product.slug}.description`)
-		? tItems(`${product.slug}.description`)
-		: product.shortDescription;
-
-	// Localized collection name
-	const collectionName = tPage.has(`collections.${product.collectionId}`)
-		? tPage(`collections.${product.collectionId}`)
+	const collectionName = collectionsT.has(`${product.collectionId}.name`)
+		? collectionsT(`${product.collectionId}.name`)
 		: product.collectionId;
 
 	return (
@@ -79,7 +71,7 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 
 						{/* Product Title */}
 						<h1 className="text-display-lg text-linen font-serif leading-tight font-light lining-nums">
-							{name}
+							{product.title}
 						</h1>
 
 						{/* SKU Pill */}
@@ -94,7 +86,7 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 
 						{/* Description */}
 						<p className="text-body text-linen/55 max-w-md font-sans leading-relaxed">
-							{description}
+							{product.description}
 						</p>
 					</motion.div>
 				</div>

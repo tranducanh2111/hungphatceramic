@@ -5,12 +5,11 @@ import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { ProductTile } from "@/components/common";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
-import { toProductListingItems } from "@/lib/products/listing";
+import { localizeListingCatalog, type LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { PRODUCTS } from "@/constants/products";
-import { ProductDetail } from "@/types";
 
 interface ProductDetailRelatedProps {
-	product: ProductDetail;
+	product: LocalizedProductDetail;
 	activeSizeId?: string;
 }
 
@@ -18,13 +17,13 @@ interface ProductDetailRelatedProps {
 export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRelatedProps) {
 	const tDetail = useTranslations("pages.productDetail");
 	const tPage = useTranslations("pages.products");
+	const tItems = useTranslations("products.items");
 
-	// Resolve dynamic related products
 	const related = useMemo(() => {
 		const peers = PRODUCTS.filter(
 			(p) => p.collectionId === product.collectionId && p.slug !== product.slug,
 		).slice(0, 3);
-		return toProductListingItems(peers).map((item) =>
+		return localizeListingCatalog(peers, tItems).map((item) =>
 			applyTileSizeToListingItem(item, activeSizeId),
 		);
 	}, [product.collectionId, product.slug, activeSizeId]);

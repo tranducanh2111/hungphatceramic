@@ -3,11 +3,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { PRODUCTS } from "@/constants/products";
 import { encodePublicAssetPath } from "@/lib/products/media";
+import { localizeListingCatalog } from "@/lib/products/localizeCatalog";
 import {
 	getCollectionListingMeta,
 	getTileSizeListingMeta,
 	resolveCatalogFilterState,
-	toProductListingItems,
 } from "@/lib/products/listing";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
@@ -46,12 +46,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 	setRequestLocale(locale);
 
 	const tProducts = await getTranslations({ locale, namespace: "products.items" });
-	const products = toProductListingItems(PRODUCTS).map((product) => ({
-		...product,
-		name: tProducts.has(`${product.slug}.name`)
-			? tProducts(`${product.slug}.name`)
-			: product.name,
-	}));
+	const products = localizeListingCatalog(PRODUCTS, tProducts);
 
 	const collections = getCollectionListingMeta(PRODUCTS);
 	const tileSizes = getTileSizeListingMeta(PRODUCTS);
@@ -73,7 +68,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 			position: index + 1,
 			item: {
 				"@type": "Product",
-				name: product.name,
+				name: product.title,
 				url: `${SITE_URL}/${locale}/products/${product.slug}`,
 				image: `${SITE_URL}${encodePublicAssetPath(product.thumbnailUrl)}`,
 				sku: product.skuCode,

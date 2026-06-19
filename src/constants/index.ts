@@ -8,7 +8,6 @@ export * from "./indo-products";
 export * from "./landing-experiments";
 export * from "./landing";
 export * from "./media";
-export * from "./navigation";
 export * from "./products";
 export * from "./projects";
 export * from "./routes";

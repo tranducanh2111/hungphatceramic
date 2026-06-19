@@ -52,15 +52,6 @@ export const MEDIA_PATHS = {
 		about: {
 			/** Founding moment / origin section (replace with archival workshop photo). */
 			origin: "/media/images/misc/brand-statement.webp",
-			/** Heritage timeline milestone images (swap with project-specific shots). */
-			milestones: {
-				founding: "/media/images/misc/visual-story.webp",
-				firstHotel: "/media/images/featured-projects/ramada-halong.webp",
-				hospitalityExpansion: "/media/images/featured-projects/hinode.webp",
-				residentialGrowth: "/media/images/featured-projects/vinhomes-symphony.webp",
-				brandsAsPartner: "/media/images/featured-projects/empire-city.webp",
-				present: "/media/images/featured-projects/grand-phuquoc.webp",
-			},
 			/** Craft story section (three sequential craft process images). */
 			craft: {
 				kiln: "/media/images/misc/tile-texture.webp",
