@@ -7,7 +7,7 @@ import { ClosingCtaSection } from "@/components/common";
 import { GOOGLE_MAPS_URL } from "@/constants/contact";
 import { ROUTES } from "@/constants/routes";
 
-/** LandingCta — Final conversion section with exclusive framing. */
+/** LandingCta */
 export function LandingCta() {
 	const t = useTranslations("landing.cta");
 

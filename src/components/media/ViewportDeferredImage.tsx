@@ -9,15 +9,13 @@ export interface ViewportDeferredImageProps extends ImageProps {
 	placeholderClassName?: string;
 	/** Keep mounted immediately (LCP / hero). */
 	eager?: boolean;
-	/** Unmount when far from viewport; disable for sticky scroll scenes that reuse one frame. */
+	/** Unmount when far from viewport (disable for sticky scroll scenes that reuse one frame). */
 	unloadWhenFar?: boolean;
 	loadRootMargin?: string;
 	unloadRootMargin?: string;
 }
 
-/**
- * next/image gated by viewport — loads near the user, unloads when scrolled away.
- */
+/** next/image gated by viewport (loads near the user, unloads when scrolled away). */
 export function ViewportDeferredImage({
 	wrapperClassName,
 	placeholderClassName,

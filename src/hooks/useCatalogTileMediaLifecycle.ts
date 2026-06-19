@@ -9,7 +9,7 @@ interface CatalogTileMediaLifecycleOptions {
 	isDeferred: boolean;
 }
 
-/** Catalog grid tuning — slightly tighter margins than the site-wide defaults. */
+/** Catalog grid tuning (slightly tighter margins than the site-wide defaults) */
 export function useCatalogTileMediaLifecycle({ isDeferred }: CatalogTileMediaLifecycleOptions) {
 	const options: ViewportMediaLifecycleOptions = {
 		isDeferred,

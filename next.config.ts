@@ -3,7 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-/** Immutable cache for versioned static files under `public/`. Bump filenames when replacing assets. */
+/** Immutable cache for versioned static files under `public/` (bump filenames when replacing assets). */
 const STATIC_MEDIA_CACHE_HEADER = {
   key: "Cache-Control",
   value: "public, max-age=31536000, immutable",

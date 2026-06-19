@@ -9,10 +9,7 @@ interface ProductDetailSpecsProps {
 	product: ProductDetail;
 }
 
-/**
- * ProductDetailSpecs — Technical specifications and Call to Action.
- * Remapped to sapphire/champagne palette.
- */
+/** ProductDetailSpecs (technical specifications and Call to Action, remapped to sapphire/champagne palette). */
 export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const tDetail = useTranslations("pages.productDetail");
 

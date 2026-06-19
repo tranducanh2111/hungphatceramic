@@ -10,7 +10,7 @@ import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
 import { ProductDetailHero } from "./ProductDetailHero";
 import { ProductDetail } from "@/types";
 
-// Below-fold sections loaded dynamically to save initial bundle size
+/** Below-fold sections loaded dynamically to save initial bundle size */
 const ProductDetailGallery = dynamic(
 	() => import("./ProductDetailGallery").then((m) => ({ default: m.ProductDetailGallery })),
 	{ ssr: false },
@@ -36,7 +36,7 @@ interface ProductDetailPageContentProps {
 	heroMedia: ReactNode;
 }
 
-// Below-fold entrance — hero stays visible immediately (LCP must not wait on opacity fade).
+/** Below-fold entrance (hero stays visible immediately, LCP must not wait on opacity fade). */
 const belowFoldVariants = {
 	initial: {
 		opacity: 0,
@@ -60,9 +60,7 @@ const belowFoldVariants = {
 	},
 };
 
-/**
- * ProductDetailPageContent — Client shell hosting the detail page section components.
- */
+/** ProductDetailPageContent (client shell hosting the detail page section components). */
 export function ProductDetailPageContent({
 	product,
 	activeSizeId,

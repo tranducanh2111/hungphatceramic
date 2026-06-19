@@ -13,9 +13,7 @@ interface ProductTileCardMediaProps {
 	imageSizes?: string;
 }
 
-/**
- * Catalog tile media — thumbnail always; install preview mounts only on hover-capable pointers.
- */
+/** Catalog tile media (thumbnail always, install preview mounts only on hover-capable pointers). */
 export function ProductTileCardMedia({
 	imageSrc,
 	hoverImageSrc,

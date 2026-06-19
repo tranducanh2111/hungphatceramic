@@ -12,10 +12,7 @@ const LandingProjectsSpiral = dynamic(
 	{ ssr: false },
 );
 
-/**
- * LandingProjects — A/B switchable featured projects section.
- * Set NEXT_PUBLIC_LANDING_PROJECTS_LAYOUT=spiral to enable the chandelier scroll variant.
- */
+/** LandingProjects (A/B switchable featured projects section, set NEXT_PUBLIC_LANDING_PROJECTS_LAYOUT=spiral to enable the chandelier scroll variant). */
 export function LandingProjects() {
 	if (isSpiralProjectsLayout) {
 		return <LandingProjectsSpiral />;

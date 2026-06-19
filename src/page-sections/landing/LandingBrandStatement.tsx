@@ -21,9 +21,7 @@ const fadeUp: Variants = {
 	}),
 };
 
-/**
- * LandingBrandStatement — Identity declaration with manifesto copy and key stats.
- */
+/** LandingBrandStatement (Identity declaration with manifesto copy and key stats) */
 export function LandingBrandStatement() {
 	const t = useTranslations("landing.brandStatement");
 

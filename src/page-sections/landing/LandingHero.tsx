@@ -6,7 +6,7 @@ import { Button } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
 
-/** LandingHero — Cinematic expansion: video grows to fill viewport on scroll. */
+/** LandingHero (background video expands to fill viewport on scroll) */
 export function LandingHero() {
 	const t = useTranslations("landing.hero");
 

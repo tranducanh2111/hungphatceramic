@@ -1,6 +1,6 @@
 import { ROUTES } from "@/constants/routes";
 
-/** In-page anchors on `/about` — must match `id` on matching sections. */
+/** In-page anchors on `/about` (must match `id` on matching sections). */
 export const ABOUT_SECTION_IDS = {
 	ourStory: "our-story",
 	partners: "our-partners",

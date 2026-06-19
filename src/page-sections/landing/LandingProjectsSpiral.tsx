@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 import { ProjectsMobileGrid, ProjectsSpiralExperience } from "./projects/ProjectsScene";
 import { useSpiralGeometry } from "./projects/useSpiralGeometry";
 
-/** Spiral chandelier scroll experience — desktop/tablet; grid fallback on mobile / reduced motion. */
+/** Spiral chandelier scroll experience (desktop/tablet, grid fallback on mobile / reduced motion). */
 export function LandingProjectsSpiral() {
 	const t = useTranslations("landing.projects");
 	const isReducedMotion = useReducedMotion() ?? false;

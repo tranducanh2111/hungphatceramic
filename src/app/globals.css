@@ -288,14 +288,14 @@ h6 {
 	border-radius: 4px;
 }
 
-/* Last middle-column tile translateY(50%) — half tile only; transforms don't affect layout. */
+/* Last middle-column tile translateY(50%) (half tile only, transforms don't affect layout). */
 @utility catalog-grid-stagger-reserve {
 	@media (min-width: 1024px) {
 		padding-bottom: calc((100cqw - 3rem) / 3 * 2 / 3);
 	}
 }
 
-/* ─── Partner logos (raster PNG → brand champagne on dark sections) ─────────── */
+/* ─── Partner logos ( PNG → brand champagne on dark sections) ─────────── */
 @utility partner-logo-champagne {
 	filter: brightness(0) saturate(100%) invert(79%) sepia(18%) saturate(638%) hue-rotate(358deg)
 		brightness(94%) contrast(89%);

@@ -9,7 +9,7 @@ import { RevealOnView, SectionContainer } from "@/components/common";
 import { TESTIMONIALS } from "@/constants/landing";
 import { cn } from "@/lib/cn";
 
-/** LandingTestimonials — Animated carousel of client quotes. */
+/** LandingTestimonials (animated carousel of client quotes). */
 export function LandingTestimonials() {
 	const t = useTranslations("landing.testimonials");
 	const [activeIndex, setActiveIndex] = useState(0);

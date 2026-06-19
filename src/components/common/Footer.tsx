@@ -122,9 +122,6 @@ function FooterLinkGroup({
 
 // ─── Footer ────────────────────────────────────────────────────────────────────
 
-/**
- * Footer — Premium site footer with contact details, nav links, and socials.
- */
 export function Footer() {
 	const t = useTranslations("footer");
 	const commonT = useTranslations("common");

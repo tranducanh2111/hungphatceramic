@@ -17,7 +17,6 @@ const cormorant = Cormorant_Garamond({
 	display: "swap",
 });
 
-// Inter replaces Jost: next/font Jost has no vietnamese subset, so diacritics fell back to system-ui.
 const jost = Inter({
 	variable: "--font-jost",
 	subsets: ["latin", "vietnamese"],

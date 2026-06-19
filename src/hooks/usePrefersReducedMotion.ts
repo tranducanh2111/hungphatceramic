@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** Syncs with `prefers-reduced-motion: reduce` for accessible motion fallbacks. */
+/** Syncs with `prefers-reduced-motion: reduce` for accessible motion fallbacks */
 export function usePrefersReducedMotion(): boolean {
 	const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
 		if (typeof window === "undefined") return false;

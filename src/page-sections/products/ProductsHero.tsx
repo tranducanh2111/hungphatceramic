@@ -12,10 +12,7 @@ interface ProductsHeroProps {
 const COLLECTION_TRANSITION = { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const };
 const COUNT_TRANSITION = { duration: 0.4 };
 
-/**
- * ProductsHero — Immersive visual header for the products listing page.
- * Static on first paint; Framer Motion runs only for collection filter transitions.
- */
+/** ProductsHero ( visual header for the products listing page, static on first paint, Framer Motion runs only for collection filter transitions). */
 export function ProductsHero({ activeCollectionId, totalProductsCount }: ProductsHeroProps) {
 	const t = useTranslations("pages.products");
 

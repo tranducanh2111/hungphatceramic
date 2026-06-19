@@ -20,7 +20,7 @@ const REGION_MESSAGE_KEYS: Record<ProjectRegion, "north" | "south" | "island"> =
 	island: "island",
 };
 
-/** Minimal Vietnam silhouette — champagne stroke on linen band. */
+/** Minimal Vietnam silhouette (champagne stroke on linen band). */
 function VietnamOutlineDecor({ className }: { className?: string }) {
 	return (
 		<svg
@@ -73,9 +73,7 @@ function RegionColumn({ region }: { region: ProjectRegion }) {
 	);
 }
 
-/**
- * ProjectsRegionsMap — Geographic chapter linking to timeline anchors.
- */
+/** ProjectsRegionsMap (geographic chapter linking to timeline anchors). */
 export function ProjectsRegionsMap() {
 	const t = useTranslations("pages.projects.regions");
 

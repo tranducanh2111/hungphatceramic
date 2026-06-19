@@ -30,10 +30,7 @@ function resolveClipInsets(isPhone: boolean, isTablet: boolean): CinematicHeroCl
 	return { vertical: 24, horizontal: 11, radius: 24, videoOpacity: 0.55 };
 }
 
-/**
- * Scroll-linked letterbox clip for cinematic heroes — tighter insets on narrow viewports
- * so background video stays behind headline, body, and CTAs.
- */
+/** Scroll-linked letterbox clip for cinematic heroes (tighter insets on narrow viewports so background video stays behind headline, body, and CTAs) */
 export function useCinematicHeroClip(scrollYProgress: MotionValue<number>) {
 	const isPhone = useMediaQuery("(max-width: 639px)");
 	const isTablet = useMediaQuery("(max-width: 1023px)");

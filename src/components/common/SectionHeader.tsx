@@ -23,7 +23,7 @@ interface SectionHeaderProps extends ClassNameProp {
 	descriptionDelay?: number;
 }
 
-/** Eyebrow + heading block with scroll reveal — used across about, projects, landing. */
+/** Eyebrow + heading block with scroll reveal (used across about, projects, landing pages). */
 export function SectionHeader({
 	label,
 	heading,

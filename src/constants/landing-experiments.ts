@@ -1,4 +1,4 @@
-/** Homepage layout experiments — set via Vercel env for A/B tests. */
+/** Homepage layout experiments (set via Vercel env for A/B tests). */
 export const LANDING_PROJECTS_LAYOUTS = ["grid", "spiral"] as const;
 
 export type LandingProjectsLayout = (typeof LANDING_PROJECTS_LAYOUTS)[number];

@@ -12,10 +12,7 @@ const VISUAL_STORY_PANORAMA = {
 	src: encodeURI(MEDIA_PATHS.images.panorama.orientStarG12w05j),
 } as const;
 
-/**
- * LandingVisualStory — Emotional peak section.
- * Scroll-linked panorama reveal with centered story copy.
- */
+/** LandingVisualStory (emotional peak section, scroll-linked panorama reveal with centered story copy). */
 export function LandingVisualStory() {
 	const t = useTranslations("landing.visualStory");
 	const sectionRef = useRef<HTMLDivElement>(null);

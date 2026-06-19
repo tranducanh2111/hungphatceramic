@@ -6,7 +6,7 @@ import { FeaturedProjectCard, RevealOnView, SectionContainer } from "@/component
 import { FEATURED_PROJECTS } from "@/constants/landing";
 import { ROUTES } from "@/constants/routes";
 
-/** Default landing projects section — optimized grid with deferred images. */
+/** Default landing projects section (optimized grid with deferred images). */
 export function LandingProjectsGrid() {
 	const t = useTranslations("landing.projects");
 

@@ -32,7 +32,7 @@ interface CinematicHeroProps {
 	children?: ReactNode;
 	childrenClassName?: string;
 	scrollLabel?: string;
-	/** Fade hero copy on scroll — landing page only. */
+	/** Fade hero copy on scroll (landing page only). */
 	fadeContentOnScroll?: boolean;
 	className?: string;
 }
@@ -172,7 +172,7 @@ function CinematicHeroContent({
 	);
 }
 
-/** Full-viewport hero without scroll-linked clip — avoids mobile scroll jank. */
+/** Full-viewport hero without scroll-linked clip (avoids mobile scroll jank). */
 function CinematicHeroStatic({
 	videoSrc,
 	posterSrc,
@@ -252,7 +252,7 @@ function CinematicHeroStatic({
 	);
 }
 
-/** Desktop scroll-clip hero — 150vh sticky driver with letterbox expansion. */
+/** Desktop scroll-clip hero (150vh sticky driver with letterbox expansion). */
 function CinematicHeroScroll({
 	videoSrc,
 	posterSrc,
@@ -348,10 +348,10 @@ function CinematicHeroScroll({
 	);
 }
 
-/** Shared cinematic hero shell for landing, about, contact, and projects. */
+/** Shared cinematic hero shell for landing, about, contact, and projects page. */
 export function CinematicHero(props: CinematicHeroProps) {
 	const prefersReducedMotion = usePrefersReducedMotion();
-	// Mobile-first SSR default (false) — avoids hydrating 150vh scroll hero on phones.
+	// Mobile-first SSR default (false) (avoids hydrating scroll hero on phones).
 	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
 
 	if (prefersReducedMotion || !isDesktopHero) {

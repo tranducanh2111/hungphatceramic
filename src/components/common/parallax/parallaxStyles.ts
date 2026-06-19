@@ -5,11 +5,11 @@ export interface ParallaxRangeProps {
 	rangePx?: number;
 	className?: string;
 	children?: ReactNode;
-	/** Opposite scroll direction — pairs image/text depth in Heritage & Values. */
+	/** Opposite scroll direction (pairs image/text depth in Heritage & Values). */
 	invert?: boolean;
 	/** Scroll-linked opacity 0→1 while the element enters the viewport. */
 	fadeIn?: boolean;
-	/** Reserved for Craft — no-op; beat fades stay on Framer scroll story. */
+	/** Reserved for Craft (no-op, beat fades stay on Framer scroll story). */
 	withScrollFade?: boolean;
 }
 

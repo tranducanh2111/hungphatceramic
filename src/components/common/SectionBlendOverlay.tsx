@@ -8,9 +8,7 @@ interface SectionBlendOverlayProps {
 	heightClassName?: string;
 }
 
-/**
- * Absolute section seam — multi-stop gradient for high-contrast background handoffs.
- */
+/** Multi-stop gradient for high-contrast background color handoffs between sections. */
 export function SectionBlendOverlay({
 	gradient,
 	edge,

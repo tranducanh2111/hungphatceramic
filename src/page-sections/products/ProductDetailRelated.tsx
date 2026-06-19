@@ -14,10 +14,7 @@ interface ProductDetailRelatedProps {
 	activeSizeId?: string;
 }
 
-/**
- * ProductDetailRelated — Showcases other tiles in the same collection.
- * Remapped to sapphire/champagne palette.
- */
+/** ProductDetailRelated (showcases other tiles in the same collection, remapped to sapphire/champagne palette). */
 export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRelatedProps) {
 	const tDetail = useTranslations("pages.productDetail");
 	const tPage = useTranslations("pages.products");

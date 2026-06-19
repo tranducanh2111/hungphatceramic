@@ -10,7 +10,7 @@ export interface MailtoInquiryFields {
 	message: string;
 }
 
-/** Strip control chars and trim — reduces mailto injection noise. */
+/** Strip control chars and trim (reduces mailto injection noise) */
 function sanitizeField(value: string): string {
 	return value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "").trim();
 }

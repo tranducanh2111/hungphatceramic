@@ -106,8 +106,8 @@ function ScrollToTopButtonControl({ isVisible, onClick, label }: ScrollToTopButt
 }
 
 /**
- * ScrollToTopButton — Fixed corner control; appears after the user scrolls down.
- * Uses Lenis on desktop; native passive scroll on mobile.
+ * ScrollToTopButton (fixed corner control, appears after the user scrolls down).
+ * Uses Lenis on desktop (native passive scroll on mobile).
  */
 export function ScrollToTopButton() {
 	const isDesktop = useMediaQuery(DESKTOP_SCROLL_QUERY);

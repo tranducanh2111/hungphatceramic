@@ -6,9 +6,7 @@ interface ProductDetailHeroMediaProps {
 	alt: string;
 }
 
-/**
- * Server-rendered LCP image for product detail — `priority` emits preload in document head.
- */
+/** Server-rendered LCP image for product detail (priority emits preload in document head). */
 export function ProductDetailHeroMedia({ src, alt }: ProductDetailHeroMediaProps) {
 	return (
 		<div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden lg:h-auto lg:w-[60%]">

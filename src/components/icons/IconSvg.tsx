@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 interface IconSvgProps {
 	/** Path under `public/icons/**`, e.g. from `ICON_PATHS.ui.menu`. */
 	src: string;
-	/** Screen-reader label. Pass empty string for purely decorative icons. */
+	/** Screen-reader label. Pass empty string for decorative icons. */
 	alt: string;
 	size?: number;
 	className?: string;
@@ -11,7 +11,7 @@ interface IconSvgProps {
 
 /**
  * Renders an SVG from `public/icons/**` using CSS mask so the icon inherits
- * `color` from its parent — hover/focus transitions via Tailwind just work.
+ * `color` from its parent (hover/focus transitions via Tailwind just work).
  *
  * Use `PublicIcon` instead when the icon has baked-in colors and no color inheritance is needed.
  */

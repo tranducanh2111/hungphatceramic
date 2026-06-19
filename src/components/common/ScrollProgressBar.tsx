@@ -29,8 +29,8 @@ function ScrollProgressBarTrack() {
 }
 
 /**
- * ScrollProgressBar — Fixed right-edge vertical progress indicator.
- * Desktop-only; Framer scroll tracking is not mounted on mobile.
+ * ScrollProgressBar (fixed right-edge vertical progress indicator).
+ * Desktop-only (Framer scroll tracking is not mounted on mobile).
  */
 export function ScrollProgressBar() {
 	const isDesktop = useMediaQuery(DESKTOP_SCROLL_QUERY);

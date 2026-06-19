@@ -1,8 +1,4 @@
-/**
- * Landing page static data.
- * Text content is sourced from locale message files.
- * This file keeps only locale-agnostic structure and media references.
- */
+/** Landing page static data (text content is sourced from locale message files, this file keeps only locale-agnostic structure and media references). */
 
 import { productsWithCollection } from "@/constants/routes";
 import { MEDIA_PATHS } from "@/constants/media";
@@ -19,7 +15,7 @@ export { FEATURED_PROJECTS, type FeaturedProject } from "@/constants/projects";
 export interface SizePreview {
 	/** Must match a key in TILE_DIMS inside MaterialTilePreview. */
 	size: string;
-	/** Path under `public/` — spaces are encoded by the image component. */
+	/** Path under `public/` (spaces are encoded by the image component). */
 	image: string;
 }
 
@@ -186,7 +182,7 @@ export interface Testimonial {
 	id: string;
 }
 
-/** Shared process step card shell — mobile stepper and scroll timeline. */
+/** Shared process step card shell (mobile stepper and scroll timeline). */
 export const PROCESS_STEP_CARD_CLASS =
 	"rounded-2xl border border-sapphire-mist bg-sapphire-deep/50 backdrop-blur-sm";
 

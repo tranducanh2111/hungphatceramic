@@ -207,10 +207,7 @@ function ProductsGridScrollStaggered({
 	);
 }
 
-/**
- * ProductsGrid — Catalog grid with optional scroll-linked middle-column stagger (lg+).
- * Scroll subscriptions mount only when the staggered desktop layout is active.
- */
+/** ProductsGrid (catalog grid with optional scroll-linked middle-column stagger, scroll subscriptions mount only when the staggered desktop layout is active). */
 export function ProductsGrid({ products, activeCollectionId, activeSizeId }: ProductsGridProps) {
 	const t = useTranslations("pages.products");
 	const isThreeColumnGrid = useMediaQuery(DESKTOP_LAYOUT_QUERY);

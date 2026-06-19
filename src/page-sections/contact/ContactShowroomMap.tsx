@@ -10,9 +10,7 @@ interface ContactShowroomMapProps {
 	className?: string;
 }
 
-/**
- * ContactShowroomMap — Google Maps embed loads only when the map nears the viewport.
- */
+/** ContactShowroomMap (Google Maps embed loads only when the map nears the viewport). */
 export function ContactShowroomMap({ className }: ContactShowroomMapProps) {
 	const t = useTranslations("pages.contact.showroom");
 	const mapContainerRef = useRef<HTMLDivElement>(null);

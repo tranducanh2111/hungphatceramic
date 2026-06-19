@@ -33,7 +33,7 @@ function getOrCreateObserverPool(rootMargin: string, threshold: number): Observe
 	return pool;
 }
 
-/** One IntersectionObserver per rootMargin — shared across catalog tiles. */
+/** One IntersectionObserver per rootMargin (shared across catalog tiles). */
 export function observeSharedViewportIntersection(
 	element: Element,
 	rootMargin: string,

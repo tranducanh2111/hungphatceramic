@@ -34,10 +34,7 @@ const LENIS_OPTIONS = {
 	infinite: false,
 } as const;
 
-/**
- * Drives Lenis from Framer Motion's frame loop so scroll position and
- * useScroll stay on the same clock.
- */
+/** Drives Lenis from Framer Motion's frame loop so scroll position and useScroll stay on the same clock. */
 function LenisFramerRaf({ lenisRef }: { lenisRef: React.RefObject<LenisRef | null> }) {
 	useEffect(() => {
 		function update(data: { timestamp: number }) {
@@ -51,10 +48,7 @@ function LenisFramerRaf({ lenisRef }: { lenisRef: React.RefObject<LenisRef | nul
 	return null;
 }
 
-/**
- * SmoothScrollProvider — Lenis smooth scroll site-wide (including /about).
- * Exposes resize() for pages with late-hydrating scroll height.
- */
+/** SmoothScrollProvider (Lenis smooth scroll site-wide, including /about page). */
 if (typeof window !== "undefined") {
 	const originalWarn = console.warn;
 	console.warn = (...args) => {

@@ -14,7 +14,7 @@ import {
 } from "@/lib/section-blend-gradients";
 import { cn } from "@/lib/cn";
 
-/** ProjectsClientStrip — Developer and brand names from featured milestones. */
+/** ProjectsClientStrip (developer and brand names from featured milestones). */
 export function ProjectsClientStrip() {
 	const t = useTranslations("pages.projects.clients");
 

@@ -2,12 +2,12 @@
  * Paths for static files under `public/`.
  *
  * Layout:
- * - `public/logo/**` — brand marks (use `LOGO_PATHS.small` in chrome)
- * - `public/icons/contact|social` — UI SVGs
- * - `public/icons/flags` — locale flag SVGs for the language switcher
- * - `public/media/images/{landing,featured-projects,panorama,misc}` — raster art
- * - `public/media/video/landing` — hero and similar clips
- * - `public/assets/**` — large product photo library (unchanged)
+ * - `public/logo/**` (brand marks, use `LOGO_PATHS.small` in chrome)
+ * - `public/icons/contact|social` (UI SVGs)
+ * - `public/icons/flags` (locale flag SVGs for the language switcher)
+ * - `public/media/images/{landing,featured-projects,panorama,misc}` (raster art)
+ * - `public/media/video/landing` (hero and similar clips)
+ * - `public/assets/**` (large product photo library, unchanged)
  */
 
 export const ICON_PATHS = {
@@ -46,13 +46,13 @@ export const MEDIA_PATHS = {
 			brandStatement: "/media/images/landing/brand-statement.webp",
 		},
 		contact: {
-			/** Full-bleed backdrop behind the inquiry form. */
+			/** Backdrop behind the inquiry form. */
 			inquiryBackdrop: "/media/images/misc/visual-story.webp",
 		},
 		about: {
-			/** Founding moment / origin section — replace with archival workshop photo. */
+			/** Founding moment / origin section (replace with archival workshop photo). */
 			origin: "/media/images/misc/brand-statement.webp",
-			/** Heritage timeline milestone images — swap with project-specific shots. */
+			/** Heritage timeline milestone images (swap with project-specific shots). */
 			milestones: {
 				founding: "/media/images/misc/visual-story.webp",
 				firstHotel: "/media/images/featured-projects/ramada-halong.webp",
@@ -61,7 +61,7 @@ export const MEDIA_PATHS = {
 				brandsAsPartner: "/media/images/featured-projects/empire-city.webp",
 				present: "/media/images/featured-projects/grand-phuquoc.webp",
 			},
-			/** Craft story section — three sequential craft process images. */
+			/** Craft story section (three sequential craft process images). */
 			craft: {
 				kiln: "/media/images/misc/tile-texture.webp",
 				polishing: "/media/images/misc/brand-statement.webp",
@@ -78,8 +78,8 @@ export const MEDIA_PATHS = {
 				aftercare: "/media/images/featured-projects/saigon-intela.webp",
 			},
 			/**
-			 * Leadership portraits — replace with editorial head-shots.
-			 * `founderEnvironmental` is the full-bleed environmental shot used
+			 * Leadership portraits (replace with editorial head-shots).
+			 * `founderEnvironmental` is the environmental shot used
 			 * as the section background (the founder in a finished interior space).
 			 */
 			leadership: {
@@ -100,7 +100,7 @@ export const MEDIA_PATHS = {
 			saigonIntela: "/media/images/featured-projects/saigon-intela.webp",
 			empireCity: "/media/images/featured-projects/empire-city.webp",
 		},
-		/** Panorama filenames may include spaces — use with `encodeURI` when building URLs. */
+		/** Panorama filenames may include spaces (use with `encodeURI` when building URLs). */
 		panorama: {
 			orientStarG12w05j: "/media/images/panorama/Orient Star G12W05J.png",
 		},
@@ -109,7 +109,7 @@ export const MEDIA_PATHS = {
 		hero: "/media/video/landing/hero-section.mp4",
 		aboutHero: "/media/video/landing/hero-section.mp4",
 	},
-	/** Raster extras (textures, alternate art) — not wired in components yet. */
+	/** Raster extras (textures, alternate art) (not wired in components yet). */
 	misc: {
 		visualStory: "/media/images/misc/visual-story.webp",
 		tileTexturePng: "/media/images/misc/tile-texture.webp",

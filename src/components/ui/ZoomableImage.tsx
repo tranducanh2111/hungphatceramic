@@ -22,10 +22,7 @@ type BaseImageProps = Omit<ImageProps, "draggable">;
 interface ZoomableImageProps extends BaseImageProps {
 	/** Extra Tailwind classes applied to the outer wrapper `<div>`. */
 	containerClassName?: string;
-	/**
-	 * Show a "Scroll to zoom · Click to zoom in" hint pill that fades after
-	 * the first interaction.
-	 */
+	/** Show a "Scroll to zoom · Click to zoom in" hint pill that fades after the first interaction. */
 	showHint?: boolean;
 }
 
@@ -44,12 +41,10 @@ function computeMaxPan(rect: DOMRect, scale: number): Point {
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-/**
- * ZoomableImage — wraps `next/image` with scroll-wheel zoom and drag-to-pan.
- *
+/** ZoomableImage (wraps `next/image` with scroll-wheel zoom and drag-to-pan).
  * Interaction model:
  *  - **Scroll / trackpad pinch**: zooms in/out around the cursor.
- *  - **Click** (at 1×): zoom to 2.5× centred on the click point.
+ *  - **Click** (at 1×): zoom to 2.5× centered on the click point.
  *  - **Drag** (when zoomed): pans the image, clamped to bounds.
  *  - **Double-click** or **Escape**: resets to 1×.
  */
@@ -62,8 +57,7 @@ export function ZoomableImage({
 }: ZoomableImageProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	// Canonical source of truth — lives in a ref so native event callbacks
-	// always read the latest value without re-subscribing.
+	// Canonical source of truth (lives in a ref so native event callbacks always read the latest value without re-subscribing.
 	const transformRef = useRef({ scale: 1, x: 0, y: 0 });
 
 	// React state drives re-renders (cursor class, hint, image style).
@@ -71,17 +65,13 @@ export function ZoomableImage({
 	const [isHintVisible, setIsHintVisible] = useState(showHint);
 	const [isDragging, setIsDragging] = useState(false);
 
-	// ── Drag state (all refs — no re-render needed) ───────────────────────────
+	// ── Drag state (all refs, no re-render needed) ───────────────────────────
 	const isDraggingRef = useRef(false);
 	/** Pan-offset anchor: clientXY at mousedown minus the current translate. */
 	const panAnchorRef = useRef<Point>({ x: 0, y: 0 });
-	/** Raw clientXY at mousedown — for measuring drag distance only. */
+	/** Raw clientXY at mousedown (for measuring drag distance only). */
 	const pointerOriginRef = useRef<Point>({ x: 0, y: 0 });
-	/**
-	 * Set to true during mousemove when drag exceeds DRAG_THRESHOLD_PX.
-	 * Cleared inside onClick (AFTER stopDragging runs) so we don't lose
-	 * the flag due to event ordering: mouseup → stopDragging → click.
-	 */
+	/** Set to true during mousemove when drag exceeds DRAG_THRESHOLD_PX (cleared inside onClick after stopDragging runs so we don't lose the flag due to event ordering: mouseup → stopDragging → click). */
 	const wasDraggingRef = useRef(false);
 
 	// ── Helpers ───────────────────────────────────────────────────────────────
@@ -99,7 +89,7 @@ export function ZoomableImage({
 		setIsHintVisible(false);
 	}, []);
 
-	// ── Scroll-wheel / trackpad zoom (native listener — passive:false) ─────────
+	// ── Scroll-wheel / trackpad zoom (native listener, passive:false) ─────────
 	useEffect(() => {
 		const container = containerRef.current;
 		if (!container) return;
@@ -194,7 +184,7 @@ export function ZoomableImage({
 
 	// ── mouseup / mouseleave: stop dragging (do NOT clear wasDraggingRef here)─
 	const stopDragging = useCallback(() => {
-		// Only stop the active drag — wasDraggingRef stays true until onClick
+		// Only stop the active drag (wasDraggingRef stays true until onClick consumes it so the click event (which fires after mouseup) can read it).
 		// consumes it so the click event (which fires after mouseup) can read it.
 		isDraggingRef.current = false;
 		setIsDragging(false);
@@ -209,7 +199,7 @@ export function ZoomableImage({
 			const wasDrag = wasDraggingRef.current;
 			wasDraggingRef.current = false;
 
-			if (wasDrag) return; // suppress — user was panning, not clicking
+			if (wasDrag) return; // suppress (user was panning, not clicking)
 
 			const { scale } = transformRef.current;
 
@@ -247,9 +237,7 @@ export function ZoomableImage({
 	);
 
 	const isZoomed = displayTransform.scale > 1;
-	// isDraggingRef.current is a ref, reading it in render is stale — derive
-	// cursor class from wasDraggingRef isn't right either; use a state flag.
-	// Since we only need grab vs zoom-in, isZoomed is enough for the cursor.
+	// isDraggingRef.current is a ref, reading it in render is stale (derive cursor class from wasDraggingRef isn't right either, use a state flag).
 
 	return (
 		<div

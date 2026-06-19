@@ -2,9 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 
-/**
- * Subscribes to a media query with a stable `false` snapshot during SSR/hydration.
- */
+/** Subscribes to a media query with a stable `false` snapshot during SSR/hydration */
 export function useMediaQuery(query: string): boolean {
 	return useSyncExternalStore(
 		(onStoreChange) => {

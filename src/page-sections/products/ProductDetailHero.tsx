@@ -13,10 +13,7 @@ interface ProductDetailHeroProps {
 	onBack: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-/**
- * ProductDetailHero — Split-screen product hero section (40% Info, 60% Image).
- * Remapped to sapphire/champagne palette.
- */
+/** ProductDetailHero (split-screen product hero section, 40% Info, 60% Image, remapped to sapphire/champagne palette). */
 export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailHeroProps) {
 	const tItems = useTranslations("products.items");
 	const tPage = useTranslations("pages.products");
@@ -102,7 +99,7 @@ export function ProductDetailHero({ product, heroMedia, onBack }: ProductDetailH
 					</motion.div>
 				</div>
 
-				{/* Right panel — server-rendered LCP image passed from page.tsx */}
+				{/* Right panel (server-rendered LCP image passed from page.tsx) */}
 				{heroMedia}
 			</div>
 		</section>

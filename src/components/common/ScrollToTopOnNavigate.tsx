@@ -4,10 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "@/i18n/navigation";
 import { useLenis } from "lenis/react";
 
-/**
- * Lenis owns scroll position separately from the Next.js router.
- * Without resetting on route change, the next page opens at the previous scroll offset.
- */
+/** Lenis owns scroll position separately from the Next.js router (without resetting on route change, the next page opens at the previous scroll offset). */
 export function ScrollToTopOnNavigate() {
 	const pathname = usePathname();
 	const lenis = useLenis();

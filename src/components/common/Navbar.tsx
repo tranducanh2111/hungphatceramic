@@ -22,7 +22,7 @@ const LOGO_HEIGHT_EXPANDED = 56;
 const LOGO_HEIGHT_SHRUNK = 44;
 
 const NAV_SCROLL_THRESHOLD = 40; //   scroll depth (px) that triggers the shrink state
-const NAV_SCROLL_ENTER_THRESHOLD = 56; // hysteresis — avoids flicker near page top
+const NAV_SCROLL_ENTER_THRESHOLD = 56; // hysteresis (avoids flicker near page top)
 const NAV_SCROLL_EXIT_THRESHOLD = 12;
 const DESKTOP_NAV_QUERY = "(min-width: 1024px)"; // Tailwind `lg`
 const NAV_PADDING_X_EXPANDED = 24; // wider pill at top of page
@@ -32,7 +32,7 @@ const NAV_OUTER_GAP = 32;
 const NAV_CONTENT_GAP = 32;
 const NAV_SHRINK_BUFFER = 24; // extra room so CTA + locale never clip the pill edge
 
-/** Sum visible flex children + gaps — reliable regardless of justify-between. */
+/** Sum visible flex children + gaps ( regardless of justify-between attribute). */
 function measureVisibleContentWidth(contentEl: HTMLDivElement): number {
 	const visibleChildren = Array.from(contentEl.children).filter(
 		(child): child is HTMLElement =>
@@ -116,7 +116,7 @@ interface NavbarDesktopScrollListenerProps {
 	onScrolledChange: (isScrolled: boolean) => void;
 }
 
-/** Desktop-only scroll subscription — avoids Framer scroll work on mobile. */
+/** Desktop-only scroll subscription (avoids Framer scroll work on mobile). */
 function NavbarDesktopScrollListener({ onScrolledChange }: NavbarDesktopScrollListenerProps) {
 	const { scrollY } = useAppScroll();
 	const isScrolledRef = useRef(false);
@@ -153,7 +153,7 @@ interface NavbarDesktopPillProps {
 	children: React.ReactNode;
 }
 
-/** Desktop pill with measured width animation — effects only mount at lg+. */
+/** Desktop pill with measured width animation (effects only mount at lg+). */
 function NavbarDesktopPill({
 	ariaLabel,
 	navIsCompact,
@@ -246,11 +246,7 @@ function NavbarDesktopPill({
 
 // ─── Main Navbar ─────────────────────────────────────────────────────────────
 
-/**
- * Navbar — Premium pill-shaped navigation.
- * Starts full-width and shrinks smoothly on scroll.
- * Auto-closes mobile menu on route change.
- */
+/** Pill-shaped navigation (starts full-width and shrinks smoothly on scroll, auto-closes mobile menu on route change). */
 export function Navbar() {
 	const t = useTranslations("navbar");
 	const pathname = usePathname();
