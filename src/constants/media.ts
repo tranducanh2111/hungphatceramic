@@ -42,7 +42,7 @@ export const LOGO_PATHS = {
 export const MEDIA_PATHS = {
 	images: {
 		landing: {
-			heroPoster: "/media/images/landing/hero-poster.webp",
+			heroPoster: "/media/images/landing/hero-poster-frame0.webp",
 			brandStatement: "/media/images/landing/brand-statement.webp",
 		},
 		contact: {
