@@ -1,17 +1,22 @@
 import { resolveListingDemoWorkHoverPath } from "@/lib/products/media";
+import { COLLECTION_IDS } from "@/data/shared/collection-ids";
 import type { ProductDetail } from "@/types";
 
-/** Minimal product fields for the catalog grid (keeps client bundles small) */
-export interface ProductListingItem {
+/** Structural grid row before locale copy is attached. */
+interface CatalogListingRow {
 	slug: string;
 	skuCode: string;
-	name: string;
 	thumbnailUrl: string;
-	/** First PC-* install render for catalog card hover preview */
 	demoWorkThumbnailUrl?: string;
 	category: string;
 	collectionId: string;
 	sizes: string[];
+}
+
+/** Grid row for the products catalog. Built only via `localizeListingCatalog`. */
+export interface ProductListingItem extends CatalogListingRow {
+	title: string;
+	description?: string;
 }
 
 export interface CollectionListingMeta {
@@ -25,15 +30,7 @@ export interface TileSizeListingMeta {
 	count: number;
 }
 
-const LISTING_COLLECTION_IDS = [
-	"inspire",
-	"travertine",
-	"orient-star",
-	"sunshine",
-	"architectural",
-	"peace",
-	"indo",
-] as const;
+const LISTING_COLLECTION_IDS = COLLECTION_IDS;
 
 /** URL slug → catalogue dimension label (must match `products.ts` / `ProductDetail.sizes`). */
 export const TILE_SIZE_SLUG_TO_DIMENSION = {
@@ -65,12 +62,11 @@ export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | 
 	return undefined;
 }
 
-export function toProductListingItems(products: ProductDetail[]): ProductListingItem[] {
+export function toCatalogListingRows(products: ProductDetail[]): CatalogListingRow[] {
 	return products.map(
-		({ slug, skuCode, name, thumbnailUrl, demoWorkImages, category, collectionId, sizes }) => ({
+		({ slug, skuCode, thumbnailUrl, demoWorkImages, category, collectionId, sizes }) => ({
 			slug,
 			skuCode,
-			name,
 			thumbnailUrl,
 			demoWorkThumbnailUrl: resolveListingDemoWorkHoverPath(demoWorkImages[0]),
 			category,

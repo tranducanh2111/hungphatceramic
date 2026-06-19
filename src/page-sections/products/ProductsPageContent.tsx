@@ -77,8 +77,9 @@ export function ProductsPageContent({
 			const query = searchQuery.toLowerCase().trim();
 			result = result.filter(
 				(product) =>
+					product.title.toLowerCase().includes(query) ||
 					product.skuCode.toLowerCase().includes(query) ||
-					product.name.toLowerCase().includes(query),
+					product.slug.toLowerCase().includes(query),
 			);
 		}
 

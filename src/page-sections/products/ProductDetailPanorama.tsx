@@ -5,13 +5,13 @@ import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useTransform } from "framer-motion";
 import { useAppScroll } from "@/hooks/useAppScroll";
+import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { getProductPanoramaImage } from "@/lib/products/panorama";
 import { encodePublicAssetPath, resolveDetailGalleryImagePath } from "@/lib/products/media";
 import { SectionHeader } from "@/components/common";
-import type { ProductDetail } from "@/types";
 
 interface ProductDetailPanoramaProps {
-	product: ProductDetail;
+	product: LocalizedProductDetail;
 }
 
 interface PanoramaContentProps {
@@ -21,7 +21,6 @@ interface PanoramaContentProps {
 
 /** ProductDetailPanorama (scroll-driven wide interior panorama when available). */
 export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
-	const tItems = useTranslations("products.items");
 	const shouldReduceMotion = useReducedMotion();
 	const panoramaPath = getProductPanoramaImage(product);
 
@@ -29,17 +28,15 @@ export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 		return null;
 	}
 
-	const productName = tItems.has(`${product.slug}.name`)
-		? tItems(`${product.slug}.name`)
-		: product.name;
-
 	const panoramaSrc = encodePublicAssetPath(resolveDetailGalleryImagePath(panoramaPath));
 
 	if (shouldReduceMotion) {
-		return <ProductDetailPanoramaStatic productName={productName} panoramaSrc={panoramaSrc} />;
+		return (
+			<ProductDetailPanoramaStatic productName={product.title} panoramaSrc={panoramaSrc} />
+		);
 	}
 
-	return <ProductDetailPanoramaScroll productName={productName} panoramaSrc={panoramaSrc} />;
+	return <ProductDetailPanoramaScroll productName={product.title} panoramaSrc={panoramaSrc} />;
 }
 
 function ProductDetailPanoramaStatic({ productName, panoramaSrc }: PanoramaContentProps) {

@@ -3,18 +3,14 @@
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Text, Button } from "@/components/ui";
-import { MATERIAL_CATEGORIES, type MaterialCategory } from "@/constants/landing";
-import { ROUTES, productsWithCollection } from "@/constants/routes";
-import { getTileSizeSlugFromDimension } from "@/lib/products/listing";
+import { MATERIAL_CATEGORIES } from "@/constants/landing";
+import { ROUTES } from "@/constants/routes";
+import { type TileSize } from "@/data/landing/material-backdrops";
 import { cn } from "@/lib/cn";
-import { MaterialTilePreview } from "@/components/3d/MaterialTilePreview";
-import { Link } from "@/i18n/navigation";
+import { MaterialCard } from "@/page-sections/landing/MaterialCard";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-
-type TileSize = "60×120cm" | "80×80cm" | "100×100cm" | "120×120cm";
 
 type TileSizeLabelKey = "size60x120" | "size80x80" | "size100x100" | "size120x120";
 
@@ -24,53 +20,6 @@ const SIZE_OPTIONS: { labelKey: TileSizeLabelKey; value: TileSize }[] = [
 	{ labelKey: "size100x100", value: "100×100cm" },
 	{ labelKey: "size120x120", value: "120×120cm" },
 ];
-
-const CARD_HOVER_TRANSITION_CLASS = "duration-[550ms] ease-[cubic-bezier(0.4,0,0.2,1)]";
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-/** Precomputed backdrops (no runtime color sampling) to avoid scroll jank, tones stay close to each tile palette while keeping the slab as the hero. */
-const MATERIAL_BACKDROPS: Record<string, Partial<Record<TileSize, string>> & { default: string }> =
-	{
-		inspire: {
-			default: "linear-gradient(146deg, #102b45 0%, #0b2237 45%, #071a2b 100%)",
-			"60×120cm": "linear-gradient(146deg, #15385a 0%, #0e2b46 46%, #071a2b 100%)",
-		},
-		travertine: {
-			default: "linear-gradient(146deg, #2f2418 0%, #231a11 44%, #0f0b07 100%)",
-			"60×120cm": "linear-gradient(146deg, #443222 0%, #2e2318 44%, #161008 100%)",
-			"80×80cm": "linear-gradient(146deg, #3a2c1e 0%, #2a2117 44%, #130f0a 100%)",
-		},
-		"orient-star": {
-			default: "linear-gradient(146deg, #2d2619 0%, #1f1a12 42%, #0c0906 100%)",
-			"60×120cm": "linear-gradient(146deg, #383022 0%, #262015 44%, #0d0b07 100%)",
-		},
-		sunshine: {
-			default: "linear-gradient(146deg, #183245 0%, #10293a 45%, #071a2b 100%)",
-			"60×120cm": "linear-gradient(146deg, #214261 0%, #17344d 48%, #091f34 100%)",
-			"80×80cm": "linear-gradient(146deg, #1b3b55 0%, #123049 46%, #081f35 100%)",
-		},
-		architectural: {
-			default: "linear-gradient(146deg, #1a1f31 0%, #101526 44%, #080b15 100%)",
-			"60×120cm": "linear-gradient(146deg, #262d43 0%, #1a2238 44%, #0c1323 100%)",
-		},
-		peace: {
-			default: "linear-gradient(146deg, #1e2a38 0%, #142030 44%, #071a2b 100%)",
-			"60×120cm": "linear-gradient(146deg, #243548 0%, #182a3d 46%, #091f34 100%)",
-			"80×80cm": "linear-gradient(146deg, #1f3042 0%, #152535 44%, #081c30 100%)",
-		},
-		indo: {
-			default: "linear-gradient(146deg, #1a2838 0%, #122030 44%, #071a2b 100%)",
-			"100×100cm": "linear-gradient(146deg, #223a52 0%, #172d42 46%, #0a1f36 100%)",
-			"120×120cm": "linear-gradient(146deg, #223a52 0%, #172d42 46%, #0a1f36 100%)",
-			"60×120cm": "linear-gradient(146deg, #1e3348 0%, #14293c 44%, #091e32 100%)",
-		},
-	};
-
-function getMaterialBackdrop(categoryId: string, tileSize: TileSize): string {
-	const config = MATERIAL_BACKDROPS[categoryId] ?? MATERIAL_BACKDROPS.inspire;
-	return config[tileSize] ?? config.default;
-}
 
 // ─── Tile size segmented control (iOS-style sliding thumb) ───────────────────
 
@@ -146,79 +95,6 @@ function TileSizeSegmentedControl({
 				);
 			})}
 		</div>
-	);
-}
-
-// ─── MaterialCard ─────────────────────────────────────────────────────────────
-
-function MaterialCard({
-	category,
-	activeSize,
-}: {
-	category: MaterialCategory;
-	activeSize: TileSize;
-}) {
-	const t = useTranslations("landing.materials");
-	// Show only the tile that matches the active size filter.
-	const matchedPreview = category.previews.find((p) => p.size === activeSize);
-	const tilePreview = matchedPreview ? [matchedPreview] : [category.previews[0]];
-	const backdrop = getMaterialBackdrop(category.id, activeSize);
-	const sizeSlug = getTileSizeSlugFromDimension(activeSize);
-	const collectionHref = productsWithCollection(category.id, sizeSlug);
-
-	return (
-		<Link
-			href={collectionHref}
-			className="group relative block min-h-56 overflow-hidden rounded-2xl"
-		>
-			<div
-				className="absolute inset-0 z-0 transition-[background] duration-700 ease-out"
-				style={{ background: backdrop }}
-			/>
-
-			{/* Depth + text legibility */}
-			<div
-				className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#071A2B]/88 via-[#071A2B]/12 to-[#040F1A]/35"
-				aria-hidden="true"
-			/>
-
-			<MaterialTilePreview previews={tilePreview} />
-
-			{/* Hover shimmer */}
-			<div
-				className={cn(
-					"bg-champagne/0 group-hover:bg-champagne/5 group-active:bg-champagne/8 absolute inset-0 transition-colors",
-					CARD_HOVER_TRANSITION_CLASS,
-				)}
-			/>
-
-			{/* Border ring (no transition, ring = box-shadow; animating it is expensive). */}
-			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 group-hover:ring-[#D4B886]/30 group-active:ring-[#D4B886]/45" />
-
-			{/* Content */}
-			<div className="relative z-10 flex min-h-56 flex-col justify-between p-7">
-				<div>
-					<Text variant="label" className="text-champagne tracking-widest uppercase">
-						{category.sizes.join(" · ")}
-					</Text>
-					<Text variant="h4" className="text-linen mt-3">
-						{t(`categories.${category.id}.name`)}
-					</Text>
-					<Text variant="body-sm" className="text-linen/55 mt-2">
-						{t(`categories.${category.id}.tagline`)}
-					</Text>
-				</div>
-
-				<span
-					className={cn(
-						"text-body-sm text-champagne inline-flex items-center gap-2 font-sans opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100",
-						CARD_HOVER_TRANSITION_CLASS,
-					)}
-				>
-					{t("discover")} <ArrowRight className="h-4 w-4" />
-				</span>
-			</div>
-		</Link>
 	);
 }
 

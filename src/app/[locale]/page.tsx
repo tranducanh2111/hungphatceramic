@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { headers } from "next/headers";
 import { LandingPageContent } from "@/page-sections/landing/LandingPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 
@@ -32,6 +33,10 @@ export default async function HomePage({ params }: HomePageProps) {
 	const tCommon = await getTranslations({ locale, namespace: "common" });
 	const tContact = await getTranslations({ locale, namespace: "footer.contact" });
 	const tAbout = await getTranslations({ locale, namespace: "pages.about.schema" });
+
+	const headersList = await headers();
+	const userAgent = headersList.get("user-agent") || "";
+	const isMobileSSR = /mobile/i.test(userAgent);
 
 	const organizationSchema = {
 		"@context": "https://schema.org",
@@ -96,7 +101,7 @@ export default async function HomePage({ params }: HomePageProps) {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
-			<LandingPageContent />
+			<LandingPageContent isMobileSSR={isMobileSSR} />
 		</main>
 	);
 }

@@ -43,10 +43,10 @@ function resolveTileDimension(
 }
 
 /** Listing card media for the active tile-size filter (or primary category). */
-export function applyTileSizeToListingItem(
-	product: ProductListingItem,
+export function applyTileSizeToListingItem<T extends ProductListingItem>(
+	product: T,
 	sizeSlug: string | undefined,
-): ProductListingItem {
+): T {
 	const tileDimension = resolveTileDimension(product, sizeSlug);
 	if (!tileDimension) {
 		return product;
@@ -68,10 +68,10 @@ export function applyTileSizeToListingItem(
 }
 
 /** Detail page media for `?size=` filter or primary category. */
-export function applyTileSizeToProductDetail(
-	product: ProductDetail,
+export function applyTileSizeToProductDetail<T extends ProductDetail>(
+	product: T,
 	sizeSlug: string | undefined,
-): ProductDetail {
+): T {
 	const tileDimension = resolveTileDimension(product, sizeSlug);
 	if (!tileDimension) {
 		return product;

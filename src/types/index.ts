@@ -16,13 +16,11 @@ export interface NavItem {
 	href: string;
 }
 
-/** Represents a product summary used in listing cards. */
+/** Catalogue row: structural fields only. Title comes from `products.items.{slug}.name`. */
 export interface ProductSummary {
 	slug: string;
-	name: string;
 	thumbnailUrl: string;
 	category: string;
-	shortDescription: string;
 	skuCode: string;
 }
 

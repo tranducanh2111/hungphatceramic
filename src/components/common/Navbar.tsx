@@ -3,16 +3,19 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence, useMotionValueEvent } from "framer-motion";
+import { motion, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { ROUTES } from "@/constants/routes";
 import { IconSvg } from "@/components/icons";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
+import { NavbarMobileMenu } from "@/components/common/NavbarMobileMenu";
 import { useAppScroll } from "@/hooks/useAppScroll";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Button } from "@/components/ui";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
+import { measureVisibleContentWidth } from "@/lib/navbar/measureNavContent";
 
 // ─── Navbar constants ─────────────────────────────────────────────────────────
 
@@ -24,30 +27,9 @@ const LOGO_HEIGHT_SHRUNK = 44;
 const NAV_SCROLL_THRESHOLD = 40; //   scroll depth (px) that triggers the shrink state
 const NAV_SCROLL_ENTER_THRESHOLD = 56; // hysteresis (avoids flicker near page top)
 const NAV_SCROLL_EXIT_THRESHOLD = 12;
-const DESKTOP_NAV_QUERY = "(min-width: 1024px)"; // Tailwind `lg`
 const NAV_PADDING_X_EXPANDED = 24; // wider pill at top of page
 const NAV_PADDING_X_SHRUNK = 12; // compact pill when scrolled
-const NAV_MAX_WIDTH = 1440;
-const NAV_OUTER_GAP = 32;
-const NAV_CONTENT_GAP = 32;
 const NAV_SHRINK_BUFFER = 24; // extra room so CTA + locale never clip the pill edge
-
-/** Sum visible flex children + gaps ( regardless of justify-between attribute). */
-function measureVisibleContentWidth(contentEl: HTMLDivElement): number {
-	const visibleChildren = Array.from(contentEl.children).filter(
-		(child): child is HTMLElement =>
-			child instanceof HTMLElement && child.getBoundingClientRect().width > 0,
-	);
-
-	if (visibleChildren.length === 0) return 0;
-
-	const itemsWidth = visibleChildren.reduce(
-		(total, child) => total + child.getBoundingClientRect().width,
-		0,
-	);
-
-	return Math.ceil(itemsWidth + NAV_CONTENT_GAP * (visibleChildren.length - 1));
-}
 
 // ─── Logo Mark ────────────────────────────────────────────────────────────────
 
@@ -66,7 +48,7 @@ interface LogoMarkProps {
 
 function LogoMark({ isScrolled }: LogoMarkProps) {
 	const t = useTranslations("common");
-	const isDesktopNav = useMediaQuery(DESKTOP_NAV_QUERY);
+	const isDesktopNav = useMediaQuery(DESKTOP_LAYOUT_QUERY);
 	const logoHeight = isScrolled ? LOGO_HEIGHT_SHRUNK : LOGO_HEIGHT_EXPANDED;
 
 	return (
@@ -250,7 +232,7 @@ function NavbarDesktopPill({
 export function Navbar() {
 	const t = useTranslations("navbar");
 	const pathname = usePathname();
-	const isDesktopNav = useMediaQuery(DESKTOP_NAV_QUERY);
+	const isDesktopNav = useMediaQuery(DESKTOP_LAYOUT_QUERY);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const navIsCompact = isDesktopNav && isScrolled;
@@ -272,6 +254,10 @@ export function Navbar() {
 		});
 		return () => cancelAnimationFrame(frameId);
 	}, [pathname]);
+
+	const handleCloseMobileMenu = useCallback(() => {
+		setIsMobileMenuOpen(false);
+	}, []);
 
 	const navPillContent: ReactNode = (
 		<>
@@ -375,64 +361,12 @@ export function Navbar() {
 			</div>
 
 			{/* ── Mobile dropdown ──────────────────────────────────────────────── */}
-			<AnimatePresence>
-				{isMobileMenuOpen && (
-					<motion.div
-						key="mobile-menu"
-						initial={{ opacity: 0, y: -12, scale: 0.97 }}
-						animate={{ opacity: 1, y: 0, scale: 1 }}
-						exit={{ opacity: 0, y: -8, scale: 0.97 }}
-						transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-						className={cn(
-							"fixed top-[88px] left-1/2 z-40 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2",
-							"rounded-3xl border border-[#D4B886]/15 bg-[#071A2B]/95 backdrop-blur-2xl",
-							"p-6 shadow-[0_20px_60px_rgba(7,26,43,0.7)]",
-							"pointer-events-auto lg:hidden",
-						)}
-					>
-						<ul className="flex flex-col gap-1" role="list">
-							{navItems.map(({ label, href }) => {
-								const isActive =
-									href === "/" ? pathname === "/" : pathname.startsWith(href);
-								return (
-									<li key={href}>
-										<Link
-											href={href}
-											onClick={() => setIsMobileMenuOpen(false)}
-											className={cn(
-												"text-body-sm block rounded-xl px-4 py-3 font-sans tracking-[0.12em] uppercase",
-												"transition-all duration-200",
-												isActive
-													? "bg-[#D4B886]/10 text-[#D4B886]"
-													: "text-[#F4F4F6]/60 hover:bg-[#1A3D5C]/50 hover:text-[#F4F4F6]",
-											)}
-										>
-											{label}
-										</Link>
-									</li>
-								);
-							})}
-						</ul>
-						<div className="mt-3">
-							<LocaleSwitcher />
-						</div>
-
-						{/* Mobile CTA */}
-						<div className="mt-4 border-t border-[#1A3D5C] pt-4">
-							<Button
-								href={ROUTES.contact}
-								variant="outline"
-								size="lg"
-								withShimmer
-								onClick={() => setIsMobileMenuOpen(false)}
-								className="w-full border-[#D4B886]/40 bg-[#D4B886]/8 text-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]"
-							>
-								{t("cta.bookConsultation")}
-							</Button>
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
+			<NavbarMobileMenu
+				isOpen={isMobileMenuOpen}
+				navItems={navItems}
+				pathname={pathname}
+				onClose={handleCloseMobileMenu}
+			/>
 		</>
 	);
 }

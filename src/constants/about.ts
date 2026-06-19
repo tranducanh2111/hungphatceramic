@@ -55,32 +55,6 @@ export const CAPABILITY_CARDS: CapabilityCard[] = [
 export const CAPABILITY_IDS = ["specification", "production", "logistics", "aftercare"] as const;
 export type CapabilityId = (typeof CAPABILITY_IDS)[number];
 
-// ─── Leadership ───────────────────────────────────────────────────────────────
-
-export interface LeadershipMember {
-	id: string;
-	imageUrl: string;
-}
-
-export interface LeadershipPrincipal extends LeadershipMember {
-	/** Environmental portrait used as section background. */
-	environmentalImageUrl: string;
-}
-
-export const LEADERSHIP_PRINCIPAL: LeadershipPrincipal = {
-	id: "founder",
-	imageUrl: MEDIA_PATHS.images.about.leadership.founder,
-	environmentalImageUrl: MEDIA_PATHS.images.about.leadership.founderEnvironmental,
-};
-
-export const LEADERSHIP_MEMBERS: LeadershipMember[] = [
-	{ id: "creativeDirector", imageUrl: MEDIA_PATHS.images.about.leadership.creativeDirector },
-	{ id: "technicalLead", imageUrl: MEDIA_PATHS.images.about.leadership.technicalLead },
-	{ id: "projectDirector", imageUrl: MEDIA_PATHS.images.about.leadership.projectDirector },
-	{ id: "operationsDirector", imageUrl: MEDIA_PATHS.images.about.leadership.operationsDirector },
-	{ id: "salesDirector", imageUrl: MEDIA_PATHS.images.about.leadership.salesDirector },
-];
-
 // ─── Client Roster ────────────────────────────────────────────────────────────
 
 export interface ClientEntry {

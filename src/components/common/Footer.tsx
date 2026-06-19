@@ -8,6 +8,7 @@ import { CONTACT_CHANNELS, GOOGLE_MAPS_URL, contactMailtoHref } from "@/constant
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { ABOUT_SECTION_IDS, aboutSectionHref } from "@/constants/about-sections";
 import { ROUTES, productsWithCollection } from "@/constants/routes";
+import { COLLECTION_IDS } from "@/data/shared/collection-ids";
 import { Link } from "@/i18n/navigation";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -124,6 +125,7 @@ function FooterLinkGroup({
 
 export function Footer() {
 	const t = useTranslations("footer");
+	const collectionsT = useTranslations("collections");
 	const commonT = useTranslations("common");
 	const currentYear = new Date().getFullYear();
 	const companyLinks = [
@@ -141,16 +143,8 @@ export function Footer() {
 			href: aboutSectionHref(ABOUT_SECTION_IDS.activeLocations),
 		},
 	];
-	const collectionLinks = [
-		{ label: t("collections.inspire"), collectionId: "inspire" },
-		{ label: t("collections.travertine"), collectionId: "travertine" },
-		{ label: t("collections.orientStar"), collectionId: "orient-star" },
-		{ label: t("collections.sunshine"), collectionId: "sunshine" },
-		{ label: t("collections.architectural"), collectionId: "architectural" },
-		{ label: t("collections.peace"), collectionId: "peace" },
-		{ label: t("collections.indo"), collectionId: "indo" },
-	].map(({ label, collectionId }) => ({
-		label,
+	const collectionLinks = COLLECTION_IDS.map((collectionId) => ({
+		label: collectionsT(`${collectionId}.name`),
 		href: productsWithCollection(collectionId),
 	}));
 

@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 
 /** Subscribes to a media query with a stable `false` snapshot during SSR/hydration */
-export function useMediaQuery(query: string): boolean {
+export function useMediaQuery(query: string, serverFallback = false): boolean {
 	return useSyncExternalStore(
 		(onStoreChange) => {
 			const mediaQueryList = window.matchMedia(query);
@@ -11,6 +11,6 @@ export function useMediaQuery(query: string): boolean {
 			return () => mediaQueryList.removeEventListener("change", onStoreChange);
 		},
 		() => window.matchMedia(query).matches,
-		() => false,
+		() => serverFallback,
 	);
 }

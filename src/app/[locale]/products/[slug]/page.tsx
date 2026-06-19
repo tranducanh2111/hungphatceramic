@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
 import { isTileSizeSlug } from "@/lib/products/listing";
 import { encodePublicAssetPath } from "@/lib/products/media";
+import { localizeProductDetail } from "@/lib/products/localizeCatalog";
 import { ProductDetailPageContent } from "@/page-sections/products/ProductDetailPageContent";
 import { ProductDetailHeroMedia } from "@/page-sections/products/ProductDetailHeroMedia";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
@@ -29,17 +30,17 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
 	const t = await getTranslations({ locale, namespace: "meta.productDetail" });
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
-	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
+	const localizedProduct = localizeProductDetail(product, tItems);
 	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
 	const ogImage = product.thumbnailUrl;
 
 	return {
-		title: t("title", { productName }),
-		description: t("description", { productName }),
+		title: t("title", { productName: localizedProduct.title }),
+		description: t("description", { productName: localizedProduct.title }),
 		alternates,
 		openGraph: buildOpenGraphForLocale({
-			title: t("title", { productName }),
-			description: t("description", { productName }),
+			title: t("title", { productName: localizedProduct.title }),
+			description: t("description", { productName: localizedProduct.title }),
 			url: alternates.canonical,
 			ogLocale: locale === "vi" ? "vi_VN" : "en_US",
 			image: ogImage,
@@ -58,22 +59,18 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 	}
 
 	const activeSizeId = resolveActiveSizeId(size);
-	const displayProduct = applyTileSizeToProductDetail(product, activeSizeId);
-	const heroThumbnailPath = encodePublicAssetPath(displayProduct.thumbnailUrl);
-
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
-	const productName = tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : product.name;
-	const productDesc = tItems.has(`${slug}.description`)
-		? tItems(`${slug}.description`)
-		: product.shortDescription;
+	const localizedProduct = localizeProductDetail(product, tItems);
+	const displayProduct = applyTileSizeToProductDetail(localizedProduct, activeSizeId);
+	const heroThumbnailPath = encodePublicAssetPath(displayProduct.thumbnailUrl);
 
 	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
 	const productSchema = {
 		"@context": "https://schema.org",
 		"@type": "Product",
-		name: productName,
+		name: localizedProduct.title,
 		image: `${SITE_URL}${heroThumbnailPath}`,
-		description: productDesc,
+		description: localizedProduct.description,
 		sku: product.skuCode,
 		mpn: product.skuCode,
 		material: "Porcelain",
@@ -122,7 +119,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 			{
 				"@type": "ListItem",
 				position: 3,
-				name: productName,
+				name: localizedProduct.title,
 				item: `${SITE_URL}/${locale}/products/${product.slug}`,
 			},
 		],
@@ -137,10 +134,10 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ProductDetailPageContent
-				product={product}
+				product={localizedProduct}
 				activeSizeId={activeSizeId}
 				heroMedia={
-					<ProductDetailHeroMedia src={displayProduct.thumbnailUrl} alt={productName} />
+					<ProductDetailHeroMedia src={displayProduct.thumbnailUrl} alt={localizedProduct.title} />
 				}
 			/>
 		</>
