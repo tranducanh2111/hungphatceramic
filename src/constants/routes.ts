@@ -1,4 +1,4 @@
-// Internal app URLs — must match `src/app/**` route segments (Next.js file-system routing).
+// Internal app URLs must match `src/app/**` route segments (Next.js file-system routing).
 
 export const ROUTES = {
 	home: "/",

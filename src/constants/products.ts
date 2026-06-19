@@ -464,7 +464,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		allFacesImage: "/assets/80X80/GP88736J/GP88736J.jpg",
 	},
 
-	// ─── INDO SERIES (MẪU GẠCH INDO — import assets per public/assets/INDO-IMPORT.md) ─
+	// ─── INDO SERIES (MẪU GẠCH INDO) (import assets per public/assets/INDO-IMPORT.md) ─
 	...INDO_PRODUCTS,
 ];
 

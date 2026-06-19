@@ -49,9 +49,7 @@ function parseOptionChildren(children: ReactNode): ParsedOption[] {
 	});
 }
 
-/**
- * Select — Custom listbox styled to match `Input`, with champagne hover states.
- */
+/** Select (Custom listbox styled to match `Input`, with champagne hover states). */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 	(
 		{

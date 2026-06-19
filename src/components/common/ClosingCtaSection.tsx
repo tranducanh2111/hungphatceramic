@@ -24,11 +24,11 @@ interface ClosingCtaSectionProps extends ClassNameProp {
 	actions: ClosingCtaAction[];
 	footer?: ReactNode;
 	actionsDelay?: number;
-	/** Skip ParallaxSection shell — for landing CTA with custom background. */
+	/** Skip ParallaxSection shell (for landing CTA with custom background). */
 	bare?: boolean;
 }
 
-/** Closing invitation block — shared by about, projects, and landing CTAs. */
+/** Closing invitation block (shared by about, projects, and landing CTAs). */
 export function ClosingCtaSection({
 	titleLine1,
 	titleLine2,

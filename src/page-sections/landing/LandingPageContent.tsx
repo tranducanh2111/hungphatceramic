@@ -29,7 +29,7 @@ const LandingCta = dynamic(
 	{ ssr: false },
 );
 
-// LandingProjects may use WebGL (LandingProjectsSpiral) — keep ssr:false.
+/** LandingProjects may use WebGL (LandingProjectsSpiral) (keep ssr:false). */
 const LandingProjects = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingProjects").then((m) => ({
@@ -38,7 +38,7 @@ const LandingProjects = dynamic(
 	{ ssr: false },
 );
 
-// LandingMaterials uses a 3D tile context internally — keep ssr:false.
+/** LandingMaterials uses a 3D tile context internally (keep ssr:false). */
 const LandingMaterials = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingMaterials").then((m) => ({
@@ -47,7 +47,7 @@ const LandingMaterials = dynamic(
 	{ ssr: false },
 );
 
-// LandingProcess uses scroll-driven animations with browser APIs — keep ssr:false.
+/** LandingProcess uses scroll-driven animations with browser APIs (keep ssr:false). */
 const LandingProcess = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingProcess").then((m) => ({
@@ -56,7 +56,7 @@ const LandingProcess = dynamic(
 	{ ssr: false },
 );
 
-// LandingVisualStory uses sticky scroll + panorama — keep ssr:false.
+/** LandingVisualStory uses sticky scroll + panorama (keep ssr:false). */
 const LandingVisualStory = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingVisualStory").then((m) => ({
@@ -66,8 +66,8 @@ const LandingVisualStory = dynamic(
 );
 
 /**
- * Client shell — hero + brand statement + stats + testimonials + cta are SSR'd.
- * Complex browser-API sections (Projects, Materials, Process, VisualStory) code-split.
+ * Client shell (hero + brand statement + stats + testimonials + cta are SSR'd).
+ * Complex browser-API sections (Projects, Materials, Process, VisualStory) code-split
  */
 export function LandingPageContent() {
 	useLenisResizeOnMount();

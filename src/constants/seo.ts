@@ -11,7 +11,7 @@ interface AlternatesInput {
 }
 
 /**
- * Builds the canonical and hreflang alternate links for a given path and current locale.
+ * Builds the canonical and hreflang alternate links for a given path and current locale
  * @param path The path of the page (e.g. "/", "/about", "/products")
  * @param currentLocale The current active locale ("vi" | "en")
  */
@@ -40,9 +40,7 @@ interface OpenGraphInput {
 	image?: string;
 }
 
-/**
- * Builds the OpenGraph metadata object for a page.
- */
+/** Builds the OpenGraph metadata object for a page */
 export function buildOpenGraphForLocale({
 	title,
 	description,

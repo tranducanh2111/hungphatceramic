@@ -14,7 +14,7 @@ const VARIANT_STYLES: Record<DecorativeDividerVariant, string> = {
 	section: "my-8 h-px w-16 bg-champagne",
 };
 
-/** Champagne horizontal rule — size variants for section headers and CTAs. */
+/** Champagne horizontal rule (size variants for section headers and CTAs). */
 export function DecorativeDivider({ variant = "centered", className }: DecorativeDividerProps) {
 	return <div className={cn(VARIANT_STYLES[variant], className)} aria-hidden="true" />;
 }

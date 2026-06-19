@@ -19,9 +19,7 @@ interface PanoramaContentProps {
 	panoramaSrc: string;
 }
 
-/**
- * ProductDetailPanorama — Scroll-driven wide interior panorama when available.
- */
+/** ProductDetailPanorama (scroll-driven wide interior panorama when available). */
 export function ProductDetailPanorama({ product }: ProductDetailPanoramaProps) {
 	const tItems = useTranslations("products.items");
 	const shouldReduceMotion = useReducedMotion();

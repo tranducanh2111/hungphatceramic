@@ -96,10 +96,10 @@ const FURNISHING_PATHS = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 /**
- * RoomSilhouette — scroll-driven SVG room sketch.
+ * RoomSilhouette (scroll-driven SVG room sketch).
  *
  * `scrollYProgress` (via `useScroll` on its own bounding box) drives three
- * `useTransform` motion values — one per stage — each mapped to `pathLength`.
+ * `useTransform` motion values (one per stage, each mapped to `pathLength`).
  * No `animate`/`variants` are used; the drawing position at any frame is a
  * pure function of the user's scroll position, so it works at any refresh rate.
  */
@@ -113,15 +113,15 @@ export function RoomSilhouette() {
 		offset: ["start end", "end start"],
 	});
 
-	// Stage 1 — shell starts drawing the moment the section enters from below
+	// Stage 1 :shell starts drawing the moment the section enters from below
 	const shellPath = useTransform(scrollYProgress, [0.05, 0.42], [0, 1]);
 	const shellOpacity = useTransform(scrollYProgress, [0.05, 0.22], [0, 0.18]);
 
-	// Stage 2 — surfaces draw as section approaches centre of viewport
+	// Stage 2 :surfaces draw as section approaches centre of viewport
 	const surfacePath = useTransform(scrollYProgress, [0.22, 0.57], [0, 1]);
 	const surfaceOpacity = useTransform(scrollYProgress, [0.22, 0.4], [0, 0.11]);
 
-	// Stage 3 — furnishings complete around viewport centre, synced with count-up
+	// Stage 3 :furnishings complete around viewport centre, synced with count-up
 	const furnishPath = useTransform(scrollYProgress, [0.4, 0.74], [0, 1]);
 	const furnishOpacity = useTransform(scrollYProgress, [0.4, 0.62], [0, 0.55]);
 

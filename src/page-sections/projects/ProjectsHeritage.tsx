@@ -30,10 +30,7 @@ interface MilestoneConnectorProps {
 	connectorIndex: number;
 }
 
-/**
- * Scroll-driven champagne stroke reveal between milestones (mask + pathLength).
- * Reverses naturally when scrolling back up.
- */
+/** Scroll-driven champagne stroke reveal between milestones (mask + pathLength, reverses naturally when scrolling back up). */
 function MilestoneConnector({ connectorIndex }: MilestoneConnectorProps) {
 	const connectorRef = useRef<HTMLDivElement>(null);
 	const isRtl = connectorIndex % 2 === 0;
@@ -163,9 +160,7 @@ function MilestoneImage({ src, alt, rangePx, invert }: MilestoneImageProps) {
 const HERITAGE_IMAGE_PARALLAX = [36, 42, 38] as const;
 const HERITAGE_TEXT_PARALLAX = [22, 28, 24] as const;
 
-/**
- * ProjectsHeritage — Scroll-linked timeline of signature Vietnam project partners.
- */
+/** ProjectsHeritage (scroll-linked timeline of signature Vietnam project partners). */
 export function ProjectsHeritage() {
 	const t = useTranslations("pages.projects.heritage");
 	const milestoneCount = PROJECT_MILESTONES.length;

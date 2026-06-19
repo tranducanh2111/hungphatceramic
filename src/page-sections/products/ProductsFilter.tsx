@@ -20,9 +20,7 @@ interface ProductsFilterProps {
 	tileSizes: TileSizeListingMeta[];
 }
 
-/**
- * ProductsFilter — Collection and tile-size filters (expandable accordions on all breakpoints).
- */
+/** ProductsFilter (collection and tile-size filters, expandable accordions on all breakpoints). */
 export function ProductsFilter({
 	activeCollectionId,
 	onSelectCollection,

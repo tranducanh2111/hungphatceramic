@@ -1,6 +1,4 @@
-/**
- * Shared type definitions for the Perla powered by Hung Phat project.
- */
+/** Shared type definitions for the Perla powered by Hung Phat project. */
 
 /** Allow consumers to pass additional className for style overrides. */
 export interface ClassNameProp {

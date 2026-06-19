@@ -9,9 +9,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	className?: string;
 }
 
-/**
- * Textarea — Styled multiline input aligned with `Input` styling.
- */
+/** Textarea (Styled multiline input aligned with `Input` styling). */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 	({ label, helperText, hasError = false, wrapperClassName, className, id, ...rest }, ref) => {
 		const textareaId = id ?? label?.toLowerCase().replace(/\s+/g, "-");

@@ -6,9 +6,7 @@ import { cn } from "@/lib/cn";
 import { ProcessMobileStepper } from "@/page-sections/landing/process/ProcessMobileStepper";
 import { ProcessScrollTimeline } from "@/page-sections/landing/process/ProcessScrollTimeline";
 
-/**
- * LandingProcess — Scroll-driven timeline on large screens; compact stepper on mobile.
- */
+/** LandingProcess (scroll-driven timeline on large screens, compact stepper on mobile). */
 export function LandingProcess() {
 	const t = useTranslations("landing.process");
 	const prefersReducedMotion = useReducedMotion() ?? false;

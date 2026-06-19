@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Perla powered by Hung Phat — Tailwind Design System
+ * Perla powered by Hung Phat (Tailwind Design System)
  *
  * Palette: Imperial Sapphire & Champagne
  * Target Audience: High-class interior design customers
@@ -33,24 +33,24 @@ const config: Config = {
       colors: {
         // Core brand surfaces
         sapphire: {
-          deep: "#071A2B",       // Primary dark — background / high-contrast text
-          ocean: "#0E2A42",      // Secondary dark — cards, elevated surfaces
-          mist: "#1A3D5C",       // Tertiary — subtle borders, dividers
+          deep: "#071A2B",       // Primary dark (background / high-contrast text)
+          ocean: "#0E2A42",      // Secondary dark (cards, elevated surfaces)
+          mist: "#1A3D5C",       // Tertiary (subtle borders, dividers)
           faint: "#E8EEF4",      // Very light sapphire tint for hover backgrounds
         },
 
         // Luxury accent
         champagne: {
-          DEFAULT: "#D4B886",    // Primary accent — icons, decorative lines, hover states
-          light: "#E8D5B0",      // Soft champagne — subtle highlights
-          deep: "#A88E60",       // Dark champagne — pressed states
+          DEFAULT: "#D4B886",    // Primary accent (icons, decorative lines, hover states)
+          light: "#E8D5B0",      // Soft champagne (subtle highlights)
+          deep: "#A88E60",       // Dark champagne (pressed states)
         },
 
         // Neutral surfaces
         linen: {
-          DEFAULT: "#F4F4F6",    // Crisp linen — light mode background
-          warm: "#EEEAE4",       // Warm linen — sections alternate
-          dark: "#D6D3CC",       // Linen border — subtle separators
+          DEFAULT: "#F4F4F6",    // Crisp linen (light mode background)
+          warm: "#EEEAE4",       // Warm linen (sections alternate)
+          dark: "#D6D3CC",       // Linen border (subtle separators)
         },
 
         // Semantic roles (maps to brand primitives above)
@@ -71,11 +71,11 @@ const config: Config = {
 
       // ─── Typography Scale ────────────────────────────────────────────────────
       fontFamily: {
-        // Serif — Cormorant Garamond: timeless elegance for headings
+        // Serif (Cormorant Garamond): timeless elegance for headings
         serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        // Sans — Jost: clean, modern, high-legibility for body & UI
+        // Sans (Jost): clean, modern, high-legibility for body & UI
         sans: ["var(--font-jost)", "system-ui", "sans-serif"],
-        // Display — Cormorant SC: small-caps variant for labels & decorative use
+        // Display (Cormorant SC): small-caps variant for labels & decorative use
         display: ["var(--font-cormorant)", "Georgia", "serif"],
       },
 

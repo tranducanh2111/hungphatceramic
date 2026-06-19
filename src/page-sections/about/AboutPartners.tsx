@@ -14,7 +14,7 @@ import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 
 const PARTNER_LOGO_HEIGHT_CLASS = "h-11 w-auto sm:h-12 lg:h-14";
 
-/** Recolors raster partner marks to brand champagne; brightens on row hover. */
+/** Recolors raster partner marks to brand champagne (brightens on row hover). */
 const PARTNER_LOGO_COLOR_CLASS =
 	"partner-logo-champagne transition-[filter] duration-500 ease-out group-hover:partner-logo-champagne-hover";
 

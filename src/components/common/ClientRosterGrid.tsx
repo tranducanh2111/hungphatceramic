@@ -32,7 +32,7 @@ const CELL_TEXT_STYLES = {
 	deep: "text-linen/35 group-hover:text-champagne/85",
 } as const;
 
-/** Developer / brand name grid with champagne gap lines. */
+/** Developer / brand name grid with champagne gap lines (champagne gap lines). */
 export function ClientRosterGrid({
 	items,
 	columns = { sm: 3, lg: 4 },

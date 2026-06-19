@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	/** Helper or error text below the input. */
 	helperText?: string;
 
-	/** Visual error state — turns border and helper text red. */
+	/** Visual error state (turns border and helper text red). */
 	hasError?: boolean;
 
 	/** Additional className for the outer wrapper. */
@@ -18,7 +18,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 /**
- * Input — Styled text input with optional label and helper text.
+ * Input (Styled text input with optional label and helper text).
  *
  * Uses forwardRef so it works seamlessly with form libraries (e.g. react-hook-form).
  *

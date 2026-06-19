@@ -2,9 +2,7 @@ import { createElement } from "react";
 import type { ElementType, HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-/**
- * Available typography size variants.
- */
+/** Available typography size variants. */
 type TextVariant =
 	| "display-2xl"
 	| "display-xl"
@@ -23,10 +21,7 @@ type TextVariant =
 	| "footnote"
 	| "caption";
 
-/**
- * Semantic text element mapping.
- * Maps visual variants to their default HTML tags.
- */
+/** Semantic text element mapping (maps visual variants to their default HTML tags). */
 const DEFAULT_TAG_MAP: Record<TextVariant, ElementType> = {
 	"display-2xl": "h1",
 	"display-xl": "h1",
@@ -61,10 +56,9 @@ interface TextProps extends HTMLAttributes<HTMLElement> {
 }
 
 /**
- * Text — Unified typography component.
+ * Text (Unified typography component).
  *
- * Renders the correct HTML tag with design-system font sizing.
- * Uses createElement instead of JSX to avoid polymorphic tag type errors.
+ * Renders the correct HTML tag with design-system font sizing (uses createElement instead of JSX to avoid polymorphic tag type errors).
  * Pass `as` to override the default tag (e.g., render an h2 visually as h3).
  *
  * @example

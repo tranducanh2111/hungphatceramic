@@ -21,9 +21,7 @@ const CAPABILITY_ICONS: Record<CapabilityId, LucideIcon> = {
 	aftercare: ShieldCheck,
 } as const;
 
-/**
- * AboutCapabilities — 4 numbered image cards (flyward value-card pattern).
- */
+/** AboutCapabilities (4 numbered image cards, flyward value-card pattern). */
 export function AboutCapabilities() {
 	const t = useTranslations("pages.about.capabilities");
 

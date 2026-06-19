@@ -1,5 +1,5 @@
 /**
- * Unified project records for landing, projects page, and future detail routes.
+ * Unified project records for landing, projects page, and future detail routes
  * Display text lives under `pages.projects.*` and `landing.projects.items.*`.
  */
 
@@ -13,14 +13,14 @@ export type ProjectSector = (typeof PROJECT_SECTORS)[number];
 
 export interface ProjectRecord {
 	id: string;
-	/** Completion or opening year — sourced from public project records. */
+	/** Completion or opening year (sourced from public project records). */
 	year: string;
 	coordinates: string;
 	location: string;
 	imageUrl: string;
 	region: ProjectRegion;
 	sector: ProjectSector;
-	/** Developer or brand name for client strip (factual, public record). */
+	/** Developer or brand name for client strip (public record). */
 	clientBrand: string;
 }
 
@@ -87,10 +87,10 @@ export const PROJECTS: ProjectRecord[] = [
 	},
 ];
 
-/** Timeline section alias — same data, chronological narrative. */
+/** Timeline section alias (same data, chronological narrative). */
 export const PROJECT_MILESTONES: ProjectRecord[] = PROJECTS;
 
-/** Landing featured row — numeric year for display pills. */
+/** Landing featured row (numeric year for display pills). */
 export interface FeaturedProject {
 	id: string;
 	year: number;

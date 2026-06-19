@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 /**
- * ConsoleFilter — Suppresses known, harmless warnings from external libraries.
+ * ConsoleFilter (suppresses known, harmless warnings from external libraries).
  * Specifically filters out the THREE.Clock deprecation warning from @react-three/fiber
  * since it's an internal library detail and clutters the console.
  */
@@ -18,7 +18,7 @@ export function ConsoleFilter() {
 				(args[0].includes("THREE.Clock: This module has been deprecated") ||
 					args[0].includes("Please ensure that the container has a non-static position"))
 			) {
-				// Suppress these specific harmless warnings
+				// Suppress specific harmless warnings
 				return;
 			}
 			originalWarn(...args);

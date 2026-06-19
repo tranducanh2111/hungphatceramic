@@ -1,13 +1,13 @@
 import { resolveListingDemoWorkHoverPath } from "@/lib/products/media";
 import type { ProductDetail } from "@/types";
 
-/** Minimal product fields for the catalog grid — keeps client bundles small. */
+/** Minimal product fields for the catalog grid (keeps client bundles small) */
 export interface ProductListingItem {
 	slug: string;
 	skuCode: string;
 	name: string;
 	thumbnailUrl: string;
-	/** First PC-* install render for catalog card hover preview. */
+	/** First PC-* install render for catalog card hover preview */
 	demoWorkThumbnailUrl?: string;
 	category: string;
 	collectionId: string;
@@ -129,7 +129,7 @@ export function resolveCatalogFilterState(
 	return { collectionId, sizeId };
 }
 
-/** Server/client shared catalogue filter — excludes client-only search. */
+/** Server/client shared catalogue filter (excludes client-only search) */
 export function filterProductListingByCatalog(
 	products: readonly ProductListingItem[],
 	{ collectionId, sizeId }: CatalogFilterState,

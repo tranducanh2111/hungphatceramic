@@ -1,15 +1,13 @@
-/**
- * Helpers for product images under `public/assets/**` (spaces, unicode path segments).
- */
+/** Helpers for product images under `public/assets/**` (spaces, unicode path segments) */
 
 import type { ProductCatalogEntry, ProductDetail } from "@/types";
 
-/** Encode `/assets/...` paths for `next/image` while preserving slashes. */
+/** Encode `/assets/...` paths for `next/image` while preserving slashes */
 export function encodePublicAssetPath(publicPath: string): string {
 	return encodeURI(publicPath);
 }
 
-/** Interior install/showcase renders — not tile faces or panoramas. */
+/** Interior install/showcase renders (not tile faces or panoramas) */
 export function isProductDemoWorkImage(assetPath: string): boolean {
 	const fileName = assetPath.split("/").pop() ?? "";
 	if (/^PC/i.test(fileName)) {
@@ -95,7 +93,7 @@ export function getPrimaryDemoWorkAssetPath(demoWorkImages: string[]): string | 
 	return demoWorkImages[0];
 }
 
-/** Lightweight WebP beside the source PC file — safe for `next/image` on the catalog grid. */
+/** Lightweight WebP beside the source PC file (safe for `next/image` on the catalog grid). */
 export function getListingDemoWorkPreviewPath(assetPath: string): string {
 	if (assetPath.endsWith(".listing.webp")) {
 		return assetPath;
@@ -104,7 +102,7 @@ export function getListingDemoWorkPreviewPath(assetPath: string): string {
 	return assetPath.replace(/\.(jpe?g|png|webp)$/i, ".listing.webp");
 }
 
-/** Resolves gallery/panorama paths to `.detail.webp` sidecars; registry keeps canonical JPG/PNG. */
+/** Resolves gallery/panorama paths to `.detail.webp` sidecars, registry keeps canonical JPG/PNG. */
 export function resolveDetailGalleryImagePath(assetPath: string): string {
 	if (assetPath.endsWith(".detail.webp")) {
 		return assetPath;

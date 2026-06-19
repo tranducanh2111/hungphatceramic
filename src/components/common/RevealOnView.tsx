@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 interface RevealOnViewProps<T extends ElementType = "div"> {
 	as?: T;
 	className?: string;
-	/** Stagger delay in seconds (maps to `animation-delay`). */
+	/** Stagger delay in seconds (maps to `animation-delay` attribute). */
 	delay?: number;
 	children?: ReactNode;
 }

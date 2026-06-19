@@ -50,7 +50,7 @@ function useAboutHashScroll() {
 	}, [lenis]);
 }
 
-/** Client shell — below-fold sections code-split without SSR. */
+/** Client shell (below-fold sections code-split without SSR). */
 export function AboutPageContent() {
 	useLenisResizeOnMount();
 	useAboutHashScroll();

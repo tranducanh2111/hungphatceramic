@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { CinematicHero } from "@/components/common";
 import { MEDIA_PATHS } from "@/constants/media";
 
-/** ProjectsCinematicHero — Full-viewport arrival with scroll-linked media reveal. */
+/** ProjectsCinematicHero (full-viewport arrival with scroll-linked media reveal). */
 export function ProjectsCinematicHero() {
 	const t = useTranslations("pages.projects.hero");
 

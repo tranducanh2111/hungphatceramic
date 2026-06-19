@@ -4,7 +4,7 @@ export const ZALO_MOBILE_LOCAL = "0985300246";
 
 export const CONTACT_EMAIL = "contact@hungphatceramic.vn";
 
-/** Display address — matches `footer.contact.address` copy. */
+/** Display address (matches `footer.contact.address` copy). */
 export const SHOWROOM_ADDRESS_QUERY =
 	"K3.TT1.SH22, Starlake Urban Area, Xuan Tao Road, Xuan Dinh Ward, Ha Noi, Vietnam";
 

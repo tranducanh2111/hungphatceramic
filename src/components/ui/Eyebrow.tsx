@@ -6,7 +6,7 @@ interface EyebrowProps extends ClassNameProp, HTMLAttributes<HTMLSpanElement> {
 	children: ReactNode;
 }
 
-/** Section pre-header label — champagne uppercase tracking. */
+/** Section pre-header label (champagne uppercase tracking). */
 export function Eyebrow({ children, className, ...rest }: EyebrowProps) {
 	return (
 		<span

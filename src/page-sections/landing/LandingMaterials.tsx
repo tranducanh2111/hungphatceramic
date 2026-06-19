@@ -29,10 +29,7 @@ const CARD_HOVER_TRANSITION_CLASS = "duration-[550ms] ease-[cubic-bezier(0.4,0,0
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/**
- * Precomputed backdrops (no runtime color sampling) to avoid scroll jank.
- * Tones stay close to each tile palette while keeping the slab as the hero.
- */
+/** Precomputed backdrops (no runtime color sampling) to avoid scroll jank, tones stay close to each tile palette while keeping the slab as the hero. */
 const MATERIAL_BACKDROPS: Record<string, Partial<Record<TileSize, string>> & { default: string }> =
 	{
 		inspire: {
@@ -195,7 +192,7 @@ function MaterialCard({
 				)}
 			/>
 
-			{/* Border ring — no transition (ring = box-shadow; animating it is expensive). */}
+			{/* Border ring (no transition, ring = box-shadow; animating it is expensive). */}
 			<div className="absolute inset-0 z-[8] rounded-2xl ring-1 ring-[#D4B886]/10 group-hover:ring-[#D4B886]/30 group-active:ring-[#D4B886]/45" />
 
 			{/* Content */}
@@ -227,10 +224,7 @@ function MaterialCard({
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 
-/**
- * LandingMaterials — Showcase the material collections.
- * Shows the first three collections; the size toggle updates tile previews only.
- */
+/** LandingMaterials (showcase the material collections, shows the first three collections, the size toggle updates tile previews only). */
 export function LandingMaterials() {
 	const t = useTranslations("landing.materials");
 	const [activeSize, setActiveSize] = useState<TileSize>("60×120cm");

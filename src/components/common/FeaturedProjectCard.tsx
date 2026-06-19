@@ -21,7 +21,7 @@ interface FeaturedProjectCardProps extends ClassNameProp {
 	revealDelay?: number;
 }
 
-/** Featured project tile for landing grid — glass overlays and champagne year badge. */
+/** Featured project tile for landing grid (glass overlays and champagne year badge). */
 export function FeaturedProjectCard({
 	content,
 	index = 0,

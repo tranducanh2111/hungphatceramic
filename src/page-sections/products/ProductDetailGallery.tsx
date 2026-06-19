@@ -217,9 +217,7 @@ function DemoWorkCarouselPanel({
 	);
 }
 
-/**
- * ProductDetailGallery — Composite face sheet (when available) plus PC-* install/demo carousel.
- */
+/** ProductDetailGallery (composite face sheet (when available) plus PC-* install/demo carousel). */
 export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 	const tDetail = useTranslations("pages.productDetail");
 	const tItems = useTranslations("products.items");

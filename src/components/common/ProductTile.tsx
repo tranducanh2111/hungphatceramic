@@ -38,7 +38,7 @@ interface ProductTileProps {
 }
 
 /**
- * ProductTile — Linked catalog card for product listing and related grids.
+ * ProductTile (linked catalog card for product listing and related grids).
  */
 export function ProductTile({
 	product,

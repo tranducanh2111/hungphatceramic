@@ -65,7 +65,7 @@ type LinkButtonProps = SharedButtonProps &
 export type ButtonProps = NativeButtonProps | LinkButtonProps;
 
 /**
- * Button — Dual-purpose interactive element.
+ * Button (Dual-purpose interactive element).
  *
  * Renders a `<button>` when no `href` is provided, or a Next.js `<Link>`
  * (or native `<a>` for external URLs) when `href` is set.

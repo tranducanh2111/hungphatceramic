@@ -1,14 +1,14 @@
 import type { Variants } from "framer-motion";
 
-/** Sticky shell — grows on small screens when hero copy wraps past one viewport. */
+/** Sticky shell (grows on small screens when hero copy wraps past one viewport). */
 export const CINEMATIC_HERO_STICKY_CLASS =
 	"sticky top-0 min-h-[100dvh] w-full overflow-hidden lg:h-screen";
 
-/** Content stack — vertical padding keeps CTAs inside the media frame on narrow viewports. */
+/** Content stack (vertical padding keeps CTAs inside the media frame on narrow viewports). */
 export const CINEMATIC_HERO_CONTENT_CLASS =
 	"relative z-10 flex min-h-[100dvh] flex-col items-center justify-center px-6 py-20 text-center sm:px-8 sm:py-16 lg:h-full lg:min-h-0 lg:py-0";
 
-/** Readability scrim over hero video — stronger at the bottom on phones. */
+/** Readability scrim over hero video (stronger at the bottom on phones). */
 export const CINEMATIC_HERO_SCRIM_CLASS =
 	"absolute inset-0 bg-gradient-to-t from-sapphire-deep/88 via-sapphire-deep/20 to-sapphire-deep/35 max-sm:from-sapphire-deep/92";
 
@@ -20,7 +20,7 @@ export const CINEMATIC_HERO_RADIAL_CLASS =
 export const CTA_RADIAL_CLASS =
 	"absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,var(--color-sapphire-mist)_0%,var(--color-sapphire-deep)_65%)] opacity-60";
 
-/** Scroll indicator bounce — pairs with `animate-scroll-indicator-bounce` in globals.css. */
+/** Scroll indicator bounce (pairs with `animate-scroll-indicator-bounce` in globals.css). */
 export const SCROLL_INDICATOR_BOUNCE_CLASS = "animate-scroll-indicator-bounce";
 
 /** Shared entrance animation for cinematic hero content. */

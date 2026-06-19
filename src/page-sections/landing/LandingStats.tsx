@@ -52,9 +52,7 @@ function StatCounter({ stat, label }: { stat: StatItem; label: string }) {
 	);
 }
 
-/**
- * LandingStats — Credibility through scale. Numbers animate on scroll entry.
- */
+/** LandingStats (credibility through scale, numbers animate on scroll entry). */
 export function LandingStats() {
 	const t = useTranslations("landing.stats");
 

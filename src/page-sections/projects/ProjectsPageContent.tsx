@@ -14,7 +14,7 @@ const ProjectsHeritage = dynamic(() =>
 	})),
 );
 
-/** Client shell — scroll narrative with code-split motion sections. */
+/** Client shell (scroll narrative with code-split motion sections). */
 export function ProjectsPageContent() {
 	useLenisResizeOnMount();
 

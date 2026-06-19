@@ -4,10 +4,7 @@ import { useMemo } from "react";
 import { useScroll, type UseScrollOptions } from "framer-motion";
 import { useLenis } from "lenis/react";
 
-/**
- * Scroll progress tied to Lenis root when available, so Framer scroll
- * animations stay in sync with smooth scroll.
- */
+/** Scroll progress tied to Lenis root when available, so Framer scroll animations stay in sync with smooth scroll */
 export function useAppScroll(options: UseScrollOptions = {}) {
 	const lenis = useLenis();
 

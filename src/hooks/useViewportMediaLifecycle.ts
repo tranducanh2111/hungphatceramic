@@ -13,9 +13,7 @@ export interface ViewportMediaLifecycleOptions {
 const DEFAULT_LOAD_ROOT_MARGIN = "320px 0px";
 const DEFAULT_UNLOAD_ROOT_MARGIN = "720px 0px";
 
-/**
- * Mounts media near the viewport and unmounts when scrolled away — limits decoded image memory.
- */
+/** Mounts media near the viewport and unmounts when scrolled away (limits decoded image memory) */
 export function useViewportMediaLifecycle({
 	isDeferred = true,
 	loadRootMargin = DEFAULT_LOAD_ROOT_MARGIN,

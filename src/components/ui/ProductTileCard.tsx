@@ -3,7 +3,7 @@ import { Text } from "@/components/ui/Text";
 import { cn } from "@/lib/cn";
 import type { ClassNameProp } from "@/types";
 
-/** Multi-stop scrim — smoother than a two-stop Tailwind gradient. */
+/** Multi-stop scrim (smoother than a two-stop Tailwind gradient). */
 const TILE_CARD_BOTTOM_SCRIM =
 	"linear-gradient(to top, #071A2B 0%, rgba(7, 26, 43, 0.96) 14%, rgba(7, 26, 43, 0.78) 32%, rgba(7, 26, 43, 0.48) 52%, rgba(7, 26, 43, 0.2) 72%, rgba(7, 26, 43, 0.06) 88%, transparent 100%)";
 
@@ -22,7 +22,7 @@ export interface ProductTileCardProps extends ClassNameProp {
 }
 
 /**
- * ProductTileCard — Immersive porcelain tile card (texture hero + bottom metadata).
+ * ProductTileCard (Porcelain tile catalog card with texture hero and bottom metadata).
  * Presentational only; wrap with a link in catalog grids.
  */
 export function ProductTileCard({

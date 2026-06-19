@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { ClosingCtaSection } from "@/components/common";
 import { ROUTES } from "@/constants/routes";
 
-/** ProjectsCta — Closing invitation after portfolio narrative. */
+/** ProjectsCta (closing invitation after portfolio narrative). */
 export function ProjectsCta() {
 	const t = useTranslations("pages.projects.cta");
 

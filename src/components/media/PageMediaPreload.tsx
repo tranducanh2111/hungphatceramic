@@ -1,16 +1,15 @@
 interface PageMediaPreloadProps {
 	/** Paths to preload as images (hoisted to document head by Next.js App Router). */
 	imagePaths: readonly string[];
-	/** Optional mobile-only preloads — use when desktop needs more LCP candidates than mobile. */
+	/** Optional mobile-only preloads (use when desktop needs more LCP candidates than mobile). */
 	mobileImagePaths?: readonly string[];
 	/** When true, restricts preloading to desktop viewports (min-width: 1024px). */
 	desktopOnly?: boolean;
 }
 
 /**
- * LCP resource hints — `<link rel="preload">` for critical hero posters.
- * The `type` attribute tells browsers the format upfront so they can prioritize
- * decoding without a round-trip Content-Type sniff.
+ * LCP resource hints (`<link rel="preload">` for critical hero posters).
+ * The `type` attribute tells browsers the format upfront so they can prioritize decoding without a round-trip Content-Type fetch.
  */
 export function PageMediaPreload({
 	imagePaths,

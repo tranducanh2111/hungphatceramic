@@ -9,9 +9,7 @@ import {
 	SectionHeader,
 } from "@/components/common";
 
-/**
- * ProjectsPrologue — Short narrative chapter before the heritage timeline.
- */
+/** ProjectsPrologue (short narrative chapter before the heritage timeline). */
 export function ProjectsPrologue() {
 	const t = useTranslations("pages.projects.prologue");
 

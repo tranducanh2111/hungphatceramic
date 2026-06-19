@@ -63,7 +63,7 @@ export interface LeadershipMember {
 }
 
 export interface LeadershipPrincipal extends LeadershipMember {
-	/** Full-bleed environmental portrait used as section background. */
+	/** Environmental portrait used as section background. */
 	environmentalImageUrl: string;
 }
 
@@ -85,7 +85,7 @@ export const LEADERSHIP_MEMBERS: LeadershipMember[] = [
 
 export interface ClientEntry {
 	id: string;
-	/** Proper name — not localised (brand name stays the same across locales). */
+	/** Proper name (not localised, brand name stays the same across locales). */
 	name: string;
 }
 

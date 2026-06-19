@@ -1,15 +1,11 @@
-/**
- * Blueprint vocabulary constants.
- * Pure SVG path data + metadata for the "Blueprint to Built" design motif.
- * All rendering lives in BlueprintLine.tsx — this file is data-only.
- */
+/** Blueprint vocabulary constants (pure SVG path data + metadata for the "Blueprint to Built" design motif, all rendering lives in BlueprintLine.tsx, this file is data-only). */
 
 export type BlueprintVariant =
-	| "survey" // Hero: survey horizon + tick marks — site selected
+	| "survey" // Hero: survey horizon + tick marks (site selected)
 	| "foundation" // Origin: L-shaped corner brackets — groundbreaking
-	| "joint" // (legacy) structural rivet — still usable, but datum preferred
-	| "keystone" // Leadership: shallow arc with center mark — crown set
-	| "grid" // Clients: orthogonal grid paper — foundation laid
+	| "joint" // (legacy) structural rivet (still usable, but datum preferred)
+	| "keystone" // Leadership: shallow arc with center mark (crown set)
+	| "grid" // Clients: orthogonal grid paper (foundation laid)
 	| "signature" // CTA: flowing approval line + cross-mark — drawing complete
 	| "datum"; // Section boundary: full-width cut line with diamond ends + station ticks
 
@@ -37,7 +33,7 @@ export const BLUEPRINT_META: Record<BlueprintVariant, BlueprintMeta> = {
 
 /**
  * Shared stroke design tokens.
- * Used as constants in BlueprintLine.tsx — never inlined as magic strings elsewhere.
+ * Used as constants in BlueprintLine.tsx (never inlined elsewhere).
  */
 export const BLUEPRINT_TOKENS = {
 	color: "#D4B886",
@@ -51,8 +47,7 @@ export const BLUEPRINT_TOKENS = {
 } as const;
 
 // ─── Paths for pathLength-animated variants ───────────────────────────────────
-// Each value is a single continuous SVG path `d` string so that pathLength
-// reveals the stroke from start to finish in one pass.
+// Each value is a single continuous SVG path `d` string so that pathLength reveals the stroke from start to finish in one pass.
 
 /**
  * Horizontal survey line with 5 small triangular tick bumps (site markers).
@@ -63,13 +58,13 @@ export const SURVEY_PATH =
 
 /**
  * Shallow parabolic arc (vault spring) with a center-peak tick.
- * Reads as: the architectural keystone — the final stone that locks the arch.
+ * Reads as: the architectural keystone (the final stone that locks the arch).
  */
 export const KEYSTONE_PATH = "M 60 62 Q 450 6 840 62 M 450 6 L 450 0 M 444 6 L 456 6";
 
 /**
  * Flowing S-curve approval line ending in an architect's cross-mark.
- * Reads as: the principal's signature — the blueprint is approved.
+ * Reads as: the principal's signature (the blueprint is approved).
  */
 export const SIGNATURE_PATH =
 	"M 50 50 C 180 10, 300 90, 420 50 C 540 10, 660 90, 740 50 M 730 40 L 750 60 M 730 60 L 750 40";
@@ -79,7 +74,7 @@ export const SIGNATURE_PATH =
  * Diamonds at both ends; three triangular station ticks at thirds.
  * A single continuous path so pathLength draws it cleanly left-to-right.
  *
- * Reads as: the architect marking a phase boundary — one stage complete.
+ * Reads as: the architect marking a phase boundary (one stage complete).
  */
 export const DATUM_PATH =
 	"M 0 10 L 4 6 L 8 10 L 4 14 L 0 10 L 248 10 L 250 5 L 252 10 L 498 10 L 500 5 L 502 10 L 748 10 L 750 5 L 752 10 L 992 10 L 996 6 L 1000 10 L 996 14 L 992 10";

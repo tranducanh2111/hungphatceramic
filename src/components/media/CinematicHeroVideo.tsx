@@ -10,18 +10,18 @@ export interface CinematicHeroVideoProps {
 	posterSrc: string;
 	posterAlt: string;
 	prefersReducedMotion: boolean;
-	/** On mobile, skip the video entirely — show only the poster for optimal LCP. */
+	/** On mobile, skip the video entirely (show only the poster for optimal LCP). */
 	isMobile?: boolean;
 	className?: string;
 	videoClassName?: string;
 	videoStyle?: React.CSSProperties;
-	/** Scroll-linked transforms — only used with `useMotionVideo`. */
+	/** Scroll-linked transforms (only used with `useMotionVideo`). */
 	motionVideoStyle?: MotionStyle;
 	/** When true, renders `motion.video` for scroll-linked transforms (landing hero). */
 	useMotionVideo?: boolean;
 }
 
-/** Shared poster-only render path — used for reduced motion and mobile. */
+/** Shared poster-only render path (used for reduced motion and mobile). */
 function HeroPosterImage({
 	posterSrc,
 	posterAlt,
@@ -47,7 +47,7 @@ function HeroPosterImage({
 }
 
 /**
- * Hero background video — metadata preload, IO pause off-screen, poster via next/image when reduced motion or mobile.
+ * Hero background video (metadata preload, IO pause off-screen, poster via next/image when reduced motion or mobile).
  * On mobile (`isMobile=true`) the video element is skipped to avoid downloading a large media file during LCP.
  */
 export const CinematicHeroVideo = forwardRef<HTMLVideoElement, CinematicHeroVideoProps>(
