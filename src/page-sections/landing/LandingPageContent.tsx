@@ -69,12 +69,12 @@ const LandingVisualStory = dynamic(
  * Client shell (hero + brand statement + stats + testimonials + cta are SSR'd).
  * Complex browser-API sections (Projects, Materials, Process, VisualStory) code-split
  */
-export function LandingPageContent() {
+export function LandingPageContent({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	useLenisResizeOnMount();
 
 	return (
 		<>
-			<LandingHero />
+			<LandingHero isMobileSSR={isMobileSSR} />
 			<LandingBrandStatement />
 			<LandingProjects />
 			<LandingMaterials />

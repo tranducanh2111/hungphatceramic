@@ -35,6 +35,7 @@ interface CinematicHeroProps {
 	/** Fade hero copy on scroll (landing page only). */
 	fadeContentOnScroll?: boolean;
 	className?: string;
+	isDesktopSSR?: boolean;
 }
 
 interface CinematicHeroContentProps {
@@ -351,8 +352,8 @@ function CinematicHeroScroll({
 /** Shared cinematic hero shell for landing, about, contact, and projects page. */
 export function CinematicHero(props: CinematicHeroProps) {
 	const prefersReducedMotion = usePrefersReducedMotion();
-	// Mobile-first SSR default (false) (avoids hydrating scroll hero on phones).
-	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY);
+	// Use the server-provided default to avoid hydrating static hero on desktop
+	const isDesktopHero = useMediaQuery(DESKTOP_HERO_QUERY, props.isDesktopSSR);
 
 	if (prefersReducedMotion || !isDesktopHero) {
 		return <CinematicHeroStatic {...props} isDesktopHero={isDesktopHero} />;

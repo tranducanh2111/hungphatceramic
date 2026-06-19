@@ -7,11 +7,12 @@ import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
 
 /** LandingHero (background video expands to fill viewport on scroll) */
-export function LandingHero() {
+export function LandingHero({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	const t = useTranslations("landing.hero");
 
 	return (
 		<CinematicHero
+			isDesktopSSR={!isMobileSSR}
 			videoSrc={MEDIA_PATHS.video.hero}
 			posterSrc={MEDIA_PATHS.images.landing.heroPoster}
 			posterAlt={t("titleLine1")}
