@@ -14,5 +14,6 @@ export const STATS: StatItem[] = [
 
 /** Stats surfaced in the brand statement row (subset of STATS). */
 export const BRAND_STATEMENT_STATS = STATS.filter(
-	(stat): stat is StatItem & { brandStatementKey: string } => stat.brandStatementKey !== undefined,
+	(stat): stat is StatItem & { brandStatementKey: string } =>
+		stat.brandStatementKey !== undefined,
 );

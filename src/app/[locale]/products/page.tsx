@@ -55,6 +55,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 	const alternates = buildAlternatesForLocale("/products", locale);
 	const tSchema = await getTranslations({ locale, namespace: "pages.products.schema" });
 	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+	const tCollections = await getTranslations({ locale, namespace: "collections" });
 
 	const itemListSchema = {
 		"@context": "https://schema.org",
@@ -80,6 +81,23 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 		})),
 	};
 
+	const collectionPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"@id": `${SITE_URL}/${locale}/products#webpage`,
+		url: `${SITE_URL}/${locale}/products`,
+		name: tNavbar("products"),
+		description: tSchema("itemListDescription"),
+		publisher: {
+			"@id": `${SITE_URL}#organization`,
+		},
+		about: collections.map((col) => ({
+			"@type": "Thing",
+			name: tCollections.has(`${col.id}.name`) ? tCollections(`${col.id}.name`) : col.id,
+			url: `${SITE_URL}/${locale}/products?collection=${col.id}`,
+		})),
+	};
+
 	const breadcrumbSchema = {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
@@ -99,7 +117,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 		],
 	};
 
-	const schemas = [itemListSchema, breadcrumbSchema];
+	const schemas = [itemListSchema, collectionPageSchema, breadcrumbSchema];
 
 	return (
 		<main>

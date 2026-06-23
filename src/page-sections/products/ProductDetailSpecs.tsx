@@ -36,7 +36,10 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	];
 
 	const quoteMailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-		tDetail("specs.quoteMailtoSubject", { productName: product.title, skuCode: product.skuCode }),
+		tDetail("specs.quoteMailtoSubject", {
+			productName: product.title,
+			skuCode: product.skuCode,
+		}),
 	)}`;
 
 	return (
