@@ -41,7 +41,10 @@ export default async function HomePage({ params }: HomePageProps) {
 	const organizationSchema = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
+		"@id": `${SITE_URL}#organization`,
 		name: tAbout("name"),
+		description: tAbout("description"),
+		slogan: tAbout("slogan"),
 		url: SITE_URL,
 		logo: `${SITE_URL}/logo/hungphat_ceramic_logo_big.png`,
 		foundingDate: tAbout("foundingDate"),

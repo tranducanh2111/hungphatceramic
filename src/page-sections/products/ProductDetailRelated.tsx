@@ -5,7 +5,10 @@ import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { ProductTile } from "@/components/common";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
-import { localizeListingCatalog, type LocalizedProductDetail } from "@/lib/products/localizeCatalog";
+import {
+	localizeListingCatalog,
+	type LocalizedProductDetail,
+} from "@/lib/products/localizeCatalog";
 import { PRODUCTS } from "@/constants/products";
 
 interface ProductDetailRelatedProps {

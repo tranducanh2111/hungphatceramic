@@ -359,6 +359,8 @@
 		"about": {
 			"schema": {
 				"name": "Perla powered by Hung Phat",
+				"description": "Nhà phân phối và bán buôn hàng đầu các dòng gạch porcelain tấm lớn cao cấp và bề mặt ceramic nhập khẩu cao cấp tại Việt Nam, phục vụ các dự án kiến trúc và nhà ở phân khúc hạng sang trên toàn cầu.",
+				"slogan": "Bề mặt ceramic sang trọng cho những không gian đẳng cấp. Chế tác chính xác, thiết kế bền vững.",
 				"foundingDate": "2012",
 				"address": {
 					"streetAddress": "583 Giải Phóng, Phường Giáp Bát",

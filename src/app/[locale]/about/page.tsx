@@ -37,7 +37,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
 	const organizationSchema = {
 		"@context": "https://schema.org",
 		"@type": "Organization",
+		"@id": `${SITE_URL}#organization`,
 		name: t("name"),
+		description: t("description"),
+		slogan: t("slogan"),
 		url: SITE_URL,
 		logo: `${SITE_URL}/logo/hungphat_ceramic_logo_big.png`,
 		foundingDate: t("foundingDate"),
@@ -52,6 +55,18 @@ export default async function AboutPage({ params }: AboutPageProps) {
 			telephone: t("contact.telephone"),
 			email: t("contact.email"),
 			contactType: t("contact.contactType"),
+		},
+	};
+
+	const aboutPageSchema = {
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		"@id": `${SITE_URL}/${locale}/about#webpage`,
+		url: `${SITE_URL}/${locale}/about`,
+		name: tNavbar("about"),
+		description: t("description"),
+		mainEntity: {
+			"@id": `${SITE_URL}#organization`,
 		},
 	};
 
@@ -74,7 +89,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 		],
 	};
 
-	const schemas = [organizationSchema, breadcrumbSchema];
+	const schemas = [organizationSchema, aboutPageSchema, breadcrumbSchema];
 
 	return (
 		<main>

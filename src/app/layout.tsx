@@ -10,6 +10,17 @@ export const metadata: Metadata = {
 	},
 	description:
 		"Chuyên cung cấp gạch porcelain cao cấp, gạch ốp lát khổ lớn nhập khẩu sang trọng cho biệt thự, khách sạn và căn hộ cao cấp tại Việt Nam.",
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
 	keywords: [
 		// --- BRAND & LOCATION ---
 		"Hùng Phát Ceramic",

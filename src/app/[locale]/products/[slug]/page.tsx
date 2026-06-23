@@ -137,7 +137,10 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 				product={localizedProduct}
 				activeSizeId={activeSizeId}
 				heroMedia={
-					<ProductDetailHeroMedia src={displayProduct.thumbnailUrl} alt={localizedProduct.title} />
+					<ProductDetailHeroMedia
+						src={displayProduct.thumbnailUrl}
+						alt={localizedProduct.title}
+					/>
 				}
 			/>
 		</>
