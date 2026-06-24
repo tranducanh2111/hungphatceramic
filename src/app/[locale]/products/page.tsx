@@ -67,17 +67,8 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 		itemListElement: products.map((product, index) => ({
 			"@type": "ListItem",
 			position: index + 1,
-			item: {
-				"@type": "Product",
-				name: product.title,
-				url: `${SITE_URL}/${locale}/products/${product.slug}`,
-				image: `${SITE_URL}${encodePublicAssetPath(product.thumbnailUrl)}`,
-				sku: product.skuCode,
-				brand: {
-					"@type": "Brand",
-					name: tSchema("productBrand"),
-				},
-			},
+			name: product.title,
+			item: `${SITE_URL}/${locale}/products/${product.slug}`,
 		})),
 	};
 

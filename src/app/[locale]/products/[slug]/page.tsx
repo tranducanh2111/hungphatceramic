@@ -60,6 +60,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 	}
 
 	const activeSizeId = resolveActiveSizeId(size);
+	const tMetaProductDetail = await getTranslations({ locale, namespace: "meta.productDetail" });
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
 	const tDetail = await getTranslations({ locale, namespace: "pages.productDetail" });
 	const localizedProduct = localizeProductDetail(product, tItems, tDetail);
@@ -72,20 +73,13 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 		"@type": "Product",
 		name: localizedProduct.title,
 		image: `${SITE_URL}${heroThumbnailPath}`,
-		description: localizedProduct.description,
+		description: localizedProduct.description || tMetaProductDetail("description", { productName: localizedProduct.title }),
 		sku: product.skuCode,
 		mpn: product.skuCode,
 		material: "Porcelain",
 		brand: {
 			"@type": "Brand",
 			name: "Perla",
-		},
-		offers: {
-			"@type": "Offer",
-			priceCurrency: "VND",
-			price: "0",
-			availability: "https://schema.org/InStock",
-			url: alternates.canonical,
 		},
 		additionalProperty: [
 			{
