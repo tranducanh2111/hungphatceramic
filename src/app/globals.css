@@ -433,11 +433,273 @@ h6 {
 	color: currentColor;
 }
 
+/* ─── Tile finish overlays (catalog + product detail) ─────────────────────── */
+.tile-finish-overlay {
+	--tile-sweep-duration: 6s;
+	--tile-sweep-gap: 1s;
+	/* Two 6s sweeps + two 1s gaps = 14s */
+	--tile-dual-sweep-cycle: calc(var(--tile-sweep-duration) * 2 + var(--tile-sweep-gap) * 2);
+	--tile-sweep-ease: cubic-bezier(0.42, 0.03, 0.25, 1);
+
+	transform: translateZ(0);
+	backface-visibility: hidden;
+}
+
+.tile-finish-overlay__base,
+.tile-finish-overlay__glaze,
+.tile-finish-overlay__sweep {
+	position: absolute;
+	inset: 0;
+}
+
+.tile-finish-overlay__base,
+.tile-finish-overlay__sweep {
+	will-change: opacity, background-position;
+}
+
+/* Glossy — dual 6s specular sweeps (14s loop) */
+.tile-finish--glossy .tile-finish-overlay__base {
+	background:
+		radial-gradient(ellipse 95% 75% at 20% 6%, rgba(255, 255, 255, 0.32) 0%, transparent 52%),
+		radial-gradient(ellipse 70% 50% at 82% 88%, rgba(255, 255, 255, 0.1) 0%, transparent 48%),
+		linear-gradient(
+			168deg,
+			rgba(255, 255, 255, 0.14) 0%,
+			transparent 32%,
+			rgba(7, 26, 43, 0.06) 100%
+		);
+	mix-blend-mode: soft-light;
+	opacity: 0.82;
+	animation: tile-glossy-ambient var(--tile-dual-sweep-cycle) ease-in-out infinite;
+}
+
+.tile-finish--glossy .tile-finish-overlay__glaze {
+	background:
+		radial-gradient(ellipse 130% 90% at 50% -8%, rgba(255, 255, 255, 0.18) 0%, transparent 58%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 28%, transparent 100%);
+	mix-blend-mode: overlay;
+	opacity: 0.75;
+}
+
+.tile-finish--glossy .tile-finish-overlay__sweep {
+	background: linear-gradient(
+		118deg,
+		transparent 0%,
+		transparent 42%,
+		rgba(255, 255, 255, 0.12) 47%,
+		rgba(255, 250, 240, 0.45) 49.5%,
+		rgba(255, 255, 255, 0.78) 50%,
+		rgba(255, 250, 240, 0.45) 50.5%,
+		rgba(255, 255, 255, 0.12) 53%,
+		transparent 58%,
+		transparent 100%
+	);
+	background-size: 320% 320%;
+	background-position: 145% 145%;
+	background-repeat: no-repeat;
+	mix-blend-mode: overlay;
+	animation: tile-glossy-sweep var(--tile-dual-sweep-cycle) var(--tile-sweep-ease) infinite;
+}
+
+@keyframes tile-glossy-ambient {
+	0%,
+	6%,
+	38%,
+	48%,
+	88%,
+	100% {
+		opacity: 0.62;
+	}
+	14%,
+	30%,
+	58%,
+	74% {
+		opacity: 0.96;
+	}
+}
+
+@keyframes tile-glossy-sweep {
+	/* Sweep 1 — 6s */
+	0%,
+	5% {
+		background-position: 145% 145%;
+		opacity: 0.05;
+	}
+	10% {
+		background-position: 132% 132%;
+		opacity: 0.35;
+	}
+	36% {
+		background-position: -8% -8%;
+		opacity: 0.92;
+	}
+	42.86% {
+		background-position: -20% -20%;
+		opacity: 0.05;
+	}
+	/* Gap — 1s */
+	43%,
+	50% {
+		background-position: -32% -32%;
+		opacity: 0.05;
+	}
+	/* Sweep 2 — 6s */
+	50% {
+		background-position: 145% 145%;
+		opacity: 0.35;
+	}
+	86% {
+		background-position: -8% -8%;
+		opacity: 0.92;
+	}
+	92.86% {
+		background-position: -20% -20%;
+		opacity: 0.05;
+	}
+	93%,
+	100% {
+		background-position: -32% -32%;
+		opacity: 0.05;
+	}
+}
+
+/* Satin — dual 6s diagonal sheens (14s loop) */
+.tile-finish--satin .tile-finish-overlay__base {
+	background: linear-gradient(
+		132deg,
+		rgba(255, 255, 255, 0.16) 0%,
+		transparent 36%,
+		rgba(212, 184, 134, 0.12) 58%,
+		transparent 80%
+	);
+	mix-blend-mode: soft-light;
+	opacity: 0.72;
+	animation: tile-satin-ambient var(--tile-dual-sweep-cycle) ease-in-out infinite;
+}
+
+.tile-finish--satin .tile-finish-overlay__sweep {
+	background: linear-gradient(
+		124deg,
+		transparent 0%,
+		transparent 36%,
+		rgba(232, 213, 176, 0.2) 43%,
+		rgba(255, 255, 255, 0.55) 50%,
+		rgba(232, 213, 176, 0.22) 57%,
+		transparent 64%,
+		transparent 100%
+	);
+	background-size: 300% 300%;
+	background-position: 130% 115%;
+	background-repeat: no-repeat;
+	mix-blend-mode: soft-light;
+	animation: tile-satin-sweep var(--tile-dual-sweep-cycle) var(--tile-sweep-ease) infinite;
+}
+
+@keyframes tile-satin-ambient {
+	0%,
+	6%,
+	38%,
+	48%,
+	88%,
+	100% {
+		opacity: 0.55;
+	}
+	14%,
+	30%,
+	58%,
+	74% {
+		opacity: 0.86;
+	}
+}
+
+@keyframes tile-satin-sweep {
+	0%,
+	5% {
+		background-position: 130% 115%;
+		opacity: 0.04;
+	}
+	10% {
+		background-position: 116% 104%;
+		opacity: 0.32;
+	}
+	36% {
+		background-position: -10% -8%;
+		opacity: 0.88;
+	}
+	42.86% {
+		background-position: -22% -18%;
+		opacity: 0.04;
+	}
+	43%,
+	50% {
+		background-position: -34% -28%;
+		opacity: 0.04;
+	}
+	50% {
+		background-position: 130% 115%;
+		opacity: 0.32;
+	}
+	86% {
+		background-position: -10% -8%;
+		opacity: 0.88;
+	}
+	92.86% {
+		background-position: -22% -18%;
+		opacity: 0.04;
+	}
+	93%,
+	100% {
+		background-position: -34% -28%;
+		opacity: 0.04;
+	}
+}
+
+/* Matte — 6s diffuse veil breathe */
+.tile-finish--matte .tile-finish-overlay__base {
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, transparent 42%),
+		linear-gradient(0deg, rgba(7, 26, 43, 0.1) 0%, transparent 36%);
+	mix-blend-mode: multiply;
+	opacity: 0.72;
+	animation: tile-matte-veil var(--tile-sweep-duration) ease-in-out infinite;
+}
+
+@keyframes tile-matte-veil {
+	0%,
+	100% {
+		opacity: 0.62;
+	}
+	50% {
+		opacity: 0.78;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.button-shimmer-label {
 		animation: none;
 		background-image: none;
 		-webkit-text-fill-color: currentColor;
 		color: currentColor;
+	}
+
+	.tile-finish-overlay__base,
+	.tile-finish-overlay__sweep {
+		animation: none;
+	}
+
+	.tile-finish--glossy .tile-finish-overlay__base {
+		opacity: 0.76;
+	}
+
+	.tile-finish--glossy .tile-finish-overlay__glaze {
+		opacity: 0.68;
+	}
+
+	.tile-finish--satin .tile-finish-overlay__base {
+		opacity: 0.64;
+	}
+
+	.tile-finish--matte .tile-finish-overlay__base {
+		opacity: 0.7;
 	}
 }

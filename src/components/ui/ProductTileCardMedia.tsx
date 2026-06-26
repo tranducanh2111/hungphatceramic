@@ -50,36 +50,38 @@ export function ProductTileCardMedia({
 	}
 
 	return (
-		<div
-			className="ease-luxury absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
-			onPointerEnter={handlePointerEnter}
-			onPointerLeave={handlePointerLeave}
-		>
-			<Image
-				src={imageSrc}
-				alt={imageAlt}
-				fill
-				sizes={imageSizes}
-				quality={55}
-				loading={priority ? undefined : "lazy"}
-				className={cn(
-					"object-cover object-center transition-opacity duration-500",
-					isHoverPreviewVisible && "opacity-0",
-				)}
-				priority={priority}
-			/>
-			{hasHoverPreview && hoverImageSrc && isHoverPreviewVisible && (
+		<div className="absolute inset-0">
+			<div
+				className="ease-luxury absolute inset-0 transition-transform duration-700 group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+				onPointerEnter={handlePointerEnter}
+				onPointerLeave={handlePointerLeave}
+			>
 				<Image
-					src={hoverImageSrc}
-					alt=""
-					aria-hidden
+					src={imageSrc}
+					alt={imageAlt}
 					fill
 					sizes={imageSizes}
 					quality={55}
-					className="object-cover object-center opacity-100 transition-opacity duration-500"
-					onError={handleHoverPreviewError}
+					loading={priority ? undefined : "lazy"}
+					className={cn(
+						"object-cover object-center transition-opacity duration-500",
+						isHoverPreviewVisible && "opacity-0",
+					)}
+					priority={priority}
 				/>
-			)}
+				{hasHoverPreview && hoverImageSrc && isHoverPreviewVisible && (
+					<Image
+						src={hoverImageSrc}
+						alt=""
+						aria-hidden
+						fill
+						sizes={imageSizes}
+						quality={55}
+						className="object-cover object-center opacity-100 transition-opacity duration-500"
+						onError={handleHoverPreviewError}
+					/>
+				)}
+			</div>
 		</div>
 	);
 }

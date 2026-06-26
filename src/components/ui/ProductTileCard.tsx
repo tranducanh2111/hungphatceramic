@@ -1,6 +1,8 @@
 import { ProductTileCardMedia } from "@/components/ui/ProductTileCardMedia";
 import { Text } from "@/components/ui/Text";
+import { TileFinishOverlay } from "@/components/media";
 import { cn } from "@/lib/cn";
+import { inferTileFinish } from "@/lib/products/inferTileFinish";
 import type { ClassNameProp } from "@/types";
 
 /** Multi-stop scrim (smoother than a two-stop Tailwind gradient). */
@@ -37,6 +39,8 @@ export function ProductTileCard({
 	imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
 	className,
 }: ProductTileCardProps) {
+	const tileFinish = inferTileFinish(productCode);
+
 	return (
 		<article
 			className={cn(
@@ -58,9 +62,11 @@ export function ProductTileCard({
 				imageSizes={imageSizes}
 			/>
 
+			<TileFinishOverlay finish={tileFinish} />
+
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] max-h-[10rem] min-h-[6.75rem] sm:min-h-[7.25rem]"
+				className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[42%] max-h-[10rem] min-h-[6.75rem] sm:min-h-[7.25rem]"
 				style={{ backgroundImage: TILE_CARD_BOTTOM_SCRIM }}
 			/>
 
