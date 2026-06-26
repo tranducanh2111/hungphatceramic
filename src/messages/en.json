@@ -800,7 +800,8 @@
 			},
 			"travertine-gp88t01j": {
 				"name": "Travertine GP88T01J",
-				"description": "Polished variant of the classic Travertine T01 surface in 80×80 format, merging rustic warmth with clean luxury."
+				"description": "Polished variant of the classic Travertine T01 surface in 80×80 format, merging rustic warmth with clean luxury.",
+				"material": "Premium Semi-Porcelain"
 			},
 			"travertine-gp88t06j": {
 				"name": "Travertine GP88T06J",

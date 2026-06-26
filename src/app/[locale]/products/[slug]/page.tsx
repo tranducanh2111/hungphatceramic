@@ -30,7 +30,8 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
 	const t = await getTranslations({ locale, namespace: "meta.productDetail" });
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
-	const localizedProduct = localizeProductDetail(product, tItems);
+	const tDetail = await getTranslations({ locale, namespace: "pages.productDetail" });
+	const localizedProduct = localizeProductDetail(product, tItems, tDetail);
 	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
 	const ogImage = product.thumbnailUrl;
 
@@ -60,7 +61,8 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 
 	const activeSizeId = resolveActiveSizeId(size);
 	const tItems = await getTranslations({ locale, namespace: "products.items" });
-	const localizedProduct = localizeProductDetail(product, tItems);
+	const tDetail = await getTranslations({ locale, namespace: "pages.productDetail" });
+	const localizedProduct = localizeProductDetail(product, tItems, tDetail);
 	const displayProduct = applyTileSizeToProductDetail(localizedProduct, activeSizeId);
 	const heroThumbnailPath = encodePublicAssetPath(displayProduct.thumbnailUrl);
 
@@ -140,6 +142,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 					<ProductDetailHeroMedia
 						src={displayProduct.thumbnailUrl}
 						alt={localizedProduct.title}
+						skuCode={product.skuCode}
 					/>
 				}
 			/>
