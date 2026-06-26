@@ -53,6 +53,7 @@ export function ProductTileCard({
 				imageSrc={imageSrc}
 				hoverImageSrc={hoverImageSrc}
 				imageAlt={imageAlt}
+				skuCode={productCode}
 				isMediaMounted={isMediaMounted}
 				priority={priority}
 				imageSizes={imageSizes}

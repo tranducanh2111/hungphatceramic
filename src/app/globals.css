@@ -156,6 +156,8 @@
 	--animate-fade-up: fade-up 0.8s ease-out both;
 	--animate-draw-line: draw-line 1.2s ease-out both;
 	--animate-parallax-y: parallax-y linear both;
+	--animate-specular-sweep: specular-sweep 8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+	--animate-satin-sweep: satin-sweep 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 
 	@keyframes fade-up {
 		from {
@@ -190,6 +192,30 @@
 		}
 		100% {
 			background-position: 0% 50%;
+		}
+	}
+
+	@keyframes specular-sweep {
+		0% {
+			transform: translate(-120%, -120%) rotate(20deg) scale(1.5);
+		}
+		20% {
+			transform: translate(120%, 120%) rotate(20deg) scale(1.5);
+		}
+		100% {
+			transform: translate(120%, 120%) rotate(20deg) scale(1.5);
+		}
+	}
+
+	@keyframes satin-sweep {
+		0% {
+			transform: translate(-100%, -100%) rotate(20deg) scale(1.5);
+		}
+		25% {
+			transform: translate(100%, 100%) rotate(20deg) scale(1.5);
+		}
+		100% {
+			transform: translate(100%, 100%) rotate(20deg) scale(1.5);
 		}
 	}
 }

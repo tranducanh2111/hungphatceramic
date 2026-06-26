@@ -12,3 +12,4 @@ export { PaginationDots } from "./PaginationDots";
 export { ProductTileCard } from "./ProductTileCard";
 export type { ProductTileCardProps } from "./ProductTileCard";
 export { ZoomableImage } from "./ZoomableImage";
+export { TileFinishOverlay } from "./TileFinishOverlay";

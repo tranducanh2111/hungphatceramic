@@ -12,16 +12,18 @@ export interface ProductItemsTranslator {
 export interface LocalizedProductDetail extends ProductDetail {
 	title: string;
 	description?: string;
+	material?: string;
 }
 
 function attachProductCopy(
 	slug: string,
 	skuCode: string,
 	tItems: ProductItemsTranslator,
-): Pick<LocalizedProductDetail, "title" | "description"> {
+): Pick<LocalizedProductDetail, "title" | "description" | "material"> {
 	return {
 		title: tItems.has(`${slug}.name`) ? tItems(`${slug}.name`) : skuCode,
 		description: tItems.has(`${slug}.description`) ? tItems(`${slug}.description`) : undefined,
+		material: tItems.has(`${slug}.material`) ? tItems(`${slug}.material`) : undefined,
 	};
 }
 

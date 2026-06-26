@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import type { SizePreview } from "@/constants/landing";
+import { TileFinishOverlay } from "@/components/ui/TileFinishOverlay";
+import { inferTileFinish } from "@/lib/products/tileFinish";
 
 // Visual width/height (px) per tile size — preserves real-world aspect ratios.
 const TILE_DIMS: Record<string, { w: number; h: number }> = {
@@ -34,6 +36,8 @@ interface SpecimenTileProps {
  */
 function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 	const encodedSrc = encodeURI(image);
+	const filename = image.split("/").pop() || "";
+	const finish = inferTileFinish(filename);
 
 	return (
 		<div
@@ -56,7 +60,7 @@ function SpecimenTile({ image, width, height }: SpecimenTileProps) {
 				quality={55}
 				draggable={false}
 			/>
-			<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/12 via-transparent to-black/22" />
+			<TileFinishOverlay finish={finish} />
 			<div className="ring-champagne/40 pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset" />
 		</div>
 	);

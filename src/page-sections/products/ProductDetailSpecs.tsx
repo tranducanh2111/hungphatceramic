@@ -31,7 +31,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const specs = [
 		{ label: tDetail("surface"), value: surfaceFinish },
 		{ label: tDetail("thickness"), value: thickness },
-		{ label: tDetail("material"), value: tDetail("specs.materialValue") },
+		{ label: tDetail("material"), value: product.material || tDetail("specs.materialValue") },
 		{ label: tDetail("faces"), value: facesValue },
 	];
 

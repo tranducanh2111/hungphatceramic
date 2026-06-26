@@ -3,11 +3,13 @@
 import { useCallback, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { TileFinishOverlay } from "./TileFinishOverlay";
 
 interface ProductTileCardMediaProps {
 	imageSrc: string;
 	hoverImageSrc?: string;
 	imageAlt: string;
+	skuCode: string;
 	isMediaMounted?: boolean;
 	priority?: boolean;
 	imageSizes?: string;
@@ -18,6 +20,7 @@ export function ProductTileCardMedia({
 	imageSrc,
 	hoverImageSrc,
 	imageAlt,
+	skuCode,
 	isMediaMounted = true,
 	priority = false,
 	imageSizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
@@ -80,6 +83,7 @@ export function ProductTileCardMedia({
 					onError={handleHoverPreviewError}
 				/>
 			)}
+			<TileFinishOverlay skuCode={skuCode} />
 		</div>
 	);
 }
