@@ -76,7 +76,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 		description: localizedProduct.description || tMetaProductDetail("description", { productName: localizedProduct.title }),
 		sku: product.skuCode,
 		mpn: product.skuCode,
-		material: "Porcelain",
+		material: localizedProduct.material || "Porcelain",
 		brand: {
 			"@type": "Brand",
 			name: "Perla",
