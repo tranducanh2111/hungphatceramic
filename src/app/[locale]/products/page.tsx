@@ -7,6 +7,7 @@ import { localizeListingCatalog } from "@/lib/products/localizeCatalog";
 import {
 	getCollectionListingMeta,
 	getTileSizeListingMeta,
+	getSurfaceListingMeta,
 	resolveCatalogFilterState,
 } from "@/lib/products/listing";
 import { ProductsPageContent } from "@/page-sections/products/ProductsPageContent";
@@ -14,7 +15,7 @@ import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/c
 
 interface ProductsPageProps {
 	params: Promise<{ locale: string }>;
-	searchParams: Promise<{ collection?: string; size?: string }>;
+	searchParams: Promise<{ collection?: string; size?: string; surface?: string }>;
 }
 
 export async function generateMetadata({ params }: ProductsPageProps): Promise<Metadata> {
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: ProductsPageProps): Promise<M
 
 export default async function ProductsPage({ params, searchParams }: ProductsPageProps) {
 	const { locale } = await params;
-	const { collection: collectionParam, size: sizeParam } = await searchParams;
+	const { collection: collectionParam, size: sizeParam, surface: surfaceParam } = await searchParams;
 	setRequestLocale(locale);
 
 	const tProducts = await getTranslations({ locale, namespace: "products.items" });
@@ -50,7 +51,8 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 
 	const collections = getCollectionListingMeta(PRODUCTS);
 	const tileSizes = getTileSizeListingMeta(PRODUCTS);
-	const initialFilter = resolveCatalogFilterState(collectionParam, sizeParam, collections);
+	const surfaces = getSurfaceListingMeta(PRODUCTS);
+	const initialFilter = resolveCatalogFilterState(collectionParam, sizeParam, surfaceParam, collections);
 
 	const alternates = buildAlternatesForLocale("/products", locale);
 	const tSchema = await getTranslations({ locale, namespace: "pages.products.schema" });
@@ -120,6 +122,7 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 				products={products}
 				collections={collections}
 				tileSizes={tileSizes}
+				surfaces={surfaces}
 				initialFilter={initialFilter}
 			/>
 		</main>

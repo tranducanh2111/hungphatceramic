@@ -105,10 +105,10 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 				: RECT_SIZE;
 	const sizes =
 		seed.format === "square80"
-			? ([SQUARE_80_SIZE, SQUARE_SIZE, "120×120cm"] as const)
+			? ([SQUARE_80_SIZE] as const)
 			: seed.format === "square"
-				? ([SQUARE_SIZE, "120×120cm", RECT_SIZE] as const)
-				: ([RECT_SIZE, SQUARE_SIZE, "120×120cm"] as const);
+				? ([SQUARE_SIZE] as const)
+				: ([RECT_SIZE] as const);
 
 	const compositeImage = `${assetBase}/${seed.skuCode}_FullFaces.jpg`;
 

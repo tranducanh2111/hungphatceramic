@@ -13,7 +13,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12962J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire G12962J/G12962J (1).jpg",
 		faceImages: [
 			"/assets/60X120/Inspire G12962J/G12962J (1).jpg",
@@ -35,7 +35,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12967J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire G12967J/G12967J_01.jpg",
 		faceImages: [
 			"/assets/60X120/Inspire G12967J/G12967J_01.jpg",
@@ -57,7 +57,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP12962J",
 		collectionId: "inspire",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Inspire GP12962J/GP12962J (1).jpg",
 		faceImages: [
 			"/assets/60X120/Inspire GP12962J/GP12962J (1).jpg",
@@ -81,7 +81,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G88962J",
 		collectionId: "inspire",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/G88962J/G88962 (1).jpg",
 		faceImages: [
 			"/assets/80X80/G88962J/G88962 (1).jpg",
@@ -99,7 +99,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88962",
 		collectionId: "inspire",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88962/GP88962_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88962/GP88962_01.jpg",
@@ -119,7 +119,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12T01",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T01.png",
 		faceImages: [
 			"/assets/60X120/Travertine T01 T06/T01.png",
@@ -133,7 +133,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12T06",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T06.png",
 		faceImages: [
 			"/assets/60X120/Travertine T01 T06/T06.png",
@@ -147,7 +147,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G88T01J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/G88T01J/G88T01J (1).jpg",
 		faceImages: [
 			"/assets/80X80/G88T01J/G88T01J (1).jpg",
@@ -163,7 +163,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G88T06J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/G88T06J/G88T06J (1).jpg",
 		faceImages: [
 			"/assets/80X80/G88T06J/G88T06J (1).jpg",
@@ -179,7 +179,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88T01J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88T01J/GP88T01J_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88T01J/GP88T01J_01.jpg",
@@ -195,7 +195,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88T06J",
 		collectionId: "travertine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88T06J/GP88T06J_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88T06J/GP88T06J_01.jpg",
@@ -213,7 +213,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12W05J",
 		collectionId: "orient-star",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
 		faceImages: [
 			"/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
@@ -236,7 +236,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12032J",
 		collectionId: "sunshine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg",
 		faceImages: [
 			"/assets/60X120/Sunshine G12032J/G12032J_01.jpg",
@@ -258,7 +258,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP12032J",
 		collectionId: "sunshine",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Sunshine GP12032J/GP12032J_01.jpg",
 		faceImages: [
 			"/assets/60X120/Sunshine GP12032J/GP12032J_01.jpg",
@@ -279,7 +279,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G88032J",
 		collectionId: "sunshine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/G88032J/G88032 (1).jpg",
 		faceImages: [
 			"/assets/80X80/G88032J/G88032 (1).jpg",
@@ -297,7 +297,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88032J",
 		collectionId: "sunshine",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88032J/GP88032J_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88032J/GP88032J_01.jpg",
@@ -317,7 +317,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12537-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: [],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
@@ -335,7 +335,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12539-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: [],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
@@ -355,7 +355,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP12H03J",
 		collectionId: "peace",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
 		faceImages: [
 			"/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg",
@@ -378,7 +378,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP12H05J",
 		collectionId: "peace",
 		category: "60×120cm",
-		sizes: ["60×120cm", "100×100cm", "120×120cm"],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12H05J/GP12H05J (1).jpg",
 		faceImages: [
 			"/assets/60X120/Peace GP12H05J/GP12H05J (1).jpg",
@@ -399,7 +399,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88736J",
 		collectionId: "peace",
 		category: "80×80cm",
-		sizes: ["80×80cm", "100×100cm", "120×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88736J/GP88736j_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88736J/GP88736j_01.jpg",

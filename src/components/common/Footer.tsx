@@ -16,7 +16,6 @@ import { Link } from "@/i18n/navigation";
 const SOCIAL_LINKS = [
 	{ id: "instagram", href: "https://instagram.com", iconSrc: ICON_PATHS.social.instagram },
 	{ id: "facebook", href: "https://facebook.com", iconSrc: ICON_PATHS.social.facebook },
-	{ id: "youtube", href: "https://youtube.com", iconSrc: ICON_PATHS.social.youtube },
 ] as const;
 
 const MESSAGING_LINKS = [
@@ -148,6 +147,29 @@ export function Footer() {
 		href: productsWithCollection(collectionId),
 	}));
 
+	const SocialAndChatLinks = (
+		<>
+			{SOCIAL_LINKS.map(({ id, href, iconSrc }) => (
+				<FooterSocialLink
+					key={id}
+					href={href}
+					iconSrc={iconSrc}
+					ariaLabel={t(`social.${id}`)}
+				/>
+			))}
+			{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
+				<FooterSocialLink
+					key={id}
+					href={href}
+					iconSrc={iconSrc}
+					ariaLabel={t(`messaging.${id}`, {
+						number: CONTACT_CHANNELS[id].display,
+					})}
+				/>
+			))}
+		</>
+	);
+
 	return (
 		<footer className="relative bg-[#040F1A] text-[#F4F4F6]" aria-label="Site footer">
 			{/* Top champagne border */}
@@ -181,26 +203,9 @@ export function Footer() {
 							{t("tagline")}
 						</Text>
 
-						{/* Social + chat */}
-						<div className="mt-8 flex flex-wrap gap-3.5">
-							{SOCIAL_LINKS.map(({ id, href, iconSrc }) => (
-								<FooterSocialLink
-									key={id}
-									href={href}
-									iconSrc={iconSrc}
-									ariaLabel={t(`social.${id}`)}
-								/>
-							))}
-							{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
-								<FooterSocialLink
-									key={id}
-									href={href}
-									iconSrc={iconSrc}
-									ariaLabel={t(`messaging.${id}`, {
-										number: CONTACT_CHANNELS[id].display,
-									})}
-								/>
-							))}
+						{/* Social + chat (Desktop) */}
+						<div className="mt-8 hidden lg:flex flex-wrap gap-3.5">
+							{SocialAndChatLinks}
 						</div>
 					</div>
 
@@ -244,6 +249,11 @@ export function Footer() {
 						>
 							{t("links.bookConsultation")}
 						</Link>
+
+						{/* Social + chat (Mobile) */}
+						<div className="mt-8 flex lg:hidden flex-wrap gap-3.5">
+							{SocialAndChatLinks}
+						</div>
 					</div>
 				</div>
 

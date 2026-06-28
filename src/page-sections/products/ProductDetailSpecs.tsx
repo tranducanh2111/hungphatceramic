@@ -4,7 +4,22 @@ import { useTranslations } from "next-intl";
 import { Text, Button } from "@/components/ui";
 import { CONTACT_EMAIL } from "@/constants/contact";
 import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
+import { PRODUCTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
+
+interface FinishTranslations {
+	matte: string;
+	polished: string;
+	satin: string;
+}
+
+function getSurfaceFinish(skuCode: string, slug: string, finishes: FinishTranslations) {
+	if (skuCode.startsWith("SS")) return finishes.satin;
+	if (skuCode.startsWith("GS")) return finishes.polished;
+	const isPolished = slug.includes("-gp") || skuCode.startsWith("GP");
+	return isPolished ? finishes.polished : finishes.matte;
+}
+
 
 interface ProductDetailSpecsProps {
 	product: LocalizedProductDetail;
@@ -14,8 +29,20 @@ interface ProductDetailSpecsProps {
 export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const tDetail = useTranslations("pages.productDetail");
 
-	const isPolished = product.slug.includes("-gp") || product.skuCode.startsWith("GP");
-	const surfaceFinish = isPolished ? tDetail("finishes.polished") : tDetail("finishes.matte");
+	const finishes = {
+		matte: tDetail("finishes.matte"),
+		polished: tDetail("finishes.polished"),
+		satin: tDetail("finishes.satin"),
+	};
+
+	const surfaceFinish = getSurfaceFinish(product.skuCode, product.slug, finishes);
+
+	const collectionProducts = PRODUCTS.filter(
+		(p) => p.collectionId === product.collectionId
+	);
+	const availableSurfaces = Array.from(
+		new Set(collectionProducts.map((p) => getSurfaceFinish(p.skuCode, p.slug, finishes)))
+	).join(" / ");
 
 	const thickness =
 		product.collectionId === "architectural"
@@ -30,6 +57,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 
 	const specs = [
 		{ label: tDetail("surface"), value: surfaceFinish },
+		{ label: tDetail("availableSurfaces"), value: availableSurfaces },
 		{ label: tDetail("thickness"), value: thickness },
 		{ label: tDetail("material"), value: product.material },
 		{ label: tDetail("faces"), value: facesValue },

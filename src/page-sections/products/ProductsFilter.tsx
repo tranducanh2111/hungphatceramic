@@ -4,7 +4,7 @@ import { useId, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import type { TileSizeListingMeta } from "@/lib/products/listing";
+import type { TileSizeListingMeta, SurfaceListingMeta } from "@/lib/products/listing";
 
 interface CollectionItem {
 	id: string;
@@ -18,6 +18,9 @@ interface ProductsFilterProps {
 	activeSizeId: string;
 	onSelectSize: (id: string) => void;
 	tileSizes: TileSizeListingMeta[];
+	activeSurfaceId: string;
+	onSelectSurface: (id: string) => void;
+	surfaces: SurfaceListingMeta[];
 }
 
 /** ProductsFilter (collection and tile-size filters, expandable accordions on all breakpoints). */
@@ -28,9 +31,13 @@ export function ProductsFilter({
 	activeSizeId,
 	onSelectSize,
 	tileSizes,
+	activeSurfaceId,
+	onSelectSurface,
+	surfaces,
 }: ProductsFilterProps) {
 	const t = useTranslations("pages.products");
 	const collectionsT = useTranslations("collections");
+	const tDetail = useTranslations("pages.productDetail");
 
 	return (
 		<div className="flex w-full flex-col gap-2.5">
@@ -84,6 +91,33 @@ export function ProductsFilter({
 							count={size.count}
 							isSelected={activeSizeId === size.id}
 							onSelect={() => onSelectSize(size.id)}
+						/>
+					);
+				})}
+			</FilterAccordionSection>
+
+			<FilterAccordionSection
+				headingLabel={t("surfaceFilterLabel")}
+				ariaLabel={t("surfacesAriaLabel")}
+			>
+				<FilterNavButton
+					label={t("allSurfaces")}
+					isSelected={activeSurfaceId === "all"}
+					onSelect={() => onSelectSurface("all")}
+				/>
+
+				{surfaces.map((surface) => {
+					const label = tDetail.has(`finishes.${surface.id}`)
+						? tDetail(`finishes.${surface.id}`)
+						: surface.id;
+
+					return (
+						<FilterNavButton
+							key={surface.id}
+							label={label}
+							count={surface.count}
+							isSelected={activeSurfaceId === surface.id}
+							onSelect={() => onSelectSurface(surface.id)}
 						/>
 					);
 				})}
