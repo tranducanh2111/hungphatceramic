@@ -14,12 +14,14 @@ import {
 	type CollectionListingMeta,
 	type ProductListingItem,
 	type TileSizeListingMeta,
+	type SurfaceListingMeta,
 } from "@/lib/products/listing";
 
 interface ProductsPageContentProps {
 	products: ProductListingItem[];
 	collections: CollectionListingMeta[];
 	tileSizes: TileSizeListingMeta[];
+	surfaces: SurfaceListingMeta[];
 	initialFilter: CatalogFilterState;
 }
 
@@ -27,6 +29,7 @@ export function ProductsPageContent({
 	products,
 	collections,
 	tileSizes,
+	surfaces,
 	initialFilter,
 }: ProductsPageContentProps) {
 	const t = useTranslations("pages.products");
@@ -36,6 +39,7 @@ export function ProductsPageContent({
 	const [searchQuery, setSearchQuery] = useState("");
 	const [activeCollectionId, setActiveCollectionId] = useState(initialFilter.collectionId);
 	const [activeSizeId, setActiveSizeId] = useState(initialFilter.sizeId);
+	const [activeSurfaceId, setActiveSurfaceId] = useState(initialFilter.surfaceId);
 
 	const pushCatalogQuery = (nextParams: URLSearchParams) => {
 		const search = nextParams.toString();
@@ -49,6 +53,9 @@ export function ProductsPageContent({
 		if (activeSizeId !== "all") {
 			nextParams.set("size", activeSizeId);
 		}
+		if (activeSurfaceId !== "all") {
+			nextParams.set("surface", activeSurfaceId);
+		}
 		if (id !== "all") {
 			nextParams.set("collection", id);
 		}
@@ -61,8 +68,26 @@ export function ProductsPageContent({
 		if (activeCollectionId !== "all") {
 			nextParams.set("collection", activeCollectionId);
 		}
+		if (activeSurfaceId !== "all") {
+			nextParams.set("surface", activeSurfaceId);
+		}
 		if (id !== "all") {
 			nextParams.set("size", id);
+		}
+		pushCatalogQuery(nextParams);
+	};
+
+	const handleSelectSurface = (id: string) => {
+		setActiveSurfaceId(id);
+		const nextParams = new URLSearchParams();
+		if (activeCollectionId !== "all") {
+			nextParams.set("collection", activeCollectionId);
+		}
+		if (activeSizeId !== "all") {
+			nextParams.set("size", activeSizeId);
+		}
+		if (id !== "all") {
+			nextParams.set("surface", id);
 		}
 		pushCatalogQuery(nextParams);
 	};
@@ -71,6 +96,7 @@ export function ProductsPageContent({
 		let result = filterProductListingByCatalog(products, {
 			collectionId: activeCollectionId,
 			sizeId: activeSizeId,
+			surfaceId: activeSurfaceId,
 		});
 
 		if (searchQuery.trim()) {
@@ -84,7 +110,7 @@ export function ProductsPageContent({
 		}
 
 		return result.map((product) => applyTileSizeToListingItem(product, activeSizeId));
-	}, [activeCollectionId, activeSizeId, products, searchQuery]);
+	}, [activeCollectionId, activeSizeId, activeSurfaceId, products, searchQuery]);
 
 	return (
 		<div className="bg-sapphire-deep text-linen">
@@ -123,6 +149,9 @@ export function ProductsPageContent({
 							activeSizeId={activeSizeId}
 							onSelectSize={handleSelectSize}
 							tileSizes={tileSizes}
+							activeSurfaceId={activeSurfaceId}
+							onSelectSurface={handleSelectSurface}
+							surfaces={surfaces}
 						/>
 					</aside>
 

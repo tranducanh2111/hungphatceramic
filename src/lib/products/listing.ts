@@ -11,6 +11,7 @@ interface CatalogListingRow {
 	category: string;
 	collectionId: string;
 	sizes: string[];
+	surfaceId: string;
 }
 
 /** Grid row for the products catalog. Built only via `localizeListingCatalog`. */
@@ -27,6 +28,11 @@ export interface CollectionListingMeta {
 export interface TileSizeListingMeta {
 	id: string;
 	dimension: string;
+	count: number;
+}
+
+export interface SurfaceListingMeta {
+	id: string;
 	count: number;
 }
 
@@ -52,7 +58,6 @@ export function getTileSizeDimension(slug: TileSizeSlug): string {
 	return TILE_SIZE_SLUG_TO_DIMENSION[slug];
 }
 
-/** Catalogue dimension label → URL slug for `?size=` (undefined when unknown). */
 export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | undefined {
 	for (const slug of TILE_SIZE_SLUGS) {
 		if (TILE_SIZE_SLUG_TO_DIMENSION[slug] === dimension) {
@@ -60,6 +65,20 @@ export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | 
 		}
 	}
 	return undefined;
+}
+
+export const SURFACE_SLUGS = ["matte", "polished", "satin"] as const;
+export type SurfaceSlug = (typeof SURFACE_SLUGS)[number];
+
+export function isSurfaceSlug(value: string): value is SurfaceSlug {
+	return SURFACE_SLUGS.includes(value as SurfaceSlug);
+}
+
+export function getSurfaceIdFromSkuAndSlug(skuCode: string, slug: string): SurfaceSlug {
+	if (skuCode.startsWith("SS")) return "satin";
+	if (skuCode.startsWith("GS")) return "polished";
+	const isPolished = slug.includes("-gp") || skuCode.startsWith("GP");
+	return isPolished ? "polished" : "matte";
 }
 
 export function toCatalogListingRows(products: ProductDetail[]): CatalogListingRow[] {
@@ -72,6 +91,7 @@ export function toCatalogListingRows(products: ProductDetail[]): CatalogListingR
 			category,
 			collectionId,
 			sizes,
+			surfaceId: getSurfaceIdFromSkuAndSlug(skuCode, slug),
 		}),
 	);
 }
@@ -94,6 +114,13 @@ export function getTileSizeListingMeta(products: ProductDetail[]): TileSizeListi
 	});
 }
 
+export function getSurfaceListingMeta(products: ProductDetail[]): SurfaceListingMeta[] {
+	return SURFACE_SLUGS.map((id) => ({
+		id,
+		count: products.filter((product) => getSurfaceIdFromSkuAndSlug(product.skuCode, product.slug) === id).length,
+	}));
+}
+
 export function productMatchesTileSize(product: ProductListingItem, sizeSlug: string): boolean {
 	if (sizeSlug === "all" || !isTileSizeSlug(sizeSlug)) {
 		return true;
@@ -104,12 +131,13 @@ export function productMatchesTileSize(product: ProductListingItem, sizeSlug: st
 export interface CatalogFilterState {
 	collectionId: string;
 	sizeId: string;
+	surfaceId: string;
 }
 
-/** Validates URL filter params against catalogue metadata. */
 export function resolveCatalogFilterState(
 	collectionParam: string | undefined,
 	sizeParam: string | undefined,
+	surfaceParam: string | undefined,
 	collections: readonly CollectionListingMeta[],
 ): CatalogFilterState {
 	const rawCollectionId = collectionParam ?? "all";
@@ -122,13 +150,15 @@ export function resolveCatalogFilterState(
 	const rawSizeId = sizeParam ?? "all";
 	const sizeId = isTileSizeSlug(rawSizeId) ? rawSizeId : "all";
 
-	return { collectionId, sizeId };
+	const rawSurfaceId = surfaceParam ?? "all";
+	const surfaceId = isSurfaceSlug(rawSurfaceId) ? rawSurfaceId : "all";
+
+	return { collectionId, sizeId, surfaceId };
 }
 
-/** Server/client shared catalogue filter (excludes client-only search) */
 export function filterProductListingByCatalog(
 	products: readonly ProductListingItem[],
-	{ collectionId, sizeId }: CatalogFilterState,
+	{ collectionId, sizeId, surfaceId }: CatalogFilterState,
 ): ProductListingItem[] {
 	let result = [...products];
 
@@ -138,6 +168,10 @@ export function filterProductListingByCatalog(
 
 	if (sizeId !== "all") {
 		result = result.filter((product) => productMatchesTileSize(product, sizeId));
+	}
+
+	if (surfaceId !== "all") {
+		result = result.filter((product) => product.surfaceId === surfaceId);
 	}
 
 	return result;
