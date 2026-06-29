@@ -6,7 +6,6 @@ import { Text } from "@/components/ui";
 import { type MaterialCategory } from "@/constants/landing";
 import { productsWithCollection } from "@/constants/routes";
 import { getMaterialBackdrop, type TileSize } from "@/data/landing/material-backdrops";
-import { getTileSizeSlugFromDimension } from "@/lib/products/listing";
 import { cn } from "@/lib/cn";
 import { MaterialTilePreview } from "@/components/3d/MaterialTilePreview";
 import { Link } from "@/i18n/navigation";
@@ -15,17 +14,16 @@ const CARD_HOVER_TRANSITION_CLASS = "duration-[550ms] ease-[cubic-bezier(0.4,0,0
 
 interface MaterialCardProps {
 	category: MaterialCategory;
-	activeSize: TileSize;
 }
 
-export function MaterialCard({ category, activeSize }: MaterialCardProps) {
+export function MaterialCard({ category }: MaterialCardProps) {
 	const t = useTranslations("landing.materials");
-	// Show only the tile that matches the active size filter.
-	const matchedPreview = category.previews.find((p) => p.size === activeSize);
-	const tilePreview = matchedPreview ? [matchedPreview] : [category.previews[0]];
-	const backdrop = getMaterialBackdrop(category.id, activeSize);
-	const sizeSlug = getTileSizeSlugFromDimension(activeSize);
-	const collectionHref = productsWithCollection(category.id, sizeSlug);
+	
+	// Show only the first tile preview for a clean, uniform card appearance.
+	const tilePreview = [category.previews[0]];
+	const mainSize = (category.previews[0]?.size ?? "60×120cm") as TileSize;
+	const backdrop = getMaterialBackdrop(category.id, mainSize);
+	const collectionHref = productsWithCollection(category.id);
 
 	return (
 		<Link
