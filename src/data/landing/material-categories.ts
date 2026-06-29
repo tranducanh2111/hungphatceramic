@@ -1,8 +1,5 @@
+import { PRODUCTS } from "@/data/catalog/products";
 import { productsWithCollection } from "@/constants/routes";
-import {
-	remapAssetPathForTileDimension,
-	type TileDimensionLabel,
-} from "@/lib/products/asset-paths";
 
 /** One spinning tile shown per available size on the landing card. */
 export interface SizePreview {
@@ -19,111 +16,77 @@ export interface MaterialCategory {
 	previews: SizePreview[];
 }
 
-type MaterialCategoryDef = Omit<MaterialCategory, "href">;
+type MaterialCategoryDef = Omit<MaterialCategory, "sizes" | "href">;
 
-const LARGE_FORMAT_SIZES = ["60×120cm", "100×100cm", "120×120cm"] as const;
-
-function sizePreviews(
-	baseDimension: TileDimensionLabel,
-	imagePath: string,
-	extraDimensions: readonly TileDimensionLabel[] = [],
-): SizePreview[] {
-	const dimensions = new Set<TileDimensionLabel>([baseDimension, ...extraDimensions]);
-	return [...dimensions].map((dimension) => ({
-		size: dimension,
-		image: remapAssetPathForTileDimension(imagePath, dimension),
-	}));
+function getCategorySizes(collectionId: string): string[] {
+	const products = PRODUCTS.filter((p) => p.collectionId === collectionId);
+	const sizesSet = new Set<string>();
+	products.forEach((p) => {
+		p.sizes.forEach((s) => sizesSet.add(s));
+	});
+	const order = ["60×120cm", "80×80cm", "100×100cm", "120×120cm"];
+	return Array.from(sizesSet).sort((a, b) => order.indexOf(a) - order.indexOf(b));
 }
 
 const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 	{
 		id: "inspire",
-		sizes: [...LARGE_FORMAT_SIZES],
-		previews: sizePreviews("60×120cm", "/assets/60X120/Inspire G12962J/G12962J (1).jpg", [
-			"100×100cm",
-			"120×120cm",
-		]),
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/G88962J/G88962 (1).jpg" }
+		],
 	},
 	{
 		id: "travertine",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			...sizePreviews("60×120cm", "/assets/60X120/Travertine T01 T06/G12T01.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
-			...sizePreviews("80×80cm", "/assets/80X80/G88T01J/G88T01J (1).jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
+			{ size: "60×120cm", image: "/assets/60X120/Travertine T01 T06/G12T01.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/G88T01J/G88T01J (1).jpg" }
 		],
 	},
 	{
 		id: "orient-star",
-		sizes: [...LARGE_FORMAT_SIZES],
-		previews: sizePreviews("60×120cm", "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg", [
-			"100×100cm",
-			"120×120cm",
-		]),
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg" }
+		],
 	},
 	{
 		id: "sunshine",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			...sizePreviews("60×120cm", "/assets/60X120/Sunshine G12032J/G12032J_01.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
-			...sizePreviews("80×80cm", "/assets/80X80/G88032J/G88032 (1).jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
+			{ size: "60×120cm", image: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/G88032J/G88032 (1).jpg" }
 		],
 	},
 	{
 		id: "architectural",
-		sizes: [...LARGE_FORMAT_SIZES],
-		previews: sizePreviews(
-			"60×120cm",
-			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
-			["100×100cm", "120×120cm"],
-		),
+		previews: [
+			{ size: "60×120cm", image: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg" }
+		],
 	},
 	{
 		id: "peace",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			...sizePreviews("60×120cm", "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
-			...sizePreviews("80×80cm", "/assets/80X80/GP88736J/GP88736j_01.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
+			{ size: "60×120cm", image: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/GP88736J/GP88736j_01.jpg" }
 		],
 	},
 	{
 		id: "indo",
-		sizes: ["60×120cm", "80×80cm", "100×100cm", "120×120cm"],
 		previews: [
-			...sizePreviews("60×120cm", "/assets/60X120/INDO SS1261307/SS1261307.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
-			...sizePreviews("80×80cm", "/assets/80X80/INDO SS886101/SS886101.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
-			...sizePreviews("80×80cm", "/assets/80X80/INDO GS881042/GS881042.jpg", [
-				"100×100cm",
-				"120×120cm",
-			]),
+			{ size: "60×120cm", image: "/assets/60X120/INDO SS1261307/SS1261307.jpg" },
+			{ size: "80×80cm", image: "/assets/80X80/INDO SS886101/SS886101.jpg" }
 		],
 	},
 ];
 
-export const MATERIAL_CATEGORIES: MaterialCategory[] = MATERIAL_CATEGORY_DEFS.map((entry) => ({
-	...entry,
-	href: productsWithCollection(entry.id),
-}));
+export const MATERIAL_CATEGORIES: MaterialCategory[] = MATERIAL_CATEGORY_DEFS.map((entry) => {
+	const sizes = getCategorySizes(entry.id);
+	const previews = entry.previews.filter((p) => sizes.includes(p.size));
+	// Fallback to first preview if no matching sizes (e.g. Architectural size is [])
+	const finalPreviews = previews.length > 0 ? previews : [entry.previews[0]];
+	return {
+		...entry,
+		sizes,
+		previews: finalPreviews,
+		href: productsWithCollection(entry.id),
+	};
+});
