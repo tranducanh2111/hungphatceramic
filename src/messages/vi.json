@@ -169,7 +169,7 @@
 		"materials": {
 			"label": "Bộ sưu tập",
 			"heading": "Bề mặt định hình không gian",
-			"description": "Bảy bộ sưu tập từ định dạng lớn 60×120 đến gạch vuông 120×120 — mỗi dòng cho một tầm nhìn sang trọng riêng.",
+			"description": "Bảy bộ sưu tập từ kích thước lớn 60×120 đến gạch vuông 120×120, mỗi dòng cho một tầm nhìn sang trọng riêng.",
 			"tileFormat": "Kích thước gạch",
 			"size60x120": "60 × 120",
 			"size80x80": "80 × 80",
