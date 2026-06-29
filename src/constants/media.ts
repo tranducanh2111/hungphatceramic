@@ -20,7 +20,7 @@ export const ICON_PATHS = {
 		phone: "/icons/contact/phone.svg",
 		mail: "/icons/contact/mail.svg",
 		whatsapp: "/icons/contact/whatsapp.svg",
-		zalo: "/icons/contact/zalo-fixed4.svg",
+		zalo: "/icons/contact/zalo-fixed5.svg",
 	},
 	social: {
 		instagram: "/icons/social/instagram.svg",
