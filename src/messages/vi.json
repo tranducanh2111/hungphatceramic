@@ -666,9 +666,8 @@
 			"material": "Chất liệu",
 			"faces": "Số mặt vân",
 			"finishes": {
-				"matte": "Mờ mịn / Tự nhiên",
-				"polished": "Bóng kiếng / Polished",
-				"satin": "Bán bóng / Satin",
+				"matte": "Mờ",
+				"polished": "Bóng",
 				"structured": "Sần nhám / Định hình"
 			},
 			"specs": {
@@ -798,6 +797,10 @@
 			"travertine-g88t01j": {
 				"name": "Travertine G88T01J",
 				"description": "Gạch vân đá travertine bề mặt mờ mịn tự nhiên. Tông màu beige nhẹ nhàng dễ dàng phối hợp hài hòa cùng nội thất gỗ ấm."
+			},
+			"orient-star-gp12w05": {
+				"name": "Orient Star GP12W05",
+				"description": "Bề mặt bóng ngà thanh lịch, lý tưởng cho mọi không gian sang trọng."
 			},
 			"travertine-g88t06j": {
 				"name": "Travertine G88T06J",

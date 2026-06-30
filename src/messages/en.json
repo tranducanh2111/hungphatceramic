@@ -666,9 +666,8 @@
 			"material": "Material",
 			"faces": "Faces",
 			"finishes": {
-				"matte": "Matte / Natural",
-				"polished": "Polished / Glossy",
-				"satin": "Satin / Semi-gloss",
+				"matte": "Matte",
+				"polished": "Polished",
 				"structured": "Structured / Textured"
 			},
 			"specs": {
@@ -798,6 +797,10 @@
 			"travertine-g88t01j": {
 				"name": "Travertine G88T01J",
 				"description": "Natural matte finish square tile bringing travertine elegance indoors. Subtle beige tones that coordinate beautifully with wood."
+			},
+			"orient-star-gp12w05": {
+				"name": "Orient Star GP12W05",
+				"description": "Elegant polished ivory surface. The large 60x120cm format is ideal for any luxurious space."
 			},
 			"travertine-g88t06j": {
 				"name": "Travertine G88T06J",

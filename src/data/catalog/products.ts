@@ -229,6 +229,19 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		],
 		allFacesImage: "/assets/60X120/Orient Star G12W05J/G12W05J-6 faces.jpg",
 	},
+	{
+		slug: "orient-star-gp12w05",
+		skuCode: "GP12W05",
+		collectionId: "orient-star",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
+		faceImages: [
+			"/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
+		],
+		sceneImages: [],
+		allFacesImage: "",
+	},
 
 	// ─── SUNSHINE SERIES (60×120cm & 80×80cm) ─────────────────────────────────────
 	{
@@ -399,7 +412,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88736J",
 		collectionId: "peace",
 		category: "80×80cm",
-		sizes: ["80×80cm"],
+		sizes: ["80×80cm", "60×120cm"],
 		thumbnailUrl: "/assets/80X80/GP88736J/GP88736j_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88736J/GP88736j_01.jpg",
