@@ -67,7 +67,7 @@ export function getTileSizeSlugFromDimension(dimension: string): TileSizeSlug | 
 	return undefined;
 }
 
-export const SURFACE_SLUGS = ["matte", "polished", "satin"] as const;
+export const SURFACE_SLUGS = ["matte", "polished"] as const;
 export type SurfaceSlug = (typeof SURFACE_SLUGS)[number];
 
 export function isSurfaceSlug(value: string): value is SurfaceSlug {
@@ -75,7 +75,6 @@ export function isSurfaceSlug(value: string): value is SurfaceSlug {
 }
 
 export function getSurfaceIdFromSkuAndSlug(skuCode: string, slug: string): SurfaceSlug {
-	if (skuCode.startsWith("SS")) return "satin";
 	if (skuCode.startsWith("GS")) return "polished";
 	const isPolished = slug.includes("-gp") || skuCode.startsWith("GP");
 	return isPolished ? "polished" : "matte";
