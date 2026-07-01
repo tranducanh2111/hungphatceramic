@@ -131,7 +131,6 @@ export function Footer() {
 		{ label: t("links.about"), href: ROUTES.about },
 		{ label: t("links.projects"), href: ROUTES.projects },
 		{ label: t("links.ourStory"), href: aboutSectionHref(ABOUT_SECTION_IDS.ourStory) },
-		{ label: t("links.partners"), href: aboutSectionHref(ABOUT_SECTION_IDS.partners) },
 		{ label: t("links.ourCraft"), href: aboutSectionHref(ABOUT_SECTION_IDS.craft) },
 		{
 			label: t("links.capabilities"),
