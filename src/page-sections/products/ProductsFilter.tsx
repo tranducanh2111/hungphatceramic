@@ -201,6 +201,7 @@ function FilterAccordionChevron({ isExpanded }: FilterAccordionChevronProps) {
 				"text-champagne/80 shrink-0 transition-transform duration-300 ease-out",
 				isExpanded ? "rotate-180" : "rotate-0",
 			)}
+			suppressHydrationWarning
 		>
 			<path
 				d="M3 5.5L7 9.5L11 5.5"
@@ -208,6 +209,7 @@ function FilterAccordionChevron({ isExpanded }: FilterAccordionChevronProps) {
 				strokeWidth="1.25"
 				strokeLinecap="round"
 				strokeLinejoin="round"
+				suppressHydrationWarning
 			/>
 		</svg>
 	);

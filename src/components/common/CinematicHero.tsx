@@ -35,6 +35,8 @@ interface CinematicHeroProps {
 	fadeContentOnScroll?: boolean;
 	className?: string;
 	isDesktopSSR?: boolean;
+	/** Show a bottom gradient blend overlay (disable when next section matches hero bg). Default: true. */
+	bottomBlend?: boolean;
 }
 
 const DESKTOP_HERO_QUERY = DESKTOP_LAYOUT_QUERY;
@@ -52,6 +54,7 @@ function CinematicHeroStatic({
 	children,
 	childrenClassName,
 	scrollLabel,
+	bottomBlend = true,
 	className,
 	isDesktopHero = false,
 }: CinematicHeroProps & { isDesktopHero?: boolean }) {
@@ -115,6 +118,14 @@ function CinematicHeroStatic({
 						<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
 					</div>
 				))}
+
+			{/* Bottom blend: fade hero edge into next section */}
+			{bottomBlend && (
+				<div
+					className="from-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-32 bg-gradient-to-b to-transparent sm:h-44"
+					aria-hidden="true"
+				/>
+			)}
 		</section>
 	);
 }
@@ -133,6 +144,7 @@ function CinematicHeroScroll({
 	childrenClassName,
 	scrollLabel,
 	fadeContentOnScroll = false,
+	bottomBlend = true,
 	className,
 }: CinematicHeroProps) {
 	const sectionRef = useRef<HTMLElement>(null);
@@ -209,6 +221,14 @@ function CinematicHeroScroll({
 						</span>
 						<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
 					</motion.div>
+				)}
+
+				{/* Bottom blend: fade hero edge into next section */}
+				{bottomBlend && (
+					<div
+						className="from-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-32 bg-gradient-to-b to-transparent sm:h-44"
+						aria-hidden="true"
+					/>
 				)}
 			</div>
 		</section>

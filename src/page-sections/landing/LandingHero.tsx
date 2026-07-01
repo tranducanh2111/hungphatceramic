@@ -29,6 +29,7 @@ export function LandingHero({ isMobileSSR }: { isMobileSSR?: boolean }) {
 			}
 			scrollLabel={t("scroll")}
 			fadeContentOnScroll
+			bottomBlend={false}
 			childrenClassName="mt-10 flex flex-col gap-4 sm:flex-row"
 		>
 			<Button href={ROUTES.projects} size="lg">

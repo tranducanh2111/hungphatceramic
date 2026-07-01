@@ -31,6 +31,7 @@ export function ProductsHero({ activeCollectionId, totalProductsCount }: Product
 					background: "radial-gradient(ellipse at center, #1A3D5C 0%, #071A2B 80%)",
 				}}
 				aria-hidden="true"
+				suppressHydrationWarning
 			/>
 
 			<div className="via-champagne/20 absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-transparent to-transparent" />

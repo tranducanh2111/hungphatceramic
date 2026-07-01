@@ -380,6 +380,11 @@ export function CraftScrollStory() {
 				</div>
 			</div>
 
+			{/* Bottom blend: sapphire-deep → sapphire-ocean into AbilityCapabilities */}
+			<div
+				className="from-sapphire-deep via-sapphire-deep/80 pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-gradient-to-b to-sapphire-ocean"
+				aria-hidden="true"
+			/>
 			<div className="h-[400vh]" aria-hidden="true" />
 		</section>
 	);

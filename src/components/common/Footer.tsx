@@ -196,6 +196,7 @@ export function Footer() {
 								height={62}
 								sizes="(max-width: 1024px) 200px, 224px"
 								className="h-auto max-h-11 w-auto object-contain object-left opacity-95 transition-opacity duration-300 hover:opacity-100"
+								suppressHydrationWarning
 							/>
 						</Link>
 
