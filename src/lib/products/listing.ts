@@ -175,3 +175,57 @@ export function filterProductListingByCatalog(
 
 	return result;
 }
+
+/**
+ * Normalizes a SKU code to extract its core design family key.
+ * Strips the size-marker prefix (e.g. G12, G88, GP12, SS, etc.)
+ * and strips any trailing 'J'. Returns the first 3 characters of the remainder.
+ *
+ * Examples:
+ *   G12962J -> 962
+ *   GP88962 -> 962
+ *   G12T01 -> T01
+ *   G12537-DD -> 537
+ */
+export function getDesignKey(skuCode: string): string {
+	const withoutPrefix = skuCode.replace(/^(?:GP?|GS|SS?)\d+[-]?/i, "");
+	const withoutSuffix = withoutPrefix.replace(/J$/i, "");
+	return withoutSuffix.slice(0, 3).toUpperCase();
+}
+
+export interface ProductSizeSibling {
+	size: string;
+	slug: string;
+}
+
+/**
+ * Returns a list of unique available sizes (and their corresponding product slug)
+ * for all products sharing the same design key.
+ */
+export function getAvailableSizesForProduct(
+	skuCode: string,
+	allProducts: readonly ProductDetail[],
+): ProductSizeSibling[] {
+	const targetDesignKey = getDesignKey(skuCode);
+
+	// Find all siblings matching this design key
+	const siblings = allProducts.filter((product) => getDesignKey(product.skuCode) === targetDesignKey);
+
+	// We want a unique list of dimensions (e.g. "60×120cm"), along with the slug of the *first* sibling that provides that size.
+	const uniqueSizesMap = new Map<string, string>();
+	for (const sibling of siblings) {
+		for (const size of sibling.sizes) {
+			if (!uniqueSizesMap.has(size)) {
+				uniqueSizesMap.set(size, sibling.slug);
+			}
+		}
+	}
+
+	// Convert map to array and sort by size string ascending (e.g. 60×120cm before 80×80cm)
+	const result = Array.from(uniqueSizesMap.entries()).map(([size, slug]) => ({
+		size,
+		slug,
+	}));
+
+	return result.sort((a, b) => a.size.localeCompare(b.size));
+}
