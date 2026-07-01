@@ -673,13 +673,13 @@
 				"structured": "Structured / Textured"
 			},
 			"specs": {
-				"materialValue": "Bán sứ Porcelain cao cấp",
+				"materialValue": "Premium Semi-Porcelain",
 				"bodyWhite": "White",
 				"bodyStandard": "Standard",
 				"facesSingle": "1 face",
 				"facesRandom": "{count} random faces",
 				"thicknessArchitectural": "20 mm",
-				"thicknessStandard": "9.5 mm",
+				"thicknessStandard": "9 mm",
 				"formatLarge": "Large Format",
 				"formatCompact": "Compact Square",
 				"formatStandard": "Standard Format",

@@ -10,11 +10,10 @@ import { ROUTES } from "@/constants/routes";
 interface FinishTranslations {
 	matte: string;
 	polished: string;
-	satin: string;
 }
 
 function getSurfaceFinish(skuCode: string, slug: string, finishes: FinishTranslations) {
-	if (skuCode.startsWith("SS")) return finishes.satin;
+	if (skuCode.startsWith("SS")) return finishes.matte;
 	if (skuCode.startsWith("GS")) return finishes.polished;
 	const isPolished = slug.includes("-gp") || skuCode.startsWith("GP");
 	return isPolished ? finishes.polished : finishes.matte;
@@ -32,7 +31,6 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const finishes = {
 		matte: tDetail("finishes.matte"),
 		polished: tDetail("finishes.polished"),
-		satin: tDetail("finishes.satin"),
 	};
 
 	const surfaceFinish = getSurfaceFinish(product.skuCode, product.slug, finishes);

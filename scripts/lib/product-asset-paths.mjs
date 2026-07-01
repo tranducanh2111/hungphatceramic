@@ -10,8 +10,8 @@ export const ROOT = path.join(__dirname, "..", "..");
 export const PUBLIC_DIR = path.join(ROOT, "public");
 export const PUBLIC_ASSETS = path.join(PUBLIC_DIR, "assets");
 export const ARCHIVE_ROOT = path.join(PUBLIC_ASSETS, "_archive", "originals");
-export const PRODUCTS_TS = path.join(ROOT, "src", "constants", "products.ts");
-export const INDO_PRODUCTS_TS = path.join(ROOT, "src", "constants", "indo-products.ts");
+export const PRODUCTS_TS = path.join(ROOT, "src", "data", "catalog", "products.ts");
+export const INDO_PRODUCTS_TS = path.join(ROOT, "src", "data", "catalog", "indo-products.ts");
 export const REPORT_DIR = path.join(ROOT, "scripts", "reports");
 
 export const ASSET_PATH_PATTERN = /"(\/assets\/[^"]+\.(?:jpe?g|png|webp))"/gi;
