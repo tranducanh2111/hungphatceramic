@@ -89,8 +89,9 @@ export function ProductTileCard({
 				</div>
 
 				<Text
-					variant="body-sm"
-					className="text-linen group-hover:text-champagne-light group-focus-visible:text-champagne-light line-clamp-2 font-sans font-semibold transition-colors duration-300"
+					variant="h3"
+					as="h3"
+					className="text-body-sm text-linen group-hover:text-champagne-light group-focus-visible:text-champagne-light line-clamp-2 font-sans font-semibold transition-colors duration-300"
 				>
 					{productName}
 				</Text>

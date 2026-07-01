@@ -21,20 +21,12 @@ export function IconSvg({ src, alt, size = 16, className }: IconSvgProps) {
 			role={alt ? "img" : undefined}
 			aria-label={alt || undefined}
 			aria-hidden={!alt ? true : undefined}
-			className={cn("inline-block shrink-0", className)}
+			className={cn("icon-svg-mask inline-block shrink-0", className)}
 			suppressHydrationWarning
 			style={{
 				width: size,
 				height: size,
-				backgroundColor: "currentColor",
-				WebkitMaskImage: `url('${src}')`,
-				maskImage: `url('${src}')`,
-				WebkitMaskSize: "contain",
-				maskSize: "contain",
-				WebkitMaskRepeat: "no-repeat",
-				maskRepeat: "no-repeat",
-				WebkitMaskPosition: "center",
-				maskPosition: "center",
+				["--icon-src" as string]: `url('${src}')`,
 			}}
 		/>
 	);

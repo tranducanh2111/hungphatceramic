@@ -3,7 +3,8 @@
 		"companyName": "Perla powered by Hung Phat",
 		"logoAriaLabel": "Perla — Return to homepage",
 		"logoAlt": "Perla logo",
-		"scrollToTop": "Scroll to top"
+		"scrollToTop": "Scroll to top",
+		"opensInNewWindow": "opens in new window"
 	},
 	"collections": {
 		"inspire": {

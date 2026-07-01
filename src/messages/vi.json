@@ -3,7 +3,8 @@
 		"companyName": "Perla powered by Hung Phat",
 		"logoAriaLabel": "Perla — Quay về trang chủ",
 		"logoAlt": "Logo Perla",
-		"scrollToTop": "Cuộn lên đầu trang"
+		"scrollToTop": "Cuộn lên đầu trang",
+		"opensInNewWindow": "mở trong tab mới"
 	},
 	"collections": {
 		"inspire": {
