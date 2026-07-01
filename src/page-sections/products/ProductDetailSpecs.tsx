@@ -6,6 +6,8 @@ import { CONTACT_EMAIL } from "@/constants/contact";
 import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { PRODUCTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
+import { getAvailableSizesForProduct } from "@/lib/products/listing";
+import { Link } from "@/i18n/navigation";
 
 interface FinishTranslations {
 	matte: string;
@@ -114,19 +116,38 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 
 						{/* Available Options Grid */}
 						<div className="grid grid-cols-2 gap-8 pt-4">
-							{/* Available Sizes */}
-							<div className="space-y-4">
-								<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
-									{tDetail("availableSizes")}
-								</span>
-								<ul className="space-y-2">
-									{product.sizes.map((size) => (
-										<li key={size} className="text-body-sm text-linen font-sans font-semibold">
-											{size}
-										</li>
-									))}
-								</ul>
-							</div>
+							{/* Available Sizes (only if > 1 size exists in design family) */}
+							{(() => {
+								const sizeSiblings = getAvailableSizesForProduct(product.skuCode, PRODUCTS);
+								if (sizeSiblings.length <= 1) return null;
+
+								return (
+									<div className="space-y-4">
+										<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
+											{tDetail("availableSizes")}
+										</span>
+										<ul className="space-y-2">
+											{sizeSiblings.map(({ size, slug }) => {
+												const isCurrent = size === product.category;
+												return (
+													<li key={size} className="text-body-sm font-sans font-semibold">
+														{isCurrent ? (
+															<span className="text-champagne">{size}</span>
+														) : (
+															<Link
+																href={`/products/${slug}`}
+																className="text-linen hover:text-champagne-light transition-colors duration-300"
+															>
+																{size}
+															</Link>
+														)}
+													</li>
+												);
+											})}
+										</ul>
+									</div>
+								);
+							})()}
 							
 							{/* Available Surfaces */}
 							<div className="space-y-4">
