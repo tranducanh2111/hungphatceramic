@@ -23,6 +23,7 @@ export function ProductDetailHeroMedia({ src, alt, skuCode }: ProductDetailHeroM
 				fetchPriority="high"
 				sizes="(max-width: 1024px) 100vw, 60vw"
 				className="object-cover object-center"
+				suppressHydrationWarning
 			/>
 			<TileFinishOverlay finish={tileFinish} />
 		</div>

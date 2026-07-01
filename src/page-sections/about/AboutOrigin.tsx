@@ -18,6 +18,13 @@ export function AboutOrigin() {
 			id={ABOUT_SECTION_IDS.ourStory}
 			className="bg-sapphire-ocean relative scroll-mt-28 overflow-hidden py-20 sm:py-28 lg:py-36"
 		>
+			{/* Top blend: receives hero's bottom gradient (sapphire-deep fading in) */}
+			<div
+				className="from-sapphire-deep via-sapphire-deep/60 pointer-events-none absolute inset-x-0 top-0 z-10 h-28 bg-gradient-to-b to-transparent sm:h-36"
+				aria-hidden="true"
+			/>
+
+			{/* Bottom blend: ocean fades to deep for AboutCraft below */}
 			<div
 				className="to-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent sm:h-36"
 				aria-hidden="true"

@@ -68,6 +68,7 @@ export function ProductTileCardMedia({
 						isHoverPreviewVisible && "opacity-0",
 					)}
 					priority={priority}
+					suppressHydrationWarning
 				/>
 				{hasHoverPreview && hoverImageSrc && isHoverPreviewVisible && (
 					<Image
@@ -79,6 +80,7 @@ export function ProductTileCardMedia({
 						quality={55}
 						className="object-cover object-center opacity-100 transition-opacity duration-500"
 						onError={handleHoverPreviewError}
+						suppressHydrationWarning
 					/>
 				)}
 			</div>

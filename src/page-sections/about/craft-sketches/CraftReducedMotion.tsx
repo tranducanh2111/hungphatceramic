@@ -46,6 +46,11 @@ export function CraftReducedMotion() {
 					</Text>
 				</div>
 			</div>
+			{/* Bottom blend: sapphire-deep → sapphire-ocean into AboutCapabilities */}
+			<div
+				className="from-sapphire-deep via-sapphire-deep/80 pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b to-sapphire-ocean sm:h-36"
+				aria-hidden="true"
+			/>
 		</section>
 	);
 }

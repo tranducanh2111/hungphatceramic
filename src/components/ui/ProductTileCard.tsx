@@ -68,6 +68,7 @@ export function ProductTileCard({
 				aria-hidden
 				className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[42%] max-h-[10rem] min-h-[6.75rem] sm:min-h-[7.25rem]"
 				style={{ backgroundImage: TILE_CARD_BOTTOM_SCRIM }}
+				suppressHydrationWarning
 			/>
 
 			<div
