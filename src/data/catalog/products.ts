@@ -235,12 +235,19 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		collectionId: "orient-star",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
-		thumbnailUrl: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
+		thumbnailUrl: "/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
 		faceImages: [
-			"/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (1).jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (2).jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (3).jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (4).jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (5).jpg",
+			"/assets/60X120/Orient Star GP12W05J/GP12W05J (7).jpg",
 		],
-		sceneImages: [],
-		allFacesImage: "",
+		sceneImages: [
+			"/assets/60X120/Orient Star GP12W05J/PC-GP12W05J.jpg",
+		],
+		allFacesImage: "/assets/60X120/Orient Star GP12W05J/GP12W05J-6 faces.jpg",
 	},
 
 	// ─── SUNSHINE SERIES (60×120cm & 80×80cm) ─────────────────────────────────────

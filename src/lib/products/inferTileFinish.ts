@@ -1,7 +1,6 @@
 /** Surface finish inferred from SKU prefix (GP/GS glossy, SS satin, G matte). */
 export const TILE_FINISH = {
 	glossy: "glossy",
-	satin: "satin",
 	matte: "matte",
 } as const;
 
@@ -13,10 +12,6 @@ export function inferTileFinish(skuCode: string): TileFinish {
 
 	if (normalizedSku.startsWith("GP") || normalizedSku.startsWith("GS")) {
 		return TILE_FINISH.glossy;
-	}
-
-	if (normalizedSku.startsWith("SS")) {
-		return TILE_FINISH.satin;
 	}
 
 	return TILE_FINISH.matte;

@@ -10,11 +10,10 @@ import { ROUTES } from "@/constants/routes";
 interface FinishTranslations {
 	matte: string;
 	polished: string;
-	satin: string;
 }
 
 function getSurfaceFinish(skuCode: string, slug: string, finishes: FinishTranslations) {
-	if (skuCode.startsWith("SS")) return finishes.satin;
+	if (skuCode.startsWith("SS")) return finishes.matte;
 	if (skuCode.startsWith("GS")) return finishes.polished;
 	const isPolished = slug.includes("-gp") || skuCode.startsWith("GP");
 	return isPolished ? finishes.polished : finishes.matte;
@@ -32,7 +31,6 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 	const finishes = {
 		matte: tDetail("finishes.matte"),
 		polished: tDetail("finishes.polished"),
-		satin: tDetail("finishes.satin"),
 	};
 
 	const surfaceFinish = getSurfaceFinish(product.skuCode, product.slug, finishes);
@@ -55,9 +53,15 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 			? tDetail("specs.facesRandom", { count: faceCount })
 			: tDetail("specs.facesSingle");
 
+	const bodyValue =
+		product.collectionId === "architectural"
+			? tDetail("specs.bodyStandard")
+			: tDetail("specs.bodyWhite");
+
 	const specs = [
 		{ label: tDetail("surface"), value: surfaceFinish },
-		{ label: tDetail("availableSurfaces"), value: availableSurfaces },
+		{ label: tDetail("size"), value: product.category },
+		{ label: tDetail("body"), value: bodyValue },
 		{ label: tDetail("thickness"), value: thickness },
 		{ label: tDetail("material"), value: product.material },
 		{ label: tDetail("faces"), value: facesValue },
@@ -92,7 +96,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 						</div>
 
 						{/* Spec Attributes Grid */}
-						<div className="border-sapphire-mist/30 grid grid-cols-1 gap-x-8 gap-y-4 border-t pt-8 sm:grid-cols-2">
+						<div className="border-sapphire-mist/30 grid grid-cols-1 gap-y-4 border-t pt-8">
 							{specs.map((spec) => (
 								<div
 									key={spec.label}
@@ -108,50 +112,34 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 							))}
 						</div>
 
-						{/* Available Sizes Visualization */}
-						<div className="space-y-6 pt-4">
-							<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
-								{tDetail("availableSizes")}
-							</span>
-							<div className="flex flex-wrap gap-8">
-								{product.sizes.map((size) => {
-									const isLargeFormat = size.includes("60");
-									const isCompactSquare =
-										size.includes("100") || size.includes("120");
-									const tilePreviewClassName = isLargeFormat
-										? "h-20 w-10"
-										: isCompactSquare
-											? "h-14 w-14"
-											: "h-16 w-16";
-									const aspectLabel = isLargeFormat
-										? tDetail("specs.aspectLarge")
-										: tDetail("specs.aspectSquare");
-									const formatLabel = isLargeFormat
-										? tDetail("specs.formatLarge")
-										: isCompactSquare
-											? tDetail("specs.formatCompact")
-											: tDetail("specs.formatStandard");
-
-									return (
-										<div key={size} className="flex items-center gap-4">
-											<div
-												className={`border-champagne/30 bg-sapphire-ocean hover:border-champagne/60 flex items-center justify-center rounded-lg border p-2 transition-all ${tilePreviewClassName}`}
-											>
-												<span className="text-champagne/80 font-sans text-[10px] font-bold">
-													{aspectLabel}
-												</span>
-											</div>
-											<div>
-												<span className="text-body-sm text-linen block font-sans font-semibold">
-													{size}
-												</span>
-												<span className="text-linen/40 block font-sans text-[11px] uppercase">
-													{formatLabel}
-												</span>
-											</div>
-										</div>
-									);
-								})}
+						{/* Available Options Grid */}
+						<div className="grid grid-cols-2 gap-8 pt-4">
+							{/* Available Sizes */}
+							<div className="space-y-4">
+								<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
+									{tDetail("availableSizes")}
+								</span>
+								<ul className="space-y-2">
+									{product.sizes.map((size) => (
+										<li key={size} className="text-body-sm text-linen font-sans font-semibold">
+											{size}
+										</li>
+									))}
+								</ul>
+							</div>
+							
+							{/* Available Surfaces */}
+							<div className="space-y-4">
+								<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
+									{tDetail("availableSurfaces")}
+								</span>
+								<ul className="space-y-2">
+									{availableSurfaces.split(" / ").map((surf) => (
+										<li key={surf} className="text-body-sm text-linen font-sans font-semibold">
+											{surf}
+										</li>
+									))}
+								</ul>
 							</div>
 						</div>
 					</div>

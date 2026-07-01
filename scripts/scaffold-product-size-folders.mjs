@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
-const INDO_TS = path.join(ROOT, "src", "constants", "indo-products.ts");
+const INDO_TS = path.join(ROOT, "src", "data", "catalog", "indo-products.ts");
 const ASSETS = path.join(ROOT, "public", "assets");
 
 const INDO_RECT_SEED_PATTERN =

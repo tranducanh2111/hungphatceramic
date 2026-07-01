@@ -7,7 +7,6 @@ import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 import { AboutHero } from "@/page-sections/about/AboutHero";
 import { AboutOrigin } from "@/page-sections/about/AboutOrigin";
-import { AboutPartners } from "@/page-sections/about/AboutPartners";
 
 const AboutCraft = dynamic(() =>
 	import("@/page-sections/about/AboutCraft").then((m) => ({ default: m.AboutCraft })),
@@ -59,7 +58,6 @@ export function AboutPageContent() {
 		<>
 			<AboutHero />
 			<AboutOrigin />
-			<AboutPartners />
 			<AboutCraft />
 			<AboutCapabilities />
 			<AboutValues />
