@@ -66,17 +66,19 @@ function FooterSocialLink({
 	href,
 	ariaLabel,
 	iconSrc,
+	opensInNewWindowLabel,
 }: {
 	href: string;
 	ariaLabel: string;
 	iconSrc: string;
+	opensInNewWindowLabel: string;
 }) {
 	return (
 		<a
 			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			aria-label={ariaLabel}
+			aria-label={`${ariaLabel}, ${opensInNewWindowLabel}`}
 			className={FOOTER_SOCIAL_LINK_CLASS}
 		>
 			<PublicIcon
@@ -104,7 +106,7 @@ function FooterLinkGroup({
 			<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
 				{heading}
 			</Text>
-			<ul className="space-y-2" role="list">
+			<ul className="space-y-2">
 				{links.map(({ label, href }) => (
 					<li key={href}>
 						<Link
@@ -126,6 +128,7 @@ export function Footer() {
 	const t = useTranslations("footer");
 	const collectionsT = useTranslations("collections");
 	const commonT = useTranslations("common");
+	const opensInNewWindowLabel = commonT("opensInNewWindow");
 	const currentYear = new Date().getFullYear();
 	const companyLinks = [
 		{ label: t("links.about"), href: ROUTES.about },
@@ -154,6 +157,7 @@ export function Footer() {
 					href={href}
 					iconSrc={iconSrc}
 					ariaLabel={t(`social.${id}`)}
+					opensInNewWindowLabel={opensInNewWindowLabel}
 				/>
 			))}
 			{MESSAGING_LINKS.map(({ id, href, iconSrc }) => (
@@ -164,6 +168,7 @@ export function Footer() {
 					ariaLabel={t(`messaging.${id}`, {
 						number: CONTACT_CHANNELS[id].display,
 					})}
+					opensInNewWindowLabel={opensInNewWindowLabel}
 				/>
 			))}
 		</>
@@ -217,13 +222,18 @@ export function Footer() {
 						<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
 							{t("sections.contact")}
 						</Text>
-						<ul className="space-y-2" role="list">
+						<ul className="space-y-2">
 							{CONTACT_ITEMS.map(({ id, iconSrc, href, isExternal }) => (
 								<li key={href}>
 									<a
 										href={href}
 										{...(isExternal
 											? { target: "_blank", rel: "noopener noreferrer" }
+											: {})}
+										{...(isExternal
+											? {
+													"aria-label": `${t(`contact.${id}`)}, ${opensInNewWindowLabel}`,
+												}
 											: {})}
 										className="group flex items-start gap-3 text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
 									>

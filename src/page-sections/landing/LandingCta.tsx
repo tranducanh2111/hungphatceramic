@@ -10,6 +10,7 @@ import { ROUTES } from "@/constants/routes";
 /** LandingCta */
 export function LandingCta() {
 	const t = useTranslations("landing.cta");
+	const commonT = useTranslations("common");
 
 	return (
 		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
@@ -41,6 +42,7 @@ export function LandingCta() {
 							href={GOOGLE_MAPS_URL}
 							target="_blank"
 							rel="noopener noreferrer"
+							aria-label={`${t("officeAddress")}, ${commonT("opensInNewWindow")}`}
 							className="text-linen/45 hover:text-champagne inline-flex items-center gap-2 transition-colors duration-300"
 						>
 							<MapPin className="text-champagne h-4 w-4 shrink-0" />

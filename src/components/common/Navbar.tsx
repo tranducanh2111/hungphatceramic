@@ -264,7 +264,7 @@ export function Navbar() {
 			<LogoMark isScrolled={navIsCompact} />
 
 			{/* ── Desktop links ──────────────────────────────────────────── */}
-			<ul className="hidden shrink-0 items-center gap-8 lg:flex" role="list">
+			<ul className="hidden shrink-0 items-center gap-8 lg:flex">
 				{navItems.map(({ label, href }) => {
 					const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
 					return (

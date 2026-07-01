@@ -39,7 +39,7 @@ export function NavbarMobileMenu({ isOpen, navItems, pathname, onClose }: Navbar
 						"pointer-events-auto lg:hidden",
 					)}
 				>
-					<ul className="flex flex-col gap-1" role="list">
+					<ul className="flex flex-col gap-1">
 						{navItems.map(({ label, href }) => {
 							const isActive =
 								href === "/" ? pathname === "/" : pathname.startsWith(href);

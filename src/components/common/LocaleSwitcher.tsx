@@ -48,7 +48,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
 		<div ref={rootRef} className={cn("relative z-[60]", className)}>
 			<button
 				type="button"
-				aria-label={t("label")}
+				aria-label={`${t(`options.${activeLocale}`)} — ${t("label")}`}
 				aria-haspopup="listbox"
 				aria-expanded={isMenuOpen}
 				aria-controls={listboxId}

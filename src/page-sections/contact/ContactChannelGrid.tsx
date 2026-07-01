@@ -58,6 +58,8 @@ const SECONDARY_CHANNELS = [
 export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 	const t = useTranslations("pages.contact.channels");
 	const tFooter = useTranslations("footer.contact");
+	const commonT = useTranslations("common");
+	const opensInNewWindowLabel = commonT("opensInNewWindow");
 
 	return (
 		<div className={cn("flex flex-col gap-8", className)}>
@@ -73,7 +75,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 							target="_blank"
 							rel="noopener noreferrer"
 							className="border-sapphire-mist bg-sapphire-ocean/40 hover:border-champagne/40 flex items-center gap-4 rounded-xl border px-5 py-4 transition-colors duration-300"
-							aria-label={t(`${channel.id}Aria`, { number: channel.display })}
+							aria-label={`${t(`${channel.id}Aria`, { number: channel.display })}, ${opensInNewWindowLabel}`}
 						>
 							<PublicIcon
 								src={channel.iconSrc}
@@ -98,7 +100,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 				<Text variant="label" className="text-champagne tracking-[0.2em] uppercase">
 					{t("secondaryHeading")}
 				</Text>
-				<ul className="mt-4 space-y-3" role="list">
+				<ul className="mt-4 space-y-3">
 					{SECONDARY_CHANNELS.map((channel) => {
 						const label =
 							channel.id === "address" ? tFooter("address") : (channel.display ?? "");
@@ -107,7 +109,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 								? t("phoneAria", { number: channel.display ?? "" })
 								: channel.id === "email"
 									? t("emailAria", { address: CONTACT_EMAIL })
-									: t("addressAria");
+									: `${t("addressAria")}, ${opensInNewWindowLabel}`;
 
 						return (
 							<li key={channel.id}>
