@@ -330,7 +330,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12537-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: [],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg",
@@ -348,7 +348,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12539-DD",
 		collectionId: "architectural",
 		category: "60×120cm",
-		sizes: [],
+		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
 		faceImages: [
 			"/assets/60X120/Thickness 20mm/G12539-DD 20mm .jpg",
@@ -412,7 +412,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "GP88736J",
 		collectionId: "peace",
 		category: "80×80cm",
-		sizes: ["80×80cm", "60×120cm"],
+		sizes: ["80×80cm"],
 		thumbnailUrl: "/assets/80X80/GP88736J/GP88736j_01.jpg",
 		faceImages: [
 			"/assets/80X80/GP88736J/GP88736j_01.jpg",
