@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { headers } from "next/headers";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { PROJECTS } from "@/constants/projects";
@@ -44,6 +45,10 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 	const tHeritage = await getTranslations({ locale, namespace: "pages.projects.heritage" });
 	const tSchema = await getTranslations({ locale, namespace: "pages.projects.schema" });
 	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+
+	const headersList = await headers();
+	const userAgent = headersList.get("user-agent") || "";
+	const isMobileSSR = /mobile/i.test(userAgent);
 
 	const alternates = buildAlternatesForLocale("/projects", locale);
 
@@ -100,15 +105,12 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
 	return (
 		<main>
-			<PageMediaPreload
-				imagePaths={[MEDIA_PATHS.images.featuredProjects.empireCity]}
-				desktopOnly
-			/>
+			<PageMediaPreload imagePaths={[MEDIA_PATHS.images.landing.heroPoster]} desktopOnly />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
-			<ProjectsPageContent />
+			<ProjectsPageContent isMobileSSR={isMobileSSR} />
 		</main>
 	);
 }

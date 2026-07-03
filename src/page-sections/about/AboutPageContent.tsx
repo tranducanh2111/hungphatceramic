@@ -50,13 +50,13 @@ function useAboutHashScroll() {
 }
 
 /** Client shell (below-fold sections code-split without SSR). */
-export function AboutPageContent() {
+export function AboutPageContent({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	useLenisResizeOnMount();
 	useAboutHashScroll();
 
 	return (
 		<>
-			<AboutHero />
+			<AboutHero isMobileSSR={isMobileSSR} />
 			<AboutOrigin />
 			<AboutCraft />
 			<AboutCapabilities />

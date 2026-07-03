@@ -77,10 +77,10 @@ function ContactDeferredSections() {
 	);
 }
 
-export function ContactPageContent() {
+export function ContactPageContent({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	return (
 		<>
-			<ContactHero />
+			<ContactHero isMobileSSR={isMobileSSR} />
 			<ContactDeferredSections />
 		</>
 	);

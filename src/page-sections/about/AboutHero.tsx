@@ -9,7 +9,7 @@ import { MEDIA_PATHS } from "@/constants/media";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { scrollToAnchorElement } from "@/lib/scrollToAnchor";
 
-export function AboutHero() {
+export function AboutHero({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	const t = useTranslations("pages.about.hero");
 	const lenis = useLenis();
 
@@ -19,13 +19,16 @@ export function AboutHero() {
 
 	return (
 		<CinematicHero
-			videoSrc={MEDIA_PATHS.video.aboutHero}
+			isDesktopSSR={!isMobileSSR}
+			videoSrc={MEDIA_PATHS.video.hero}
 			posterSrc={MEDIA_PATHS.images.landing.heroPoster}
 			posterAlt={t("titleLine1")}
 			titleLine1={t("titleLine1")}
 			titleLine2={t("titleLine2")}
 			description={t("description")}
 			scrollLabel={t("scroll")}
+			fadeContentOnScroll
+			bottomBlend={false}
 		>
 			<Button
 				variant="outline"
