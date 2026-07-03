@@ -1,7 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+	ChampagneGoldDustCanvas,
+	SPIRAL_GOLD_DUST_PRESET,
+} from "@/components/3d/ChampagneGoldDust";
 import { FEATURED_PROJECTS } from "@/constants/landing";
 import { SCROLL_VH_PER_CARD, SPRING_CONFIG, type SpiralGeometry } from "./constants";
 import { ProjectsSpiralStage } from "./ProjectsSpiralStage";
@@ -39,14 +43,37 @@ interface ProjectsSpiralExperienceProps {
 
 export function ProjectsSpiralExperience({ geometry }: ProjectsSpiralExperienceProps) {
 	const spiralZoneRef = useRef<HTMLDivElement>(null);
+	const scrollProgressRef = useRef(0);
 	const totalCards = FEATURED_PROJECTS.length;
 	const scrollDriverHeight = `${totalCards * SCROLL_VH_PER_CARD}vh`;
 	const [activeIndex, setActiveIndex] = useState(0);
+	const [isParticlesActive, setIsParticlesActive] = useState(true);
 
 	const { scrollYProgress } = useScroll({
 		target: spiralZoneRef,
 		offset: ["start start", "end end"],
 	});
+
+	useMotionValueEvent(scrollYProgress, "change", (progress) => {
+		scrollProgressRef.current = progress;
+	});
+
+	useEffect(() => {
+		const zone = spiralZoneRef.current;
+		if (!zone) {
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsParticlesActive(Boolean(entry?.isIntersecting));
+			},
+			{ threshold: 0, rootMargin: "0px" },
+		);
+
+		observer.observe(zone);
+		return () => observer.disconnect();
+	}, []);
 
 	const totalHeight = (totalCards - 1) * geometry.verticalPitch;
 	const translateY = useSpring(
@@ -64,6 +91,14 @@ export function ProjectsSpiralExperience({ geometry }: ProjectsSpiralExperienceP
 					transformStyle: "preserve-3d",
 				}}
 			>
+				<ChampagneGoldDustCanvas
+					preset={SPIRAL_GOLD_DUST_PRESET}
+					scrollProgressRef={scrollProgressRef}
+					isActive={isParticlesActive}
+					cameraFov={54}
+					cameraZ={8.5}
+					className="pointer-events-none absolute inset-0 z-0"
+				/>
 				<ProjectsSpiralStage
 					geometry={geometry}
 					scrollYProgress={scrollYProgress}
@@ -75,7 +110,7 @@ export function ProjectsSpiralExperience({ geometry }: ProjectsSpiralExperienceP
 					className="pointer-events-none absolute inset-0 z-[8]"
 					style={{
 						background:
-							"linear-gradient(to bottom, #071A2B 0%, transparent 6%, transparent 94%, #071A2B 100%)",
+							"linear-gradient(to bottom, #071A2B 0%, transparent 3%, transparent 97%, #071A2B 100%)",
 					}}
 					aria-hidden="true"
 				/>

@@ -11,6 +11,10 @@ import {
 	type PorcelainSlabLayout,
 } from "@/constants/landing-hero";
 import { encodePublicAssetPath } from "@/lib/products/media";
+import {
+	ChampagneGoldDustParticles,
+	HERO_GOLD_DUST_PRESET,
+} from "@/components/3d/ChampagneGoldDust";
 
 export interface PorcelainGallerySceneProps {
 	scrollProgressRef: React.RefObject<number>;
@@ -103,44 +107,8 @@ function GoldDust({
 }: {
 	scrollProgressRef: React.RefObject<number>;
 }) {
-	const pointsRef = useRef<THREE.Points>(null);
-	const particleCount = 220;
-
-	const positions = useMemo(() => {
-		const coords = new Float32Array(particleCount * 3);
-		for (let i = 0; i < particleCount; i += 1) {
-			const radius = 2.5 + (i % 17) * 0.08;
-			const theta = i * 0.31;
-			const y = Math.sin(i * 0.42) * 2.2;
-			coords[i * 3] = Math.cos(theta) * radius;
-			coords[i * 3 + 1] = y;
-			coords[i * 3 + 2] = Math.sin(theta) * radius - 1.5;
-		}
-		return coords;
-	}, []);
-
-	useFrame((state) => {
-		const points = pointsRef.current;
-		if (!points) {
-			return;
-		}
-
-		const progress = scrollProgressRef.current ?? 0;
-		const time = state.clock.getElapsedTime();
-		points.rotation.y = time * -0.04;
-		points.rotation.x = Math.sin(time * 0.12) * 0.08;
-
-		const material = points.material as THREE.PointsMaterial;
-		material.opacity = THREE.MathUtils.lerp(0.42, 0.08, progress);
-	});
-
 	return (
-		<points ref={pointsRef}>
-			<bufferGeometry>
-				<bufferAttribute attach="attributes-position" args={[positions, 3]} />
-			</bufferGeometry>
-			<pointsMaterial size={0.028} color="#D4B886" transparent opacity={0.42} depthWrite={false} />
-		</points>
+		<ChampagneGoldDustParticles preset={HERO_GOLD_DUST_PRESET} scrollProgressRef={scrollProgressRef} />
 	);
 }
 
