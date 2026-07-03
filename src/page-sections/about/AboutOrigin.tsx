@@ -2,10 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { ViewportDeferredImage } from "@/components/media";
-import { Text } from "@/components/ui";
-import { BlueprintLine, RevealOnView } from "@/components/common";
+import { AnimatedCounter, Text } from "@/components/ui";
+import { BlueprintLine, ParallaxElement, RevealOnView } from "@/components/common";
 import { ABOUT_SECTION_IDS } from "@/constants/about-sections";
 import { MEDIA_PATHS } from "@/constants/media";
+
+const ORIGIN_STATS = [{ id: "experience", value: 20, suffix: "+" }] as const;
 
 /**
  * AboutOrigin — Founding story: Perla name meaning and Hung Phat background.
@@ -52,14 +54,54 @@ export function AboutOrigin() {
 						</span>
 
 						<RevealOnView className="relative mt-4 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] lg:mt-6">
-							<ViewportDeferredImage
-								src={MEDIA_PATHS.images.about.origin}
-								alt={t("imageAlt")}
-								fill
-								className="scale-[1.08] object-cover object-center grayscale"
-								sizes="(max-width: 1024px) 100vw, 50vw"
-							/>
+							<ParallaxElement rangePx={24} className="absolute inset-0 scale-[1.08]">
+								<ViewportDeferredImage
+									src={MEDIA_PATHS.images.about.origin}
+									alt={t("imageAlt")}
+									fill
+									className="object-cover object-center grayscale"
+									sizes="(max-width: 1024px) 100vw, 50vw"
+								/>
+							</ParallaxElement>
 							<div className="ring-champagne/10 pointer-events-none absolute inset-0 ring-1" />
+						</RevealOnView>
+
+						<RevealOnView className="mt-6 grid grid-cols-2 gap-6 lg:mt-8">
+							<div className="border-champagne/15 border-t pt-4">
+								<Text
+									variant="display-lg"
+									as="p"
+									className="text-champagne font-serif font-light lining-nums"
+								>
+									<AnimatedCounter
+										value={ORIGIN_STATS[0].value}
+										suffix={ORIGIN_STATS[0].suffix}
+										inViewAmount={0.4}
+									/>
+								</Text>
+								<Text
+									variant="label"
+									className="text-linen/45 mt-2 font-sans tracking-[0.15em] uppercase"
+								>
+									{t("stats.experienceLabel")}
+								</Text>
+								<span className="sr-only">{t("stats.experienceAria")}</span>
+							</div>
+							<div className="border-champagne/15 border-t pt-4">
+								<Text
+									variant="display-lg"
+									as="p"
+									className="text-champagne font-serif font-light lining-nums"
+								>
+									2020
+								</Text>
+								<Text
+									variant="label"
+									className="text-linen/45 mt-2 font-sans tracking-[0.15em] uppercase"
+								>
+									{t("stats.establishedLabel")}
+								</Text>
+							</div>
 						</RevealOnView>
 
 						<RevealOnView
@@ -99,7 +141,7 @@ export function AboutOrigin() {
 
 							<RevealOnView delay={0.1}>
 								<div
-									className="bg-champagne/25 mx-auto my-2 h-px w-12 lg:ms-auto lg:me-0"
+									className="divider-grow-on-view bg-champagne/25 mx-auto my-2 h-px w-12 lg:ms-auto lg:me-0"
 									aria-hidden="true"
 								/>
 								<Text

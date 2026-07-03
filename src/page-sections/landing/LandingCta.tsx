@@ -15,7 +15,7 @@ export function LandingCta() {
 	return (
 		<section className="bg-sapphire-ocean relative overflow-hidden py-28 lg:py-36">
 			<div
-				className="bg-champagne/5 absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
+				className="cta-glow-pulse bg-champagne/5 absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
 				aria-hidden="true"
 			/>
 

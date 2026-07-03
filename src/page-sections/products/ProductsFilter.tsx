@@ -1,8 +1,10 @@
 "use client";
 
 import { useId, useState, type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
+import { RevealOnView } from "@/components/common";
 import { cn } from "@/lib/cn";
 import type { TileSizeListingMeta, SurfaceListingMeta } from "@/lib/products/listing";
 
@@ -23,6 +25,8 @@ interface ProductsFilterProps {
 	surfaces: SurfaceListingMeta[];
 }
 
+const COUNT_TRANSITION = { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const };
+
 /** ProductsFilter (collection and tile-size filters, expandable accordions on all breakpoints). */
 export function ProductsFilter({
 	activeCollectionId,
@@ -40,7 +44,7 @@ export function ProductsFilter({
 	const tDetail = useTranslations("pages.productDetail");
 
 	return (
-		<div className="flex w-full flex-col gap-2.5">
+		<RevealOnView className="flex w-full flex-col gap-2.5">
 			<FilterAccordionSection
 				headingLabel={t("filterLabel")}
 				ariaLabel={t("collectionsAriaLabel")}
@@ -122,7 +126,7 @@ export function ProductsFilter({
 					);
 				})}
 			</FilterAccordionSection>
-		</div>
+		</RevealOnView>
 	);
 }
 
@@ -239,13 +243,22 @@ function FilterNavButton({ label, count, isSelected, onSelect }: FilterNavButton
 			</span>
 
 			{count !== undefined && (
-				<span
-					className={cn(
-						"font-sans text-xs tracking-wider transition-colors duration-300",
-						isSelected ? "text-linen/35" : "text-linen/20",
-					)}
-				>
-					{count}
+				<span className="relative inline-flex min-w-[1.25rem] justify-end overflow-hidden">
+					<AnimatePresence mode="wait" initial={false}>
+						<motion.span
+							key={count}
+							initial={{ opacity: 0, y: 6 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -6 }}
+							transition={COUNT_TRANSITION}
+							className={cn(
+								"font-sans text-xs tracking-wider",
+								isSelected ? "text-linen/35" : "text-linen/20",
+							)}
+						>
+							{count}
+						</motion.span>
+					</AnimatePresence>
 				</span>
 			)}
 		</button>

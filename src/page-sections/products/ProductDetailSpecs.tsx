@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Text, Button } from "@/components/ui";
+import { Text, Button, DecorativeDivider } from "@/components/ui";
+import { RevealOnView } from "@/components/common";
 import { CONTACT_EMAIL } from "@/constants/contact";
 import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { PRODUCTS } from "@/constants/products";
@@ -85,37 +86,41 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
 					{/* Left Panel: Specifications List (7 columns) */}
 					<div className="space-y-10 lg:col-span-7">
-						<div>
-							<Text
-								variant="label"
-								className="text-champagne mb-4 font-sans font-medium tracking-[0.2em] uppercase"
-							>
-								{tDetail("specifications")}
-							</Text>
-							<h3 className="text-h2 font-serif font-light lining-nums">
-								{product.title}
-							</h3>
-						</div>
+						<RevealOnView>
+							<div>
+								<Text
+									variant="label"
+									className="text-champagne mb-4 font-sans font-medium tracking-[0.2em] uppercase"
+								>
+									{tDetail("specifications")}
+								</Text>
+								<h3 className="text-h2 font-serif font-light lining-nums">
+									{product.title}
+								</h3>
+							</div>
+							<RevealOnView delay={0.08}>
+								<DecorativeDivider variant="section" className="mt-6" />
+							</RevealOnView>
+						</RevealOnView>
 
 						{/* Spec Attributes Grid */}
 						<div className="border-sapphire-mist/30 grid grid-cols-1 gap-y-4 border-t pt-8">
-							{specs.map((spec) => (
-								<div
-									key={spec.label}
-									className="border-sapphire-mist/20 flex flex-col gap-1 border-b pb-4"
-								>
-									<span className="text-linen/30 font-sans text-[11px] font-semibold tracking-wider uppercase">
-										{spec.label}
-									</span>
-									<span className="text-body-sm text-linen font-sans font-semibold">
-										{spec.value}
-									</span>
-								</div>
+							{specs.map((spec, index) => (
+								<RevealOnView key={spec.label} delay={0.06 + index * 0.05}>
+									<div className="border-sapphire-mist/20 flex flex-col gap-1 border-b pb-4">
+										<span className="text-linen/30 font-sans text-[11px] font-semibold tracking-wider uppercase">
+											{spec.label}
+										</span>
+										<span className="text-body-sm text-linen font-sans font-semibold">
+											{spec.value}
+										</span>
+									</div>
+								</RevealOnView>
 							))}
 						</div>
 
 						{/* Available Options Grid */}
-						<div className="grid grid-cols-2 gap-8 pt-4">
+						<RevealOnView delay={0.35} className="grid grid-cols-2 gap-8 pt-4">
 							{/* Available Sizes (only if > 1 size exists in design family) */}
 							{(() => {
 								const sizeSiblings = getAvailableSizesForProduct(product.skuCode, PRODUCTS);
@@ -162,11 +167,12 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 									))}
 								</ul>
 							</div>
-						</div>
+						</RevealOnView>
 					</div>
 
 					{/* Right Panel: Call to Action (5 columns) */}
-					<div className="shadow-luxury-md border-sapphire-mist/30 bg-sapphire-ocean flex flex-col justify-between rounded-2xl border p-8 lg:col-span-5">
+					<RevealOnView delay={0.15} className="lg:col-span-5">
+						<div className="shadow-luxury-md border-sapphire-mist/30 bg-sapphire-ocean flex h-full flex-col justify-between rounded-2xl border p-8">
 						<div className="space-y-6">
 							<Text
 								variant="label"
@@ -198,7 +204,8 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								{tDetail("requestQuote")}
 							</Button>
 						</div>
-					</div>
+						</div>
+					</RevealOnView>
 				</div>
 			</div>
 		</section>

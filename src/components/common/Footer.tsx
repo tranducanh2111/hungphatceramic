@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
+import { RevealOnView } from "@/components/common";
 import { CONTACT_CHANNELS, GOOGLE_MAPS_URL, contactMailtoHref } from "@/constants/contact";
 import { ICON_PATHS, LOGO_PATHS } from "@/constants/media";
 import { ABOUT_SECTION_IDS, aboutSectionHref } from "@/constants/about-sections";
@@ -94,31 +95,36 @@ function FooterSocialLink({
 const FOOTER_SECTION_HEADING_CLASS =
 	"mb-8 block font-sans tracking-[0.2em] text-[#D4B886] uppercase";
 
+const FOOTER_LINK_CLASS =
+	"text-body-sm group relative inline-block font-sans text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]";
+
 function FooterLinkGroup({
 	heading,
 	links,
+	delay = 0,
 }: {
 	heading: string;
 	links: { label: string; href: string }[];
+	delay?: number;
 }) {
 	return (
-		<div>
-			<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
-				{heading}
-			</Text>
-			<ul className="space-y-2">
-				{links.map(({ label, href }) => (
-					<li key={href}>
-						<Link
-							href={href}
-							className="text-body-sm font-sans text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
-						>
-							{label}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</div>
+		<RevealOnView delay={delay}>
+			<div>
+				<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
+					{heading}
+				</Text>
+				<ul className="space-y-2">
+					{links.map(({ label, href }) => (
+						<li key={href}>
+							<Link href={href} className={FOOTER_LINK_CLASS}>
+								{label}
+								<span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#D4B886] transition-all duration-300 group-hover:w-full" />
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+		</RevealOnView>
 	);
 }
 
@@ -183,88 +189,101 @@ export function Footer() {
 			<div className="mx-auto max-w-7xl px-6 pt-20 pb-12 lg:px-12">
 				<div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
 					{/* ── Brand block ── */}
-					<div>
-						<Link
-							href={ROUTES.home}
-							className="inline-flex max-w-[min(100%,14rem)]"
-							aria-label={commonT("logoAriaLabel")}
-						>
-							<Image
-								src={LOGO_PATHS.small}
-								alt={commonT("logoAlt")}
-								width={220}
-								height={62}
-								sizes="(max-width: 1024px) 200px, 224px"
-								className="h-auto max-h-11 w-auto object-contain object-left opacity-95 transition-opacity duration-300 hover:opacity-100"
-								suppressHydrationWarning
-							/>
-						</Link>
+					<RevealOnView>
+						<div>
+							<Link
+								href={ROUTES.home}
+								className="inline-flex max-w-[min(100%,14rem)]"
+								aria-label={commonT("logoAriaLabel")}
+							>
+								<Image
+									src={LOGO_PATHS.small}
+									alt={commonT("logoAlt")}
+									width={220}
+									height={62}
+									sizes="(max-width: 1024px) 200px, 224px"
+									className="h-auto max-h-11 w-auto object-contain object-left opacity-95 transition-opacity duration-300 hover:opacity-100"
+									suppressHydrationWarning
+								/>
+							</Link>
 
-						{/* Tagline */}
-						<Text
-							variant="body-sm"
-							className="mt-5 max-w-xs leading-relaxed text-[#F4F4F6]/45"
-						>
-							{t("tagline")}
-						</Text>
+							{/* Tagline */}
+							<Text
+								variant="body-sm"
+								className="mt-5 max-w-xs leading-relaxed text-[#F4F4F6]/45"
+							>
+								{t("tagline")}
+							</Text>
 
-						{/* Social + chat (Desktop) */}
-						<div className="mt-8 hidden lg:flex flex-wrap gap-3.5">
-							{SocialAndChatLinks}
+							{/* Social + chat (Desktop) */}
+							<div className="mt-8 hidden flex-wrap gap-3.5 lg:flex">
+								{SocialAndChatLinks}
+							</div>
 						</div>
-					</div>
+					</RevealOnView>
 
 					{/* ── Navigation ── */}
-					<FooterLinkGroup heading={t("sections.navigate")} links={companyLinks} />
-					<FooterLinkGroup heading={t("sections.collections")} links={collectionLinks} />
+					<FooterLinkGroup
+						heading={t("sections.navigate")}
+						links={companyLinks}
+						delay={0.06}
+					/>
+					<FooterLinkGroup
+						heading={t("sections.collections")}
+						links={collectionLinks}
+						delay={0.12}
+					/>
 
 					{/* ── Contact ── */}
-					<div>
-						<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
-							{t("sections.contact")}
-						</Text>
-						<ul className="space-y-2">
-							{CONTACT_ITEMS.map(({ id, iconSrc, href, isExternal }) => (
-								<li key={href}>
-									<a
-										href={href}
-										{...(isExternal
-											? { target: "_blank", rel: "noopener noreferrer" }
-											: {})}
-										{...(isExternal
-											? {
-													"aria-label": `${t(`contact.${id}`)}, ${opensInNewWindowLabel}`,
-												}
-											: {})}
-										className="group flex items-start gap-3 text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
-									>
-										<PublicIcon
-											src={iconSrc}
-											alt=""
-											size={18}
-											className="mt-0.5 shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
-										/>
-										<Text variant="body-sm" className="leading-relaxed">
-											{t(`contact.${id}`)}
-										</Text>
-									</a>
-								</li>
-							))}
-						</ul>
+					<RevealOnView delay={0.18}>
+						<div>
+							<Text variant="label" as="p" className={FOOTER_SECTION_HEADING_CLASS}>
+								{t("sections.contact")}
+							</Text>
+							<ul className="space-y-2">
+								{CONTACT_ITEMS.map(({ id, iconSrc, href, isExternal }) => (
+									<li key={href}>
+										<a
+											href={href}
+											{...(isExternal
+												? { target: "_blank", rel: "noopener noreferrer" }
+												: {})}
+											{...(isExternal
+												? {
+														"aria-label": `${t(`contact.${id}`)}, ${opensInNewWindowLabel}`,
+													}
+												: {})}
+											className="group relative flex items-start gap-3 text-[#F4F4F6]/45 transition-colors duration-300 hover:text-[#D4B886]"
+										>
+											<PublicIcon
+												src={iconSrc}
+												alt=""
+												size={18}
+												className="mt-0.5 shrink-0 opacity-60 transition-opacity group-hover:opacity-100"
+											/>
+											<Text variant="body-sm" className="leading-relaxed">
+												{t(`contact.${id}`)}
+											</Text>
+											<span className="absolute -bottom-0.5 left-7 h-px w-0 bg-[#D4B886] transition-all duration-300 group-hover:w-[calc(100%-1.75rem)]" />
+										</a>
+									</li>
+								))}
+							</ul>
 
-						{/* CTA */}
-						<Link
-							href={ROUTES.contact}
-							className="text-body-sm mt-8 inline-flex items-center justify-center rounded-full border border-[#D4B886]/30 bg-[#D4B886]/5 px-6 py-2.5 font-sans tracking-[0.1em] text-[#D4B886] uppercase transition-all duration-300 hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]"
-						>
-							{t("links.bookConsultation")}
-						</Link>
+							{/* CTA */}
+							<Link
+								href={ROUTES.contact}
+								className="text-body-sm mt-8 inline-flex items-center justify-center rounded-full border border-[#D4B886]/30 bg-[#D4B886]/5 px-6 py-2.5 font-sans tracking-[0.1em] text-[#D4B886] uppercase transition-all duration-300 hover:border-[#D4B886] hover:bg-[#D4B886] hover:text-[#071A2B]"
+							>
+								{t("links.bookConsultation")}
+							</Link>
 
-						{/* Social + chat (Mobile) */}
-						<div className="mt-8 flex lg:hidden flex-wrap gap-3.5">
-							{SocialAndChatLinks}
+							{/* Social + chat (Mobile) */}
+							<div className="mt-8 flex flex-wrap gap-3.5 lg:hidden">
+								{SocialAndChatLinks}
+							</div>
 						</div>
-					</div>
+					</RevealOnView>
 				</div>
 
 				{/* ── Divider ── */}

@@ -183,6 +183,28 @@
 			transform: translateY(var(--parallax-range, 40px));
 		}
 	}
+	@keyframes divider-grow {
+		from {
+			transform: scaleX(0);
+		}
+		to {
+			transform: scaleX(1);
+		}
+	}
+	@keyframes cta-glow-pulse {
+		0%,
+		100% {
+			opacity: 0.35;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		50% {
+			opacity: 0.6;
+			transform: translate(-50%, -50%) scale(1.08);
+		}
+	}
+
+	--animate-divider-grow: divider-grow 0.9s ease-out both;
+	--animate-cta-glow-pulse: cta-glow-pulse 12s ease-in-out infinite;
 
 	@keyframes unified-shimmer-pan {
 		0% {
@@ -343,6 +365,20 @@ h6 {
 	@supports not (animation-timeline: view()) {
 		stroke-dashoffset: 0;
 	}
+}
+
+@utility divider-grow-on-view {
+	@apply origin-left scale-x-0 animate-divider-grow motion-reduce:scale-x-100 motion-reduce:animate-none;
+	animation-timeline: view();
+	animation-range: entry 0% entry 35%;
+
+	@supports not (animation-timeline: view()) {
+		transform: scaleX(1);
+	}
+}
+
+@utility cta-glow-pulse {
+	@apply animate-cta-glow-pulse motion-reduce:animate-none;
 }
 
 /* ─── Scroll-driven parallax (compositor-friendly translateY) ─────────────────── */

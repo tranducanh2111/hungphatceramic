@@ -388,7 +388,12 @@
 				"nameStory": "In Italian, Perla means pearl — a name chosen for what fine porcelain should feel like in a room: depth beneath the surface, soft radiance, and quiet refinement. Like a pearl formed layer by layer, we believe exceptional interiors are built through patience, precision, and an eye for detail that never settles.",
 				"pullQuote": "Stone is the original luxury.",
 				"body": "Perla, established in 2020, is powered by Hung Phat Building Materials Manufacturing and Trading Co., Ltd., builds upon more than two decades of industry expertise dating back to 2004. With a clear vision to deliver premium ceramic and porcelain surface solutions, Perla combines advanced manufacturing technology, rigorous quality standards, and meticulous attention to detail. Each product is crafted to meet the highest expectations for durability, functionality, and aesthetics, enhancing the value of architectural projects and living spaces alike.",
-				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi"
+				"imageAlt": "Archival photograph of the original Hung Phat workshop in Bat Trang, Hanoi",
+				"stats": {
+					"experienceLabel": "Years of expertise",
+					"experienceAria": "More than twenty years of industry expertise since 2004",
+					"establishedLabel": "Perla established"
+				}
 			},
 			"craft": {
 				"ariaLabel": "Ceramic craft story",

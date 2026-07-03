@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Text } from "@/components/ui";
 import { PublicIcon } from "@/components/icons";
+import { RevealOnView } from "@/components/common";
 import {
 	CONTACT_CHANNELS,
 	CONTACT_EMAIL,
@@ -64,44 +65,49 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 	return (
 		<div className={cn("flex flex-col gap-8", className)}>
 			<div>
-				<Text variant="label" className="text-champagne tracking-[0.2em] uppercase">
-					{t("primaryHeading")}
-				</Text>
+				<RevealOnView>
+					<Text variant="label" className="text-champagne tracking-[0.2em] uppercase">
+						{t("primaryHeading")}
+					</Text>
+				</RevealOnView>
 				<div className="mt-4 grid gap-3 sm:grid-cols-2">
-					{MESSAGING_CHANNELS.map((channel) => (
-						<a
-							key={channel.id}
-							href={channel.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="border-sapphire-mist bg-sapphire-ocean/40 hover:border-champagne/40 flex items-center gap-4 rounded-xl border px-5 py-4 transition-colors duration-300"
-							aria-label={`${t(`${channel.id}Aria`, { number: channel.display })}, ${opensInNewWindowLabel}`}
-						>
-							<PublicIcon
-								src={channel.iconSrc}
-								alt=""
-								size={28}
-								className="shrink-0"
-							/>
-							<div>
-								<Text variant="label" className="text-champagne uppercase">
-									{t(channel.id)}
-								</Text>
-								<Text variant="body" className="text-linen mt-1 font-sans">
-									{channel.display}
-								</Text>
-							</div>
-						</a>
+					{MESSAGING_CHANNELS.map((channel, index) => (
+						<RevealOnView key={channel.id} delay={0.08 + index * 0.08}>
+							<a
+								href={channel.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="border-sapphire-mist bg-sapphire-ocean/40 hover:border-champagne/40 flex items-center gap-4 rounded-xl border px-5 py-4 transition-colors duration-300"
+								aria-label={`${t(`${channel.id}Aria`, { number: channel.display })}, ${opensInNewWindowLabel}`}
+							>
+								<PublicIcon
+									src={channel.iconSrc}
+									alt=""
+									size={28}
+									className="shrink-0"
+								/>
+								<div>
+									<Text variant="label" className="text-champagne uppercase">
+										{t(channel.id)}
+									</Text>
+									<Text variant="body" className="text-linen mt-1 font-sans">
+										{channel.display}
+									</Text>
+								</div>
+							</a>
+						</RevealOnView>
 					))}
 				</div>
 			</div>
 
 			<div>
-				<Text variant="label" className="text-champagne tracking-[0.2em] uppercase">
-					{t("secondaryHeading")}
-				</Text>
+				<RevealOnView delay={0.1}>
+					<Text variant="label" className="text-champagne tracking-[0.2em] uppercase">
+						{t("secondaryHeading")}
+					</Text>
+				</RevealOnView>
 				<ul className="mt-4 space-y-3">
-					{SECONDARY_CHANNELS.map((channel) => {
+					{SECONDARY_CHANNELS.map((channel, index) => {
 						const label =
 							channel.id === "address" ? tFooter("address") : (channel.display ?? "");
 						const ariaLabel =
@@ -112,7 +118,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 									: `${t("addressAria")}, ${opensInNewWindowLabel}`;
 
 						return (
-							<li key={channel.id}>
+							<RevealOnView key={channel.id} as="li" delay={0.14 + index * 0.06}>
 								<a
 									href={channel.href}
 									{...(channel.isExternal
@@ -142,7 +148,7 @@ export function ContactChannelGrid({ className }: ContactChannelGridProps) {
 										</Text>
 									</div>
 								</a>
-							</li>
+							</RevealOnView>
 						);
 					})}
 				</ul>

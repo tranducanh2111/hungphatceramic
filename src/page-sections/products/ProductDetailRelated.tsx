@@ -2,8 +2,7 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { Text } from "@/components/ui";
-import { ProductTile } from "@/components/common";
+import { ProductTile, RevealOnView, SectionHeader } from "@/components/common";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import {
 	localizeListingCatalog,
@@ -40,29 +39,23 @@ export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRel
 	return (
 		<section className="bg-sapphire-ocean text-linen relative px-6 py-24 lg:px-12">
 			<div className="mx-auto max-w-7xl">
-				{/* Section Header */}
-				<div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between">
-					<div>
-						<Text
-							variant="label"
-							className="text-champagne mb-4 block font-sans font-medium tracking-[0.2em] uppercase"
-						>
-							{tDetail("relatedProducts", { collection: "" })}
-						</Text>
-						<h3 className="text-h3 font-serif font-light">Explore {collectionName}</h3>
-					</div>
-				</div>
+				<SectionHeader
+					label={tDetail("relatedProducts", { collection: "" })}
+					heading={`Explore ${collectionName}`}
+					headingAs="h3"
+					headingVariant="h3"
+					className="mb-12"
+				/>
 
-				{/* Related Items Row */}
 				<ul className="grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
-					{related.map((item) => (
-						<li key={item.slug}>
+					{related.map((item, index) => (
+						<RevealOnView key={item.slug} as="li" delay={0.08 + index * 0.08}>
 							<ProductTile
 								product={item}
 								activeSizeId={activeSizeId}
 								deferMediaUntilVisible
 							/>
-						</li>
+						</RevealOnView>
 					))}
 				</ul>
 			</div>

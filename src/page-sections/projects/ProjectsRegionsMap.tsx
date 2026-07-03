@@ -20,6 +20,9 @@ const REGION_MESSAGE_KEYS: Record<ProjectRegion, "north" | "south" | "island"> =
 	island: "island",
 };
 
+const DRAW_PATH_CLASS =
+	"blueprint-draw-on-view [stroke-dasharray:1] [stroke-dashoffset:1] motion-reduce:[stroke-dashoffset:0]";
+
 /** Minimal Vietnam silhouette (champagne stroke on linen band). */
 function VietnamOutlineDecor({ className }: { className?: string }) {
 	return (
@@ -34,6 +37,8 @@ function VietnamOutlineDecor({ className }: { className?: string }) {
 				stroke="currentColor"
 				strokeWidth="0.75"
 				vectorEffect="non-scaling-stroke"
+				pathLength={1}
+				className={DRAW_PATH_CLASS}
 			/>
 			<circle cx="72" cy="52" r="2.5" fill="currentColor" opacity="0.55" />
 			<circle cx="48" cy="118" r="2.5" fill="currentColor" opacity="0.55" />
@@ -42,14 +47,14 @@ function VietnamOutlineDecor({ className }: { className?: string }) {
 	);
 }
 
-function RegionColumn({ region }: { region: ProjectRegion }) {
+function RegionColumn({ region, delay }: { region: ProjectRegion; delay: number }) {
 	const t = useTranslations("pages.projects.regions");
 	const tHeritage = useTranslations("pages.projects.heritage");
 	const projects = getProjectsByRegion(region);
 	const regionKey = REGION_MESSAGE_KEYS[region];
 
 	return (
-		<RevealOnView className="flex flex-col">
+		<RevealOnView delay={delay} className="flex flex-col">
 			<span className="text-label text-champagne-deep font-sans font-medium tracking-[0.2em] uppercase">
 				{t(`${regionKey}.title`)}
 			</span>
@@ -124,8 +129,8 @@ export function ProjectsRegionsMap() {
 						"border-sapphire-mist/35 border-t pt-12",
 					)}
 				>
-					{PROJECT_REGIONS.map((region) => (
-						<RegionColumn key={region} region={region} />
+					{PROJECT_REGIONS.map((region, index) => (
+						<RegionColumn key={region} region={region} delay={0.08 + index * 0.1} />
 					))}
 				</div>
 			</div>

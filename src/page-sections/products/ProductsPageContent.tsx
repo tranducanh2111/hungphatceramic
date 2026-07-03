@@ -7,6 +7,7 @@ import { ProductsHero } from "./ProductsHero";
 import { ProductsFilter } from "./ProductsFilter";
 import { ProductsGrid } from "./ProductsGrid";
 import { Input } from "@/components/ui";
+import { RevealOnView } from "@/components/common";
 import { applyTileSizeToListingItem } from "@/lib/products/asset-paths";
 import {
 	filterProductListingByCatalog,
@@ -132,7 +133,7 @@ export function ProductsPageContent({
 						className="w-full md:sticky md:top-28 md:h-fit"
 						aria-label={t("filterLabel")}
 					>
-						<div className="mb-8">
+						<RevealOnView className="mb-8">
 							<Input
 								type="search"
 								value={searchQuery}
@@ -140,7 +141,7 @@ export function ProductsPageContent({
 								placeholder={t("searchPlaceholder")}
 								className="border-sapphire-mist focus:border-champagne w-full"
 							/>
-						</div>
+						</RevealOnView>
 
 						<ProductsFilter
 							activeCollectionId={activeCollectionId}

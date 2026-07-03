@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { type MotionValue } from "framer-motion";
-import { ProductTile } from "@/components/common";
+import { ProductTile, RevealOnView } from "@/components/common";
 import { Text } from "@/components/ui";
 import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -141,11 +141,11 @@ export function ProductsGrid({ products, activeCollectionId, activeSizeId }: Pro
 
 	if (products.length === 0) {
 		return (
-			<div className="flex min-h-[300px] flex-col items-center justify-center text-center">
+			<RevealOnView className="flex min-h-[300px] flex-col items-center justify-center text-center">
 				<Text variant="body-lg" className="text-linen/45">
 					{t("noProducts")}
 				</Text>
-			</div>
+			</RevealOnView>
 		);
 	}
 
