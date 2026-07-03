@@ -3,7 +3,7 @@
 import { ViewportDeferredImage } from "@/components/media";
 import { useTranslations } from "next-intl";
 import { motion, type Variants } from "framer-motion";
-import { Text } from "@/components/ui";
+import { AnimatedCounter, Text } from "@/components/ui";
 import { MEDIA_PATHS } from "@/constants/media";
 import { BRAND_STATEMENT_STATS } from "@/constants/landing";
 
@@ -95,7 +95,11 @@ export function LandingBrandStatement() {
 										variant="display-lg"
 										className="text-champagne font-serif"
 									>
-										{`${stat.numericValue}${stat.suffix}`}
+										<AnimatedCounter
+											value={stat.numericValue}
+											suffix={stat.suffix}
+											inViewAmount={0.3}
+										/>
 									</Text>
 									<Text variant="body-sm" className="text-linen/50 mt-1">
 										{t(`stats.${stat.brandStatementKey}`)}

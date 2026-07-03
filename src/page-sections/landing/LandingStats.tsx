@@ -1,49 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useInView } from "framer-motion";
-import { Text } from "@/components/ui";
+import { motion } from "framer-motion";
+import { AnimatedCounter, Text } from "@/components/ui";
 import { STATS, type StatItem } from "@/constants/landing";
 import { RoomSilhouette } from "@/components/landing/RoomSilhouette";
 
-function useCountUp(target: number, isActive: boolean, duration = 1800) {
-	const [displayValue, setDisplayValue] = useState(0);
-
-	useEffect(() => {
-		if (!isActive) return;
-
-		const startTime = performance.now();
-		const startValue = 0;
-
-		function tick(currentTime: number) {
-			const elapsed = currentTime - startTime;
-			const progress = Math.min(elapsed / duration, 1);
-			// Ease out cubic
-			const easedProgress = 1 - Math.pow(1 - progress, 3);
-			setDisplayValue(Math.floor(startValue + easedProgress * target));
-			if (progress < 1) requestAnimationFrame(tick);
-		}
-
-		requestAnimationFrame(tick);
-	}, [target, isActive, duration]);
-
-	return displayValue;
-}
-
 function StatCounter({ stat, label }: { stat: StatItem; label: string }) {
-	const ref = useRef<HTMLDivElement>(null);
-	const isInView = useInView(ref, { once: true, amount: 0.5 });
-	const count = useCountUp(stat.numericValue, isInView);
-
-	const formattedValue =
-		stat.numericValue >= 1000 ? `${Math.floor(count / 1000)}k` : count.toString();
-
 	return (
-		<div ref={ref} className="flex flex-col items-center text-center">
+		<div className="flex flex-col items-center text-center">
 			<Text variant="display-xl" className="text-champagne font-serif font-light">
-				{formattedValue}
-				{stat.suffix}
+				<AnimatedCounter
+					value={stat.numericValue}
+					suffix={stat.suffix}
+					formatThousandsAsK={stat.numericValue >= 1000}
+				/>
 			</Text>
 			<Text variant="body-sm" className="text-linen/50 mt-2">
 				{label}
