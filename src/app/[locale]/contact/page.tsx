@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { headers } from "next/headers";
 import { PageMediaPreload } from "@/components/media";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ContactPageContent } from "@/page-sections/contact/ContactPageContent";
@@ -35,6 +36,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
 	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
 	const tFooter = await getTranslations({ locale, namespace: "footer.sections" });
+
+	const headersList = await headers();
+	const userAgent = headersList.get("user-agent") || "";
+	const isMobileSSR = /mobile/i.test(userAgent);
 
 	const contactPageSchema = {
 		"@context": "https://schema.org",
@@ -83,7 +88,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
-			<ContactPageContent />
+			<ContactPageContent isMobileSSR={isMobileSSR} />
 		</main>
 	);
 }

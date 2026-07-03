@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { headers } from "next/headers";
 import { AboutPageContent } from "@/page-sections/about/AboutPageContent";
 import { buildAlternatesForLocale, buildOpenGraphForLocale, SITE_URL } from "@/constants/seo";
 import { PageMediaPreload } from "@/components/media";
@@ -33,6 +34,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
 	const t = await getTranslations({ locale, namespace: "pages.about.schema" });
 	const tNavbar = await getTranslations({ locale, namespace: "navbar.links" });
+
+	const headersList = await headers();
+	const userAgent = headersList.get("user-agent") || "";
+	const isMobileSSR = /mobile/i.test(userAgent);
 
 	const organizationSchema = {
 		"@context": "https://schema.org",
@@ -98,7 +103,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
-			<AboutPageContent />
+			<AboutPageContent isMobileSSR={isMobileSSR} />
 		</main>
 	);
 }

@@ -15,12 +15,12 @@ const ProjectsHeritage = dynamic(() =>
 );
 
 /** Client shell (scroll narrative with code-split motion sections). */
-export function ProjectsPageContent() {
+export function ProjectsPageContent({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	useLenisResizeOnMount();
 
 	return (
 		<>
-			<ProjectsCinematicHero />
+			<ProjectsCinematicHero isMobileSSR={isMobileSSR} />
 			<ProjectsPrologue />
 			<ProjectsHeritage />
 			<ProjectsRegionsMap />

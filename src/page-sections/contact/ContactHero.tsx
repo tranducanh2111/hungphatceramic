@@ -6,11 +6,12 @@ import { Button } from "@/components/ui";
 import { CONTACT_SECTION_IDS } from "@/constants/contact";
 import { MEDIA_PATHS } from "@/constants/media";
 
-export function ContactHero() {
+export function ContactHero({ isMobileSSR }: { isMobileSSR?: boolean }) {
 	const t = useTranslations("pages.contact.hero");
 
 	return (
 		<CinematicHero
+			isDesktopSSR={!isMobileSSR}
 			videoSrc={MEDIA_PATHS.video.hero}
 			posterSrc={MEDIA_PATHS.images.landing.heroPoster}
 			posterAlt={t("titleLine1")}
@@ -19,6 +20,8 @@ export function ContactHero() {
 			titleLine2={t("titleLine2")}
 			description={t("description")}
 			scrollLabel={t("scroll")}
+			fadeContentOnScroll
+			bottomBlend={false}
 		>
 			<Button
 				variant="outline"
