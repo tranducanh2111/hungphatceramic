@@ -11,6 +11,8 @@ import { LANDING_HERO_SCROLL_HEIGHT_VH } from "@/constants/landing-hero";
 import { MEDIA_PATHS } from "@/constants/media";
 import { ROUTES } from "@/constants/routes";
 import { useGsapLenisSync } from "@/hooks/useGsapLenisSync";
+import { useHeroCursorAmbience } from "@/hooks/useHeroCursorAmbience";
+import { useIsClient } from "@/hooks/useIsClient";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { gsap, registerGsapPlugins, ScrollTrigger, SplitText } from "@/lib/gsap";
@@ -96,7 +98,9 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 	const t = useTranslations("landing.hero");
 	const prefersReducedMotion = usePrefersReducedMotion();
 	const isDesktopHero = useMediaQuery(DESKTOP_LAYOUT_QUERY, !isMobileSSR);
+	const hasFinePointer = useMediaQuery("(pointer: fine)", true);
 	const useWebGL = isDesktopHero && !prefersReducedMotion;
+	const enableCursorAmbience = isDesktopHero && !prefersReducedMotion && hasFinePointer;
 
 	useGsapLenisSync(useWebGL);
 
@@ -108,7 +112,7 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 	const scrimRef = useRef<HTMLDivElement>(null);
 	const backdropRef = useRef<HTMLDivElement>(null);
 	const canvasWrapRef = useRef<HTMLDivElement>(null);
-	const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+	const cursorGlowRef = useRef<HTMLDivElement>(null);
 	const labelRef = useRef<HTMLDivElement>(null);
 	const titleLine1Ref = useRef<HTMLSpanElement>(null);
 	const titleLine2Ref = useRef<HTMLElement>(null);
@@ -117,7 +121,44 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 
 	const scrollProgressRef = useRef(0);
 	const mouseRef = useRef({ x: 0, y: 0 });
+	const isPointerOverRef = useRef(false);
+	const introCompleteRef = useRef(false);
+	const resetAmbienceRef = useRef<() => void>(() => undefined);
 	const [isSceneActive, setIsSceneActive] = useState(true);
+	const isClient = useIsClient();
+	const isCursorAmbienceReady = isClient && enableCursorAmbience;
+
+	const { handlePointerMove, handlePointerLeave, resetAmbience } = useHeroCursorAmbience({
+		enabled: isCursorAmbienceReady,
+		pinRef,
+		coordinateRef: canvasWrapRef,
+		cursorGlowRef,
+		contentRef,
+		mouseRef,
+		scrollProgressRef,
+		introCompleteRef,
+	});
+
+	useEffect(() => {
+		resetAmbienceRef.current = resetAmbience;
+	}, [resetAmbience]);
+
+	const onHeroPointerEnter = useCallback(() => {
+		isPointerOverRef.current = true;
+	}, []);
+
+	const onHeroPointerMove = useCallback(
+		(event: React.PointerEvent<HTMLDivElement>) => {
+			isPointerOverRef.current = true;
+			handlePointerMove(event);
+		},
+		[handlePointerMove],
+	);
+
+	const onHeroPointerLeave = useCallback(() => {
+		isPointerOverRef.current = false;
+		handlePointerLeave();
+	}, [handlePointerLeave]);
 
 	const description = (
 		<>
@@ -126,17 +167,6 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 			{t("descriptionLine2")}
 		</>
 	);
-
-	const handlePointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-		const rect = event.currentTarget.getBoundingClientRect();
-		const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-		const y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
-		mouseRef.current = { x, y };
-	}, []);
-
-	const handlePointerLeave = useCallback(() => {
-		mouseRef.current = { x: 0, y: 0 };
-	}, []);
 
 	useEffect(() => {
 		if (!useWebGL || !sectionRef.current) {
@@ -157,6 +187,7 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 	useGSAP(
 		() => {
 			registerGsapPlugins();
+			introCompleteRef.current = false;
 
 			const section = sectionRef.current;
 			const pin = pinRef.current;
@@ -167,7 +198,6 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 			const backdrop = backdropRef.current;
 			const canvasWrap = canvasWrapRef.current;
 			const heroMedia = canvasWrap;
-			const scrollIndicator = scrollIndicatorRef.current;
 			const titleLine1 = titleLine1Ref.current;
 			const titleLine2 = titleLine2Ref.current;
 			const descriptionEl = descriptionRef.current;
@@ -207,9 +237,6 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 					];
 
 			gsap.set(introTargets, { opacity: 0, y: prefersReducedMotion ? 16 : 32 });
-			if (scrollIndicator) {
-				gsap.set(scrollIndicator, { opacity: 0 });
-			}
 
 			gsap.set(letterboxTop, {
 				scaleY: 1,
@@ -350,13 +377,9 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 					);
 			}
 
-			if (scrollIndicator) {
-				introTimeline.to(
-					scrollIndicator,
-					{ opacity: 1, duration: 0.6, ease: "power2.out" },
-					"-=0.2",
-				);
-			}
+			introTimeline.eventCallback("onComplete", () => {
+				introCompleteRef.current = true;
+			});
 
 			const scrollTrigger = useWebGL
 				? ScrollTrigger.create({
@@ -368,6 +391,10 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 						anticipatePin: 1,
 						onUpdate: (self) => {
 							scrollProgressRef.current = self.progress;
+
+							if (self.progress > 0.08) {
+								resetAmbienceRef.current();
+							}
 
 							gsap.set(content, {
 								opacity: 1 - self.progress * 1.35,
@@ -387,12 +414,6 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 							if (scrim) {
 								gsap.set(scrim, {
 									opacity: 0.42 * backdropOpacity,
-								});
-							}
-
-							if (scrollIndicator) {
-								gsap.set(scrollIndicator, {
-									opacity: Math.max(0, 1 - self.progress * 3),
 								});
 							}
 						},
@@ -445,8 +466,9 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 					"relative h-[100dvh] w-full overflow-hidden lg:h-screen",
 					useWebGL && "z-[1]",
 				)}
-				onPointerMove={useWebGL ? handlePointerMove : undefined}
-				onPointerLeave={useWebGL ? handlePointerLeave : undefined}
+				onPointerEnter={isDesktopHero ? onHeroPointerEnter : undefined}
+				onPointerMove={isDesktopHero ? onHeroPointerMove : undefined}
+				onPointerLeave={isDesktopHero ? onHeroPointerLeave : undefined}
 			>
 				<div ref={backdropRef} className="absolute inset-0 z-0">
 					{!useWebGL && (
@@ -461,6 +483,7 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 							<PorcelainGalleryScene
 								scrollProgressRef={scrollProgressRef}
 								mouseRef={mouseRef}
+								isPointerOverRef={isPointerOverRef}
 								isActive={isSceneActive}
 								className="absolute inset-0"
 							/>
@@ -479,19 +502,21 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 					)}
 
 					{!useWebGL && (
-						<>
-							<div
-								ref={scrimRef}
-								className="pointer-events-none absolute inset-0 bg-gradient-to-t from-sapphire-deep/88 via-sapphire-deep/25 to-sapphire-deep/40"
-								aria-hidden="true"
-							/>
-							<div
-								className="from-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b to-transparent sm:h-44"
-								aria-hidden="true"
-							/>
-						</>
+						<div
+							ref={scrimRef}
+							className="pointer-events-none absolute inset-0 bg-gradient-to-t from-sapphire-deep/88 via-sapphire-deep/25 to-sapphire-deep/40"
+							aria-hidden="true"
+						/>
 					)}
 				</div>
+
+				{isCursorAmbienceReady && (
+					<div
+						ref={cursorGlowRef}
+						className="pointer-events-none absolute top-0 left-0 z-[2] h-[min(38vw,480px)] w-[min(38vw,480px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(212,184,134,0.14)_0%,rgba(212,184,134,0.04)_42%,transparent_72%)] opacity-0 will-change-transform"
+						aria-hidden="true"
+					/>
+				)}
 
 				<div className="pointer-events-none absolute inset-0 z-30 overflow-hidden" aria-hidden="true">
 					<div
@@ -521,20 +546,6 @@ export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps)
 						descriptionRef={descriptionRef}
 						actionsRef={actionsRef}
 					/>
-				</div>
-
-				<div
-					ref={scrollIndicatorRef}
-					className={cn(
-						"absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2",
-						"animate-scroll-indicator-bounce",
-					)}
-					aria-hidden="true"
-				>
-					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
-						{t("scroll")}
-					</span>
-					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
 				</div>
 			</div>
 		</section>

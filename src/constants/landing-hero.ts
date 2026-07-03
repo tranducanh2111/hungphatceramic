@@ -32,5 +32,16 @@ export const PORCELAIN_SLAB_LAYOUT: readonly PorcelainSlabLayout[] = [
 	{ position: [2.65, -1.05, -0.65], rotation: [0.05, -0.11, 0], textureIndex: 7 },
 ] as const;
 
+/** World-space bounds for cursor-driven rim light (slab cluster + margin). */
+export const LANDING_HERO_RIM_LIGHT_BOUNDS = {
+	minX: -3.55,
+	maxX: 3.55,
+	minY: -1.35,
+	maxY: 0.75,
+	surfaceZ: -0.2,
+	/** Distance from surface focus toward camera along view ray. */
+	cameraPull: 1.85,
+} as const;
+
 /** Scroll driver height multiplier (section = multiplier × 100vh). */
 export const LANDING_HERO_SCROLL_HEIGHT_VH = 180;
