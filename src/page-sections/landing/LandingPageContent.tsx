@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
-import { LandingHero } from "@/page-sections/landing/LandingHero";
+import { LandingHeroImmersive } from "@/page-sections/landing/LandingHeroImmersive";
 import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
 
 const LandingStats = dynamic(
@@ -74,7 +74,7 @@ export function LandingPageContent({ isMobileSSR }: { isMobileSSR?: boolean }) {
 
 	return (
 		<>
-			<LandingHero isMobileSSR={isMobileSSR} />
+			<LandingHeroImmersive isMobileSSR={isMobileSSR} />
 			<LandingBrandStatement />
 			<LandingProjects />
 			<LandingMaterials />

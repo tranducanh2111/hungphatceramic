@@ -21,7 +21,7 @@ export function LandingBrandStatement() {
 	const t = useTranslations("landing.brandStatement");
 
 	return (
-		<section className="bg-sapphire-deep relative overflow-hidden py-28 lg:py-36">
+		<section className="bg-sapphire-deep relative z-10 overflow-hidden py-28 lg:py-36">
 			<div className="mx-auto max-w-7xl px-6 lg:px-12">
 				<div className="grid items-center gap-16 lg:grid-cols-2">
 					{/* ── Left: Text ─────────────────────────────────────────────── */}

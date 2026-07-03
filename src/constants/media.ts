@@ -43,6 +43,8 @@ export const MEDIA_PATHS = {
 	images: {
 		landing: {
 			heroPoster: "/media/images/landing/hero-poster-frame0.webp",
+			/** Static fallback for immersive 3D hero (mobile / reduced motion). */
+			heroGalleryPoster: "/media/images/landing/hero-poster-sync.webp",
 			brandStatement: "/media/images/landing/brand-statement.webp",
 		},
 		contact: {

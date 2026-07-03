@@ -1,0 +1,542 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import { useGSAP } from "@gsap/react";
+import { Badge, Button } from "@/components/ui";
+import { DESKTOP_LAYOUT_QUERY } from "@/constants/breakpoints";
+import { LANDING_HERO_SCROLL_HEIGHT_VH } from "@/constants/landing-hero";
+import { MEDIA_PATHS } from "@/constants/media";
+import { ROUTES } from "@/constants/routes";
+import { useGsapLenisSync } from "@/hooks/useGsapLenisSync";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { gsap, registerGsapPlugins, ScrollTrigger, SplitText } from "@/lib/gsap";
+import { cn } from "@/lib/cn";
+
+const PorcelainGalleryScene = dynamic(
+	() =>
+		import("@/components/3d/PorcelainGalleryScene").then((module) => ({
+			default: module.PorcelainGalleryScene,
+		})),
+	{ ssr: false },
+);
+
+interface LandingHeroImmersiveProps {
+	isMobileSSR?: boolean;
+}
+
+interface HeroCopyProps {
+	label: string;
+	titleLine1: string;
+	titleLine2: string;
+	description: ReactNode;
+	primaryCta: string;
+	secondaryCta: string;
+	titleLine1Ref?: React.RefObject<HTMLSpanElement | null>;
+	titleLine2Ref?: React.RefObject<HTMLElement | null>;
+	descriptionRef?: React.RefObject<HTMLDivElement | null>;
+	actionsRef?: React.RefObject<HTMLDivElement | null>;
+	labelRef?: React.RefObject<HTMLDivElement | null>;
+}
+
+function HeroCopy({
+	label,
+	titleLine1,
+	titleLine2,
+	description,
+	primaryCta,
+	secondaryCta,
+	titleLine1Ref,
+	titleLine2Ref,
+	descriptionRef,
+	actionsRef,
+	labelRef,
+}: HeroCopyProps) {
+	return (
+		<>
+			<div ref={labelRef}>
+				<Badge variant="hero">{label}</Badge>
+			</div>
+
+			<h1 className="text-display-xl lg:text-display-2xl text-linen mt-6 max-w-3xl font-serif leading-[1.1] font-light">
+				<span ref={titleLine1Ref}>{titleLine1}</span>
+				<br />
+				<em ref={titleLine2Ref} className="text-champagne italic">
+					{titleLine2}
+				</em>
+			</h1>
+
+			<div
+				ref={descriptionRef}
+				className="text-body-lg text-linen/60 mt-6 max-w-lg font-sans"
+			>
+				{description}
+			</div>
+
+			<div
+				ref={actionsRef}
+				className="mt-10 flex flex-col gap-4 sm:flex-row"
+			>
+				<Button href={ROUTES.projects} size="lg">
+					{primaryCta}
+				</Button>
+				<Button href={ROUTES.products} variant="secondary" size="lg">
+					{secondaryCta}
+				</Button>
+			</div>
+		</>
+	);
+}
+
+/** Immersive 3D porcelain gallery hero with GSAP intro and scroll-pinned outro. */
+export function LandingHeroImmersive({ isMobileSSR }: LandingHeroImmersiveProps) {
+	const t = useTranslations("landing.hero");
+	const prefersReducedMotion = usePrefersReducedMotion();
+	const isDesktopHero = useMediaQuery(DESKTOP_LAYOUT_QUERY, !isMobileSSR);
+	const useWebGL = isDesktopHero && !prefersReducedMotion;
+
+	useGsapLenisSync(useWebGL);
+
+	const sectionRef = useRef<HTMLElement>(null);
+	const pinRef = useRef<HTMLDivElement>(null);
+	const letterboxTopRef = useRef<HTMLDivElement>(null);
+	const letterboxBottomRef = useRef<HTMLDivElement>(null);
+	const contentRef = useRef<HTMLDivElement>(null);
+	const scrimRef = useRef<HTMLDivElement>(null);
+	const backdropRef = useRef<HTMLDivElement>(null);
+	const canvasWrapRef = useRef<HTMLDivElement>(null);
+	const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+	const labelRef = useRef<HTMLDivElement>(null);
+	const titleLine1Ref = useRef<HTMLSpanElement>(null);
+	const titleLine2Ref = useRef<HTMLElement>(null);
+	const descriptionRef = useRef<HTMLDivElement>(null);
+	const actionsRef = useRef<HTMLDivElement>(null);
+
+	const scrollProgressRef = useRef(0);
+	const mouseRef = useRef({ x: 0, y: 0 });
+	const [isSceneActive, setIsSceneActive] = useState(true);
+
+	const description = (
+		<>
+			{t("descriptionLine1")}
+			<br />
+			{t("descriptionLine2")}
+		</>
+	);
+
+	const handlePointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+		const rect = event.currentTarget.getBoundingClientRect();
+		const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+		const y = -(((event.clientY - rect.top) / rect.height) * 2 - 1);
+		mouseRef.current = { x, y };
+	}, []);
+
+	const handlePointerLeave = useCallback(() => {
+		mouseRef.current = { x: 0, y: 0 };
+	}, []);
+
+	useEffect(() => {
+		if (!useWebGL || !sectionRef.current) {
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setIsSceneActive(Boolean(entry?.isIntersecting));
+			},
+			{ threshold: 0, rootMargin: "0px" },
+		);
+
+		observer.observe(sectionRef.current);
+		return () => observer.disconnect();
+	}, [useWebGL]);
+
+	useGSAP(
+		() => {
+			registerGsapPlugins();
+
+			const section = sectionRef.current;
+			const pin = pinRef.current;
+			const letterboxTop = letterboxTopRef.current;
+			const letterboxBottom = letterboxBottomRef.current;
+			const content = contentRef.current;
+			const scrim = scrimRef.current;
+			const backdrop = backdropRef.current;
+			const canvasWrap = canvasWrapRef.current;
+			const heroMedia = canvasWrap;
+			const scrollIndicator = scrollIndicatorRef.current;
+			const titleLine1 = titleLine1Ref.current;
+			const titleLine2 = titleLine2Ref.current;
+			const descriptionEl = descriptionRef.current;
+			const actions = actionsRef.current;
+			const label = labelRef.current;
+
+			if (
+				!section ||
+				!pin ||
+				!letterboxTop ||
+				!letterboxBottom ||
+				!content ||
+				!titleLine1 ||
+				!titleLine2 ||
+				!descriptionEl ||
+				!actions ||
+				!label
+			) {
+				return;
+			}
+
+			const splitLine1 = prefersReducedMotion
+				? null
+				: SplitText.create(titleLine1, { type: "chars" });
+			const splitLine2 = prefersReducedMotion
+				? null
+				: SplitText.create(titleLine2, { type: "chars" });
+
+			const introTargets = prefersReducedMotion
+				? [label, titleLine1, titleLine2, descriptionEl, actions]
+				: [
+						label,
+						...(splitLine1?.chars ?? []),
+						...(splitLine2?.chars ?? []),
+						descriptionEl,
+						actions,
+					];
+
+			gsap.set(introTargets, { opacity: 0, y: prefersReducedMotion ? 16 : 32 });
+			if (scrollIndicator) {
+				gsap.set(scrollIndicator, { opacity: 0 });
+			}
+
+			gsap.set(letterboxTop, {
+				scaleY: 1,
+				opacity: 1,
+				transformOrigin: "center top",
+				force3D: true,
+				autoAlpha: 1,
+			});
+			gsap.set(letterboxBottom, {
+				scaleY: 1,
+				opacity: 1,
+				transformOrigin: "center bottom",
+				force3D: true,
+				autoAlpha: 1,
+			});
+
+			if (heroMedia) {
+				gsap.set(heroMedia, { opacity: 0 });
+			}
+
+			const hideLetterboxes = () => {
+				gsap.set([letterboxTop, letterboxBottom], {
+					autoAlpha: 0,
+					pointerEvents: "none",
+				});
+			};
+
+			const revealDuration = 2.5;
+			const sceneFadeDuration = 2.8;
+			const copyRevealAt = revealDuration * 0.72;
+
+			const introTimeline = gsap.timeline({ delay: 0.15 });
+
+			if (prefersReducedMotion) {
+				introTimeline
+					.to([letterboxTop, letterboxBottom], {
+						opacity: 0,
+						duration: 0.8,
+						ease: "power2.inOut",
+					})
+					.to(
+						heroMedia,
+						{
+							opacity: 1,
+							duration: 0.8,
+							ease: "power2.inOut",
+						},
+						"<0.15",
+					)
+					.call(hideLetterboxes)
+					.to(introTargets, {
+						opacity: 1,
+						y: 0,
+						duration: 0.7,
+						stagger: 0.08,
+						ease: "power3.out",
+					});
+			} else {
+				introTimeline
+					.add("reveal")
+					.to(
+						[letterboxTop, letterboxBottom],
+						{
+							scaleY: 0,
+							opacity: 0,
+							duration: revealDuration,
+							ease: "power3.inOut",
+						},
+						"reveal",
+					);
+
+				if (heroMedia) {
+					introTimeline.to(
+						heroMedia,
+						{
+							opacity: 1,
+							duration: sceneFadeDuration,
+							ease: "power2.inOut",
+						},
+						"reveal+=0.12",
+					);
+				}
+
+				introTimeline.call(hideLetterboxes, undefined, `reveal+=${revealDuration - 0.08}`);
+
+				introTimeline
+					.to(
+						label,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.9,
+							ease: "power3.out",
+						},
+						`reveal+=${copyRevealAt}`,
+					)
+					.to(
+						splitLine1?.chars ?? titleLine1,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.75,
+							stagger: 0.028,
+							ease: "power3.out",
+						},
+						"-=0.45",
+					)
+					.to(
+						splitLine2?.chars ?? titleLine2,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.75,
+							stagger: 0.028,
+							ease: "power3.out",
+						},
+						"-=0.55",
+					)
+					.to(
+						descriptionEl,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.8,
+							ease: "power3.out",
+						},
+						"-=0.45",
+					)
+					.to(
+						actions,
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.8,
+							ease: "power3.out",
+						},
+						"-=0.55",
+					);
+			}
+
+			if (scrollIndicator) {
+				introTimeline.to(
+					scrollIndicator,
+					{ opacity: 1, duration: 0.6, ease: "power2.out" },
+					"-=0.2",
+				);
+			}
+
+			const scrollTrigger = useWebGL
+				? ScrollTrigger.create({
+						trigger: section,
+						start: "top top",
+						end: `+=${LANDING_HERO_SCROLL_HEIGHT_VH}%`,
+						pin: pin,
+						scrub: 0.85,
+						anticipatePin: 1,
+						onUpdate: (self) => {
+							scrollProgressRef.current = self.progress;
+
+							gsap.set(content, {
+								opacity: 1 - self.progress * 1.35,
+								y: -self.progress * 72,
+							});
+
+							const fadeStart = 0.28;
+							const backdropOpacity =
+								self.progress <= fadeStart
+									? 1
+									: 1 - (self.progress - fadeStart) / (1 - fadeStart);
+
+							if (backdrop) {
+								gsap.set(backdrop, { opacity: Math.max(0, backdropOpacity) });
+							}
+
+							if (scrim) {
+								gsap.set(scrim, {
+									opacity: 0.42 * backdropOpacity,
+								});
+							}
+
+							if (scrollIndicator) {
+								gsap.set(scrollIndicator, {
+									opacity: Math.max(0, 1 - self.progress * 3),
+								});
+							}
+						},
+						onLeave: () => {
+							gsap.set(pin, { autoAlpha: 0, pointerEvents: "none" });
+							if (backdrop) {
+								gsap.set(backdrop, { autoAlpha: 0 });
+							}
+							if (canvasWrap) {
+								gsap.set(canvasWrap, { autoAlpha: 0 });
+							}
+							setIsSceneActive(false);
+						},
+						onEnterBack: () => {
+							gsap.set(pin, { autoAlpha: 1, pointerEvents: "auto" });
+							if (backdrop) {
+								gsap.set(backdrop, { autoAlpha: 1, opacity: 1 });
+							}
+							if (canvasWrap) {
+								gsap.set(canvasWrap, { autoAlpha: 1, opacity: 1 });
+							}
+							setIsSceneActive(true);
+						},
+					})
+				: null;
+
+			return () => {
+				introTimeline.kill();
+				scrollTrigger?.kill();
+				splitLine1?.revert();
+				splitLine2?.revert();
+			};
+		},
+		{
+			scope: sectionRef,
+			dependencies: [prefersReducedMotion, useWebGL],
+		},
+	);
+
+	return (
+		<section
+			ref={sectionRef}
+			className="bg-sapphire-deep relative isolate w-full overflow-hidden"
+			style={{ height: useWebGL ? `${LANDING_HERO_SCROLL_HEIGHT_VH}vh` : "100dvh" }}
+			aria-label={t("titleLine1")}
+		>
+			<div
+				ref={pinRef}
+				className={cn(
+					"relative h-[100dvh] w-full overflow-hidden lg:h-screen",
+					useWebGL && "z-[1]",
+				)}
+				onPointerMove={useWebGL ? handlePointerMove : undefined}
+				onPointerLeave={useWebGL ? handlePointerLeave : undefined}
+			>
+				<div ref={backdropRef} className="absolute inset-0 z-0">
+					{!useWebGL && (
+						<div
+							className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,var(--color-sapphire-mist)_0%,var(--color-sapphire-deep)_70%)]"
+							aria-hidden="true"
+						/>
+					)}
+
+					{useWebGL ? (
+						<div ref={canvasWrapRef} className="absolute inset-0 overflow-hidden opacity-0">
+							<PorcelainGalleryScene
+								scrollProgressRef={scrollProgressRef}
+								mouseRef={mouseRef}
+								isActive={isSceneActive}
+								className="absolute inset-0"
+							/>
+						</div>
+					) : (
+						<div ref={canvasWrapRef} className="absolute inset-0 opacity-0">
+							<Image
+								src={MEDIA_PATHS.images.landing.heroGalleryPoster}
+								alt={t("titleLine1")}
+								fill
+								priority
+								sizes="100vw"
+								className="object-cover object-center"
+							/>
+						</div>
+					)}
+
+					{!useWebGL && (
+						<>
+							<div
+								ref={scrimRef}
+								className="pointer-events-none absolute inset-0 bg-gradient-to-t from-sapphire-deep/88 via-sapphire-deep/25 to-sapphire-deep/40"
+								aria-hidden="true"
+							/>
+							<div
+								className="from-sapphire-deep pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b to-transparent sm:h-44"
+								aria-hidden="true"
+							/>
+						</>
+					)}
+				</div>
+
+				<div className="pointer-events-none absolute inset-0 z-30 overflow-hidden" aria-hidden="true">
+					<div
+						ref={letterboxTopRef}
+						className="bg-sapphire-deep absolute inset-x-0 top-0 h-1/2 origin-top will-change-transform"
+					/>
+					<div
+						ref={letterboxBottomRef}
+						className="bg-sapphire-deep absolute inset-x-0 bottom-0 h-1/2 origin-bottom will-change-transform"
+					/>
+				</div>
+
+				<div
+					ref={contentRef}
+					className="relative z-20 flex min-h-[100dvh] flex-col items-center justify-center px-6 py-20 text-center sm:px-8 sm:py-16 lg:h-full lg:min-h-0 lg:py-0"
+				>
+					<HeroCopy
+						label={t("label")}
+						titleLine1={t("titleLine1")}
+						titleLine2={t("titleLine2")}
+						description={description}
+						primaryCta={t("primaryCta")}
+						secondaryCta={t("secondaryCta")}
+						labelRef={labelRef}
+						titleLine1Ref={titleLine1Ref}
+						titleLine2Ref={titleLine2Ref}
+						descriptionRef={descriptionRef}
+						actionsRef={actionsRef}
+					/>
+				</div>
+
+				<div
+					ref={scrollIndicatorRef}
+					className={cn(
+						"absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-2",
+						"animate-scroll-indicator-bounce",
+					)}
+					aria-hidden="true"
+				>
+					<span className="text-footnote text-champagne/45 font-sans tracking-widest uppercase">
+						{t("scroll")}
+					</span>
+					<div className="from-champagne/50 h-12 w-px bg-gradient-to-b to-transparent" />
+				</div>
+			</div>
+		</section>
+	);
+}
