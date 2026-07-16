@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { SmoothScrollProvider } from "@/components/common/SmoothScrollProvider";
@@ -60,6 +61,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 						<ScrollToTopButton />
 					</SmoothScrollProvider>
 				</NextIntlClientProvider>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
