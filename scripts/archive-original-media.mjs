@@ -30,7 +30,7 @@ async function fileExists(absolutePath) {
 	}
 }
 
-async function archiveAsset(assetPath) {
+async function archiveAsset(assetPath, allFacesImagePaths) {
 	const absoluteSourcePath = toAbsoluteAssetPath(assetPath);
 	const absoluteArchivePath = toArchiveAssetPath(assetPath);
 	const detailPath = getDetailPreviewAssetPath(assetPath);
@@ -90,7 +90,7 @@ async function main() {
 	const results = [];
 
 	for (const assetPath of assetPaths) {
-		const result = await archiveAsset(assetPath);
+		const result = await archiveAsset(assetPath, allFacesImagePaths);
 		results.push(result);
 
 		if (result.status === "archived" || result.status === "would-archive") {

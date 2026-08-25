@@ -56,7 +56,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 			: tDetail("specs.facesSingle");
 
 	const bodyValue =
-		product.collectionId === "architectural"
+		product.bodyType === "standard" || product.collectionId === "architectural"
 			? tDetail("specs.bodyStandard")
 			: tDetail("specs.bodyWhite");
 
