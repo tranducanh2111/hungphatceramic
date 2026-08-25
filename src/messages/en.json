@@ -655,8 +655,14 @@
 			"demoWorkLightboxCounter": "Example {current} of {total}",
 			"demoWorkGoToExample": "Go to installation example {exampleNumber}",
 			"demoWorkZoom": "Zoom installation example {exampleNumber}",
-			"facesOverviewComposite": "Faces overview (composite)",
+			"facesOverviewComposite": "All faces overview (composite)",
 			"facesOverviewCompositeAlt": "All face variations composite sheet for {productName}",
+			"faceSwitcherTabAll": "All faces",
+			"faceSwitcherTabNumber": "Face {number}",
+			"faceSwitcherAriaLabel": "Select tile face variation",
+			"faceLightboxPrevious": "Previous face",
+			"faceLightboxNext": "Next face",
+			"faceLightboxCounter": "Face {current} of {total}",
 			"individualFaces": "Individual faces ({count})",
 			"faceImageAlt": "{productName} face {faceNumber}",
 			"lightboxAlt": "Expanded product image",
@@ -692,14 +698,6 @@
 				"aspectLarge": "1:2",
 				"aspectSquare": "1:1",
 				"quoteMailtoSubject": "Inquiry about {productName} (SKU: {skuCode})"
-			},
-			"panorama": {
-				"ariaLabel": "Panorama room view for {productName}",
-				"label": "Room panorama",
-				"heading": "See it in the space",
-				"description": "Scroll to explore a wide interior visualization featuring {productName} across the floor and walls.",
-				"scrollHint": "Scroll to explore",
-				"imageAlt": "Wide panoramic interior visualization using {productName} porcelain surfaces"
 			}
 		},
 		"contact": {

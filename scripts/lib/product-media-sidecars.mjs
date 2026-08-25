@@ -8,6 +8,7 @@ import {
 	getDetailPreviewAssetPath,
 	getListingPreviewAssetPath,
 	toAbsoluteAssetPath,
+	toArchiveAssetPath,
 } from "./product-asset-paths.mjs";
 
 export const LISTING_PREVIEW_MAX_EDGE = 1280;
@@ -25,10 +26,17 @@ export async function generateListingPreview(assetPath) {
 	const absoluteListingPath = toAbsoluteAssetPath(listingAssetPath);
 
 	let sourceStat;
+	let inputSourcePath = absoluteSourcePath;
 	try {
 		sourceStat = await stat(absoluteSourcePath);
 	} catch {
-		return { assetPath: listingAssetPath, sourcePath: assetPath, status: "missing-source" };
+		const archivePath = toArchiveAssetPath(assetPath);
+		try {
+			sourceStat = await stat(archivePath);
+			inputSourcePath = archivePath;
+		} catch {
+			return { assetPath: listingAssetPath, sourcePath: assetPath, status: "missing-source" };
+		}
 	}
 
 	try {
@@ -45,7 +53,7 @@ export async function generateListingPreview(assetPath) {
 		// Generate a new listing preview.
 	}
 
-	const inputBuffer = await readFile(absoluteSourcePath);
+	const inputBuffer = await readFile(inputSourcePath);
 	const pipeline = sharp(inputBuffer, { failOn: "none", limitInputPixels: false }).rotate();
 	const metadata = await pipeline.metadata();
 	const longestEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);
@@ -82,10 +90,17 @@ export async function generateDetailPreview(assetPath) {
 	const absoluteDetailPath = toAbsoluteAssetPath(detailAssetPath);
 
 	let sourceStat;
+	let inputSourcePath = absoluteSourcePath;
 	try {
 		sourceStat = await stat(absoluteSourcePath);
 	} catch {
-		return { assetPath: detailAssetPath, sourcePath: assetPath, status: "missing-source" };
+		const archivePath = toArchiveAssetPath(assetPath);
+		try {
+			sourceStat = await stat(archivePath);
+			inputSourcePath = archivePath;
+		} catch {
+			return { assetPath: detailAssetPath, sourcePath: assetPath, status: "missing-source" };
+		}
 	}
 
 	try {
@@ -102,7 +117,7 @@ export async function generateDetailPreview(assetPath) {
 		// Generate a new detail preview.
 	}
 
-	const inputBuffer = await readFile(absoluteSourcePath);
+	const inputBuffer = await readFile(inputSourcePath);
 	const pipeline = sharp(inputBuffer, { failOn: "none", limitInputPixels: false }).rotate();
 	const metadata = await pipeline.metadata();
 	const longestEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);

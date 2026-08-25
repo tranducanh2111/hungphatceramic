@@ -7,6 +7,7 @@ import { IconButton, ZoomableImage } from "@/components/ui";
 import { encodePublicAssetPath, resolveDetailGalleryImagePath } from "@/lib/products/media";
 
 export interface GalleryLightboxProps {
+	// Demo work lightbox props
 	isDemoLightboxOpen: boolean;
 	closeDemoLightbox: () => void;
 	activeDemoImage: string | undefined;
@@ -16,10 +17,18 @@ export interface GalleryLightboxProps {
 	productName: string;
 	goToPreviousDemo: () => void;
 	goToNextDemo: () => void;
-	isCompositeLightboxOpen: boolean;
-	onCloseCompositeLightbox: () => void;
-	allFacesImage: string | undefined;
-	compositeAlt: string;
+
+	// Tile surface / Face switcher lightbox props
+	isFaceLightboxOpen: boolean;
+	closeFaceLightbox: () => void;
+	activeFaceImage: string | undefined;
+	activeFaceIndex: number;
+	faceCount: number;
+	hasMultipleFaces: boolean;
+	activeFaceLabel: string;
+	activeFaceAlt: string;
+	goToPreviousFace: () => void;
+	goToNextFace: () => void;
 }
 
 export function GalleryLightbox({
@@ -32,15 +41,22 @@ export function GalleryLightbox({
 	productName,
 	goToPreviousDemo,
 	goToNextDemo,
-	isCompositeLightboxOpen,
-	onCloseCompositeLightbox,
-	allFacesImage,
-	compositeAlt,
+	isFaceLightboxOpen,
+	closeFaceLightbox,
+	activeFaceImage,
+	activeFaceIndex,
+	faceCount,
+	hasMultipleFaces,
+	activeFaceLabel,
+	activeFaceAlt,
+	goToPreviousFace,
+	goToNextFace,
 }: GalleryLightboxProps) {
 	const tDetail = useTranslations("pages.productDetail");
 
 	return (
 		<AnimatePresence>
+			{/* Demo Work Lightbox */}
 			{isDemoLightboxOpen && activeDemoImage && (
 				<motion.div
 					initial={{ opacity: 0 }}
@@ -117,37 +133,79 @@ export function GalleryLightbox({
 				</motion.div>
 			)}
 
-			{isCompositeLightboxOpen && allFacesImage && (
+			{/* Tile Face Lightbox */}
+			{isFaceLightboxOpen && activeFaceImage && (
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					onClick={onCloseCompositeLightbox}
-					className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-default items-center justify-center p-6 backdrop-blur-md"
+					onClick={closeFaceLightbox}
+					className="bg-sapphire-deep/95 fixed inset-0 z-50 flex cursor-default items-center justify-center p-4 backdrop-blur-md sm:p-6"
 				>
 					<button
 						type="button"
-						onClick={onCloseCompositeLightbox}
-						className="text-linen hover:text-champagne absolute top-6 right-6 z-10 text-3xl font-light transition-colors"
+						onClick={closeFaceLightbox}
+						className="text-linen hover:text-champagne absolute top-4 right-4 z-[60] flex h-10 w-10 items-center justify-center text-2xl font-light transition-colors sm:top-6 sm:right-6 sm:text-3xl"
 						aria-label={tDetail("lightboxClose")}
 					>
 						✕
 					</button>
 
+					{hasMultipleFaces && (
+						<>
+							<div className="absolute top-5 left-1/2 z-[60] -translate-x-1/2 text-center sm:top-6">
+								<p className="text-footnote text-champagne font-sans font-medium tracking-[0.15em] uppercase">
+									{activeFaceLabel}
+								</p>
+								<p className="text-[11px] text-linen/50 font-sans tracking-wider">
+									{tDetail("faceLightboxCounter", {
+										current: activeFaceIndex + 1,
+										total: faceCount,
+									})}
+								</p>
+							</div>
+
+							<IconButton
+								variant="galleryOverlay"
+								onClick={(event) => {
+									event.stopPropagation();
+									goToPreviousFace();
+								}}
+								className="absolute top-1/2 left-2 z-[60] sm:left-4"
+								aria-label={tDetail("faceLightboxPrevious")}
+							>
+								<ChevronLeft className="h-5 w-5" aria-hidden />
+							</IconButton>
+							<IconButton
+								variant="galleryOverlay"
+								onClick={(event) => {
+									event.stopPropagation();
+									goToNextFace();
+								}}
+								className="absolute top-1/2 right-2 z-[60] sm:right-4"
+								aria-label={tDetail("faceLightboxNext")}
+							>
+								<ChevronRight className="h-5 w-5" aria-hidden />
+							</IconButton>
+						</>
+					)}
+
 					<motion.div
-						initial={{ scale: 0.95 }}
-						animate={{ scale: 1 }}
-						exit={{ scale: 0.95 }}
+						key={activeFaceImage}
+						initial={{ scale: 0.95, opacity: 0 }}
+						animate={{ scale: 1, opacity: 1 }}
+						exit={{ scale: 0.95, opacity: 0 }}
+						transition={{ duration: 0.25 }}
 						className="relative z-[55] flex h-[calc(100vh-6rem)] w-full items-center justify-center"
 						onClick={(event) => event.stopPropagation()}
 					>
 						<ZoomableImage
 							src={encodePublicAssetPath(
-								resolveDetailGalleryImagePath(allFacesImage),
+								resolveDetailGalleryImagePath(activeFaceImage),
 							)}
-							alt={compositeAlt}
+							alt={activeFaceAlt}
 							fill
-							sizes="90vw"
+							sizes="95vw"
 							className="object-contain"
 							containerClassName="h-full w-full"
 						/>

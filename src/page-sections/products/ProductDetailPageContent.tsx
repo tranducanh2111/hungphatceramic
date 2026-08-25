@@ -16,10 +16,6 @@ const ProductDetailGallery = dynamic(
 	{ ssr: false },
 );
 
-const ProductDetailPanorama = dynamic(() =>
-	import("./ProductDetailPanorama").then((m) => ({ default: m.ProductDetailPanorama })),
-);
-
 const ProductDetailSpecs = dynamic(
 	() => import("./ProductDetailSpecs").then((m) => ({ default: m.ProductDetailSpecs })),
 	{ ssr: false },
@@ -94,10 +90,10 @@ export function ProductDetailPageContent({
 				animate={isExiting ? "exit" : "animate"}
 			>
 				<ProductDetailGallery key={displayProduct.slug} product={displayProduct} />
-				<ProductDetailPanorama product={product} />
 				<ProductDetailSpecs product={displayProduct} />
 				<ProductDetailRelated product={displayProduct} activeSizeId={activeSizeId} />
 			</motion.div>
 		</>
 	);
 }
+

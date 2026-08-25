@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { PRODUCTS } from "@/constants/products";
-import { encodePublicAssetPath } from "@/lib/products/media";
 import { localizeListingCatalog } from "@/lib/products/localizeCatalog";
 import {
 	getCollectionListingMeta,

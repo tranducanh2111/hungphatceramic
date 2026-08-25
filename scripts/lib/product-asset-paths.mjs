@@ -46,8 +46,8 @@ export function isDemoWorkAssetPath(assetPath) {
 	return false;
 }
 
-export function isPanoramaAssetPath(assetPath) {
-	return /panorama/i.test(assetPath) || /Ảnh Panorama/i.test(assetPath);
+export function isPanoramaAssetPath(_assetPath) {
+	return false;
 }
 
 export function isCompositeFacesAssetPath(assetPath) {
@@ -145,10 +145,11 @@ export function requiresDetailWebp(assetPath, allFacesImagePaths) {
 	if (isDemoWorkAssetPath(assetPath)) {
 		return true;
 	}
-	if (isPanoramaAssetPath(assetPath)) {
+	if (allFacesImagePaths?.has(assetPath) || isCompositeFacesAssetPath(assetPath)) {
 		return true;
 	}
-	if (allFacesImagePaths?.has(assetPath) || isCompositeFacesAssetPath(assetPath)) {
+	// Face images under catalog directories also benefit from .detail.webp
+	if (/\.(jpe?g|png)$/i.test(assetPath)) {
 		return true;
 	}
 	return false;
@@ -156,7 +157,6 @@ export function requiresDetailWebp(assetPath, allFacesImagePaths) {
 
 /**
  * Paths that resolveDetailGalleryImagePath() maps at runtime (incl. ?size= remaps).
- * Panoramas stay in 60X120 Ảnh Panorama — not expanded to synced size folders.
  */
 export async function collectRuntimeDetailSources() {
 	const [productsSource, indoSource] = await Promise.all([
@@ -164,15 +164,12 @@ export async function collectRuntimeDetailSources() {
 		readFile(INDO_PRODUCTS_TS, "utf8"),
 	]);
 
-	const allFacesImagePaths = collectAllFacesImagePaths(productsSource);
-	const paths = new Set([...allFacesImagePaths]);
+	const paths = new Set();
 
 	for (const source of [productsSource, indoSource]) {
 		for (const match of source.matchAll(ASSET_PATH_PATTERN)) {
 			const assetPath = match[1];
-			if (isDemoWorkAssetPath(assetPath)) {
-				paths.add(assetPath);
-			} else if (isPanoramaAssetPath(assetPath)) {
+			if (!isSidecarAssetPath(assetPath)) {
 				paths.add(assetPath);
 			}
 		}
@@ -180,7 +177,7 @@ export async function collectRuntimeDetailSources() {
 
 	// INDO assets are built in code — no literal `/assets/...` strings in indo-products.ts.
 	for (const assetPath of collectIndoAssetPaths(indoSource)) {
-		if (isDemoWorkAssetPath(assetPath) || isCompositeFacesAssetPath(assetPath)) {
+		if (!isSidecarAssetPath(assetPath)) {
 			paths.add(assetPath);
 		}
 	}
@@ -188,9 +185,6 @@ export async function collectRuntimeDetailSources() {
 	const squareMirrorPaths = collectAssetPathsRequiringSquareMirror(productsSource);
 	const expanded = new Set(paths);
 	for (const assetPath of paths) {
-		if (isPanoramaAssetPath(assetPath)) {
-			continue;
-		}
 		if (!getSourceSizeFolder(assetPath)) {
 			continue;
 		}
@@ -216,6 +210,7 @@ export function collectIndoAssetPaths(indoSource) {
 		const sku = block.match(/skuCode:\s*"((?:GS|SS|GP)\d+[A-Z0-9]*)"/)?.[1];
 		if (!sku) continue;
 
+		const faceCount = Number.parseInt(block.match(/faceCount:\s*(\d+)/)?.[1] ?? "0", 10);
 		const sceneCount = Number.parseInt(block.match(/sceneCount:\s*(\d+)/)?.[1] ?? "1", 10);
 		const hasFullFacesComposite = block.includes("hasFullFacesComposite: true");
 
@@ -227,6 +222,9 @@ export function collectIndoAssetPaths(indoSource) {
 		const base = `/assets/${sizeFolder}/INDO ${sku}`;
 
 		paths.add(`${base}/${sku}.jpg`);
+		for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
+			paths.add(`${base}/${sku}_F${faceIndex}.jpg`);
+		}
 		paths.add(`${base}/${sku}_PhoiCanh.jpg`);
 		for (let sceneIndex = 2; sceneIndex <= sceneCount; sceneIndex += 1) {
 			paths.add(`${base}/${sku}_PhoiCanh_${sceneIndex}.jpg`);
