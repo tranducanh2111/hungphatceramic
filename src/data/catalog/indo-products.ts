@@ -20,16 +20,19 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS881042",
 		format: "square80",
+		sceneCount: 2,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "GS881045",
 		format: "square80",
+		sceneCount: 2,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "GS883009",
 		format: "square80",
+		sceneCount: 2,
 		hasFullFacesComposite: true,
 	},
 	{
@@ -37,7 +40,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Olympus White",
 		faceCount: 12,
-		sceneCount: 1,
+		sceneCount: 2,
 		hasFullFacesComposite: true,
 	},
 	{
@@ -51,21 +54,49 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "SS1261307",
 		format: "rect",
+		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261310",
 		format: "rect",
+		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261311",
 		format: "rect",
+		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261315",
 		format: "rect",
+		sceneCount: 1,
+		hasFullFacesComposite: true,
+	},
+	{
+		skuCode: "GP10C41",
+		format: "square",
+		marketingName: "Albino Crema",
+		faceCount: 6,
+		sceneCount: 1,
+		hasFullFacesComposite: true,
+	},
+	{
+		skuCode: "GP10C46",
+		format: "square",
+		marketingName: "Smiley Crema",
+		faceCount: 6,
+		sceneCount: 1,
+		hasFullFacesComposite: true,
+	},
+	{
+		skuCode: "GP10C49",
+		format: "square",
+		marketingName: "Honey Crema",
+		faceCount: 6,
+		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
 ];

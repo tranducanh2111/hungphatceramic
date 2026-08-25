@@ -180,7 +180,7 @@ export async function collectRuntimeDetailSources() {
 
 	// INDO assets are built in code — no literal `/assets/...` strings in indo-products.ts.
 	for (const assetPath of collectIndoAssetPaths(indoSource)) {
-		if (isDemoWorkAssetPath(assetPath)) {
+		if (isDemoWorkAssetPath(assetPath) || isCompositeFacesAssetPath(assetPath)) {
 			paths.add(assetPath);
 		}
 	}
@@ -208,12 +208,12 @@ export function requiresListingWebp(assetPath) {
 
 export function collectIndoAssetPaths(indoSource) {
 	const paths = new Set();
-	const squareSkus = new Set([]);
+	const squareSkus = new Set(["GP10C41", "GP10C46", "GP10C49"]);
 	const square80Skus = new Set(["SS886101", "SS886106", "GS881042", "GS881045", "GS883009"]);
 	const seedBlocks = indoSource.match(/\{[\s\S]*?hasFullFacesComposite[\s\S]*?\}/g) ?? [];
 
 	for (const block of seedBlocks) {
-		const sku = block.match(/skuCode:\s*"((?:GS|SS)\d+)"/)?.[1];
+		const sku = block.match(/skuCode:\s*"((?:GS|SS|GP)\d+[A-Z0-9]*)"/)?.[1];
 		if (!sku) continue;
 
 		const sceneCount = Number.parseInt(block.match(/sceneCount:\s*(\d+)/)?.[1] ?? "1", 10);

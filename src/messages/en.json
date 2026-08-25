@@ -900,6 +900,46 @@
 			"indo-ss1261315": {
 				"name": "INDO SS1261315",
 				"description": "INDO large-format tile with muted elegance for serene, high-end interiors."
+			},
+			"indo-gp10c41": {
+				"name": "Albino Crema GP10C41",
+				"description": "Elegant cream-veined porcelain in 100×100cm square format imported from India, providing luminous sophistication for luxury residences."
+			},
+			"indo-gp10c46": {
+				"name": "Smiley Crema GP10C46",
+				"description": "Warm cream tones with refined natural stone veining in 100×100cm format from India, delivering inviting warmth and architectural depth."
+			},
+			"indo-gp10c49": {
+				"name": "Honey Crema GP10C49",
+				"description": "Rich honey-cream porcelain in 100×100cm square format from India, providing opulent light reflection for grand halls and living spaces."
+			},
+			"peace-gp12736": {
+				"name": "Peace GP12736",
+				"description": "Polished white-body porcelain in 60×120cm format featuring soft marble veining, perfectly harmonizing with upscale bathrooms and foyers."
+			},
+			"standard-g12h02": {
+				"name": "Standard G12H02",
+				"description": "Standard-body porcelain in 60×120cm format crafted in Vietnam, offering a resilient matte surface and strong architectural character."
+			},
+			"standard-g12h07": {
+				"name": "Standard G12H07",
+				"description": "Standard-body 60×120cm porcelain crafted in Vietnam, showcasing subtle stone textures for serene living spaces."
+			},
+			"standard-g12h08": {
+				"name": "Standard G12H08",
+				"description": "Standard-body 60×120cm porcelain with high structural strength and neutral grey veining, ideal for residential and commercial interiors."
+			},
+			"standard-g12h09": {
+				"name": "Standard G12H09",
+				"description": "Standard-body 60×120cm porcelain made in Vietnam featuring elegant tones, balancing refined aesthetics with project efficiency."
+			},
+			"standard-g12h17": {
+				"name": "Standard G12H17",
+				"description": "Standard-body 60×120cm porcelain with delicate natural veining, delivering timeless interior elegance."
+			},
+			"standard-gp12h12": {
+				"name": "Standard GP12H12",
+				"description": "Polished standard-body 60×120cm porcelain crafted in Vietnam, maximizing light play and contemporary luxury."
 			}
 		}
 	}
