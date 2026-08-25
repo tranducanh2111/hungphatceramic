@@ -29,7 +29,7 @@ export function ProductDetailRelated({ product, activeSizeId }: ProductDetailRel
 		return localizeListingCatalog(peers, tItems).map((item) =>
 			applyTileSizeToListingItem(item, activeSizeId),
 		);
-	}, [product.collectionId, product.slug, activeSizeId]);
+	}, [product.collectionId, product.slug, activeSizeId, tItems]);
 
 	if (related.length === 0) return null;
 

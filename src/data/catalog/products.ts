@@ -24,11 +24,8 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire G12962J/G12962J (6).jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Inspire G12962J/PC-G12962J.jpg",
-			"/assets/60X120/Inspire G12962J/PC-G12962J-1.jpg",
 			"/assets/60X120/Inspire G12962J/PC G12962.jpg",
 			"/assets/60X120/Inspire G12962J/PC GP12962.jpg",
-			"/assets/60X120/Ảnh Panorama/Inspire G12962J.png",
 		],
 		allFacesImage: "/assets/60X120/Inspire G12962J/G12962J - 6 FACES.jpg",
 	},
@@ -48,10 +45,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire G12967J/G12967J_06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Inspire G12967J/PC-G12967J.jpg",
-			"/assets/60X120/Inspire G12967J/PC-G12967J-2.jpg",
 			"/assets/60X120/Inspire G12967J/PC G12967J.png",
-			"/assets/60X120/Ảnh Panorama/Inspire G12967J.png",
 		],
 		allFacesImage: "/assets/60X120/Inspire G12967J/G12967J - FullFaces.jpg",
 	},
@@ -71,9 +65,8 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire GP12962J/GP12962J (6).jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Inspire GP12962J/PC-GP12962J.jpg",
-			"/assets/60X120/Inspire GP12962J/PC1-GP12962J.jpg",
-			"/assets/60X120/Ảnh Panorama/GP12962J.png",
+			"/assets/60X120/Inspire G12962J/PC GP12962.jpg",
+			"/assets/60X120/Inspire G12962J/PC G12962.jpg",
 		],
 		allFacesImage: "/assets/60X120/Inspire GP12962J/GP12962J - FullFaces.jpg",
 	},
@@ -95,7 +88,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/G88962J/G88962 (6).jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88962J/PC124-G88962.jpg",
 			"/assets/80X80/G88962J/PC G88962.png",
 		],
 		allFacesImage: "/assets/80X80/G88962J/G88962.jpg",
@@ -115,7 +107,9 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88962/GP88962_05.jpg",
 			"/assets/80X80/GP88962/GP88962_06.jpg",
 		],
-		sceneImages: ["/assets/80X80/GP88962/PC117-GP88962.jpg"],
+		sceneImages: [
+			"/assets/80X80/G88962J/PC G88962.png",
+		],
 		allFacesImage: "/assets/80X80/GP88962/GP88962.jpg",
 	},
 
@@ -132,7 +126,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Travertine T01 T06/G12T01.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Travertine T01 T06/PC137-G12T01.jpg",
 			"/assets/60X120/Travertine T01 T06/PC G12T01.png",
 			"/assets/60X120/Travertine T01 T06/PC G12T01J.jpg",
 			"/assets/60X120/Travertine T01 T06/PC GP12T01.jpg",
@@ -151,7 +144,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Travertine T01 T06/G12T06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Travertine T01 T06/PC136-G12T06.jpg",
 			"/assets/60X120/Travertine T01 T06/PC-G88T06-X-G12T06.jpg",
 		],
 		allFacesImage: "/assets/60X120/Travertine T01 T06/G12T06 - FullFaces.jpg",
@@ -170,7 +162,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/G88T01J/G88T01J (4).jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88T01J/PC123-G88T01.jpg",
 			"/assets/80X80/G88T01J/PC G88T01.jpg",
 			"/assets/80X80/G88T01J/PC GP88T01.jpg",
 		],
@@ -190,11 +181,9 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/G88T06J/G88T06J (4).jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88T06J/PC122-G88T06.jpg",
 			"/assets/80X80/G88T06J/PC G88T06 X G12T06.jpg",
 			"/assets/80X80/G88T06J/PC G88T06.jpg",
 			"/assets/80X80/G88T06J/PC GP88T06.jpg",
-			"/assets/80X80/G88T06J/PC120-GP88T06.jpg",
 		],
 		allFacesImage: "/assets/80X80/G88T06J/G88T06J.jpg",
 	},
@@ -211,7 +200,10 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88T01J/GP88T01J_03.jpg",
 			"/assets/80X80/GP88T01J/GP88T01J_04.jpg",
 		],
-		sceneImages: ["/assets/80X80/GP88T01J/PC119-GP88T01J.jpg"],
+		sceneImages: [
+			"/assets/80X80/G88T01J/PC GP88T01.jpg",
+			"/assets/80X80/G88T01J/PC G88T01.jpg",
+		],
 		allFacesImage: "/assets/80X80/GP88T01J/GP88T01J.jpg",
 	},
 	{
@@ -227,7 +219,11 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88T06J/GP88T06J_03.jpg",
 			"/assets/80X80/GP88T06J/GP88T06J_04.jpg",
 		],
-		sceneImages: ["/assets/80X80/GP88T06J/PC120-GP88T06.jpg"],
+		sceneImages: [
+			"/assets/80X80/G88T06J/PC GP88T06.jpg",
+			"/assets/80X80/G88T06J/PC G88T06.jpg",
+			"/assets/80X80/G88T06J/PC G88T06 X G12T06.jpg",
+		],
 		allFacesImage: "/assets/80X80/GP88T06J/GP88T06J.jpg",
 	},
 
@@ -248,8 +244,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Orient Star G12W05J/G12W05J-6.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Orient Star G12W05J/PC-G12W05J-2.jpg",
-			"/assets/60X120/Ảnh Panorama/Orient Star G12W05J.png",
+			"/assets/60X120/Orient Star GP12W05J/PC-GP12W05J.jpg",
 		],
 		allFacesImage: "/assets/60X120/Orient Star G12W05J/G12W05J-6 faces.jpg",
 	},
@@ -291,11 +286,8 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Sunshine G12032J/G12032J_06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Sunshine G12032J/PC-G12032.jpg",
-			"/assets/60X120/Sunshine G12032J/PC-G12032-1.jpg",
 			"/assets/60X120/Sunshine G12032J/PC G12032.jpg",
 			"/assets/60X120/Sunshine G12032J/PC G12032.png",
-			"/assets/60X120/Ảnh Panorama/Sunshine G12032J.png",
 		],
 		allFacesImage: "/assets/60X120/Sunshine G12032J/G12032-6 faces.jpg",
 	},
@@ -315,8 +307,8 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Sunshine GP12032J/GP12032J_06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Sunshine GP12032J/PC-GP12032.jpg",
-			"/assets/60X120/Ảnh Panorama/Sunshine GP12032J.png",
+			"/assets/60X120/Sunshine G12032J/PC G12032.jpg",
+			"/assets/60X120/Sunshine G12032J/PC G12032.png",
 		],
 		allFacesImage: "/assets/60X120/Sunshine GP12032J/GP12032-6 faces.jpg",
 	},
@@ -336,7 +328,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/G88032J/G88032 (6).jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88032J/PC125-G88032.jpg",
 			"/assets/80X80/G88032J/PC G88032.jpg",
 			"/assets/80X80/G88032J/PC G88032.png",
 			"/assets/80X80/G88032J/PC GP88032.png",
@@ -358,7 +349,11 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88032J/GP88032J_05.jpg",
 			"/assets/80X80/GP88032J/GP88032J_06.jpg",
 		],
-		sceneImages: ["/assets/80X80/GP88032J/PC116-GP88032J.jpg"],
+		sceneImages: [
+			"/assets/80X80/G88032J/PC GP88032.png",
+			"/assets/80X80/G88032J/PC G88032.jpg",
+			"/assets/80X80/G88032J/PC G88032.png",
+		],
 		allFacesImage: "/assets/80X80/GP88032J/GP88032J.jpg",
 	},
 
@@ -420,7 +415,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Peace GP12H03J (Flow)/PC-GP12H03J.jpg",
 			"/assets/60X120/Peace GP12H03J (Flow)/PC1-GP12H03J.jpg",
 			"/assets/60X120/Peace GP12H03J (Flow)/PC2-GP12H03J.jpg",
-			"/assets/60X120/Ảnh Panorama/GP12H03J.png",
 		],
 		allFacesImage: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_6 faces.jpg",
 	},
@@ -441,7 +435,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		],
 		sceneImages: [
 			"/assets/60X120/Peace GP12H05J/PC-GP12H05J.jpg",
-			"/assets/60X120/Ảnh Panorama/GP12H05J.png",
 		],
 		allFacesImage: "/assets/60X120/Peace GP12H05J/GP12H05J.jpg",
 	},
@@ -461,7 +454,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88736J/GP88736j_06.jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/GP88736J/PC121-GP88736.jpg",
 			"/assets/80X80/GP88736J/PC GP88736.jpg",
 		],
 		allFacesImage: "/assets/80X80/GP88736J/GP88736J.jpg",

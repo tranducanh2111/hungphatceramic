@@ -17,7 +17,7 @@ import {
 	remapAssetPathForSizeFolder,
 } from "./lib/product-asset-paths.mjs";
 
-const SKIP_PATH_HINTS = [/panorama/i, /Ảnh Panorama/i];
+const SKIP_PATH_HINTS = [];
 
 function shouldSkipAssetPath(assetPath) {
 	return SKIP_PATH_HINTS.some((hint) => hint.test(assetPath));
@@ -50,10 +50,22 @@ async function copyIfNeeded(sourceRelative, targetRelative) {
 	);
 
 	let sourceStat;
+	let sourcePathToUse = sourceAbsolute;
 	try {
 		sourceStat = await stat(sourceAbsolute);
 	} catch {
-		return { status: "missing-source", path: sourceRelative };
+		const archiveAbsolute = path.join(
+			PUBLIC_ASSETS,
+			"_archive",
+			"originals",
+			sourceRelative.replace(/^\/assets\//, "").split("/").join(path.sep),
+		);
+		try {
+			sourceStat = await stat(archiveAbsolute);
+			sourcePathToUse = archiveAbsolute;
+		} catch {
+			return { status: "missing-source", path: sourceRelative };
+		}
 	}
 
 	if (!sourceStat.isFile()) {
@@ -73,7 +85,7 @@ async function copyIfNeeded(sourceRelative, targetRelative) {
 		return { status: "skipped-existing", path: targetRelative };
 	}
 
-	await copyFile(sourceAbsolute, targetAbsolute);
+	await copyFile(sourcePathToUse, targetAbsolute);
 	return { status: "copied", path: targetRelative };
 }
 

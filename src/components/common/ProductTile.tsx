@@ -5,7 +5,6 @@ import { ProductTileCard } from "@/components/ui";
 import { productDetailHref } from "@/lib/products/asset-paths";
 import {
 	encodePublicAssetPath,
-	getPrimaryDemoWorkAssetPath,
 	resolveListingDemoWorkHoverPath,
 } from "@/lib/products/media";
 import type { ProductListingItem } from "@/lib/products/listing";

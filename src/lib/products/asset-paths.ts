@@ -1,6 +1,6 @@
 import type { ProductDetail } from "@/types";
 import type { ProductListingItem } from "@/lib/products/listing";
-import { getTileSizeDimension, isTileSizeSlug, type TileSizeSlug } from "@/lib/products/listing";
+import { getTileSizeDimension, isTileSizeSlug } from "@/lib/products/listing";
 
 /** Catalogue dimension label → `public/assets` folder name. */
 export const TILE_DIMENSION_TO_ASSET_FOLDER = {
