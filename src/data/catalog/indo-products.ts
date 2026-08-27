@@ -27,7 +27,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS881045",
 		format: "square80",
-		sceneCount: 0,
+		sceneFiles: ["GS881045_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{

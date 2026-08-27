@@ -684,23 +684,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 
 	// H12 Design (4 Faces)
 	{
-		slug: "standard-g12h12",
-		skuCode: "G12H12",
-		collectionId: "standard",
-		category: "60×120cm",
-		sizes: ["60×120cm"],
-		thumbnailUrl: "/assets/60X120/Standard GP12H12/GP12H12.jpg",
-		faceImages: [
-			"/assets/60X120/Standard GP12H12/GP12H12_F1.jpg",
-			"/assets/60X120/Standard GP12H12/GP12H12_F2.jpg",
-			"/assets/60X120/Standard GP12H12/GP12H12_F3.jpg",
-			"/assets/60X120/Standard GP12H12/GP12H12_F4.jpg",
-		],
-		sceneImages: ["/assets/60X120/Standard GP12H12/PC-GP12H12.jpg"],
-		allFacesImage: "/assets/60X120/Standard GP12H12/GP12H12 - FullFaces.jpg",
-		bodyType: "standard",
-	},
-	{
 		slug: "standard-gp12h12",
 		skuCode: "GP12H12",
 		collectionId: "standard",

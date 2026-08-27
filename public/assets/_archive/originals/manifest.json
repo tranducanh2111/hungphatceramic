@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T05:20:10.406Z",
+  "updatedAt": "2026-08-27T12:08:06.294Z",
   "entries": [
     {
       "sourcePath": "/assets/100X100/G88032J/PC G88032.jpg",
@@ -1014,7 +1014,7 @@
       "archivePath": "/assets/_archive/originals/80X80/INDO GS883009/GS883009_PhoiCanh.png",
       "optimizedReplacement": "/assets/80X80/INDO GS883009/GS883009_PhoiCanh.detail.webp",
       "sizeMb": "17.20",
-      "archivedAt": "2026-08-27T05:20:10.389Z",
+      "archivedAt": "2026-08-27T12:08:06.282Z",
       "dryRun": false
     },
     {
@@ -1031,6 +1031,22 @@
       "optimizedReplacement": "/assets/80X80/INDO SS886106/SS886106_PhoiCanh.detail.webp",
       "sizeMb": "22.48",
       "archivedAt": "2026-08-27T05:20:10.403Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/INDO GS881042/GS881042_PhoiCanh.jpg",
+      "archivePath": "/assets/_archive/originals/80X80/INDO GS881042/GS881042_PhoiCanh.jpg",
+      "optimizedReplacement": "/assets/80X80/INDO GS881042/GS881042_PhoiCanh.detail.webp",
+      "sizeMb": "63.76",
+      "archivedAt": "2026-08-27T12:08:06.274Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/INDO GS881045/GS881045_PhoiCanh.png",
+      "archivePath": "/assets/_archive/originals/80X80/INDO GS881045/GS881045_PhoiCanh.png",
+      "optimizedReplacement": "/assets/80X80/INDO GS881045/GS881045_PhoiCanh.detail.webp",
+      "sizeMb": "12.15",
+      "archivedAt": "2026-08-27T12:08:06.279Z",
       "dryRun": false
     }
   ]
