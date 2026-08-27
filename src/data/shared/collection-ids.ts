@@ -6,6 +6,7 @@ export const COLLECTION_IDS = [
 	"sunshine",
 	"architectural",
 	"peace",
+	"standard",
 	"indo",
 ] as const;
 

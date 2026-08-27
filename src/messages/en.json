@@ -25,6 +25,9 @@
 		"peace": {
 			"name": "Peace Series"
 		},
+		"standard": {
+			"name": "Standard Body"
+		},
 		"indo": {
 			"name": "INDO Series"
 		}
@@ -76,6 +79,7 @@
 			"sunshine": "Sunshine Series",
 			"architectural": "20mm Architectural",
 			"peace": "Peace Series",
+			"standard": "Standard Body",
 			"indo": "INDO Series"
 		},
 		"legal": {
@@ -624,6 +628,7 @@
 				"sunshine": "Sunshine Series",
 				"architectural": "20mm Architectural",
 				"peace": "Peace Series",
+				"standard": "Standard Body",
 				"indo": "INDO Series"
 			},
 			"sizes": {

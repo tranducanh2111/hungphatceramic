@@ -102,7 +102,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/GP88962/GP88962_06.jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88962J/PC G88962.png",
+			"/assets/80X80/GP88962/PC GP88962.jpg",
 		],
 		allFacesImage: "/assets/80X80/GP88962/GP88962.jpg",
 	},
@@ -328,9 +328,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/80X80/G88032J/G88032 (6).jpg",
 		],
 		sceneImages: [
-			"/assets/80X80/G88032J/PC G88032.jpg",
 			"/assets/80X80/G88032J/PC G88032.png",
-			"/assets/80X80/G88032J/PC GP88032.png",
 		],
 		allFacesImage: "/assets/80X80/G88032J/G88032J.jpg",
 	},
@@ -351,8 +349,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		],
 		sceneImages: [
 			"/assets/80X80/G88032J/PC GP88032.png",
-			"/assets/80X80/G88032J/PC G88032.jpg",
-			"/assets/80X80/G88032J/PC G88032.png",
 		],
 		allFacesImage: "/assets/80X80/GP88032J/GP88032J.jpg",
 	},
@@ -486,7 +482,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h02",
 		skuCode: "G12H02",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H02/G12H02.jpg",
@@ -505,7 +501,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h02",
 		skuCode: "GP12H02",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H02/G12H02.jpg",
@@ -526,7 +522,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h07",
 		skuCode: "G12H07",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H07/G12H07.jpg",
@@ -540,7 +536,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		],
 		sceneImages: [
 			"/assets/60X120/Standard G12H07/PC G12H07.jpg",
-			"/assets/60X120/Standard G12H07/PC G12H07-2.jpg",
 		],
 		allFacesImage: "/assets/60X120/Standard G12H07/G12H07 - FullFaces.jpg",
 		bodyType: "standard",
@@ -548,7 +543,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h07",
 		skuCode: "GP12H07",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H07/G12H07.jpg",
@@ -561,8 +556,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Standard G12H07/G12H07_F6.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Standard G12H07/PC G12H07.jpg",
-			"/assets/60X120/Standard G12H07/PC G12H07-2.jpg",
+			"/assets/60X120/Standard G12H07/PC GP12H07J.jpg",
 		],
 		allFacesImage: "/assets/60X120/Standard G12H07/G12H07 - FullFaces.jpg",
 		bodyType: "standard",
@@ -572,7 +566,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h08",
 		skuCode: "G12H08",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H08/G12H08.jpg",
@@ -591,7 +585,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h08",
 		skuCode: "GP12H08",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H08/G12H08.jpg",
@@ -603,7 +597,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Standard G12H08/G12H08_F5.jpg",
 			"/assets/60X120/Standard G12H08/G12H08_F6.jpg",
 		],
-		sceneImages: ["/assets/60X120/Standard G12H08/PC G12H08.jpg"],
+		sceneImages: ["/assets/60X120/Standard G12H08/PC GP12H08.png"],
 		allFacesImage: "/assets/60X120/Standard G12H08/G12H08 - FullFaces.jpg",
 		bodyType: "standard",
 	},
@@ -612,7 +606,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h09",
 		skuCode: "G12H09",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H09/G12H09.jpg",
@@ -624,7 +618,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		],
 		sceneImages: [
 			"/assets/60X120/Standard G12H09/PC G12H09.jpg",
-			"/assets/60X120/Standard G12H09/PC G12H09-2.jpg",
 		],
 		allFacesImage: "/assets/60X120/Standard G12H09/G12H09 - FullFaces.jpg",
 		bodyType: "standard",
@@ -632,7 +625,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h09",
 		skuCode: "GP12H09",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H09/G12H09.jpg",
@@ -643,8 +636,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Standard G12H09/G12H09_F4.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Standard G12H09/PC G12H09.jpg",
-			"/assets/60X120/Standard G12H09/PC G12H09-2.jpg",
+			"/assets/60X120/Standard G12H09/PC GP12H09.jpg",
 		],
 		allFacesImage: "/assets/60X120/Standard G12H09/G12H09 - FullFaces.jpg",
 		bodyType: "standard",
@@ -654,7 +646,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h17",
 		skuCode: "G12H17",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H17/G12H17.jpg",
@@ -673,7 +665,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h17",
 		skuCode: "GP12H17",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H17/G12H17.jpg",
@@ -694,7 +686,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-g12h12",
 		skuCode: "G12H12",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard GP12H12/GP12H12.jpg",
@@ -711,7 +703,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 	{
 		slug: "standard-gp12h12",
 		skuCode: "GP12H12",
-		collectionId: "peace",
+		collectionId: "standard",
 		category: "60×120cm",
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard GP12H12/GP12H12.jpg",

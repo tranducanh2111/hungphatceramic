@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-27T03:58:00.135Z",
+  "updatedAt": "2026-08-27T05:20:10.406Z",
   "entries": [
     {
       "sourcePath": "/assets/100X100/G88032J/PC G88032.jpg",
@@ -903,6 +903,134 @@
       "optimizedReplacement": "/assets/60X120/INDO SS1261315/PC SS1261315.detail.webp",
       "sizeMb": "2.34",
       "archivedAt": "2026-08-27T03:58:00.054Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/100X100/GP88962/PC GP88962.jpg",
+      "archivePath": "/assets/_archive/originals/100X100/GP88962/PC GP88962.jpg",
+      "optimizedReplacement": "/assets/100X100/GP88962/PC GP88962.detail.webp",
+      "sizeMb": "31.26",
+      "archivedAt": "2026-08-27T05:20:10.079Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/100X100/Standard G12H07/PC GP12H07J.jpg",
+      "archivePath": "/assets/_archive/originals/100X100/Standard G12H07/PC GP12H07J.jpg",
+      "optimizedReplacement": "/assets/100X100/Standard G12H07/PC GP12H07J.detail.webp",
+      "sizeMb": "28.77",
+      "archivedAt": "2026-08-27T05:20:10.136Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/100X100/Standard G12H08/PC GP12H08.png",
+      "archivePath": "/assets/_archive/originals/100X100/Standard G12H08/PC GP12H08.png",
+      "optimizedReplacement": "/assets/100X100/Standard G12H08/PC GP12H08.detail.webp",
+      "sizeMb": "15.21",
+      "archivedAt": "2026-08-27T05:20:10.141Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/100X100/Standard G12H09/PC GP12H09.jpg",
+      "archivePath": "/assets/_archive/originals/100X100/Standard G12H09/PC GP12H09.jpg",
+      "optimizedReplacement": "/assets/100X100/Standard G12H09/PC GP12H09.detail.webp",
+      "sizeMb": "29.20",
+      "archivedAt": "2026-08-27T05:20:10.147Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/120X120/GP88962/PC GP88962.jpg",
+      "archivePath": "/assets/_archive/originals/120X120/GP88962/PC GP88962.jpg",
+      "optimizedReplacement": "/assets/120X120/GP88962/PC GP88962.detail.webp",
+      "sizeMb": "31.26",
+      "archivedAt": "2026-08-27T05:20:10.203Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/120X120/Standard G12H07/PC GP12H07J.jpg",
+      "archivePath": "/assets/_archive/originals/120X120/Standard G12H07/PC GP12H07J.jpg",
+      "optimizedReplacement": "/assets/120X120/Standard G12H07/PC GP12H07J.detail.webp",
+      "sizeMb": "28.77",
+      "archivedAt": "2026-08-27T05:20:10.250Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/120X120/Standard G12H08/PC GP12H08.png",
+      "archivePath": "/assets/_archive/originals/120X120/Standard G12H08/PC GP12H08.png",
+      "optimizedReplacement": "/assets/120X120/Standard G12H08/PC GP12H08.detail.webp",
+      "sizeMb": "15.21",
+      "archivedAt": "2026-08-27T05:20:10.256Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/120X120/Standard G12H09/PC GP12H09.jpg",
+      "archivePath": "/assets/_archive/originals/120X120/Standard G12H09/PC GP12H09.jpg",
+      "optimizedReplacement": "/assets/120X120/Standard G12H09/PC GP12H09.detail.webp",
+      "sizeMb": "29.20",
+      "archivedAt": "2026-08-27T05:20:10.261Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/INDO SS1261310/PC SS1261310.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/INDO SS1261310/PC SS1261310.jpg",
+      "optimizedReplacement": "/assets/60X120/INDO SS1261310/PC SS1261310.detail.webp",
+      "sizeMb": "66.19",
+      "archivedAt": "2026-08-27T05:20:10.292Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/Standard G12H07/PC GP12H07J.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/Standard G12H07/PC GP12H07J.jpg",
+      "optimizedReplacement": "/assets/60X120/Standard G12H07/PC GP12H07J.detail.webp",
+      "sizeMb": "28.77",
+      "archivedAt": "2026-08-27T05:20:10.328Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/Standard G12H08/PC GP12H08.png",
+      "archivePath": "/assets/_archive/originals/60X120/Standard G12H08/PC GP12H08.png",
+      "optimizedReplacement": "/assets/60X120/Standard G12H08/PC GP12H08.detail.webp",
+      "sizeMb": "15.21",
+      "archivedAt": "2026-08-27T05:20:10.332Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/Standard G12H09/PC GP12H09.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/Standard G12H09/PC GP12H09.jpg",
+      "optimizedReplacement": "/assets/60X120/Standard G12H09/PC GP12H09.detail.webp",
+      "sizeMb": "29.20",
+      "archivedAt": "2026-08-27T05:20:10.337Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/GP88962/PC GP88962.jpg",
+      "archivePath": "/assets/_archive/originals/80X80/GP88962/PC GP88962.jpg",
+      "optimizedReplacement": "/assets/80X80/GP88962/PC GP88962.detail.webp",
+      "sizeMb": "31.26",
+      "archivedAt": "2026-08-27T05:20:10.381Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/INDO GS883009/GS883009_PhoiCanh.png",
+      "archivePath": "/assets/_archive/originals/80X80/INDO GS883009/GS883009_PhoiCanh.png",
+      "optimizedReplacement": "/assets/80X80/INDO GS883009/GS883009_PhoiCanh.detail.webp",
+      "sizeMb": "17.20",
+      "archivedAt": "2026-08-27T05:20:10.389Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/INDO SS886101/SS886101_PhoiCanh.png",
+      "archivePath": "/assets/_archive/originals/80X80/INDO SS886101/SS886101_PhoiCanh.png",
+      "optimizedReplacement": "/assets/80X80/INDO SS886101/SS886101_PhoiCanh.detail.webp",
+      "sizeMb": "14.56",
+      "archivedAt": "2026-08-27T05:20:10.395Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/80X80/INDO SS886106/SS886106_PhoiCanh.png",
+      "archivePath": "/assets/_archive/originals/80X80/INDO SS886106/SS886106_PhoiCanh.png",
+      "optimizedReplacement": "/assets/80X80/INDO SS886106/SS886106_PhoiCanh.detail.webp",
+      "sizeMb": "22.48",
+      "archivedAt": "2026-08-27T05:20:10.403Z",
       "dryRun": false
     }
   ]
