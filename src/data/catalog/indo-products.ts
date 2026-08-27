@@ -12,6 +12,7 @@ interface IndoProductSeed {
 	marketingName?: string;
 	faceCount?: number;
 	sceneCount?: number;
+	sceneFiles?: string[];
 	/** Omit composite when Drive only provides PDF or individual faces. */
 	hasFullFacesComposite: boolean;
 }
@@ -32,7 +33,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS883009",
 		format: "square80",
-		sceneCount: 2,
+		sceneCount: 0,
 		hasFullFacesComposite: true,
 	},
 	{
@@ -40,7 +41,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Olympus White",
 		faceCount: 12,
-		sceneCount: 2,
+		sceneCount: 0,
 		hasFullFacesComposite: true,
 	},
 	{
@@ -48,31 +49,31 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Elbrus Gris",
 		faceCount: 12,
-		sceneCount: 2,
+		sceneCount: 0,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261307",
 		format: "rect",
-		sceneCount: 1,
+		sceneFiles: ["PC SS1261307.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261310",
 		format: "rect",
-		sceneCount: 1,
+		sceneFiles: ["SS1261310_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261311",
 		format: "rect",
-		sceneCount: 1,
+		sceneFiles: ["PC SS1261311.jpg", "SS1261311_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261315",
 		format: "rect",
-		sceneCount: 1,
+		sceneFiles: ["PC SS1261315.jpg", "SS1261315_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
@@ -111,14 +112,28 @@ function indoAssetBase(format: IndoProductFormat, skuCode: string): string {
 }
 
 function buildFaceImages(assetBase: string, skuCode: string, faceCount = 0): string[] {
-	const facePaths = [`${assetBase}/${skuCode}.jpg`];
-	for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
-		facePaths.push(`${assetBase}/${skuCode}_F${faceIndex}.jpg`);
+	if (faceCount > 0) {
+		const facePaths: string[] = [];
+		for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
+			facePaths.push(`${assetBase}/${skuCode}_F${faceIndex}.jpg`);
+		}
+		return facePaths;
 	}
-	return [...new Set(facePaths)];
+	return [`${assetBase}/${skuCode}.jpg`];
 }
 
-function buildSceneImages(assetBase: string, skuCode: string, sceneCount = 1): string[] {
+function buildSceneImages(
+	assetBase: string,
+	skuCode: string,
+	sceneCount = 1,
+	sceneFiles?: string[],
+): string[] {
+	if (sceneFiles && sceneFiles.length > 0) {
+		return sceneFiles.map((file) => `${assetBase}/${file}`);
+	}
+	if (sceneCount === 0) {
+		return [];
+	}
 	const scenePaths = [`${assetBase}/${skuCode}_PhoiCanh.jpg`];
 	for (let sceneIndex = 2; sceneIndex <= sceneCount; sceneIndex += 1) {
 		scenePaths.push(`${assetBase}/${skuCode}_PhoiCanh_${sceneIndex}.jpg`);
@@ -150,11 +165,17 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 		category: primarySize,
 		sizes: [...sizes],
 		thumbnailUrl: `${assetBase}/${seed.skuCode}.jpg`,
-		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount ?? 1),
-		sceneImages: buildSceneImages(assetBase, seed.skuCode, seed.sceneCount ?? 1),
+		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount),
+		sceneImages: buildSceneImages(
+			assetBase,
+			seed.skuCode,
+			seed.sceneCount ?? (seed.sceneFiles ? seed.sceneFiles.length : 1),
+			seed.sceneFiles,
+		),
 		...(seed.hasFullFacesComposite ? { allFacesImage: compositeImage } : {}),
 	};
 }
 
 /** MẪU GẠCH INDO (assets from client Drive folders, see public/assets/INDO-IMPORT.md). */
 export const INDO_PRODUCTS: ProductCatalogEntry[] = INDO_PRODUCT_SEEDS.map(buildIndoProduct);
+

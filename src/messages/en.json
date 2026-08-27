@@ -914,21 +914,45 @@
 				"name": "Standard G12H02",
 				"description": "Standard-body porcelain in 60×120cm format crafted in Vietnam, offering a resilient matte surface and strong architectural character."
 			},
+			"standard-gp12h02": {
+				"name": "Standard GP12H02",
+				"description": "Polished standard-body porcelain in 60×120cm format crafted in Vietnam, delivering high-gloss luminosity and refined modern beauty."
+			},
 			"standard-g12h07": {
 				"name": "Standard G12H07",
 				"description": "Standard-body 60×120cm porcelain crafted in Vietnam, showcasing subtle stone textures for serene living spaces."
+			},
+			"standard-gp12h07": {
+				"name": "Standard GP12H07",
+				"description": "Polished standard-body 60×120cm porcelain crafted in Vietnam, featuring radiant stone textures and upscale light reflection."
 			},
 			"standard-g12h08": {
 				"name": "Standard G12H08",
 				"description": "Standard-body 60×120cm porcelain with high structural strength and neutral grey veining, ideal for residential and commercial interiors."
 			},
+			"standard-gp12h08": {
+				"name": "Standard GP12H08",
+				"description": "Polished standard-body 60×120cm porcelain with high structural strength, gleaming light reflection, and neutral grey veining."
+			},
 			"standard-g12h09": {
 				"name": "Standard G12H09",
 				"description": "Standard-body 60×120cm porcelain made in Vietnam featuring elegant tones, balancing refined aesthetics with project efficiency."
 			},
+			"standard-gp12h09": {
+				"name": "Standard GP12H09",
+				"description": "Polished standard-body 60×120cm porcelain made in Vietnam featuring lustrous warm tones and seamless elegance."
+			},
 			"standard-g12h17": {
 				"name": "Standard G12H17",
 				"description": "Standard-body 60×120cm porcelain with delicate natural veining, delivering timeless interior elegance."
+			},
+			"standard-gp12h17": {
+				"name": "Standard GP12H17",
+				"description": "Polished standard-body 60×120cm porcelain with delicate natural veining and a brilliant high-gloss finish."
+			},
+			"standard-g12h12": {
+				"name": "Standard G12H12",
+				"description": "Matte standard-body 60×120cm porcelain crafted in Vietnam, offering understated elegance and reliable slip-resistant texture."
 			},
 			"standard-gp12h12": {
 				"name": "Standard GP12H12",

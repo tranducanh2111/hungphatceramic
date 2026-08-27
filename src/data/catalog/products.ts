@@ -23,10 +23,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire G12962J/G12962J (5).jpg",
 			"/assets/60X120/Inspire G12962J/G12962J (6).jpg",
 		],
-		sceneImages: [
-			"/assets/60X120/Inspire G12962J/PC G12962.jpg",
-			"/assets/60X120/Inspire G12962J/PC GP12962.jpg",
-		],
+		sceneImages: ["/assets/60X120/Inspire G12962J/PC G12962.jpg"],
 		allFacesImage: "/assets/60X120/Inspire G12962J/G12962J - 6 FACES.jpg",
 	},
 	{
@@ -64,10 +61,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Inspire GP12962J/GP12962J (5).jpg",
 			"/assets/60X120/Inspire GP12962J/GP12962J (6).jpg",
 		],
-		sceneImages: [
-			"/assets/60X120/Inspire G12962J/PC GP12962.jpg",
-			"/assets/60X120/Inspire G12962J/PC G12962.jpg",
-		],
+		sceneImages: ["/assets/60X120/Inspire G12962J/PC GP12962.jpg"],
 		allFacesImage: "/assets/60X120/Inspire GP12962J/GP12962J - FullFaces.jpg",
 	},
 
@@ -119,11 +113,15 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12T01",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "80×80cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T01.png",
 		faceImages: [
-			"/assets/60X120/Travertine T01 T06/T01.png",
-			"/assets/60X120/Travertine T01 T06/G12T01.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_01.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_02.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_03.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_04.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_05.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T01_06.jpg",
 		],
 		sceneImages: [
 			"/assets/60X120/Travertine T01 T06/PC G12T01.png",
@@ -137,11 +135,15 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		skuCode: "G12T06",
 		collectionId: "travertine",
 		category: "60×120cm",
-		sizes: ["60×120cm"],
+		sizes: ["60×120cm", "80×80cm"],
 		thumbnailUrl: "/assets/60X120/Travertine T01 T06/T06.png",
 		faceImages: [
-			"/assets/60X120/Travertine T01 T06/T06.png",
-			"/assets/60X120/Travertine T01 T06/G12T06.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_01.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_02.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_03.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_04.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_05.jpg",
+			"/assets/60X120/Travertine T01 T06/G12T06_06.jpg",
 		],
 		sceneImages: [
 			"/assets/60X120/Travertine T01 T06/PC-G88T06-X-G12T06.jpg",
@@ -286,7 +288,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Sunshine G12032J/G12032J_06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Sunshine G12032J/PC G12032.jpg",
 			"/assets/60X120/Sunshine G12032J/PC G12032.png",
 		],
 		allFacesImage: "/assets/60X120/Sunshine G12032J/G12032-6 faces.jpg",
@@ -307,8 +308,7 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Sunshine GP12032J/GP12032J_06.jpg",
 		],
 		sceneImages: [
-			"/assets/60X120/Sunshine G12032J/PC G12032.jpg",
-			"/assets/60X120/Sunshine G12032J/PC G12032.png",
+			"/assets/60X120/Sunshine GP12032J/PC GP12032.png",
 		],
 		allFacesImage: "/assets/60X120/Sunshine GP12032J/GP12032-6 faces.jpg",
 	},
@@ -466,7 +466,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Peace GP12736/GP12736.jpg",
 		faceImages: [
-			"/assets/60X120/Peace GP12736/GP12736.jpg",
 			"/assets/60X120/Peace GP12736/GP12736_1.jpg",
 			"/assets/60X120/Peace GP12736/GP12736_2.jpg",
 			"/assets/60X120/Peace GP12736/GP12736_3.jpg",
@@ -478,10 +477,12 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 			"/assets/60X120/Peace GP12736/PC-GP12736.png",
 			"/assets/60X120/Peace GP12736/PC-GP12736-2.png",
 		],
+		allFacesImage: "/assets/60X120/Peace GP12736/GP12736 - FullFaces.jpg",
 		bodyType: "white",
 	},
 
 	// ─── STANDARD BODY SERIES (GẠCH XƯƠNG TIÊU CHUẨN - 60×120cm) ──────────────────
+	// H02 Design (6 Faces)
 	{
 		slug: "standard-g12h02",
 		skuCode: "G12H02",
@@ -490,7 +491,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H02/G12H02.jpg",
 		faceImages: [
-			"/assets/60X120/Standard G12H02/G12H02.jpg",
 			"/assets/60X120/Standard G12H02/G12H02_F1.jpg",
 			"/assets/60X120/Standard G12H02/G12H02_F2.jpg",
 			"/assets/60X120/Standard G12H02/G12H02_F3.jpg",
@@ -503,6 +503,27 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		bodyType: "standard",
 	},
 	{
+		slug: "standard-gp12h02",
+		skuCode: "GP12H02",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard G12H02/G12H02.jpg",
+		faceImages: [
+			"/assets/60X120/Standard G12H02/G12H02_F1.jpg",
+			"/assets/60X120/Standard G12H02/G12H02_F2.jpg",
+			"/assets/60X120/Standard G12H02/G12H02_F3.jpg",
+			"/assets/60X120/Standard G12H02/G12H02_F4.jpg",
+			"/assets/60X120/Standard G12H02/G12H02_F5.jpg",
+			"/assets/60X120/Standard G12H02/G12H02_F6.jpg",
+		],
+		sceneImages: ["/assets/60X120/Standard G12H02/PC G12H02.png"],
+		allFacesImage: "/assets/60X120/Standard G12H02/G12H02 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+
+	// H07 Design (6 Faces)
+	{
 		slug: "standard-g12h07",
 		skuCode: "G12H07",
 		collectionId: "peace",
@@ -510,7 +531,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H07/G12H07.jpg",
 		faceImages: [
-			"/assets/60X120/Standard G12H07/G12H07.jpg",
 			"/assets/60X120/Standard G12H07/G12H07_F1.jpg",
 			"/assets/60X120/Standard G12H07/G12H07_F2.jpg",
 			"/assets/60X120/Standard G12H07/G12H07_F3.jpg",
@@ -526,6 +546,30 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		bodyType: "standard",
 	},
 	{
+		slug: "standard-gp12h07",
+		skuCode: "GP12H07",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard G12H07/G12H07.jpg",
+		faceImages: [
+			"/assets/60X120/Standard G12H07/G12H07_F1.jpg",
+			"/assets/60X120/Standard G12H07/G12H07_F2.jpg",
+			"/assets/60X120/Standard G12H07/G12H07_F3.jpg",
+			"/assets/60X120/Standard G12H07/G12H07_F4.jpg",
+			"/assets/60X120/Standard G12H07/G12H07_F5.jpg",
+			"/assets/60X120/Standard G12H07/G12H07_F6.jpg",
+		],
+		sceneImages: [
+			"/assets/60X120/Standard G12H07/PC G12H07.jpg",
+			"/assets/60X120/Standard G12H07/PC G12H07-2.jpg",
+		],
+		allFacesImage: "/assets/60X120/Standard G12H07/G12H07 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+
+	// H08 Design (6 Faces)
+	{
 		slug: "standard-g12h08",
 		skuCode: "G12H08",
 		collectionId: "peace",
@@ -533,7 +577,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H08/G12H08.jpg",
 		faceImages: [
-			"/assets/60X120/Standard G12H08/G12H08.jpg",
 			"/assets/60X120/Standard G12H08/G12H08_F1.jpg",
 			"/assets/60X120/Standard G12H08/G12H08_F2.jpg",
 			"/assets/60X120/Standard G12H08/G12H08_F3.jpg",
@@ -546,6 +589,27 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		bodyType: "standard",
 	},
 	{
+		slug: "standard-gp12h08",
+		skuCode: "GP12H08",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard G12H08/G12H08.jpg",
+		faceImages: [
+			"/assets/60X120/Standard G12H08/G12H08_F1.jpg",
+			"/assets/60X120/Standard G12H08/G12H08_F2.jpg",
+			"/assets/60X120/Standard G12H08/G12H08_F3.jpg",
+			"/assets/60X120/Standard G12H08/G12H08_F4.jpg",
+			"/assets/60X120/Standard G12H08/G12H08_F5.jpg",
+			"/assets/60X120/Standard G12H08/G12H08_F6.jpg",
+		],
+		sceneImages: ["/assets/60X120/Standard G12H08/PC G12H08.jpg"],
+		allFacesImage: "/assets/60X120/Standard G12H08/G12H08 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+
+	// H09 Design (4 Faces)
+	{
 		slug: "standard-g12h09",
 		skuCode: "G12H09",
 		collectionId: "peace",
@@ -553,7 +617,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H09/G12H09.jpg",
 		faceImages: [
-			"/assets/60X120/Standard G12H09/G12H09.jpg",
 			"/assets/60X120/Standard G12H09/G12H09_F1.jpg",
 			"/assets/60X120/Standard G12H09/G12H09_F2.jpg",
 			"/assets/60X120/Standard G12H09/G12H09_F3.jpg",
@@ -567,6 +630,28 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		bodyType: "standard",
 	},
 	{
+		slug: "standard-gp12h09",
+		skuCode: "GP12H09",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard G12H09/G12H09.jpg",
+		faceImages: [
+			"/assets/60X120/Standard G12H09/G12H09_F1.jpg",
+			"/assets/60X120/Standard G12H09/G12H09_F2.jpg",
+			"/assets/60X120/Standard G12H09/G12H09_F3.jpg",
+			"/assets/60X120/Standard G12H09/G12H09_F4.jpg",
+		],
+		sceneImages: [
+			"/assets/60X120/Standard G12H09/PC G12H09.jpg",
+			"/assets/60X120/Standard G12H09/PC G12H09-2.jpg",
+		],
+		allFacesImage: "/assets/60X120/Standard G12H09/G12H09 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+
+	// H17 Design (6 Faces)
+	{
 		slug: "standard-g12h17",
 		skuCode: "G12H17",
 		collectionId: "peace",
@@ -574,7 +659,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard G12H17/G12H17.jpg",
 		faceImages: [
-			"/assets/60X120/Standard G12H17/G12H17.jpg",
 			"/assets/60X120/Standard G12H17/G12H17_F1.jpg",
 			"/assets/60X120/Standard G12H17/G12H17_F2.jpg",
 			"/assets/60X120/Standard G12H17/G12H17_F3.jpg",
@@ -587,6 +671,44 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		bodyType: "standard",
 	},
 	{
+		slug: "standard-gp12h17",
+		skuCode: "GP12H17",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard G12H17/G12H17.jpg",
+		faceImages: [
+			"/assets/60X120/Standard G12H17/G12H17_F1.jpg",
+			"/assets/60X120/Standard G12H17/G12H17_F2.jpg",
+			"/assets/60X120/Standard G12H17/G12H17_F3.jpg",
+			"/assets/60X120/Standard G12H17/G12H17_F4.jpg",
+			"/assets/60X120/Standard G12H17/G12H17_F5.jpg",
+			"/assets/60X120/Standard G12H17/G12H17_F6.jpg",
+		],
+		sceneImages: ["/assets/60X120/Standard G12H17/PC GP12H17.png"],
+		allFacesImage: "/assets/60X120/Standard G12H17/G12H17 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+
+	// H12 Design (4 Faces)
+	{
+		slug: "standard-g12h12",
+		skuCode: "G12H12",
+		collectionId: "peace",
+		category: "60×120cm",
+		sizes: ["60×120cm"],
+		thumbnailUrl: "/assets/60X120/Standard GP12H12/GP12H12.jpg",
+		faceImages: [
+			"/assets/60X120/Standard GP12H12/GP12H12_F1.jpg",
+			"/assets/60X120/Standard GP12H12/GP12H12_F2.jpg",
+			"/assets/60X120/Standard GP12H12/GP12H12_F3.jpg",
+			"/assets/60X120/Standard GP12H12/GP12H12_F4.jpg",
+		],
+		sceneImages: ["/assets/60X120/Standard GP12H12/PC-GP12H12.jpg"],
+		allFacesImage: "/assets/60X120/Standard GP12H12/GP12H12 - FullFaces.jpg",
+		bodyType: "standard",
+	},
+	{
 		slug: "standard-gp12h12",
 		skuCode: "GP12H12",
 		collectionId: "peace",
@@ -594,7 +716,6 @@ const PRODUCT_CATALOG: ProductCatalogEntry[] = [
 		sizes: ["60×120cm"],
 		thumbnailUrl: "/assets/60X120/Standard GP12H12/GP12H12.jpg",
 		faceImages: [
-			"/assets/60X120/Standard GP12H12/GP12H12.jpg",
 			"/assets/60X120/Standard GP12H12/GP12H12_F1.jpg",
 			"/assets/60X120/Standard GP12H12/GP12H12_F2.jpg",
 			"/assets/60X120/Standard GP12H12/GP12H12_F3.jpg",

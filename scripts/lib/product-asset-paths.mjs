@@ -211,7 +211,12 @@ export function collectIndoAssetPaths(indoSource) {
 		if (!sku) continue;
 
 		const faceCount = Number.parseInt(block.match(/faceCount:\s*(\d+)/)?.[1] ?? "0", 10);
-		const sceneCount = Number.parseInt(block.match(/sceneCount:\s*(\d+)/)?.[1] ?? "1", 10);
+		const sceneCountMatch = block.match(/sceneCount:\s*(\d+)/);
+		const sceneCount = sceneCountMatch ? Number.parseInt(sceneCountMatch[1], 10) : undefined;
+		const sceneFilesMatch = block.match(/sceneFiles:\s*\[([\s\S]*?)\]/);
+		const sceneFiles = sceneFilesMatch
+			? [...sceneFilesMatch[1].matchAll(/"([^"]+)"/g)].map((m) => m[1])
+			: undefined;
 		const hasFullFacesComposite = block.includes("hasFullFacesComposite: true");
 
 		const sizeFolder = square80Skus.has(sku)
@@ -225,9 +230,16 @@ export function collectIndoAssetPaths(indoSource) {
 		for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
 			paths.add(`${base}/${sku}_F${faceIndex}.jpg`);
 		}
-		paths.add(`${base}/${sku}_PhoiCanh.jpg`);
-		for (let sceneIndex = 2; sceneIndex <= sceneCount; sceneIndex += 1) {
-			paths.add(`${base}/${sku}_PhoiCanh_${sceneIndex}.jpg`);
+		if (sceneFiles && sceneFiles.length > 0) {
+			for (const file of sceneFiles) {
+				paths.add(`${base}/${file}`);
+			}
+		} else if (sceneCount !== 0) {
+			const count = sceneCount ?? 1;
+			paths.add(`${base}/${sku}_PhoiCanh.jpg`);
+			for (let sceneIndex = 2; sceneIndex <= count; sceneIndex += 1) {
+				paths.add(`${base}/${sku}_PhoiCanh_${sceneIndex}.jpg`);
+			}
 		}
 		if (hasFullFacesComposite) {
 			paths.add(`${base}/${sku}_FullFaces.jpg`);
