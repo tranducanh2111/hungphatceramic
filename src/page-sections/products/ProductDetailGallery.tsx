@@ -138,6 +138,8 @@ export function ProductDetailGallery({ product }: ProductDetailGalleryProps) {
 							productName={product.title}
 							activeFaceIndex={safeFaceIndex}
 							onSelectFace={setActiveFaceIndex}
+							onPreviousFace={goToPreviousFace}
+							onNextFace={goToNextFace}
 							onOpenLightbox={openFaceLightbox}
 							onImageError={() => setIsSurfaceSectionVisible(false)}
 							fillHeight={showSideBySide}

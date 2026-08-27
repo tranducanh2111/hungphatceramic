@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Text } from "@/components/ui";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { IconButton, PaginationDots, Text } from "@/components/ui";
 import { encodePublicAssetPath, resolveDetailGalleryImagePath } from "@/lib/products/media";
 import { cn } from "@/lib/cn";
 
@@ -21,6 +22,8 @@ export interface TileSurfacePanelProps {
 	productName: string;
 	activeFaceIndex: number;
 	onSelectFace: (index: number) => void;
+	onPreviousFace?: () => void;
+	onNextFace?: () => void;
 	onOpenLightbox: (index: number) => void;
 	onImageError?: () => void;
 	fillHeight?: boolean;
@@ -33,6 +36,8 @@ export function TileSurfacePanel({
 	productName,
 	activeFaceIndex,
 	onSelectFace,
+	onPreviousFace,
+	onNextFace,
 	onOpenLightbox,
 	onImageError,
 	fillHeight = false,
@@ -69,6 +74,22 @@ export function TileSurfacePanel({
 	const activeItem = items[safeActiveIndex];
 	const hasMultipleItems = items.length > 1;
 
+	const handlePrevious = () => {
+		if (onPreviousFace) {
+			onPreviousFace();
+		} else {
+			onSelectFace(safeActiveIndex > 0 ? safeActiveIndex - 1 : items.length - 1);
+		}
+	};
+
+	const handleNext = () => {
+		if (onNextFace) {
+			onNextFace();
+		} else {
+			onSelectFace(safeActiveIndex < items.length - 1 ? safeActiveIndex + 1 : 0);
+		}
+	};
+
 	const currentAlt =
 		activeItem.type === "composite"
 			? tDetail("facesOverviewCompositeAlt", { productName })
@@ -96,33 +117,38 @@ export function TileSurfacePanel({
 						: tDetail("individualFaces", { count: faceImages.length })}
 				</Text>
 				<span className="border-sapphire-mist/60 bg-sapphire-ocean/80 text-linen/60 rounded-full border px-2.5 py-0.5 text-[11px] font-sans font-medium tracking-wider uppercase">
-					{activeItem.label}
+					{safeActiveIndex + 1} / {items.length} — {activeItem.label}
 				</span>
 			</div>
 
-			{/* Main High-Resolution Preview Area */}
+			{/* Main Interactive Carousel & High-Resolution Preview Area */}
 			<div
 				className={cn(
-					"bg-sapphire-ocean/30 border-sapphire-mist/30 relative w-full flex-1 cursor-zoom-in overflow-hidden rounded-xl border",
+					"bg-sapphire-ocean/30 border-sapphire-mist/30 relative w-full flex-1 overflow-hidden rounded-xl border",
 					fillHeight ? "min-h-[14rem] sm:min-h-[18rem]" : "min-h-[14rem] aspect-[4/3] sm:min-h-[18rem]",
 				)}
-				onClick={() => onOpenLightbox(safeActiveIndex)}
 			>
 				<AnimatePresence mode="wait" initial={false}>
-					<motion.div
+					<motion.button
+						type="button"
 						key={activeItem.src}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						transition={{ duration: 0.3, ease: "easeInOut" }}
-						className="group absolute inset-0"
+						transition={{ duration: 0.35, ease: "easeInOut" }}
+						className="group absolute inset-0 z-[1] cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne"
+						onClick={() => onOpenLightbox(safeActiveIndex)}
+						aria-label={tDetail("faceImageAlt", {
+							productName,
+							faceNumber: safeActiveIndex + 1,
+						})}
 					>
 						<Image
 							src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeItem.src))}
 							alt={currentAlt}
 							fill
 							sizes="(max-width: 1024px) 100vw, 50vw"
-							className="ease-luxury object-contain object-center p-2 transition-transform duration-500 group-hover:scale-[1.015]"
+							className="ease-luxury object-contain object-center p-3 transition-transform duration-500 group-hover:scale-[1.02]"
 							onError={onImageError}
 						/>
 
@@ -132,56 +158,47 @@ export function TileSurfacePanel({
 								🔎
 							</span>
 						</div>
-					</motion.div>
+					</motion.button>
 				</AnimatePresence>
+
+				{/* Carousel Navigation Buttons */}
+				{hasMultipleItems && (
+					<>
+						<IconButton
+							variant="gallery"
+							onClick={(e) => {
+								e.stopPropagation();
+								handlePrevious();
+							}}
+							className="absolute top-1/2 left-3 z-20 -translate-y-1/2 sm:left-4"
+							aria-label={tDetail("faceLightboxPrevious")}
+						>
+							<ChevronLeft className="h-5 w-5" aria-hidden />
+						</IconButton>
+
+						<IconButton
+							variant="gallery"
+							onClick={(e) => {
+								e.stopPropagation();
+								handleNext();
+							}}
+							className="absolute top-1/2 right-3 z-20 -translate-y-1/2 sm:right-4"
+							aria-label={tDetail("faceLightboxNext")}
+						>
+							<ChevronRight className="h-5 w-5" aria-hidden />
+						</IconButton>
+
+						<PaginationDots
+							tone="light"
+							className="absolute bottom-3 left-1/2 z-20 -translate-x-1/2"
+							count={items.length}
+							activeIndex={safeActiveIndex}
+							onSelect={onSelectFace}
+							getAriaLabel={(index) => items[index]?.label ?? `Item ${index + 1}`}
+						/>
+					</>
+				)}
 			</div>
-
-			{/* Thumbnail Strip Switcher */}
-			{hasMultipleItems && (
-				<div className="mt-4 pt-2">
-					<div
-						className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-sapphire-mist/50"
-						role="tablist"
-						aria-label={tDetail("faceSwitcherAriaLabel")}
-					>
-						{items.map((item, index) => {
-							const isActive = index === safeActiveIndex;
-							return (
-								<button
-									key={item.id}
-									type="button"
-									role="tab"
-									aria-selected={isActive}
-									aria-label={item.label}
-									onClick={() => onSelectFace(index)}
-									className={cn(
-										"group relative flex shrink-0 items-center gap-2 rounded-lg border px-3 py-1.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne",
-										isActive
-											? "border-champagne bg-champagne/15 text-linen shadow-sm ring-1 ring-champagne/50"
-											: "border-sapphire-mist/40 bg-sapphire-ocean/40 text-linen/50 hover:border-champagne/40 hover:bg-sapphire-ocean/70 hover:text-linen/80",
-									)}
-								>
-									{/* Small thumbnail preview */}
-									<div className="border-sapphire-mist/40 relative h-6 w-6 shrink-0 overflow-hidden rounded border bg-sapphire-deep">
-										<Image
-											src={encodePublicAssetPath(resolveDetailGalleryImagePath(item.src))}
-											alt=""
-											fill
-											sizes="24px"
-											className="object-cover object-center"
-										/>
-									</div>
-
-									{/* Tab Label */}
-									<span className="text-[12px] font-sans font-medium whitespace-nowrap">
-										{item.label}
-									</span>
-								</button>
-							);
-						})}
-					</div>
-				</div>
-			)}
 
 			<p className="text-footnote text-linen/40 mt-3 text-center font-sans">
 				{productName} — {activeItem.label}
