@@ -27,13 +27,13 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS881045",
 		format: "square80",
-		sceneCount: 2,
+		sceneCount: 0,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "GS883009",
 		format: "square80",
-		sceneCount: 0,
+		sceneFiles: ["GS883009_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{
@@ -41,7 +41,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Olympus White",
 		faceCount: 12,
-		sceneCount: 0,
+		sceneFiles: ["SS886101_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{
@@ -49,7 +49,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Elbrus Gris",
 		faceCount: 12,
-		sceneCount: 0,
+		sceneFiles: ["SS886106_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{
@@ -61,7 +61,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "SS1261310",
 		format: "rect",
-		sceneFiles: ["SS1261310_PhoiCanh.jpg"],
+		sceneFiles: ["PC SS1261310.jpg", "SS1261310_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{

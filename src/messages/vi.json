@@ -25,6 +25,9 @@
 		"peace": {
 			"name": "Dòng Peace"
 		},
+		"standard": {
+			"name": "Gạch xương tiêu chuẩn"
+		},
 		"indo": {
 			"name": "Dòng INDO"
 		}
@@ -76,6 +79,7 @@
 			"sunshine": "Dòng Sunshine",
 			"architectural": "Dòng kiến trúc 20mm",
 			"peace": "Dòng Peace",
+			"standard": "Gạch xương tiêu chuẩn",
 			"indo": "Dòng INDO"
 		},
 		"legal": {
@@ -619,6 +623,7 @@
 				"sunshine": "Dòng Sunshine",
 				"architectural": "Dòng kiến trúc 20mm",
 				"peace": "Dòng Peace",
+				"standard": "Gạch xương tiêu chuẩn",
 				"indo": "Dòng INDO"
 			},
 			"sizes": {
