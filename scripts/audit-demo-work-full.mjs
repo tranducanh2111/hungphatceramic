@@ -89,14 +89,25 @@ function parseIndoProductsTs(source) {
 	for (const block of seedBlocks) {
 		const sku = block.match(/skuCode:\s*"([^"]+)"/)?.[1];
 		const format = block.match(/format:\s*"([^"]+)"/)?.[1];
-		const sceneCount = Number.parseInt(block.match(/sceneCount:\s*(\d+)/)?.[1] ?? "1", 10);
+		const sceneCountMatch = block.match(/sceneCount:\s*(\d+)/);
+		const sceneCount = sceneCountMatch ? Number.parseInt(sceneCountMatch[1], 10) : undefined;
+		const sceneFilesMatch = block.match(/sceneFiles:\s*\[([\s\S]*?)\]/);
+		const sceneFiles = sceneFilesMatch
+			? [...sceneFilesMatch[1].matchAll(/"([^"]+)"/g)].map((m) => m[1])
+			: undefined;
 		const marketingName = block.match(/marketingName:\s*"([^"]+)"/)?.[1];
 		if (!sku || !format) continue;
 		const sizeFolder = format === "square80" ? "80X80" : format === "square" ? "100X100" : "60X120";
 		const assetBase = `/assets/${sizeFolder}/INDO ${sku}`;
-		const sceneImages = [`${assetBase}/${sku}_PhoiCanh.jpg`];
-		for (let i = 2; i <= sceneCount; i += 1) {
-			sceneImages.push(`${assetBase}/${sku}_PhoiCanh_${i}.jpg`);
+		let sceneImages = [];
+		if (sceneFiles && sceneFiles.length > 0) {
+			sceneImages = sceneFiles.map((f) => `${assetBase}/${f}`);
+		} else if (sceneCount !== 0) {
+			const count = sceneCount ?? 1;
+			sceneImages = [`${assetBase}/${sku}_PhoiCanh.jpg`];
+			for (let i = 2; i <= count; i += 1) {
+				sceneImages.push(`${assetBase}/${sku}_PhoiCanh_${i}.jpg`);
+			}
 		}
 		entries.push({
 			slug: `indo-${sku.toLowerCase()}`,

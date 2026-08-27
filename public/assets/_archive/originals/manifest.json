@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T03:32:02.300Z",
+  "updatedAt": "2026-08-27T03:58:00.135Z",
   "entries": [
     {
       "sourcePath": "/assets/100X100/G88032J/PC G88032.jpg",
@@ -855,6 +855,54 @@
       "optimizedReplacement": "/assets/80X80/INDO SS886106/SS886106_PhoiCanh_2.detail.webp",
       "sizeMb": "22.48",
       "archivedAt": "2026-08-25T03:32:02.299Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/100X100/Sunshine GP12032J/PC GP12032.png",
+      "archivePath": "/assets/_archive/originals/100X100/Sunshine GP12032J/PC GP12032.png",
+      "optimizedReplacement": "/assets/100X100/Sunshine GP12032J/PC GP12032.detail.webp",
+      "sizeMb": "51.21",
+      "archivedAt": "2026-08-26T04:10:51.739Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/120X120/Sunshine GP12032J/PC GP12032.png",
+      "archivePath": "/assets/_archive/originals/120X120/Sunshine GP12032J/PC GP12032.png",
+      "optimizedReplacement": "/assets/120X120/Sunshine GP12032J/PC GP12032.detail.webp",
+      "sizeMb": "51.21",
+      "archivedAt": "2026-08-26T04:10:51.798Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/Sunshine GP12032J/PC GP12032.png",
+      "archivePath": "/assets/_archive/originals/60X120/Sunshine GP12032J/PC GP12032.png",
+      "optimizedReplacement": "/assets/60X120/Sunshine GP12032J/PC GP12032.detail.webp",
+      "sizeMb": "51.21",
+      "archivedAt": "2026-08-26T04:10:51.841Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/INDO SS1261307/PC SS1261307.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/INDO SS1261307/PC SS1261307.jpg",
+      "optimizedReplacement": "/assets/60X120/INDO SS1261307/PC SS1261307.detail.webp",
+      "sizeMb": "2.31",
+      "archivedAt": "2026-08-27T03:58:00.047Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/INDO SS1261311/PC SS1261311.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/INDO SS1261311/PC SS1261311.jpg",
+      "optimizedReplacement": "/assets/60X120/INDO SS1261311/PC SS1261311.detail.webp",
+      "sizeMb": "24.56",
+      "archivedAt": "2026-08-27T03:58:00.051Z",
+      "dryRun": false
+    },
+    {
+      "sourcePath": "/assets/60X120/INDO SS1261315/PC SS1261315.jpg",
+      "archivePath": "/assets/_archive/originals/60X120/INDO SS1261315/PC SS1261315.jpg",
+      "optimizedReplacement": "/assets/60X120/INDO SS1261315/PC SS1261315.detail.webp",
+      "sizeMb": "2.34",
+      "archivedAt": "2026-08-27T03:58:00.054Z",
       "dryRun": false
     }
   ]

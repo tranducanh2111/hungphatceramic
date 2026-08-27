@@ -919,21 +919,45 @@
 				"name": "Standard G12H02",
 				"description": "Gạch xương tiêu chuẩn 60×120cm sản xuất tại Việt Nam với bề mặt mờ chống trơn và đường vân kiến trúc khỏe khoắn, bền bỉ cho không gian hiện đại."
 			},
+			"standard-gp12h02": {
+				"name": "Standard GP12H02",
+				"description": "Gạch xương tiêu chuẩn 60×120cm bóng kiếng sản xuất tại Việt Nam, mang lại hiệu ứng ánh sáng rực rỡ và nét đẹp sang trọng tinh tế."
+			},
 			"standard-g12h07": {
 				"name": "Standard G12H07",
 				"description": "Gạch xương tiêu chuẩn 60×120cm công nghệ sản xuất Việt Nam, vân đá mộc mạc tự nhiên thích hợp cho phòng khách và khu vực sinh hoạt chung."
+			},
+			"standard-gp12h07": {
+				"name": "Standard GP12H07",
+				"description": "Phiên bản bóng kiếng xương tiêu chuẩn 60×120cm với vân đá tự nhiên phản chiếu ánh sáng tuyệt đẹp, nâng tầm không gian sống."
 			},
 			"standard-g12h08": {
 				"name": "Standard G12H08",
 				"description": "Thiết kế gạch xương tiêu chuẩn 60×120cm với độ bền cơ học cao, chịu lực tốt và vân đá xám trung tính cho công trình dân dụng và thương mại."
 			},
+			"standard-gp12h08": {
+				"name": "Standard GP12H08",
+				"description": "Gạch xương tiêu chuẩn bóng kiếng 60×120cm sở hữu độ bóng sâu, độ bền vượt trội và họa tiết vân đá trung tính hiện đại."
+			},
 			"standard-g12h09": {
 				"name": "Standard G12H09",
 				"description": "Bề mặt xương tiêu chuẩn 60×120cm Made in Vietnam với gam màu trang nhã, tối ưu hóa thẩm mỹ và hiệu quả kinh tế cho các dự án quy mô lớn."
 			},
+			"standard-gp12h09": {
+				"name": "Standard GP12H09",
+				"description": "Gạch xương tiêu chuẩn 60×120cm bề mặt bóng kiếng với tông màu ấm cúng, sang trọng và khả năng mở rộng không gian thị giác."
+			},
 			"standard-g12h17": {
 				"name": "Standard G12H17",
 				"description": "Gạch xương tiêu chuẩn 60×120cm với vân đá tự nhiên tinh tế, bề mặt hoàn thiện cao cấp mang lại vẻ đẹp chuẩn mực cho nội thất."
+			},
+			"standard-gp12h17": {
+				"name": "Standard GP12H17",
+				"description": "Gạch bóng kiếng xương tiêu chuẩn 60×120cm với họa tiết vân đá sắc nét, tôn vinh vẻ đẹp lộng lẫy và đẳng cấp của công trình."
+			},
+			"standard-g12h12": {
+				"name": "Standard G12H12",
+				"description": "Gạch xương tiêu chuẩn 60×120cm bề mặt mờ nhã nhặn, chống trơn trượt hiệu quả và giữ trọn nét tĩnh lặng kiến trúc."
 			},
 			"standard-gp12h12": {
 				"name": "Standard GP12H12",
