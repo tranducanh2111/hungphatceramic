@@ -116,7 +116,9 @@ export function getTileSizeListingMeta(products: ProductDetail[]): TileSizeListi
 export function getSurfaceListingMeta(products: ProductDetail[]): SurfaceListingMeta[] {
 	return SURFACE_SLUGS.map((id) => ({
 		id,
-		count: products.filter((product) => getSurfaceIdFromSkuAndSlug(product.skuCode, product.slug) === id).length,
+		count: products.filter(
+			(product) => getSurfaceIdFromSkuAndSlug(product.skuCode, product.slug) === id,
+		).length,
 	}));
 }
 
@@ -209,7 +211,9 @@ export function getAvailableSizesForProduct(
 	const targetDesignKey = getDesignKey(skuCode);
 
 	// Find all siblings matching this design key
-	const siblings = allProducts.filter((product) => getDesignKey(product.skuCode) === targetDesignKey);
+	const siblings = allProducts.filter(
+		(product) => getDesignKey(product.skuCode) === targetDesignKey,
+	);
 
 	// We want a unique list of dimensions (e.g. "60×120cm"), along with the slug of the *first* sibling that provides that size.
 	const uniqueSizesMap = new Map<string, string>();

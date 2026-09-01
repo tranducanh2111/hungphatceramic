@@ -33,47 +33,45 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 		id: "inspire",
 		previews: [
 			{ size: "60×120cm", image: "/assets/60X120/Inspire G12962J/G12962J (1).jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/G88962J/G88962 (1).jpg" }
+			{ size: "80×80cm", image: "/assets/80X80/G88962J/G88962 (1).jpg" },
 		],
 	},
 	{
 		id: "travertine",
 		previews: [
 			{ size: "60×120cm", image: "/assets/60X120/Travertine T01 T06/G12T01.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/G88T01J/G88T01J (1).jpg" }
+			{ size: "80×80cm", image: "/assets/80X80/G88T01J/G88T01J (1).jpg" },
 		],
 	},
 	{
 		id: "orient-star",
-		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg" }
-		],
+		previews: [{ size: "60×120cm", image: "/assets/60X120/Orient Star G12W05J/G12W05J-1.jpg" }],
 	},
 	{
 		id: "sunshine",
 		previews: [
 			{ size: "60×120cm", image: "/assets/60X120/Sunshine G12032J/G12032J_01.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/G88032J/G88032 (1).jpg" }
+			{ size: "80×80cm", image: "/assets/80X80/G88032J/G88032 (1).jpg" },
 		],
 	},
 	{
 		id: "architectural",
 		previews: [
-			{ size: "60×120cm", image: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg" }
+			{ size: "60×120cm", image: "/assets/60X120/Thickness 20mm/G12537-DD 20mm Grey.jpg" },
 		],
 	},
 	{
 		id: "peace",
 		previews: [
 			{ size: "60×120cm", image: "/assets/60X120/Peace GP12H03J (Flow)/GP12H03J_1_1.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/GP88736J/GP88736j_01.jpg" }
+			{ size: "80×80cm", image: "/assets/80X80/GP88736J/GP88736j_01.jpg" },
 		],
 	},
 	{
 		id: "indo",
 		previews: [
 			{ size: "60×120cm", image: "/assets/60X120/INDO SS1261307/SS1261307.jpg" },
-			{ size: "80×80cm", image: "/assets/80X80/INDO SS886101/SS886101.jpg" }
+			{ size: "80×80cm", image: "/assets/80X80/INDO SS886101/SS886101.jpg" },
 		],
 	},
 ];

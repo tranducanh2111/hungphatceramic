@@ -3,10 +3,7 @@
 import { Link } from "@/i18n/navigation";
 import { ProductTileCard } from "@/components/ui";
 import { productDetailHref } from "@/lib/products/asset-paths";
-import {
-	encodePublicAssetPath,
-	resolveListingDemoWorkHoverPath,
-} from "@/lib/products/media";
+import { encodePublicAssetPath, resolveListingDemoWorkHoverPath } from "@/lib/products/media";
 import type { ProductListingItem } from "@/lib/products/listing";
 import { useCatalogTileMediaLifecycle } from "@/hooks/useCatalogTileMediaLifecycle";
 import { cn } from "@/lib/cn";

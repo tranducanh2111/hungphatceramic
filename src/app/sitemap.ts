@@ -12,12 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	const sitemapEntries: MetadataRoute.Sitemap = [];
 
-	// Helper to build hreflang alternates object
+	// Helper to build hreflang alternates object (including x-default for default locale)
 	const getAlternates = (path: string) => {
 		const alternates: Record<string, string> = {};
 		locales.forEach((loc) => {
 			alternates[loc] = `${SITE_URL}/${loc}${path}`;
 		});
+		alternates["x-default"] = `${SITE_URL}/${routing.defaultLocale}${path}`;
 		return alternates;
 	};
 

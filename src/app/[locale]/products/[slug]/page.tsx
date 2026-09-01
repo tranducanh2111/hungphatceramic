@@ -67,19 +67,47 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 	const displayProduct = applyTileSizeToProductDetail(localizedProduct, activeSizeId);
 	const heroThumbnailPath = encodePublicAssetPath(displayProduct.thumbnailUrl);
 
+	const productDescription =
+		localizedProduct.description ||
+		tMetaProductDetail("description", { productName: localizedProduct.title });
+	const enrichedProduct = {
+		...localizedProduct,
+		description: productDescription,
+	};
+
+	const allProductImages = [
+		`${SITE_URL}${heroThumbnailPath}`,
+		...(product.faceImages || []).map((img) => `${SITE_URL}${encodePublicAssetPath(img)}`),
+		...(product.demoWorkImages || []).map((img) => `${SITE_URL}${encodePublicAssetPath(img)}`),
+	];
+
 	const alternates = buildAlternatesForLocale(`/products/${slug}`, locale);
 	const productSchema = {
 		"@context": "https://schema.org",
 		"@type": "Product",
 		name: localizedProduct.title,
-		image: `${SITE_URL}${heroThumbnailPath}`,
-		description: localizedProduct.description || tMetaProductDetail("description", { productName: localizedProduct.title }),
+		image: allProductImages,
+		description: productDescription,
 		sku: product.skuCode,
 		mpn: product.skuCode,
+		category: localizedProduct.category,
 		material: localizedProduct.material || "Porcelain",
 		brand: {
 			"@type": "Brand",
 			name: "Perla",
+		},
+		offers: {
+			"@type": "Offer",
+			url: alternates.canonical,
+			priceCurrency: "VND",
+			price: "0",
+			priceValidUntil: "2027-12-31",
+			availability: "https://schema.org/InStock",
+			itemCondition: "https://schema.org/NewCondition",
+			seller: {
+				"@type": "Organization",
+				name: "Perla powered by Hung Phat",
+			},
 		},
 		additionalProperty: [
 			{
@@ -130,7 +158,7 @@ export default async function ProductDetailPage({ params, searchParams }: Produc
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
 			/>
 			<ProductDetailPageContent
-				product={localizedProduct}
+				product={enrichedProduct}
 				activeSizeId={activeSizeId}
 				heroMedia={
 					<ProductDetailHeroMedia

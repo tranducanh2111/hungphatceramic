@@ -209,7 +209,7 @@ export function Footer() {
 						</Text>
 
 						{/* Social + chat (Desktop) */}
-						<div className="mt-8 hidden lg:flex flex-wrap gap-3.5">
+						<div className="mt-8 hidden flex-wrap gap-3.5 lg:flex">
 							{SocialAndChatLinks}
 						</div>
 					</div>
@@ -261,7 +261,7 @@ export function Footer() {
 						</Link>
 
 						{/* Social + chat (Mobile) */}
-						<div className="mt-8 flex lg:hidden flex-wrap gap-3.5">
+						<div className="mt-8 flex flex-wrap gap-3.5 lg:hidden">
 							{SocialAndChatLinks}
 						</div>
 					</div>

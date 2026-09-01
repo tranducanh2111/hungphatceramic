@@ -18,7 +18,7 @@ interface MaterialCardProps {
 
 export function MaterialCard({ category }: MaterialCardProps) {
 	const t = useTranslations("landing.materials");
-	
+
 	// Show only the first tile preview for a clean, uniform card appearance.
 	const tilePreview = [category.previews[0]];
 	const mainSize = (category.previews[0]?.size ?? "60×120cm") as TileSize;

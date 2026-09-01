@@ -5,44 +5,16 @@ import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { LandingHero } from "@/page-sections/landing/LandingHero";
 import { LandingBrandStatement } from "@/page-sections/landing/LandingBrandStatement";
 
-const LandingStats = dynamic(
-	() =>
-		import("@/page-sections/landing/LandingStats").then((m) => ({
-			default: m.LandingStats,
-		})),
-	{ ssr: false },
-);
-
-const LandingTestimonials = dynamic(
-	() =>
-		import("@/page-sections/landing/LandingTestimonials").then((m) => ({
-			default: m.LandingTestimonials,
-		})),
-	{ ssr: false },
-);
-
-const LandingCta = dynamic(
-	() =>
-		import("@/page-sections/landing/LandingCta").then((m) => ({
-			default: m.LandingCta,
-		})),
-	{ ssr: false },
-);
+import { LandingMaterials } from "@/page-sections/landing/LandingMaterials";
+import { LandingStats } from "@/page-sections/landing/LandingStats";
+import { LandingTestimonials } from "@/page-sections/landing/LandingTestimonials";
+import { LandingCta } from "@/page-sections/landing/LandingCta";
 
 /** LandingProjects may use WebGL (LandingProjectsSpiral) (keep ssr:false). */
 const LandingProjects = dynamic(
 	() =>
 		import("@/page-sections/landing/LandingProjects").then((m) => ({
 			default: m.LandingProjects,
-		})),
-	{ ssr: false },
-);
-
-/** LandingMaterials uses a 3D tile context internally (keep ssr:false). */
-const LandingMaterials = dynamic(
-	() =>
-		import("@/page-sections/landing/LandingMaterials").then((m) => ({
-			default: m.LandingMaterials,
 		})),
 	{ ssr: false },
 );

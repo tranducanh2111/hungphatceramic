@@ -157,7 +157,7 @@ export function GalleryLightbox({
 								<p className="text-footnote text-champagne font-sans font-medium tracking-[0.15em] uppercase">
 									{activeFaceLabel}
 								</p>
-								<p className="text-[11px] text-linen/50 font-sans tracking-wider">
+								<p className="text-linen/50 font-sans text-[11px] tracking-wider">
 									{tDetail("faceLightboxCounter", {
 										current: activeFaceIndex + 1,
 										total: faceCount,

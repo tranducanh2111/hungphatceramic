@@ -2,29 +2,15 @@
 
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useRouter } from "@/i18n/navigation";
 import { useLenisResizeOnMount } from "@/hooks/useLenisResizeOnMount";
 import { applyTileSizeToProductDetail } from "@/lib/products/asset-paths";
 import type { LocalizedProductDetail } from "@/lib/products/localizeCatalog";
 import { ProductDetailHero } from "./ProductDetailHero";
-
-/** Below-fold sections loaded dynamically to save initial bundle size */
-const ProductDetailGallery = dynamic(
-	() => import("./ProductDetailGallery").then((m) => ({ default: m.ProductDetailGallery })),
-	{ ssr: false },
-);
-
-const ProductDetailSpecs = dynamic(
-	() => import("./ProductDetailSpecs").then((m) => ({ default: m.ProductDetailSpecs })),
-	{ ssr: false },
-);
-
-const ProductDetailRelated = dynamic(
-	() => import("./ProductDetailRelated").then((m) => ({ default: m.ProductDetailRelated })),
-	{ ssr: false },
-);
+import { ProductDetailGallery } from "./ProductDetailGallery";
+import { ProductDetailSpecs } from "./ProductDetailSpecs";
+import { ProductDetailRelated } from "./ProductDetailRelated";
 
 interface ProductDetailPageContentProps {
 	product: LocalizedProductDetail;
@@ -96,4 +82,3 @@ export function ProductDetailPageContent({
 		</>
 	);
 }
-

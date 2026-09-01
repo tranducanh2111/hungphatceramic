@@ -178,4 +178,3 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 
 /** MẪU GẠCH INDO (assets from client Drive folders, see public/assets/INDO-IMPORT.md). */
 export const INDO_PRODUCTS: ProductCatalogEntry[] = INDO_PRODUCT_SEEDS.map(buildIndoProduct);
-

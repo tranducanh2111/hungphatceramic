@@ -116,7 +116,7 @@ export function TileSurfacePanel({
 						? tDetail("facesOverviewComposite")
 						: tDetail("individualFaces", { count: faceImages.length })}
 				</Text>
-				<span className="border-sapphire-mist/60 bg-sapphire-ocean/80 text-linen/60 rounded-full border px-2.5 py-0.5 text-[11px] font-sans font-medium tracking-wider uppercase">
+				<span className="border-sapphire-mist/60 bg-sapphire-ocean/80 text-linen/60 rounded-full border px-2.5 py-0.5 font-sans text-[11px] font-medium tracking-wider uppercase">
 					{safeActiveIndex + 1} / {items.length} — {activeItem.label}
 				</span>
 			</div>
@@ -125,7 +125,9 @@ export function TileSurfacePanel({
 			<div
 				className={cn(
 					"bg-sapphire-ocean/30 border-sapphire-mist/30 relative w-full flex-1 overflow-hidden rounded-xl border",
-					fillHeight ? "min-h-[14rem] sm:min-h-[18rem]" : "min-h-[14rem] aspect-[4/3] sm:min-h-[18rem]",
+					fillHeight
+						? "min-h-[14rem] sm:min-h-[18rem]"
+						: "aspect-[4/3] min-h-[14rem] sm:min-h-[18rem]",
 				)}
 			>
 				<AnimatePresence mode="wait" initial={false}>
@@ -136,7 +138,7 @@ export function TileSurfacePanel({
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.35, ease: "easeInOut" }}
-						className="group absolute inset-0 z-[1] cursor-zoom-in text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-champagne"
+						className="group focus-visible:ring-champagne absolute inset-0 z-[1] cursor-zoom-in text-left focus:outline-none focus-visible:ring-2"
 						onClick={() => onOpenLightbox(safeActiveIndex)}
 						aria-label={tDetail("faceImageAlt", {
 							productName,
@@ -144,7 +146,9 @@ export function TileSurfacePanel({
 						})}
 					>
 						<Image
-							src={encodePublicAssetPath(resolveDetailGalleryImagePath(activeItem.src))}
+							src={encodePublicAssetPath(
+								resolveDetailGalleryImagePath(activeItem.src),
+							)}
 							alt={currentAlt}
 							fill
 							sizes="(max-width: 1024px) 100vw, 50vw"

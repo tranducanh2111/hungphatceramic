@@ -45,9 +45,7 @@ export function ProductTileCardMedia({
 
 	const isHoverPreviewVisible = isHoverPreviewActive && isMediaMounted;
 
-	if (!isMediaMounted) {
-		return <div className="bg-sapphire-mist/15 absolute inset-0" aria-hidden />;
-	}
+	// Note: We always render the primary <Image loading="lazy" /> so search crawlers (Googlebot, Google Images) discover all catalog images and alt texts in static HTML.
 
 	return (
 		<div className="absolute inset-0">

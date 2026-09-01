@@ -42,7 +42,11 @@ export async function generateMetadata({ params }: ProductsPageProps): Promise<M
 
 export default async function ProductsPage({ params, searchParams }: ProductsPageProps) {
 	const { locale } = await params;
-	const { collection: collectionParam, size: sizeParam, surface: surfaceParam } = await searchParams;
+	const {
+		collection: collectionParam,
+		size: sizeParam,
+		surface: surfaceParam,
+	} = await searchParams;
 	setRequestLocale(locale);
 
 	const tProducts = await getTranslations({ locale, namespace: "products.items" });
@@ -51,7 +55,12 @@ export default async function ProductsPage({ params, searchParams }: ProductsPag
 	const collections = getCollectionListingMeta(PRODUCTS);
 	const tileSizes = getTileSizeListingMeta(PRODUCTS);
 	const surfaces = getSurfaceListingMeta(PRODUCTS);
-	const initialFilter = resolveCatalogFilterState(collectionParam, sizeParam, surfaceParam, collections);
+	const initialFilter = resolveCatalogFilterState(
+		collectionParam,
+		sizeParam,
+		surfaceParam,
+		collections,
+	);
 
 	const alternates = buildAlternatesForLocale("/products", locale);
 	const tSchema = await getTranslations({ locale, namespace: "pages.products.schema" });

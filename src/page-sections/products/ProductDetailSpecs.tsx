@@ -21,7 +21,6 @@ function getSurfaceFinish(skuCode: string, slug: string, finishes: FinishTransla
 	return isPolished ? finishes.polished : finishes.matte;
 }
 
-
 interface ProductDetailSpecsProps {
 	product: LocalizedProductDetail;
 }
@@ -37,11 +36,9 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 
 	const surfaceFinish = getSurfaceFinish(product.skuCode, product.slug, finishes);
 
-	const collectionProducts = PRODUCTS.filter(
-		(p) => p.collectionId === product.collectionId
-	);
+	const collectionProducts = PRODUCTS.filter((p) => p.collectionId === product.collectionId);
 	const availableSurfaces = Array.from(
-		new Set(collectionProducts.map((p) => getSurfaceFinish(p.skuCode, p.slug, finishes)))
+		new Set(collectionProducts.map((p) => getSurfaceFinish(p.skuCode, p.slug, finishes))),
 	).join(" / ");
 
 	const thickness =
@@ -118,7 +115,10 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 						<div className="grid grid-cols-2 gap-8 pt-4">
 							{/* Available Sizes (only if > 1 size exists in design family) */}
 							{(() => {
-								const sizeSiblings = getAvailableSizesForProduct(product.skuCode, PRODUCTS);
+								const sizeSiblings = getAvailableSizesForProduct(
+									product.skuCode,
+									PRODUCTS,
+								);
 								if (sizeSiblings.length <= 1) return null;
 
 								return (
@@ -130,9 +130,14 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 											{sizeSiblings.map(({ size, slug }) => {
 												const isCurrent = size === product.category;
 												return (
-													<li key={size} className="text-body-sm font-sans font-semibold">
+													<li
+														key={size}
+														className="text-body-sm font-sans font-semibold"
+													>
 														{isCurrent ? (
-															<span className="text-champagne">{size}</span>
+															<span className="text-champagne">
+																{size}
+															</span>
 														) : (
 															<Link
 																href={`/products/${slug}`}
@@ -148,7 +153,7 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 									</div>
 								);
 							})()}
-							
+
 							{/* Available Surfaces */}
 							<div className="space-y-4">
 								<span className="text-linen/30 block font-sans text-[11px] font-semibold tracking-wider uppercase">
@@ -156,7 +161,10 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 								</span>
 								<ul className="space-y-2">
 									{availableSurfaces.split(" / ").map((surf) => (
-										<li key={surf} className="text-body-sm text-linen font-sans font-semibold">
+										<li
+											key={surf}
+											className="text-body-sm text-linen font-sans font-semibold"
+										>
 											{surf}
 										</li>
 									))}
