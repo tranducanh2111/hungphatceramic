@@ -31,6 +31,7 @@ export interface ProductCatalogEntry extends ProductSummary {
 	faceImages: string[];
 	sceneImages: string[];
 	allFacesImage?: string;
+	faceCount?: number;
 	bodyType?: "white" | "standard";
 }
 

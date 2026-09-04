@@ -46,9 +46,11 @@ export function ProductDetailSpecs({ product }: ProductDetailSpecsProps) {
 			? tDetail("specs.thicknessArchitectural")
 			: tDetail("specs.thicknessStandard");
 
-	const faceCount = product.faceImages?.length ?? 0;
+	const faceCount =
+		product.faceCount ??
+		(product.faceImages && product.faceImages.length > 1 ? product.faceImages.length : 1);
 	const facesValue =
-		faceCount > 0
+		faceCount > 1
 			? tDetail("specs.facesRandom", { count: faceCount })
 			: tDetail("specs.facesSingle");
 

@@ -11,6 +11,7 @@ interface IndoProductSeed {
 	format: IndoProductFormat;
 	marketingName?: string;
 	faceCount?: number;
+	hasIndividualFaces?: boolean;
 	sceneCount?: number;
 	sceneFiles?: string[];
 	/** Omit composite when Drive only provides PDF or individual faces. */
@@ -21,18 +22,21 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 	{
 		skuCode: "GS881042",
 		format: "square80",
+		faceCount: 8,
 		sceneCount: 2,
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "GS881045",
 		format: "square80",
+		faceCount: 6,
 		sceneFiles: ["GS881045_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "GS883009",
 		format: "square80",
+		faceCount: 9,
 		sceneFiles: ["GS883009_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
@@ -41,6 +45,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Olympus White",
 		faceCount: 12,
+		hasIndividualFaces: true,
 		sceneFiles: ["SS886101_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
@@ -49,30 +54,35 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square80",
 		marketingName: "Elbrus Gris",
 		faceCount: 12,
+		hasIndividualFaces: true,
 		sceneFiles: ["SS886106_PhoiCanh.png"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261307",
 		format: "rect",
+		faceCount: 6,
 		sceneFiles: ["PC SS1261307.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261310",
 		format: "rect",
+		faceCount: 6,
 		sceneFiles: ["PC SS1261310.jpg", "SS1261310_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261311",
 		format: "rect",
+		faceCount: 6,
 		sceneFiles: ["PC SS1261311.jpg", "SS1261311_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
 	{
 		skuCode: "SS1261315",
 		format: "rect",
+		faceCount: 6,
 		sceneFiles: ["PC SS1261315.jpg", "SS1261315_PhoiCanh.jpg"],
 		hasFullFacesComposite: true,
 	},
@@ -81,6 +91,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square",
 		marketingName: "Albino Crema",
 		faceCount: 6,
+		hasIndividualFaces: true,
 		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
@@ -89,6 +100,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square",
 		marketingName: "Smiley Crema",
 		faceCount: 6,
+		hasIndividualFaces: true,
 		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
@@ -97,6 +109,7 @@ const INDO_PRODUCT_SEEDS: IndoProductSeed[] = [
 		format: "square",
 		marketingName: "Honey Crema",
 		faceCount: 6,
+		hasIndividualFaces: true,
 		sceneCount: 1,
 		hasFullFacesComposite: true,
 	},
@@ -158,6 +171,12 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 
 	const compositeImage = `${assetBase}/${seed.skuCode}_FullFaces.jpg`;
 
+	const faceImages = buildFaceImages(
+		assetBase,
+		seed.skuCode,
+		seed.hasIndividualFaces ? (seed.faceCount ?? 0) : 0,
+	);
+
 	return {
 		slug: `indo-${seed.skuCode.toLowerCase()}`,
 		skuCode: seed.skuCode,
@@ -165,7 +184,8 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 		category: primarySize,
 		sizes: [...sizes],
 		thumbnailUrl: `${assetBase}/${seed.skuCode}.jpg`,
-		faceImages: buildFaceImages(assetBase, seed.skuCode, seed.faceCount),
+		faceImages,
+		faceCount: seed.faceCount,
 		sceneImages: buildSceneImages(
 			assetBase,
 			seed.skuCode,

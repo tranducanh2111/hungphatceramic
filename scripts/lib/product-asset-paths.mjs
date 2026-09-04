@@ -226,9 +226,13 @@ export function collectIndoAssetPaths(indoSource) {
 				: "60X120";
 		const base = `/assets/${sizeFolder}/INDO ${sku}`;
 
+		const hasIndividualFaces = block.includes("hasIndividualFaces: true");
+
 		paths.add(`${base}/${sku}.jpg`);
-		for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
-			paths.add(`${base}/${sku}_F${faceIndex}.jpg`);
+		if (hasIndividualFaces) {
+			for (let faceIndex = 1; faceIndex <= faceCount; faceIndex += 1) {
+				paths.add(`${base}/${sku}_F${faceIndex}.jpg`);
+			}
 		}
 		if (sceneFiles && sceneFiles.length > 0) {
 			for (const file of sceneFiles) {
