@@ -14,12 +14,8 @@ const TARGETS_PRODUCTS = [
 	"architectural-g12539-dd",
 ];
 
-const TARGETS_INDO = [
-	"indo-ss886101",
-	"indo-ss886106",
-	"indo-ss1261310",
-	"indo-ss1261315",
-];
+// INDO products have official full-faces assets on Google Drive and must NOT be synthetically stitched.
+const TARGETS_INDO: string[] = [];
 
 // Brand colors
 const SAPPHIRE_DEEP = { r: 7, g: 26, b: 43, alpha: 1 }; // #071A2B
