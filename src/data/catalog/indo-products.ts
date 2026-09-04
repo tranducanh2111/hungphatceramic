@@ -1,4 +1,5 @@
 import type { ProductCatalogEntry } from "@/types";
+import type { CollectionId } from "@/data/shared/collection-ids";
 
 const SQUARE_SIZE = "100×100cm" as const;
 const SQUARE_80_SIZE = "80×80cm" as const;
@@ -8,6 +9,7 @@ type IndoProductFormat = "square" | "square80" | "rect";
 
 interface IndoProductSeed {
 	skuCode: string;
+	collectionId?: CollectionId;
 	format: IndoProductFormat;
 	marketingName?: string;
 	faceCount?: number;
@@ -177,10 +179,13 @@ function buildIndoProduct(seed: IndoProductSeed): ProductCatalogEntry {
 		seed.hasIndividualFaces ? (seed.faceCount ?? 0) : 0,
 	);
 
+	const collectionId: CollectionId =
+		seed.collectionId ?? (seed.format === "square" ? "an-do" : "indo");
+
 	return {
 		slug: `indo-${seed.skuCode.toLowerCase()}`,
 		skuCode: seed.skuCode,
-		collectionId: "indo",
+		collectionId,
 		category: primarySize,
 		sizes: [...sizes],
 		thumbnailUrl: `${assetBase}/${seed.skuCode}.jpg`,

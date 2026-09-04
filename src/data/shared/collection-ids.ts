@@ -8,6 +8,7 @@ export const COLLECTION_IDS = [
 	"peace",
 	"standard",
 	"indo",
+	"an-do",
 ] as const;
 
 export type CollectionId = (typeof COLLECTION_IDS)[number];

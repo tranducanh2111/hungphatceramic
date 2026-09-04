@@ -30,6 +30,9 @@
 		},
 		"indo": {
 			"name": "INDO Series"
+		},
+		"an-do": {
+			"name": "India Series"
 		}
 	},
 	"navbar": {
@@ -80,7 +83,8 @@
 			"architectural": "20mm Architectural",
 			"peace": "Peace Series",
 			"standard": "Standard Body",
-			"indo": "INDO Series"
+			"indo": "INDO Series",
+			"an-do": "India Series"
 		},
 		"legal": {
 			"privacy": "Privacy Policy",
@@ -210,6 +214,10 @@
 				"indo": {
 					"name": "INDO Series",
 					"tagline": "Contemporary porcelain for bold, modern interiors."
+				},
+				"an-do": {
+					"name": "India Series",
+					"tagline": "Premium large-format 1000×1000 porcelain imported from India."
 				}
 			}
 		},
@@ -624,7 +632,8 @@
 				"architectural": "20mm Architectural",
 				"peace": "Peace Series",
 				"standard": "Standard Body",
-				"indo": "INDO Series"
+				"indo": "INDO Series",
+				"an-do": "India Series"
 			},
 			"sizes": {
 				"60x120": "60×120 cm",

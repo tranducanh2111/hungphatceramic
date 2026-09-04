@@ -74,6 +74,10 @@ const MATERIAL_CATEGORY_DEFS: MaterialCategoryDef[] = [
 			{ size: "80×80cm", image: "/assets/80X80/INDO SS886101/SS886101.jpg" },
 		],
 	},
+	{
+		id: "an-do",
+		previews: [{ size: "100×100cm", image: "/assets/100X100/INDO GP10C41/GP10C41.jpg" }],
+	},
 ];
 
 export const MATERIAL_CATEGORIES: MaterialCategory[] = MATERIAL_CATEGORY_DEFS.map((entry) => {

@@ -92,6 +92,7 @@ async function main() {
 			"architectural",
 			"peace",
 			"indo",
+			"an-do",
 		].includes(id),
 	);
 	const processStepIds = extractMatches(processSource, /id: "([^"]+)"/g);

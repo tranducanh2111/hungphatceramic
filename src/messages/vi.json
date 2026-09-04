@@ -29,6 +29,9 @@
 			"name": "Gạch xương tiêu chuẩn"
 		},
 		"indo": {
+			"name": "Dòng INDO"
+		},
+		"an-do": {
 			"name": "Dòng Ấn Độ"
 		}
 	},
@@ -80,7 +83,8 @@
 			"architectural": "Dòng kiến trúc 20mm",
 			"peace": "Dòng Peace",
 			"standard": "Gạch xương tiêu chuẩn",
-			"indo": "Dòng Ấn Độ"
+			"indo": "Dòng INDO",
+			"an-do": "Dòng Ấn Độ"
 		},
 		"legal": {
 			"privacy": "Chính sách bảo mật",
@@ -208,8 +212,12 @@
 					"tagline": "Bề mặt thanh nhã cho không gian nhà ở tinh tế."
 				},
 				"indo": {
-					"name": "Dòng Ấn Độ",
+					"name": "Dòng INDO",
 					"tagline": "Gốm sứ đương đại cho nội thất hiện đại ấn tượng."
+				},
+				"an-do": {
+					"name": "Dòng Ấn Độ",
+					"tagline": "Gạch 1000×1000 khổ lớn cao cấp nhập khẩu Ấn Độ."
 				}
 			}
 		},
@@ -624,7 +632,8 @@
 				"architectural": "Dòng kiến trúc 20mm",
 				"peace": "Dòng Peace",
 				"standard": "Gạch xương tiêu chuẩn",
-				"indo": "Dòng Ấn Độ"
+				"indo": "Dòng INDO",
+				"an-do": "Dòng Ấn Độ"
 			},
 			"sizes": {
 				"60x120": "60×120 cm",
